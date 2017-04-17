@@ -59,6 +59,13 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                @include('auth.social')
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
