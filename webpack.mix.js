@@ -11,5 +11,15 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.scripts(['node_modules/bootstrap-formhelpers/dist/js/bootstrap-formhelpers.js'],
+       'public/js/all.js' )
+    .js('resources/assets/js/app.js', 'public/js')
+    .extract(['jquery'])
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .styles([
+        'node_modules/bootstrap-formhelpers/dist/css/bootstrap-formhelpers.css'
+    ], 'public/css/all.css');
+
+if (mix.config.inProduction) {
+    mix.version();
+}

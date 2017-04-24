@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -78,10 +79,34 @@
             </div>
         </nav>
 
-        @yield('content')
+        @if (!Auth::guest())
+            @include('layouts.sidebar')
+        @endif
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Options</div>
+
+                        <div class="panel-body">
+                            @yield('content')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="{{ mix('/js/manifest.js') }}"></script>
+    <script src="{{ mix('/js/vendor.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/all.js') }}"></script>
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 </body>
 </html>

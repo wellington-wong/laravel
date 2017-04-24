@@ -11,14 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
+Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
+
+Route::get('/company/create', 'CompanyController@create')->name('company-create');
+Route::post('/company/create', 'CompanyController@postCreate')->name('post-company-create');
 
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

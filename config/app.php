@@ -139,6 +139,12 @@ return [
 
         Laravel\Socialite\SocialiteServiceProvider::class,
 
+        Collective\Html\HtmlServiceProvider::class,
+        Watson\BootstrapForm\BootstrapFormServiceProvider::class,
+
+        Propaganistas\LaravelPhone\LaravelPhoneServiceProvider::class,
+        Propaganistas\LaravelIntl\IntlServiceProvider::class,
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -195,6 +201,10 @@ return [
     'aliases' => [
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+        'Form'     => Collective\Html\FormFacade::class,
+        'HTML'     => Collective\Html\HtmlFacade::class,
+        'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
 
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
