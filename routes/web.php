@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/company/create', 'CompanyController@create')->name('company-create');
 Route::post('/company/create', 'CompanyController@postCreate')->name('post-company-create');
 
+Route::get('referral/create', 'ReferralController@create')->name('referral-create');
+
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
