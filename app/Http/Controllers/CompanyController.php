@@ -24,12 +24,13 @@ class CompanyController extends Controller
     public function postCreate(Request $request) {
 
         $rules = [
-            'address'=>'required',
+            'address'=>'required|max:100',
+            'address2'=>'max:25',
             'city'=>'required',
-            'state'=>'required',
-            'zip'=>'required',
+            'state'=>'required|max:2',
+            'zip'=>'required|max:11',
             'company_name'=>'required',
-            'subdomain'=>'required|unique:companies',
+            'subdomain'=>'required|unique:companies|not_in:app',
             'phone'=>'required|phone:US'
         ];
         $validator = Validator::make($request->input(), $rules);

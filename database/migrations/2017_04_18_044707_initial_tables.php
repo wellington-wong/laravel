@@ -49,7 +49,7 @@ class InitialTables extends Migration
             $table->string('address2', 25)->nullable();
             $table->string('city');
             $table->string('state', 2);
-            $table->string('zip', 10);
+            $table->string('zip', 11);
             $table->unique(['address', 'address2', 'zip']);
             $table->timestamps();
             //$table->
