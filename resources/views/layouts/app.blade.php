@@ -79,14 +79,14 @@
             </div>
         </nav>
 
-        @if (!Auth::guest())
-            @include('layouts.sidebar')
-        @endif
-
 
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+
+                @if (!Auth::guest())
+                    @include('layouts.sidebar')
+                @endif
+                <div class="col-md-8">
                     <div class="panel panel-default">
                         <div class="panel-heading"></div>
 
