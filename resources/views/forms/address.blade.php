@@ -4,6 +4,11 @@
 </div>
 
 <div class="form-group">
+    <label>Address Line 2</label>
+    {{ Form::text('address2') }}
+</div>
+
+<div class="form-group">
     <label>City</label>
     {{ Form::text('city') }}
 </div>

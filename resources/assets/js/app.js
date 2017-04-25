@@ -19,6 +19,7 @@ const app = new Vue({
     el: '#app'
 });
 
+//CHECK TERMS ACCEPTANCE BUTTON TO ENABLE SUBMIT BUTTON
 function checkTerms() {
     if ( $('.terms-acceptance').is(":checked") ) {
         $('.terms-button').removeAttr("disabled");
@@ -26,11 +27,10 @@ function checkTerms() {
         $('.terms-button').attr("disabled", "disabled");
     }
 }
-
 $(document).ready(function() {
     checkTerms();
 });
-
 $('.terms-acceptance').on('click', function() {
     checkTerms();
 });
+//END - CHECK TERMS ACCEPTANCE BUTTON

@@ -18,7 +18,6 @@ class InitialTables extends Migration
             $table->integer('owner_id');
             $table->string('company_name');
             $table->string('subdomain');
-            $table->integer('address_id');
             $table->timestamps();
         });
 
@@ -33,14 +32,17 @@ class InitialTables extends Migration
             $table->integer('referrer_id');
             $table->integer('company_id');
             $table->integer('user_id');
-
-
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
 
         Schema::create('phones', function (Blueprint $table) {
             $table->increments('id');
-            //$table->
+            $table->string('country', 2);
+            $table->string('country_code', 3);
+            $table->string('number', 15);
+            $table->tinyInteger('type')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('addresses', function (Blueprint $table) {
@@ -53,6 +55,30 @@ class InitialTables extends Migration
             $table->unique(['address', 'address2', 'zip']);
             $table->timestamps();
             //$table->
+        });
+
+        Schema::create('user_phone', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('phone_id');
+            $table->boolean('default')->default(0);
+        });
+
+        Schema::create('user_address', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('address_id');
+            $table->boolean('default')->default(0);
+        });
+
+        Schema::create('company_phone', function (Blueprint $table) {
+            $table->integer('company_id');
+            $table->integer('phone_id');
+            $table->boolean('default')->default(0);
+        });
+
+        Schema::create('company_address', function (Blueprint $table) {
+            $table->integer('company_id');
+            $table->integer('address_id');
+            $table->boolean('default')->default(0);
         });
 
     }
@@ -69,5 +95,10 @@ class InitialTables extends Migration
         Schema::dropIfExists('referrals');
         Schema::dropIfExists('phones');
         Schema::dropIfExists('addresses');
+
+        Schema::dropIfExists('user_phone');
+        Schema::dropIfExists('user_address');
+        Schema::dropIfExists('company_phone');
+        Schema::dropIfExists('company_address');
     }
 }

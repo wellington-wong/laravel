@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,17 +41,21 @@ class CompanyController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        $address = Address::create(
+        $company = $request->user()->companies()
+            ->create( $request->only('owner_id', 'company_name', 'subdomain') );
+        $address = $company->address()->create(
             $request->only('address', 'address2', 'city', 'state', 'zip')
         );
+        $company->addresses()->updateExistingPivot($address->id, ['default'=>1]);
 
-        $request->request->add(['address_id'=>$address->id,
-            'owner_id'=> \Auth::user()->id]);
+        return redirect( route('get-company', ['id'=>$company->id]) );
 
-        $company = $request->user()->companies()
-            ->create( $request->only('owner_id', 'company_name', 'subdomain', 'address_id') );
+    }
 
-        return redirect(  );
+    public function getCompany(Request $request, $id) {
+
+        $company = Company::find($id);
+        dd($company);
 
     }
 
