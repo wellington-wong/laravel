@@ -22,17 +22,17 @@
     </script>
 </head>
 <body>
-    <div id="app" class="fill">
+    <div id="app">
 
-        <div class="container-fluid fill">
-            <div class="row fill">
+        <div class="container-fluid">
+            <div class="row">
 
                 @if (!Auth::guest())
-                <div class="col-md-3 col-sidebar">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-sidebar">
                 @include('layouts.sidebar')
                 </div>
                 @endif
-                <div class="col-md-9 page-right main-content">
+                <div class="col-xs-9 col-xs-offset-3 col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 page-right main-content">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             @include('layouts.navbar')
