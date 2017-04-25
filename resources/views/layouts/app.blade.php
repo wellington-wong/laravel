@@ -28,11 +28,11 @@
             <div class="row fill">
 
                 @if (!Auth::guest())
-                <div class="col-md-3 col-sidebar fill">
+                <div class="col-md-3 col-sidebar">
                 @include('layouts.sidebar')
                 </div>
                 @endif
-                <div class="col-md-9 page-right main-content fill">
+                <div class="col-md-9 page-right main-content">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             @include('layouts.navbar')
