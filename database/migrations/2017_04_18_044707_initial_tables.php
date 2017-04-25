@@ -45,8 +45,8 @@ class InitialTables extends Migration
 
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('address');
-            $table->string('address2')->nullable();
+            $table->string('address', 100);
+            $table->string('address2', 25)->nullable();
             $table->string('city');
             $table->string('state', 2);
             $table->string('zip', 10);
