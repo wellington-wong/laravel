@@ -1,7 +1,19 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: dan
- * Date: 4/24/17
- * Time: 9:22 PM
- */
+<div class="form-group">
+    <label>Street Address</label>
+    {{ Form::text('address') }}
+</div>
+
+<div class="form-group">
+    <label>City</label>
+    {{ Form::text('city') }}
+</div>
+
+<div class="form-group">
+    <label>State</label>
+    {{ Form::text('state') }}
+</div>
+
+<div class="form-group">
+    <label>Zip Code</label>
+    {{ Form::text('zip') }}
+</div>

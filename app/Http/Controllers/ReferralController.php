@@ -12,9 +12,18 @@ class ReferralController extends Controller
         $this->middleware('auth');
     }
 
-    public function create(Request $request)
+    public function create( Request $request )
     {
-        return view('referral.create');
+        //dd($request->subdomain);
+        return view('referral.create')
+            ->with('domain', $request->subdomain);
+    }
+
+    public function postCreate( Request $request )
+    {
+        //dd($request->subdomain);
+        return view('referral.create')
+            ->with('domain', $request->subdomain);
     }
 
 }

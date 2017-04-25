@@ -888,7 +888,7 @@ module.exports = g;
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
+/* WEBPACK VAR INJECTION */(function($) {
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -906,8 +906,25 @@ __webpack_require__(31);
 Vue.component('example', __webpack_require__(34));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
+
+function checkTerms() {
+    if ($('.terms-acceptance').is(":checked")) {
+        $('.terms-button').removeAttr("disabled");
+    } else {
+        $('.terms-button').attr("disabled", "disabled");
+    }
+}
+
+$(document).ready(function () {
+    checkTerms();
+});
+
+$('.terms-acceptance').on('click', function () {
+    checkTerms();
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 11 */

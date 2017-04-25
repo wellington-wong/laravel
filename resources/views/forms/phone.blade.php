@@ -1,7 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: dan
- * Date: 4/24/17
- * Time: 9:23 PM
- */
+<div class="form-group">
+    <label><?php echo isset($phone_label) ? $phone_label : 'Phone Number' ?></label>
+    {{ Form::hidden('phone_country', 'US') }}
+    {{-- Form::select('phone_country', \Propaganistas\LaravelIntl\Facades\Country::all(), 'US' ) --}}
+    {{ Form::text('phone', null, ['class'=>'form-control bfh-phone', 'data-format'=>'(ddd) ddd-dddd']) }}
+</div>

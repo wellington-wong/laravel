@@ -25,11 +25,16 @@ class InitialTables extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('user_id');
             $table->integer('company_id');
+            $table->timestamps();
         });
 
         Schema::create('referrals', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('referrer_id');
             $table->integer('company_id');
+            $table->integer('user_id');
+
+
             $table->timestamps();
         });
 

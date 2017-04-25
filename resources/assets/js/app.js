@@ -18,3 +18,19 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+function checkTerms() {
+    if ( $('.terms-acceptance').is(":checked") ) {
+        $('.terms-button').removeAttr("disabled");
+    } else {
+        $('.terms-button').attr("disabled", "disabled");
+    }
+}
+
+$(document).ready(function() {
+    checkTerms();
+});
+
+$('.terms-acceptance').on('click', function() {
+    checkTerms();
+});
