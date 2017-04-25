@@ -1,6 +1,6 @@
 
             <div class="panel panel-default">
-                <div class="panel-heading">Options</div>
+                <div class="panel-heading"><a class="logo" href="{!! url('/') !!}"></a></div>
 
                 <div class="panel-body">
                     <div>

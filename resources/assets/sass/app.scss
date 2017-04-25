@@ -8,7 +8,40 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+html, body {
+	height: 100%;
+	min-height: 100%;
+}
+
 /*** Navbar ***/
 .navbar.navbar-static-top {
 	background: #e6f260;
+}
+
+/*** Sidebar ***/
+.col-sidebar {
+	background: #3d414c;
+	.panel-default {
+		border: 0;
+		&, .panel-heading {
+			background: none;
+		}
+	}
+	.logo {
+	    display: block;
+	    min-height: 41px;
+	    background: url(/images/logo.png) no-repeat center 12px;
+	}
+}
+
+/*** Main Content ***/
+.main-content {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/*** Common ***/
+.fill { 
+    min-height: 100%;
+    height: 100%;
 }
