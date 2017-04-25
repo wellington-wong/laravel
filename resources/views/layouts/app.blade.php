@@ -24,13 +24,15 @@
 <body>
     <div id="app">
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
 
                 @if (!Auth::guest())
-                    @include('layouts.sidebar')
+                <div class="col-md-3">
+                @include('layouts.sidebar')
+                </div>
                 @endif
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             @include('layouts.navbar')
