@@ -34,7 +34,6 @@
                     <figure class="logo col-md-3"><img src="/images/logo.png" alt=""></figure>
                     <div class="col-md-9">
                         <ul class="nav navbar-nav navbar-right navbar-bottom-right">
-                            <li><a href="{{ route('register') }}">Register</a></li>
                             <li><a href="#">How it Works</a></li>
                             <li><a href="#">Features</a></li>
                             <li><a href="#">About Us</a></li>
