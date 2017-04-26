@@ -22,6 +22,9 @@ html, body {
 				display: inline;
 			}
 		}
+		.logout {
+			background: url('images/logout.png') no-repeat center center;
+		}
 	}
 }
 
@@ -44,6 +47,8 @@ $sidebar-bg-color: #3d414c;
 		}
 		.panel-footer {
 			background: $sidebar-bg-color;
+			display: inline-block;
+			vertical-align: bottom;
 		}
 	}
 	.logo {
