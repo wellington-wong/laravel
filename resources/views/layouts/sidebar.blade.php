@@ -9,7 +9,11 @@
                     <div>Referrals</div>
                     <div class="menu-item">
                         <a href="{{ route('referral-create') }}" >Submit a Referral</a>
-                    </div>           
+                    </div>
+                    <div class="menu-item">
+                        <a href="{{ route('referrals') }}" >Referral History</a>
+                    </div>
+
                 </div>
 
                 <div class="panel-footer">
