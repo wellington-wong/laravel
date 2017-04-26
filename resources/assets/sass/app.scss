@@ -10,6 +10,7 @@
 
 html, body {
 	height: 100%;
+	font-family: 'Montserrat', sans-serif;
 }
 
 /*** Navbar ***/
@@ -18,11 +19,18 @@ html, body {
 	min-height: 0;
 	.navbar-right {
 		margin: 0 10px;
+		&, a {
+			color: #3f434c;
+			font-weight: bold;
+		}
 		li {
 			padding: 10px 0;
 			a {
 				display: inline;
 			}
+		}
+		.nav-separator {
+			color: #fff;
 		}
 		.logout {
 			a {
@@ -42,12 +50,16 @@ $sidebar-bg-color: #3d414c;
     min-height: 100%;
     height: 100%;
     position: fixed;
+    padding-left: 10px;
+    padding-right: 10px;
 	.panel-default {
 		border: 0;
 		box-shadow: none;
+		margin-top: 50px;
 		&, .panel-heading {
 			background: none; 
 			border: 0;
+			padding-left: 0;
 		}
 		&, a {
 			color: #fff;

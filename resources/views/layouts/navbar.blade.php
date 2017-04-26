@@ -23,7 +23,7 @@
                             <li class="dropdown">
                                 Hi <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
-                                </a> | <a href="#">Manage Account</a>
+                                </a> <span class="nav-separator">|</span> <a href="#">Manage Account</a>
                             </li>
                             <li class="logout">
                                 <a href="{{ route('logout') }}"
