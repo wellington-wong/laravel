@@ -17,8 +17,9 @@ html, body {
 	background: #e6f260;
 	min-height: 0;
 	.navbar-right {
-		margin: 10px;
+		margin: 0 10px;
 		li {
+			padding: 10px 0;
 			a {
 				display: inline;
 			}
@@ -26,9 +27,9 @@ html, body {
 		.logout {
 			a {
 				background: url('/images/logout.png') no-repeat center center;
-				&:hover {
-					background: #d2dd53;
-				}
+			}
+			&:hover {
+				background: #d2dd53;
 			}
 		}
 	}
