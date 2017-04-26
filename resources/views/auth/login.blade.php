@@ -24,8 +24,23 @@
 </head>
     <body>
         <header>
+            <div class="col-md-12">
+                <ul class="nav navbar-nav navbar-right navbar-top-right">
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                </ul>
+            </div>
             <section class="container">
-                <figure class="logo"><img src="/images/logo.png" alt=""></figure>
+                <div>
+                    <figure class="logo col-md-6"><img src="/images/logo.png" alt=""></figure>
+                    <ul class="nav navbar-nav navbar-right col-md-6 pull-right">
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a href="#">How it Works</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
             </section>
         </header>
         <div class="container">
