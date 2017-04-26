@@ -51,61 +51,6 @@ header {
 	}
 }
 
-/*** Register Navbar ***/
-.navbar-top-right {
-	li {
-		a {
-			background-color: #e5f356;
-			color: #444854;
-			padding: 2px 80px;
-			text-transform: uppercase;
-			font-size: 12px;
-			font-weight: bold;
-		}
-	}
-}
-.navbar-bottom-right {
-	li {
-		a {
-			color: #fff;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			margin-top: 7px;
-			margin-bottom: 7px;
-			&:hover {
-				color: #444854;
-				background: #fff;
-			}
-		}
-	}
-}
-footer {
-	color: #fff;
-	.container {
-		padding-top: 20px;
-	}
- 	.footer-list {
- 		ul {
- 			&, li {
- 				padding: 0;
- 				margin: 0;
- 			}
-			li {
-				list-style: none;
-				padding: 5px 0;
-			}
- 		}
- 	}
- 	.middle-content {
- 		margin: 40px 15px 30px 15px;
- 	}
- 	.bottom-content {
- 		padding: 10px 0;
- 		background: #e5f356;
- 		color: #444854;
- 	}
-}
-
 /*** Sidebar ***/
 $bg-color: #444854;
 .col-sidebar {
@@ -157,6 +102,76 @@ $bg-color: #444854;
 /*** Footer ***/
 footer {
 	background: $bg-color;
+}
+
+
+
+/*** Guest Navbar ***/
+.navbar-top-right {
+	li {
+		a {
+			background-color: #e5f356;
+			color: #444854;
+			padding: 2px 80px;
+			text-transform: uppercase;
+			font-size: 12px;
+			font-weight: bold;
+		}
+	}
+}
+.navbar-bottom-right {
+	li {
+		a {
+			color: #fff;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			margin-top: 7px;
+			margin-bottom: 7px;
+			&:hover {
+				color: #444854;
+				background: #fff;
+			}
+		}
+	}
+}
+
+/*** Guest Main ***/
+main {
+	background: #f0f0f0;
+	.top-content {
+		background: #e5f356;
+		margin: 5px 0 50px 0;
+		padding: 30px 0;
+		color: #444854;
+	}
+}
+
+/*** Guest Footer ***/
+footer {
+	color: #fff;
+	.container {
+		padding-top: 20px;
+	}
+ 	.footer-list {
+ 		ul {
+ 			&, li {
+ 				padding: 0;
+ 				margin: 0;
+ 			}
+			li {
+				list-style: none;
+				padding: 5px 0;
+			}
+ 		}
+ 	}
+ 	.middle-content {
+ 		margin: 40px 15px 30px 15px;
+ 	}
+ 	.bottom-content {
+ 		padding: 10px 0;
+ 		background: #e5f356;
+ 		color: #444854;
+ 	}
 }
 
 /*** Common ***/

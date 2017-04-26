@@ -58,6 +58,11 @@
 
         <!-- Start Main -->
         <main>
+            <div class="row">
+                <div class="top-content text-center">
+                    <span>Login with your email and password</span>
+                </div>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
