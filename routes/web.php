@@ -12,8 +12,6 @@
 */
 
 
-
-
 /*
  * WRAP EVERYTHING IN THIS TO GET SUBDOMAIN IF ROUTING ISSUE EVER FIGURED OUT.
  * SEE Domain MIDDLEWARE COMMENTS
@@ -35,6 +33,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/company/create', 'CompanyController@create')->name('company-create');
 Route::post('/company/create', 'CompanyController@postCreate')->name('post-company-create');
 Route::get('/company/{id}', 'CompanyController@getCompany')->name('get-company');
+Route::get('/companies', 'CompanyController@allCompanies')->name('all-companies');
 
 Route::get('/referral/create', 'ReferralController@create')->name('referral-create');
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
+Route::get('/referrals', 'ReferralController@referrals')->name('referrals');

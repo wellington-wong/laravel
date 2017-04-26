@@ -10,5 +10,8 @@
                     <div>
                         <a href="{{ route('referral-create') }}" >Submit a Referral</a>
                     </div>
+                    <div>
+                        <a href="{{ route('referrals') }}" >Referral History</a>
+                    </div>
                 </div>
             </div>

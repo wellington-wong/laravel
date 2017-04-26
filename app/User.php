@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'provider', 'provider_id'
+        'name', 'first_name', 'last_name', 'email', 'password', 'provider', 'provider_id'
     ];
 
     /**
@@ -27,8 +27,79 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    public function getDisplayNameAttribute() {
+        if ( !is_null($this->name) ) {
+            return $this->name;
+        } else {
+            return $this->first_name . " " . $this->last_name;
+        }
+    }
+
+
     public function companies() {
         return $this->hasMany(Company::class, 'owner_id', 'id');
+    }
+
+    public function addresses() {
+        return $this->belongsToMany(Address::class, 'user_address');
+    }
+
+    public function address() {
+        return $this->addresses()->where('default', 1);
+    }
+
+    public function phones() {
+        return $this->belongsToMany(Phone::class, 'user_phone');
+    }
+
+    public function phone() {
+        return $this->phones()->where('default', 1);
+    }
+
+    public function referrals() {
+        return $this->hasMany( Referral::class, 'referrer_id', 'id' );
+    }
+
+    /*
+     * adds a default phone number to a user from a request
+     */
+    public function addDefaultPhone( \Illuminate\Http\Request $request ) {
+        if ( null == $request->input('phone')) {
+            return null;
+        } else {
+            $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
+        }
+        $input = [];
+        $phone = new Phone();
+        foreach ($phone->getFillable() as $c) {
+            if ( isset($request->$c) ) {
+                $input[] = $c;
+            }
+        }
+        $phone = $this->phone()->create(
+            $request->only($input)
+        );
+        $this->phone()->updateExistingPivot($phone->id, ['default'=>1]);
+        return $phone;
+    }
+
+    public function addDefaultAddress( \Illuminate\Http\Request $request ) {
+        if ( null == $request->input('address')) {
+            return null;
+        }
+        $input = [];
+        $address = new Address();
+        foreach ($address->getFillable() as $c) {
+            if ( isset($request->$c) ) {
+                $input[] = $c;
+            }
+        }
+        $address = $this->address()->create(
+            $request->only($input)
+        );
+        $this->address()->updateExistingPivot($address->id, ['default'=>1]);
+        return $address;
     }
 
 }

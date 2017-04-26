@@ -17,8 +17,15 @@ class CompanyController extends Controller
 
     public function create(Request $request) {
 
-
         return view('company.create');
+    }
+
+    public function allCompanies( Request $request ) {
+
+        $companies = Company::orderBy('company_name')->get();
+
+        return view('company.all')
+            ->with( compact('companies') );
 
     }
 
@@ -55,7 +62,9 @@ class CompanyController extends Controller
     public function getCompany(Request $request, $id) {
 
         $company = Company::find($id);
-        dd($company);
+
+        return view('company.company')
+            ->with(compact('company'));
 
     }
 

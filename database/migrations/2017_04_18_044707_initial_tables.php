@@ -38,9 +38,9 @@ class InitialTables extends Migration
 
         Schema::create('phones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('country', 2);
-            $table->string('country_code', 3);
-            $table->string('number', 15);
+            $table->string('country', 2)->nullable();
+            $table->string('country_code', 3)->nullable();
+            $table->string('phone', 15);
             $table->tinyInteger('type')->nullable();
             $table->timestamps();
         });

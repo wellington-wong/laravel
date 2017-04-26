@@ -15,6 +15,8 @@
 
     {{ Form::open(['route'=>'post-referral-create']) }}
 
+    <input type="hidden" name="subdomain_id" value="{{ $subdomain_id }}" >
+
     <div class="form-group" >
         <label>Referral's First Name</label>
         {{ Form::text('first_name') }}
@@ -29,7 +31,7 @@
 
     <div class="form-group" >
         <label>Referral's Email</label>
-        {{ Form::text('last_name') }}
+        {{ Form::text('email') }}
     </div>
 
     @include('forms.address')
