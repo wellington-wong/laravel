@@ -20,10 +20,10 @@
                         <div class="menu-separator"></div>
 
                         <div class="menu-item">
-                            <a href="{{ route('referral-create') }}" >Submit a Referral</a>
+                            <a href="{{ route('referral-create') }}" >Account Settings</a>
                         </div>
                         <div class="menu-item">
-                            <a href="{{ route('referral-create') }}" >Submit a Referral</a>
+                            <a href="{{ route('referral-create') }}" >Need Help?</a>
                         </div>                
                 </div>
             </div>
