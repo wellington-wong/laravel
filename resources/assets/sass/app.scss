@@ -15,6 +15,7 @@ html, body {
 /*** Navbar ***/
 .navbar.navbar-static-top {
 	background: #e6f260;
+	min-height: 0;
 	.navbar-right {
 		margin: 10px;
 		li {
@@ -23,7 +24,12 @@ html, body {
 			}
 		}
 		.logout {
-			background: url('images/logout.png') no-repeat center center;
+			a {
+				background: url('/images/logout.png') no-repeat center center;
+				&:hover {
+					background: #d2dd53;
+				}
+			}
 		}
 	}
 }

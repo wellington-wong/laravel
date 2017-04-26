@@ -29,10 +29,10 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a> | <a href="#">Manage Account</a>
                             </li>
-                            <li>
+                            <li class="logout">
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();" class="logout">                                    
+                                             document.getElementById('logout-form').submit();">                                    
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
