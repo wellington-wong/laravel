@@ -24,10 +24,12 @@
 </head>
     <body>
         <header>
-            <div class="col-md-12">
-                <ul class="nav navbar-nav navbar-right navbar-top-right">
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                </ul>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav navbar-nav navbar-right navbar-top-right">
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    </ul>
+                </div>
             </div>
             <section class="container">
                 <div>
@@ -115,5 +117,45 @@
                 </div>
             </div>
         </div>
+        <footer>
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>Headline 3</h3>
+                    <ul>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                    </ul>
+                </div>  
+                <div class="col-md-2">
+                    <h3>Headline 3</h3>
+                    <ul>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                    </ul>
+                </div>         
+                <div class="col-md-2">
+                    <h3>Headline 3</h3>
+                    <ul>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                    </ul>
+                </div>     
+                <div class="col-md-6">
+                    <h3>Headline 3</h3>
+                    <ul>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                        <li><a href="#">List Item in Footer</a></li>
+                    </ul>
+                </div> 
+            </div>    
+        </footer>
     </body>
 </html>
