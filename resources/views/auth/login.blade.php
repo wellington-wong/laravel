@@ -32,7 +32,7 @@
                 </div>
             </div>
             <section class="container">
-                <div>
+                <div class="row">
                     <figure class="logo col-md-3"><img src="/images/logo.png" alt=""></figure>
                     <div class="col-md-9">
                         <ul class="nav navbar-nav navbar-right navbar-bottom-right">
