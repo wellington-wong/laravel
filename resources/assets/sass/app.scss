@@ -49,11 +49,22 @@ header {
 }
 
 /*** Register Navbar ***/
-.navbar-top-right li a{
-	background-color: #e5f356;
-	color: #444854;
-	padding: 0 80px;
-	text-transform: uppercase;
+.navbar-top-right {
+	li {
+		a {
+			background-color: #e5f356;
+			color: #444854;
+			padding: 0 80px;
+			text-transform: uppercase;
+		}
+	}
+}
+.navbar-bottom-right {
+	li {
+		a {
+			color: #fff;
+		}
+	}
 }
 
 /*** Sidebar ***/
