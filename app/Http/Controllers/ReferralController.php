@@ -80,8 +80,7 @@ class ReferralController extends Controller
             'user_id'       => $user->id
         ]);
 
-        return view('referral.create')
-            ->with('subdomain_id', $request->subdomain_id);
+        return redirect(route('referrals'));
     }
 
 }
