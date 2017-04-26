@@ -35,8 +35,14 @@
             </div>
             <section class="container">
                 <div class="row">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <figure class="logo col-md-3"><img src="/images/logo.png" alt=""></figure>
-                    <div class="col-md-9">
+                    <div class="col-md-9" id="app-navbar-collapse">
                         <ul class="nav navbar-nav navbar-right navbar-bottom-right">
                             <li><a href="#">How it Works</a></li>
                             <li><a href="#">Features</a></li>
@@ -157,7 +163,7 @@
                             <li><a href="#">List Item in Footer</a></li>
                         </ul>
                     </div>     
-                    <div class="col-md-6 footer-list text-right">
+                    <div class="col-md-2 footer-list col-md-offset-4">
                         <h4>Headline 3</h4>
                         <ul>
                             <li><a href="#">List Item in Footer</a></li>
