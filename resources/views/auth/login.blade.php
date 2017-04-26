@@ -118,43 +118,45 @@
             </div>
         </div>
         <footer>
-            <div class="row">
-                <div class="col-md-2">
-                    <h3>Headline 3</h3>
-                    <ul>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                    </ul>
-                </div>  
-                <div class="col-md-2">
-                    <h3>Headline 3</h3>
-                    <ul>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                    </ul>
-                </div>         
-                <div class="col-md-2">
-                    <h3>Headline 3</h3>
-                    <ul>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                    </ul>
-                </div>     
-                <div class="col-md-6">
-                    <h3>Headline 3</h3>
-                    <ul>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                        <li><a href="#">List Item in Footer</a></li>
-                    </ul>
-                </div> 
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <h3>Headline 3</h3>
+                        <ul>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                        </ul>
+                    </div>  
+                    <div class="col-md-2">
+                        <h3>Headline 3</h3>
+                        <ul>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                        </ul>
+                    </div>         
+                    <div class="col-md-2">
+                        <h3>Headline 3</h3>
+                        <ul>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                        </ul>
+                    </div>     
+                    <div class="col-md-6 text-right">
+                        <h3>Headline 3</h3>
+                        <ul>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                            <li><a href="#">List Item in Footer</a></li>
+                        </ul>
+                    </div> 
+                </div>    
             </div>    
         </footer>
     </body>
