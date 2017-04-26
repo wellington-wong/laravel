@@ -127,11 +127,11 @@
         <!-- End Main -->
 
         <!-- Start Footer -->
-        <footer class="navbar-fixed-bottom">
+        <footer>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <h3>Headline 3</h3>
+                    <div class="col-md-2 footer-list">
+                        <h4>Headline 3</h4>
                         <ul>
                             <li><a href="#">List Item in Footer</a></li>
                             <li><a href="#">List Item in Footer</a></li>
@@ -139,8 +139,8 @@
                             <li><a href="#">List Item in Footer</a></li>
                         </ul>
                     </div>  
-                    <div class="col-md-2">
-                        <h3>Headline 3</h3>
+                    <div class="col-md-2 footer-list">
+                        <h4>Headline 3</h4>
                         <ul>
                             <li><a href="#">List Item in Footer</a></li>
                             <li><a href="#">List Item in Footer</a></li>
@@ -148,8 +148,8 @@
                             <li><a href="#">List Item in Footer</a></li>
                         </ul>
                     </div>         
-                    <div class="col-md-2">
-                        <h3>Headline 3</h3>
+                    <div class="col-md-2 footer-list">
+                        <h4>Headline 3</h4>
                         <ul>
                             <li><a href="#">List Item in Footer</a></li>
                             <li><a href="#">List Item in Footer</a></li>
@@ -157,8 +157,8 @@
                             <li><a href="#">List Item in Footer</a></li>
                         </ul>
                     </div>     
-                    <div class="col-md-6 text-right">
-                        <h3>Headline 3</h3>
+                    <div class="col-md-6 footer-list text-right">
+                        <h4>Headline 3</h4>
                         <ul>
                             <li><a href="#">List Item in Footer</a></li>
                             <li><a href="#">List Item in Footer</a></li>
@@ -166,10 +166,20 @@
                             <li><a href="#">List Item in Footer</a></li>
                         </ul>
                     </div> 
-                </div>    
+                </div>   
+                <div class="row">
+                    <div class="middle-content">
+                        <span>Some random disclaimer text we may need to put here about something important.</span>
+                    </div>
+                </div> 
             </div>    
+            <div class="row">
+                <div class="bottom-content text-center">
+                    <span>Copyright Stuffs</span>
+                </div>
+            </div> 
         </footer>
         <!-- End Footer -->
-        
+
     </body>
 </html>

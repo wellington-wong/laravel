@@ -16,6 +16,9 @@ html, body {
 /*** Header ***/
 header {
 	background-color: #444854;
+	section {
+		padding: 10px 0;
+	}
 }
 
 /*** Navbar ***/
@@ -54,8 +57,10 @@ header {
 		a {
 			background-color: #e5f356;
 			color: #444854;
-			padding: 0 80px;
+			padding: 2px 80px;
 			text-transform: uppercase;
+			font-size: 12px;
+			font-weight: bold;
 		}
 	}
 }
@@ -65,14 +70,41 @@ header {
 			color: #fff;
 			padding-top: 5px;
 			padding-bottom: 5px;
-			margin-top: 10px;
-			margin-bottom: 10px;
+			margin-top: 7px;
+			margin-bottom: 7px;
 			&:hover {
 				color: #444854;
 				background: #fff;
 			}
 		}
 	}
+}
+footer {
+	color: #fff;
+	.container {
+		padding-top: 20px;
+	}
+ 	.footer-list {
+ 		ul {
+ 			&, li {
+ 				padding: 0;
+ 				margin: 0;
+ 			}
+			li {
+				list-style: none;
+				padding: 5px 0;
+			}
+ 		}
+ 	}
+ 	.middle-content {
+ 		margin-top: 40px;
+ 		margin-bottom: 30px;
+ 	}
+ 	.bottom-content {
+ 		padding: 10px 0;
+ 		background: #e5f356;
+ 		color: #444854;
+ 	}
 }
 
 /*** Sidebar ***/
