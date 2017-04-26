@@ -33,6 +33,7 @@ html, body {
     position: fixed;
 	.panel-default {
 		border: 0;
+		box-shadow: none;
 		&, .panel-heading {
 			background: none; 
 		}
