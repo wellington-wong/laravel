@@ -38,3 +38,4 @@ Route::get('/companies', 'CompanyController@allCompanies')->name('all-companies'
 Route::get('/referral/create', 'ReferralController@create')->name('referral-create');
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
+Route::get('/referals/autocomplete', 'ReferralController@autocomplete')->name('autocomplete');
