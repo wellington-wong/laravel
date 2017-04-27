@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,7 +43,7 @@ class ReferralController extends Controller
     }
 
     public function postCreate( Request $request )
-    {
+    {dd($request);
         $rules = [
             'first_name'=>'required',
             'last_name'=>'required',
@@ -86,7 +87,18 @@ class ReferralController extends Controller
     public function autocomplete( Request $request )
     {
 
-        return array('aa', 'bb');
+        $result = '';
+
+        switch (true) {
+            case ($request->has('email')):
+                $result = User::where('email', $request->get('email'))->first();
+                break;
+            case ($request->has('phone')):
+                $result = Phone::where('number', $request->get('phone'))->first();
+                break;
+        }
+        
+        return $result;
     }
 
 }

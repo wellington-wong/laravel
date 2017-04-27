@@ -41,18 +41,30 @@ $('.terms-acceptance').on('click', function() {
 // SUBMIT REFERRALS
 
 	$(function (){
-		$('#referral-create-form input[name="phone"]').autocomplete();
-		$('#referral-create-form input[name="email"]').autocomplete({
-			source: function (request, response){
+		$('#referral-create-form input[name="phone"]').blur(function (){
+			if ($(this).val()) {
 				$.get('/referral/autocomplete', {
-
+					phone: $(this).val()
 				}, function (data){
-					console.log(data);
-					response(data);
+					if (data.id) {
+						console.log('Phone Exists!');
+						console.log(data);
+					}
 				});
 			}
 		});
-		//alert();
+		$('#referral-create-form input[name="email"]').blur(function (){
+			if ($(this).val()) {
+				$.get('/referral/autocomplete', {
+					email: $(this).val()
+				}, function (data){console.log(data.id);
+					if (data.id) {
+						console.log('Email Exists!');
+						console.log(data);
+					}
+				});
+			}
+		});
 	})
 
 // END - SUBMIT REFERRALS
