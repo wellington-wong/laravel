@@ -41,7 +41,36 @@ $('.terms-acceptance').on('click', function() {
 // SUBMIT REFERRALS
 
 	$(function (){
-		$('.panel-heading').autocomplete();
+		var availableTags = [
+	      "ActionScript",
+	      "AppleScript",
+	      "Asp",
+	      "BASIC",
+	      "C",
+	      "C++",
+	      "Clojure",
+	      "COBOL",
+	      "ColdFusion",
+	      "Erlang",
+	      "Fortran",
+	      "Groovy",
+	      "Haskell",
+	      "Java",
+	      "JavaScript",
+	      "Lisp",
+	      "Perl",
+	      "PHP",
+	      "Python",
+	      "Ruby",
+	      "Scala",
+	      "Scheme"
+	    ];
+		$('#referral-create-form input[name="phone"]').autocomplete({
+			source: availableTags
+		});
+		$('#referral-create-form input[name="email"]').autocomplete({
+			source: availableTags
+		});
 		//alert();
 	})
 

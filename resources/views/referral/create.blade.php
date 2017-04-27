@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    {{ Form::open(['route'=>'post-referral-create']) }}
+    {{ Form::open(['route'=>'post-referral-create', 'id' => 'referral-create-form']) }}
 
     <input type="hidden" name="subdomain_id" value="{{ $subdomain_id }}" >
 
