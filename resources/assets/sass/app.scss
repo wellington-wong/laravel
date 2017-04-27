@@ -13,7 +13,7 @@ html, body {
 	font-family: 'Montserrat', sans-serif;
 }
 
-/*** Header ***/
+/*** Auth Header ***/
 header {
 	background-color: #444854;
 	section {
@@ -21,7 +21,7 @@ header {
 	}
 }
 
-/*** Navbar ***/
+/*** Auth Navbar ***/
 .navbar.navbar-static-top {
 	background: #e6f260;
 	min-height: 0;
@@ -51,7 +51,7 @@ header {
 	}
 }
 
-/*** Sidebar ***/
+/*** Auth Sidebar ***/
 $bg-color: #444854;
 .col-sidebar {
 	background: $bg-color;
@@ -88,7 +88,7 @@ $bg-color: #444854;
 	}
 }
 
-/*** Main Content ***/
+/*** Auth Main ***/
 .main-content {
 	padding-left: 0;
 	padding-right: 0;
@@ -99,7 +99,7 @@ $bg-color: #444854;
 	}
 }
 
-/*** Footer ***/
+/*** Auth Footer ***/
 footer {
 	background: $bg-color;
 }
