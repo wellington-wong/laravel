@@ -86,7 +86,7 @@ class ReferralController extends Controller
     public function autocomplete( Request $request )
     {
 
-        return 123;
+        return view('referral.autocomplete');
     }
 
 }
