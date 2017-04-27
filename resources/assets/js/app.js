@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+import 'jquery-ui/ui/widgets/autocomplete.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,3 +35,14 @@ $('.terms-acceptance').on('click', function() {
     checkTerms();
 });
 //END - CHECK TERMS ACCEPTANCE BUTTON
+
+
+
+// SUBMIT REFERRALS
+
+	$(function (){
+		$('.panel-heading').autocomplete();
+		//alert();
+	})
+
+// END - SUBMIT REFERRALS
