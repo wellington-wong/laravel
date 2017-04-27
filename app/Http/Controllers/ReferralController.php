@@ -24,7 +24,7 @@ class ReferralController extends Controller
             //@todo
 
             //ELSE GIVE A LIST OF COMPANIES
-            //return redirect(route('all-companies'));
+            return redirect(route('all-companies'));
         }
 
 
