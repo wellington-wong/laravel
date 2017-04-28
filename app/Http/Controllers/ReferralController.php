@@ -78,7 +78,7 @@ class ReferralController extends Controller
         //ADD THAT USER TO A NEW REFERRAL
         $request->user()->referrals()->insert([
             'referrer_id'   => $request->user()->id,
-            'company_id'    => $request->subdomain_id,
+            'company_id'    => $request->get('subdomain_id'),
             'user_id'       => $user->id
         ]);
 

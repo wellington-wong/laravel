@@ -9,7 +9,7 @@ class Phone extends Model
 
     protected $table = 'phones';
 
-    protected $fillable = ['country', 'country_code', 'phone'];
+    protected $fillable = ['country', 'country_code', 'number'];
 
     public static function sanitize($phone) {
         return preg_replace("/[^0-9]/","",$phone);

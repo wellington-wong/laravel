@@ -69,10 +69,13 @@ class User extends Authenticatable
             return null;
         } else {
             $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
+            $request->merge(['number'=>Phone::sanitize($request->input('phone'))]);
+            $request->merge(['country'=>'']);
+            $request->merge(['country_code'=>'']);
         }
         $input = [];
         $phone = new Phone();
-        foreach ($phone->getFillable() as $c) {
+        foreach ($phone->getFillable() as $c) {//print '<pre>' . print_r($c, true) . '</pre>';
             if ( isset($request->$c) ) {
                 $input[] = $c;
             }
