@@ -75,7 +75,7 @@ class User extends Authenticatable
         }
         $input = [];
         $phone = new Phone();
-        foreach ($phone->getFillable() as $c) {//print '<pre>' . print_r($c, true) . '</pre>';
+        foreach ($phone->getFillable() as $c) {
             if ( isset($request->$c) ) {
                 $input[] = $c;
             }
