@@ -87,7 +87,7 @@ class ReferralController extends Controller
 
     public function autocomplete( Request $request )
     {
-
+        
         $result = '';
 
         switch (true) {
@@ -95,7 +95,7 @@ class ReferralController extends Controller
                 $result = User::where('email', $request->get('email'))->first();
                 break;
             case ($request->has('phone')):
-                $result = Phone::where('number', $request->get('phone'))->first();
+                $result = Phone::where('number', Phone::sanitize($request->input('phone')))->first();
                 break;
         }
         
