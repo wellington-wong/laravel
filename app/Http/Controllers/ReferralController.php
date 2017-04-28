@@ -43,7 +43,7 @@ class ReferralController extends Controller
     }
 
     public function postCreate( Request $request )
-    {dd($request);
+    {
         $rules = [
             'first_name'=>'required',
             'last_name'=>'required',
