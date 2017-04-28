@@ -24,7 +24,7 @@ class ReferralController extends Controller
             //@todo
 
             //ELSE GIVE A LIST OF COMPANIES
-            return redirect(route('all-companies'));
+            //return redirect(route('all-companies'));
         }
 
 
@@ -44,9 +44,6 @@ class ReferralController extends Controller
 
     public function postCreate( Request $request )
     {
-        
-        // Remove parenthesis from phone
-        $request->merge(['phone' => str_replace(array('(', ')'), '', $request->get('phone'))]);
 
         $rules = [
             'first_name'=>'required',
@@ -56,7 +53,7 @@ class ReferralController extends Controller
             'address'=>'max:100',
             'address2'=>'max:25',
             'city'=>'',
-            'state'=>'max:2',
+            'state'=>'alpha|max:2',
             'zip'=>'max:11',
             'subdomain_id'=>'required'
         ];
