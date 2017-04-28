@@ -44,6 +44,10 @@ class ReferralController extends Controller
 
     public function postCreate( Request $request )
     {
+        
+        // Remove parenthesis from phone
+        $request->merge(['phone' => str_replace(array('(', ')'), '', $request->get('phone'))]);
+
         $rules = [
             'first_name'=>'required',
             'last_name'=>'required',
