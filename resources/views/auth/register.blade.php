@@ -25,35 +25,7 @@
     <body>
 
         <!-- Start Header -->
-        <header>
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav navbar-nav navbar-right navbar-top-right">
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                    </ul>
-                </div>
-            </div>
-            <section class="container">
-                <div class="row">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <figure class="logo col-md-3"><img src="/images/logo.png" alt=""></figure>
-                    <div class="col-md-9" id="app-navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right navbar-bottom-right">
-                            <li><a href="#">How it Works</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </header>
+        @include('auth.header')
         <!-- End Header -->
 
         <!-- Start Main -->
@@ -144,59 +116,8 @@
         </main>
         <!-- End Main -->
 
-        <!-- Start Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 footer-list">
-                        <h4>Headline 3</h4>
-                        <ul>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                        </ul>
-                    </div>  
-                    <div class="col-md-2 footer-list">
-                        <h4>Headline 3</h4>
-                        <ul>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                        </ul>
-                    </div>         
-                    <div class="col-md-2 footer-list">
-                        <h4>Headline 3</h4>
-                        <ul>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                        </ul>
-                    </div>     
-                    <div class="col-md-2 footer-list col-md-offset-4">
-                        <h4>Headline 3</h4>
-                        <ul>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                        </ul>
-                    </div> 
-                </div>   
-                <div class="row">
-                    <div class="middle-content">
-                        <span>Some random disclaimer text we may need to put here about something important.</span>
-                    </div>
-                </div> 
-            </div>    
-            <div class="row">
-                <div class="bottom-content text-center">
-                    <span>Copyright Stuffs</span>
-                </div>
-            </div> 
-        </footer>
+        <!-- Start Footer -->        
+        @include('auth.footer')
         <!-- End Footer -->
     
     <!-- Scripts -->
