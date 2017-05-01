@@ -11,14 +11,16 @@ class Referral extends Notification
 {
     use Queueable;
 
+    protected $referral;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($referral)
     {
-        //
+        $this->referral = $referral;
     }
 
     /**
@@ -54,9 +56,7 @@ class Referral extends Notification
      */
     public function toDatabase($notifiable)
     {   
-        return [
-            'New referral created' => 'referral_id'
-        ];
+        return $this->referral->toArray();
     }
 
     /**

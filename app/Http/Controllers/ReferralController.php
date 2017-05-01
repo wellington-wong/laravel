@@ -6,6 +6,7 @@ use App\User;
 use App\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\Referral;
 
 class ReferralController extends Controller
 {
@@ -81,6 +82,8 @@ class ReferralController extends Controller
             'company_id'    => $request->get('subdomain_id'),
             'user_id'       => $user->id
         ]);
+
+        auth()->user()->notify(new Referral($user));
 
         return redirect(route('referrals'));
     }
