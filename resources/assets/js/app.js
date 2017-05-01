@@ -57,7 +57,7 @@ $('.terms-acceptance').on('click', function() {
 			if ($(this).val()) {
 				$.get('/referral/autocomplete', {
 					email: $(this).val()
-				}, function (data){console.log(data.id);
+				}, function (data){
 					if (data.id) {
 						console.log('Email Exists!');
 						console.log(data);
