@@ -121,31 +121,37 @@ footer {
 
 
 /*** Guest Navbar ***/
-.navbar-top-right {
-	li {
-		a {
-			background-color: #e5f356;
-			color: #444854;
-			padding: 2px 70px;
-			text-transform: uppercase;
-			font-size: 12px;
-			font-weight: bold;
-		}
-	}
-}
-.navbar-bottom-right {
-	li {
-		a {
-			color: #fff;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			margin-top: 7px;
-			margin-bottom: 7px;
-			&:hover, &:active {
+header {
+	.navbar-top-right {
+		li {
+			a {
+				background-color: #e5f356;
 				color: #444854;
-				background: #fff;
+				padding: 2px 70px;
+				text-transform: uppercase;
+				font-size: 12px;
+				font-weight: bold;
 			}
 		}
+	}
+	.navbar-bottom-right {
+		li {
+			a {
+				color: #fff;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				margin-top: 7px;
+				margin-bottom: 7px;
+				&:hover, &:active {
+					color: #444854;
+					background: #fff;
+				}
+			}
+		}
+	}
+	figure.logo {
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 
