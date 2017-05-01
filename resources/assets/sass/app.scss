@@ -111,6 +111,9 @@ header {
 		& .panel-default {
 			margin-top: 0;
 			margin-bottom: 0;
+			.panel-body {
+				margin-bottom: 0;
+			}
 		}
 	    &.affix {
 	        position: relative;
