@@ -64,6 +64,8 @@ class ReferralController extends Controller
             return redirect()->back()->withInput()
                 ->with(['errors'=>$validator->errors()]);
         }
+        
+        $duplicate = $this->checkDuplicate($request);
 
         //CREATE USER
         $user = User::firstOrCreate(
@@ -83,25 +85,30 @@ class ReferralController extends Controller
             'user_id'       => $user->id
         ]);
 
+        if (isset($duplicate['email']) || isset($duplicate['phone'])) {
+            $user->duplicate = $duplicate;
+        }
+
         auth()->user()->notify(new Referral($user));
 
         return redirect(route('referrals'));
     }
 
-    public function autocomplete( Request $request )
+    /**
+    * Check if phone or email already exists
+    **/
+    public function checkDuplicate( Request $request )
     {
-        
-        $result = '';
+        $result = [];
 
-        switch (true) {
-            case ($request->has('email')):
-                $result = User::where('email', $request->get('email'))->first();
-                break;
-            case ($request->has('phone')):
-                $result = Phone::where('number', Phone::sanitize($request->input('phone')))->first();
-                break;
-        }
-        
+        if ($request->has('email')) {
+                $result['email'] = User::where('email', $request->get('email'))->first();
+        } 
+
+        if ($request->has('phone')) {
+                $result['phone'] = Phone::where('number', Phone::sanitize($request->input('phone')))->first();
+        }        
+
         return $result;
     }
 

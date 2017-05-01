@@ -43,10 +43,10 @@ $('.terms-acceptance').on('click', function() {
 	$(function (){
 		$('#referral-create-form input[name="phone"]').blur(function (){
 			if ($(this).val()) {
-				$.get('/referral/autocomplete', {
+				$.get('/referral/check-duplicate', {
 					phone: $(this).val()
 				}, function (data){
-					if (data.id) {
+					if (data.phone.id) {
 						console.log('Phone Exists!');
 						console.log(data);
 					}
@@ -55,10 +55,10 @@ $('.terms-acceptance').on('click', function() {
 		});
 		$('#referral-create-form input[name="email"]').blur(function (){
 			if ($(this).val()) {
-				$.get('/referral/autocomplete', {
+				$.get('/referral/check-duplicate', {
 					email: $(this).val()
 				}, function (data){
-					if (data.id) {
+					if (data.email.id) {
 						console.log('Email Exists!');
 						console.log(data);
 					}

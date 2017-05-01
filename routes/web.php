@@ -37,5 +37,5 @@ Route::get('/companies', 'CompanyController@allCompanies')->name('all-companies'
 
 Route::get('/referral/create', 'ReferralController@create')->name('referral-create');
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
-Route::get('/referral/autocomplete', 'ReferralController@autocomplete')->name('autocomplete');
+Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
