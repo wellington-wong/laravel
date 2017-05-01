@@ -234,3 +234,13 @@ nav {
 
 
 /*** Submit a referral ***/
+#referral-create-form {
+	label {
+		width: 30%;
+	}
+	.form-control.bfh-phone {
+		width: auto;
+		display: inline-block;
+	}
+}
+/*** Submit a referral End ***/
