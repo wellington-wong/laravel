@@ -74,15 +74,22 @@ header {
 		&, a {
 			color: #fff;
 		}
+		.panel-body {
+			margin-bottom: 150px;
+		}
 		.panel-footer {
 			background: $bg-color;
 			display: inline-block;
 			vertical-align: bottom;
-			border-top: 4px solid #444854;
+			border-top: 4px solid #4e515d;
 			width: 100%;
 			a {
 				color: #e5f35e;
 			}
+		}
+		> div {		
+			padding-left: 0;
+			padding-right: 0;
 		}
 	}
 	.logo {
