@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class newReferral extends Notification
+class Referral extends Notification
 {
     use Queueable;
 
@@ -41,8 +41,22 @@ class newReferral extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('A new referral has been made.')
-                    ->action('Go to referral', url('/'));
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
+    }
+
+    /**
+     * Get the database representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {   
+        return [
+            'New referral created' => 'referral_id'
+        ];
     }
 
     /**
@@ -54,20 +68,7 @@ class newReferral extends Notification
     public function toArray($notifiable)
     {
         return [
-            'referral_id' => $this->referral->id
-        ];
-    }
-
-    /**
-     * Get the database representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toDatabase($notifiable)
-    {
-        return [
-            'referral_id' => $this->referral->id
+            //
         ];
     }
 }
