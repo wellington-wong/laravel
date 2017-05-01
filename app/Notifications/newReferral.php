@@ -54,7 +54,20 @@ class newReferral extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'referral_id' => $this->referral->id
+        ];
+    }
+
+    /**
+     * Get the database representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {
+        return [
+            'referral_id' => $this->referral->id
         ];
     }
 }
