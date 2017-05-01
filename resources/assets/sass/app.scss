@@ -94,6 +94,10 @@ $bg-color: #444854;
 	        position: relative;
 	    }
 	}
+	.navbar-toggle.sidebar-menu {
+		z-index: 1001;
+		margin-top: 15px;
+	}
 }
 
 /*** Auth Main ***/
