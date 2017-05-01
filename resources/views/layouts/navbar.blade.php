@@ -9,12 +9,12 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="dropdown">
+                            <li class="dropdown pull-left">
                                 Hi <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a> <span class="nav-separator">|</span> <a href="#">Manage Account</a>
                             </li>
-                            <li class="logout">
+                            <li class="logout pull-left">
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">                                    

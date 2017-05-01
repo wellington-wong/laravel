@@ -85,7 +85,13 @@ $bg-color: #444854;
 	    background-size:contain;
 	    background-position:left center;
 	}
-	@media (max-width: 992px) {
+	.navbar-toggle.sidebar-menu {
+		z-index: 1001;
+		margin-top: 5px;
+		position: absolute;
+		right: 0;
+	}
+	@media (max-width: 767px) {
 		& .panel-default {
 			margin-top: 0;
 			margin-bottom: 0;
@@ -93,10 +99,6 @@ $bg-color: #444854;
 	    &.affix {
 	        position: relative;
 	    }
-	}
-	.navbar-toggle.sidebar-menu {
-		z-index: 1001;
-		margin-top: 15px;
 	}
 }
 
