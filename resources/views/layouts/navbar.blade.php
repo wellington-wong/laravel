@@ -10,8 +10,8 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown pull-left">
-                                Hi <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                Hi <a href="#" class="" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} 
                                 </a> <span class="nav-separator">|</span> <a href="#">Manage Account</a>
                             </li>
                             <li class="logout pull-left">
