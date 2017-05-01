@@ -13,6 +13,7 @@ html, body {
 	font-family: 'Montserrat', sans-serif;
 }
 
+
 /*** Auth Header ***/
 header {
 	background-color: #444854;
@@ -20,6 +21,8 @@ header {
 		padding: 10px 0;
 	}
 }
+/*** Auth Header End ***/
+
 
 /*** Auth Navbar ***/
 .navbar.navbar-static-top {
@@ -50,6 +53,8 @@ header {
 		}
 	}
 }
+/*** Auth Navbar End ***/
+
 
 /*** Auth Sidebar ***/
 $bg-color: #444854;
@@ -101,6 +106,7 @@ $bg-color: #444854;
 	    }
 	}
 }
+/*** Auth Sidebar End ***/
 
 /*** Auth Main ***/
 .main-content {
@@ -112,12 +118,14 @@ $bg-color: #444854;
 		}
 	}
 }
+/*** Auth Main End ***/
+
 
 /*** Auth Footer ***/
 footer {
 	background: $bg-color;
 }
-
+/*** Auth Footer End ***/
 
 
 /*** Guest Navbar ***/
@@ -155,6 +163,8 @@ header {
 		padding-right: 0;
 	}
 }
+/*** Guest Navbar End ***/
+
 
 /*** Guest Main ***/
 main {
@@ -170,6 +180,8 @@ main {
 		margin-bottom: 50px;
 	}
 }
+/*** Guest Main End ***/
+
 
 /*** Guest Footer ***/
 footer {
@@ -198,6 +210,8 @@ footer {
  		color: #444854;
  	}
 }
+/*** Guest Footer End ***/
+
 
 /*** Common ***/
 .fill { 
@@ -216,3 +230,7 @@ nav {
 		box-shadow: none;
 	}
 }
+/*** Common End ***/
+
+
+/*** Submit a referral ***/
