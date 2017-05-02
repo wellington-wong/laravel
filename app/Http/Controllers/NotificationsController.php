@@ -12,10 +12,17 @@ class NotificationsController extends Controller
     	$this->middleware('auth');
     }
 
-    public function markAsRead()
+
+    /**
+     * Mark notification as read
+     */
+    public function markAsRead(Request $request, $id, $nid)
     {
 
-    	return 123;
+    	$notification = auth()->user()->notifications()->findOrFail($nid);
+	$notification->markAsRead();
+	return 'success';
+
     }
 
 }

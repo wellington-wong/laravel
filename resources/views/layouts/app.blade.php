@@ -40,15 +40,11 @@
                         </div>
 
                         <div class="panel-body">
-                            <div class="notifications cols-xs-12">
+                            <div class="notifications cols-xs-12" data-id="{{ auth()->user()->id }}" data-token="{{ csrf_token() }}">
                                 @foreach ( auth()->user()->unreadNotifications as $notification)
                                 <div class="alert alert-success">
-                                  <strong>{{ isset($notification['data']['duplicate']) ? "Duplicate" : "New" }}</strong> A referral has been submitted: {{ $notification['data']['first_name'] }} {{ $notification['data']['last_name'] }}
-                                  <form>
-                                      {{ method_field('DELETE') }}
-                                      {{ csrf_field() }}
-                                      <button type="submit">Mark as read</button>
-                                  </form>
+                                    <div class="col-md-9 message"><strong>{{ isset($notification['data']['duplicate']) ? "Duplicate" : "New" }}</strong> A referral has been submitted: {{ $notification['data']['first_name'] }} {{ $notification['data']['last_name'] }}</div> <div class="col-md-3 text-right"><button type="submit" class="mark-read"  data-nid="{{ $notification->id }}">Mark as read</button></div>
+                                    <div class="clearfix"></div>
                                 </div>
                                 @endforeach
                             </div>

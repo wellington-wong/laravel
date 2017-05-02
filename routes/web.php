@@ -40,4 +40,4 @@ Route::post('/referral/create', 'ReferralController@postCreate')->name('post-ref
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 
-Route::delete('/mark-notification', 'NotificationsController@markAsRead')->name('mark-notification');
+Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
