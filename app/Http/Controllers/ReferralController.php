@@ -53,9 +53,9 @@ class ReferralController extends Controller
             'phone'=>'required|phone:US',
             'address'=>'max:100',
             'address2'=>'max:25',
-            'city'=>'',
-            'state'=>'alpha|max:2',
-            'zip'=>'max:11',
+            'city'=>'required',
+            'state'=>'required|alpha|max:2',
+            'zip'=>'required|max:11',
             'subdomain_id'=>'required'
         ];
         $validator = Validator::make($request->input(), $rules);
