@@ -36,8 +36,6 @@ $('.terms-acceptance').on('click', function() {
 });
 //END - CHECK TERMS ACCEPTANCE BUTTON
 
-
-
 // SUBMIT REFERRALS
 
 	$(function (){
@@ -65,6 +63,30 @@ $('.terms-acceptance').on('click', function() {
 				});
 			}
 		});
-	})
+	});
 
 // END - SUBMIT REFERRALS
+
+// NOTIFICATIONS
+
+	$(function (){
+		$('button.mark-read').on('click', function (){
+			var notification = $(this).closest('.notifications');
+			var _this = $(this);
+			// Mark as read notifications by id
+	        $.ajax({
+	            type: "POST",
+				 beforeSend: function(request) {
+				   request.setRequestHeader("X-CSRF-TOKEN", notification.data('token'));
+				 },
+	            url: "/user/" + notification.data('id') + "/notification/" + $(this).data('nid'),
+	            success: function( data ) {
+	            	if (data == "success") {
+	            		_this.closest('.alert').remove()
+	            	}
+	            }
+	        });
+		});
+	});
+
+// END - NOTIFICATIONS
