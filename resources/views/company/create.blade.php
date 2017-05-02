@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    {{ Form::open(['route'=>'post-company-create']) }}
+    {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form']) }}
 
     @include('forms.address')
 
