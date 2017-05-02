@@ -29,7 +29,7 @@
 
     <div class="form-group">
         <label>Logo</label>
-        <input name="logo" >
+        <input type="file" class="logo-upload" name="logo" />
     </div>
 
     @include('forms.phone', ['phone_label'=>'Company Phone Number'])
