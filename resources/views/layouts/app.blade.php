@@ -44,6 +44,11 @@
                                 @foreach ( auth()->user()->unreadNotifications as $notification)
                                 <div class="alert alert-success">
                                   <strong>{{ isset($notification['data']['duplicate']) ? "Duplicate" : "New" }}</strong> A referral has been submitted: {{ $notification['data']['first_name'] }} {{ $notification['data']['last_name'] }}
+                                  <form>
+                                      {{ method_field('DELETE') }}
+                                      {{ csrf_field() }}
+                                      <button type="submit">Mark as read</button>
+                                  </form>
                                 </div>
                                 @endforeach
                             </div>
