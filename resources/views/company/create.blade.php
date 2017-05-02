@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form']) }}
+    {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form', 'enctype' => 'multipart/form-data']) }}
 
     @include('forms.address')
 
