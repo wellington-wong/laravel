@@ -39,3 +39,5 @@ Route::get('/referral/create', 'ReferralController@create')->name('referral-crea
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
+
+Route::delete('/mark-notification', 'NotificationsController@markAsRead')->name('mark-notification');
