@@ -43,7 +43,7 @@ class Referral extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line( (isset($this->referral->duplicate) ? "Duplicate" : "New") . ' A referral has been submitted: ' . $this->referral->first_name . ' ' . $this->referral->last_name )
+                    ->line( (isset($this->referral->duplicate) ? "(Duplicate)" : "(New)") . ' A referral has been submitted: ' . $this->referral->first_name . ' ' . $this->referral->last_name )
                     ->action('Go to referrals', url('/referrals'));
     }
 
