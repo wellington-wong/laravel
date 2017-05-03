@@ -49,11 +49,17 @@ class CompanyController extends Controller
         }
 
         $company = $request->user()->companies()
-            ->create( $request->only('owner_id', 'company_name', 'subdomain', 'logo') );
+            ->create( $request->only('owner_id', 'company_name', 'subdomain') );
         $address = $company->address()->create(
             $request->only('address', 'address2', 'city', 'state', 'zip')
         );
         $company->addresses()->updateExistingPivot($address->id, ['default'=>1]);
+
+        // Save uploaded logo file url
+        if ($request->file('logo')) {
+            $company->logo = $request->file('logo')->store('company-logos');
+            $company->save();
+        }
 
         return redirect( route('get-company', ['id'=>$company->id]) );
 
