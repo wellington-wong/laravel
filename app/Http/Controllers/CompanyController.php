@@ -49,7 +49,7 @@ class CompanyController extends Controller
         }
 
         $company = $request->user()->companies()
-            ->create( $request->only('owner_id', 'company_name', 'subdomain') );
+            ->create( $request->only('owner_id', 'company_name', 'subdomain', 'logo') );
         $address = $company->address()->create(
             $request->only('address', 'address2', 'city', 'state', 'zip')
         );
