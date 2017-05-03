@@ -35,7 +35,7 @@
                 @endif
                 <div class="col-sm-9 col-sm-offset-3 page-right main-content">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading top-navbar">
                             @include('layouts.navbar')
                         </div>
 

@@ -68,9 +68,11 @@ class CompanyController extends Controller
     public function getCompany(Request $request, $id) {
 
         $company = Company::find($id);
+        $address = Address::find($id);
 
         return view('company.company')
-            ->with(compact('company'));
+            ->with(compact('company'))
+            ->with(compact('address'));
 
     }
 
