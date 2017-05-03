@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="incentful-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -9,10 +9,11 @@
         <h4 class="modal-title">Notification</h4>
       </div>
       <div class="modal-body">
-        <p>{{ }}</p>
+        <p>The referral you are trying to submit is already on the system.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default cancel-referral">Cancel</button>
+        <button type="button" class="btn btn-default submit-referral">Ok</button>
       </div>
     </div>
 

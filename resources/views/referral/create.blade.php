@@ -31,7 +31,7 @@
 
     <div class="form-group" >
         <label>Referral's Email</label>
-        {{ Form::text('email') }}
+        {{ Form::text('email', null, array('class' => 'referral-email')) }}
     </div>
 
     @include('forms.address')
@@ -45,5 +45,7 @@
     <button type="submit" class="terms-button btn btn-primary button-responsive-100">Submit Referral</button>
 
     {{ Form::close() }}
+
+@include('layouts.modal')
 
 @endsection

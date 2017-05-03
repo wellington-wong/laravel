@@ -39,29 +39,49 @@ $('.terms-acceptance').on('click', function() {
 // SUBMIT REFERRALS
 
 	$(function (){
+		// Check if phone number is already referred
 		$('#referral-create-form input[name="phone"]').blur(function (){
 			if ($(this).val()) {
 				$.get('/referral/check-duplicate', {
 					phone: $(this).val()
 				}, function (data){
-					if (data.phone.id) {
-						console.log('Phone Exists!');
-						console.log(data);
+					if (data.phone) {
+						$('.bfh-phone').addClass('duplicate-referral');
+					} else {
+						$('.bfh-phone').removeClass('duplicate-referral');
 					}
 				});
 			}
 		});
+		// Check if email address is already referred
 		$('#referral-create-form input[name="email"]').blur(function (){
 			if ($(this).val()) {
 				$.get('/referral/check-duplicate', {
 					email: $(this).val()
 				}, function (data){
-					if (data.email.id) {
-						console.log('Email Exists!');
-						console.log(data);
+					if (data.email) {
+						$('.referral-email').addClass('duplicate-referral');
+					} else {
+						$('.referral-email').removeClass('duplicate-referral');
 					}
 				});
 			}
+		});
+
+		// Check duplicate before submitting form
+		$('#referral-create-form').submit(function (){
+			if ($('.duplicate-referral').length) {
+				$('#incentful-modal').modal('show');
+				return false;
+			}
+		});
+		$('.submit-referral').on('click', function (){
+			$('.referral-email').removeClass('duplicate-referral');
+			$('.bfh-phone').removeClass('duplicate-referral');
+			$('#referral-create-form').submit();
+		});
+		$('.cancel-referral').on('click', function (){
+			location.href = '/';
 		});
 	});
 
