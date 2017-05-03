@@ -29,7 +29,7 @@
 
     <div class="form-group">
         <label>Logo</label>
-        <input type="file" class="logo-upload" name="logo" />
+        {{ Form::file('logo', array('class' => 'logo-upload')) }}
     </div>
 
     @include('forms.phone', ['phone_label'=>'Company Phone Number'])
