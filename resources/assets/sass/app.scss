@@ -74,8 +74,13 @@ header {
 		&, a {
 			color: #fff;
 		}
-		.panel-body {
-			margin-bottom: 150px;
+		#app-sidebar-collapse {
+			min-height: 75%;
+			position: relative;
+			.panel-body, .panel-footer {
+				padding-left: 0;
+				padding-right: 0;
+			}
 		}
 		.panel-footer {
 			background: $bg-color;
@@ -86,16 +91,14 @@ header {
 			a {
 				color: #e5f35e;
 			}
+			@media (min-width: 767px) and (min-height: 500px) {
+				position: absolute;
+				bottom: 0;
+			}
 		}
 		> div {		
 			padding-left: 0;
 			padding-right: 0;
-		}
-		#app-sidebar-collapse {
-			.panel-body, .panel-footer {
-				padding-left: 0;
-				padding-right: 0;
-			}
 		}
 	}
 	.logo {

@@ -1,12 +1,12 @@
 
-            <nav>
+            <nav class="fill">
                 <button type="button" class="navbar-toggle collapsed sidebar-menu" data-toggle="collapse" data-target="#app-sidebar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="panel panel-default">
+                <div class="panel panel-default fill">
                     <div class="panel-heading"><a class="logo" href="{!! url('/') !!}"></a></div>
                     <div id="app-sidebar-collapse" class=" collapse navbar-collapse">
                         <div class="panel-body">
