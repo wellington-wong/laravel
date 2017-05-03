@@ -126,9 +126,11 @@ header {
 .main-content {
 	padding-left: 0;
 	padding-right: 0;
-	.panel-default {
-		.panel-heading {
-			padding: 0; 
+	.page-right {
+		.panel-default {
+			.panel-heading {
+				padding: 0; 
+			}
 		}
 	}
 }
