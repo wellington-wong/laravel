@@ -126,9 +126,9 @@ header {
 .main-content {
 	padding-left: 0;
 	padding-right: 0;
-	.page-right {
+	&.page-right {
 		.panel-default {
-			.panel-heading {
+			.panel-heading.top-navbar {
 				padding: 0; 
 			}
 		}
