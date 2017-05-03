@@ -12,7 +12,7 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-3 col-lg-3 " align="center"> 
-					<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> 
+					<img alt="{{ $company->company_name }}" src="/{{ $company->logo }}" class="img-circle img-responsive"> 
 				</div>                
 
 				<div class=" col-md-9 col-lg-9 "> 
@@ -33,19 +33,19 @@
 							<tr></tr>
 							<tr>
 								<td>Address</td>
-								<td>{{ $address->address }} {{ $address->address2 }}</td>
+								<td>{{ isset($address->address) ? $address->address :'' }} {{ isset($address->address2) ? $address->address2 :'' }}</td>
 							</tr>
 							<tr>
 								<td>City</td>
-								<td>{{ $address->city }}</td>
+								<td>{{ isset($address->city) ? $address->city : '' }}</td>
 							</tr>
 							<tr>
 								<td>State</td>
-								<td>{{ $address->state }}</td>
+								<td>{{ isset($address->state) ? $address->state : '' }}</td>
 							</tr>
 							<tr>
 								<td>Zip Code</td>
-								<td>{{ $address->zip }}</td>                           
+								<td>{{ isset($address->zip) ? $address->zip : '' }}</td>                           
 							</tr>                     
 						</tbody>
 					</table>
