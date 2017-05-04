@@ -41,7 +41,7 @@
         <main>
             <div class="row">
                 <div class="top-content text-center">
-                    <span>Enter your email to reset the password</span>
+                    <span>Enter your email address to reset the password</span>
                 </div>
             </div>
             <div class="container">

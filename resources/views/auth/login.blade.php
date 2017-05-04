@@ -41,7 +41,7 @@
         <main>
             <div class="row">
                 <div class="top-content text-center">
-                    <span>Login with your email and password</span>
+                    <span>Login with your email address and password</span>
                 </div>
             </div>
             <div class="container">
