@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // Member
         Gate::define('create-account', function (\User $user) {
             return true;
         });
@@ -40,5 +41,23 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('track-referral', function (\User $user) {
             return true;
         });
+
+        // Admin
+        Gate::define('submit-member-referral', function (\User $user) {
+            return true;
+        });
+
+        Gate::define('edit-member-information', function (\User $user) {
+            return true;
+        });
+        
+        Gate::define('export-member-information', function (\User $user) {
+            return true;
+        });
+        
+        Gate::define('change-referral-statuses', function (\User $user) {
+            return true;
+        });
+
     }
 }
