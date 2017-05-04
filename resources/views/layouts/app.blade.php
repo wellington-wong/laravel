@@ -40,6 +40,7 @@
                         </div>
 
                         <div class="panel-body">
+                            @if (auth()->user())
                             <div class="notifications cols-xs-12" data-id="{{ auth()->user()->id }}" data-token="{{ csrf_token() }}">
                                 @foreach ( auth()->user()->unreadNotifications as $notification)
                                 <div class="alert alert-success">
@@ -48,6 +49,7 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @endif
                             @yield('content')
                         </div>
                     </div>
