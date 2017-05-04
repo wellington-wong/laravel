@@ -27,56 +27,55 @@ class AuthServiceProvider extends ServiceProvider
 
         // Member
         Gate::define('create-account', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_create_account');
         });
 
         Gate::define('edit-account-details', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_edit_create_account');
         });
 
         Gate::define('submit-referral', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_submit_referral');
         });
 
         Gate::define('track-referral', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_track_referral');
         });
 
-        // Admin
+        // Admin, Super Admin, Global Admin
         Gate::define('submit-member-referral', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_submit_member_-referral');
         });
 
         Gate::define('edit-member-information', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_edit_member_information');
         });
         
         Gate::define('export-member-information', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_export_member_information');
         });
         
         Gate::define('change-referral-statuses', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_change_referral_statuses');
         });
         
-        Gate::define('change-referral-statuses', function (\User $user) {
-            return true;
-        });
-        
+        // Super Admin, Global Admin
         Gate::define('add-delete-admin', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_add_delete_admin');
         });
         
         Gate::define('define-user-roles', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_define_user_roles');
         });
         
         Gate::define('add-change-billing-information', function (\User $user) {
-            return true;
+            return $user->hasPermission('can_add_change_billing_information');
         });
-
+        
         // Global Admin
-
+        Gate::define('login-super-admin-all-accounts', function (\User $user) {
+            return $user->hasPermission('can_login_super_admin_all_accounts');
+        });
 
     }
 }
