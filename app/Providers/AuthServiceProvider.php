@@ -58,19 +58,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('change-referral-statuses', function (\User $user) {
             return true;
         });
-
-        // Super Admin
-        Gate::define('submit-member-referral', function (\User $user) {
-            return true;
-        });
-
-        Gate::define('edit-member-information', function (\User $user) {
-            return true;
-        });
-        
-        Gate::define('export-member-information', function (\User $user) {
-            return true;
-        });
         
         Gate::define('change-referral-statuses', function (\User $user) {
             return true;
@@ -87,6 +74,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('add-change-billing-information', function (\User $user) {
             return true;
         });
+
+        // Global Admin
 
 
     }
