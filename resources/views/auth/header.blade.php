@@ -1,11 +1,4 @@
-        <header>
-            <div class="row">
-                <div class="col-xs-12 col-md-4 pull-right">
-                    <ul class="nav navbar-nav navbar-right navbar-top-right">
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                    </ul>
-                </div>
-            </div>
+
             <section class="container">
                 <div class="row">
                     <nav>
@@ -28,4 +21,3 @@
                     </nav>
                 </div>
             </section>
-        </header>
