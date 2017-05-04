@@ -25,6 +25,20 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('create-account', function (\User $user) {
+            return true;
+        });
+
+        Gate::define('edit-account-details', function (\User $user) {
+            return true;
+        });
+
+        Gate::define('submit-referral', function (\User $user) {
+            return true;
+        });
+
+        Gate::define('track-referral', function (\User $user) {
+            return true;
+        });
     }
 }
