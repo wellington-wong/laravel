@@ -26,18 +26,28 @@ Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
 Auth::routes();
 
-
+// Home Routes
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
+// Company Routes
 Route::get('/company/create', 'CompanyController@create')->name('company-create');
 Route::post('/company/create', 'CompanyController@postCreate')->name('post-company-create');
 Route::get('/company/{id}', 'CompanyController@getCompany')->name('get-company');
 Route::get('/companies', 'CompanyController@allCompanies')->name('all-companies');
 
+// Referral Routes
 Route::get('/referral/create', 'ReferralController@create')->name('referral-create');
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 
+// Notification Routes
 Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
+
+// Static Page Routes
+Route::get('/how-it-works', 'StaticPageController@howItWorks')->name('how-it-works');
+Route::get('/features', 'StaticPageController@features')->name('features');
+Route::get('/about-us', 'StaticPageController@aboutUs')->name('about-us');
+Route::get('/pricing', 'StaticPageController@pricing')->name('pricing');
+Route::get('/contact', 'StaticPageController@contact')->name('contact');
