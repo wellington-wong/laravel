@@ -107,12 +107,19 @@ class User extends Authenticatable
 
     /**
      * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function template() {
+        return $this->hasOne(UserTemplate::class, 'id', 'user_template_id');
+    }
+
+    /**
+     * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function user_permissions() {
         return $this->hasMany('UserPermissions');
     }
-
     
     /**
      * Check if a user has a specific permission
