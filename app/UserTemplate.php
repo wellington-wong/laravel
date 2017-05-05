@@ -10,6 +10,6 @@ class UserTemplate extends Model
 
     const TEMPLATE_ID_GLOBALADMIN 	= 1;
     const TEMPLATE_ID_SUPERADMIN 		= 2;
-    const TEMPLATE_ID_ADMIN 		= 2;
-    const TEMPLATE_ID_MEMBER 		= 2;
+    const TEMPLATE_ID_ADMIN 			= 3;
+    const TEMPLATE_ID_MEMBER 			= 4;
 }
