@@ -27,6 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @var integer
+     */
+    const USERTYPE_GLOBALADMIN = 'globalAdmin';
+    const USERTYPE_SUPERADMIN = 'superAdmin';
+    const USERTYPE_ADMIN = 'admin';
+    const USERTYPE_MEMBER = 'member';
 
     public function getDisplayNameAttribute() {
         if ( !is_null($this->name) ) {
