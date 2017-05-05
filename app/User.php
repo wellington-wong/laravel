@@ -104,5 +104,22 @@ class User extends Authenticatable
         $this->address()->updateExistingPivot($address->id, ['default'=>1]);
         return $address;
     }
+    
+    /**
+     * Check if a user has a specific permission
+     * - permissions override what's in the template
+     * 
+     * @param string $name
+     * @param mixed $value which value should the permission have?
+     * @return bool
+     */
+    public function hasPermission($name, $value = 1) {
+        foreach ($this->user_permissions as $permission) {
+            if ($permission->type && $permission->type->permission == $name)
+                return $permission->value == $value;
+        }
+        
+        return $this->template && $this->template->{$name} == $value;
+    }
 
 }
