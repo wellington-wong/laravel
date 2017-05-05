@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('edit-account-details', function (\User $user) {
-            return $user->hasPermission('can_edit_create_account');
+            return $user->hasPermission('can_edit_account');
         });
 
         Gate::define('submit-referral', function (\User $user) {
@@ -44,7 +44,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Admin, Super Admin, Global Admin
         Gate::define('submit-member-referral', function (\User $user) {
-            return $user->hasPermission('can_submit_member_-referral');
+            return $user->hasPermission('can_submit_member_referral');
         });
 
         Gate::define('edit-member-information', function (\User $user) {

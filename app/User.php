@@ -104,6 +104,15 @@ class User extends Authenticatable
         $this->address()->updateExistingPivot($address->id, ['default'=>1]);
         return $address;
     }
+
+    /**
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user_permissions() {
+        return $this->hasMany('UserPermissions');
+    }
+
     
     /**
      * Check if a user has a specific permission
