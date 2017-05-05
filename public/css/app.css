@@ -7676,7 +7676,7 @@ html, body {
   font-family: 'Montserrat', sans-serif;
 }
 
-/*** Header ***/
+/*** Auth Header ***/
 header {
   background-color: #444854;
 }
@@ -7685,7 +7685,8 @@ header section {
   padding: 10px 0;
 }
 
-/*** Navbar ***/
+/*** Auth Header End ***/
+/*** Auth Navbar ***/
 .navbar.navbar-static-top {
   background: #e6f260;
   min-height: 0;
@@ -7720,12 +7721,12 @@ header section {
   background: #d2dd53;
 }
 
-/*** Sidebar ***/
+/*** Auth Navbar End ***/
+/*** Auth Sidebar ***/
 .col-sidebar {
   background: #444854;
   min-height: 100%;
   height: 100%;
-  position: fixed;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -7745,10 +7746,38 @@ header section {
   color: #fff;
 }
 
+.col-sidebar .panel-default #app-sidebar-collapse {
+  min-height: 75%;
+  position: relative;
+}
+
+.col-sidebar .panel-default #app-sidebar-collapse .panel-body, .col-sidebar .panel-default #app-sidebar-collapse .panel-footer {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .col-sidebar .panel-default .panel-footer {
   background: #444854;
   display: inline-block;
   vertical-align: bottom;
+  border-top: 4px solid #4e515d;
+  width: 100%;
+}
+
+.col-sidebar .panel-default .panel-footer a {
+  color: #e5f35e;
+}
+
+@media (min-width: 767px) and (min-height: 500px) {
+  .col-sidebar .panel-default .panel-footer {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.col-sidebar .panel-default > div {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .col-sidebar .logo {
@@ -7761,32 +7790,56 @@ header section {
   background-position: left center;
 }
 
-/*** Main Content ***/
+.col-sidebar .navbar-toggle.sidebar-menu {
+  z-index: 1001;
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
+}
+
+@media (max-width: 767px) {
+  .col-sidebar .panel-default {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .col-sidebar .panel-default .panel-body {
+    margin-bottom: 0;
+  }
+  .col-sidebar.affix {
+    position: relative;
+  }
+}
+
+/*** Auth Sidebar End ***/
+/*** Auth Main ***/
 .main-content {
   padding-left: 0;
   padding-right: 0;
 }
 
-.main-content .panel-default .panel-heading {
+.main-content.page-right .panel-default .panel-heading.top-navbar {
   padding: 0;
 }
 
-/*** Footer ***/
+/*** Auth Main End ***/
+/*** Auth Footer ***/
 footer {
   background: #444854;
 }
 
+/*** Auth Footer End ***/
 /*** Guest Navbar ***/
-.navbar-top-right li a {
+header .navbar-top-right li a {
   background-color: #e5f356;
   color: #444854;
-  padding: 2px 70px;
+  padding: 2px 35%;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: bold;
+  text-align: center;
 }
 
-.navbar-bottom-right li a {
+header .navbar-bottom-right li a {
   color: #fff;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -7794,11 +7847,12 @@ footer {
   margin-bottom: 7px;
 }
 
-.navbar-bottom-right li a:hover {
+header .navbar-bottom-right li a:hover, header .navbar-bottom-right li a:active, header .navbar-bottom-right li a:focus {
   color: #444854;
   background: #fff;
 }
 
+/*** Guest Navbar End ***/
 /*** Guest Main ***/
 main {
   background: #f0f0f0;
@@ -7816,6 +7870,7 @@ main .main-content {
   margin-bottom: 50px;
 }
 
+/*** Guest Main End ***/
 /*** Guest Footer ***/
 footer {
   color: #fff;
@@ -7845,8 +7900,54 @@ footer .bottom-content {
   color: #444854;
 }
 
+/*** Guest Footer End ***/
 /*** Common ***/
 .fill {
   min-height: 100%;
   height: 100%;
 }
+
+nav button.navbar-toggle {
+  border-color: #fff;
+  margin-top: 0;
+}
+
+nav button.navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+nav .navbar-collapse {
+  box-shadow: none;
+}
+
+.notifications .message {
+  line-height: 32px;
+}
+
+/*** Common End ***/
+/*** Submit a referral ***/
+#referral-create-form label {
+  width: 30%;
+}
+
+#referral-create-form .form-control.bfh-phone {
+  width: auto;
+  display: inline-block;
+}
+
+/*** Submit a referral End ***/
+/*** Create company ***/
+#create-company-form label {
+  width: 30%;
+}
+
+#create-company-form .form-control.bfh-phone {
+  width: auto;
+  display: inline-block;
+}
+
+#create-company-form .logo-upload {
+  display: inline-block;
+}
+
+/*** Submit a referral End ***/
