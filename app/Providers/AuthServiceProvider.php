@@ -24,9 +24,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        
+        $user = auth()->user();
 
         // Member
-        Gate::define('create-account', function (\User $user) {
+        Gate::define('create-account', function ($user) {
             return $user->hasPermission('can_create_account');
         });
 
