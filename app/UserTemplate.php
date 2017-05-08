@@ -15,8 +15,8 @@ class UserTemplate extends Model
 
     public function newQuery() {
         $q = parent::newQuery();
-        if ( Auth::user() ) { //NEED THIS IN CASE A MIGRATION NEEDS TO ACCESS ALL
-            $q->whereIn( 'user_template.subdomain_id', [0, Auth::user()->settings->id ]);
+        if ( auth()->user() ) { //NEED THIS IN CASE A MIGRATION NEEDS TO ACCESS ALL
+            //$q->whereIn( 'user_template.subdomain_id', [0, auth()->user()->settings->id ]);
         }
         return $q;
     }
