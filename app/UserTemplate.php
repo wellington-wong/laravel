@@ -13,6 +13,9 @@ class UserTemplate extends Model
     const TEMPLATE_ID_ADMIN 			= 3;
     const TEMPLATE_ID_MEMBER 			= 4;
 
+    /**
+     * @return
+     */
     public function newQuery() {
         $q = parent::newQuery();
         if ( auth()->user() ) { //NEED THIS IN CASE A MIGRATION NEEDS TO ACCESS ALL
@@ -21,6 +24,9 @@ class UserTemplate extends Model
         return $q;
     }
 
+    /**
+     * @return
+     */
     public static function listUserTemplateNames() {
 
         return self::select('id', 'name')
@@ -28,6 +34,9 @@ class UserTemplate extends Model
 
     }
 
+    /**
+     * @return
+     */
     public static function getUserTemplates() {
 
         return self::select('*')
