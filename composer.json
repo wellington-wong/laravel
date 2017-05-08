@@ -12,7 +12,8 @@
         "laravelcollective/html": "^5.4.0",
         "propaganistas/laravel-intl": "^1.2",
         "propaganistas/laravel-phone": "^2.8",
-        "watson/bootstrap-form": "^1.1"
+        "watson/bootstrap-form": "^1.1",
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
