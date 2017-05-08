@@ -27,13 +27,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * @var integer
-     */
-    const USERTYPE_GLOBALADMIN = 'globalAdmin';
-    const USERTYPE_SUPERADMIN = 'superAdmin';
-    const USERTYPE_ADMIN = 'admin';
-    const USERTYPE_MEMBER = 'member';
 
     public function getDisplayNameAttribute() {
         if ( !is_null($this->name) ) {
@@ -110,39 +103,6 @@ class User extends Authenticatable
         );
         $this->address()->updateExistingPivot($address->id, ['default'=>1]);
         return $address;
-    }
-
-    /**
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function template() {
-        return $this->hasOne(UserTemplate::class, 'id', 'user_template_id');
-    }
-
-    /**
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function user_permissions() {
-        return $this->hasMany(UserPermissions::class);
-    }
-    
-    /**
-     * Check if a user has a specific permission
-     * - permissions override what's in the template
-     * 
-     * @param string $name
-     * @param mixed $value which value should the permission have?
-     * @return bool
-     */
-    public function hasPermission($name, $value = 1) {
-        foreach ($this->user_permissions as $permission) {
-            if ($permission->type && $permission->type->permission == $name)
-                return $permission->value == $value;
-        }
-        
-        return $this->template && $this->template->{$name} == $value;
     }
 
 }
