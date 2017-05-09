@@ -65,21 +65,21 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        // Create Global Admin 
-        if (!$user = User::where('email', 'exults.referral@gmail.com')->first()) {
+        // Create global admin user
+        $email = 'exults.referral@gmail.com';
+        if (!$user = User::where('email', $email)->first()) {
             $user = new User();
-            $user->first_name = "Global";
-            $user->last_name = "Admin";
+            $user->first_name = "Exults";
+            $user->last_name = "Referral";
             $user->name = $user->first_name . ' ' . $user->last_name;
-            $user->email = "exults.referral@gmail.com";
+            $user->email = $email;
             $user->password = Hash::make('E*x%u~lts321!');
             //$user->subdomain = 1;
             $user->save();
 
             // Assign global admin role to exults.referral@gmail.com
-            $globalAdmin = Role::where('name', 'globalAdmin')->first();
-            if (isset($globalAdmin)) {
-                $user->attachRole($globalAdmin);
+            if (isset($role['globalAdmin'])) {
+                $user->attachRole($role['globalAdmin']);
             }
         }
 
