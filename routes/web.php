@@ -51,3 +51,8 @@ Route::get('/features', 'StaticPageController@features')->name('features');
 Route::get('/about-us', 'StaticPageController@aboutUs')->name('about-us');
 Route::get('/pricing', 'StaticPageController@pricing')->name('pricing');
 Route::get('/contact', 'StaticPageController@contact')->name('contact');
+
+// Admin Routes
+Route::get('/settings', 'AdminController@settings')->name('referral-create');
+Route::post('/admins', 'AdminController@getIndex')->name('post-referral-create');
+Route::get('/admins/view', 'AdminController@getView')->name('check-duplicate');
