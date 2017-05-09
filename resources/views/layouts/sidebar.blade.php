@@ -10,6 +10,7 @@
                     <div class="panel-heading"><a class="logo" href="{!! url('/') !!}"></a></div>
                     <div id="app-sidebar-collapse" class=" collapse navbar-collapse">
                         <div class="panel-body">
+                            <!-- 
                             <div class="menu-item">
                                 <a href="{{ route('company-create') }}">Create Company</a>
                             </div>
@@ -20,6 +21,31 @@
                             <div class="menu-item">
                                 <a href="{{ route('referrals') }}" >Referral History</a>
                             </div>
+                            --> 
+                            <nav>
+                                <ul class="nav">
+                                    <li>
+                                        <a href="{{ route('referrals') }}">Referrals</a>
+                                        <ul>
+                                            <li><a href="{{ route('referral-create') }}">Add Referral</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Members</a></li>
+                                    <li>
+                                        <a href="#">Pogram Options</a>
+                                        <ul>
+                                            <li><a href="#">Company Profile</a></li>
+                                            <li><a href="#">Users</a></li>
+                                            <li><a href="#">Referral Program Settings</a></li>
+                                            <li><a href="#">Reward Settings</a></li>
+                                            <li><a href="#">Notification Emails</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>                                        
+                                        <a href="{{ route('company-create') }}">Create Company</a>
+                                    </li>
+                                </ul>
+                            </nav>
 
                         </div>
 
