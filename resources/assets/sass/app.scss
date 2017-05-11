@@ -8,6 +8,10 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// jQuery UI css
+@import "~jquery-ui/themes/base/autocomplete.css";
+@import "~jquery-ui/themes/base/theme.css";
+
 html, body {
 	height: 100%;
 	font-family: 'Montserrat', sans-serif;
@@ -301,3 +305,26 @@ nav {
 	}
 }
 /*** Submit a referral End ***/
+
+/*** jQuery UI Autocomplete ***/
+.ui-autocomplete {
+	padding: 0;
+	margin: 0;
+	li.ui-menu-item {
+		list-style: none;
+		padding: 3px 7px;
+		div {
+			cursor: pointer;
+			&:hover, &:focus, &.ui-state-active {
+				background: none;
+				color: #333;
+				border: 0;
+				text-decoration: underline;
+			}
+		}
+		&:hover {
+
+		}
+	}
+}
+/*** jQuery UI Autocomplete End ***/
