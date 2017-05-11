@@ -52,13 +52,9 @@ Route::get('/about-us', 'StaticPageController@aboutUs')->name('about-us');
 Route::get('/pricing', 'StaticPageController@pricing')->name('pricing');
 Route::get('/contact', 'StaticPageController@contact')->name('contact');
 
-// Admin Routes
-Route::get('/settings', 'AdminController@settings')->name('referral-create');
-Route::post('/admins', 'AdminController@getIndex')->name('post-referral-create');
-Route::get('/admins/view', 'AdminController@getView')->name('check-duplicate');
-
 // Global Settings Routes
 Route::get('/global-settings/submit-referral-member', 'GlobalSettingsController@submitReferralMember')->name('submit-referral-member');
+Route::post('/global-settings/submit-referral-member', 'GlobalSettingsController@submitReferralMember')->name('submit-referral-member');
 Route::get('/global-settings/edit-member-information', 'GlobalSettingsController@editMemberInformation')->name('edit-member-information');
 Route::get('/global-settings/export-member-information', 'GlobalSettingsController@exportMemberInformation')->name('export-member-information');
 Route::get('/global-settings/change-referral-status', 'GlobalSettingsController@changeReferralStatus')->name('change-referral-status');
