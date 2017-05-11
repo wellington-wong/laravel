@@ -66,6 +66,4 @@ Route::get('/global-settings/add-delete-admin', 'GlobalSettingsController@addDel
 Route::get('/global-settings/define-user-roles', 'GlobalSettingsController@defineUserRoles')->name('define-user-roles');
 Route::get('/global-settings/add-change-billing-information', 'GlobalSettingsController@addChangeBillingInformation')->name('add-change-billing-information');
 Route::get('/global-settings/login-super-admin', 'GlobalSettingsController@loginSuperAdmin')->name('login-super-admin');
-
-// Member autocomplete
-Route::get('/members/{id}', 'UserController@getMembers')->name('members');
+Route::get('/global-settings/members/{id}', 'GlobalSettingsController@members')->name('members');

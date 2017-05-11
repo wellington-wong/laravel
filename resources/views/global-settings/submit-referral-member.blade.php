@@ -31,6 +31,7 @@
 			    <div class="form-group" >
 			        <label>Member</label>
 			        {{ Form::text('member') }}
+					{{ Form::hidden('member_id', '', array('id' => 'member-id')) }}
 			    </div>
 
 			    <div class="form-group" >

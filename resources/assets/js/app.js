@@ -6,7 +6,7 @@
  */
 
 require('./bootstrap');
-//import 'jquery-ui/ui/widgets/autocomplete.js';
+import 'jquery-ui/ui/widgets/autocomplete.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -37,7 +37,6 @@ $('.terms-acceptance').on('click', function() {
 //END - CHECK TERMS ACCEPTANCE BUTTON
 
 // SUBMIT REFERRALS
-
 	$(function (){
 		// Check if phone number is already referred
 		$('#referral-create-form input[name="phone"]').blur(function (){
@@ -84,11 +83,9 @@ $('.terms-acceptance').on('click', function() {
 			location.href = '/';
 		});
 	});
-
 // END - SUBMIT REFERRALS
 
 // NOTIFICATIONS
-
 	$(function (){
 		$('button.mark-read').on('click', function (){
 			var notification = $(this).closest('.notifications');
@@ -108,5 +105,22 @@ $('.terms-acceptance').on('click', function() {
 	        });
 		});
 	});
-
 // END - NOTIFICATIONS
+
+// GET MEMBERS
+	$(function (){
+		// Retrieve all members
+	    $( "input[name='member']" ).autocomplete({
+	    	source: function (request, response){
+	    		$.ajax({
+	    			url: 'members/1'
+	    		}).done(function (data){
+	    			response($.map( data, function(id, name) {
+	    				$('#member-id').val(id);
+	    				return name;
+               		}));
+	    		});
+	    	}
+	    });
+	});
+// END - GET MEMBERS

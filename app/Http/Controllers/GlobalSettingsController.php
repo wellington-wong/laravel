@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class GlobalSettingsController extends Controller
 {
@@ -12,43 +13,48 @@ class GlobalSettingsController extends Controller
         $this->middleware('auth');
     }
 
-    public function submitReferralMember(Request $request) {
-
+    public function submitReferralMember(Request $request) 
+    {
         return view('global-settings.submit-referral-member');
     }
 
-    public function editMemberInformation(Request $request) {
-
+    public function editMemberInformation(Request $request) 
+    {
         return view('global-settings.edit-member-information');
     }
 
-    public function exportMemberInformation(Request $request) {
-
+    public function exportMemberInformation(Request $request) 
+    {
         return view('global-settings.export-member-information');
     }
 
-    public function changeReferralStatus(Request $request) {
-
+    public function changeReferralStatus(Request $request) 
+    {
         return view('global-settings.change-referral-status');
     }
 
-    public function addDeleteAdmin(Request $request) {
-
+    public function addDeleteAdmin(Request $request) 
+    {
         return view('global-settings.add-delete-admin');
     }
 
-    public function defineUserRoles(Request $request) {
-
+    public function defineUserRoles(Request $request) 
+    {
         return view('global-settings.define-user-roles');
     }
 
-    public function addChangeBillingInformation(Request $request) {
-
+    public function addChangeBillingInformation(Request $request) 
+    {
         return view('global-settings.add-change-billing-information');
     }
 
-    public function loginSuperAdmin(Request $request) {
-
+    public function loginSuperAdmin(Request $request) 
+    {
         return view('global-settings.login-super-admin');
+    }
+
+    public function members(Request $request, User $user, $sid)
+    {
+        return $user->getMembers($sid);
     }
 }

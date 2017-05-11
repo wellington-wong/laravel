@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use App\Role;
 
 class User extends Authenticatable
 {
@@ -105,6 +106,10 @@ class User extends Authenticatable
         );
         $this->address()->updateExistingPivot($address->id, ['default'=>1]);
         return $address;
+    }
+
+    public static function getMembers($id) {
+        return  Role::where('name','member')->first()->users()->pluck('id', 'name');
     }
 
 }
