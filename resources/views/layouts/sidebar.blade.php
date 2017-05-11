@@ -47,7 +47,7 @@
                                     @role(['admin', 'superAdmin', 'globalAdmin'])<li>
                                         <a href="#">Global Settings</a>
                                         <ul>
-                                            @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}">Submit Referrals In Behalf Of Member</a></li>@endcan
+                                            @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
                                             @can('edit-member-information')<li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
                                             @can('export-member-information')<li><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan
                                             @can('change-referral-statuses')<li><a href="{{ route('change-referral-status') }}">Change Referral Statuses</a></li>@endcan
