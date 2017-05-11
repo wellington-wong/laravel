@@ -46,4 +46,9 @@ class GlobalSettingsController extends Controller
 
         return view('global-settings.add-change-billing-information');
     }
+
+    public function loginSuperAdmin(Request $request) {
+
+        return view('global-settings.login-super-admin');
+    }
 }
