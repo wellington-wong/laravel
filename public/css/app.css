@@ -7831,6 +7831,10 @@ header section {
   padding: 0;
 }
 
+.main-content .page-header {
+  margin-top: 0;
+}
+
 /*** Auth Main End ***/
 /*** Auth Footer ***/
 footer {

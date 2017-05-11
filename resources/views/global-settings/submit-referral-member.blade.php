@@ -14,17 +14,24 @@
     @endif
 
 	<div class="container-fluid">
-	    <div class="row">
-		    <div class="col-md-12">
-				<h2>Submit Referral on Behalf of Member</h2>
+		<div class="page-header">
+		    <div class="row">
+			    <div class="col-md-12">
+					<h2>Submit Referral on Behalf of Member</h2>
+				</div>
 			</div>
 		</div>
-		
+
 	    <div class="row">
 		    <div class="col-md-12">
 			    {{ Form::open(['route'=>'post-referral-create', 'id' => 'referral-create-form']) }}
 
 			    <input type="hidden" name="subdomain_id" value="" >
+
+			    <div class="form-group" >
+			        <label>Member</label>
+			        {{ Form::text('member') }}
+			    </div>
 
 			    <div class="form-group" >
 			        <label>Referral's First Name</label>
