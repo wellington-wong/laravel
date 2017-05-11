@@ -147,6 +147,8 @@ header {
 	padding-right: 0;
 	&.page-right {
 		.panel-default {
+			border: 0;
+			box-shadow: none;
 			.panel-heading.top-navbar {
 				padding: 0; 
 			}

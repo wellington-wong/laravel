@@ -7731,6 +7731,11 @@ header section {
   padding-right: 10px;
 }
 
+.col-sidebar nav ul.nav > li > a:hover {
+  background: #fff;
+  color: #444854;
+}
+
 .col-sidebar .panel-default {
   border: 0;
   box-shadow: none;
@@ -7747,7 +7752,7 @@ header section {
 }
 
 .col-sidebar .panel-default #app-sidebar-collapse {
-  min-height: 75%;
+  min-height: 85%;
   position: relative;
 }
 
@@ -7815,6 +7820,11 @@ header section {
 .main-content {
   padding-left: 0;
   padding-right: 0;
+}
+
+.main-content.page-right .panel-default {
+  border: 0;
+  box-shadow: none;
 }
 
 .main-content.page-right .panel-default .panel-heading.top-navbar {
