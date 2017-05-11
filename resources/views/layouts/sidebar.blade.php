@@ -44,18 +44,19 @@
                                     <li>                                        
                                         <a href="{{ route('company-create') }}">Create Company</a>
                                     </li>
-                                    <li>                                        
+                                    @role(['admin', 'superAdmin', 'globalAdmin'])<li>
                                         <a href="#">Global Settings</a>
                                         <ul>
-                                            <li><a href="{{ route('submit-referral-member') }}">Submit Referrals In Behalf Of Member</a></li>
-                                            <li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>
-                                            <li><a href="{{ route('export-member-information') }}">Export Member Information</a></li>
-                                            <li><a href="{{ route('change-referral-status') }}">Change Referral Statuses</a></li>
-                                            <li><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>
-                                            <li><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>
-                                            <li><a href="{{ route('add-change-billing-information') }}">Add/Change Billing Information</a></li>
+                                            @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}">Submit Referrals In Behalf Of Member</a></li>@endcan
+                                            @can('edit-member-information')<li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
+                                            @can('export-member-information')<li><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan
+                                            @can('change-referral-statuses')<li><a href="{{ route('change-referral-status') }}">Change Referral Statuses</a></li>@endcan
+                                            @can('add-delete-admin')<li><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
+                                            @can('define-user-roles')<li><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
+                                            @can('add-change-billing-information')<li><a href="{{ route('add-change-billing-information') }}">Add/Change Billing Information</a></li>@endcan
+                                            @can('login-super-admin-all-accounts')<li><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
                                         </ul>
-                                    </li>
+                                    @endrole</li>
                                 </ul>
                             </nav>
 

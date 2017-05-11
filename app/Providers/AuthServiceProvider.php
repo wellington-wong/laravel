@@ -43,14 +43,14 @@ class AuthServiceProvider extends ServiceProvider
             return Auth::user()->can('track_referral');
         });
 
-        // Admin, Super Admin
-        Gate::define('edit-member-information', function () {
-            return Auth::user()->can('edit_member_information');
-        });
-
         // Admin, Super Admin, Global Admin
         Gate::define('submit-member-referral', function () {
             return Auth::user()->can('submit_member_referral');
+        });
+
+        // Admin, Super Admin
+        Gate::define('edit-member-information', function () {
+            return Auth::user()->can('edit_member_information');
         });
         
         Gate::define('export-member-information', function () {
