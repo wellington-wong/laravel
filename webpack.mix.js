@@ -23,7 +23,3 @@ mix.scripts(['node_modules/bootstrap-formhelpers/dist/js/bootstrap-formhelpers.j
 if (mix.config.inProduction) {
     mix.version();
 }
-
-mix.options({
-    processCssUrls: false
-});
