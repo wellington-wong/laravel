@@ -58,7 +58,7 @@ Route::post('/admins', 'AdminController@getIndex')->name('post-referral-create')
 Route::get('/admins/view', 'AdminController@getView')->name('check-duplicate');
 
 // Global Settings Routes
-Route::get('/global-settings/submit-referral-behalf-member', 'GlobalSettingsController@submitReferralBehalfMember')->name('submit-referral-behalf-member');
+Route::get('/global-settings/submit-referral-member', 'GlobalSettingsController@submitReferralMember')->name('submit-referral-member');
 Route::get('/global-settings/edit-member-information', 'GlobalSettingsController@editMemberInformation')->name('edit-member-information');
 Route::get('/global-settings/export-member-information', 'GlobalSettingsController@exportMemberInformation')->name('export-member-information');
 Route::get('/global-settings/change-referral-status', 'GlobalSettingsController@changeReferralStatus')->name('change-referral-status');

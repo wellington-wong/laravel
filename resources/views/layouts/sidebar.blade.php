@@ -47,14 +47,13 @@
                                     <li>                                        
                                         <a href="#">Global Settings</a>
                                         <ul>
-                                            <li><a href="#">Submit Referrals In Behalf Of Member</a></li>
-                                            <li><a href="#">Edit Member Information</a></li>
-                                            <li><a href="#">Export Member Information</a></li>
-                                            <li><a href="#">Change Referral Statuses</a></li>
-                                            <li><a href="#">Add/Delete Admin</a></li>
-                                            <li><a href="#">Define User Roles</a></li>
-                                            <li><a href="#">Add/Change Billing Information</a></li>
-                                            <li><a href="#">Login As Super Admin</a></li>
+                                            <li><a href="{{ route('submit-referral-member') }}">Submit Referrals In Behalf Of Member</a></li>
+                                            <li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>
+                                            <li><a href="{{ route('export-member-information') }}">Export Member Information</a></li>
+                                            <li><a href="{{ route('change-referral-status') }}">Change Referral Statuses</a></li>
+                                            <li><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>
+                                            <li><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>
+                                            <li><a href="{{ route('add-change-billing-information') }}">Add/Change Billing Information</a></li>
                                         </ul>
                                     </li>
                                 </ul>
