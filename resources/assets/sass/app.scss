@@ -63,6 +63,16 @@ header {
     height: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    nav {
+    	ul.nav {
+    		> li {
+    			> a:hover {
+    				background: #fff;
+    				color: $bg-color;
+    			}
+    		}
+    	}
+    }
 	.panel-default {
 		border: 0;
 		box-shadow: none;
@@ -75,7 +85,7 @@ header {
 			color: #fff;
 		}
 		#app-sidebar-collapse {
-			min-height: 75%;
+			min-height: 85%;
 			position: relative;
 			.panel-body, .panel-footer {
 				padding-left: 0;
