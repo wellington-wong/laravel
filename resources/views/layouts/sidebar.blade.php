@@ -50,7 +50,7 @@
                                             @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
                                             @can('edit-member-information')<li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
                                             @can('export-member-information')<li><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan
-                                            @can('change-referral-statuses')<li><a href="{{ route('change-referral-status') }}">Change Referral Statuses</a></li>@endcan
+                                            @can('change-referral-statuses')<li><a href="{{ route('change-referral-status') }}">Change Referral Status</a></li>@endcan
                                             @can('add-delete-admin')<li><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
                                             @can('define-user-roles')<li><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
                                             @can('add-change-billing-information')<li><a href="{{ route('add-change-billing-information') }}">Add/Change Billing Information</a></li>@endcan
