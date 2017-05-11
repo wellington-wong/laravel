@@ -124,10 +124,12 @@ $(function () {
 				url: 'members/1'
 			}).done(function (data) {
 				response($.map(data, function (id, name) {
-					$('#member-id').val(id);
-					return name;
+					return { id: id, value: name };
 				}));
 			});
+		},
+		select: function select(e, ui) {
+			$('#member-id').val(ui.item.id);
 		}
 	});
 });
