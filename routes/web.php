@@ -46,11 +46,11 @@ Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
 
 // Static Page Routes
-Route::get('/how-it-works', 'StaticPageController@howItWorks')->name('how-it-works');
-Route::get('/features', 'StaticPageController@features')->name('features');
-Route::get('/about-us', 'StaticPageController@aboutUs')->name('about-us');
-Route::get('/pricing', 'StaticPageController@pricing')->name('pricing');
-Route::get('/contact', 'StaticPageController@contact')->name('contact');
+Route::get('/how-it-works', 'BasicPageController@howItWorks')->name('how-it-works');
+Route::get('/features', 'BasicPageController@features')->name('features');
+Route::get('/about-us', 'BasicPageController@aboutUs')->name('about-us');
+Route::get('/pricing', 'BasicPageController@pricing')->name('pricing');
+Route::get('/contact', 'BasicPageController@contact')->name('contact');
 
 // Global Settings Routes
 Route::get('/global-settings/submit-referral-member', 'GlobalSettingsController@submitReferralMember')->name('submit-referral-member');
