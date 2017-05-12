@@ -65,12 +65,60 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        // Create global admin user
+        // Create users on each role
         $email = 'exults.referral@gmail.com';
         if (!$user = User::where('email', $email)->first()) {
             $user = new User();
-            $user->first_name = "Exults";
-            $user->last_name = "Referral";
+            $user->first_name = "Global Admin";
+            $user->last_name = "Exults Referral";
+            $user->name = $user->first_name . ' ' . $user->last_name;
+            $user->email = $email;
+            $user->password = Hash::make('E*x%u~lts321!');
+            //$user->subdomain = 1;
+            $user->save();
+
+            // Assign global admin role to exults.referral@gmail.com
+            if (isset($role['globalAdmin'])) {
+                $user->attachRole($role['globalAdmin']);
+            }
+        }
+        $email = 'exults.referral.superadmin@gmail.com';
+        if (!$user = User::where('email', $email)->first()) {
+            $user = new User();
+            $user->first_name = "Super Admin";
+            $user->last_name = "Exults Referral";
+            $user->name = $user->first_name . ' ' . $user->last_name;
+            $user->email = $email;
+            $user->password = Hash::make('E*x%u~lts321!');
+            //$user->subdomain = 1;
+            $user->save();
+
+            // Assign global admin role to exults.referral@gmail.com
+            if (isset($role['globalAdmin'])) {
+                $user->attachRole($role['globalAdmin']);
+            }
+        }
+        $email = 'exults.referral.admin@gmail.com';
+        if (!$user = User::where('email', $email)->first()) {
+            $user = new User();
+            $user->first_name = "Admin";
+            $user->last_name = "Exults Referral";
+            $user->name = $user->first_name . ' ' . $user->last_name;
+            $user->email = $email;
+            $user->password = Hash::make('E*x%u~lts321!');
+            //$user->subdomain = 1;
+            $user->save();
+
+            // Assign global admin role to exults.referral@gmail.com
+            if (isset($role['globalAdmin'])) {
+                $user->attachRole($role['globalAdmin']);
+            }
+        }
+        $email = 'exults.referral.member@gmail.com';
+        if (!$user = User::where('email', $email)->first()) {
+            $user = new User();
+            $user->first_name = "Member";
+            $user->last_name = "Exults Referral";
             $user->name = $user->first_name . ' ' . $user->last_name;
             $user->email = $email;
             $user->password = Hash::make('E*x%u~lts321!');
