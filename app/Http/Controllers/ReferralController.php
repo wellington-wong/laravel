@@ -82,7 +82,8 @@ class ReferralController extends Controller
         $request->user()->referrals()->insert([
             'referrer_id'   => $request->user()->id,
             'company_id'    => $request->get('subdomain_id'),
-            'user_id'       => $user->id
+            'user_id'       => $user->id,
+            'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0
         ]);
 
         if (isset($duplicate['email']) || isset($duplicate['phone'])) {
