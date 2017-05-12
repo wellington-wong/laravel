@@ -42,6 +42,9 @@ Route::post('/referral/create', 'ReferralController@postCreate')->name('post-ref
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 
+// Member Routes
+Route::get('/members', 'MemberController@getIndex')->name('members');
+
 // Notification Routes
 Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
 
