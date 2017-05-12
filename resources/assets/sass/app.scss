@@ -23,7 +23,7 @@ html, body {
 
 /*** Auth Header ***/
 header {
-	background-color: #444854;
+	background-color: $bg-color;
 	section {
 		padding: 10px 0;
 	}
@@ -75,11 +75,16 @@ header {
     		li {
     			padding-left: 0;
 	    		padding-top: 15px;
-    			a:hover, a:focus, a:active {
-    				color: #fff;
-    			}
     			a {    				
     				padding: 0;
+    				&:hover, &:focus {
+	    				color: #e6f260;
+	    				background: none;
+	    				text-decoration: none;
+    				}
+    				&:active {
+	    				background: none;
+    				}
     			}
     			ul {
     				padding-left: 20px;
@@ -197,7 +202,7 @@ header {
 		li {
 			a {
 				background-color: #e5f356;
-				color: #444854;
+				color: $bg-color;
 				padding: 2px 35%;
 				text-transform: uppercase;
 				font-size: 12px;
@@ -215,7 +220,7 @@ header {
 				margin-top: 7px;
 				margin-bottom: 7px;
 				&:hover, &:active, &:focus {
-					color: #444854;
+					color: $bg-color;
 					background: #fff;
 				}
 			}
@@ -234,7 +239,7 @@ main {
 		background: #e5f356;
 		margin: 5px 0 0px 0;
 		padding: 30px 0;
-		color: #444854;
+		color: $bg-color;
 	}
 	.main-content {
 		margin-top: 50px;
@@ -268,7 +273,7 @@ footer {
  	.bottom-content {
  		padding: 10px 0;
  		background: #e5f356;
- 		color: #444854;
+ 		color: $bg-color;
  	}
 }
 /*** Guest Footer End ***/
