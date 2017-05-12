@@ -78,6 +78,9 @@ header {
     				color: $bg-color;
     			}
     		}
+    		li {
+    			list-style: none;    		
+    		}
     	}
     }
 	.panel-default {

@@ -25,9 +25,9 @@
                             <nav>
                                 <ul class="nav">
                                     <li>
-                                        <a href="{{ route('referrals') }}">Referrals</a>
+                                        <a href="{{ route('referrals') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Referrals</span></a>
                                         <ul>
-                                            <li><a href="{{ route('referral-create') }}">Add Referral</a></li>
+                                            <li><a href="{{ route('referral-create') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> <span>Add Referral</span></a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Members</a></li>
