@@ -25,17 +25,43 @@
                             <nav>
                                 <ul class="nav">
                                     <li>
-                                        <a href="{{ route('referrals') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Referrals</span></a>
+                                        <a href="{{ route('referrals') }}">
+                                            <i class="fa fa-address-book" aria-hidden="true"></i> 
+                                            <span>Referrals</span>
+                                        </a>
                                         <ul>
-                                            <li><a href="{{ route('referral-create') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> <span>Add Referral</span></a></li>
+                                            <li>
+                                                <a href="{{ route('referral-create') }}">
+                                                    <i class="fa fa-user-plus" aria-hidden="true"></i> 
+                                                    <span>Add Referral</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Members</a></li>
                                     <li>
-                                        <a href="#">Pogram Options</a>
+                                        <a href="#">
+                                            <i class="fa fa-users" aria-hidden="true"></i> 
+                                            <span>Members</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-cog" aria-hidden="true"></i> 
+                                            <span>Program Options</span>
+                                        </a>
                                         <ul>
-                                            <li><a href="#">Company Profile</a></li>
-                                            <li><a href="#">Users</a></li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-building" aria-hidden="true"></i> 
+                                                    <span>Company Profile</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-user-circle" aria-hidden="true"></i> 
+                                                    <span>Users</span>
+                                                </a>
+                                            </li>
                                             <li><a href="#">Referral Program Settings</a></li>
                                             <li><a href="#">Reward Settings</a></li>
                                             <li><a href="#">Notification Emails</a></li>
