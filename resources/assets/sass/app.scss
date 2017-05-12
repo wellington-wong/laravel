@@ -72,14 +72,27 @@ header {
     padding-right: 10px;
     nav {
     	ul.nav {
-    		> li {
-    			> a:hover {
-    				background: #fff;
-    				color: $bg-color;
+    		li {
+    			padding-left: 0;
+	    		padding-top: 15px;
+    			a:hover, a:focus, a:active {
+    				color: #fff;
+    			}
+    			a {    				
+    				padding: 0;
+    			}
+    			ul {
+    				padding-left: 20px;
+    				li {
+	    				padding-top: 5px;
+    				}
     			}
     		}
     		li {
-    			list-style: none;    		
+    			list-style: none;
+    			a, .fa {
+    				display: table-cell;
+    			}    		
     		}
     	}
     }
