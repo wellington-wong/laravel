@@ -8,6 +8,6 @@ class MembersController extends Controller
 {
 	public function getIndex ()
 	{
-		return;
+        return view('members.index');
 	}
 }
