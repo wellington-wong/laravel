@@ -25,62 +25,45 @@
                             <nav>
                                 <ul class="nav">
                                     <li>
-                                        <a href="{{ route('referrals') }}">
-                                            <i class="fa fa-address-book" aria-hidden="true"></i> 
-                                            <span>Referrals</span>
-                                        </a>
+                                        <a href="{{ route('referrals') }}"><i class="fa fa-address-book" aria-hidden="true"></i>&nbsp; Referrals</a>
                                         <ul>
                                             <li>
-                                                <a href="{{ route('referral-create') }}">
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i> 
-                                                    <span>Add Referral</span>
-                                                </a>
+                                                <a href="{{ route('referral-create') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp; Add Referral</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <i class="fa fa-users" aria-hidden="true"></i> 
-                                            <span>Members</span>
-                                        </a>
+                                        <a href="#"><i class="fa fa-users" aria-hidden="true"></i>&nbsp; Members</a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fa fa-cog" aria-hidden="true"></i> 
-                                            <span>Program Options</span>
-                                        </a>
+                                            <i class="fa fa-sliders" aria-hidden="true"></i>&nbsp; Program Options</a>
                                         <ul>
                                             <li>
-                                                <a href="#">
-                                                    <i class="fa fa-building" aria-hidden="true"></i> 
-                                                    <span>Company Profile</span>
-                                                </a>
+                                                <a href="#"><i class="fa fa-building" aria-hidden="true"></i>&nbsp; Company Profile</a>
                                             </li>
                                             <li>
-                                                <a href="#">
-                                                    <i class="fa fa-user-circle" aria-hidden="true"></i> 
-                                                    <span>Users</span>
-                                                </a>
+                                                <a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; Users</a>
                                             </li>
-                                            <li><a href="#">Referral Program Settings</a></li>
-                                            <li><a href="#">Reward Settings</a></li>
-                                            <li><a href="#">Notification Emails</a></li>
+                                            <li><a href="#"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp; Referral Program Settings</a></li>
+                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Reward Settings</a></li>
+                                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp; Notification Emails</a></li>
                                         </ul>
                                     </li>
                                     <li>                                        
-                                        <a href="{{ route('company-create') }}">Create Company</a>
+                                        <a href="{{ route('company-create') }}"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; Create Company</a>
                                     </li>
                                     @role(['admin', 'superAdmin', 'globalAdmin'])<li>
-                                        <a href="#">Global Settings</a>
+                                        <a href="#"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp; Global Settings</a>
                                         <ul>
-                                            @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
-                                            @can('edit-member-information')<li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
-                                            @can('export-member-information')<li><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan
-                                            @can('change-referral-statuses')<li><a href="{{ route('change-referral-status') }}">Change Referral Status</a></li>@endcan
-                                            @can('add-delete-admin')<li><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
-                                            @can('define-user-roles')<li><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
-                                            @can('add-change-billing-information')<li><a href="{{ route('add-change-billing-information') }}">Add/Change Billing Information</a></li>@endcan
-                                            @can('login-super-admin-all-accounts')<li><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
+                                            @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}"><i class="fa fa-address-book" aria-hidden="true"></i>&nbsp; Submit Referrals on Behalf of Member</a></li>@endcan
+                                            @can('edit-member-information')<li><a href="{{ route('edit-member-information') }}"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Edit Member Information</a></li>@endcan
+                                            @can('export-member-information')<li><a href="{{ route('export-member-information') }}"><i class="fa fa-share-square" aria-hidden="true"></i>&nbsp; Export Member Information</a></li>@endcan
+                                            @can('change-referral-statuses')<li><a href="{{ route('change-referral-status') }}"><i class="fa fa-random" aria-hidden="true"></i>&nbsp; Change Referral Status</a></li>@endcan
+                                            @can('add-delete-admin')<li><a href="{{ route('add-delete-admin') }}"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp; Add/Delete Admin</a></li>@endcan
+                                            @can('define-user-roles')<li><a href="{{ route('define-user-roles') }}"><i class="fa fa-sitemap" aria-hidden="true"></i>&nbsp; Define User Roles</a></li>@endcan
+                                            @can('add-change-billing-information')<li><a href="{{ route('add-change-billing-information') }}"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp; Add/Change Billing Information</a></li>@endcan
+                                            @can('login-super-admin-all-accounts')<li><a href="{{ route('login-super-admin') }}"><i class="fa fa-universal-access" aria-hidden="true"></i>&nbsp; Login as Super Admin</a></li>@endcan
                                         </ul>
                                     @endrole</li>
                                 </ul>
