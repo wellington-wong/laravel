@@ -43,7 +43,7 @@ Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->na
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 
 // Member Routes
-Route::get('/members', 'MemberController@getIndex')->name('members');
+Route::get('/members', 'MembersController@getIndex')->name('members');
 
 // Notification Routes
 Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
