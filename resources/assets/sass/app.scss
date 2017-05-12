@@ -33,7 +33,7 @@ header {
 
 /*** Auth Navbar ***/
 .navbar.navbar-static-top {
-	background: #e6f260;
+	background: $bg-color2;
 	min-height: 0;
 	.navbar-right {
 		margin: 0 10px;
@@ -78,7 +78,7 @@ header {
     			a {    				
     				padding: 0;
     				&:hover, &:focus {
-	    				color: #e6f260;
+	    				color: $bg-color2;
 	    				background: none;
 	    				text-decoration: none;
     				}
