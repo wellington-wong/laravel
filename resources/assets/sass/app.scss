@@ -179,11 +179,17 @@ header {
 			box-shadow: none;
 			.panel-heading.top-navbar {
 				padding: 0; 
+				border: 0;
 			}
 		}
 	}
 	.page-header {
 		margin-top: 0;
+		border: 0;
+		h2 {
+			text-align: center;
+			font-weight: bold;
+		}
 	}
 }
 /*** Auth Main End ***/
