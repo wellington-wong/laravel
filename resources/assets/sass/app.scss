@@ -190,6 +190,8 @@ header {
 		border: 0;
 		h3 {
 			text-align: center;
+		}
+		h3, h4 {
 			font-weight: bold;
 		}
 	}
@@ -321,6 +323,24 @@ nav {
 	}
 }
 /*** Submit a referral End ***/
+
+
+/*** Referrals ***/
+.table-referral {
+	tbody {
+		tr {
+			td {
+				line-height: 30px;
+			}
+		}
+	}
+	.btn.btn-default {
+		background: #1373bf;
+		color: #fff;
+		padding: 3px 12px;
+	}
+} 
+/*** Referrals End ***/
 
 
 /*** Create company ***/
