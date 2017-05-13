@@ -2389,7 +2389,7 @@ $(function () {
 	$("input[name='member']").autocomplete({
 		source: function source(request, response) {
 			$.ajax({
-				url: 'members/1'
+				url: '/members/1'
 			}).done(function (data) {
 				response($.map(data, function (id, name) {
 					return { id: id, value: name };

@@ -44,6 +44,7 @@ Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 
 // Member Routes
 Route::get('/members', 'MembersController@getIndex')->name('members');
+Route::get('/members/{id}', 'MembersController@members')->name('members');
 
 // Notification Routes
 Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
@@ -65,4 +66,3 @@ Route::get('/global-settings/add-delete-admin', 'GlobalSettingsController@addDel
 Route::get('/global-settings/define-user-roles', 'GlobalSettingsController@defineUserRoles')->name('define-user-roles');
 Route::get('/global-settings/add-change-billing-information', 'GlobalSettingsController@addChangeBillingInformation')->name('add-change-billing-information');
 Route::get('/global-settings/login-super-admin', 'GlobalSettingsController@loginSuperAdmin')->name('login-super-admin');
-Route::get('/global-settings/members/{id}', 'GlobalSettingsController@members')->name('members');

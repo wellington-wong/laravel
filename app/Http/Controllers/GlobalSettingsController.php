@@ -52,9 +52,4 @@ class GlobalSettingsController extends Controller
     {
         return view('global-settings.login-super-admin');
     }
-
-    public function members(Request $request, User $user, $sid)
-    {
-        return $user->getMembers($sid);
-    }
 }
