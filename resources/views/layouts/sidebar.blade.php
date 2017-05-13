@@ -36,8 +36,8 @@
                                     <li>
                                         <i class="fa fa-sliders" aria-hidden="true"></i><a href="#">Program Options</a>
                                         <ul>
-                                            <li><i class="fa fa-building" aria-hidden="true"></i><a href="#">Company Profile</a></li>                                            
-                                            <li><i class="fa fa-pencil" aria-hidden="true"></i><a href="{{ route('company-create') }}">Create Company</a></li>
+                                            @if( isset(auth()->user()->companies[0]->id) )<li><i class="fa fa-building" aria-hidden="true"></i><a href="/company/{{ auth()->user()->companies[0]->id }}">Company Profile</a></li>
+                                            @else<li><i class="fa fa-pencil" aria-hidden="true"></i><a href="{{ route('company-create') }}">Create Company</a></li>@endif
                                             <li><i class="fa fa-user-circle" aria-hidden="true"></i><a href="#">Users</a></li>
                                             <li><i class="fa fa-wrench" aria-hidden="true"></i><a href="#">Referral Program Settings</a></li>
                                             <li><i class="fa fa-star" aria-hidden="true"></i><a href="#">Reward Settings</a></li>
