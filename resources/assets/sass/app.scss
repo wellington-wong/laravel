@@ -80,9 +80,8 @@ header {
     				padding: 0;
     				display: table-cell;
     				&:hover, &:focus {
-	    				color: $bg-color2;
 	    				background: none;
-	    				text-decoration: none;
+	    				text-decoration: underline;
     				}
     				&:active {
 	    				background: none;
@@ -93,9 +92,12 @@ header {
     				padding-right: 7px;
     			}
     			ul {
-    				padding-left: 20px;
+    				padding-left: 0;
     				li {
 	    				padding-top: 5px;
+	    				a {
+	    					color: $bg-color2;
+	    				}
     				}
     			}
     		}
@@ -186,7 +188,7 @@ header {
 	.page-header {
 		margin-top: 0;
 		border: 0;
-		h2 {
+		h3 {
 			text-align: center;
 			font-weight: bold;
 		}
