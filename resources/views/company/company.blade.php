@@ -12,7 +12,7 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-3 col-lg-3 " align="center"> 
-					<img alt="{{ $company->company_name }}" src="/{{ $company->logo }}" class="img-responsive"> 
+					<img alt="{{ $company->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive"> 
 				</div>                
 
 				<div class=" col-md-9 col-lg-9 "> 
