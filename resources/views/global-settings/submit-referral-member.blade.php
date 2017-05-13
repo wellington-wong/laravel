@@ -17,7 +17,7 @@
 		<div class="page-header">
 		    <div class="row">
 			    <div class="col-md-12">
-					<h2>Submit Referral on Behalf of Member</h2>
+					<h3>Submit Referral on Behalf of Member</h3>
 				</div>
 			</div>
 		</div>
