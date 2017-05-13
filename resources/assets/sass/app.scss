@@ -113,8 +113,6 @@ header {
 			color: #fff;
 		}
 		#app-sidebar-collapse {
-			min-height: 85%;
-			position: relative;
 			.panel-body, .panel-footer {
 				padding-left: 0;
 				padding-right: 0;
@@ -151,6 +149,9 @@ header {
 		position: absolute;
 		right: 0;
 	}
+	    &.affix {
+	        position: relative;
+	    }
 	@media (max-width: 767px) {
 		& .panel-default {
 			margin-top: 0;
@@ -162,6 +163,9 @@ header {
 		.logo {
 			margin-top: 0;
 		}	
+	    &.affix {
+	        position: relative;
+	    }
 	}
 }
 /*** Auth Sidebar End ***/

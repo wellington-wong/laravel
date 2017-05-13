@@ -29,7 +29,7 @@
             <div class="row fill">
 
                 @if (!Auth::guest())
-                <div class="col-sm-3 col-sidebar ">
+                <div class="col-sm-3 col-sidebar affix">
                 @include('layouts.sidebar')
                 </div>
                 @endif
