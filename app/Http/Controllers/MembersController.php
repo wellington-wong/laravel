@@ -23,7 +23,7 @@ class MembersController extends Controller
 
 		$members = Role::where('name','member')->first()->users()->get();
         return view('members.index')
-        ->with(compact($members));
+        ->with(compact('members'));
 	}
 
     public function members(Request $request, User $user, $sid)
