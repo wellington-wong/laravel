@@ -200,6 +200,9 @@ header {
 	.panel-default {
 		margin-bottom: 0;
 		border-radius: 0;
+		.panel-body {
+			background: #fff;
+		}
 	}
 }
 /*** Auth Main End ***/

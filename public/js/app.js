@@ -2402,6 +2402,19 @@ $(function () {
 	});
 });
 // END - GET MEMBERS
+
+// ADJUST HEIGHT
+$(function () {
+	adjustMainBodyHeight();
+	$(window).resize(function () {
+		adjustMainBodyHeight();
+	});
+	function adjustMainBodyHeight() {
+		var height = $('.panel-body').height() > $('.col-sidebar').height() ? $('.panel-body').height() : $('.col-sidebar').height();
+		$('.main-content').height(height);
+	}
+});
+//
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),

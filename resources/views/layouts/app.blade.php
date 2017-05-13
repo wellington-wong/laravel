@@ -34,7 +34,7 @@
                 </div>
                 @endif
                 <div class="col-sm-9 page-right main-content">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default fill">
                         <div class="panel-heading top-navbar">
                             @include('layouts.navbar')
                         </div>
