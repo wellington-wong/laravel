@@ -106,7 +106,6 @@ header {
 	.panel-default {
 		border: 0;
 		box-shadow: none;
-		margin-top: 50px;
 		&, .panel-heading {
 			background: none; 
 			border: 0;
@@ -149,6 +148,7 @@ header {
 	    background-repeat:no-repeat;
 	    background-size:contain;
 	    background-position:left center;
+	    margin-top: 50px;
 	}
 	.navbar-toggle.sidebar-menu {
 		z-index: 1001;
