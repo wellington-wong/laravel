@@ -73,10 +73,12 @@ header {
     nav {
     	ul.nav {
     		li {
+    			list-style: none;
     			padding-left: 0;
 	    		padding-top: 15px;
     			a {    				
     				padding: 0;
+    				display: table-cell;
     				&:hover, &:focus {
 	    				color: $bg-color2;
 	    				background: none;
@@ -86,18 +88,16 @@ header {
 	    				background: none;
     				}
     			}
+    			.fa {    				
+    				display: table-cell;
+    				padding-right: 7px;
+    			}
     			ul {
     				padding-left: 20px;
     				li {
 	    				padding-top: 5px;
     				}
     			}
-    		}
-    		li {
-    			list-style: none;
-    			a, .fa {
-    				display: table-cell;
-    			}    		
     		}
     	}
     }
