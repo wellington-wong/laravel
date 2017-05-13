@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
                 //$user->subdomain = 1;
                 $userObj->save();
 
-                // Assign global admin role to exults.referral@gmail.com
+                // Assign role to each user created
                 if (isset($role[$user[3]])) {
                     $userObj->attachRole($role[$user[3]]);
                 }
