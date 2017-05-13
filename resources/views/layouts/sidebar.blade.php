@@ -25,36 +25,36 @@
                             <nav>
                                 <ul class="nav">
                                     <li>
-                                        <i class="fa fa-address-book" aria-hidden="true"></i><a href="{{ route('referrals') }}">Referrals</a>
+                                        <a href="{{ route('referrals') }}">Referrals</a>
                                         <ul>
-                                            <li><i class="fa fa-user-plus" aria-hidden="true"></i><a href="{{ route('referral-create') }}">Add Referral</a></li>
+                                            <li><a href="{{ route('referral-create') }}">Add Referral</a></li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <i class="fa fa-users" aria-hidden="true"></i><a href="#">Members</a>
+                                        <a href="/members">Members</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-sliders" aria-hidden="true"></i><a href="#">Program Options</a>
+                                        <a href="#">Program Options</a>
                                         <ul>
-                                            @if( isset(auth()->user()->companies[0]->id) )<li><i class="fa fa-building" aria-hidden="true"></i><a href="/company/{{ auth()->user()->companies[0]->id }}">Company Profile</a></li>
-                                            @else<li><i class="fa fa-pencil" aria-hidden="true"></i><a href="{{ route('company-create') }}">Create Company</a></li>@endif
-                                            <li><i class="fa fa-user-circle" aria-hidden="true"></i><a href="#">Users</a></li>
-                                            <li><i class="fa fa-wrench" aria-hidden="true"></i><a href="#">Referral Program Settings</a></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i><a href="#">Reward Settings</a></li>
-                                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#">Notification Emails</a></li>
+                                            @if( isset(auth()->user()->companies[0]->id) )<li><a href="/company/{{ auth()->user()->companies[0]->id }}">Company Profile</a></li>
+                                            @else<li><a href="{{ route('company-create') }}">Create Company</a></li>@endif
+                                            <li><a href="#">Users</a></li>
+                                            <li><a href="#">Referral Program Settings</a></li>
+                                            <li><a href="#">Reward Settings</a></li>
+                                            <li><a href="#">Notification Emails</a></li>
                                         </ul>
                                     </li>
                                     @role(['admin', 'superAdmin', 'globalAdmin'])<li>
-                                        <i class="fa fa-cog" aria-hidden="true"></i><a href="#">Global Settings</a>
+                                        <a href="#">Global Settings</a>
                                         <ul>
-                                            @can('submit-member-referral')<li><i class="fa fa-address-book" aria-hidden="true"></i><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
-                                            @can('edit-member-information')<li><i class="fa fa-pencil-square" aria-hidden="true"></i><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
-                                            @can('export-member-information')<li><i class="fa fa-share-square" aria-hidden="true"></i><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan
-                                            @can('change-referral-statuses')<li><i class="fa fa-random" aria-hidden="true"></i><a href="{{ route('change-referral-status') }}">Change Referral Status</a></li>@endcan
-                                            @can('add-delete-admin')<li><i class="fa fa-id-card" aria-hidden="true"></i><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
-                                            @can('define-user-roles')<li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
-                                            @can('add-change-billing-information')<li><i class="fa fa-file-text" aria-hidden="true"></i><a href="{{ route('add-change-billing-information') }}">Add/Change Billing Information</a></li>@endcan
-                                            @can('login-super-admin-all-accounts')<li><i class="fa fa-universal-access" aria-hidden="true"></i><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
+                                            @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
+                                            @can('edit-member-information')<li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
+                                            @can('export-member-information')<li></i><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan
+                                            @can('change-referral-statuses')<li><a href="{{ route('change-referral-status') }}">Change Referral Status</a></li>@endcan
+                                            @can('add-delete-admin')<li><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
+                                            @can('define-user-roles')<li><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
+                                            @can('add-change-billing-information')<li><a href="{{ route('add-change-billing-information') }}">Add/Change Billing Information</a></li>@endcan
+                                            @can('login-super-admin-all-accounts')<li><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
                                         </ul>
                                     @endrole</li>
                                 </ul>
