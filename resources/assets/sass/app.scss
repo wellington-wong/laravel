@@ -303,7 +303,7 @@ main {
 		background: #fff;
 		padding-top: 75px;
 		.steps li {
-			width: 25%;
+			width: 20%;
 			height: 150px;
 			list-style: none;
 			&:last-child {
@@ -321,6 +321,7 @@ main {
 				.number {
 					line-height: 50px;
 					color: #fff;
+					display: block;
 				}
 				.step-label {
 					line-height: 50px;
@@ -482,33 +483,25 @@ nav {
 /*** Basic Page End ***/
 
 /*** Multistep form ***/
-/* Accessibility */
 .form-multistep-number > .steps .current-info,
-.tabcontrol > .steps .current-info
-{
+.tabcontrol > .steps .current-info {
     position: absolute;
     left: -999em;
 }
 
 .form-multistep-number > .content > .title,
-.tabcontrol > .content > .title
-{
+.tabcontrol > .content > .title {
     position: absolute;
     left: -999em;
 }
 
-/*
-    Wizard
-*/
-.form-multistep-number > .steps
-{
+.form-multistep-number > .steps {
     position: relative;
     display: block;
     width: 100%;
 }
 
-.form-multistep-number.vertical > .steps
-{
+.form-multistep-number.vertical > .steps {
     display: inline;
     float: left;
     width: 30%;
@@ -519,27 +512,23 @@ nav {
     font-size: 1.429em;
 }
 
-.form-multistep-number > .steps > ul > li
-{
+.form-multistep-number > .steps > ul > li {
     width: 25%;
 }
 
 .form-multistep-number > .steps > ul > li,
-.form-multistep-number > .actions > ul > li
-{
+.form-multistep-number > .actions > ul > li {
     float: left;
 }
 
-.form-multistep-number.vertical > .steps > ul > li
-{
+.form-multistep-number.vertical > .steps > ul > li {
     float: none;
     width: 100%;
 }
 
 .form-multistep-number > .steps a,
 .form-multistep-number > .steps a:hover,
-.form-multistep-number > .steps a:active
-{
+.form-multistep-number > .steps a:active {
     display: block;
     width: auto;
     margin: 0 0.5em 0.5em;
@@ -553,8 +542,7 @@ nav {
 
 .form-multistep-number > .steps .disabled a,
 .form-multistep-number > .steps .disabled a:hover,
-.form-multistep-number > .steps .disabled a:active
-{
+.form-multistep-number > .steps .disabled a:active {
     background: #eee;
     color: #aaa;
     cursor: default;
@@ -562,8 +550,7 @@ nav {
 
 .form-multistep-number > .steps .current a,
 .form-multistep-number > .steps .current a:hover,
-.form-multistep-number > .steps .current a:active
-{
+.form-multistep-number > .steps .current a:active {
     background: #2184be;
     color: #fff;
     cursor: default;
@@ -571,17 +558,16 @@ nav {
 
 .form-multistep-number > .steps .done a,
 .form-multistep-number > .steps .done a:hover,
-.form-multistep-number > .steps .done a:active
-{
+.form-multistep-number > .steps .done a:active {
     background: #9dc8e2;
     color: #fff;
 }
 
 .form-multistep-number > .steps .error a,
 .form-multistep-number > .steps .error a:hover,
-.form-multistep-number > .steps .error a:active
-{
+.form-multistep-number > .steps .error a:active {
     background: #ff3111;
     color: #fff;
 }
+
 /*** Multistep form End ***/

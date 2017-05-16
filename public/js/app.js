@@ -2610,7 +2610,7 @@ $(function () {
 		transitionEffect: "slideLeft",
 		onInit: function onInit() {
 			// Process label of multi step form
-			var text = form.find('.steps').clone().appendTo($('.form-multistep-number'));
+			var text = form.find('.steps').hide().clone().appendTo($('.form-multistep-number')).show();
 			$('.steps').find('a').each(function () {
 				$(this).contents().filter(function () {
 					return this.nodeType == 3;
