@@ -136,7 +136,7 @@ $('.terms-acceptance').on('click', function() {
 		function adjustMainBodyHeight(){
 			var height = $('.panel-body').height() > $('.col-sidebar').height() ? $('.panel-body').height() : $('.col-sidebar').height();
 			height = height > $('body').height() ? height : $('body').height();
-			$('.main-content').height(height);
+			$('.logged-in .main-content').height(height);
 		}
 	});
 //

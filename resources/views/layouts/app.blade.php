@@ -22,7 +22,7 @@
         ]) !!};
     </script>
 </head>
-<body>
+<body class="logged-in">
     <div id="app" class="fill">
 
         <div class="container-fluid fill">
