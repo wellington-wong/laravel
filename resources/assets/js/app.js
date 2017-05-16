@@ -11,6 +11,7 @@ import 'jquery-ui/ui/widgets/sortable.js';
 import 'jquery-steps/build/jquery.steps.min.js';
 import 'formBuilder/dist/form-builder.min.js';
 import 'formBuilder/dist/form-render.min.js';
+import 'jquery-validation/dist/jquery.validate.min.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -145,7 +146,7 @@ $('.terms-acceptance').on('click', function() {
 	});
 // END - ADJUST HEIGHT
 
-// jQuery formBuilder
+// JQUERY FORMBUILDER
 	$(function (){
 		  let fields = [
 		    {
@@ -318,4 +319,49 @@ $('.terms-acceptance').on('click', function() {
 		  };
 	});
 
-// END - jQuery formBuilder
+// END - JQUERY FORMBUILDER
+
+// JQUERY STEPS
+
+    $(function (){
+			var form = $("#register-form-multistep");
+			form.validate({
+				errorPlacement: function errorPlacement(error, element) { element.before(error); },
+				rules: {
+					confirm: {
+						equalTo: "#password"
+					}
+				}
+			});
+			form.children("div").steps({
+				headerTag: "h3",
+				bodyTag: "section",
+				transitionEffect: "slideLeft",
+				onInit: function ()
+				{
+					// Process label of multi step form
+					var text = form.find('.wizard').append(form.find('.steps')).find('.steps').find('a').each(function (){
+						$(this).contents().filter(function (){
+							return this.nodeType == 3;
+						}).wrap('<span class="step-label"></span>');
+					}).find('.number').text(function (){
+						$(this).text($(this).text().replace('.', ''));
+					});
+				},
+				onStepChanging: function (event, currentIndex, newIndex)
+				{
+					form.validate().settings.ignore = ":disabled,:hidden";
+					return form.valid();
+				},
+				onFinishing: function (event, currentIndex)
+				{
+					form.validate().settings.ignore = ":disabled";
+					return form.valid();
+				},
+				onFinished: function (event, currentIndex)
+				{
+					alert("Submitted!");
+				}
+			});
+        });
+// END JQUERY STEPS
