@@ -7,6 +7,10 @@
 
 require('./bootstrap');
 import 'jquery-ui/ui/widgets/autocomplete.js';
+import 'jquery-ui/ui/widgets/sortable.js';
+import 'jquery-steps/build/jquery.steps.min.js';
+import 'formBuilder/dist/form-builder.min.js';
+import 'formBuilder/dist/form-render.min.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
