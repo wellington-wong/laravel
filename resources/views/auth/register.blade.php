@@ -94,16 +94,16 @@
                                         <label class="col-md-12 control-label password-note">*Password must be 8 characters and contain a number and a special character.</label>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-md-offset-4">
-                                            <button type="submit" class="btn btn-primary">
-                                                Register
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary btn-next">
+                                                Next
                                             </button>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-md-offset-4">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-6 link-social">
                                             @include('auth.social')
                                         </div>
                                     </div>

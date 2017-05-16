@@ -280,6 +280,18 @@ main {
 				color: #2ba4eb;
 				font-size: 12px;
 			}
+			.btn-next {
+				background: $bg-color2;
+				color: #464950;
+				margin-top: 50px;
+				border: none;
+				border-radius: 0;
+				padding-left: 140px;				
+				padding-right: 140px;
+			}
+			.link-social {
+				padding: 0;
+			}
 		}
 	}
 }
