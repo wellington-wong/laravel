@@ -19,6 +19,9 @@
 // Font awesome
 @import "~font-awesome/css/font-awesome.css";
 
+// jQuery Steps
+@import "~jquery-steps/demo/css/jquery.steps.css";
+
 html, body {
 	height: 100%;
 	font-family: 'Montserrat', sans-serif;
@@ -291,6 +294,35 @@ main {
 			}
 			.link-social {
 				padding: 0;
+			}
+		}
+		#register-form-multistep {
+			.steps li {
+				width: 25%;
+				height: 150px;
+				&:last-child {
+					margin-right: 0;
+				}				
+				a {
+					border-radius: 50px;
+					width: 50px;
+					height: 50px;
+					text-align: center;
+					padding: 0;
+					position: relative;
+					margin: 0 auto;
+					.number {
+						line-height: 50px;
+						color: #fff;
+					}
+					.step-label {
+						line-height: 50px;
+						color: #b0aeaf;
+					}
+				}
+				&.current a{						
+					background: #279fdc;
+				}
 			}
 		}
 	}
