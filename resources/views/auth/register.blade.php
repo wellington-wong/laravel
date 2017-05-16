@@ -72,7 +72,7 @@
                                     </div>
 
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-12">
-                                        <label for="password" class="col-md-4 control-label">Password</label>
+                                        <label for="password" class="col-md-12 control-label">Password</label>
 
                                         <div class="col-md-12">
                                             <input id="password" type="password" class="form-control" name="password" required>
@@ -81,7 +81,7 @@
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('password') }}</strong>
                                                 </span>
-                                            @endif
+                                            @endif                                            
                                         </div>
                                     </div>
 
@@ -91,6 +91,7 @@
                                         <div class="col-md-12">
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                         </div>
+                                        <label class="col-md-12 control-label password-note">*Password must be 8 characters and contain a number and a special character.</label>
                                     </div>
 
                                     <div class="form-group">
