@@ -148,7 +148,7 @@ $('.terms-acceptance').on('click', function() {
 
 // JQUERY FORMBUILDER
 	$(function (){
-		  let fields = [
+	/*	  let fields = [
 		    {
 		      label: 'Star Rating',
 		      attrs: {
@@ -265,10 +265,6 @@ $('.terms-acceptance').on('click', function() {
 		    fbOptions.formData = JSON.parse(formData);
 		  }
 
-		  /**
-		   * Toggles the edit mode for the demo
-		   * @return {Boolean} editMode
-		   */
 		  function toggleEdit() {
 		    document.body.classList.toggle('form-rendered', editing);
 		    return editing = !editing;
@@ -312,11 +308,11 @@ $('.terms-acceptance').on('click', function() {
 		    document.getElementById('setLanguage')
 		    .addEventListener('change', e => fb.actions.setLang(e.target.value));
 		  });
+*/
 
-
-		  document.getElementById('edit-form').onclick = function() {
-		    toggleEdit();
-		  };
+		  //document.getElementById('edit-form').onclick = function() {
+		    //toggleEdit();
+		  //};
 	});
 
 // END - JQUERY FORMBUILDER
@@ -340,7 +336,7 @@ $('.terms-acceptance').on('click', function() {
 				onInit: function ()
 				{
 					// Process label of multi step form
-					var text = $('.form-multistep-number').append(form.find('.steps'));
+					var text = form.find('.steps').clone().appendTo($('.form-multistep-number'));
 					$('.steps').find('a').each(function (){
 						$(this).contents().filter(function (){
 							return this.nodeType == 3;
@@ -352,6 +348,10 @@ $('.terms-acceptance').on('click', function() {
 				onStepChanging: function (event, currentIndex, newIndex)
 				{
 					form.validate().settings.ignore = ":disabled,:hidden";
+					form.find('.actions').find('li').click(function (){
+						$('.form-multistep-number li.current').removeClass('current');
+						$('.form-multistep-number li').eq($('.steps').find('li.current').index()).addClass('current');
+					});
 					return form.valid();
 				},
 				onFinishing: function (event, currentIndex)
