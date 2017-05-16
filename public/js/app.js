@@ -2631,7 +2631,8 @@ $(function () {
 		transitionEffect: "slideLeft",
 		onInit: function onInit() {
 			// Process label of multi step form
-			var text = form.find('.wizard').append(form.find('.steps')).find('.steps').find('a').each(function () {
+			var text = $('.form-multistep-number').append(form.find('.steps'));
+			$('.steps').find('a').each(function () {
 				$(this).contents().filter(function () {
 					return this.nodeType == 3;
 				}).wrap('<span class="step-label"></span>');

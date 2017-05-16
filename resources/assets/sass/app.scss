@@ -296,34 +296,55 @@ main {
 				padding: 0;
 			}
 		}
-		#register-form-multistep {
-			.steps li {
-				width: 25%;
-				height: 150px;
-				&:last-child {
-					margin-right: 0;
-				}				
-				a {
-					border-radius: 50px;
-					width: 50px;
-					height: 50px;
-					text-align: center;
-					padding: 0;
-					position: relative;
-					margin: 0 auto;
-					.number {
-						line-height: 50px;
-						color: #fff;
-					}
-					.step-label {
-						line-height: 50px;
-						color: #b0aeaf;
-					}
+	}	
+}
+.register-bottom-wrapper {
+	.form-multistep-number {
+		background: #fff;
+		padding-top: 75px;
+		.steps li {
+			width: 25%;
+			height: 150px;
+			list-style: none;
+			&:last-child {
+				margin-right: 0;
+			}				
+			a {
+				border-radius: 50px;
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				padding: 0;
+				position: relative;
+				margin: 0 auto;
+				background: #b0aeaf;
+				.number {
+					line-height: 50px;
+					color: #fff;
 				}
-				&.current a{						
-					background: #279fdc;
+				.step-label {
+					line-height: 50px;
+					color: #b0aeaf;
+				}
+				&:hover, &:active, &:focus {
+					background: #b0aeaf;
 				}
 			}
+			&.current a{						
+				background: #279fdc;
+			}
+		}
+	}
+	.upgrade-wrapper {
+		background: #fff;
+		padding: 0 0 50px 0;
+		text-align: center;
+		h4 {
+			margin: 0;
+			font-weight: bold;
+		}
+		.upgrade-plan {
+			color: #28a7ea;
 		}
 	}
 }
@@ -459,3 +480,108 @@ nav {
 	}
 }
 /*** Basic Page End ***/
+
+/*** Multistep form ***/
+/* Accessibility */
+.form-multistep-number > .steps .current-info,
+.tabcontrol > .steps .current-info
+{
+    position: absolute;
+    left: -999em;
+}
+
+.form-multistep-number > .content > .title,
+.tabcontrol > .content > .title
+{
+    position: absolute;
+    left: -999em;
+}
+
+/*
+    Wizard
+*/
+.form-multistep-number > .steps
+{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.form-multistep-number.vertical > .steps
+{
+    display: inline;
+    float: left;
+    width: 30%;
+}
+
+.form-multistep-number > .steps .number
+{
+    font-size: 1.429em;
+}
+
+.form-multistep-number > .steps > ul > li
+{
+    width: 25%;
+}
+
+.form-multistep-number > .steps > ul > li,
+.form-multistep-number > .actions > ul > li
+{
+    float: left;
+}
+
+.form-multistep-number.vertical > .steps > ul > li
+{
+    float: none;
+    width: 100%;
+}
+
+.form-multistep-number > .steps a,
+.form-multistep-number > .steps a:hover,
+.form-multistep-number > .steps a:active
+{
+    display: block;
+    width: auto;
+    margin: 0 0.5em 0.5em;
+    padding: 1em 1em;
+    text-decoration: none;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.form-multistep-number > .steps .disabled a,
+.form-multistep-number > .steps .disabled a:hover,
+.form-multistep-number > .steps .disabled a:active
+{
+    background: #eee;
+    color: #aaa;
+    cursor: default;
+}
+
+.form-multistep-number > .steps .current a,
+.form-multistep-number > .steps .current a:hover,
+.form-multistep-number > .steps .current a:active
+{
+    background: #2184be;
+    color: #fff;
+    cursor: default;
+}
+
+.form-multistep-number > .steps .done a,
+.form-multistep-number > .steps .done a:hover,
+.form-multistep-number > .steps .done a:active
+{
+    background: #9dc8e2;
+    color: #fff;
+}
+
+.form-multistep-number > .steps .error a,
+.form-multistep-number > .steps .error a:hover,
+.form-multistep-number > .steps .error a:active
+{
+    background: #ff3111;
+    color: #fff;
+}
+/*** Multistep form End ***/
