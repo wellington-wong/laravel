@@ -225,7 +225,7 @@ header {
 	.navbar-top-right {
 		li {
 			a {
-				background-color: #e5f356;
+				background-color: $bg-color2;
 				color: $bg-color;
 				padding: 2px 35%;
 				text-transform: uppercase;
@@ -260,7 +260,7 @@ header {
 main {
 	background: #f0f0f0;
 	.top-content {
-		background: #e5f356;
+		background: $bg-color2;
 		margin: 5px 0 0px 0;
 		padding: 30px 0;
 		color: $bg-color;
@@ -309,7 +309,7 @@ footer {
  	}
  	.bottom-content {
  		padding: 10px 0;
- 		background: #e5f356;
+ 		background: $bg-color2;
  		color: $bg-color;
  	}
 }
