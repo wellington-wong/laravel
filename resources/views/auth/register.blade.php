@@ -24,7 +24,7 @@
                     <div class="col-md-8 col-md-offset-2 main-content">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}" id="register-form">
+                                <!-- <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}" id="register-form">
                                     {{ csrf_field() }}
 
                                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }} col-md-6">
@@ -108,7 +108,133 @@
                                         </div>
                                     </div>
 
+                                </form>-->
+
+
+                                <form id="register-form-multistep" action="#">
+                                {{ csrf_field() }}
+                                    <div>
+                                        <h3>Your Info</h3>
+                                        <section>
+
+
+
+
+                                                <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }} col-md-6">
+                                                    <label for="name" class="col-md-12 control-label">Your First Name</label>
+
+                                                    <div class="col-md-12">
+                                                        <input id="first-name" type="text" class="form-control" name="name" value="{{ old('first_name') }}" required autofocus>
+
+                                                        @if ($errors->has('name'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }} col-md-6">
+                                                    <label for="name" class="col-md-12 control-label text-left">Your Last Name</label>
+
+                                                    <div class="col-md-12">
+                                                        <input id="last-name" type="text" class="form-control" name="name" value="{{ old('last_name') }}" required autofocus>
+
+                                                        @if ($errors->has('name'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('last_name') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                @include('forms.phone', ['phone_label'=>"Phone Number", 'class'=>'col-md-12'])
+
+                                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-12">
+                                                    <label for="email" class="col-md-12 control-label">Your E-Mail</label>
+
+                                                    <div class="col-md-12">
+                                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                                        @if ($errors->has('email'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('email') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-12">
+                                                    <label for="password" class="col-md-12 control-label">Password</label>
+
+                                                    <div class="col-md-12">
+                                                        <input id="password" type="password" class="form-control" name="password" required>
+
+                                                        @if ($errors->has('password'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('password') }}</strong>
+                                                            </span>
+                                                        @endif                                            
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="password-confirm" class="col-md-12 control-label">Confirm Password</label>
+
+                                                    <div class="col-md-12">
+                                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                                    </div>
+                                                    <label class="col-md-12 control-label password-note">*Password must be 8 characters and contain a number and a special character.</label>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <div class="col-md-6">
+                                                        <button type="submit" class="btn btn-primary btn-next">
+                                                            Next
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <div class="col-md-6 link-social">
+                                                        @include('auth.social')
+                                                    </div>
+                                                </div>
+
+
+
+
+                                        </section>
+                                        <h3>Company Info</h3>
+                                        <section>
+                                            <label for="name">First name *</label>
+                                            <input id="name" name="name" type="text" class="required">
+                                            <label for="surname">Last name *</label>
+                                            <input id="surname" name="surname" type="text" class="required">
+                                            <label for="email">Email *</label>
+                                            <input id="email" name="email" type="text" class="required email">
+                                            <label for="address">Address</label>
+                                            <input id="address" name="address" type="text">
+                                            <p>(*) Mandatory</p>
+                                        </section>
+                                        <h3>Form Builder</h3>
+                                        <section>
+
+                                        </section>
+
+                                        <h3>Reward Info</h3>
+                                        <section>
+
+                                        </section>
+
+                                        <h3>Review</h3>
+                                        <section>
+
+                                        </section>
+                                    </div>
                                 </form>
+
+
                             </div>
                         </div>
                     </div>
@@ -116,6 +242,13 @@
             </div>
         </main>
         <!-- End Main -->
+
+        <div class="register-bottom-wrapper">
+            <div class="form-multistep-number"></div>
+            <div class="upgrade-wrapper">
+                <h4>You've selected the Basic plan at $49.99 per month - <a href="#" class="upgrade-plan">Upgrade to Premium</a></h4>
+            </div>
+        </div>
 
 <!-- Start Footer -->
 @include('auth.footer')
