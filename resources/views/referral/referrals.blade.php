@@ -24,7 +24,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i> Search All</div>
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i> Search</div>
                         <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="Search referrals" class="form-control" />
                     </div>
                 </div>
@@ -43,6 +43,14 @@
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-hover table-referral">
+                    <thead>
+                        <tr>
+                            <th>Date referred</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
                     @foreach($referrals as $r)
                         <tr>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
