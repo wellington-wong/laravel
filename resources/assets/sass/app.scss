@@ -469,11 +469,20 @@ nav {
 
 
 /*** Referrals ***/
+.filter-buttons {
+	margin-bottom: 30px;
+	a {
+		highlight: none;
+	}
+}
 .table-referral {
 	tbody {
 		tr {
 			td {
 				line-height: 30px;
+			}
+			td.view-details {
+				text-align: right;
 			}
 		}
 	}
@@ -483,6 +492,11 @@ nav {
 		padding: 3px 12px;
 	}
 } 
+.referral-export {
+	> div {
+		text-align: right;
+	}
+}
 /*** Referrals End ***/
 
 
