@@ -5,13 +5,13 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
             @foreach ($members as $member)
             <tr>
                 <td>{{ $member->name }}</td>
-                <td></td>
+                <td class="view-details"><button class="btn btn-default btn-details">view details</button></td>
             </tr>
             @endforeach
     </table>

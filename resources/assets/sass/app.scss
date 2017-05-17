@@ -452,6 +452,15 @@ nav {
 .notifications .message {
 	line-height: 32px;
 }
+.btn-details {
+	background: #1373bf;
+	color: #fff;
+	padding: 3px 12px;
+	&:hover {
+		background: #2d86cd;
+		color: #fff;
+	}
+}
 /*** Common End ***/
 
 
@@ -485,11 +494,6 @@ nav {
 				text-align: right;
 			}
 		}
-	}
-	.btn.btn-default {
-		background: #1373bf;
-		color: #fff;
-		padding: 3px 12px;
 	}
 } 
 .referral-export {
