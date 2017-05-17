@@ -194,66 +194,79 @@
                                         <h3>Company Info</h3>
                                         <section>
 
-                                            <div class="form-group col-md-12">
-                                                <label for="password-confirm" class="col-md-12 control-label">Your Company's Name</label>
-                                                <div class="col-md-12">                                                    
-                                                {{ Form::text('company_name', old('company_name'), array('class' => 'form-control')) }}
-                                                </div>                                                
-                                            </div>
+                                            <div class="form-group-wrapper">
+                                                <div class="form-group col-md-12">
+                                                    <label for="password-confirm" class="col-md-12 control-label">Your Company's Name</label>
+                                                    <div class="col-md-12">                                                    
+                                                    {{ Form::text('company_name', old('company_name'), array('class' => 'form-control')) }}
+                                                    </div>                                                
+                                                </div>
 
-                                            <div class="form-group col-md-6">
-                                                <div class="col-md-12">
-                                                    <label>Your Company's Phone Number</label>
-                                                    {{ Form::text('company_phone', old('company_phone'), array('class' => 'form-control')) }}
+                                                <div class="form-group col-md-6">
+                                                    <div class="col-md-12">
+                                                        <label>Your Company's Phone Number</label>
+                                                        {{ Form::text('company_phone', old('company_phone'), array('class' => 'form-control')) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <div class="col-md-12">
-                                                    <label>Your Company's Contact Email</label>
-                                                    {{ Form::text('company_email', old('company_email'), array('class' => 'form-control')) }}
+                                                <div class="form-group col-md-6">
+                                                    <div class="col-md-12">
+                                                        <label>Your Company's Contact Email</label>
+                                                        {{ Form::text('company_email', old('company_email'), array('class' => 'form-control')) }}
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="form-group col-md-12" >
-                                                <div class="col-md-12" >
-                                                    <label>Type of Business</label>
+                                                <div class="form-group col-md-12" >
+                                                    <div class="col-md-12" >
+                                                        <label>Type of Business</label>
+                                                    </div>
+                                                    <div class="col-md-12" >
+                                                        {{ Form::select('business_type', ['small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-12" >
-                                                    {{ Form::select('business_type', ['small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
-                                                </div>
-                                            </div>
 
-                                            <div class="form-group col-md-6">
-                                                <div class="col-md-12">
-                                                    <label>Your Company's Address Line 1</label>
-                                                    {{ Form::text('company_address_1', old('company_address_1'), array('class' => 'form-control')) }}
+                                                <div class="form-group col-md-6">
+                                                    <div class="col-md-12">
+                                                        <label>Your Company's Address Line 1</label>
+                                                        {{ Form::text('company_address_1', old('company_address_1'), array('class' => 'form-control')) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <div class="col-md-12">
-                                                    <label>Line 2</label>
-                                                    {{ Form::text('company_address_2', old('company_address_2'), array('class' => 'form-control')) }}
+                                                <div class="form-group col-md-6">
+                                                    <div class="col-md-12">
+                                                        <label>Line 2</label>
+                                                        {{ Form::text('company_address_2', old('company_address_2'), array('class' => 'form-control')) }}
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="form-group col-md-9">
-                                                <div class="col-md-12">
-                                                    <label>City</label>
-                                                    {{ Form::text('company_city', old('company_city'), array('class' => 'form-control')) }}
+                                                <div class="form-group col-md-9">
+                                                    <div class="col-md-12">
+                                                        <label>City</label>
+                                                        {{ Form::text('company_city', old('company_city'), array('class' => 'form-control')) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group col-md-3">
-                                                <div class="col-md-12">
-                                                    <label>State</label>
+                                                <div class="form-group col-md-3">
+                                                    <div class="col-md-12">
+                                                        <label>State</label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        @include('forms.states')                                                        
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    {{ Form::select('company_state', array('2', '1'), old('company_state'), ['class' => 'form-control']) }}
-                                                </div>
-                                            </div>
 
-                                            @include('forms.phone', ['phone_label'=>'Company Phone Number'])
+                                                <div class="form-group col-md-6">
+                                                    <div class="col-md-12">
+                                                        <label>Zip</label>
+                                                        {{ Form::text('company_zip', old('company_zip'), array('class' => 'form-control')) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="col-md-12">
+                                                        <label>Country</label>
+                                                        {{ Form::text('company_country', old('company_country'), array('class' => 'form-control')) }}
+                                                    </div>
+                                                </div>
 
-                                            <button type="submit" class="btn btn-primary button-responsive-100">Create Company</button>
+                                                <div class="clearfix"></div>
+                                            </div>
                                         </section>
                                         <!-- Step 2 End -->
 

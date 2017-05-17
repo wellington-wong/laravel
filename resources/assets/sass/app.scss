@@ -295,14 +295,30 @@ main {
 					color: #2ba4eb;
 					font-size: 12px;
 				}
-				.btn-next {
-					background: $bg-color2;
-					color: #464950;
-					margin-top: 50px;
-					border: none;
-					border-radius: 0;
-					padding-left: 140px;				
-					padding-right: 140px;
+				.actions {
+					width: 90%;
+					text-align: left;
+					margin-left: 35px;
+					ul{ 
+						li {
+							a {
+								background: $bg-color2;
+								color: #464950;
+								margin-top: 50px;
+								border: none;
+								border-radius: 0;
+								padding-left: 140px;				
+								padding-right: 140px;
+							}
+							&:first-child {
+								a {
+									background: #b0aeae;
+									padding-left: 50px;				
+									padding-right: 50px;
+								}
+							}
+						}
+					}
 				}
 				.link-social {
 					padding: 0;

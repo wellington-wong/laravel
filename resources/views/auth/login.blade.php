@@ -1,4 +1,8 @@
 @include('auth.document-top')
+
+    <div id="stage1" class="build-wrap"></div>
+    <form class="render-wrap"></form>
+    <button id="edit-form">Edit Form</button>
         <!-- Start Header -->
         <header>
             <div class="row">
