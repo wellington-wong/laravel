@@ -305,37 +305,55 @@ main {
 	.form-multistep-number {
 		background: #fff;
 		padding-top: 75px;
-		.steps li {
-			width: 20%;
-			height: 150px;
-			list-style: none;
-			&:last-child {
-				margin-right: 0;
-			}				
-			a {
-				border-radius: 50px;
-				width: 50px;
-				height: 50px;
-				text-align: center;
-				padding: 0;
-				position: relative;
-				margin: 0 auto;
-				background: #b0aeaf;
-				.number {
-					line-height: 50px;
-					color: #fff;
-					display: block;
+		.steps {
+			ul {
+				li {
+					width: 20%;
+					height: 150px;
+					list-style: none;
+					&:last-child {
+						margin-right: 0;
+					}				
+					a {
+						border-radius: 50px;
+						width: 50px;
+						height: 50px;
+						text-align: center;
+						padding: 0;
+						position: relative;
+						margin: 0 auto;
+						background: #b0aeaf;
+						.number {
+							line-height: 50px;
+							color: #fff;
+							display: block;
+						}
+						.step-label {
+							line-height: 50px;
+							color: #b0aeaf;
+							display: inline-block;
+							width: 200px;
+							margin-left: -150%;
+						}
+						&:hover, &:active, &:focus {
+							background: #b0aeaf;
+						}
+					}
+					&.current a{						
+						background: #279fdc;
+					}
 				}
-				.step-label {
-					line-height: 50px;
-					color: #b0aeaf;
+			}			
+			@media (max-width:767px) {
+				& {
+					text-align: center;
+					ul {
+						display: inline-block;
+						li {
+							float: none;
+						}
+					}
 				}
-				&:hover, &:active, &:focus {
-					background: #b0aeaf;
-				}
-			}
-			&.current a{						
-				background: #279fdc;
 			}
 		}
 	}
