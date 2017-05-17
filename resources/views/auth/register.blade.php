@@ -21,7 +21,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2 main-content register-content">
+                    <div class="col-md-9 col-md-offset-2 main-content register-content">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <!-- <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}" id="register-form">
@@ -123,7 +123,7 @@
                                                     <label for="name" class="col-md-12 control-label">Your First Name</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="first-name" type="text" class="form-control" name="name" value="{{ old('first_name') }}" required autofocus>
+                                                        <input id="first-name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
@@ -137,7 +137,7 @@
                                                     <label for="name" class="col-md-12 control-label text-left">Your Last Name</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="last-name" type="text" class="form-control" name="name" value="{{ old('last_name') }}" required autofocus>
+                                                        <input id="last-name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
@@ -185,20 +185,6 @@
                                                     </div>
                                                     <label class="col-md-12 control-label password-note">*Password must be 8 characters and contain a number and a special character.</label>
                                                 </div>
-
-                                                <div class="form-group col-md-12">
-                                                    <div class="col-md-6">
-                                                        <button type="submit" class="btn btn-primary btn-next">
-                                                            Next
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-md-12">
-                                                    <div class="col-md-6 link-social">
-                                                        @include('auth.social')
-                                                    </div>
-                                                </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </section>
@@ -207,6 +193,67 @@
                                         <!-- Step 2 -->
                                         <h3>Company Info</h3>
                                         <section>
+
+                                            <div class="form-group col-md-12">
+                                                <label for="password-confirm" class="col-md-12 control-label">Your Company's Name</label>
+                                                <div class="col-md-12">                                                    
+                                                {{ Form::text('company_name', old('company_name'), array('class' => 'form-control')) }}
+                                                </div>                                                
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <div class="col-md-12">
+                                                    <label>Your Company's Phone Number</label>
+                                                    {{ Form::text('company_phone', old('company_phone'), array('class' => 'form-control')) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="col-md-12">
+                                                    <label>Your Company's Contact Email</label>
+                                                    {{ Form::text('company_email', old('company_email'), array('class' => 'form-control')) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12" >
+                                                <div class="col-md-12" >
+                                                    <label>Type of Business</label>
+                                                </div>
+                                                <div class="col-md-12" >
+                                                    {{ Form::select('business_type', ['small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <div class="col-md-12">
+                                                    <label>Your Company's Address Line 1</label>
+                                                    {{ Form::text('company_address_1', old('company_address_1'), array('class' => 'form-control')) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="col-md-12">
+                                                    <label>Line 2</label>
+                                                    {{ Form::text('company_address_2', old('company_address_2'), array('class' => 'form-control')) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-9">
+                                                <div class="col-md-12">
+                                                    <label>City</label>
+                                                    {{ Form::text('company_city', old('company_city'), array('class' => 'form-control')) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <div class="col-md-12">
+                                                    <label>State</label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    {{ Form::select('company_state', array('2', '1'), old('company_state'), ['class' => 'form-control']) }}
+                                                </div>
+                                            </div>
+
+                                            @include('forms.phone', ['phone_label'=>'Company Phone Number'])
+
+                                            <button type="submit" class="btn btn-primary button-responsive-100">Create Company</button>
                                         </section>
                                         <!-- Step 2 End -->
 
