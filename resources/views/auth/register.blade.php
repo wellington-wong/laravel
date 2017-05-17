@@ -21,7 +21,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2 main-content">
+                    <div class="col-md-8 col-md-offset-2 main-content register-content">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <!-- <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}" id="register-form">
@@ -119,7 +119,7 @@
 
 
 
-
+                                            <div class="form-group-wrapper">
                                                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }} col-md-6">
                                                     <label for="name" class="col-md-12 control-label">Your First Name</label>
 
@@ -200,6 +200,8 @@
                                                         @include('auth.social')
                                                     </div>
                                                 </div>
+                                                <div class="clearfix"></div>
+                                            </div>
 
 
 

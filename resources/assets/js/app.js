@@ -322,7 +322,7 @@ $('.terms-acceptance').on('click', function() {
     $(function (){
 			var form = $("#register-form-multistep");
 			form.validate({
-				errorPlacement: function errorPlacement(error, element) { element.before(error); },
+				errorPlacement: function errorPlacement(error, element) { element.after(error); },
 				rules: {
 					confirm: {
 						equalTo: "#password"
@@ -351,7 +351,9 @@ $('.terms-acceptance').on('click', function() {
 					form.find('.actions').find('li').click(function (){
 						$('.form-multistep-number li.current').removeClass('current');
 						$('.form-multistep-number li').eq($('.steps').find('li.current').index()).addClass('current');
+						stepsContentHeight();
 					});
+					stepsContentHeight();
 					return form.valid();
 				},
 				onFinishing: function (event, currentIndex)
@@ -364,5 +366,9 @@ $('.terms-acceptance').on('click', function() {
 					alert("Submitted!");
 				}
 			});
+			stepsContentHeight();
+			function stepsContentHeight(){
+				$('.wizard .content').css('min-height', $('.wizard .content section.current .form-group-wrapper').height());
+			} 
         });
 // END JQUERY STEPS

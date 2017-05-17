@@ -271,35 +271,47 @@ main {
 	.main-content {
 		margin-top: 50px;
 		margin-bottom: 50px;
-		#register-form-multistep {
-			label {
-				text-align: left;
-			}
-			.form-group {
-				margin-left: 0;
-				margin-right: 0;
-			}
-			.password-note {
-				color: #2ba4eb;
-				font-size: 12px;
-			}
-			.btn-next {
-				background: $bg-color2;
-				color: #464950;
-				margin-top: 50px;
-				border: none;
-				border-radius: 0;
-				padding-left: 140px;				
-				padding-right: 140px;
-			}
-			.link-social {
-				padding: 0;
-			}
-			.wizard .content {
-				background: none;
+	}	
+}
+.register-content {
+	.panel-default {
+		border: 0;
+		box-shadow: none;
+		&, .panel-body {
+			background: none;
+			#register-form-multistep {
+				label {
+					text-align: left;
+					&.error {
+						margin-left: 0;
+					}
+				}
+				.form-group {
+					margin-left: 0;
+					margin-right: 0;
+				}
+				.password-note {
+					color: #2ba4eb;
+					font-size: 12px;
+				}
+				.btn-next {
+					background: $bg-color2;
+					color: #464950;
+					margin-top: 50px;
+					border: none;
+					border-radius: 0;
+					padding-left: 140px;				
+					padding-right: 140px;
+				}
+				.link-social {
+					padding: 0;
+				}
+				.wizard .content {
+					background: none;
+				}
 			}
 		}
-	}	
+	}
 }
 .register-bottom-wrapper {
 	.form-multistep-number {
