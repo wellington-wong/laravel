@@ -68,4 +68,5 @@ Route::get('/global-settings/add-change-billing-information', 'GlobalSettingsCon
 Route::get('/global-settings/login-super-admin', 'GlobalSettingsController@loginSuperAdmin')->name('login-super-admin');
 
 // Export
-Route::get('/export', 'ExportController@referral')->name('export');
+Route::get('/export/{id}', 'ExportController@referral')->name('export');
+Route::get('/export/all', 'ExportController@referrals')->name('export-all');
