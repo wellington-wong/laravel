@@ -280,6 +280,7 @@ main {
 		&, .panel-body {
 			background: none;
 			#register-form-multistep {
+				display: none;
 				label {
 					text-align: left;
 					&.error {
