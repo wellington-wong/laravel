@@ -115,10 +115,9 @@
                                 {{ csrf_field() }}
                                     <div>
                                         <h3>Your Info</h3>
+
+                                        <!-- Step 1 -->
                                         <section>
-
-
-
                                             <div class="form-group-wrapper">
                                                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }} col-md-6">
                                                     <label for="name" class="col-md-12 control-label">Your First Name</label>
@@ -202,37 +201,36 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-
-
-
-
                                         </section>
+                                        <!-- Step 1 End -->
+
+                                        <!-- Step 2 -->
                                         <h3>Company Info</h3>
                                         <section>
-                                            <label for="name">First name *</label>
-                                            <input id="name" name="name" type="text" class="required">
-                                            <label for="surname">Last name *</label>
-                                            <input id="surname" name="surname" type="text" class="required">
-                                            <label for="email">Email *</label>
-                                            <input id="email" name="email" type="text" class="required email">
-                                            <label for="address">Address</label>
-                                            <input id="address" name="address" type="text">
-                                            <p>(*) Mandatory</p>
                                         </section>
+                                        <!-- Step 2 End -->
+
+                                        <!-- Step 3 -->
                                         <h3>Form Builder</h3>
                                         <section>
 
                                         </section>
+                                        <!-- Step 3 End -->
 
+                                        <!-- Step 4 -->
                                         <h3>Reward Info</h3>
                                         <section>
 
                                         </section>
+                                        <!-- Step 4 End -->
 
-                                        <h3>Review</h3>
+                                        <!-- Step 5 -->
+                                        <h3>Reward Info</h3>
                                         <section>
 
                                         </section>
+                                        <!-- Step 5 End -->
+
                                     </div>
                                 </form>
 
