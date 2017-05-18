@@ -27,7 +27,12 @@ html, body {
 	font-family: 'Montserrat', sans-serif;
 }
 body {
-	background: $bg-color;
+	&.logged-in {
+		background: $bg-color;
+	}
+	&.basic-page {
+		background: $bg-color2;
+	}
 }
 
 
