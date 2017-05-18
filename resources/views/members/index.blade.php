@@ -41,6 +41,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
+                    <th>{{ Form::checkbox('check', '', false, array('class' => 'check-all')) }}</th>
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
@@ -48,7 +49,7 @@
             <tbody>
                 @foreach ($members as $member)
                 <tr>
-                    <td>{{ Form::checkbox('name', 'value') }}</td>
+                    <td class="td-checkbox">{{ Form::checkbox('member_id', $member->id, false, ['class' => 'checkbox-group']) }}</td>
                     <td>{{ $member->name }}</td>
                     <td class="view-details"><button class="btn btn-default btn-details">view details</button></td>
                 </tr>

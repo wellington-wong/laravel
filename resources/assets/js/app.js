@@ -321,20 +321,21 @@ $('.terms-acceptance').on('click', function() {
 
     $(function (){
 			var form = $("#register-form-multistep");
-			form.validate({
+			/*form.validate({
 				errorPlacement: function errorPlacement(error, element) { element.after(error); },
 				rules: {
 					confirm: {
 						equalTo: "#password"
 					}
 				}
-			});
+			});*/
 			form.children("div").steps({
 				headerTag: "h3",
 				bodyTag: "section",
 				transitionEffect: "slideLeft",
 				onInit: function ()
 				{
+					$('#register-form-multistep').show();
 					// Process label of multi step form
 					var text = form.find('.steps').hide().clone().appendTo($('.form-multistep-number')).show();
 					$('.steps').find('a').each(function (){
@@ -344,31 +345,46 @@ $('.terms-acceptance').on('click', function() {
 					}).find('.number').text(function (){
 						$(this).text($(this).text().replace('.', ''));
 					});
+					$('.actions').addClass('col-md-12');
 				},
 				onStepChanging: function (event, currentIndex, newIndex)
 				{
-					form.validate().settings.ignore = ":disabled,:hidden";
+					//form.validate().settings.ignore = ":disabled,:hidden";
 					form.find('.actions').find('li').click(function (){
 						$('.form-multistep-number li.current').removeClass('current');
 						$('.form-multistep-number li').eq($('.steps').find('li.current').index()).addClass('current');
 						stepsContentHeight();
 					});
 					stepsContentHeight();
-					return form.valid();
+					return true;//form.valid();
 				},
 				onFinishing: function (event, currentIndex)
 				{
-					form.validate().settings.ignore = ":disabled";
-					return form.valid();
+					//form.validate().settings.ignore = ":disabled";
+					return true; //form.valid();
 				},
 				onFinished: function (event, currentIndex)
 				{
 					alert("Submitted!");
+				},
+				labels: {
+					previous: 'Back'
 				}
 			});
 			stepsContentHeight();
+			$( window ).resize(function() {
+				stepsContentHeight();
+			});
 			function stepsContentHeight(){
-				$('.wizard .content').css('min-height', $('.wizard .content section.current .form-group-wrapper').height());
+				$('.wizard .content').css('min-height', $('.wizard .content section.current .form-group-wrapper').height() + 25);
 			} 
         });
 // END JQUERY STEPS
+
+// COMMON
+	$(function (){
+		$('.check-all').on('click', function (){
+			$('.checkbox-group').prop('checked', this.checked);
+		});
+	});
+// END COMMON
