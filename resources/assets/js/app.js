@@ -357,7 +357,8 @@ $(function (){
 			alert("Submitted!");
 		},
 		labels: {
-			previous: 'Back'
+			previous: 'Back',
+			finish: 'Submit'
 		}
 	});
 	stepsContentHeight();
