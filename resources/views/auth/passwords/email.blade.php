@@ -1,7 +1,7 @@
 @include('auth.document-top')
         <!-- Start Header -->
         <header>
-            <div class="row">
+            <div class="row header-right">
                 <div class="col-xs-12 col-md-4 pull-right">
                     <ul class="nav navbar-nav navbar-right navbar-top-right">
                         <li><a href="{{ route('login') }}">Login</a></li>
@@ -14,7 +14,7 @@
 
         <!-- Start Main -->
         <main>
-            <div class="row">
+            <div class="row top-content-wrapper">
                 <div class="top-content text-center">
                     <span>Enter your email address to reset the password</span>
                 </div>

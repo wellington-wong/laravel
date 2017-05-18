@@ -276,6 +276,16 @@ header {
 	figure.logo {
 	}
 }
+.header-right, .top-content-wrapper {
+	margin-left: 0;
+	margin-right: 0;
+}
+footer {
+	.row {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
 /*** Guest Navbar End ***/
 
 
