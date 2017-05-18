@@ -20,11 +20,15 @@ class MembersController extends Controller
 
 	public function getIndex ()
 	{
+            if ( !empty($members = Role::where('name','member')->first()) && !empty($members->users()) ) {
+                $members = $members->users()->get();
+            } else {
+                $members = [];                
+            }
+            return view('members.index')
+            ->with(compact('members'));
+        }
 
-		$members = Role::where('name','member')->first()->users()->get();
-        return view('members.index')
-        ->with(compact('members'));
-	}
 
     public function members(Request $request, User $user, $sid)
     {
