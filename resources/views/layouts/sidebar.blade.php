@@ -25,13 +25,13 @@
                             <nav>
                                 <ul class="nav">
                                     <li>
-                                        <a href="{{ route('referrals') }}">Referrals</a>
+                                        <a href="{{ route('referrals') }}">Referrals <i class="fa fa-minus pull-right" aria-hidden="true"></i></a>
                                         <ul>
                                             <li><a href="{{ route('referral-create') }}">Add Referral</a></li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="/members">Members</a>
+                                        <a href="/members">Members <i class="fa fa-plus pull-right menu-marker" aria-hidden="true"></i></a>
                                     </li>
                                     <li>
                                         <a href="#">Program Options</a>

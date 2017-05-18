@@ -2351,8 +2351,8 @@ $('.terms-acceptance').on('click', function () {
 });
 //END - CHECK TERMS ACCEPTANCE BUTTON
 
-// SUBMIT REFERRALS
 $(function () {
+	// SUBMIT REFERRALS
 	// Check if phone number is already referred
 	$('#referral-create-form input[name="phone"]').blur(function () {
 		if ($(this).val()) {
@@ -2397,11 +2397,9 @@ $(function () {
 	$('.cancel-referral').on('click', function () {
 		location.href = '/';
 	});
-});
-// END - SUBMIT REFERRALS
+	// END - SUBMIT REFERRALS
 
-// NOTIFICATIONS
-$(function () {
+	// NOTIFICATIONS
 	$('button.mark-read').on('click', function () {
 		var notification = $(this).closest('.notifications');
 		var _this = $(this);
@@ -2419,11 +2417,9 @@ $(function () {
 			}
 		});
 	});
-});
-// END - NOTIFICATIONS
+	// END - NOTIFICATIONS
 
-// GET MEMBERS
-$(function () {
+	// GET MEMBERS
 	// Retrieve all members
 	$("input[name='member']").autocomplete({
 		source: function source(request, response) {
@@ -2439,11 +2435,9 @@ $(function () {
 			$('#member-id').val(ui.item.id);
 		}
 	});
-});
-// END - GET MEMBERS
+	// END - GET MEMBERS
 
-// ADJUST HEIGHT
-$(function () {
+	// ADJUST HEIGHT
 	adjustMainBodyHeight();
 	$(window).resize(function () {
 		adjustMainBodyHeight();
@@ -2453,11 +2447,9 @@ $(function () {
 		height = height > $('body').height() ? height : $('body').height();
 		$('.logged-in .main-content').height(height);
 	}
-});
-// END - ADJUST HEIGHT
+	// END - ADJUST HEIGHT
 
-// JQUERY FORMBUILDER
-$(function () {
+	// JQUERY FORMBUILDER
 	/*	  let fields = [
  	    {
  	      label: 'Star Rating',
@@ -2467,7 +2459,8 @@ $(function () {
  	      icon: 'ðŸŒŸ'
  	    }
  	  ];
- 		  let templates = {
+ 
+ 	  let templates = {
  	    starRating: function(fieldData) {
  	      return {
  	        field: '<span id="'+fieldData.name+'">',
@@ -2477,7 +2470,8 @@ $(function () {
  	      };
  	    }
  	  };
- 		  let inputSets = [{
+ 
+ 	  let inputSets = [{
  	        label: 'User Details',
  	        name: 'user-details', // optional
  	        showHeader: true, // optional
@@ -2521,10 +2515,12 @@ $(function () {
  	          label: 'Do you agree to the terms and conditions?',
  	        }]
  	      }];
- 		  var typeUserDisabledAttrs = {
+ 
+ 	  var typeUserDisabledAttrs = {
  	    autocomplete: ['access']
  	  };
- 		  var typeUserAttrs = {
+ 
+ 	  var typeUserAttrs = {
  	    text: {
  	      className: {
  	        label: 'Class',
@@ -2537,9 +2533,11 @@ $(function () {
  	      }
  	    }
  	  };
- 		  // test disabledAttrs
+ 
+ 	  // test disabledAttrs
  	  let disabledAttrs = ['placeholder'];
- 		  const fbOptions = {
+ 
+ 	  const fbOptions = {
  	    subtypes: {
  	      text: ['datetime-local']
  	    },
@@ -2564,17 +2562,22 @@ $(function () {
  	  };
  	  let formData = window.sessionStorage.getItem('formData');
  	  let editing = true;
- 		  if (formData) {
+ 
+ 	  if (formData) {
  	    fbOptions.formData = JSON.parse(formData);
  	  }
- 		  function toggleEdit() {
+ 
+ 	  function toggleEdit() {
  	    document.body.classList.toggle('form-rendered', editing);
  	    return editing = !editing;
  	  }
- 		  const setFormData = '[{"type":"text","label":"Full Name","subtype":"text","className":"form-control","name":"text-1476748004559"},{"type":"select","label":"Occupation","className":"form-control","name":"select-1476748006618","values":[{"label":"Street Sweeper","value":"option-1","selected":true},{"label":"Moth Man","value":"option-2"},{"label":"Chemist","value":"option-3"}]},{"type":"textarea","label":"Short Bio","rows":"5","className":"form-control","name":"textarea-1476748007461"}]';
- 		  const formBuilder = $('.build-wrap').formBuilder(fbOptions);
+ 
+ 	  const setFormData = '[{"type":"text","label":"Full Name","subtype":"text","className":"form-control","name":"text-1476748004559"},{"type":"select","label":"Occupation","className":"form-control","name":"select-1476748006618","values":[{"label":"Street Sweeper","value":"option-1","selected":true},{"label":"Moth Man","value":"option-2"},{"label":"Chemist","value":"option-3"}]},{"type":"textarea","label":"Short Bio","rows":"5","className":"form-control","name":"textarea-1476748007461"}]';
+ 
+ 	  const formBuilder = $('.build-wrap').formBuilder(fbOptions);
  	  const fbPromise = formBuilder.promise;
- 		  fbPromise.then(function(fb) {
+ 
+ 	  fbPromise.then(function(fb) {
  	    let apiBtns = {
  	      showData: fb.actions.showData,
  	      clearFields: fb.actions.clearFields,
@@ -2598,11 +2601,13 @@ $(function () {
  	        location.reload();
  	      }
  	    };
- 		    Object.keys(apiBtns).forEach(action => {
+ 
+ 	    Object.keys(apiBtns).forEach(action => {
  	      document.getElementById(action)
  	      .addEventListener('click', e => apiBtns[action]());
  	    });
- 		    document.getElementById('setLanguage')
+ 
+ 	    document.getElementById('setLanguage')
  	    .addEventListener('change', e => fb.actions.setLang(e.target.value));
  	  });
  */
@@ -2610,13 +2615,10 @@ $(function () {
 	//document.getElementById('edit-form').onclick = function() {
 	//toggleEdit();
 	//};
-});
 
-// END - JQUERY FORMBUILDER
+	// END - JQUERY FORMBUILDER
 
-// JQUERY STEPS
-
-$(function () {
+	// JQUERY STEPS
 	var form = $("#register-form-multistep");
 	/*form.validate({
  	errorPlacement: function errorPlacement(error, element) { element.after(error); },
@@ -2671,16 +2673,21 @@ $(function () {
 	function stepsContentHeight() {
 		$('.wizard .content').css('min-height', $('.wizard .content section.current .form-group-wrapper').height() + 25);
 	}
-});
-// END JQUERY STEPS
+	// END JQUERY STEPS
 
-// COMMON
-$(function () {
+	// COMMON
 	$('.check-all').on('click', function () {
 		$('.checkbox-group').prop('checked', this.checked);
 	});
+	// END COMMON
+
+	// SIDEBAR
+	$('.menu-marker').on('click', function () {
+		return false;
+	});
+
+	// END SIDEBAR
 });
-// END COMMON
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),

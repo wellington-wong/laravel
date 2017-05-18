@@ -112,6 +112,11 @@ header {
   			> li {
   				> a {
   					font-weight: bold;
+  					width: 100%;
+  					display: block;
+  					.fa {
+  						margin-top: 5px;
+  					}
   				}
   			}
     	}
