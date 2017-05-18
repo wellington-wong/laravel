@@ -2684,7 +2684,15 @@ $(function () {
 
 	// SIDEBAR
 	$('.menu-marker').on('click', function () {
-		return false;
+		var plus = $(this).find('.fa-plus');
+		var minus = $(this).find('.fa-minus');
+		if (plus.length) {
+			plus.removeClass('fa-plus').addClass('fa-minus');
+		}
+		if (minus.length) {
+			minus.removeClass('fa-minus').addClass('fa-plus');
+		}
+		return;
 	});
 
 	// END SIDEBAR

@@ -110,12 +110,17 @@ header {
     			}
     		}
   			> li {
-  				> a {
-  					font-weight: bold;
-  					width: 100%;
-  					display: block;
-  					.fa {
-  						margin-top: 5px;
+  				.main-menu-item-wrapper{
+  					a {
+	  					font-weight: bold;
+	  					display: inline-block;
+	  					&:hover, &:active, &:focus {
+	  						text-decoration: none;
+	  					}
+	  				}
+  					.menu-marker {
+	  					display: inline-block;
+	  					margin-top: 5px;
   					}
   				}
   			}

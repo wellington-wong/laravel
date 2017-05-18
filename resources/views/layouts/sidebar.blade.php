@@ -22,20 +22,28 @@
                                 <a href="{{ route('referrals') }}" >Referral History</a>
                             </div>
                             --> 
-                            <nav>
+                            <nav>                            
                                 <ul class="nav">
                                     <li>
-                                        <a href="{{ route('referrals') }}">Referrals <i class="fa fa-minus pull-right" aria-hidden="true"></i></a>
-                                        <ul>
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="{{ route('referrals') }}">Referrals</a>
+                                            <a href="#submenu-referrals" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        </div>
+                                        <ul id="submenu-referrals" class="collapse in">
                                             <li><a href="{{ route('referral-create') }}">Add Referral</a></li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="/members">Members <i class="fa fa-plus pull-right menu-marker" aria-hidden="true"></i></a>
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="/members">Members</a>
+                                        </div>
                                     </li>
                                     <li>
-                                        <a href="#">Program Options</a>
-                                        <ul>
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="#">Program Options</a>
+                                            <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        </div>
+                                        <ul id="program-options" class="collapse in">
                                             @if( isset(auth()->user()->companies[0]->id) )<li><a href="/company/{{ auth()->user()->companies[0]->id }}">Company Profile</a></li>
                                             @else<li><a href="{{ route('company-create') }}">Create Company</a></li>@endif
                                             <li><a href="#">Users</a></li>
@@ -45,8 +53,11 @@
                                         </ul>
                                     </li>
                                     @role(['admin', 'superAdmin', 'globalAdmin'])<li>
-                                        <a href="#">Global Settings</a>
-                                        <ul>
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="#">Global Settings</a>
+                                            <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        </div>
+                                        <ul id="global-settings" class="collapse in">
                                             @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
                                             @can('edit-member-information')<li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
                                             @can('export-member-information')<li></i><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan
