@@ -45,6 +45,7 @@
                 <table class="table table-hover table-referral">
                     <thead>
                         <tr>
+                            <th>{{ Form::checkbox('check', 'all', array('class' => 'check-all')) }}</th>
                             <th>Date referred</th>
                             <th>Name</th>
                             <th>Status</th>
@@ -53,6 +54,7 @@
                     </thead>
                     @foreach($referrals as $r)
                         <tr>
+                            <td>{{ Form::checkbox('name', 'value') }}</td>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
                             <td>You referred {{ $r->referred->display_name }}</td>
                             <td>{{ \App\Referral::$status[$r->status] }}</td>

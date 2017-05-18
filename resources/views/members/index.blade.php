@@ -48,6 +48,7 @@
             <tbody>
                 @foreach ($members as $member)
                 <tr>
+                    <td>{{ Form::checkbox('name', 'value') }}</td>
                     <td>{{ $member->name }}</td>
                     <td class="view-details"><button class="btn btn-default btn-details">view details</button></td>
                 </tr>
