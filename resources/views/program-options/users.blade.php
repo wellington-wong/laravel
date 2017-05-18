@@ -5,7 +5,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Your Submitted Referrals</h4>
+                    <h4>Users</h4>
                 </div>
             </div>
         </div>
@@ -13,10 +13,10 @@
         <div class="row bulk-action">
             <div class="col-md-6">
                 <div class="input-group">
-                    <div class="input-group-addon">Status</div>
+                    <div class="input-group-addon">Filter</div>
                     <select name="status" class="form-control">
-                        <option value="export">Pending Verification</option>
-                        <option value="export">Pending Reward</option>
+                        <option value="export">Option 1</option>
+                        <option value="export">Option 2</option>
                     </select>    
                 </div>
             </div>
@@ -47,10 +47,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($members as $member)
+                @foreach ($users as $user)
                 <tr>
-                    <td class="td-checkbox">{{ Form::checkbox('member_id', $member->id, false, ['class' => 'checkbox-group']) }}</td>
-                    <td>{{ $member->name }}</td>
+                    <td class="td-checkbox">{{ Form::checkbox('member_id', $user->id, false, ['class' => 'checkbox-group']) }}</td>
+                    <td>{{ $user->name }}</td>
                     <td class="view-details"><button class="btn btn-default btn-details">view details</button></td>
                 </tr>
                 @endforeach

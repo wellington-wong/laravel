@@ -7,7 +7,7 @@
 <div class="col-xs-12">      
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3 class="panel-title">{{ $company->company_name }}</h3>
+			<h3 class="panel-title company-title">{{ $company->company_name }}</h3>
 		</div>
 		<div class="panel-body">
 			<div class="row">

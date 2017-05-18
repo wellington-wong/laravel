@@ -44,7 +44,7 @@ Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 
 // Member Routes
 Route::get('/members', 'MembersController@getIndex')->name('members');
-Route::get('/members/{id}', 'MembersController@members')->name('members');
+Route::get('/member/{id}', 'MembersController@members')->name('member');
 
 // Notification Routes
 Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');

@@ -17,6 +17,8 @@ class ProgramOptionsController extends Controller
      */
     public function users( Request $request )
     {
-    	return;
+    	$users = [];
+    	return view('program-options.users')
+    	->with(compact('users'));
     }
 }

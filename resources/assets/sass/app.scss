@@ -521,7 +521,7 @@ nav {
 /*** Referrals End ***/
 
 
-/*** Create company ***/
+/*** Company ***/
 #create-company-form {
 	label {
 		width: 30%;
@@ -534,7 +534,10 @@ nav {
 		display: inline-block;
 	}
 }
-/*** Submit a referral End ***/
+.company-title {
+	margin-bottom: 10px;
+}
+/*** Company End ***/
 
 /*** jQuery UI Autocomplete ***/
 .ui-autocomplete {

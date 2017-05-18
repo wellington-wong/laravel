@@ -35,7 +35,7 @@
                                     </li>
                                     <li>
                                         <div class="main-menu-item-wrapper">
-                                            <a href="/members">Members</a>
+                                            <a href="{{ route('members') }}">Members</a>
                                         </div>
                                     </li>
                                     <li>
@@ -46,7 +46,7 @@
                                         <ul id="program-options" class="collapse in">
                                             @if( isset(auth()->user()->companies[0]->id) )<li><a href="/company/{{ auth()->user()->companies[0]->id }}">Company Profile</a></li>
                                             @else<li><a href="{{ route('company-create') }}">Create Company</a></li>@endif
-                                            <li><a href="#">Users</a></li>
+                                            <li><a href="{{ route('program-options-users') }}">Users</a></li>
                                             <li><a href="#">Referral Program Settings</a></li>
                                             <li><a href="#">Reward Settings</a></li>
                                             <li><a href="#">Notification Emails</a></li>
