@@ -70,3 +70,6 @@ Route::get('/global-settings/login-super-admin', 'GlobalSettingsController@login
 // Export
 Route::get('/export/{id}', 'ExportController@referral')->name('export');
 Route::get('/export/all', 'ExportController@referrals')->name('export-all');
+
+// Program Options
+Route::get('/program-options/users', 'ProgramOptionsController@users')->name('program-options-users');
