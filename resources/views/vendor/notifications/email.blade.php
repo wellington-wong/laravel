@@ -52,7 +52,7 @@ Regards,<br>{{ config('app.name') }}
 @if (isset($actionText))
 @component('mail::subcopy')
 If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
-into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
+into your web browser: [{{ str_replace('/'.env('APP_URL'), '', $actionUrl) }}]({{ str_replace('/'.env('APP_URL'), '', $actionUrl) }})
 @endcomponent
 @endif
 @endcomponent
