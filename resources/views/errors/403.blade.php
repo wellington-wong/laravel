@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 main-content">
-                        <p>You don't have permission to access <em>{{ Request::url() }}</em> on this server.
+                        <p class="text-center">You don't have permission to access <em>{{ Request::url() }}</em> on this server.
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 main-content">
-                        <p>The requested URL <em>{{ Request::url() }}</em> was not found on this server.
+                        <p class="text-center">The requested URL <em>{{ Request::url() }}</em> was not found on this server.
                     </div>
                 </div>
             </div>
