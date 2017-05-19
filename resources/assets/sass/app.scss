@@ -279,6 +279,9 @@ header {
 .header-right, .top-content-wrapper {
 	margin-right: 0;
 }
+.header-right > div {
+	padding-right: 0;
+}
 footer {
 	.row {
 		margin-right: 0;
