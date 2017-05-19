@@ -22,7 +22,7 @@
                                 <a href="{{ route('referrals') }}" >Referral History</a>
                             </div>
                             --> 
-                            <nav>                            
+                                @role(['admin', 'superAdmin', 'globalAdmin'])             
                                 <ul class="nav">
                                     <li>
                                         <div class="main-menu-item-wrapper">
@@ -52,7 +52,7 @@
                                             <li><a href="{{ route('program-options-notification-settings') }}">Notification Settings</a></li>
                                         </ul>
                                     </li>
-                                    @role(['admin', 'superAdmin', 'globalAdmin'])<li>
+                                    <li>
                                         <div class="main-menu-item-wrapper">
                                             <a href="#">Global Settings</a>
                                             <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
@@ -60,17 +60,14 @@
                                         <ul id="global-settings" class="collapse in">
                                             @can('submit-member-referral')<li><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
                                             @can('edit-member-information')<li><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
-                                            @can('export-member-information')<li></i><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan
-                                            @can('change-referral-statuses')<li><a href="{{ route('change-referral-status') }}">Change Referral Status</a></li>@endcan
+                                            @can('export-member-information')<li><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan                                            
                                             @can('add-delete-admin')<li><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
                                             @can('define-user-roles')<li><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
-                                            @can('add-change-billing-information')<li><a href="{{ route('add-change-billing-information') }}">Add/Change Billing Information</a></li>@endcan
                                             @can('login-super-admin-all-accounts')<li><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
                                         </ul>
-                                    @endrole</li>
+                                    </li>
                                 </ul>
-                            </nav>
-
+                                @endrole
                         </div>
 
                         <div class="panel-footer">
