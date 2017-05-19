@@ -62,15 +62,17 @@ Route::get('/how-this-works', 'BasicPageController@howThisWorks')->name('how-thi
 Route::get('/how-to-get-more-referrals', 'BasicPageController@howToGetMoreReferrals')->name('how-to-get-more-referrals');
 
 // Global Settings Routes
-Route::get('/global-settings/submit-referral-member', 'GlobalSettingsController@submitReferralMember')->name('submit-referral-member');
-Route::post('/global-settings/submit-referral-member', 'GlobalSettingsController@submitReferralMember')->name('submit-referral-member');
-Route::get('/global-settings/edit-member-information', 'GlobalSettingsController@editMemberInformation')->name('edit-member-information');
-Route::get('/global-settings/export-member-information', 'GlobalSettingsController@exportMemberInformation')->name('export-member-information');
-Route::get('/global-settings/change-referral-status', 'GlobalSettingsController@changeReferralStatus')->name('change-referral-status');
-Route::get('/global-settings/add-delete-admin', 'GlobalSettingsController@addDeleteAdmin')->name('add-delete-admin');
-Route::get('/global-settings/define-user-roles', 'GlobalSettingsController@defineUserRoles')->name('define-user-roles');
-Route::get('/global-settings/add-change-billing-information', 'GlobalSettingsController@addChangeBillingInformation')->name('add-change-billing-information');
-Route::get('/global-settings/login-super-admin', 'GlobalSettingsController@loginSuperAdmin')->name('login-super-admin');
+// Filter routes by role
+Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdmin']], function() {
+	Route::get('/members', ['uses' => 'MembersController@getIndex', 'middleware' => ['permission:submit-member-referral']])->name('members');
+	Route::get('/global-settings/submit-referral-member', ['uses' => 'GlobalSettingsController@submitReferralMember', 'middleware' => ['permission:submit_member_referral']])->name('submit-referral-member');
+	Route::post('/global-settings/submit-referral-member', ['uses' => 'GlobalSettingsController@submitReferralMember', 'middleware' => ['permission:submit_member_referral']])->name('submit-referral-member');
+	Route::get('/global-settings/edit-member-information', ['uses' => 'GlobalSettingsController@editMemberInformation', 'middleware' => ['permission:edit_member_information']])->name('edit-member-information');
+	Route::get('/global-settings/export-member-information', ['uses' => 'GlobalSettingsController@exportMemberInformation', 'middleware' => ['permission:export_member_information']])->name('export-member-information');
+	Route::get('/global-settings/add-delete-admin', ['uses' => 'GlobalSettingsController@addDeleteAdmin', 'middleware' => ['permission:add_delete_admin']])->name('add-delete-admin');
+	Route::get('/global-settings/define-user-roles', ['uses' => 'GlobalSettingsController@defineUserRoles', 'middleware' => ['define_user_roles']])->name('define-user-roles');	
+	Route::get('/global-settings/login-super-admin', ['uses' => 'GlobalSettingsController@loginSuperAdmin', 'middleware' => ['permission:login_super_admin_all_accounts']])->name('login-super-admin');
+});
 
 // Export
 Route::get('/export/{id}', 'ExportController@referral')->name('export');
