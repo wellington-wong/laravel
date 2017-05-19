@@ -24,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Assign user as member when no role is found
+        if (auth()->check() && !(auth()->user()->ability('admin,superAdmin,globalAdmin', []))) {
+            if ($member = Role::where('name', 'member')->first()) {
+                auth()->user()->attachRole($member);
+            }
+        }
+
         return view('home');
     }
 }
