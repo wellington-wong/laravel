@@ -30,7 +30,7 @@
             $color = 'blue';
     }
 ?>
-@component('mail::button', ['url' => $actionUrl, 'color' => $color])
+@component('mail::button', ['url' => str_replace('/'.env('APP_URL'), '', $actionUrl), 'color' => $color])
 {{ $actionText }}
 @endcomponent
 @endif
