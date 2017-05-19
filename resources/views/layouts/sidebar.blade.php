@@ -22,6 +22,7 @@
                                 <a href="{{ route('referrals') }}" >Referral History</a>
                             </div>
                             -->           
+                                @role(['member'])
                                 <ul class="nav">
                                     <li>
                                         <div class="main-menu-item-wrapper">
@@ -49,6 +50,7 @@
                                         </div>
                                     </li>
                                 </ul>
+                                @endrole
                                 @role(['admin', 'superAdmin', 'globalAdmin'])
                                 <ul class="nav">
                                     <li>
