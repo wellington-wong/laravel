@@ -40,7 +40,7 @@
                                     </li>
                                     <li>
                                         <div class="main-menu-item-wrapper">
-                                            <a href="#">Program Options</a>
+                                            <a href="#program-options" data-toggle="collapse" class="menu-marker">Program Options</a>
                                             <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="program-options" class="collapse in">

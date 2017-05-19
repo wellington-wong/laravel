@@ -2684,8 +2684,8 @@ $(function () {
 
 	// SIDEBAR
 	$('.menu-marker').on('click', function () {
-		var plus = $(this).find('.fa-plus');
-		var minus = $(this).find('.fa-minus');
+		var plus = $(this).parent().find('.fa-plus');
+		var minus = $(this).parent().find('.fa-minus');
 		if (plus.length) {
 			plus.removeClass('fa-plus').addClass('fa-minus');
 		}

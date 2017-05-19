@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $users = array(
-            array('exults.referral@gmail.com', 'Global Admin', 'Exults Referral', 'globalAdmin'),
+            array('exults.referral@gmail.com', 'Zach', 'Hoffman', 'globalAdmin'),
             array('exults.referral.superadmin@gmail.com', 'Super Admin', 'Exults Referral', 'superAdmin'),
             array('exults.referral.admin@gmail.com', 'Admin', 'Exults Referral', 'admin'),
             array('exults.referral.member@gmail.com', 'Member', 'Exults Referral', 'member'),
