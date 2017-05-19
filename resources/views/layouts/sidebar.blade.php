@@ -47,9 +47,9 @@
                                             @if( isset(auth()->user()->companies[0]->id) )<li><a href="/company/{{ auth()->user()->companies[0]->id }}">Company Profile</a></li>
                                             @else<li><a href="{{ route('company-create') }}">Create Company</a></li>@endif
                                             <li><a href="{{ route('program-options-users') }}">Users</a></li>
-                                            <li><a href="#">Referral Program Settings</a></li>
-                                            <li><a href="#">Reward Settings</a></li>
-                                            <li><a href="#">Notification Emails</a></li>
+                                            <li><a href="{{ route('program-options-referral-program') }}">Referral Program Settings</a></li>
+                                            <li><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
+                                            <li><a href="{{ route('program-options-notification-settings') }}">Notification Settings</a></li>
                                         </ul>
                                     </li>
                                     @role(['admin', 'superAdmin', 'globalAdmin'])<li>
