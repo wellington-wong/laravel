@@ -21,8 +21,35 @@
                             <div class="menu-item">
                                 <a href="{{ route('referrals') }}" >Referral History</a>
                             </div>
-                            --> 
-                                @role(['admin', 'superAdmin', 'globalAdmin'])             
+                            -->           
+                                <ul class="nav">
+                                    <li>
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="{{ route('referrals') }}">Referrals</a>
+                                            <a href="#submenu-referrals" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        </div>
+                                        <ul id="submenu-referrals" class="collapse in">
+                                            <li><a href="{{ route('referral-create') }}">Submit a Referral</a></li>
+                                            <li><a href="{{ route('referral-history') }}">Referral History</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="{{ route('referral-rewards') }}">Rewards</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="{{ route('how-this-works') }}">How This Works</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="{{ route('how-to-get-more-referrals') }}">How to Get More Referrals</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                @role(['admin', 'superAdmin', 'globalAdmin'])
                                 <ul class="nav">
                                     <li>
                                         <div class="main-menu-item-wrapper">

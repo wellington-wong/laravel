@@ -13,32 +13,52 @@ class BasicPageController extends Controller
     {
 		return View('basic.how-it-works');
     }
+
     /**
-     * How it works
+     * Features
      */
     public function features(Request $request)
     {
 		return View('basic.features');
     }
+
     /**
-     * How it works
+     * About Us
      */
     public function aboutUs(Request $request)
     {
 		return View('basic.about-us');
     }
+
     /**
-     * How it works
+     * Pricing
      */
     public function pricing(Request $request)
     {
 		return View('basic.pricing');
     }
+
     /**
-     * How it works
+     * Contact
      */
     public function contact(Request $request)
     {
 		return View('basic.contact');
+    }
+
+    /**
+     * How this works
+     */
+    public function howThisWorks(Request $request)
+    {
+        return View('basic.how-this-works');
+    }
+
+    /**
+     * How to get more referrals
+     */
+    public function howToGetMoreReferrals(Request $request)
+    {
+        return View('basic.how-to-get-more-referrals');
     }
 }

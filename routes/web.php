@@ -41,6 +41,8 @@ Route::get('/referral/create', 'ReferralController@create')->name('referral-crea
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
+Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
+Route::get('/referral/rewards', 'ReferralController@create')->name('referral-rewards');
 
 // Member Routes
 Route::get('/members', 'MembersController@getIndex')->name('members');
@@ -55,6 +57,8 @@ Route::get('/features', 'BasicPageController@features')->name('features');
 Route::get('/about-us', 'BasicPageController@aboutUs')->name('about-us');
 Route::get('/pricing', 'BasicPageController@pricing')->name('pricing');
 Route::get('/contact', 'BasicPageController@contact')->name('contact');
+Route::get('/how-this-works', 'BasicPageController@howThisWorks')->name('how-this-works');
+Route::get('/how-to-get-more-referrals', 'BasicPageController@howToGetMoreReferrals')->name('how-to-get-more-referrals');
 
 // Global Settings Routes
 Route::get('/global-settings/submit-referral-member', 'GlobalSettingsController@submitReferralMember')->name('submit-referral-member');
