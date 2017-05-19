@@ -43,6 +43,7 @@ Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->na
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
 Route::get('/referral/rewards', 'ReferralController@rewards')->name('referral-rewards');
+Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
 
 // Member Routes
 Route::get('/members', 'MembersController@getIndex')->name('members');
