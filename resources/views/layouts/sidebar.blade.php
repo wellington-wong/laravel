@@ -73,7 +73,7 @@
                                             <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="program-options" class="collapse in">
-                                            @if( isset(auth()->user()->companies[0]->id) )<li><a href="/company/{{ auth()->user()->companies[0]->id }}">Company Profile</a></li>
+                                            @if( isset(auth()->user()->companies[0]->id) )<li><a href="{{ route('get-company', auth()->user()->companies[0]->id) }}">Company Profile</a></li>
                                             @else<li><a href="{{ route('company-create') }}">Create Company</a></li>@endif
                                             <li><a href="{{ route('program-options-users') }}">Users</a></li>
                                             <li><a href="{{ route('program-options-referral-program') }}">Referral Program Settings</a></li>
@@ -103,10 +103,10 @@
                                 <div class="menu-separator"></div>
 
                                 <div class="menu-item">
-                                    <a href="{{ route('referral-create') }}" >Account Settings</a>
+                                    <a href="{{ route('manage-account') }}" >Account Settings</a>
                                 </div>
                                 <div class="menu-item">
-                                    <a href="{{ route('referral-create') }}" >Need Help?</a>
+                                    <a href="{{ route('help') }}" >Need Help?</a>
                                 </div>                
                         </div>         
                     </div>

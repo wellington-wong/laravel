@@ -26,4 +26,15 @@ class ManageAccountController extends Controller
 
         return view('manage-account.index');
     }
+
+    /**
+     * Show help
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function help()
+    {
+
+        return view('manage-account.help');
+    }
 }

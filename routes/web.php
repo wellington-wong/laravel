@@ -85,3 +85,4 @@ Route::get('/program-options/notification-settings', 'ProgramOptionsController@n
 
 // Manage Account
 Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-account');
+Route::get('/help', 'ManageAccountController@help')->name('help');
