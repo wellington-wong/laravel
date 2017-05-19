@@ -54,9 +54,9 @@
                                     <li>
                                         <div class="main-menu-item-wrapper">
                                             <a href="{{ route('referrals') }}">Referrals</a>
-                                            <a href="#submenu-referrals" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            <a href="#submenu-referrals-member" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
-                                        <ul id="submenu-referrals" class="collapse in">
+                                        <ul id="submenu-referrals-member" class="collapse in">
                                             <li><a href="{{ route('referral-create') }}">Add Referral</a></li>
                                         </ul>
                                     </li>
