@@ -19,13 +19,13 @@
         <main>
             <div class="row top-content-wrapper">
                 <div class="top-content text-center">
-                    <span>403 Forbidden</span>
+                    <span>404 Not Found</span>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 main-content">
-                        <p>You don't have permission to access <em>{{ Request::url() }}</em> on this server.
+                        <p>The requested URL <em>{{ Request::url() }}</em> was not found on this server.
                     </div>
                 </div>
             </div>
