@@ -100,6 +100,14 @@ class ReferralController extends Controller
         return redirect(route('referrals'));
     }
 
+    public function rewards( Request $request ) {
+
+        $referrals = $request->user()->referrals()->paginate(15);
+
+        return view('referral.referrals')
+            ->with(compact('referrals'));
+    }
+
     /**
     * Check if phone or email already exists
     **/

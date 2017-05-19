@@ -42,7 +42,7 @@ Route::post('/referral/create', 'ReferralController@postCreate')->name('post-ref
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
-Route::get('/referral/rewards', 'ReferralController@create')->name('referral-rewards');
+Route::get('/referral/rewards', 'ReferralController@rewards')->name('referral-rewards');
 
 // Member Routes
 Route::get('/members', 'MembersController@getIndex')->name('members');
