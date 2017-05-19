@@ -37,7 +37,7 @@ class ReferralController extends Controller
 
     public function referrals( Request $request ) {
 
-        $referrals = $request->user()->referrals()->get();
+        $referrals = $request->user()->referrals()->paginate(15);
 
         return view('referral.referrals')
             ->with(compact('referrals'));
