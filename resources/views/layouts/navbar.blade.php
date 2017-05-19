@@ -12,7 +12,7 @@
                             <li class="dropdown pull-left">
                                 Hi <a href="#" class="" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} 
-                                </a> <span class="nav-separator">|</span> <a href="#">Manage Account</a>
+                                </a> <span class="nav-separator">|</span> <a href="{{ route('manage-account') }}">Manage Account</a>
                             </li>
                             <li class="logout pull-left">
                                 <a href="{{ route('logout') }}"
