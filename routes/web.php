@@ -64,7 +64,6 @@ Route::get('/how-to-get-more-referrals', 'BasicPageController@howToGetMoreReferr
 // Global Settings Routes
 // Filter routes by role
 Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdmin']], function() {
-	Route::get('/members', ['uses' => 'MembersController@getIndex', 'middleware' => ['permission:submit-member-referral']])->name('members');
 	Route::get('/global-settings/submit-referral-member', ['uses' => 'GlobalSettingsController@submitReferralMember', 'middleware' => ['permission:submit_member_referral']])->name('submit-referral-member');
 	Route::post('/global-settings/submit-referral-member', ['uses' => 'GlobalSettingsController@submitReferralMember', 'middleware' => ['permission:submit_member_referral']])->name('submit-referral-member');
 	Route::get('/global-settings/edit-member-information', ['uses' => 'GlobalSettingsController@editMemberInformation', 'middleware' => ['permission:edit_member_information']])->name('edit-member-information');
