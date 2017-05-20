@@ -59,7 +59,7 @@ Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-
 Route::get('/help', 'ManageAccountController@help')->name('help');
 
 // Global Settings Routes
-// Filter routes by role
+// Filter routes by role and permission
 Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdmin']], function() {
 	Route::get('/global-settings/submit-referral-member', ['uses' => 'GlobalSettingsController@submitReferralMember', 'middleware' => ['permission:submit_member_referral']])->name('submit-referral-member');
 	Route::post('/global-settings/submit-referral-member', ['uses' => 'GlobalSettingsController@submitReferralMember', 'middleware' => ['permission:submit_member_referral']])->name('submit-referral-member');
@@ -81,7 +81,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 
 	// Member Routes
 	Route::get('/members', 'MembersController@getIndex')->name('members');
-	Route::get('/member/{id}', 'MembersController@members')->name('member');
+	Route::get('/members/{id}', 'MembersController@members')->name('member');
 
 	// Notification Routes
 	Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');

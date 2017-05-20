@@ -12,6 +12,7 @@ import 'jquery-steps/build/jquery.steps.min.js';
 import 'formBuilder/dist/form-builder.min.js';
 import 'formBuilder/dist/form-render.min.js';
 import 'jquery-validation/dist/jquery.validate.min.js';
+import 'tinymce/tinymce.min.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -406,4 +407,11 @@ $(function (){
 	});
 
 // END SIDEBAR
+
+// TINYMCE
+	tinymce.init({
+	  selector: '.textarea',  // change this value according to your HTML
+	  auto_focus: 'element1'
+	});
+// END TINYMCE
 });
