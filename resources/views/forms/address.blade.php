@@ -11,7 +11,7 @@
 </div>
 
 <div class="form-group col-md-2">
-    {{ Form::text('state', null, ['placeholder' => 'State', 'class' => 'form-control' . ($errors->has('state') ? ' has-error' : '')]) }}
+	@include('forms.states', ['add_referral' => true])
 </div>
 
 <div class="form-group col-md-6">
