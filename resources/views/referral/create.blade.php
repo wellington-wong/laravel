@@ -42,6 +42,10 @@
 
             @include('forms.address')
 
+            <div class="form-group col-md-12" >
+                {{ Form::select('install_complete', ['' => 'Was your friend\'s new AC installation already complete?', 'yes' => 'Yes', 'no' => 'No'], old('install_complete'), ['class' => 'form-control']) }}
+            </div>
+
             <div class="form-group col-md-12 terms-wrapper">
                 <input type="checkbox" name="terms[]" class="terms-acceptance pull-left" @if(count($errors)) checked="checked" @endif>
                 <div class="terms-details">
