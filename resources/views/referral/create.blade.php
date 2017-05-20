@@ -33,7 +33,7 @@
             {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s First Name']) }}
         </div>
 
-        @include('forms.phone', ['phone_label'=>"Referral's Phone Number"])
+        @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
 
         <div class="form-group" >
             {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s First Name']) }}

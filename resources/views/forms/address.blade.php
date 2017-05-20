@@ -1,24 +1,19 @@
 <div class="form-group">
-    <label>Street Address</label>
-    {{ Form::text('address') }}
+    {{ Form::text('address', null, ['placeholder' => 'Referral\'s Home Address']) }}
 </div>
 
 <div class="form-group">
-    <label>Address Line 2</label>
-    {{ Form::text('address2') }}
+    {{ Form::text('address2', null, ['placeholder' => 'Address Line 2']) }}
 </div>
 
 <div class="form-group">
-    <label>City</label>
-    {{ Form::text('city') }}
+    {{ Form::text('city', null, ['placeholder' => 'City']) }}
 </div>
 
 <div class="form-group">
-    <label>State</label>
-    {{ Form::text('state') }}
+    {{ Form::text('state', null, ['placeholder' => 'State']) }}
 </div>
 
 <div class="form-group">
-    <label>Zip Code</label>
-    {{ Form::text('zip') }}
+    {{ Form::text('zip', null, ['placeholder' => 'Zip Code']) }}
 </div>
