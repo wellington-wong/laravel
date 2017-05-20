@@ -88,12 +88,17 @@ $(function (){
 		location.href = '/';
 	});
 
-	if ($('.phone-placeholder').length) {
-		var phone_p = $('.phone-placeholder');
-		phone_p.on('focus', function (){
-			$('.bfh-phone').show();
+	var phone_p = $('.phone-placeholder');
+	phone_p.on('focus', function (){
+		$(this).hide();
+		$('.bfh-phone').removeClass('hidden').focus().on('blur', function (){
+			if ($(this).val() == '(') {
+				phone_p.show();
+				$('.bfh-phone').addClass('hidden').focus();
+			}
 		});
-	}
+	});
+
 // END - SUBMIT REFERRALS
 
 // NOTIFICATIONS
