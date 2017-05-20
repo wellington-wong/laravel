@@ -26,17 +26,17 @@
         <input type="hidden" name="subdomain_id" value="2{{ $subdomain_id }}" >
 
         <div class="form-group" >
-            {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name']) }}
+            {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name', 'class' => 'form-control']) }}
         </div>
 
         <div class="form-group" >
-            {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s First Name']) }}
+            {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s Last Name', 'class' => 'form-control']) }}
         </div>
 
-        @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
+        @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number', 'class' => 'form-control'])
 
         <div class="form-group" >
-            {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s First Name']) }}
+            {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s Email', 'class' => 'form-control']) }}
         </div>
 
         @include('forms.address')
