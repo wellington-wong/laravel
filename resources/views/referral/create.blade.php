@@ -42,10 +42,12 @@
         @include('forms.address')
 
         <div class="form-group">
-            <input type="checkbox" class="terms-acceptance" >
-            I understand that the receipt of the $100.00 Cast Reward is dependent on my referral's AC installation Status.
-            I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc.
-            View our full terms and conditions.
+            <input type="checkbox" class="terms-acceptance pull-left">
+            <div class="terms-details">
+                I understand that the receipt of the $100.00 Cast Reward is dependent on my referral's AC installation Status.
+                I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc.
+                View our full terms and conditions.
+            </div>
         </div>
 
 
