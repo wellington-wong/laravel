@@ -26,19 +26,16 @@
         <input type="hidden" name="subdomain_id" value="2{{ $subdomain_id }}" >
 
         <div class="form-group" >
-            <label>Referral's First Name</label>
             {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name']) }}
         </div>
 
         <div class="form-group" >
-            <label>Referral's Last Name</label>
             {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s First Name']) }}
         </div>
 
         @include('forms.phone', ['phone_label'=>"Referral's Phone Number"])
 
         <div class="form-group" >
-            <label>Referral's Email</label>
             {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s First Name']) }}
         </div>
 
@@ -46,7 +43,9 @@
 
         <div class="form-group">
             <input type="checkbox" class="terms-acceptance" >
-            Terms!
+            I understand that the receipt of the $100.00 Cast Reward is dependent on my referral's AC installation Status.
+            I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc.
+            View our full terms and conditions.
         </div>
 
 
