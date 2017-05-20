@@ -27,19 +27,19 @@
 
         <div class="form-group" >
             <label>Referral's First Name</label>
-            {{ Form::text('first_name') }}
+            {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name']) }}
         </div>
 
         <div class="form-group" >
             <label>Referral's Last Name</label>
-            {{ Form::text('last_name') }}
+            {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s First Name']) }}
         </div>
 
         @include('forms.phone', ['phone_label'=>"Referral's Phone Number"])
 
         <div class="form-group" >
             <label>Referral's Email</label>
-            {{ Form::text('email', null, array('class' => 'referral-email')) }}
+            {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s First Name']) }}
         </div>
 
         @include('forms.address')
