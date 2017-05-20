@@ -27,6 +27,7 @@ html, body {
 	font-family: 'Montserrat', sans-serif;
 }
 body {
+	color: $bg-color;
 	&.logged-in {
 		background: $bg-color;
 	}
@@ -505,19 +506,31 @@ nav {
 
 
 /*** Submit a referral ***/
-#referral-create-form {
-	label {
-		width: 30%;
-	}
-	.form-control.bfh-phone {
-		width: 100%;
-		display: inline-block;
-	}
-	.referral-phone {    
-	}
-	.terms-acceptance {
-		width: 20px;
-		margin-right: 5px;
+.referral-create-form-wrapper {
+	background: #f0f0f0;
+	padding: 25px 35px;
+	#referral-create-form {
+		label {
+			width: 30%;
+		}
+		.form-control.bfh-phone {
+			width: 100%;
+			display: inline-block;
+		}
+		.terms-wrapper {
+			margin-top: 25px;
+			.terms-acceptance {
+				width: 20px;
+				margin-right: 5px;
+			}
+		}
+		.submit-referral {
+			padding-left: 35px;
+			padding-right: 35px;
+		}
+		.terms-condition-link {
+			color: #d0df52;
+		}
 	}
 }
 /*** Submit a referral End ***/

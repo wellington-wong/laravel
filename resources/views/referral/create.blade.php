@@ -21,39 +21,43 @@
             </div>
         @endif
 
-        {{ Form::open(['route'=>'post-referral-create', 'id' => 'referral-create-form']) }}
+        <div class="referral-create-form-wrapper">
+            {{ Form::open(['route'=>'post-referral-create', 'id' => 'referral-create-form']) }}
 
-        <input type="hidden" name="subdomain_id" value="2{{ $subdomain_id }}" >
+            <input type="hidden" name="subdomain_id" value="2{{ $subdomain_id }}" >
 
-        <div class="form-group" >
-            {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name', 'class' => 'form-control' . ($errors->has('first_name') ? ' has-error' : '')]) }}
-        </div>
-
-        <div class="form-group" >
-            {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s Last Name', 'class' => 'form-control' . ($errors->has('last_name') ? ' has-error' : '')]) }}
-        </div>
-
-        @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
-
-        <div class="form-group" >
-            {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s Email', 'class' => 'form-control' . ($errors->has('email') ? ' has-error' : '') ]) }}            
-        </div>
-
-        @include('forms.address')
-
-        <div class="form-group">
-            <input type="checkbox" name="terms[]" class="terms-acceptance pull-left" @if(count($errors)) checked="checked" @endif>
-            <div class="terms-details">
-                I understand that the receipt of the $100.00 Cash Reward is dependent on my referral's AC installation Status.
-                I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc.
-                View our full <a href="#">terms and conditions</a>.
+            <div class="form-group col-md-6" >
+                {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name', 'class' => 'form-control' . ($errors->has('first_name') ? ' has-error' : '')]) }}
             </div>
+
+            <div class="form-group col-md-6" >
+                {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s Last Name', 'class' => 'form-control' . ($errors->has('last_name') ? ' has-error' : '')]) }}
+            </div>
+
+            @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
+
+            <div class="form-group col-md-6" >
+                {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s Email', 'class' => 'form-control' . ($errors->has('email') ? ' has-error' : '') ]) }}            
+            </div>
+
+            @include('forms.address')
+
+            <div class="form-group col-md-12 terms-wrapper">
+                <input type="checkbox" name="terms[]" class="terms-acceptance pull-left" @if(count($errors)) checked="checked" @endif>
+                <div class="terms-details">
+                    I understand that the receipt of the $100.00 Cash Reward is dependent on my referral's AC installation Status.
+                    I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc.
+                    View our full <a href="#" class="terms-condition-link">terms and conditions</a>.
+                </div>
+            </div>
+
+            <div class="form-group col-md-12 text-center">
+                <button type="submit" class="terms-button btn btn-primary button-responsive-100 submit-referral">Submit Referral</button>
+            </div>
+
+            {{ Form::close() }}
+            <div class="clearfix"></div>
         </div>
-
-
-        <button type="submit" class="terms-button btn btn-primary button-responsive-100">Submit Referral</button>
-
-        {{ Form::close() }}
     </div>
 
 @include('layouts.modal')
