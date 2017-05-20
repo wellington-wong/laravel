@@ -507,6 +507,17 @@ nav {
 		width: auto;
 		display: inline-block;
 	}
+	.referral-phone {    
+		label {
+			position: absolute;
+		    line-height: 34.4px;
+		    text-align: center;
+		    width: 100%;
+		}
+		input {
+			width: 100%;
+		}
+	}
 	.terms-acceptance {
 		width: 20px;
 		margin-right: 5px;

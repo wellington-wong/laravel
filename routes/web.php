@@ -45,13 +45,6 @@ Route::get('/referral/history', 'ReferralController@history')->name('referral-hi
 Route::get('/referral/rewards', 'ReferralController@rewards')->name('referral-rewards');
 Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
 
-// Member Routes
-Route::get('/members', 'MembersController@getIndex')->name('members');
-Route::get('/member/{id}', 'MembersController@members')->name('member');
-
-// Notification Routes
-Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
-
 // Static Page Routes
 Route::get('/how-it-works', 'BasicPageController@howItWorks')->name('how-it-works');
 Route::get('/features', 'BasicPageController@features')->name('features');
@@ -60,6 +53,10 @@ Route::get('/pricing', 'BasicPageController@pricing')->name('pricing');
 Route::get('/contact', 'BasicPageController@contact')->name('contact');
 Route::get('/how-this-works', 'BasicPageController@howThisWorks')->name('how-this-works');
 Route::get('/how-to-get-more-referrals', 'BasicPageController@howToGetMoreReferrals')->name('how-to-get-more-referrals');
+
+// Manage Account
+Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-account');
+Route::get('/help', 'ManageAccountController@help')->name('help');
 
 // Global Settings Routes
 // Filter routes by role
@@ -71,18 +68,21 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/global-settings/add-delete-admin', ['uses' => 'GlobalSettingsController@addDeleteAdmin', 'middleware' => ['permission:add_delete_admin']])->name('add-delete-admin');
 	Route::get('/global-settings/define-user-roles', ['uses' => 'GlobalSettingsController@defineUserRoles', 'middleware' => ['define_user_roles']])->name('define-user-roles');	
 	Route::get('/global-settings/login-super-admin', ['uses' => 'GlobalSettingsController@loginSuperAdmin', 'middleware' => ['permission:login_super_admin_all_accounts']])->name('login-super-admin');
+
+	// Export
+	Route::get('/export/{id}', 'ExportController@referral')->name('export');
+	Route::get('/export/all', 'ExportController@referrals')->name('export-all');
+
+	// Program Options
+	Route::get('/program-options/users', 'ProgramOptionsController@users')->name('program-options-users');
+	Route::get('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettings')->name('program-options-referral-program');
+	Route::get('/program-options/reward-settings', 'ProgramOptionsController@rewardSettings')->name('program-options-reward-settings');
+	Route::get('/program-options/notification-settings', 'ProgramOptionsController@notificationSettings')->name('program-options-notification-settings');
+
+	// Member Routes
+	Route::get('/members', 'MembersController@getIndex')->name('members');
+	Route::get('/member/{id}', 'MembersController@members')->name('member');
+
+	// Notification Routes
+	Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
 });
-
-// Export
-Route::get('/export/{id}', 'ExportController@referral')->name('export');
-Route::get('/export/all', 'ExportController@referrals')->name('export-all');
-
-// Program Options
-Route::get('/program-options/users', 'ProgramOptionsController@users')->name('program-options-users');
-Route::get('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettings')->name('program-options-referral-program');
-Route::get('/program-options/reward-settings', 'ProgramOptionsController@rewardSettings')->name('program-options-reward-settings');
-Route::get('/program-options/notification-settings', 'ProgramOptionsController@notificationSettings')->name('program-options-notification-settings');
-
-// Manage Account
-Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-account');
-Route::get('/help', 'ManageAccountController@help')->name('help');
