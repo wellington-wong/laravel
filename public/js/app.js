@@ -2397,6 +2397,13 @@ $(function () {
 	$('.cancel-referral').on('click', function () {
 		location.href = '/';
 	});
+
+	if ($('.phone-placeholder').length) {
+		var phone_p = $('.phone-placeholder');
+		phone_p.on('focus', function () {
+			$('.bfh-phone').show();
+		});
+	}
 	// END - SUBMIT REFERRALS
 
 	// NOTIFICATIONS
@@ -2684,13 +2691,13 @@ $(function () {
 
 	// SIDEBAR
 	$('.menu-marker').on('click', function () {
+		var target_menu = $(this).parent().next();
 		var plus = $(this).parent().find('.fa-plus');
 		var minus = $(this).parent().find('.fa-minus');
-		if (plus.length) {
-			plus.removeClass('fa-plus').addClass('fa-minus');
-		}
-		if (minus.length) {
+		if (target_menu.is(':visible')) {
 			minus.removeClass('fa-minus').addClass('fa-plus');
+		} else {
+			plus.removeClass('fa-plus').addClass('fa-minus');
 		}
 		return;
 	});
