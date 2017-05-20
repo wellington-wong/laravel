@@ -83,7 +83,7 @@
                                     </li>
                                     <li>
                                         <div class="main-menu-item-wrapper">
-                                            <a href="#">Global Settings</a>
+                                            <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
                                             <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="global-settings" class="collapse">

@@ -27,19 +27,19 @@
 
         <div class="form-group" >
             {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name', 'class' => 'form-control']) }}
-            @if ($errors->has('first_name'))
-                <small class=error>{{ $errors->first('first_name', ':message') }}</small>
-            @endif
+            @if ($errors->has('first_name'))<small class=error>{{ $errors->first('first_name', ':message') }}</small>@endif
         </div>
 
         <div class="form-group" >
             {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s Last Name', 'class' => 'form-control']) }}
+            @if ($errors->has('last_name'))<small class=error>{{ $errors->first('last_name', ':message') }}</small>@endif
         </div>
 
         @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
 
         <div class="form-group" >
             {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s Email', 'class' => 'form-control']) }}
+            @if ($errors->has('email'))<small class=error>{{ $errors->first('email', ':message') }}</small>@endif
         </div>
 
         @include('forms.address')
