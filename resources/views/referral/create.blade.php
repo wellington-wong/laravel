@@ -26,26 +26,23 @@
         <input type="hidden" name="subdomain_id" value="2{{ $subdomain_id }}" >
 
         <div class="form-group" >
-            {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name', 'class' => 'form-control']) }}
-            @if ($errors->has('first_name'))<small class=error>{{ $errors->first('first_name', ':message') }}</small>@endif
+            {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name', 'class' => 'form-control' . ($errors->has('first_name') ? ' has-error' : '')]) }}
         </div>
 
         <div class="form-group" >
-            {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s Last Name', 'class' => 'form-control']) }}
-            @if ($errors->has('last_name'))<small class=error>{{ $errors->first('last_name', ':message') }}</small>@endif
+            {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s Last Name', 'class' => 'form-control' . ($errors->has('last_name') ? ' has-error' : '')]) }}
         </div>
 
         @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
 
         <div class="form-group" >
-            {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s Email', 'class' => 'form-control']) }}
-            @if ($errors->has('email'))<small class=error>{{ $errors->first('email', ':message') }}</small>@endif
+            {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s Email', 'class' => 'form-control' . ($errors->has('email') ? ' has-error' : '') ]) }}            
         </div>
 
         @include('forms.address')
 
         <div class="form-group">
-            <input type="checkbox" name="terms" value="{{ old('terms') }}" class="terms-acceptance pull-left">
+            <input type="checkbox" name="terms[]" class="terms-acceptance pull-left" @if(count($errors)) checked="checked" @endif>
             <div class="terms-details">
                 I understand that the receipt of the $100.00 Cash Reward is dependent on my referral's AC installation Status.
                 I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc.
