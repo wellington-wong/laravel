@@ -485,8 +485,14 @@ nav {
 		box-shadow: none;
 	}
 }
-.notifications .message {
-	line-height: 32px;
+.notifications {
+	.alert {
+		padding: 5px 10px;
+		margin-bottom: 7px;
+	}
+	.message {
+		line-height: 32px;
+	}
 }
 .btn-details {
 	background: #1373bf;
