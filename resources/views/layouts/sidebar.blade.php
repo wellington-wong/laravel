@@ -78,7 +78,7 @@
                                             <li><a href="{{ route('program-options-users') }}">Users</a></li>
                                             <li><a href="{{ route('program-options-referral-program') }}">Referral Program Settings</a></li>
                                             <li><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
-                                            <li><a href="{{ route('program-options-notification-settings') }}">Notification Settings</a></li>
+                                            <li><a href="{{ route('program-options-notification-settings') }}">Notification Emails</a></li>
                                         </ul>
                                     </li>
                                     <li>
