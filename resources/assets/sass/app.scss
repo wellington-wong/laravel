@@ -228,7 +228,7 @@ header {
 		}
 		h3, h4 {
 			font-weight: bold;
-			color: $header-color;
+			color: $text-color2;
 		}
 		.header-title {
 			padding-left: 0;
@@ -577,20 +577,35 @@ div.tooltip.top {
 			border: 2px solid $bg-color; 
 			text-align: center;
 			padding: 10px 20px;
-			margin-right: 15px;
-			margin-left: 15px;
+			margin-right: 10px;
+			margin-left: 10px;
+			.rh-count {
+				color: $text-color2;
+				font-size: 30px;
+			}
+			.rh-desc {
+				font-weight: bold;
+			}
+			.tooltip-q {
+				color: $text-color2;
+				cursor: pointer;
+			}
+			hr {
+				height: 2px;
+				background: $text-color;
+			}
 		}
 		@media (min-width: 768px) {
 			&:first-child {
 					> div { 
-						margin-right: 15px;
+						margin-right: 10px;
 						margin-left: 0;
 					}
 			}
 			&:last-child {
 				> div { 
 					margin-right: 0;
-					margin-left: 15px;
+					margin-left: 10px;
 				}
 			}
 		}
