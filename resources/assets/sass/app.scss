@@ -506,6 +506,17 @@ nav {
 .has-error {
 	border-color: #a94442;
 }
+div.tooltip.top {
+	> .tooltip-inner {
+		background-color: #fff;
+		border: 1px solid #ccc;
+		color: $bg-color;
+		text-align: left;
+	}
+	> .tooltip-arrow {
+		border-top-color: #ccc;
+	}
+}
 /*** Common End ***/
 
 

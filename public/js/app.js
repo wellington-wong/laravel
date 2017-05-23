@@ -2702,6 +2702,9 @@ $(function () {
 	$('.check-all').on('click', function () {
 		$('.checkbox-group').prop('checked', this.checked);
 	});
+	// Init bootstrap tooltip
+	$('[data-toggle="tooltip"]').tooltip();
+	//Usage: <a href="#" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei" data-delay='{"show":"1000", "hide":"133000"}'>Hover over me</a>
 	// END COMMON
 
 	// SIDEBAR
