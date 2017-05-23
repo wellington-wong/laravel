@@ -66,7 +66,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/global-settings/edit-member-information', ['uses' => 'GlobalSettingsController@editMemberInformation', 'middleware' => ['permission:edit_member_information']])->name('edit-member-information');
 	Route::get('/global-settings/export-member-information', ['uses' => 'GlobalSettingsController@exportMemberInformation', 'middleware' => ['permission:export_member_information']])->name('export-member-information');
 	Route::get('/global-settings/add-delete-admin', ['uses' => 'GlobalSettingsController@addDeleteAdmin', 'middleware' => ['permission:add_delete_admin']])->name('add-delete-admin');
-	Route::get('/global-settings/define-user-roles', ['uses' => 'GlobalSettingsController@defineUserRoles', 'middleware' => ['define_user_roles']])->name('define-user-roles');	
+	Route::get('/global-settings/define-user-roles', ['uses' => 'GlobalSettingsController@defineUserRoles', 'middleware' => ['permission:define_user_roles']])->name('define-user-roles');	
 	Route::get('/global-settings/login-super-admin', ['uses' => 'GlobalSettingsController@loginSuperAdmin', 'middleware' => ['permission:login_super_admin_all_accounts']])->name('login-super-admin');
 
 	// Export
@@ -75,7 +75,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 
 	// Program Options
 	Route::get('/program-options/users', 'ProgramOptionsController@users')->name('program-options-users');
-	Route::get('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettings')->name('program-options-referral-program');
+	Route::get('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettings')->name('program-options-referral-program-settings');
 	Route::get('/program-options/reward-settings', 'ProgramOptionsController@rewardSettings')->name('program-options-reward-settings');
 	Route::get('/program-options/notification-emails', 'ProgramOptionsController@notificationEmails')->name('program-options-notification-emails');
 

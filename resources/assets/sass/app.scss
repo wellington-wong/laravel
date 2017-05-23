@@ -95,7 +95,7 @@ header {
     				display: table-cell;
     				&:hover, &:focus {
 	    				background: none;
-	    				text-decoration: underline;
+	    				text-decoration: none;
     				}
     				&:active {
 	    				background: none;
@@ -111,6 +111,9 @@ header {
 	    				padding-top: 5px;
 	    				a {
 	    					color: $bg-color2;
+	    				}
+	    				&.active a {
+	    					color: #28292e;
 	    				}
     				}
     			}

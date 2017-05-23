@@ -11,7 +11,7 @@
 </div>
 
 <div class="form-group col-md-2">
-	@include('forms.states', ['add_referral' => (!$company_address ? true : false)])
+	@include('forms.states', [])
 </div>
 
 <div class="form-group col-md-6">

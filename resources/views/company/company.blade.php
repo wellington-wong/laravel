@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
+@section('pageTitle', $company->company_name)
+
 @section('content')
-
-
 
 <div class="col-xs-12">      
 	<div class="panel panel-info">

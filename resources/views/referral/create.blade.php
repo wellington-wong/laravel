@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Create Referral')
+
 @section('content')
 
     <div class="container-fluid">
