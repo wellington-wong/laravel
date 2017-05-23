@@ -17,14 +17,12 @@
 
     @include('forms.address')
 
-    <div class="form-group" >
-        <label>Company Name</label>
-        {{ Form::text('company_name') }}
+    <div class="form-group col-md-6">
+        {{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control']) }}
     </div>
 
-    <div class="form-group" >
-        <label>Subdomain</label>
-        {{ Form::text('subdomain') }}
+    <div class="form-group col-md-6">
+        {{ Form::text('subdomain', old('company_name'), ['placeholder' => 'Subdomain', 'class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
