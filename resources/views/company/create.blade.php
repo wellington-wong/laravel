@@ -30,9 +30,11 @@
         {{ Form::file('logo', array('class' => 'logo-upload')) }}
     </div>
 
-    @include('forms.phone', ['phone_label'=>'Company Phone Number'])
+    @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
 
-    <button type="submit" class="btn btn-primary button-responsive-100">Create Company</button>
+    <div class="form-group col-md-12 text-center">
+        <button type="submit" class="terms-button btn btn-primary button-responsive-100 submit-company">Submit Company</button>
+    </div>
 
     {{ Form::close() }}
 
