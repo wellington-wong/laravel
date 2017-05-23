@@ -15,7 +15,6 @@
 
     {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form', 'enctype' => 'multipart/form-data']) }}
 
-    @include('forms.address', ['company_address' => true])
 
     <div class="form-group col-md-6">
         {{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
@@ -25,7 +24,9 @@
         {{ Form::text('subdomain', old('company_name'), ['placeholder' => 'Subdomain', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
     </div>
 
-    @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
+    @include('forms.address', ['company_address' => true])
+
+    @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Company Phone Number'])
 
     <div class="form-group col-md-6">
         <label>Company Logo</label>
