@@ -65,7 +65,7 @@
                                     <li class="{{ Request::is('members') ? 'active' : '' }}">
                                         <div class="main-menu-item-wrapper">
                                             <a href="{{ route('members') }}">Members</a>
-                                            <a href="#members" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            <a href="#members" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </div>
                                     </li>
                                     <li>
