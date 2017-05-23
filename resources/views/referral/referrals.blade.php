@@ -4,9 +4,38 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container-fluid referrals-wrapper">
+        <div class="row">
+            <div class="col-md-4 referral-hub">
+                <div class="pending-approval">
+                    <div class="rh-count"><span>1</span></div><hr />                
+                    <div class="rh-count">
+                        <span>Referrals Pending Approval</span>
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 referral-hub">
+                <div class="pending-reward">
+                    <div class="rh-count"><span>5232323</span></div><hr />                
+                    <div class="rh-count">
+                        <span>Referrals Pending Reward</span>
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 referral-hub">
+                <div class="member-message">
+                    <div class="rh-count"><span>532</span></div><hr />                
+                    <div class="rh-count">
+                        <span>Member Message</span>
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        @include('layouts.page-header', ['header' => 'Your Submitted Referrals'])
+        @include('layouts.page-header', ['header' => 'Referrals'])
 
         <div class="row bulk-action">
             <div class="col-md-6">

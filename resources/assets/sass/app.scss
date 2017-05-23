@@ -222,11 +222,17 @@ header {
 	.page-header {
 		margin-top: 0;
 		border: 0;
+		margin-bottom: 0;
 		h3 {
 			text-align: center;
 		}
 		h3, h4 {
 			font-weight: bold;
+			color: $header-color;
+		}
+		.header-title {
+			padding-left: 0;
+			padding-right: 0;
 		}
 	}
 	.panel-default {
@@ -561,24 +567,53 @@ div.tooltip.top {
 
 
 /*** Referrals ***/
-.filter-buttons {
-	margin-bottom: 30px;
-	a {
-		highlight: none;
-	}
-}
-.table-referral {
-	tbody {
-		tr {
-			td {
-				line-height: 30px;
+.referrals-wrapper {
+	margin-top: 20px;
+	.referral-hub {
+		padding-left: 0;
+		padding-right: 0;
+		margin-bottom: 10px;
+		> div {
+			border: 2px solid $bg-color; 
+			text-align: center;
+			padding: 10px 20px;
+			margin-right: 15px;
+			margin-left: 15px;
+		}
+		@media (min-width: 768px) {
+			&:first-child {
+					> div { 
+						margin-right: 15px;
+						margin-left: 0;
+					}
+			}
+			&:last-child {
+				> div { 
+					margin-right: 0;
+					margin-left: 15px;
+				}
 			}
 		}
 	}
-} 
-.referral-export {
-	> div {
-		text-align: right;
+	.filter-buttons {
+		margin-bottom: 30px;
+		a {
+			highlight: none;
+		}
+	}
+	.table-referral {
+		tbody {
+			tr {
+				td {
+					line-height: 30px;
+				}
+			}
+		}
+	} 
+	.referral-export {
+		> div {
+			text-align: right;
+		}
 	}
 }
 /*** Referrals End ***/
