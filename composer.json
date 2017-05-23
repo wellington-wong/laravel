@@ -14,6 +14,7 @@
         "maatwebsite/excel": "~2.1.0",
         "propaganistas/laravel-intl": "^1.2",
         "propaganistas/laravel-phone": "^2.8",
+        "stripe/stripe-php": "^4.9",
         "watson/bootstrap-form": "^1.1",
         "zizaco/entrust": "dev-master"
     },
