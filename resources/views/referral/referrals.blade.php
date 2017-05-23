@@ -5,13 +5,8 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="page-header">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Your Submitted Referrals</h4>
-                </div>
-            </div>
-        </div>
+
+        @include('layouts.page-header', ['header' => 'Your Submitted Referrals'])
 
         <div class="row bulk-action">
             <div class="col-md-6">
