@@ -82,7 +82,8 @@
                                             <li class="{{ Request::is('program-options/notification-emails') ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
                                         </ul>
                                     </li>
-                                    <li>
+                                    <!-- TO DO Global Admin functionalities
+                                    <li class="hidden">
                                         <div class="main-menu-item-wrapper">
                                             <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
                                             <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -96,6 +97,7 @@
                                             @can('login-super-admin-all-accounts')<li class="{{ Request::is('global-settings/login-super-admin') ? 'active' : '' }}"><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
                                         </ul>
                                     </li>
+                                    -->
                                 </ul>
                                 @endrole
                         </div>

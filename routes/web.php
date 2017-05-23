@@ -27,7 +27,8 @@ Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCa
 Auth::routes();
 
 // Home Routes
-Route::get('/', 'HomeController@index');
+Route::get('/', 'ReferralController@referrals');
+//Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
 // Company Routes

@@ -1,6 +1,7 @@
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 // Variables
 @import "variables";
@@ -24,10 +25,10 @@
 
 html, body {
 	height: 100%;
-	font-family: 'Montserrat', sans-serif;
 }
 body {
 	color: $bg-color;
+	font-family: 'Montserrat', sans-serif;
 	&.logged-in {
 		background: $bg-color;
 	}
