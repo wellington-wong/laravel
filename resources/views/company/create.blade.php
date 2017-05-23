@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Create Company')
+
 @section('content')
 
     @if( !$errors->isEmpty() )

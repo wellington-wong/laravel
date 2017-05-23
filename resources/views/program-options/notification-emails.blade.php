@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Notification Emails')
+
 @section('content')
     <div class="container-fluid">
         <div class="page-header">

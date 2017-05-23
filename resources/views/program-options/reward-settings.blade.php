@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Reward Setings')
+
 @section('content')
     <div class="container-fluid">
         <div class="page-header">

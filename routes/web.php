@@ -77,7 +77,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/program-options/users', 'ProgramOptionsController@users')->name('program-options-users');
 	Route::get('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettings')->name('program-options-referral-program');
 	Route::get('/program-options/reward-settings', 'ProgramOptionsController@rewardSettings')->name('program-options-reward-settings');
-	Route::get('/program-options/notification-settings', 'ProgramOptionsController@notificationSettings')->name('program-options-notification-settings');
+	Route::get('/program-options/notification-emails', 'ProgramOptionsController@notificationEmails')->name('program-options-notification-emails');
 
 	// Member Routes
 	Route::get('/members', 'MembersController@getIndex')->name('members');

@@ -65,12 +65,13 @@
                                     <li class="{{ Request::path() == 'members' ? 'active' : '' }}">
                                         <div class="main-menu-item-wrapper">
                                             <a href="{{ route('members') }}">Members</a>
+                                            <a href="#members" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="main-menu-item-wrapper">
                                             <a href="#program-options" data-toggle="collapse" class="menu-marker">Program Options</a>
-                                            <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="program-options" class="collapse in">
                                             <li class="{{ Request::path() == 'get-company' ? 'active' : '' }}"><a href="{{ route('get-company', auth()->user()->companies[0]->id) }}">Company Profile</a></li>
@@ -78,7 +79,7 @@
                                             <li class="{{ Request::path() == 'program-options-users' ? 'active' : '' }}"><a href="{{ route('program-options-users') }}">Users</a></li>
                                             <li class="{{ Request::path() == 'program-options-referral-program' ? 'active' : '' }}"><a href="{{ route('program-options-referral-program') }}">Referral Program Settings</a></li>
                                             <li class="{{ Request::path() == 'program-options-reward-settings' ? 'active' : '' }}"><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
-                                            <li class="{{ Request::path() == 'program-options-notification-settings' ? 'active' : '' }}"><a href="{{ route('program-options-notification-settings') }}">Notification Emails</a></li>
+                                            <li class="{{ Request::path() == 'program-options-notification-emails' ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
                                         </ul>
                                     </li>
                                     <li>

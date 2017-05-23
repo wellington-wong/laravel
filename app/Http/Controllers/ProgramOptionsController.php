@@ -57,10 +57,10 @@ class ProgramOptionsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function notificationSettings( Request $request )
+    public function notificationEmails( Request $request )
     {
         $notificationSettings = [];
-        return view('program-options.notification-settings')
+        return view('program-options.notification-emails')
         ->with(compact('notificationSettings'));
     }
 }
