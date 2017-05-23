@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Define User Roles')
+
 @section('content')
 <div class="container-fluid">
     <div class="row">

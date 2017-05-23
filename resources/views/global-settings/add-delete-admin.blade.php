@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Add/Delete Admin')
+
 @section('content')
 <div class="container-fluid">
     <div class="row">

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Edit Member Information')
+
 @section('content')
 <div class="container-fluid">
     <div class="row">

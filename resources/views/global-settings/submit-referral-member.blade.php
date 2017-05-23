@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Submit Referral on Behalf of Member')
+
 @section('content')
 
     @if( !$errors->isEmpty() )

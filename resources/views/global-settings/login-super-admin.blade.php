@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Login as Super Admin')
+
 @section('content')
 <div class="container-fluid">
     <div class="row">
