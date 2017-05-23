@@ -35,7 +35,7 @@ class CompanyController extends Controller
             'address'=>'required|max:100',
             'address2'=>'max:25',
             'city'=>'required',
-            'state'=>'required|max:2',
+            'company_state'=>'required|max:2',
             'zip'=>'required|max:11',
             'company_name'=>'required',
             'subdomain'=>'required|unique:companies|not_in:app',
