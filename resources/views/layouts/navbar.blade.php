@@ -11,7 +11,7 @@
                         @else
                             <li class="dropdown pull-left">
                                 Hi <a href="{{ route('manage-account') }}" class="" role="button" aria-expanded="false">{{ Auth::user()->name }}</a> 
-                                <span class="nav-separator">|</span> <a href="{{ route('manage-account') }}">Manage Account</a>
+                                <span class="nav-separator">|</span> <a href="{{ route('manage-account') }}">Settings</a>
                             </li>
                             <li class="logout pull-left">
                                 <a href="{{ route('logout') }}"

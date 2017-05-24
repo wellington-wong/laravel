@@ -71,7 +71,7 @@
                                     <li>
                                         <div class="main-menu-item-wrapper">
                                             <a href="#program-options" data-toggle="collapse" class="menu-marker">Program Options</a>
-                                            <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="program-options" class="collapse in">
                                             <li class="{{ Request::is('company/*') ? 'active' : '' }}"><a href="{{ route('get-company', auth()->user()->companies[0]->id) }}">Company Profile</a></li>
