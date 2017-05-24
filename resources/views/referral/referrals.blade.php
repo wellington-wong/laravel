@@ -67,16 +67,19 @@
                 <table class="table table-hover table-referral">
                     <thead>
                         <tr>
-                            <th>Date referred</th>
-                            <th>Name</th>
+                            <th>Submitted</th>
+                            <th>Referral ID</th>
+                            <th>Submitted By</th>
+                            <th>Person Referred</th>
                             <th>Status</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     @foreach($referrals as $r)
                         <tr>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
-                            <td>You referred {{ $r->referred->display_name }}</td>
+                            <td>{{ $r->referrer_id }}</td>
+                            <td></td>
+                            <td><a href="#">{{ $r->referred->display_name }}</a></td>
                             <td>{{ \App\Referral::$status[$r->status] }}</td>
                             <td class="view-details"><button class="btn btn-default btn-details">view details</button></td>
                         </tr>
