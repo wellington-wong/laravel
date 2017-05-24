@@ -78,8 +78,12 @@ header {
 	}
 	.navbar-messages {
 		padding-top: 10px;
+		.fa {
+			font-size: 16px;
+		}
 	}
 	.navbar-settings-wrapper {		
+		margin-right: 5px;
 		.navbar-settings {
 			&:hover, &:focus, &:active {
 				color: $text-color !important;

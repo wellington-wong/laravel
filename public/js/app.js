@@ -2701,7 +2701,8 @@ $(function () {
 	// COMMON
 	$('.check-all').on('click', function () {
 		$('.checkbox-group').prop('checked', this.checked);
-	});
+	}); // <th>{{ Form::checkbox('check', '', false, ['class' => 'check-all']) }}</th><td class="td-checkbox">{{ Form::checkbox('referral_id', $r->referred->id, false, ['class' => 'checkbox-group']) }}</td>                            
+
 	// Init bootstrap tooltip
 	$('[data-toggle="tooltip"]').tooltip();
 	$('.tooltip-q').on('click', function () {
