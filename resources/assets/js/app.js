@@ -396,7 +396,9 @@ $(function (){
 	});
 	// Init bootstrap tooltip
 	$('[data-toggle="tooltip"]').tooltip();
-	//Usage: <a href="#" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei" data-delay='{"show":"1000", "hide":"133000"}'>Hover over me</a>
+	$('.tooltip-q').on('click', function (){
+		$(this).tooltip('show');
+	});
 // END COMMON
 
 // SIDEBAR
