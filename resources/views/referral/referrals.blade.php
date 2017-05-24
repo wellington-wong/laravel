@@ -78,7 +78,7 @@
                         <tr>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
                             <td>{{ $r->referrer_id }}</td>
-                            <td></td>
+                            <td>{{ auth()->user()->name }}</td>
                             <td><a href="#">{{ $r->referred->display_name }}</a></td>
                             <td>{{ \App\Referral::$status[$r->status] }}</td>
                             <td class="view-details"><button class="btn btn-default btn-details">view details</button></td>
