@@ -718,10 +718,34 @@ div.tooltip.top {
 		}
 	}
 	.table-referral {
+		thead {			
+			tr {
+				background: #f0f0f0;
+				th {
+					white-space: nowrap;
+					font-size: 13px;
+					cursor: pointer;
+				}
+			}
+		}
 		tbody {
 			tr {
 				td {
 					line-height: 30px;
+					font-size: 13px;
+				}				
+				.referral-status {
+					position: relative;
+					> div {
+						padding-right: 25px;
+						font-size: 13px;
+						cursor: pointer;
+					}
+					> .fa {    
+						position: absolute;
+					    top: 17px;
+					    right: 20px;
+					}
 				}
 			}
 		}
