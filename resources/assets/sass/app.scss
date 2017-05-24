@@ -609,30 +609,59 @@ div.tooltip.top {
 			}
 		}
 	}
-	.search {
-		position: relative;
-		input.text {
-			border: 2px solid #f0f0f0;
-			height: 24px;
-			padding: 0 15px 0 25px;
-			font-size: 11px;
-			box-shadow: none;
-		}
-		.btn-search {
-			background: url('/images/search-glyph.png') no-repeat 0 0;    
-			border: 0;
-		    padding: 0;
-		    text-indent: -99999em;
-		    width: 31px;
-		    height: 24px;
-		    top: 0;
-		    right: 0;
-		    position: absolute;
-		}
-		.fa-search {
-			position: absolute;
-			line-height: 20px;
-			margin-left: 9px;
+	.page-filters {
+		.row {
+			> div {				
+				input.text {
+					border: 2px solid #f0f0f0;
+					height: 24px;
+					padding: 0 15px 0 25px;
+					font-size: 11px;
+					box-shadow: none;
+				}
+				.fa {
+					position: absolute;
+				}
+				.fa-search {
+					line-height: 20px;
+					margin-left: 9px;
+				}
+				.fa-calendar {
+					line-height: 23px;
+					margin-left: 9px;
+				}
+				.fa-angle-down {
+					right: 0;
+					top: 0;
+					line-height: 25px;
+				}
+			}
+			.search {
+				position: relative;
+				input.text::-webkit-input-placeholder {
+				    color: $bg-color;
+				}
+				input.text:-moz-placeholder {
+				    color: $bg-color;
+				}
+				input.text::-moz-placeholder {
+				    color: $bg-color;
+				}
+				input.text:-ms-input-placeholder {
+				    color: $bg-color;
+				}
+				.btn-search {
+					background: url('/images/search-glyph.png') no-repeat 0 -1px;    
+					border: 0;
+				    padding: 0;
+				    text-indent: -99999em;
+				    width: 31px;
+				    height: 24px;
+				    top: 0;
+				    right: 0;
+				    position: absolute;
+				}
+			}
 		}
 	}
 	.filter-buttons {

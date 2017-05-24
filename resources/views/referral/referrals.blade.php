@@ -35,14 +35,19 @@
             </div>
         </div>
 
-        @include('layouts.page-header', ['header' => 'Referrals', 'col' => 6])
+        @include('layouts.page-header', ['header' => 'Referrals', 'col' => 5])
 
-        <div class="page-filters col-md-6">
+        <div class="col-md-7 page-filters">
             <div class="row">
-                    <div class="col-md-4 search">
+                    <div class="col-md-4 filter-item search">
                         <i class="fa fa-search" aria-hidden="true"></i>
                         {{ Form::text('search', old('search'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
                         {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search']) }}            
+                    </div>
+                    <div class="col-md-4 filter-item date-range">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        {{ Form::text('date_filter', old('date_filter', date("m/d/y")), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     </div>
                 </div>
             </div>
