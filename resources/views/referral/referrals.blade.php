@@ -42,20 +42,19 @@
 
         <div class="col-md-8 page-filters no-padding-lr">
             <div class="row">
-                    <div class="col-md-4 filter-item search">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                        {{ Form::text('search', old('search'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
-                        {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search']) }}            
-                    </div>
-                    <div class="col-md-4 filter-item date-range">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        {{ Form::text('date_filter', old('date_filter', date("m/d/y")), ['class' => 'form-control text']) }}            
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>          
-                    </div>
-                    <div class="col-md-4 filter-item filter-by">
-                        {{ Form::text('filter_by', old('filter_by'), ['placeholder' => 'Filter By', 'class' => 'form-control text']) }}            
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>          
-                    </div>
+                <div class="col-md-4 filter-item search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    {{ Form::text('search', old('search'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
+                    {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search']) }}            
+                </div>
+                <div class="col-md-4 filter-item date-range">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    {{ Form::text('date_filter', old('date_filter', date("m/d/y")), ['class' => 'form-control text']) }}            
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>          
+                </div>
+                <div class="col-md-4 filter-item filter-by">
+                    {{ Form::text('filter_by', old('filter_by'), ['placeholder' => 'Filter By', 'class' => 'form-control text']) }}            
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>          
                 </div>
             </div>
         </div>
@@ -64,14 +63,14 @@
 
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-hover table-referral">
+                <table class="table table-referral">
                     <thead>
                         <tr>
-                            <th>Submitted</th>
-                            <th>Referral ID</th>
-                            <th>Submitted By</th>
-                            <th>Person Referred</th>
-                            <th>Status</th>
+                            <th>Submitted <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th>Referral ID <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th>Submitted By <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th>Person Referred <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th>Status <i class="fa fa-sort" aria-hidden="true"></i></th>
                         </tr>
                     </thead>
                     @foreach($referrals as $r)
@@ -80,7 +79,7 @@
                             <td><a href="{{ $r->referred->id }}">{{ $r->referrer_id }}</a></td>
                             <td><a href="{{ $r->user_id }}">{{ auth()->user()->name }}</a></td>
                             <td><a href="{{ $r->referred->id }}">{{ $r->referred->display_name }}</a></td>
-                            <td>{{ Form::select('state', [1 => 'Pending Verification', 2 => 'Denied'], old('state'), ['class' => 'form-control']) }}</td>
+                            <td class="referral-status"><div class="form-control">Pending Verification</div><i class="fa fa-angle-down" aria-hidden="true"></i>   </td>
                         </tr>
                     @endforeach
                 </table>
