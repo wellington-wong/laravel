@@ -40,7 +40,7 @@
 
         @include('layouts.page-header', ['header' => 'Referrals', 'col' => 4])
 
-        <div class="col-md-8 page-filters">
+        <div class="col-md-8 page-filters no-padding-lr">
             <div class="row">
                     <div class="col-md-4 filter-item search">
                         <i class="fa fa-search" aria-hidden="true"></i>

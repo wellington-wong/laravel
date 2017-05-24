@@ -1,10 +1,10 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container-fluid">
-                <div class="col-md-3">
+                <div class="col-sm-3 navbar-messages no-padding-lr">
                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                    324 Messages
+                    <a href=""><strong>324 Messages</strong></a>
                 </div>
-                <div class="col-md-9">
+                <div class="col-sm-9 no-padding-lr">
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -12,15 +12,20 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="dropdown pull-left">
-                                Hi <a href="{{ route('manage-account') }}" class="" role="button" aria-expanded="false">{{ Auth::user()->name }}</a> 
-                                <span class="nav-separator">|</span> <a href="{{ route('manage-account') }}">Settings <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <li class="dropdown pull-left navbar-settings-wrapper">
+                                Hi {{ Auth::user()->name }} 
+                                <span class="nav-separator">|</span> <a href="#" class="navbar-settings no-padding" data-toggle="dropdown" data-hover="dropdown">Settings <i class="fa fa-angle-down" aria-hidden="true"></i></a> 
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Program Options</a></li>
+                                  <li><a href="#">Manage Account</a></li>
+                                  <li><a href="#">Logout</a></li>
+                                </ul>
                             </li>
                             <li class="logout pull-left">
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">                                    
-                                </a>
+                                </a> 
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}

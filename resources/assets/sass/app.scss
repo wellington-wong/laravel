@@ -53,7 +53,7 @@ header {
 	background: $bg-color2;
 	min-height: 0;
 	.navbar-right {
-		margin: 0 10px;
+		margin: 0 0;
 		&, a {
 			color: $text-color3;
 			font-weight: bold;
@@ -73,6 +73,28 @@ header {
 			}
 			&:hover {
 				background: #d2dd53;
+			}
+		}
+	}
+	.navbar-messages {
+		padding-top: 10px;
+	}
+	.navbar-settings-wrapper {		
+		.navbar-settings {
+			&:hover, &:focus, &:active {
+				color: $text-color !important;
+				background-color: $bg-color2 !important;
+			}
+		}
+		.dropdown-menu {
+			background: $bg-color2;
+			li {
+				padding: 5px 0;
+				a {
+					display: inline-block;
+					width: 100%;
+					text-align: right;
+				}
 			}
 		}
 	}
@@ -508,7 +530,11 @@ nav {
 	}
 }
 .no-padding {
-	padding: 0;
+	padding: 0 !important;
+}
+.no-padding-lr {
+	padding-left: 0;
+	padding-right: 0;
 }
 .btn-primary {
 	background: #1277c5;
@@ -616,6 +642,7 @@ div.tooltip.top {
 			> div {				
 				padding-left: 5px;
 				padding-right: 5px;
+				margin-bottom: 10px;
 				input.text {
 					border: 2px solid #f0f0f0;
 					height: 24px;
@@ -702,6 +729,8 @@ div.tooltip.top {
 	}
 	.export-link {
 		font-size: 11px;
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 /*** Referrals End ***/
