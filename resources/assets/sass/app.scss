@@ -223,16 +223,14 @@ header {
 		margin-top: 0;
 		border: 0;
 		margin-bottom: 0;
+			padding-left: 0;
+			padding-right: 0;
 		h3 {
 			text-align: center;
 		}
 		h3, h4 {
 			font-weight: bold;
 			color: $text-color2;
-		}
-		.header-title {
-			padding-left: 0;
-			padding-right: 0;
 		}
 	}
 	.panel-default {
@@ -609,6 +607,32 @@ div.tooltip.top {
 					margin-left: 10px;
 				}
 			}
+		}
+	}
+	.search {
+		position: relative;
+		input.text {
+			border: 2px solid #f0f0f0;
+			height: 24px;
+			padding: 0 15px 0 25px;
+			font-size: 11px;
+			box-shadow: none;
+		}
+		.btn-search {
+			background: url('/images/search-glyph.png') no-repeat 0 0;    
+			border: 0;
+		    padding: 0;
+		    text-indent: -99999em;
+		    width: 31px;
+		    height: 24px;
+		    top: 0;
+		    right: 0;
+		    position: absolute;
+		}
+		.fa-search {
+			position: absolute;
+			line-height: 20px;
+			margin-left: 9px;
 		}
 	}
 	.filter-buttons {

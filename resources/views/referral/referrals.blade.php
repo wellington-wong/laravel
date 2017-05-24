@@ -35,7 +35,20 @@
             </div>
         </div>
 
-        @include('layouts.page-header', ['header' => 'Referrals'])
+        @include('layouts.page-header', ['header' => 'Referrals', 'col' => 6])
+
+        <div class="page-filters col-md-6">
+            <div class="row">
+                    <div class="col-md-4 search">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        {{ Form::text('search', old('search'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
+                        {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search']) }}            
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
 
         <div class="row bulk-action">
             <div class="col-md-6">

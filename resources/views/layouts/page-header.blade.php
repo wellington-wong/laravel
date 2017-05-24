@@ -1,9 +1,8 @@
 
-        <div class="page-header">
+        <div class="page-header col-md-{{ $col }}">
             <div class="row">
-                    <div class="col-md-12 header-title">
-                        <h4>{{ $header }}</h4>
-                    </div>
-                </div>
+                  <div class="header-title">
+                      <h4>{{ $header }}</h4>
+                  </div>
             </div>
-        </div>
+       	</div>    

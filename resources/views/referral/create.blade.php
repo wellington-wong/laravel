@@ -39,7 +39,7 @@
             @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
 
             <div class="form-group col-md-6" >
-                {{ Form::text('email', null, ['class' => 'referral-email', 'placeholder' => 'Referral\'s Email', 'class' => 'form-control' . ($errors->has('email') ? ' has-error' : '') ]) }}            
+                {{ Form::text('email', old('email'), ['placeholder' => 'Referral\'s Email', 'class' => 'form-control referral-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
             </div>
 
             @include('forms.address')
