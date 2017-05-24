@@ -1,7 +1,10 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container-fluid">
-                <div>
-
+                <div class="col-md-3">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    324 Messages
+                </div>
+                <div class="col-md-9">
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -11,7 +14,7 @@
                         @else
                             <li class="dropdown pull-left">
                                 Hi <a href="{{ route('manage-account') }}" class="" role="button" aria-expanded="false">{{ Auth::user()->name }}</a> 
-                                <span class="nav-separator">|</span> <a href="{{ route('manage-account') }}">Settings</a>
+                                <span class="nav-separator">|</span> <a href="{{ route('manage-account') }}">Settings <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                             </li>
                             <li class="logout pull-left">
                                 <a href="{{ route('logout') }}"
