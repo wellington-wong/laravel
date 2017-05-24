@@ -35,9 +35,12 @@
             </div>
         </div>
 
-        @include('layouts.page-header', ['header' => 'Referrals', 'col' => 5])
 
-        <div class="col-md-7 page-filters">
+        <div class="col-md-12 text-right export-link"><a href="#">Export</a></div>
+
+        @include('layouts.page-header', ['header' => 'Referrals', 'col' => 4])
+
+        <div class="col-md-8 page-filters">
             <div class="row">
                     <div class="col-md-4 filter-item search">
                         <i class="fa fa-search" aria-hidden="true"></i>
@@ -46,7 +49,11 @@
                     </div>
                     <div class="col-md-4 filter-item date-range">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                        {{ Form::text('date_filter', old('date_filter', date("m/d/y")), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
+                        {{ Form::text('date_filter', old('date_filter', date("m/d/y")), ['class' => 'form-control text']) }}            
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>          
+                    </div>
+                    <div class="col-md-4 filter-item filter-by">
+                        {{ Form::text('filter_by', old('filter_by'), ['placeholder' => 'Filter By', 'class' => 'form-control text']) }}            
                         <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     </div>
                 </div>
@@ -54,35 +61,6 @@
         </div>
 
         <div class="clearfix"></div>
-
-        <div class="row bulk-action">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <div class="input-group-addon">Status</div>
-                    <select name="status" class="form-control">
-                        <option value="export">Pending Verification</option>
-                        <option value="export">Pending Reward</option>
-                    </select>    
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i> Search</div>
-                        <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="Search referrals" class="form-control" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row filter-buttons">    
-            <div class="col-md-12">
-                <div class="button-container">
-                    <button type="submit" class="btn btn-primary btn-md">Apply Filters</button>
-                    <a href="/referrals"><button type="button" class="btn btn-warning btn-md">Reset Filters</button></a>
-                </div>
-            </div>
-       </div>
 
         <div class="row">
             <div class="col-md-12">

@@ -55,7 +55,7 @@ header {
 	.navbar-right {
 		margin: 0 10px;
 		&, a {
-			color: #3f434c;
+			color: $text-color3;
 			font-weight: bold;
 		}
 		li {
@@ -610,14 +610,30 @@ div.tooltip.top {
 		}
 	}
 	.page-filters {
+		margin-top: 11px;	
+		margin-bottom: 11px;	
 		.row {
 			> div {				
+				padding-left: 5px;
+				padding-right: 5px;
 				input.text {
 					border: 2px solid #f0f0f0;
 					height: 24px;
 					padding: 0 15px 0 25px;
 					font-size: 11px;
 					box-shadow: none;
+				}
+				input.text:-moz-placeholder {
+				    color: $bg-color;
+				    text-align: center;
+				}
+				input.text::-moz-placeholder {
+				    color: $bg-color;
+				    text-align: center;
+				}
+				input.text:-ms-input-placeholder {
+				    color: $bg-color;
+				    text-align: center;
 				}
 				.fa {
 					position: absolute;
@@ -631,7 +647,7 @@ div.tooltip.top {
 					margin-left: 9px;
 				}
 				.fa-angle-down {
-					right: 23px;
+					right: 15px;
 					top: 0;
 					line-height: 25px;
 				}
@@ -639,15 +655,6 @@ div.tooltip.top {
 			.search {
 				position: relative;
 				input.text::-webkit-input-placeholder {
-				    color: $bg-color;
-				}
-				input.text:-moz-placeholder {
-				    color: $bg-color;
-				}
-				input.text::-moz-placeholder {
-				    color: $bg-color;
-				}
-				input.text:-ms-input-placeholder {
 				    color: $bg-color;
 				}
 				.btn-search {
@@ -658,8 +665,17 @@ div.tooltip.top {
 				    width: 31px;
 				    height: 24px;
 				    top: 0;
-				    right: 0;
+				    right: 6px;
 				    position: absolute;
+				}
+				input.text:-moz-placeholder {
+				    text-align: center;
+				}
+				input.text::-moz-placeholder {
+				    text-align: center;
+				}
+				input.text:-ms-input-placeholder {
+				    text-align: center;
 				}
 			}
 		}
@@ -683,6 +699,9 @@ div.tooltip.top {
 		> div {
 			text-align: right;
 		}
+	}
+	.export-link {
+		font-size: 11px;
 	}
 }
 /*** Referrals End ***/
