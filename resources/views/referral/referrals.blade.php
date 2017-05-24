@@ -77,21 +77,14 @@
                     @foreach($referrals as $r)
                         <tr>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
-                            <td>{{ $r->referrer_id }}</td>
-                            <td>{{ auth()->user()->name }}</td>
-                            <td><a href="#">{{ $r->referred->display_name }}</a></td>
-                            <td>{{ \App\Referral::$status[$r->status] }}</td>
-                            <td class="view-details"><button class="btn btn-default btn-details">view details</button></td>
+                            <td><a href="{{ $r->referred->id }}">{{ $r->referrer_id }}</a></td>
+                            <td><a href="{{ $r->user_id }}">{{ auth()->user()->name }}</a></td>
+                            <td><a href="{{ $r->referred->id }}">{{ $r->referred->display_name }}</a></td>
+                            <td>{{ Form::select('state', [1 => 'Pending Verification', 2 => 'Denied'], old('state'), ['class' => 'form-control']) }}</td>
                         </tr>
                     @endforeach
                 </table>
                 {{ $referrals->links() }}
-            </div>
-        </div>
-
-        <div class="row referral-export">            
-            <div class="col-md-3 pull-right">
-                <button class="btn btn-primary">Export Selected</button>
             </div>
         </div>
     </div>
