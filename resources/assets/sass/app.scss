@@ -975,3 +975,13 @@ div.tooltip.top {
 	}
 }
 /*** Daterangepicker End ***/
+
+/*** Admin Dashboard ***/
+.admin-dashboard {
+	.dashboard-left {
+		&.cta {
+			background: $bg-color3;
+		}
+	}
+}
+/*** Admin Dashboard End ***/
