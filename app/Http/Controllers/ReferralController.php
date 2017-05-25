@@ -6,7 +6,7 @@ use App\User;
 use App\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Notifications\Referral;
+use App\Referral;
 
 class ReferralController extends Controller
 {
@@ -45,6 +45,10 @@ class ReferralController extends Controller
             $referrals->orderBy($sort);
         }
         $referrals = $referrals->paginate(15);
+
+        // Change query when sorting by Submitted and Referrer's name.
+        $referralsAlt = Referral::where('referrer_id', auth()->user()->id)
+        ->join('users', 'users.id', 'referrals.referrer_id')->get();
 
         foreach ($referrals as $r) {
             //print '<pre>'.print_r($r->referred, 1).'</pre>';
