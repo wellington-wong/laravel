@@ -37,7 +37,12 @@ class ReferralController extends Controller
 
     public function referrals( Request $request ) {
 
-        $referrals = $request->user()->referrals()->paginate(15);
+        // Add sort functionality
+        $sort = $request->get('sort');
+
+        $referrals = $request->user()->referrals()
+        ->orderBy($sort)
+        ->paginate(15);
 
         return view('referral.referrals')
             ->with(compact('referrals'));
