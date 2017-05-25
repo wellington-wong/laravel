@@ -73,13 +73,21 @@
                             <th>Status <i class="fa fa-sort" aria-hidden="true"></i></th>
                         </tr>
                     </thead>
-                    @foreach($referrals as $r)
+                    @foreach($referrals as $r) 
                         <tr>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
                             <td><a href="{{ $r->referred->id }}">{{ $r->referrer_id }}</a></td>
                             <td><a href="{{ $r->user_id }}">{{ auth()->user()->name }}</a></td>
                             <td><a href="{{ $r->referred->id }}">{{ $r->referred->display_name }}</a></td>
-                            <td class="referral-status"><div class="form-control">Pending Verification</div><i class="fa fa-angle-down" aria-hidden="true"></i>   </td>
+                            <td class="referral-status">
+                                <div class="form-control" data-toggle="dropdown">Pending Verification</div>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Pending Verification</a></li>
+                                  <li><a href="#">Pending Reward</a></li>
+                                  <li><a href="#">Completed</a></li>
+                                </ul>
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </td>
                         </tr>
                     @endforeach
                 </table>
