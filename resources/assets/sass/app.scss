@@ -717,57 +717,64 @@ div.tooltip.top {
 			highlight: none;
 		}
 	}
-	.table-referral {
-		border-spacing: 0 10px;
-		border-collapse: separate;
-		thead {			
-			tr {
-				background: $bg-color3;
-				th {
-					white-space: nowrap;
-					font-size: 13px;
-					cursor: pointer;
-				}
-			}
-		}
-		tbody {
-			tr {
-				td {
-					line-height: 30px;
-					font-size: 13px;
-					padding: 10px;
-					margin: 100px;
-					border-bottom: 2px solid $bg-color3;
-					border-top: 2px solid $bg-color3;
-					&:first-child {
-						border-left: 2px solid $bg-color3;
-					}
-					&:last-child {
-						border-right: 2px solid $bg-color3;
-					}
-				}				
-				.referral-status {
-					position: relative;
-					> div {
-						padding-right: 25px;
+	.table-referral-wrapper {
+		padding-left: 0;
+		padding-right: 0;
+		.table-referral {
+			border-spacing: 0 10px;
+			border-collapse: separate;
+			thead {			
+				tr {
+					background: $bg-color3;
+					th {
+						white-space: nowrap;
 						font-size: 13px;
 						cursor: pointer;
-						height: 29px;
-						line-height: 1;
-					}
-					> .fa {    
-						position: absolute;
-					    top: 17px;
-					    right: 20px;
-					}
-					.dropdown-menu {
-						margin-top: -12px;
-    					margin-left: 8px;
+						a {
+							color: $bg-color;
+						}
 					}
 				}
 			}
-		}
-	} 
+			tbody {
+				tr {
+					td {
+						line-height: 30px;
+						font-size: 13px;
+						padding: 10px;
+						margin: 100px;
+						border-bottom: 2px solid $bg-color3;
+						border-top: 2px solid $bg-color3;
+						&:first-child {
+							border-left: 2px solid $bg-color3;
+						}
+						&:last-child {
+							border-right: 2px solid $bg-color3;
+						}
+					}				
+					.referral-status {
+						position: relative;
+						> div {
+							padding-right: 25px;
+							font-size: 13px;
+							cursor: pointer;
+							height: 29px;
+							line-height: 1;
+						}
+						> .fa {    
+							position: absolute;
+						    top: 17px;
+						    right: 20px;
+						}
+						.dropdown-menu {
+							margin-top: -12px;
+	    					margin-left: 8px;
+						}
+					}
+				}
+			}
+		} 
+	}
 	.referral-export {
 		> div {
 			text-align: right;

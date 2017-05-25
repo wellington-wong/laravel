@@ -62,11 +62,11 @@
         <div class="clearfix"></div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 table-referral-wrapper">
                 <table class="table table-referral">
                     <thead>
                         <tr>
-                            <th>Submitted <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th><a href="#">Submitted <i class="fa fa-sort" aria-hidden="true"></i></a></th>
                             <th>Referral ID <i class="fa fa-sort" aria-hidden="true"></i></th>
                             <th>Submitted By <i class="fa fa-sort" aria-hidden="true"></i></th>
                             <th>Person Referred <i class="fa fa-sort" aria-hidden="true"></i></th>
