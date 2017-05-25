@@ -35,14 +35,15 @@ class Referral extends Model
      */
     public function sortReferrals() {
 
+        $request = request();
 
         if ($request->has('sort')) {
-            $referrals->orderBy($sort);
+            //$referrals->orderBy($sort);
         }
 
         // Change query when sorting by Submitted and Referrer's name.
-        return Referral::where('referrer_id', auth()->user()->id)
-        ->join('users', 'users.id', 'referrals.referrer_id')->get();
+        return $this->where('referrer_id', auth()->user()->id)
+        ->join('users', 'users.id', 'referrals.referrer_id')->paginate(15);
     }
 
 }
