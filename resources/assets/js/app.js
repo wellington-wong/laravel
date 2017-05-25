@@ -13,6 +13,7 @@ import 'formBuilder/dist/form-builder.min.js';
 import 'formBuilder/dist/form-render.min.js';
 import 'jquery-validation/dist/jquery.validate.min.js';
 import 'tinymce/tinymce.min.js';
+import 'daterangepicker/daterangepicker.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -417,4 +418,10 @@ $(function (){
 // TINYMCE
 	//tinymce.init({selector: '.textarea'});
 // END TINYMCE
+
+// JQUERY DATERANGEPICKER
+	$('input[name="date_filter"]').daterangepicker({
+		drops: 'up',
+	});
+// END JQUERY DATERANGEPICKER
 });
