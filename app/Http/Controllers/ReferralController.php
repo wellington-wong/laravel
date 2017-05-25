@@ -155,7 +155,7 @@ class ReferralController extends Controller
         } 
 
         if ($request->has('phone')) {
-                $result['phone'] = Phone::where('number', Phone::sanitize($request->input('phone')))->first();
+                $result['phone'] = Phone::where('phone', Phone::sanitize($request->input('phone')))->first();
         }        
 
         return $result;
