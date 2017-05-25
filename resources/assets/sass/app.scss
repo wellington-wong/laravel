@@ -662,6 +662,11 @@ div.tooltip.top {
 				}
 				div.text {
 					line-height: 21px;
+					padding-left: 10px;
+				}
+				&.filter-by .dropdown-menu {
+					left: 6px;
+					font-size: 13px;
 				}
 				input.text:-moz-placeholder {
 				    color: $bg-color;
@@ -777,8 +782,9 @@ div.tooltip.top {
 						    right: 20px;
 						}
 						.dropdown-menu {
-							margin-top: -12px;
-	    					margin-left: 8px;
+							margin-top: -10px;
+	    					margin-left: 10px;
+	    					font-size: 13px;
 						}
 					}
 				}
