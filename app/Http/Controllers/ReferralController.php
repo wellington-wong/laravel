@@ -48,6 +48,27 @@ class ReferralController extends Controller
             ->with(compact('referrals'));
     }
 
+    /**
+     * Prepare referrals for excel export
+     * @return
+     */
+    public function referralsExport( Request $request ) {
+
+        $referrals = $request->user()->referrals()->get();
+        $referralArray = [];
+        foreach ($referrals as $referral) {
+            $currentReferral = ['NAME' => $referral->referred->first_name . ' ' . $referral->referred->last_name, 'EMAIL' => $referral->referred->email];
+            $referralArray[] = $currentReferral;
+        }
+
+        \Excel::create('Referrals', function($excel) use ($referralArray) {
+            $excel->sheet('Members', function($sheet) use ($referralArray) {
+                $sheet->fromArray($referralArray);
+            });
+        })->export('xls');
+        return;
+    }
+
     public function postCreate( Request $request )
     {
 

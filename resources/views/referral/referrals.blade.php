@@ -36,7 +36,7 @@
         </div>
 
 
-        <div class="col-md-12 text-right export-link"><a href="#">Export</a></div>
+        <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') }}">Export</a></div>
 
         @include('layouts.page-header', ['header' => 'Referrals', 'col' => 4])
 
