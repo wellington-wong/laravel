@@ -622,6 +622,8 @@ div.tooltip.top {
 			hr {
 				height: 2px;
 				background: $text-color;
+				margin-top: 12px;
+				margin-bottom: 12px;
 			}
 		}
 		@media (min-width: 768px) {
@@ -730,6 +732,7 @@ div.tooltip.top {
 						white-space: nowrap;
 						font-size: 13px;
 						cursor: pointer;
+						border-bottom: 0;
 						a {
 							color: $bg-color;
 						}

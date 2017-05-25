@@ -67,10 +67,10 @@
                     <thead>
                         <tr>
                             <th><a href="#">Submitted <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th>Referral ID <i class="fa fa-sort" aria-hidden="true"></i></th>
-                            <th>Submitted By <i class="fa fa-sort" aria-hidden="true"></i></th>
-                            <th>Person Referred <i class="fa fa-sort" aria-hidden="true"></i></th>
-                            <th>Status <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th><a href="#">Referral ID <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="#">Submitted By <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="#">Person Referred <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="#">Status <i class="fa fa-sort" aria-hidden="true"></i></a></th>
                         </tr>
                     </thead>
                     @foreach($referrals as $r) 
