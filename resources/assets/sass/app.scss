@@ -562,45 +562,7 @@ div.tooltip.top {
 		border-top-color: #ccc;
 	}
 }
-/*** Common End ***/
-
-
-/*** Submit a referral ***/
-.referral-create-form-wrapper {
-	background: $bg-color3;
-	padding: 25px 35px;
-	#referral-create-form {
-		label {
-			width: 30%;
-		}
-		.form-control.bfh-phone {
-			width: 100%;
-			display: inline-block;
-		}
-		.terms-wrapper {
-			margin-top: 25px;
-			.terms-acceptance {
-				width: 20px;
-				margin-right: 5px;
-			}
-			.terms-condition-link {
-				color: #d0df52;
-			}
-		}
-		.install-complete {
-			text-align: center;
-		}
-		.submit-referral {
-			padding-left: 35px;
-			padding-right: 35px;
-		}
-	}
-}
-/*** Submit a referral End ***/
-
-
-/*** Referrals ***/
-.referrals-wrapper {
+.with-referral-counter {	
 	margin-top: 35px;
 	.referral-hub {
 		padding-left: 0;
@@ -645,6 +607,46 @@ div.tooltip.top {
 			}
 		}
 	}
+}
+/*** Common End ***/
+
+
+/*** Submit a referral ***/
+.referral-create-form-wrapper {
+	background: $bg-color3;
+	padding: 25px 35px;
+	#referral-create-form {
+		label {
+			width: 30%;
+		}
+		.form-control.bfh-phone {
+			width: 100%;
+			display: inline-block;
+		}
+		.terms-wrapper {
+			margin-top: 25px;
+			.terms-acceptance {
+				width: 20px;
+				margin-right: 5px;
+			}
+			.terms-condition-link {
+				color: #d0df52;
+			}
+		}
+		.install-complete {
+			text-align: center;
+		}
+		.submit-referral {
+			padding-left: 35px;
+			padding-right: 35px;
+		}
+	}
+}
+/*** Submit a referral End ***/
+
+
+/*** Referrals ***/
+.referrals-wrapper {
 	.page-filters {
 		margin-top: 11px;	
 		margin-bottom: 11px;	

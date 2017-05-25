@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container-fluid referrals-wrapper">
+    <div class="container-fluid referrals-wrapper with-referral-counter">
         @include('referral.counter')
 
         <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') }}">Export</a></div>

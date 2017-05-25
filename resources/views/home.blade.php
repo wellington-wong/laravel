@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Home')
+
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid with-referral-counter">
+    @include('referral.counter')
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
