@@ -41,14 +41,7 @@ class ReferralController extends Controller
         $sort = $request->get('sort');
 
         $referrals = $request->user()->referrals();
-        if ($request->has('sort')) {
-            $referrals->orderBy($sort);
-        }
         $referrals = $referrals->paginate(15);
-
-        // Change query when sorting by Submitted and Referrer's name.
-        $referralsAlt = Referral::where('referrer_id', auth()->user()->id)
-        ->join('users', 'users.id', 'referrals.referrer_id')->get();
 
         foreach ($referrals as $r) {
             //print '<pre>'.print_r($r->referred, 1).'</pre>';

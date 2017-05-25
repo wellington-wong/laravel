@@ -29,4 +29,20 @@ class Referral extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    /**
+     * Sort Referrals
+     * @return
+     */
+    public function sortReferrals() {
+
+
+        if ($request->has('sort')) {
+            $referrals->orderBy($sort);
+        }
+
+        // Change query when sorting by Submitted and Referrer's name.
+        return Referral::where('referrer_id', auth()->user()->id)
+        ->join('users', 'users.id', 'referrals.referrer_id')->get();
+    }
+
 }
