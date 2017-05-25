@@ -10,6 +10,7 @@
   "devDependencies": {
     "axios": "^0.15.3",
     "bootstrap-sass": "^3.3.7",
+    "daterangepicker": "^2.1.25",
     "font-awesome": "^4.7.0",
     "formBuilder": "^2.1.2",
     "jquery": "^3.1.1",
