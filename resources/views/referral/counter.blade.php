@@ -1,0 +1,30 @@
+
+        <div class="row">
+            <div class="col-md-4 referral-hub">
+                <div class="pending-approval">
+                    <div class="rh-count"><span>1</span></div><hr />                
+                    <div class="rh-desc">
+                        <span>Referrals Pending Approval</span>
+                        <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 referral-hub">
+                <div class="pending-reward">
+                    <div class="rh-count"><span>5232323</span></div><hr />                
+                    <div class="rh-desc">
+                        <span>Referrals Pending Reward</span>
+                        <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 referral-hub">
+                <div class="member-message">
+                    <div class="rh-count"><span>532</span></div><hr />                
+                    <div class="rh-desc">
+                        <span>Member Message</span>
+                        <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
