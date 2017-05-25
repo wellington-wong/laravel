@@ -52,9 +52,14 @@
                     {{ Form::text('date_filter', old('date_filter', date("m/d/y")), ['class' => 'form-control text']) }}            
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
                 </div>
-                <div class="col-md-4 filter-item filter-by">
-                    {{ Form::text('filter_by', old('filter_by'), ['placeholder' => 'Filter By', 'class' => 'form-control text']) }}            
+                <div class="col-md-4 filter-item filter-by">                    
+                    <div class="form-control text" data-toggle="dropdown">Filter By</div>
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Pending Verification</a></li>
+                      <li><a href="#">Pending Reward</a></li>
+                      <li><a href="#">Completed</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

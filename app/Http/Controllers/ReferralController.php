@@ -37,7 +37,7 @@ class ReferralController extends Controller
 
     public function referrals( Request $request ) {
 
-        if ($request->has('sort') || $request->has('filter')) {
+        if (count($request->all())) {
             $referrals = new Referral();
             $referrals = $referrals->sortReferrals();
         } else {
