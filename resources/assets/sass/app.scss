@@ -978,10 +978,13 @@ div.tooltip.top {
 
 /*** Admin Dashboard ***/
 .admin-dashboard {
-	.dashboard-left {
-		padding: 15px;
-		&.cta {
-			background: $bg-color3;
+	.dashboard-left-wrapper {
+		padding-: 0;
+		.dashboard-left {
+			padding: 15px;
+			&.cta {
+				background: $bg-color3;
+			}
 		}
 	}
 	.dashboard-right {
