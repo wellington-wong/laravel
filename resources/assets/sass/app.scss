@@ -269,6 +269,7 @@ header {
 		.panel-body {
 			background: #fff;
 			margin-top: -10px;
+			padding: 15px 25px;
 		}
 	}
 }
@@ -570,7 +571,7 @@ div.tooltip.top {
 		> div {
 			border: 2px solid $bg-color; 
 			text-align: center;
-			padding: 10px 20px;
+			padding: 10px 15px;
 			margin-right: 10px;
 			margin-left: 10px;
 			.rh-count {
@@ -979,9 +980,9 @@ div.tooltip.top {
 /*** Admin Dashboard ***/
 .admin-dashboard {
 	.dashboard-left-wrapper {
-		padding: 0;
+		padding: 15px 15px 15px 0;
 		.dashboard-left {
-			padding: 15px;
+			padding: 15px 0px 15px;
 			&.cta {
 				background: $bg-color3;
 			}

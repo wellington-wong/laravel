@@ -6,7 +6,7 @@
 <div class="container-fluid with-referral-counter admin-dashboard">
     @include('referral.counter')
     <div class="row">
-        <div class="col-md-9 dashboard-left-wrapper">
+        <div class="col-md-8 dashboard-left-wrapper">
             <div class="dashboard-left cta">
                 <div class="page-header"><h3>Share Your Referral Program</h3></div>
                 <div class="referral-url text-center">
@@ -19,9 +19,11 @@
                     </p>
                 </div>
             </div>
-            @include('layouts.page-header', ['header' => 'Referrals', 'col' => 4])
+            <div class="row-inner">
+                @include('layouts.page-header', ['header' => 'Notifications', 'col' => 4])
+            </div>
         </div>
-        <div class="col-md-3 dashboard-right">
+        <div class="col-md-4 dashboard-right">
             <div class="">
                 <p>All Year Cooling</p>
             </div>

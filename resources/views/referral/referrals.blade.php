@@ -9,9 +9,9 @@
 
         <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') }}">Export</a></div>
 
-        @include('layouts.page-header', ['header' => 'Referrals', 'col' => 4])
+        @include('layouts.page-header', ['header' => 'Referrals', 'col' => 3])
 
-        <div class="col-md-8 page-filters no-padding-lr">
+        <div class="col-md-9 page-filters no-padding-lr">
             <div class="row">
                 <div class="col-md-4 filter-item search">
                     <i class="fa fa-search" aria-hidden="true"></i>
