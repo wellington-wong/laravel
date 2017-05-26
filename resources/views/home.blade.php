@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-4 dashboard-right">
             <div class="">
-                <p>All Year Cooling</p>
+                <p>{{ auth()->user()->companies()->first()->company_name }}</p>
             </div>
         </div>
     </div>
