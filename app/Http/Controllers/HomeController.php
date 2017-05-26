@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Role;
+use App\Company;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,9 @@ class HomeController extends Controller
             }
         }
 
-        return view('home');
+        $company = Company::find(auth()->user()->id);
+
+        return view('home')
+        ->with(compact('company'));
     }
 }

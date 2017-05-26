@@ -26,6 +26,8 @@
         <div class="col-md-4 dashboard-right">
             <div class="">
                 <p>{{ auth()->user()->companies()->first()->company_name }}</p>
+
+                <img alt="{{ isset($company->company_name) ? $company->company_name : '' }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive"> 
             </div>
         </div>
     </div>
