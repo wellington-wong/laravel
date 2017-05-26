@@ -997,6 +997,9 @@ div.tooltip.top {
 		.dashboard-right {
 			color: #fff;
 			background: $bg-color;
+			.company-info {
+				padding: 20px;
+			}
 		}
 		.social-links {
 			.fa {

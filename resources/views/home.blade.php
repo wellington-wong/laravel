@@ -29,6 +29,9 @@
                     <img alt="{{ auth()->user()->companies()->first()->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive"> 
                 </div>
                 <p>{{ auth()->user()->companies()->first()->company_name }}</p>
+                <p>
+                    <h5>Membership Role</h5>
+                </p>
                 <button class="btn btn-primary">Account Settings</button>
             </div>
         </div>
