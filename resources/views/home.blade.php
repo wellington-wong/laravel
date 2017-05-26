@@ -32,7 +32,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ auth()->user()->unreadNotifications()->paginate(15)->links() }}
+                {{ auth()->user()->unreadNotifications()->paginate(2)->links() }}
             </div>
         </div>
         <div class="col-md-4 dashboard-right">

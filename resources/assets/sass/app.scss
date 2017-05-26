@@ -610,6 +610,13 @@ div.tooltip.top {
 		}
 	}
 }
+.pagination {
+	li.active {
+		span {
+			background: #c8c5c5;
+		}
+	}
+}
 /*** Common End ***/
 
 
