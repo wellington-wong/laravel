@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid with-referral-counter admin-dashboard">
     @include('referral.counter')
-    <div class="row">
+    <div class="row dashboard-top">
         <div class="col-md-8 dashboard-left-wrapper">
             <div class="dashboard-left cta">
                 <div class="page-header"><h3>Share Your Referral Program</h3></div>
