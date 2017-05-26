@@ -572,8 +572,10 @@ div.tooltip.top {
 			border: 2px solid $bg-color; 
 			text-align: center;
 			padding: 10px 15px;
-			margin-right: 10px;
-			margin-left: 10px;
+			@media (min-width: 990px) {
+				margin-right: 10px;
+				margin-left: 10px;
+			}
 			.rh-count {
 				color: $text-color2;
 				font-size: 30px;
@@ -592,7 +594,11 @@ div.tooltip.top {
 				margin-bottom: 12px;
 			}
 		}
-		@media (min-width: 768px) {
+		@media (min-width: 1024px) {
+			> div {
+				margin-right: 10px;
+				margin-left: 10px;
+			}
 			&:first-child {
 					> div { 
 						margin-right: 10px;
