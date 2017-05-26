@@ -980,9 +980,10 @@ div.tooltip.top {
 
 /*** Admin Dashboard ***/
 .admin-dashboard {
-	.dashboard-left-wrapper {
+	.dashboard-left-wrapper { 
+		padding: 15px 0px 15px 0;
 		@media (min-width: 1024px) {
-			padding: 15px 10px 15px 0;
+			padding-right: 10px;
 		}
 		.dashboard-left {
 			padding: 15px 0px 15px;
