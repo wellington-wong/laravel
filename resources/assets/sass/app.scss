@@ -1002,21 +1002,37 @@ div.tooltip.top {
 		padding-top: 15px;
 		.dashboard-left-wrapper { 
 			padding: 0 0 15px 0;
-			@media (min-width: 1024px) {
-				padding-right: 10px;
-			}
 			.dashboard-left {
 				padding: 15px 0px 15px;
 				&.cta {
 					background: $bg-color3;
 				}
 			}
+			@media (min-width: 1024px) {
+				padding-right: 10px;
+			}
 		}
 		.dashboard-right {
 			color: #fff;
-			background: $bg-color;
 			.company-info {
-				padding: 20px;
+				background: $bg-color;
+				padding: 40px 0;
+				.membership-role {				
+					strong {
+						color: $bg-color2;
+					}
+				}
+				.program-url {
+					a {
+						color: $bg-color2;
+					}
+				}
+				.membership-role, .program-url, .company-info-name {
+					margin-bottom: 30px;
+				}
+			}
+			@media (min-width: 1024px) {
+				padding-right: 0;
 			}
 		}
 		.social-links {

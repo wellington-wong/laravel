@@ -40,12 +40,18 @@
         <div class="col-md-4 dashboard-right">
             <div class="company-info text-center">            
                 <div class="company-logo">
-                    <img alt="{{ auth()->user()->companies()->first()->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive"> 
+                    <img alt="{{ auth()->user()->companies()->first()->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
                 </div>
-                <p>{{ auth()->user()->companies()->first()->company_name }}</p>
-                <p>
-                    <h5>Membership Role</h5>
-                </p>
+                <div class="clearfix"></div>
+                <div class="company-info-name">{{ auth()->user()->companies()->first()->company_name }}</div>
+                <div class="membership-role">
+                    <h4><strong>Membership Role</strong></h4>
+                    <span>{{ auth()->user()->roles->first()->display_name  }}</span>
+                </div>
+                <div class="program-url">
+                    <h5>Program URL</h5>
+                    <span><a href="#">{{ auth()->user()->companies()->first()->subdomain }}.businessname.com</a></span>
+                </div>
                 <button class="btn btn-primary">Account Settings</button>
             </div>
         </div>
