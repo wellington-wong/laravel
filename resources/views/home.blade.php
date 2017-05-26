@@ -10,7 +10,7 @@
             <div class="page-header"><h3>Share Your Referral Program</h3></div>
             <div class="referral-url text-center">
                 <p>This is your referral program's link: <a href="#">refermybiz.businessname.com</a></p>
-                <p>
+                <p class="social-links">
                     <a href="http://www.facebook.com/sharer.php?u={{ url('/') }}" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                     <a href="https://twitter.com/share?url={{ url('/') }}&amp;text={{ auth()->user()->name }}%20Dashboard&amp;hashtags=referralbiz" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
                     <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ url('/') }}" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
