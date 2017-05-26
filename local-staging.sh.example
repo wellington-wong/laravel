@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh referraldev@hiv "mysqldump referral_w --lock-tables=false " | mysql -uincentful -pincentful -Dincentful
