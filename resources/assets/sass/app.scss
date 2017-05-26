@@ -572,10 +572,6 @@ div.tooltip.top {
 			border: 2px solid $bg-color; 
 			text-align: center;
 			padding: 10px 15px;
-			@media (min-width: 990px) {
-				margin-right: 10px;
-				margin-left: 10px;
-			}
 			.rh-count {
 				color: $text-color2;
 				font-size: 30px;
@@ -985,7 +981,9 @@ div.tooltip.top {
 /*** Admin Dashboard ***/
 .admin-dashboard {
 	.dashboard-left-wrapper {
-		padding: 15px 15px 15px 0;
+		@media (min-width: 1024px) {
+			padding: 15px 10px 15px 0;
+		}
 		.dashboard-left {
 			padding: 15px 0px 15px;
 			&.cta {
