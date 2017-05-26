@@ -20,7 +20,18 @@
                 </div>
             </div>
             <div class="row-inner">
-                @include('layouts.page-header', ['header' => 'Notifications', 'col' => 4])
+                @include('layouts.page-header', ['header' => 'Notifications', 'col' => 12])
+                <table class="table">
+                    <tbody>
+                        @foreach ( auth()->user()->unreadNotifications as $notification)
+                        <tr>
+                            <td>{{ $notification->created_at->format('m/d/y') }}</td>
+                            <td>Referral Submitted for Approval</td> 
+                            <td><button class="btn btn-primary">view details</button></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="col-md-4 dashboard-right">
