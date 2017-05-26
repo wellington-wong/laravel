@@ -24,10 +24,10 @@
             </div>
         </div>
         <div class="col-md-4 dashboard-right">
-            <div class="">
-                <p>{{ auth()->user()->companies()->first()->company_name }}</p>
-
+            <div class="company-info text-center">            
                 <img alt="{{ isset($company->company_name) ? $company->company_name : '' }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive"> 
+                <p>{{ auth()->user()->companies()->first()->company_name }}</p>
+                <button class="btn btn-primary">Account Settings</button>
             </div>
         </div>
     </div>
