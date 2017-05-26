@@ -64,6 +64,10 @@ class User extends Authenticatable
         return $this->hasMany( Referral::class, 'referrer_id', 'id' );
     }
 
+    public function referred_companies() {
+        return $this->belongsToMany(Company::class, 'user_referred');
+    }
+
     /*
      * adds a default phone number to a user from a request
      */
