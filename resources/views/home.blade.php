@@ -11,10 +11,10 @@
             <div class="referral-url text-center">
                 <p>This is your referral program's link: <a href="#">refermybiz.businessname.com</a></p>
                 <p>
-                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
-                    <i class="fa fa-twitter-square" aria-hidden="true"></i>
-                    <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <a href="http://www.facebook.com/sharer.php?u={{ url('/') }}" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/share?url={{ url('/') }}&amp;text={{ auth()->user()->name }}%20Dashboard&amp;hashtags=referralbiz" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ url('/') }}" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    <a href="mailto:?Subject=Referral Biz&amp;Body=Referrals Incentive Program%20 {{ url('/') }}"><i class="fa fa-envelope" aria-hidden="true"></i></a>
                 </p>
             </div>
         </div>
