@@ -613,9 +613,17 @@ div.tooltip.top {
 .pagination-wrapper {
 	text-align: center;
 	.pagination {
-		li.active {
-			span {
-				background: #c8c5c5;
+		li {
+			a, span {
+				padding: 4px 10px;
+				line-height: 1;
+				border: 0;
+				color: $bg-color;
+			}
+			&.active {
+				span {
+					background: #c8c5c5;
+				}
 			}
 		}
 	}
