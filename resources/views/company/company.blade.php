@@ -7,6 +7,14 @@
     <div class="container-fluid company-profile-wrapper">
 
         @include('layouts.page-header', ['header' => ucwords($company->company_name), 'col' => 12])
+
+        {{ Form::open(['route'=>'post-company-update', 'id' => 'update-company-form', 'enctype' => 'multipart/form-data']) }}
+
+        <div class="col-md-6">
+
+        </div>
+
+    	{{ Form::close() }}
 		<div class="col-xs-12">      
 			<div class="panel panel-info">
 				<div class="panel-heading">
