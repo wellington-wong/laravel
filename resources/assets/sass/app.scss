@@ -827,24 +827,28 @@ div.tooltip.top {
 
 
 /*** Company ***/
-#create-company-form {
-	label {
-		width: 30%;
+.create-company-wrapper {
+	background: $bg-color3;
+	padding: 25px 35px;
+	#create-company-form {
+		label {
+			width: 30%;
+		}
+		.form-control.bfh-phone {
+			width: auto;
+			display: inline-block;
+		}
+		.logo-upload {
+			display: inline-block;
+		}	
+		.submit-company {
+			padding-left: 35px;
+			padding-right: 35px;
+		}
 	}
-	.form-control.bfh-phone {
-		width: auto;
-		display: inline-block;
+	.company-title {
+		margin-bottom: 10px;
 	}
-	.logo-upload {
-		display: inline-block;
-	}	
-	.submit-company {
-		padding-left: 35px;
-		padding-right: 35px;
-	}
-}
-.company-title {
-	margin-bottom: 10px;
 }
 /*** Company End ***/
 

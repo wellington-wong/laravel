@@ -23,31 +23,34 @@
                 </div>
             </div>
         </div>
-        {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form', 'enctype' => 'multipart/form-data']) }}
+        <div class="create-company-wrapper">
+            {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form', 'enctype' => 'multipart/form-data']) }}
 
 
-        <div class="form-group col-md-6">
-            {{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
+            <div class="form-group col-md-6">
+                {{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
+            </div>
+
+            <div class="form-group col-md-6">
+                {{ Form::text('subdomain', old('subdomain'), ['placeholder' => 'Subdomain', 'class' => 'form-control' . ($errors->has('subdomain') ? ' has-error' : '')]) }}
+            </div>
+
+            @include('forms.address', ['company_address' => true])
+
+            @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Company Phone Number'])
+
+            <div class="form-group col-md-6">
+                <label>Company Logo</label>
+                {{ Form::file('logo', array('class' => 'logo-upload')) }}
+            </div>    
+
+            <div class="form-group col-md-12 text-center">
+                <button type="submit" class="btn btn-primary button-responsive-100 submit-company">Submit Company</button>
+            </div>
+
+            {{ Form::close() }}
+            <div class="clearfix"></div>
         </div>
-
-        <div class="form-group col-md-6">
-            {{ Form::text('subdomain', old('subdomain'), ['placeholder' => 'Subdomain', 'class' => 'form-control' . ($errors->has('subdomain') ? ' has-error' : '')]) }}
-        </div>
-
-        @include('forms.address', ['company_address' => true])
-
-        @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Company Phone Number'])
-
-        <div class="form-group col-md-6">
-            <label>Company Logo</label>
-            {{ Form::file('logo', array('class' => 'logo-upload')) }}
-        </div>    
-
-        <div class="form-group col-md-12 text-center">
-            <button type="submit" class="btn btn-primary button-responsive-100 submit-company">Submit Company</button>
-        </div>
-
-        {{ Form::close() }}
     </div>
 
 @endsection
