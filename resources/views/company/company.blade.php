@@ -20,11 +20,28 @@
         	@include('forms.phone', ['phone_label'=>'Company  Number', 'placeholder' => 'Company Number', 'no_col' => true])
         </div>
 
-
         <div class="form-group col-md-6" >
         	<label>Company Email</label>
+        	<i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
             {{ Form::text('company_email', old('company_email'), ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('company_email') ? ' has-error' : '') ]) }}            
         </div>
+
+        <div class="form-group col-md-6" >
+        	<label>Company Website</label>        	
+            {{ Form::text('company_website', old('company_website'), ['placeholder' => 'Company Website', 'class' => 'form-control company-website' . ($errors->has('company_website') ? ' has-error' : '') ]) }}            
+        </div>
+
+        <div class="form-group col-md-6" >
+        	<label>Company Address Line 1</label>        	
+            {{ Form::text('company_address1', old('company_address1'), ['placeholder' => 'Company Address Line 1', 'class' => 'form-control company-address1' . ($errors->has('company_address1') ? ' has-error' : '') ]) }}            
+        </div>
+
+        <div class="form-group col-md-6" >
+        	<label>Line 2</label>        	
+            {{ Form::text('company_address2', old('company_address2'), ['placeholder' => 'Line 2', 'class' => 'form-control company-address2' . ($errors->has('company_address2') ? ' has-error' : '') ]) }}            
+        </div>
+        
+        @include('forms.address')
 
     	{{ Form::close() }}
 		<div class="col-xs-12">      
