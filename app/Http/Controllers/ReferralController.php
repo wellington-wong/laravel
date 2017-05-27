@@ -45,8 +45,14 @@ class ReferralController extends Controller
             $referrals = $request->user()->referrals()->paginate(15);
         }
 
+        // Get constants
+        $referralStatus = new \ReflectionClass(new Referral());
+        $referralStatus = $referralStatus->getConstants();
+        $referralStatus = array_splice($referralStatus, 0, count($referralStatus) -2);
+
         return view('referral.referrals')
-            ->with(compact('referrals'));
+            ->with(compact('referrals'))
+            ->with(compact('referralStatus'));
     }
 
     /**
