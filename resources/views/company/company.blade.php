@@ -42,7 +42,7 @@
 	            {{ Form::text('company_address2', old('company_address2'), ['placeholder' => 'Line 2', 'class' => 'form-control company-address2' . ($errors->has('company_address2') ? ' has-error' : '') ]) }}            
 	        </div>
 
-	        @include('forms.address')
+	        @include('forms.address', ['company' => true])
 
 	        <div class="form-group col-md-12 text-right">
 	        	{{ Form::button('Update', ['class' => 'btn btn-primary button-responsive-100']) }}
