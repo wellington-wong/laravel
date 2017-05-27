@@ -11,7 +11,19 @@
         {{ Form::open(['route'=>'post-company-update', 'id' => 'update-company-form', 'enctype' => 'multipart/form-data']) }}
 
         <div class="col-md-6">
+        	<label>Company Name</label>
         	{{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
+        </div>
+
+        <div class="col-md-6">
+        	<label>Company Number</label>
+        	@include('forms.phone', ['phone_label'=>'Company  Number', 'placeholder' => 'Company Number', 'no_col' => true])
+        </div>
+
+
+        <div class="form-group col-md-6" >
+        	<label>Company Email</label>
+            {{ Form::text('company_email', old('company_email'), ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('company_email') ? ' has-error' : '') ]) }}            
         </div>
 
     	{{ Form::close() }}
