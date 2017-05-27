@@ -17936,7 +17936,7 @@ $('.terms-acceptance').on('click', function () {
 //END - CHECK TERMS ACCEPTANCE BUTTON
 
 $(function () {
-	// SUBMIT REFERRALS
+	// REFERRALS
 	// Check if phone number is already referred
 	$('#referral-create-form input[name="phone"]').blur(function () {
 		if ($(this).val()) {
@@ -18000,9 +18000,6 @@ $(function () {
 		}
 	}
 
-	// END - SUBMIT REFERRALS
-
-	// UPDATE REFERRALS
 	$('.referral-status .dropdown-menu li a').on('click', function () {
 		var _this = $(this);
 		// Change status of referral
@@ -18018,7 +18015,17 @@ $(function () {
 			}
 		});
 	});
-	// END - UPDATE REFERRALS
+
+	$('.table-referral thead tr th').on('click', function () {
+		if ($(this).find('.fa-sort').length) {
+			$(this).find('.fa-sort').removeClass('fa-sort').addClass('fa-sort-desc');
+		} else if ($(this).find('.fa-sort-desc').length) {
+			$(this).find('.fa-sort-desc').removeClass('fa-sort-desc').addClass('fa-sort-asc');
+		} else {
+			$(this).find('.fa-sort-asc').removeClass('fa-sort-asc').addClass('fa-sort');
+		}
+	});
+	// END - REFERRALS
 
 	// NOTIFICATIONS
 	$('button.mark-read').on('click', function () {
