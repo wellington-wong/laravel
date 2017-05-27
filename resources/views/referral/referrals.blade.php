@@ -27,9 +27,9 @@
                     <div class="form-control text" data-toggle="dropdown">Filter By</div>
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     <ul class="dropdown-menu">
-                      <li><a href="#">Pending Verification</a></li>
-                      <li><a href="#">Pending Reward</a></li>
-                      <li><a href="#">Completed</a></li>
+                        @foreach ($referralStatus as $key => $status)
+                            <li><a href="#">{{ \App\Referral::$status[$status] }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -56,11 +56,11 @@
                             <td><a href="{{ $r->user_id }}">{{ auth()->user()->name }}</a></td>
                             <td><a href="{{ $r->referred->id }}">{{ $r->referred->display_name }}</a></td>
                             <td class="referral-status">
-                                <div class="form-control" data-toggle="dropdown">Pending Verification</div>
-                                <ul class="dropdown-menu">
-                                  <li><a href="#">Pending Verification</a></li>
-                                  <li><a href="#">Pending Reward</a></li>
-                                  <li><a href="#">Completed</a></li>
+                                <div class="form-control" data-toggle="dropdown">{{ \App\Referral::$status[$r->status] }}</div>
+                                <ul class="dropdown-menu">                                
+                                    @foreach ($referralStatus as $key => $status)
+                                        <li><a href="#">{{ \App\Referral::$status[$status] }}</a></li>
+                                    @endforeach
                                 </ul>
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                             </td>
