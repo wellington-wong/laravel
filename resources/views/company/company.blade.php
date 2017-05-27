@@ -32,16 +32,6 @@
 	            {{ Form::text('company_website', old('company_website'), ['placeholder' => 'Company Website', 'class' => 'form-control company-website' . ($errors->has('company_website') ? ' has-error' : '') ]) }}            
 	        </div>
 
-	        <div class="form-group col-md-6" >
-	        	<label>Company Address Line 1</label>        	
-	            {{ Form::text('company_address1', old('company_address1'), ['placeholder' => 'Company Address Line 1', 'class' => 'form-control company-address1' . ($errors->has('company_address1') ? ' has-error' : '') ]) }}            
-	        </div>
-
-	        <div class="form-group col-md-6" >
-	        	<label>Line 2</label>        	
-	            {{ Form::text('company_address2', old('company_address2'), ['placeholder' => 'Line 2', 'class' => 'form-control company-address2' . ($errors->has('company_address2') ? ' has-error' : '') ]) }}            
-	        </div>
-
 	        @include('forms.address', ['company' => true])
 
 	        <div class="form-group col-md-12 text-right">
@@ -50,6 +40,24 @@
 
 	    	{{ Form::close() }}
     	</div>
+
+        <div class="col-md-4 dashboard-right">
+            <div class="company-info text-center">            
+                <div class="company-logo">
+                    <img alt="{{ auth()->user()->companies()->first()->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
+                </div>
+                <div class="clearfix"></div>
+                <div class="company-info-name">{{ auth()->user()->companies()->first()->company_name }}</div>
+                <div class="membership-role">
+                    <h4><strong>Membership Role</strong></h4>
+                    <span>{{ auth()->user()->roles->first()->display_name  }}</span>
+                </div>
+                <div class="program-url">
+                    <h5>Program URL</h5>
+                    <span><a href="#">{{ auth()->user()->companies()->first()->subdomain }}.businessname.com</a></span>
+                </div>
+            </div>
+        </div>
 
 
 
