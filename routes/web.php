@@ -35,6 +35,7 @@ Route::get('/company/create', 'CompanyController@create')->name('company-create'
 Route::post('/company/create', 'CompanyController@postCreate')->name('post-company-create');
 Route::get('/company/{id}', 'CompanyController@getCompany')->name('get-company');
 Route::get('/companies', 'CompanyController@allCompanies')->name('all-companies');
+Route::post('/company/update', 'CompanyController@postUpdate')->name('post-company-update');
 
 // Referral Routes
 Route::get('/referral/create', 'ReferralController@create')->name('referral-create');

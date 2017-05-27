@@ -19,11 +19,11 @@
 
 
     <div class="form-group col-md-6">
-        {{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
+        {{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
     </div>
 
     <div class="form-group col-md-6">
-        {{ Form::text('subdomain', old('company_name'), ['placeholder' => 'Subdomain', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
+        {{ Form::text('subdomain', old('subdomain'), ['placeholder' => 'Subdomain', 'class' => 'form-control' . ($errors->has('subdomain') ? ' has-error' : '')]) }}
     </div>
 
     @include('forms.address', ['company_address' => true])

@@ -11,7 +11,7 @@
         {{ Form::open(['route'=>'post-company-update', 'id' => 'update-company-form', 'enctype' => 'multipart/form-data']) }}
 
         <div class="col-md-6">
-
+        	{{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
         </div>
 
     	{{ Form::close() }}
