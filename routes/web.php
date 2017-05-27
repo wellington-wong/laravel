@@ -46,7 +46,7 @@ Route::get('/referral/history', 'ReferralController@history')->name('referral-hi
 Route::get('/referral/rewards', 'ReferralController@rewards')->name('referral-rewards');
 Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
 Route::get('/referral/export', 'ReferralController@referralsExport')->name('referrals-export');
-Route::post('/referral/update/{id}', 'ReferralController@update')->name('referrals-update');
+Route::post('/referral/update', 'ReferralController@update')->name('referrals-update');
 
 // Static Page Routes
 Route::get('/how-it-works', 'BasicPageController@howItWorks')->name('how-it-works');

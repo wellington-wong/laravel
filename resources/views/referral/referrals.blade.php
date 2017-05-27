@@ -48,18 +48,18 @@
                             <th><a href="#">Person Referred <i class="fa fa-sort" aria-hidden="true"></i></a></th>
                             <th><a href="#">Status <i class="fa fa-sort" aria-hidden="true"></i></a></th>
                         </tr>
-                    </thead>
+                    </thead> 
                     @foreach($referrals as $r)
                         <tr>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
-                            <td><a href="{{ $r->referred->id }}">{{ $r->referred->id }}</a></td>
+                            <td><a href="{{ $r->id }}">{{ $r->id }}</a></td>
                             <td><a href="{{ $r->user_id }}">{{ auth()->user()->name }}</a></td>
                             <td><a href="{{ $r->referred->id }}">{{ $r->referred->display_name }}</a></td>
-                            <td class="referral-status" data-id="{{ $r->referred->id }}">
+                            <td class="referral-status" data-id="{{ $r->id }}">
                                 <div class="form-control" data-toggle="dropdown">{{ \App\Referral::$status[$r->status] }}</div>
                                 <ul class="dropdown-menu">                                
                                     @foreach ($referralStatus as $key => $status)
-                                        <li><a href="#">{{ \App\Referral::$status[$status] }}</a></li>
+                                        <li><a href="javascript:void(0)" data-status="{{ $status }}">{{ \App\Referral::$status[$status] }}</a></li>
                                     @endforeach
                                 </ul>
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>

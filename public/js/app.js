@@ -18002,6 +18002,24 @@ $(function () {
 
 	// END - SUBMIT REFERRALS
 
+	// UPDATE REFERRALS
+	$('.referral-status .dropdown-menu li a').on('click', function () {
+		var _this = $(this);
+		// Change status of referral
+		$.ajax({
+			url: "referral/update",
+			data: { id: $(this).closest('td').data('id'), status: $(this).data('status') },
+			type: "POST",
+			beforeSend: function beforeSend(xhr) {
+				xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').prop('content'));
+			},
+			success: function success(data) {
+				_this.closest('td').find('.form-control').text(_this.text());
+			}
+		});
+	});
+	// END - UPDATE REFERRALS
+
 	// NOTIFICATIONS
 	$('button.mark-read').on('click', function () {
 		var notification = $(this).closest('.notifications');

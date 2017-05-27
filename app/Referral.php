@@ -46,4 +46,21 @@ class Referral extends Model
         ->join('users', 'users.id', 'referrals.referrer_id')->paginate(15);
     }
 
+    /**
+     * Update Referrals
+     * @return
+     */
+    public function updateReferral() {
+
+        $request = request();
+
+        $referral = $this->find($request->get('id'));
+        $referral->status = $request->get('status');
+        $referral->save();
+
+        return;
+    }
+
+
+
 }

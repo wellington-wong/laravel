@@ -149,11 +149,10 @@ class ReferralController extends Controller
             ->with(compact('referrals'));
     }
     
-    public function update( Request $request, $id ) {
+    public function update( Request $request ) {
 
-        dd($id);
-
-        return;
+        $referral = new Referral();
+        return $referral->updateReferral();
     }
 
     /**
