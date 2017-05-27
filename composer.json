@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "kordy/ticketit": "0.*",
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
@@ -16,7 +17,8 @@
         "propaganistas/laravel-phone": "^2.8",
         "stripe/stripe-php": "^4.9",
         "watson/bootstrap-form": "^1.1",
-        "zizaco/entrust": "dev-master"
+        "zizaco/entrust": "dev-master",
+        "cmgmyr/messenger": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
