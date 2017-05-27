@@ -28,7 +28,7 @@
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     <ul class="dropdown-menu">
                         @foreach ($referralStatus as $key => $status)
-                            <li><a href="#">{{ \App\Referral::$status[$status] }}</a></li>
+                            <li><a href="javascript:void(0)">{{ \App\Referral::$status[$status] }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -42,11 +42,11 @@
                 <table class="table table-referral">
                     <thead>
                         <tr>
-                            <th><a href="#">Submitted <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th><a href="#">Referral ID <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th><a href="#">Submitted By <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th><a href="#">Person Referred <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th><a href="#">Status <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="javascript:void(0)">Submitted <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="javascript:void(0)">Referral ID <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="javascript:void(0)">Submitted By <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="javascript:void(0)">Person Referred <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="javascript:void(0)">Status <i class="fa fa-sort" aria-hidden="true"></i></a></th>
                         </tr>
                     </thead> 
                     @foreach($referrals as $r)
