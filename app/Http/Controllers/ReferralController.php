@@ -42,7 +42,7 @@ class ReferralController extends Controller
             $referrals = new Referral();
             $referrals = $referrals->sortReferrals();
         } else {
-            $referrals = $request->user()->referrals()->paginate(15);
+            $referrals = $request->user()->referrals()->orderBy('id', 'DESC')->paginate(15);
         }
 
         // Get constants
@@ -147,6 +147,13 @@ class ReferralController extends Controller
 
         return view('referral.history')
             ->with(compact('referrals'));
+    }
+    
+    public function update( Request $request, $id ) {
+
+        dd($id);
+
+        return;
     }
 
     /**
