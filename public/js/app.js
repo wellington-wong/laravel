@@ -18015,16 +18015,6 @@ $(function () {
 			}
 		});
 	});
-
-	$('.table-referral thead tr th').on('click', function () {
-		if ($(this).find('.fa-sort').length) {
-			$(this).find('.fa-sort').removeClass('fa-sort').addClass('fa-sort-desc');
-		} else if ($(this).find('.fa-sort-desc').length) {
-			$(this).find('.fa-sort-desc').removeClass('fa-sort-desc').addClass('fa-sort-asc');
-		} else {
-			$(this).find('.fa-sort-asc').removeClass('fa-sort-asc').addClass('fa-sort');
-		}
-	});
 	// END - REFERRALS
 
 	// NOTIFICATIONS

@@ -42,11 +42,11 @@
                 <table class="table table-referral">
                     <thead>
                         <tr>
-                            <th><a href="javascript:void(0)">Submitted <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th><a href="javascript:void(0)">Referral ID <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th><a href="javascript:void(0)">Submitted By <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th><a href="javascript:void(0)">Person Referred <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            <th><a href="javascript:void(0)">Status <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="{{ route('referrals', ['sort' => $sort, 'column' => 'created_at']) }}">Submitted <i class="fa fa-sort{{ $sortc }}" aria-hidden="true"></i></a></th>
+                            <th><a href="{{ route('referrals', ['sort' => $sort, 'column' => 'id']) }}">Referral ID <i class="fa fa-sort{{ $sortc }}" aria-hidden="true"></i></a></th>
+                            <th><a href="{{ route('referrals', ['sort' => $sort, 'column' => 'user_id']) }}">Submitted By <i class="fa fa-sort{{ $sortc }}" aria-hidden="true"></i></a></th>
+                            <th><a href="{{ route('referrals', ['sort' => $sort, 'column' => 'referred']) }}">Person Referred <i class="fa fa-sort{{ $sortc }}" aria-hidden="true"></i></a></th>
+                            <th><a href="{{ route('referrals', ['sort' => $sort, 'column' => 'status']) }}">Status <i class="fa fa-sort{{ $sortc }}" aria-hidden="true"></i></a></th>
                         </tr>
                     </thead> 
                     @foreach($referrals as $r)

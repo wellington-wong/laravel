@@ -50,8 +50,23 @@ class ReferralController extends Controller
         $referralStatus = $referralStatus->getConstants();
         $referralStatus = array_splice($referralStatus, 0, count($referralStatus) -2);
 
+        $sort = 'desc';
+        $sortc = '';
+        switch ($request->get('sort')) {
+            case ('desc'):
+                $sort = 'asc';
+                $sortc = '-desc';
+                break;
+            case ('asc'):
+                $sort = '';
+                $sortc = '-asc';
+                break;
+        }
+
         return view('referral.referrals')
             ->with(compact('referrals'))
+            ->with(compact('sort'))
+            ->with(compact('sortc'))
             ->with(compact('referralStatus'));
     }
 
