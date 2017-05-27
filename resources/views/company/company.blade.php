@@ -8,7 +8,7 @@
 
         @include('layouts.page-header', ['header' => ucwords($company->company_name), 'col' => 12])
 
-        <div class="col-md-8 no-padding-lr">
+        <div class="col-md-8 no-padding-lr company-profile-left">
 	        {{ Form::open(['route'=>'post-company-update', 'id' => 'update-company-form', 'enctype' => 'multipart/form-data']) }}
 
 	        <div class="col-md-6">
@@ -41,7 +41,7 @@
 	    	{{ Form::close() }}
     	</div>
 
-        <div class="col-md-4 dashboard-right">
+        <div class="col-md-4 company-profile-right">
             <div class="company-info text-center">            
                 <div class="company-logo">
                     <img alt="{{ auth()->user()->companies()->first()->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
