@@ -148,6 +148,10 @@ class ReferralController extends Controller
         return redirect(route('referrals'));
     }
 
+    /**
+     * Rewards view
+     * @return
+     **/
     public function rewards( Request $request ) {
 
         $referrals = $request->user()->referrals()->paginate(15);
@@ -156,14 +160,22 @@ class ReferralController extends Controller
             ->with(compact('referrals'));
     }
 
+    /**
+     * Referral history view
+     * @return
+     **/
     public function history( Request $request ) {
 
         $referrals = $request->user()->referrals()->paginate(15);
 
         return view('referral.history')
             ->with(compact('referrals'));
-    }
-    
+    }    
+
+    /**
+     * Update referral status
+     * @return
+     **/
     public function update( Request $request ) {
 
         $referral = new Referral();
@@ -171,8 +183,8 @@ class ReferralController extends Controller
     }
 
     /**
-    * Check if phone or email already exists
-    **/
+     * Check if phone or email already exists
+     **/
     public function checkDuplicate( Request $request )
     {
         $result = [];
