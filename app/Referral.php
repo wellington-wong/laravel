@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+use App\DB;
 
 class Referral extends Model
 {
@@ -42,12 +42,10 @@ class Referral extends Model
         $sort = $request->has('column') ? $request->get('column') : '';
 
         // Change query when sorting by Submitted and Referrer's name.
-        $referrals = $this->with(array('users' => function ($q){
-            $q->orderBy('users.id', 'asc');
-        }))
-        ->where('referrals.referrer_id', auth()->user()->id);
-        
-        return $referrals->paginate(15);
+        $referrals = $this->select('referrals.*')
+        ->leftJoin('users', 'users.id', 'referrals.id')
+        ->orderBy('users.created_at', 'desc')->paginate(15);
+        return $referrals;
     }
 
     /**
