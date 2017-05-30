@@ -38,13 +38,6 @@ class ReferralController extends Controller
 
     public function referrals( Request $request ) {
 
-        if (count($request->all())) {
-            $referrals = new Referral();
-            $referrals = $referrals->sortReferrals();
-        } else {
-            $referrals = $request->user()->referrals()->orderBy('id', 'DESC')->paginate(15);
-        }
-
         // Get constants
         $referralStatus = new \ReflectionClass(new Referral());
         $referralStatus = $referralStatus->getConstants();
@@ -69,6 +62,13 @@ class ReferralController extends Controller
                 break;
         }
         $sortc[$column] = $sortClass;
+        
+        if (count($request->all())) {
+            $referrals = new Referral();
+            $referrals = $referrals->sortReferrals();
+        } else {
+            $referrals = $request->user()->referrals()->orderBy('id', 'DESC')->paginate(15);
+        }
 
         return view('referral.referrals')
             ->with(compact('referrals'))

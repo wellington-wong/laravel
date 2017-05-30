@@ -37,13 +37,17 @@ class Referral extends Model
 
         $request = request();
 
-        if ($request->has('sort')) {
-            //$referrals->orderBy($sort);
-        }
+        $column = $request->has('column') ? $request->get('column') : '';
+        $sort = $request->has('column') ? $request->get('column') : '';
 
         // Change query when sorting by Submitted and Referrer's name.
-        return $this->where('referrer_id', auth()->user()->id)
-        ->join('users', 'users.id', 'referrals.referrer_id')->paginate(15);
+        $referrals = $this->where('referrals.referrer_id', auth()->user()->id)
+        ->join('users', 'users.id', 'referrals.referrer_id');
+        if (!empty($column) && !empty($sort)) {
+        $referrals->orderBy('referrals.'.$column, $sort);
+        }        
+        
+        return $referrals->paginate(15);
     }
 
     /**
