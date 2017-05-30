@@ -34,7 +34,7 @@ class Referral extends Model
      * Sort Referrals
      * @return
      */
-    public function sortReferrals() {
+    public function filterSortReferrals() {
 
         $request = request();
 

@@ -65,7 +65,7 @@ class ReferralController extends Controller
         
         if (count($request->all())) {
             $referrals = new Referral();
-            $referrals = $referrals->sortReferrals();
+            $referrals = $referrals->filterSortReferrals();
         } else {
             $referrals = $request->user()->referrals()->paginate(15);
         }
