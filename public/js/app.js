@@ -18003,17 +18003,15 @@ $(function () {
 	$('.referral-status .dropdown-menu li a').on('click', function () {
 		var _this = $(this);
 		// Change status of referral
-		$.ajax({
-			url: "referral/update",
-			data: { id: $(this).closest('td').data('id'), status: $(this).data('status') },
-			type: "POST",
-			beforeSend: function beforeSend(xhr) {
-				xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').prop('content'));
-			},
-			success: function success(data) {
-				_this.closest('td').find('.form-control').text(_this.text());
-			}
-		});
+		var data;
+		data = {
+			id: $(this).closest('td').data('id'),
+			status: $(this).data('status')
+		};
+		function statusCallback(callbackData) {
+			_this.closest('td').find('.form-control').text(_this.text());
+		}
+		ajaxHelper("referral/update", data, "POST", statusCallback);
 	});
 	// END - REFERRALS
 
@@ -18332,6 +18330,22 @@ $(function () {
 		console.log(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
 	});
 	// END JQUERY DATERANGEPICKER
+
+	// AJAX HELPER
+	function ajaxHelper(url, data, method, callback) {
+		$.ajax({
+			url: url,
+			data: data,
+			type: method,
+			beforeSend: function beforeSend(xhr) {
+				xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').prop('content'));
+			},
+			success: function success(data) {
+				callback(data);
+			}
+		});
+	}
+	// END AJAX HELPER
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
