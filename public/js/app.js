@@ -18004,7 +18004,11 @@ $(function () {
 		var _this = $(this);
 
 		// Save current selected status for dynamic adjustments of referral tally.
-		var currentStatus = _this.closest('.referral-status').find('.form-control').text();
+		var currentStatus = $(this).closest('.referral-status').find('.form-control').text();
+
+		if (currentStatus == _this.text()) {
+			return false;
+		}
 
 		// Change status of referral
 		var data;
@@ -18013,23 +18017,30 @@ $(function () {
 			status: $(this).data('status')
 		};
 		function statusCallback(callbackData) {
+			_this.closest('td').find('.form-control').text(_this.text());
 			var approvalCnt = $('.pending-approval .rh-count span');
 			var rewardCnt = $('.pending-reward .rh-count span');
 			switch (_this.text()) {
-				case 'Submitted' && currentStatus != "Submitted":
+				case 'Submitted':
 					approvalCnt.text(parseInt(approvalCnt.text()) + 1);
 					if (currentStatus == "Approved") {
 						rewardCnt.text(parseInt(rewardCnt.text()) - 1);
 					}
 					break;
-				case 'Approved' && currentStatus != "Approved":
+				case 'Approved':
 					rewardCnt.text(parseInt(rewardCnt.text()) + 1);
 					if (currentStatus == "Submitted") {
 						approvalCnt.text(parseInt(approvalCnt.text()) - 1);
 					}
 					break;
+				default:
+					if (currentStatus == "Submitted") {
+						approvalCnt.text(parseInt(approvalCnt.text()) - 1);
+					}
+					if (currentStatus == "Approved") {
+						rewardCnt.text(parseInt(rewardCnt.text()) - 1);
+					}
 			}
-			_this.closest('td').find('.form-control').text(_this.text());
 		}
 		ajaxHelper("referral/update", data, "POST", statusCallback);
 	});
