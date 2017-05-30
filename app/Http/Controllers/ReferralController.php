@@ -65,7 +65,7 @@ class ReferralController extends Controller
         
         if (count($request->all())) {
             $referrals = new Referral();
-            $referrals = $referrals->filterSortReferrals();
+            $referrals = $referrals->filterSortReferrals(15);
         } else {
             $referrals = $request->user()->referrals()->paginate(15);
         }
@@ -83,10 +83,24 @@ class ReferralController extends Controller
      */
     public function referralsExport( Request $request ) {
 
-        $referrals = $request->user()->referrals()->get();
+        if (count($request->all())) {
+            $referrals = new Referral();
+            $referrals = $referrals->filterSortReferrals(0);
+        } else {
+            $referrals = $request->user()->referrals()->get();
+        }
+
         $referralArray = [];
         foreach ($referrals as $referral) {
-            $currentReferral = ['NAME' => $referral->referred->first_name . ' ' . $referral->referred->last_name, 'EMAIL' => $referral->referred->email];
+            $currentReferral = [
+                'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
+                'REFERRAL ID' => $referral->id,
+                'SUBMITTED BY' => auth()->user()->name,
+                'NAME' => $referral->referred->first_name . ' ' . $referral->referred->last_name,
+                'EMAIL' => $referral->referred->email,
+                'STATUS' => \App\Referral::$status[$referral->status],
+                'DEBUG' => $request->get('filterby')
+            ];
             $referralArray[] = $currentReferral;
         }
 

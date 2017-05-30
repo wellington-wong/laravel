@@ -7,7 +7,7 @@
     <div class="container-fluid referrals-wrapper with-referral-counter">
         @include('referral.counter')
 
-        <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') }}">Export</a></div>
+        <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export</a></div>
 
         @include('layouts.page-header', ['header' => 'Referrals', 'col' => 3])
 

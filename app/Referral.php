@@ -34,7 +34,7 @@ class Referral extends Model
      * Sort Referrals
      * @return
      */
-    public function filterSortReferrals() {
+    public function filterSortReferrals($paginate) {
 
         $request = request();
 
@@ -63,7 +63,7 @@ class Referral extends Model
                 break;
         }
 
-       $referrals = $referrals->paginate(15);
+       $referrals = $referrals->paginate($paginate);
         return $referrals;
     }
 
