@@ -437,6 +437,7 @@ $(function (){
 		drops: 'down',
 	}).on('apply.daterangepicker', function(ev, picker) {
       console.log(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+      window.location.href = "";
   	});
 // END JQUERY DATERANGEPICKER
 
@@ -453,5 +454,11 @@ $(function (){
         });
 	}
 // END AJAX HELPER
+
+// FILTER REFERRALS BY STATUS
+	$('.filter-by .dropdown-menu li a').click(function(){
+		window.location.href = "/referrals?filterby=" + $(this).data('id');
+	});
+// END FILTER REFERRALS BY STATUS
 
 });

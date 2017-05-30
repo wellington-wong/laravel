@@ -40,11 +40,16 @@ class Referral extends Model
 
         $column = $request->has('column') ? $request->get('column') : null;
         $sort = $request->has('sort') ? $request->get('sort') : null;
+        $filterby = $request->has('filterby') ? $request->get('filterby') : null;
 
         // Change query when sorting and filtering.
         $referrals = $this->select('referrals.*')
         ->where('referrer_id', auth()->user()->id)
         ->join('users', 'users.id', 'referrals.user_id');
+
+        if (isset($filterby)) {
+            $referrals->where('referrals.status', $filterby);
+        }
 
         switch ($column) {
             case ('referred'):
