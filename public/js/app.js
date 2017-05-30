@@ -18327,7 +18327,7 @@ $(function () {
 
 	// JQUERY DATERANGEPICKER
 	$('input[name="date_filter"]').daterangepicker({
-		drops: 'up'
+		drops: 'down'
 	}).on('apply.daterangepicker', function (ev, picker) {
 		console.log(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
 	});
