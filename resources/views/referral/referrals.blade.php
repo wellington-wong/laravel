@@ -28,7 +28,7 @@
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     <ul class="dropdown-menu">
                         @foreach ($referralStatus as $key => $status)
-                            <li><a href="javascript:void(0)">{{ \App\Referral::$status[$status] }}</a></li>
+                            <li><a href="javascript:void(0)" data-id="{{ $status }}" data-status="{{ $key }}">{{ \App\Referral::$status[$status] }}</a></li>
                         @endforeach
                     </ul>
                 </div>
