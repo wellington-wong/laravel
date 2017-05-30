@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\DB;
+use Carbon\Carbon;
 
 class Referral extends Model
 {
@@ -38,9 +39,15 @@ class Referral extends Model
 
         $request = request();
 
+        // Get sort and filter
         $column = $request->has('column') ? $request->get('column') : null;
         $sort = $request->has('sort') ? $request->get('sort') : null;
         $filterby = $request->has('filterby') ? $request->get('filterby') : null;
+
+        // Get date range
+        $daterange = explode('|', $request->get('daterange'));
+        $datarangeFrom = isset($daterange[0]) ? $daterange[0] : null;
+        $datarangeTo = isset($daterange[1]) ? $daterange[1] : null;
 
         // Change query when sorting and filtering.
         $referrals = $this->select('referrals.*')
@@ -49,6 +56,10 @@ class Referral extends Model
 
         if (isset($filterby)) {
             $referrals->where('referrals.status', $filterby);
+        }
+
+        if (isset($datarangeFrom) && isset($datarangeTo)) {
+            $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
         }
 
         switch ($column) {
