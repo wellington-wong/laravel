@@ -30,8 +30,9 @@
     {{ Form::text('address2', null, ['placeholder' => 'Line 2', 'class' => 'form-control' . ($errors->has('address2') ? ' has-error' : '')]) }}
 </div>
 
+<div class="clearfix"></div>
 <div class="form-group col-lg-4">
-	<label>City</label>
+    <label>City</label>
     {{ Form::text('city', null, ['placeholder' => 'City', 'class' => 'form-control' . ($errors->has('city') ? ' has-error' : '')]) }}
 </div>
 
