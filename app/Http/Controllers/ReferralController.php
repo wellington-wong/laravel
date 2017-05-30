@@ -70,11 +70,16 @@ class ReferralController extends Controller
             $referrals = $request->user()->referrals()->paginate(15);
         }
 
+        // Get referral pending approval and reward
+        $pendingReferrals = new Referral();
+        $pendingReferrals = $pendingReferrals->getReferralTally();
+
         return view('referral.referrals')
             ->with(compact('referrals'))
             ->with(compact('sort'))
             ->with(compact('sortc'))
-            ->with(compact('referralStatus'));
+            ->with(compact('referralStatus'))
+            ->with(compact('pendingReferrals'));
     }
 
     /**

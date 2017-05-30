@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Role;
 use App\Company;
+use App\Referral;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Assign user as member when no role is found
         if (auth()->check() && !count(auth()->user()->roles)) {
@@ -34,7 +35,12 @@ class HomeController extends Controller
 
         $company = Company::find(auth()->user()->id);
 
+        // Get referral pending approval and reward
+        $pendingReferrals = new Referral();
+        $pendingReferrals = $pendingReferrals->getReferralTally();
+
         return view('home')
-        ->with(compact('company'));
+        ->with(compact('company'))
+        ->with(compact('pendingReferrals'));
     }
 }

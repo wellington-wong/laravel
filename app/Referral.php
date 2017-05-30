@@ -93,6 +93,23 @@ class Referral extends Model
         return;
     }
 
+    /**
+     * Get referral pending approval and reward
+     * @return
+     */
+    public function getReferralTally() {
+
+        $request = request();
+
+        $pendingReferrals['approval'] = $request->user()->referrals()
+            ->where('status', 1)
+            ->paginate(0);
+        $pendingReferrals['reward'] = $request->user()->referrals()
+            ->where('status', 2)
+            ->paginate(0);
+
+        return $pendingReferrals;
+    }
 
 
 }
