@@ -18328,7 +18328,7 @@ $(function () {
 		drops: 'down'
 	}).on('apply.daterangepicker', function (ev, picker) {
 		console.log(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-		window.location.href = "";
+		window.location.href = "/referrals?daterange=" + picker.startDate.format('MM/DD/YYYY') + "|" + picker.endDate.format('MM/DD/YYYY');
 	});
 	// END JQUERY DATERANGEPICKER
 
