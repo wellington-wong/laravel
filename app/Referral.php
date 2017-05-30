@@ -47,21 +47,15 @@ class Referral extends Model
         ->join('users', 'users.id', 'referrals.user_id');
 
         switch ($column) {
-            case ('created_at'):
-                $referrals->orderBy('users.'.$column, $sort);
-                break;
-            case ('id'):
-                $referrals->orderBy('referrals.'.$column, $sort);
-                break;
-            case ('user_id'):
-                $referrals->orderBy('referrals.'.$column, $sort);
-                break;      
             case ('referred'):
                 $referrals->orderBy('users.id', $sort);
                 break;        
-            case ('status'):
+            case ('created_at'):
+                $referrals->orderBy('users.'.$column, $sort);
+                break;
+            case ('id' || 'user_id' || 'status'):
                 $referrals->orderBy('referrals.'.$column, $sort);
-                break;               
+                break;
         }
 
        $referrals = $referrals->paginate(15);
