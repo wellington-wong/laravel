@@ -1011,6 +1011,12 @@ div.tooltip.top {
 			min-width: 1px;
 			font-size: 12px;
 		}
+		td.off.in-range {background-color: #ebf4f8;}
+		td.off.active, td.off.active:hover {
+		    background-color: #357ebd;
+		    border-color: transparent;
+		    color: #fff;
+		}
 		.daterangepicker_input {
 			display: none;
 		}
