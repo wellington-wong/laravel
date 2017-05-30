@@ -67,7 +67,7 @@ class ReferralController extends Controller
             $referrals = new Referral();
             $referrals = $referrals->sortReferrals();
         } else {
-            $referrals = $request->user()->referrals()->orderBy('id', 'DESC')->paginate(15);
+            $referrals = $request->user()->referrals()->paginate(15);
         }
 
         return view('referral.referrals')
