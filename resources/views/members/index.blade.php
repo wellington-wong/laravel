@@ -7,7 +7,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Your Submitted Referrals</h4>
+                    <h4>Members</h4>
                 </div>
             </div>
         </div>
