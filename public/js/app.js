@@ -17973,12 +17973,14 @@ $(function () {
 			return false;
 		}
 	});
-	$('.submit-referral').on('click', function () {
+	// Prepare modal
+	$('#incentful-modal .modal-body').html('<p>The referral you are trying to submit is already on the system.</p>');
+	$('#incentful-modal .btn.submit').on('click', function () {
 		$('.referral-email').removeClass('duplicate-referral');
 		$('.bfh-phone').removeClass('duplicate-referral');
 		$('#referral-create-form').submit();
 	});
-	$('.cancel-referral').on('click', function () {
+	$('#incentful-modal .btn.cancel').on('click', function () {
 		location.href = '/';
 	});
 
@@ -18008,6 +18010,13 @@ $(function () {
 
 		if (currentStatus == _this.text()) {
 			return false;
+		}
+
+		// Prepare admin note
+		if (_this.text() == "Denied") {
+			alert('~note~');
+
+			$('#incentful-modal').modal('show');
 		}
 
 		// Change status of referral
