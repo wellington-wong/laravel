@@ -90,6 +90,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
 });
 
+// Laravel scout with algolia driver
 Route::get('/api/search', [
 	'as' => 'api/search',
 	'uses' => 'Api\SearchController@search'
