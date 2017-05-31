@@ -24,7 +24,7 @@
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
                 </div>
                 <div class="col-md-4 filter-item filter-by">                    
-                    <div class="form-control text" data-toggle="dropdown">Filter By</div>
+                    <div class="form-control text" data-toggle="dropdown">{{ (null !== app('request')->get('status')) ? \App\Referral::$status[app('request')->get('status')] : 'Filter By' }}</div>
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     <ul class="dropdown-menu">
                         @foreach ($referralStatus as $key => $status)
