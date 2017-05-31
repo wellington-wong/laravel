@@ -116,6 +116,39 @@ class Referral extends Model
 
         return $pendingReferrals;
     }
+
+    /**
+     * Get url parameters
+     * @return
+     */
+    public function getParams() {
+
+        $request = request();
+
+        // Get sort and filter
+        $paramVal = [];
+        $paramVal['column'] = $request->has('column') ? $request->get('column') : null;
+        $paramVal['sort'] = $request->has('sort') ? $request->get('sort') : null;
+        $paramVal['filterby'] = $request->has('filterby') ? $request->get('filterby') : null;
+        $paramVal['q'] = $request->has('q') ? $request->get('q') : null;
+        $paramVal['daterange'] = $request->has('daterange') ? $request->get('daterange') : null;
+
+        // Arrange query parameters
+        $parameter = new \stdClass();
+        foreach (['column', 'sort', 'filterby', 'q', 'daterange'] as $param) {
+            foreach ($paramVal as $key => $value) {
+                if ($key != $param) {
+                    $parameter->$param[] = $key . '=' . $value;
+                }
+            }
+        }
+        foreach ($parameter as $key => $p) {
+            $p = array_filter($p);
+            $parameter->$key = implode('&', $p);
+        }
+
+        return $parameter;
+    }
     
     /**
      * Search the users table.
