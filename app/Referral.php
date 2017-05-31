@@ -39,8 +39,7 @@ class Referral extends Model
      * Sort Referrals
      * @return
      */
-    public function filterSortReferrals($paginate) 
-    {
+    public function filterSortReferrals($paginate) {
 
         $request = request();
 
@@ -55,38 +54,29 @@ class Referral extends Model
         $datarangeFrom = isset($daterange[0]) ? $daterange[0] : null;
         $datarangeTo = isset($daterange[1]) ? $daterange[1] : null;
 
-        if (isset($q)){
-            // Process search
-            $referrals = $this->search();            
-            if (isset($datarangeFrom) && isset($datarangeTo)) {
-                $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
-            }
+        // Change query when sorting and filtering.
+        $referrals = $this->select('referrals.*')
+        ->where('referrer_id', auth()->user()->id)
+        ->join('users', 'users.id', 'referrals.user_id');
 
-        } else {
-            // Change query when sorting and filtering.
-            $referrals = $this->select('referrals.*')
-            ->where('referrer_id', auth()->user()->id)
-            ->join('users', 'users.id', 'referrals.user_id');
+        if (isset($filterby)) {
+            $referrals->where('referrals.status', $filterby);
+        }
 
-            if (isset($filterby)) {
-                $referrals->where('referrals.status', $filterby);
-            }
+        if (isset($datarangeFrom) && isset($datarangeTo)) {
+            $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
+        }
 
-            if (isset($datarangeFrom) && isset($datarangeTo)) {
-                $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
-            }
-
-            switch ($column) {
-                case ('referred'):
-                    $referrals->orderBy('users.id', $sort);
-                    break;        
-                case ('created_at'):
-                    $referrals->orderBy('users.'.$column, $sort);
-                    break;
-                case ('id' || 'user_id' || 'status'):
-                    $referrals->orderBy('referrals.'.$column, $sort);
-                    break;
-            }
+        switch ($column) {
+            case ('referred'):
+                $referrals->orderBy('users.id', $sort);
+                break;        
+            case ('created_at'):
+                $referrals->orderBy('users.'.$column, $sort);
+                break;
+            case ('id' || 'user_id' || 'status'):
+                $referrals->orderBy('referrals.'.$column, $sort);
+                break;
         }
 
         $referrals = $referrals->paginate($paginate);
@@ -98,8 +88,7 @@ class Referral extends Model
      * Update Referrals
      * @return
      */
-    public function updateReferral() 
-    {
+    public function updateReferral() {
 
         $request = request();
 
@@ -114,8 +103,7 @@ class Referral extends Model
      * Get referral pending approval and reward
      * @return
      */
-    public function getReferralTally() 
-    {
+    public function getReferralTally() {
 
         $request = request();
 
@@ -135,8 +123,7 @@ class Referral extends Model
      * @param Request $request
      * @return mixed
      */
-    public function search() 
-    {   
+    public function search() {   
 
         $request = request();
 
@@ -148,19 +135,12 @@ class Referral extends Model
         if($request->has('q')) {
 
             // Using the Laravel Scout syntax to search the products table.
-            return Referral::search($request->get('q'));
+            return User::search($request->get('q'));
 
         }
 
         // Return the error message if no keywords existed
         return $error;
-    }
-
-    public function getAlgoliaRecord()
-    {
-            $this->user; // This will load the user associated with the model
-
-            return $this;
     }
 
 
