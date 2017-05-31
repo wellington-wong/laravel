@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\DB;
 use Carbon\Carbon;
-use Laravel\Scout\Searchable;
 
 class Referral extends Model
 {
@@ -23,9 +22,6 @@ class Referral extends Model
     ];
 
     protected $table = 'referrals';
-
-    // Laravel scout
-    use Searchable;
 
     public function referrer() {
         return $this->hasOne(User::class, 'id', 'referrer_id');
@@ -51,8 +47,8 @@ class Referral extends Model
 
         // Get date range
         $daterange = explode('|', $request->get('daterange'));
-        $datarangeFrom = isset($daterange[0]) ? $daterange[0] : null;
-        $datarangeTo = isset($daterange[1]) ? $daterange[1] : null;
+        $datarangeFrom = isset($daterange[0]) && (bool)strtotime($daterange[0]) ? $daterange[0] : null;
+        $datarangeTo = isset($daterange[1]) && (bool)strtotime($daterange[1]) ? $daterange[1] : null;
 
         // Change query when sorting and filtering.
         $referrals = $this->select('referrals.*')
@@ -127,15 +123,15 @@ class Referral extends Model
 
         // Get sort and filter
         $paramVal = [];
-        $paramVal['column'] = $request->has('column') ? $request->get('column') : null;
-        $paramVal['sort'] = $request->has('sort') ? $request->get('sort') : null;
+        $sort = $request->has('sort') ? $request->get('sort') : null;
+        $paramVal['column_sort'] = $request->has('column') ? 'sort=' . $sort . '&column=' . $request->get('column') : null;
         $paramVal['filterby'] = $request->has('filterby') ? $request->get('filterby') : null;
         $paramVal['q'] = $request->has('q') ? $request->get('q') : null;
         $paramVal['daterange'] = $request->has('daterange') ? $request->get('daterange') : null;
 
         // Arrange query parameters
         $parameter = new \stdClass();
-        foreach (['column', 'sort', 'filterby', 'q', 'daterange'] as $param) {
+        foreach (['column_sort', 'filterby', 'q', 'daterange'] as $param) {
             foreach ($paramVal as $key => $value) {
                 if ($key != $param) {
                     $parameter->$param[] = $key . '=' . $value;
@@ -148,32 +144,6 @@ class Referral extends Model
         }
 
         return $parameter;
-    }
-    
-    /**
-     * Search the users table.
-     *
-     * @param Request $request
-     * @return mixed
-     */
-    public function search() {   
-
-        $request = request();
-
-        // First we define the error message we are going to show if no keywords
-        // existed or if no results found.
-        $error = ['error' => 'No results found, please try with different keywords.'];
-
-        // Making sure the user entered a keyword.
-        if($request->has('q')) {
-
-            // Using the Laravel Scout syntax to search the products table.
-            return User::search($request->get('q'));
-
-        }
-
-        // Return the error message if no keywords existed
-        return $error;
     }
 
 

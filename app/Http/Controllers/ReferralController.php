@@ -38,6 +38,8 @@ class ReferralController extends Controller
 
     public function referrals( Request $request ) {
 
+        $referrals = new Referral();
+
         // Get constants
         $referralStatus = new \ReflectionClass(new Referral());
         $referralStatus = $referralStatus->getConstants();
@@ -61,25 +63,27 @@ class ReferralController extends Controller
                 $sortClass = '-asc';
                 break;
         }
-        $sortc[$column] = $sortClass;
-        
+        $sortc[$column] = $sortClass;        
+
+        // Get referral pending approval and reward
+        $pendingReferrals = $referrals->getReferralTally();
+
+        // Get query parameters
+        $param = [];
         if (count($request->all())) {
-            $referrals = new Referral();
+            $param = $referrals->getParams();
             $referrals = $referrals->filterSortReferrals(15);
         } else {
             $referrals = $request->user()->referrals()->paginate(15);
         }
-
-        // Get referral pending approval and reward
-        $pendingReferrals = new Referral();
-        $pendingReferrals = $pendingReferrals->getReferralTally();
 
         return view('referral.referrals')
             ->with(compact('referrals'))
             ->with(compact('sort'))
             ->with(compact('sortc'))
             ->with(compact('referralStatus'))
-            ->with(compact('pendingReferrals'));
+            ->with(compact('pendingReferrals'))
+            ->with(compact('param'));
     }
 
     /**

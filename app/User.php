@@ -6,7 +6,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use App\Role;
-use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
@@ -30,9 +29,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    // Laravel scout
-    use Searchable;
 
 
     public function getDisplayNameAttribute() {
