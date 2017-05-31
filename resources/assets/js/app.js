@@ -511,8 +511,15 @@ $(function (){
 
 // FILTER REFERRALS BY STATUS
 	$('.filter-by .dropdown-menu li a').click(function(){
-		window.location.href = "/referrals?filterby=" + $(this).data('id') + $(this).data('query');
+		window.location.href = "/referrals?status=" + $(this).data('id') + $(this).data('query');
 	});
 // END FILTER REFERRALS BY STATUS
+
+// SEARCH REFERRALS
+	$('.btn-search').on('click', function (){
+		var query = $('input[name="q"]');
+		window.location.href = "/referrals?q=" + query.val() + query.data('query');
+	});
+// SEARCH REFERRALS
 
 });
