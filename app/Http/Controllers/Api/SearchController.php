@@ -14,10 +14,11 @@ class SearchController extends Controller
     {
         $this->middleware('auth');
     }
+
 	/**
-     * Search the products table.
+     * Search the users table.
      *
-     * @param  Request $request
+     * @param Request $request
      * @return mixed
      */
     public function search(Request $request)

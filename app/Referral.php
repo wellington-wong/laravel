@@ -47,38 +47,49 @@ class Referral extends Model
         $column = $request->has('column') ? $request->get('column') : null;
         $sort = $request->has('sort') ? $request->get('sort') : null;
         $filterby = $request->has('filterby') ? $request->get('filterby') : null;
+        $q = $request->has('q') ? $request->get('q') : null;
 
         // Get date range
         $daterange = explode('|', $request->get('daterange'));
         $datarangeFrom = isset($daterange[0]) ? $daterange[0] : null;
         $datarangeTo = isset($daterange[1]) ? $daterange[1] : null;
 
-        // Change query when sorting and filtering.
-        $referrals = $this->select('referrals.*')
-        ->where('referrer_id', auth()->user()->id)
-        ->join('users', 'users.id', 'referrals.user_id');
+        if (isset($q)){
+            // Process search
+            print $q;
+            $referrals = $this->search();
+            //dd($referrals->count());
+            // ->get()->sortByDesc('id')
 
-        if (isset($filterby)) {
-            $referrals->where('referrals.status', $filterby);
+        } else {
+            // Change query when sorting and filtering.
+            $referrals = $this->select('referrals.*')
+            ->where('referrer_id', auth()->user()->id)
+            ->join('users', 'users.id', 'referrals.user_id');
+
+            if (isset($filterby)) {
+                $referrals->where('referrals.status', $filterby);
+            }
+
+            if (isset($datarangeFrom) && isset($datarangeTo)) {
+                $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
+            }
+
+            switch ($column) {
+                case ('referred'):
+                    $referrals->orderBy('users.id', $sort);
+                    break;        
+                case ('created_at'):
+                    $referrals->orderBy('users.'.$column, $sort);
+                    break;
+                case ('id' || 'user_id' || 'status'):
+                    $referrals->orderBy('referrals.'.$column, $sort);
+                    break;
+            }
         }
 
-        if (isset($datarangeFrom) && isset($datarangeTo)) {
-            $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
-        }
+        $referrals = $referrals->paginate($paginate);
 
-        switch ($column) {
-            case ('referred'):
-                $referrals->orderBy('users.id', $sort);
-                break;        
-            case ('created_at'):
-                $referrals->orderBy('users.'.$column, $sort);
-                break;
-            case ('id' || 'user_id' || 'status'):
-                $referrals->orderBy('referrals.'.$column, $sort);
-                break;
-        }
-
-       $referrals = $referrals->paginate($paginate);
         return $referrals;
     }
 
@@ -113,6 +124,32 @@ class Referral extends Model
             ->paginate(0);
 
         return $pendingReferrals;
+    }
+    
+    /**
+     * Search the users table.
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function search() {   
+
+        $request = request();
+
+        // First we define the error message we are going to show if no keywords
+        // existed or if no results found.
+        $error = ['error' => 'No results found, please try with different keywords.'];
+
+        // Making sure the user entered a keyword.
+        if($request->has('q')) {
+
+            // Using the Laravel Scout syntax to search the products table.
+            return User::search($request->get('q'));
+
+        }
+
+        // Return the error message if no keywords existed
+        return $error;
     }
 
 
