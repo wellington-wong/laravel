@@ -15,12 +15,12 @@
             <div class="row">
                 <div class="col-md-4 filter-item search">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    {{ Form::open(['route'=>'referrals', 'id' => 'referral-search-form', 'method' => 'get']) }}
+                    {{ Form::open(['route'=>['referrals', (isset($param->q) ? $param->q : '')], 'id' => 'referral-search-form', 'method' => 'get']) }}
                     {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
                     {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search']) }}    
                     {{ Form::close() }}        
                 </div>
-                <div class="col-md-4 filter-item date-range">
+                <div class="col-md-4 filter-item date-range" data-query="{{ (isset($param->daterange) ? $param->daterange : '') }}">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                     {{ Form::text('date_filter', old('date_filter', date("m/d/y")), ['class' => 'form-control text']) }}            
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
@@ -30,7 +30,7 @@
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     <ul class="dropdown-menu">
                         @foreach ($referralStatus as $key => $status)
-                            <li><a href="javascript:void(0)" data-id="{{ $status }}" data-status="{{ $key }}">{{ \App\Referral::$status[$status] }}</a></li>
+                            <li><a href="javascript:void(0)" data-id="{{ $status }}" data-query="{{ (isset($param->status) ? $param->status : '') }}" data-status="{{ $key }}">{{ \App\Referral::$status[$status] }}</a></li>
                         @endforeach
                     </ul>
                 </div>

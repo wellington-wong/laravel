@@ -43,7 +43,7 @@ class Referral extends Model
         $column = $request->has('column') ? $request->get('column') : null;
         $sort = $request->has('sort') ? $request->get('sort') : null;
         $filterby = $request->has('filterby') ? $request->get('filterby') : null;
-        $q = $request->has('q') ? $request->get('q') : null;
+        $q = strtolower($request->has('q') ? $request->get('q') : null);
 
         // Get date range
         $daterange = explode('|', $request->get('daterange'));
@@ -63,6 +63,14 @@ class Referral extends Model
             $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
         }
 
+        if (isset($q)) {
+            $referrals->where(function ($query) use ($q) {
+                $query->whereRaw("LOWER(users.name) LIKE ?", ['%' . $q . '%']);
+                $query->orWhereRaw("LOWER(users.first_name) LIKE ?", ['%' . $q . '%']);
+                $query->orWhereRaw("LOWER(users.last_name) LIKE ?", ['%' . $q . '%']);
+            });
+        }
+
         switch ($column) {
             case ('referred'):
                 $referrals->orderBy('users.id', $sort);
@@ -76,7 +84,6 @@ class Referral extends Model
         }
 
         $referrals = $referrals->paginate($paginate);
-
         return $referrals;
     }
 
