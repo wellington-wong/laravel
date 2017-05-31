@@ -89,3 +89,8 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	// Notification Routes
 	Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
 });
+
+Route::get('/api/search', [
+	'as' => 'api/search',
+	'uses' => 'Api\SearchController@search'
+]);
