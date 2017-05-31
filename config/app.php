@@ -190,8 +190,6 @@ return [
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        
-        Laravel\Scout\ScoutServiceProvider::class,
 
     ],
 
