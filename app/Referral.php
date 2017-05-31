@@ -60,7 +60,7 @@ class Referral extends Model
         }
 
         if (isset($datarangeFrom) && isset($datarangeTo)) {
-            $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
+            $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->addDay()->toDateTimeString()]);
         }
 
         if (isset($q)) {
