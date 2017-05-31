@@ -39,7 +39,8 @@ class Referral extends Model
      * Sort Referrals
      * @return
      */
-    public function filterSortReferrals($paginate) {
+    public function filterSortReferrals($paginate) 
+    {
 
         $request = request();
 
@@ -56,10 +57,10 @@ class Referral extends Model
 
         if (isset($q)){
             // Process search
-            print $q;
-            $referrals = $this->search();
-            //dd($referrals->count());
-            // ->get()->sortByDesc('id')
+            $referrals = $this->search();            
+            if (isset($datarangeFrom) && isset($datarangeTo)) {
+                $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->toDateTimeString()]);
+            }
 
         } else {
             // Change query when sorting and filtering.
@@ -97,7 +98,8 @@ class Referral extends Model
      * Update Referrals
      * @return
      */
-    public function updateReferral() {
+    public function updateReferral() 
+    {
 
         $request = request();
 
@@ -112,7 +114,8 @@ class Referral extends Model
      * Get referral pending approval and reward
      * @return
      */
-    public function getReferralTally() {
+    public function getReferralTally() 
+    {
 
         $request = request();
 
@@ -132,7 +135,8 @@ class Referral extends Model
      * @param Request $request
      * @return mixed
      */
-    public function search() {   
+    public function search() 
+    {   
 
         $request = request();
 
@@ -144,12 +148,19 @@ class Referral extends Model
         if($request->has('q')) {
 
             // Using the Laravel Scout syntax to search the products table.
-            return User::search($request->get('q'));
+            return Referral::search($request->get('q'));
 
         }
 
         // Return the error message if no keywords existed
         return $error;
+    }
+
+    public function getAlgoliaRecord()
+    {
+            $this->user; // This will load the user associated with the model
+
+            return $this;
     }
 
 

@@ -15,8 +15,10 @@
             <div class="row">
                 <div class="col-md-4 filter-item search">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    {{ Form::text('search', old('search'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
-                    {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search']) }}            
+                    {{ Form::open(['route'=>'referrals', 'id' => 'referral-search-form', 'method' => 'get']) }}
+                    {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
+                    {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search']) }}    
+                    {{ Form::close() }}        
                 </div>
                 <div class="col-md-4 filter-item date-range">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
