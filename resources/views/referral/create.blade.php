@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <div class="page-header">
             <div class="row">
                 <div class="col-md-12">
@@ -64,8 +64,7 @@
             {{ Form::close() }}
             <div class="clearfix"></div>
         </div>
+        @include('layouts.modal')
     </div>
-
-@include('layouts.modal')
 
 @endsection

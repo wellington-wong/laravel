@@ -82,13 +82,13 @@ $(function (){
 		}
 	});
 	// Prepare modal
-	$('#incentful-modal .modal-body').html('<p>The referral you are trying to submit is already on the system.</p>');
-	$('#incentful-modal .btn.submit').on('click', function (){
+	$('.create-referral #incentful-modal .modal-body').html('<p>The referral you are trying to submit is already on the system.</p>');
+	$('.create-referral #incentful-modal .btn.submit').on('click', function (){
 		$('.referral-email').removeClass('duplicate-referral');
 		$('.bfh-phone').removeClass('duplicate-referral');
 		$('#referral-create-form').submit();
 	});
-	$('#incentful-modal .btn.cancel').on('click', function (){
+	$('.create-referral #incentful-modal .btn.cancel').on('click', function (){
 		location.href = '/';
 	});
 
