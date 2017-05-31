@@ -133,7 +133,8 @@ class ReferralController extends Controller
             'city'=>'required',
             'state'=>'required|alpha|max:2',
             'zip'=>'required|max:11',
-            'subdomain_id'=>'required'
+            'subdomain_id'=>'required',
+            'install_complete'=>'required'
         ];
         $validator = Validator::make($request->input(), $rules);
 
@@ -160,7 +161,8 @@ class ReferralController extends Controller
             'referrer_id'   => $request->user()->id,
             'company_id'    => $request->get('subdomain_id'),
             'user_id'       => $user->id,
-            'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0
+            'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,            
+            'installation_complete' => $request->has('install_complete') ? $request->get('install_complete') : 0
         ]);
 
         if (isset($duplicate['email']) || isset($duplicate['phone'])) {
