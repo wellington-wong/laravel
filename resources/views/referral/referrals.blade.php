@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-4 filter-item date-range">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                    {{ Form::text('date_filter', old('date_filter', date("m/d/y")), ['class' => 'form-control text', 'data-query' => (isset($param->daterange) ? $param->daterange : '')] ) }}            
+                    {{ Form::text('daterange', old('daterange'), ['class' => 'form-control text', 'data-query' => (isset($param->daterange) ? $param->daterange : '')] ) }}            
                     <i class="fa fa-angle-down" aria-hidden="true"></i>          
                 </div>
                 <div class="col-md-4 filter-item filter-by">                    

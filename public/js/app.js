@@ -18364,12 +18364,26 @@ $(function () {
 	// END TINYMCE
 
 	// JQUERY DATERANGEPICKER
-	$('input[name="date_filter"]').daterangepicker({
-		drops: 'down'
+	var currentDate = new Date();
+	var dayFrom = currentDate.getDate() - 30;
+	var day = currentDate.getDate();
+	var month = currentDate.getMonth() + 1;
+	var year = currentDate.getFullYear();
+
+	var dateRange = [];
+	if ($('input[name="daterange"]').val().length) {
+		dateRange = $('input[name="daterange"]').val().split('|');
+	} else {
+		dateRange[0] = dateRange[1] = month + '/' + day + '/' + year;
+	}
+	$('input[name="daterange"]').daterangepicker({
+		drops: 'down',
+		startDate: dateRange[0],
+		endDate: dateRange[1]
 	}).on('apply.daterangepicker', function (ev, picker) {
-		console.log(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
 		window.location.href = "/referrals?daterange=" + picker.startDate.format('MM/DD/YYYY') + "|" + picker.endDate.format('MM/DD/YYYY') + $(this).data('query');
 	});
+
 	// END JQUERY DATERANGEPICKER
 
 	// AJAX HELPER
