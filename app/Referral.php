@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\DB;
 use Carbon\Carbon;
+use Laravel\Scout\Searchable;
 
 class Referral extends Model
 {
@@ -22,6 +23,9 @@ class Referral extends Model
     ];
 
     protected $table = 'referrals';
+
+    // Laravel scout
+    use Searchable;
 
     public function referrer() {
         return $this->hasOne(User::class, 'id', 'referrer_id');
