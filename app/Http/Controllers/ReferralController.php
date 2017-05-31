@@ -107,8 +107,7 @@ class ReferralController extends Controller
                 'SUBMITTED BY' => auth()->user()->name,
                 'NAME' => $referral->referred->first_name . ' ' . $referral->referred->last_name,
                 'EMAIL' => $referral->referred->email,
-                'STATUS' => \App\Referral::$status[$referral->status],
-                'DEBUG' => $request->get('filterby')
+                'STATUS' => \App\Referral::$status[$referral->status]
             ];
             $referralArray[] = $currentReferral;
         }

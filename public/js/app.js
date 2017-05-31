@@ -18368,7 +18368,7 @@ $(function () {
 		drops: 'down'
 	}).on('apply.daterangepicker', function (ev, picker) {
 		console.log(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-		window.location.href = "/referrals?daterange=" + picker.startDate.format('MM/DD/YYYY') + "|" + picker.endDate.format('MM/DD/YYYY');
+		window.location.href = "/referrals?daterange=" + picker.startDate.format('MM/DD/YYYY') + "|" + picker.endDate.format('MM/DD/YYYY') + $(this).data('query');
 	});
 	// END JQUERY DATERANGEPICKER
 
@@ -18390,7 +18390,7 @@ $(function () {
 
 	// FILTER REFERRALS BY STATUS
 	$('.filter-by .dropdown-menu li a').click(function () {
-		window.location.href = "/referrals?filterby=" + $(this).data('id');
+		window.location.href = "/referrals?filterby=" + $(this).data('id') + $(this).data('query');
 	});
 	// END FILTER REFERRALS BY STATUS
 });

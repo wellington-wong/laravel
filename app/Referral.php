@@ -42,7 +42,7 @@ class Referral extends Model
         // Get sort and filter
         $column = $request->has('column') ? $request->get('column') : null;
         $sort = $request->has('sort') ? $request->get('sort') : null;
-        $filterby = $request->has('filterby') ? $request->get('filterby') : null;
+        $status = $request->has('status') ? $request->get('status') : null;
         $q = strtolower($request->has('q') ? $request->get('q') : null);
 
         // Get date range
@@ -55,8 +55,8 @@ class Referral extends Model
         ->where('referrer_id', auth()->user()->id)
         ->join('users', 'users.id', 'referrals.user_id');
 
-        if (isset($filterby)) {
-            $referrals->where('referrals.status', $filterby);
+        if (isset($status)) {
+            $referrals->where('referrals.status', $status);
         }
 
         if (isset($datarangeFrom) && isset($datarangeTo)) {
@@ -130,24 +130,29 @@ class Referral extends Model
 
         // Get sort and filter
         $paramVal = [];
-        $sort = $request->has('sort') ? $request->get('sort') : null;
-        $paramVal['column_sort'] = $request->has('column') ? 'sort=' . $sort . '&column=' . $request->get('column') : null;
-        $paramVal['filterby'] = $request->has('filterby') ? $request->get('filterby') : null;
+        $paramVal['sort'] = $request->has('sort') ? $request->get('sort') : null;
+        $paramVal['column'] = $request->has('column') ? $request->get('column') : null;
+        $paramVal['status'] = $request->has('status') ? $request->get('status') : null;
         $paramVal['q'] = $request->has('q') ? $request->get('q') : null;
         $paramVal['daterange'] = $request->has('daterange') ? $request->get('daterange') : null;
 
         // Arrange query parameters
         $parameter = new \stdClass();
-        foreach (['column_sort', 'filterby', 'q', 'daterange'] as $param) {
+        foreach (['status', 'q', 'daterange', 'column_sort'] as $param) {
             foreach ($paramVal as $key => $value) {
-                if ($key != $param) {
-                    $parameter->$param[] = $key . '=' . $value;
+                if ($key != $param && isset($value)) {          
+                    if ($param == 'column_sort') { 
+                        if (!in_array($key, ['sort', 'column'])) {
+                            $parameter->$param[] = $key . '=' . $value;
+                        }
+                    } else {
+                        $parameter->$param[] = $key . '=' . $value;
+                    }
                 }
             }
         }
         foreach ($parameter as $key => $p) {
-            $p = array_filter($p);
-            $parameter->$key = implode('&', $p);
+            $parameter->$key = '&' . implode('&', $p);
         }
 
         return $parameter;
