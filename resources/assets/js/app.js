@@ -454,6 +454,18 @@ $(function (){
 	$('.tooltip-q').on('click', function (){
 		$(this).tooltip('show');
 	});
+
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            alert(e.target.result);
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 // END COMMON
 
 // SIDEBAR
@@ -480,7 +492,7 @@ $(function (){
 	var year = currentDate.getFullYear();
 	
 	var dateRange = [];
-	if ($('input[name="daterange"]').val().length) {
+	if ($('input[name="daterange"]').length) {
 		dateRange = $('input[name="daterange"]').val().split('|');
 	} else {
 		dateRange[0] = dateRange[1] = month + '/' + day	 + '/' + year
@@ -526,5 +538,11 @@ $(function (){
 	    }
 	});
 // SEARCH REFERRALS
+
+// CREATE COMPANY
+	$("#logo-upload").change(function(){
+	    readURL(this);
+	});
+// END CREATE COMPANY
 
 });

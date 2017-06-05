@@ -40,8 +40,8 @@
             @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Company Phone Number'])
 
             <div class="form-group col-md-6">
-                <label>Company Logo</label>
-                {{ Form::file('logo', array('class' => 'logo-upload')) }}
+                <label for="logo-upload" class="btn btn-default">Upload Company Logo</label>
+                {{ Form::file('logo', array('class' => 'logo-upload hidden', 'id' => 'logo-upload')) }}
             </div>    
 
             <div class="form-group col-md-12 text-center">
