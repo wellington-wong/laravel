@@ -3,7 +3,7 @@
 @section('pageTitle', $company->company_name)
 
 @section('content')
-
+{{ dd($company) }}
     <div class="container-fluid company-profile-wrapper">
 
         @include('layouts.page-header', ['header' => ucwords($company->company_name), 'col' => 12])
@@ -13,7 +13,7 @@
 
 	        <div class="col-md-6">
 	        	<label>Company Name</label>
-	        	{{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
+	        	{{ Form::text('company_name', (isset($company->company_name) ? $company->company_name : old('company_name')), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
 	        </div>
 
 	        <div class="col-md-6">
@@ -44,7 +44,7 @@
         <div class="col-md-4 company-profile-right">
             <div class="company-info text-center">            
                 <div class="company-logo">
-                    <img alt="{{ auth()->user()->companies()->first()->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
+                    <img alt="{{ $company->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
                 </div>
                 <div class="clearfix"></div>
                 <div class="company-info-name">{{ auth()->user()->companies()->first()->company_name }}</div>
