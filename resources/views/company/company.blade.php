@@ -60,6 +60,15 @@
         </div>
 	
         @include('layouts.page-header', ['header' => 'Plan', 'col' => 12])
+        <table class="table table-referral">
+        	<tbody>
+        		<tr>
+        			<td>Basic Plan</td>
+        			<td>1 of 2 Admin Accounts Used</td>
+        			<td><button class="btn btn-primary">upgrade</button></td>
+        		</tr>
+        	</tbody>
+        </table>
 
         @include('layouts.page-header', ['header' => 'Billing', 'col' => 12])
 	</div>

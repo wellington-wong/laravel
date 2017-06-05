@@ -547,6 +547,7 @@ nav {
 }
 .btn-primary {
 	background: #1277c5;
+	padding: 3px 20px;
 }
 .has-error {
 	border-color: #a94442;
@@ -879,6 +880,48 @@ div.tooltip.top {
 			margin-bottom: 30px;
 		}
 	}
+	.table-referral {
+		border-spacing: 0 10px;
+		border-collapse: separate;
+		tbody {
+			tr {
+				td {
+					line-height: 30px;
+					font-size: 13px;
+					padding: 10px;
+					margin: 100px;
+					border-bottom: 2px solid $bg-color3;
+					border-top: 2px solid $bg-color3;
+					&:first-child {
+						border-left: 2px solid $bg-color3;
+					}
+					&:last-child {
+						border-right: 2px solid $bg-color3;
+					}
+				}				
+				.referral-status {
+					position: relative;
+					> div {
+						padding-right: 25px;
+						font-size: 13px;
+						cursor: pointer;
+						height: auto;
+						line-height: 1;
+					}
+					> .fa {    
+						position: absolute;
+					    top: 18px;
+					    right: 20px;
+					}
+					.dropdown-menu {
+						margin-top: -10px;
+    					margin-left: 10px;
+    					font-size: 13px;
+					}
+				}
+			}
+		}
+	} 
 }
 /*** Company End ***/
 
