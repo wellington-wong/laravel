@@ -65,11 +65,20 @@
         		<tr>
         			<td>Basic Plan</td>
         			<td>1 of 2 Admin Accounts Used</td>
-        			<td><button class="btn btn-primary">upgrade</button></td>
+        			<td class="col-md-2"><button class="btn btn-primary">upgrade</button></td>
         		</tr>
         	</tbody>
         </table>
 
         @include('layouts.page-header', ['header' => 'Billing', 'col' => 12])
+        <table class="table table-referral">
+        	<tbody>
+        		<tr>
+        			<td>Credit Card</td>
+        			<td>Mastercard Ending in 4466</td>
+        			<td class="col-md-2"><button class="btn btn-primary">update card</button></td>
+        		</tr>
+        	</tbody>
+        </table>
 	</div>
 @endsection

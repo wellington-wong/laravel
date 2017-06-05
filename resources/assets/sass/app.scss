@@ -855,6 +855,9 @@ div.tooltip.top {
 	}
 }
 .company-profile-wrapper {
+	.page-header {
+		padding-bottom: 0;
+	}
 	#update-company-form {
 		input[type="text"] {
 			border-radius: 0;
