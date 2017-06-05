@@ -3,7 +3,7 @@
 @section('pageTitle', $company->company_name)
 
 @section('content')
-{{ dd($company) }}
+
     <div class="container-fluid company-profile-wrapper">
 
         @include('layouts.page-header', ['header' => ucwords($company->company_name), 'col' => 12])
@@ -59,5 +59,8 @@
             </div>
         </div>
 	
+        @include('layouts.page-header', ['header' => 'Plan', 'col' => 12])
+
+        @include('layouts.page-header', ['header' => 'Billing', 'col' => 12])
 	</div>
 @endsection
