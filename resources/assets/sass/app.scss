@@ -794,6 +794,7 @@ div.tooltip.top {
 						padding: 10px;
 						border-bottom: 2px solid $bg-color3;
 						border-top: 2px solid $bg-color3;
+						vertical-align: middle;
 						&:first-child {
 							border-left: 2px solid $bg-color3;
 						}
@@ -806,12 +807,13 @@ div.tooltip.top {
 					}				
 					.referral-status {
 						position: relative;
-						> div {
+						.form-control {
 							padding-right: 25px;
 							font-size: 13px;
 							cursor: pointer;
 							height: auto;
-							line-height: 1;
+							line-height: 1.2;
+    						white-space: nowrap; 
 							.fa-angle-down {
 								right: 15px;
 								top: 0;
@@ -820,12 +822,12 @@ div.tooltip.top {
 						}
 						.fa {    
 							position: absolute;
-						    top: 18px;
+						    top: 40%;
 						    right: 20px;
 						}
 						.dropdown-menu {
-							margin-top: -10px;
-	    					margin-left: 10px;
+							top: 56%;
+							left: 10px;
 	    					font-size: 13px;
 						}
 					}
