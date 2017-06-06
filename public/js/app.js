@@ -18013,11 +18013,9 @@ $(function () {
 		}
 
 		// Prepare admin note
-		if (_this.text() == "Denied") {
-			alert('~note~');
+		if (_this.text() == "Denied") {}
+		//$('#incentful-modal').modal('show');
 
-			$('#incentful-modal').modal('show');
-		}
 
 		// Change status of referral
 		var data;
@@ -18026,6 +18024,7 @@ $(function () {
 			status: $(this).data('status')
 		};
 		function statusCallback(callbackData) {
+			console.log(callbackData);
 			_this.closest('td').find('.form-control').text(_this.text());
 			var approvalCnt = $('.pending-approval .rh-count span');
 			var rewardCnt = $('.pending-reward .rh-count span');

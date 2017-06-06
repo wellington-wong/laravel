@@ -122,9 +122,7 @@ $(function (){
 
 		// Prepare admin note
        	if (_this.text() == "Denied") {
-       		alert('~note~');
-
-			$('#incentful-modal').modal('show');
+			//$('#incentful-modal').modal('show');
        	}
 
 		// Change status of referral
@@ -133,7 +131,7 @@ $(function (){
 			id: $(this).closest('td').data('id'),
 			status: $(this).data('status')
 		};
-		function statusCallback(callbackData){
+		function statusCallback(callbackData){console.log(callbackData);
          	_this.closest('td').find('.form-control').text(_this.text());
    			var approvalCnt = $('.pending-approval .rh-count span');
    			var rewardCnt = $('.pending-reward .rh-count span');
