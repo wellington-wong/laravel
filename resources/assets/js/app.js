@@ -12,8 +12,16 @@ import 'jquery-steps/build/jquery.steps.min.js';
 import 'formBuilder/dist/form-builder.min.js';
 import 'formBuilder/dist/form-render.min.js';
 import 'jquery-validation/dist/jquery.validate.min.js';
+
+// TinyMCE
 import 'tinymce/tinymce.min.js';
+
+// Date Range picker
 import 'daterangepicker/daterangepicker.js';
+
+// TableSaw
+import 'tablesaw/dist/stackonly/tablesaw.stackonly.js';
+import 'tablesaw/dist/tablesaw-init.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -555,5 +563,9 @@ $(function (){
 	    readURL(this);
 	});
 // END CREATE COMPANY
+
+// TABLESAW
+	$('.table-referral').tablesaw();
+// END TABLESAW
 
 });

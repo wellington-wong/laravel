@@ -26,6 +26,9 @@
 // jQuery Datarangepicker
 @import "~daterangepicker/daterangepicker.scss";
 
+// TableSaw
+@import "~tablesaw/dist/stackonly/tablesaw.stackonly.css";
+
 
 html, body {
 	height: 100%;
@@ -572,13 +575,16 @@ div.tooltip.top {
 		> div {
 			border: 2px solid $bg-color; 
 			text-align: center;
-			padding: 10px 15px;
+			padding: 10px 11px;
 			.rh-count {
 				color: $text-color2;
 				font-size: 30px;
 			}
 			.rh-desc {
 				font-weight: bold;
+				span {
+					font-size: 13px;
+				}
 			}
 			.tooltip-q {
 				color: $text-color2;
@@ -607,6 +613,12 @@ div.tooltip.top {
 					margin-right: 0;
 					margin-left: 10px;
 				}
+			}
+		}
+		@media (max-width: 1024px) {
+			> div {
+				margin-right: 1px;
+				margin-left: 1px;
 			}
 		}
 	}
@@ -785,7 +797,6 @@ div.tooltip.top {
 						line-height: 30px;
 						font-size: 13px;
 						padding: 10px;
-						margin: 100px;
 						border-bottom: 2px solid $bg-color3;
 						border-top: 2px solid $bg-color3;
 						&:first-child {
@@ -793,6 +804,9 @@ div.tooltip.top {
 						}
 						&:last-child {
 							border-right: 2px solid $bg-color3;
+						}
+						@media (max-width: 698px) {
+							border: 0 !important;
 						}
 					}				
 					.referral-status {
