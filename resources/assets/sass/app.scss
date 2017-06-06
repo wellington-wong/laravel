@@ -732,11 +732,6 @@ div.tooltip.top {
 					line-height: 23px;
 					margin-left: 9px;
 				}
-				.fa-angle-down {
-					right: 15px;
-					top: 0;
-					line-height: 25px;
-				}
 			}
 			.search {
 				position: relative;
@@ -817,8 +812,13 @@ div.tooltip.top {
 							cursor: pointer;
 							height: auto;
 							line-height: 1;
+							.fa-angle-down {
+								right: 15px;
+								top: 0;
+								line-height: 25px;
+							}
 						}
-						> .fa {    
+						.fa {    
 							position: absolute;
 						    top: 18px;
 						    right: 20px;
