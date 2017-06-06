@@ -22,12 +22,12 @@
 <!-- Company Profile -->
 <div class="form-group col-md-6">
 	<label>Company Address Line 1</label>
-    {{ Form::text('address', null, ['placeholder' => 'Company Address Line 1', 'class' => 'form-control' . ($errors->has('address') ? ' has-error' : '')]) }}
+    {{ Form::text('address', $address, ['placeholder' => 'Company Address Line 1', 'class' => 'form-control' . ($errors->has('address') ? ' has-error' : '')]) }}
 </div>
 
 <div class="form-group col-md-6">
 	<label>Address Line 2</label>
-    {{ Form::text('address2', null, ['placeholder' => 'Line 2', 'class' => 'form-control' . ($errors->has('address2') ? ' has-error' : '')]) }}
+    {{ Form::text('address2', $address2, ['placeholder' => 'Line 2', 'class' => 'form-control' . ($errors->has('address2') ? ' has-error' : '')]) }}
 </div>
 
 <div class="clearfix"></div>
