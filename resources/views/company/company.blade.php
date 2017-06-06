@@ -32,7 +32,7 @@
 	            {{ Form::text('company_website', old('company_website'), ['placeholder' => 'Company Website', 'class' => 'form-control company-website' . ($errors->has('company_website') ? ' has-error' : '') ]) }}            
 	        </div>
 
-	        @include('forms.address', ['company' => true, 'city' => $company->address[0]->city, 'address' => $company->address[0]->address, 'address2' => $company->address[0]->address2])
+	        @include('forms.address', ['company' => true, 'city' => $company->address[0]->city, 'address' => $company->address[0]->address, 'address2' => $company->address[0]->address2, 'zip' => $company->address[0]->zip])
 
 	        <div class="form-group col-md-12 text-right">
 	        	{{ Form::button('Update', ['class' => 'btn btn-primary button-responsive-100']) }}

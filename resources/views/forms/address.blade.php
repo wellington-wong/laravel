@@ -43,7 +43,7 @@
 
 <div class="form-group col-lg-2">
 	<label>Zip Code</label>
-    {{ Form::text('zip', null, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
+    {{ Form::text('zip', $zip, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
 </div>
 
 <div class="form-group col-lg-4">
