@@ -918,26 +918,6 @@ div.tooltip.top {
 					&:last-child {
 						border-right: 2px solid $bg-color3;
 					}
-				}				
-				.referral-status {
-					position: relative;
-					> div {
-						padding-right: 25px;
-						font-size: 13px;
-						cursor: pointer;
-						height: auto;
-						line-height: 1;
-					}
-					> .fa {    
-						position: absolute;
-					    top: 18px;
-					    right: 20px;
-					}
-					.dropdown-menu {
-						margin-top: -10px;
-    					margin-left: 10px;
-    					font-size: 13px;
-					}
 				}
 			}
 		}
