@@ -37,7 +37,7 @@
 </div>
 
 <div class="form-group col-lg-2">
-	<label></label>
+	<label>States</label>
 	@include('forms.states', ['state' => $state])
 </div>
 
@@ -47,7 +47,7 @@
 </div>
 
 <div class="form-group col-lg-4">
-    <label></label>
+    <label>Countries</label>
     @include('forms.countries', [])
 </div>
 @endif 
