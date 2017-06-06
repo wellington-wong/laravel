@@ -33,7 +33,7 @@
 <div class="clearfix"></div>
 <div class="form-group col-lg-4">
     <label>City</label>
-    {{ Form::text('city', null, ['placeholder' => 'City', 'class' => 'form-control' . ($errors->has('city') ? ' has-error' : '')]) }}
+    {{ Form::text('city', $city, ['placeholder' => 'City', 'class' => 'form-control' . ($errors->has('city') ? ' has-error' : '')]) }}
 </div>
 
 <div class="form-group col-lg-2">
