@@ -97,7 +97,29 @@ class Referral extends Model
 
         $referral = $this->find($request->get('id'));
         $referral->status = $request->get('status');
-        $referral->save();
+        return $referral;
+        //$referral->save();
+
+        \Mail::send('emails.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
+            $message->from('admin@' . env('APP_URL'), 'Laravel');
+            $message->to($user->email);
+        });
+
+        return;
+    }
+
+    /**
+     * Delete Referrals
+     * @return
+     */
+    public function deleteReferral() {
+
+        $request = request();
+
+        $referral = $this->find($request->get('id'));
+        $referral->status = $request->get('status');
+        return $referral;
+        //$referral->save();
 
         return;
     }

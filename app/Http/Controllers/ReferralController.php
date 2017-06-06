@@ -214,6 +214,16 @@ class ReferralController extends Controller
     }
 
     /**
+     * Delete referral
+     * @return
+     **/
+    public function delete( Request $request ) {
+
+        $referral = new Referral();
+        return $referral->deleteReferral();
+    }
+
+    /**
      * Check if phone or email already exists
      **/
     public function checkDuplicate( Request $request )
