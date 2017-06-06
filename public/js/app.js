@@ -18382,7 +18382,7 @@ $(function () {
 	var year = currentDate.getFullYear();
 
 	var dateRange = [];
-	if ($('input[name="daterange"]').length) {
+	if ($('input[name="daterange"]').val().length) {
 		dateRange = $('input[name="daterange"]').val().split('|');
 	} else {
 		dateRange[0] = dateRange[1] = month + '/' + day + '/' + year;
