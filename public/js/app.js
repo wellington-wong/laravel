@@ -18013,9 +18013,20 @@ $(function () {
 		}
 
 		// Prepare admin note
-		if (_this.text() == "Denied") {}
-		//$('#incentful-modal').modal('show');
-
+		//if (_this.text() == "Denied") {
+		var referrals_modal = $('.referrals-wrapper #incentful-modal');
+		referrals_modal.find('.modal-title').text('Note for Denying Referral');
+		referrals_modal.find('.modal-body').html('<textarea class="modal-textarea"></textarea>');
+		referrals_modal.modal('show');
+		referrals_modal.on('shown.bs.modal', function () {
+			var options = {
+				selector: '.modal-textarea',
+				menubar: false,
+				statusbar: false
+			};
+			tinymceHelper(options);
+		});
+		//	}
 
 		// Change status of referral
 		var data;
@@ -18371,7 +18382,9 @@ $(function () {
 	// END SIDEBAR
 
 	// TINYMCE
-	//tinymce.init({selector: '.textarea'});
+	function tinymceHelper(options) {
+		tinymce.init(options);
+	}
 	// END TINYMCE
 
 	// JQUERY DATERANGEPICKER

@@ -632,6 +632,9 @@ div.tooltip.top {
 .fa-question-circle-o {
 	color: $text-color2;
 }
+.modal-footer {
+	border-top: 0;
+}
 /*** Common End ***/
 
 
@@ -1132,3 +1135,19 @@ div.tooltip.top {
 	}
 }
 /*** Admin Dashboard End ***/
+
+/*** TinyMCE ***/
+.mce-tinymce.mce-container.mce-panel {
+	background: #fff;
+	border: 0;
+	.mce-edit-area {
+	    border: 1px solid #ddd !important;
+	}
+	.mce-branding-powered-by {
+		display: none;
+	}
+}
+.mce-toolbar-grp.mce-container.mce-panel, .mce-widget.mce-btn {
+	background: #fff;
+}
+/*** TinyMCE End ***/
