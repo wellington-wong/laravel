@@ -121,7 +121,7 @@ $(function (){
 		}
 
 		// Prepare admin note
-       	//if (_this.text() == "Denied") {
+       	if (_this.text() == "Denied") {
        		var referrals_modal = $('.referrals-wrapper #incentful-modal');
        		referrals_modal.find('.modal-title').text('Note for Denying Referral');
        		referrals_modal.find('.modal-body').html('<textarea class="modal-textarea"></textarea>');
@@ -134,7 +134,7 @@ $(function (){
 				}
 				tinymceHelper(options);
 			});
-       //	}
+       	}
 
 		// Change status of referral
 		var data;
