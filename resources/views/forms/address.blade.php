@@ -38,7 +38,7 @@
 
 <div class="form-group col-lg-2">
 	<label></label>
-	@include('forms.states', [])
+	@include('forms.states', ['state' => $state])
 </div>
 
 <div class="form-group col-lg-2">
