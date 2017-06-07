@@ -55,7 +55,7 @@
                                                    <table border="0" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
                                                       <tr>
                                                          <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
-                                                            <a href="{{ env('APP_URL') }}/referrals" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #FFF; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097D1; border-top: 10px solid #3097D1; border-right: 18px solid #3097D1; border-bottom: 10px solid #3097D1; border-left: 18px solid #3097D1;">Join the club and refer others!</a>
+                                                            <a href="https://{{ env('APP_URL') }}/referral/create" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #FFF; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097D1; border-top: 10px solid #3097D1; border-right: 18px solid #3097D1; border-bottom: 10px solid #3097D1; border-left: 18px solid #3097D1;">Refer more!</a>
                                                          </td>
                                                       </tr>
                                                    </table>
@@ -72,7 +72,7 @@
                                     <tr>
                                        <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
                                           <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; line-height: 1.5em; margin-top: 0; text-align: left; font-size: 12px;">If you’re having trouble clicking the "Join the club and refere others!" button, copy and paste the URL below
-                                             into your web browser: <a href="https://{{ env('APP_URL') }}/referrals" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;"></a><a href="{{ env('APP_URL') }}/referrals" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;">{{ env('APP_URL') }}/referrals</a>
+                                             into your web browser: <a href="http://{{ env('APP_URL') }}/referral/create" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;"></a><a href="https://{{ env('APP_URL') }}/referral/create" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;">https://{{ env('APP_URL') }}/referral/create</a>
                                           </p>
                                        </td>
                                     </tr>
