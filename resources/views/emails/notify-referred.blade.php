@@ -40,9 +40,11 @@
                               <td class="content-cell" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 35px;">
                                  <h1 style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #2F3133; font-size: 19px; font-weight: bold; margin-top: 0; text-align: left;">Hello!</h1>                                 
                                  <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">{{ $referral_message }}</p>
-                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Reason: {{ $note }}</p>
-                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;"><strong>Referred:</strong> {{ isset($referred->first_name) ? $referred->first_name : '' }} {{ isset($referred->last_name) ? $referred->last_name : '' }}</p>
-                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;"><strong>Email:</strong> {{ isset($referred->email) ? $referred->email : '' }}</p>                                
+                                 @if ($referral->status == 4)<p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Reason: {{ $note }}</p>@endif
+                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
+                                    <strong>Referred:</strong> {{ isset($referred->first_name) ? $referred->first_name : '' }} {{ isset($referred->last_name) ? $referred->last_name : '' }}<br />
+                                    <strong>Email:</strong> {{ isset($referred->email) ? $referred->email : '' }}
+                                 </p>
    
                                  <table class="action" align="center" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; margin: 30px auto; padding: 0; text-align: center; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;">
                                     <tr>
