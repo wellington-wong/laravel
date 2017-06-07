@@ -100,11 +100,18 @@ class Referral extends Model
         $referral->note = $request->get('note');
         $referral->save();
 
+        $referral_message = '';
+        if ($referral->status == self::STATUS_DENIED) {
+            $referral_message = 'Referral has been denied';
+        } else if ($referral->status == self::STATUS_APPROVED) {
+            $referral_message = 'Referral has been approved';
+        }
         $email = $referral->first()->referred->email;
-        \Mail::send('emails.notify-referred', array('user' => auth()->user(), 'note' => $referral->note), function ($message) use ($email) {
+        \Mail::send('emails.notify-referred', array('user' => auth()->user(), 'note' => $referral->note, 'body' => $referral_message), function ($message) use ($email) {
             $message->from('admin@' . env('APP_URL'), 'Laravel');
             $message->to($email);
         });
+
 
         return $referral;
     }
