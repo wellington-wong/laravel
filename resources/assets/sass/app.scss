@@ -705,9 +705,15 @@ div.tooltip.top {
 					line-height: 21px;
 					padding-left: 10px;
 				}
-				&.filter-by .dropdown-menu {
-					left: 6px;
-					font-size: 13px;
+				&.filter-by {
+					.dropdown-menu {
+						left: 6px;
+						font-size: 13px;
+					}
+					.fa {
+						top: 5px;
+						right: 12px;
+					}
 				}
 				input.text:-moz-placeholder {
 				    color: $bg-color;
