@@ -102,12 +102,13 @@ class Referral extends Model
 
         $referral_message = '';
         if ($referral->status == self::STATUS_DENIED) {
-            $referral_message = 'Referral has been denied';
+            $referral_message = 'Your referral has been denied';
         } else if ($referral->status == self::STATUS_APPROVED) {
-            $referral_message = 'Referral has been approved';
+            $referral_message = 'Your eferral has been approved';
         }
+
         $email = $referral->first()->referred->email;
-        \Mail::send('emails.notify-referred', array('user' => auth()->user(), 'note' => $referral->note, 'body' => $referral_message), function ($message) use ($email) {
+        \Mail::send('emails.notify-referred', array('user' => auth()->user(), 'note' => $referral->note, 'referral_message' => $referral_message, 'referred' => $referral->referred), function ($message) use ($email) {
             $message->from('admin@' . env('APP_URL'), 'Laravel');
             $message->to($email);
         });
