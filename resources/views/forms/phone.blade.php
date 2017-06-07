@@ -1,5 +1,5 @@
 <div class="form-group referral-phone {{ isset($no_col) ? '' : 'col-md-6' }}">
-    @if (!isset($placeholder)) <label class="{{ isset($class) ? $class : '' }}"><?php echo isset($phone_label) ? $phone_label : 'Phone Number' ?></label> @endif
+    @if (!isset($placeholder)) <label class="{{ isset($class) ? $class : '' }}">{{ isset($phone_label) ? $phone_label : 'Phone Number' }}</label> @endif
     {{ Form::hidden('phone_country', 'US') }}
     {{-- Form::select('phone_country', \Propaganistas\LaravelIntl\Facades\Country::all(), 'US' ) --}}
     @if (isset($class)) <div class="{{ isset($class) ? $class : '' }} col-md-12"> @endif
