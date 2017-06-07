@@ -118,10 +118,7 @@ class Referral extends Model
 
         $referral = $this->find($request->get('id'));
         $referral->status = $request->get('status');
-        return $referral;
-        //$referral->save();
-
-        return;
+        return $referral->delete();
     }
 
     /**
