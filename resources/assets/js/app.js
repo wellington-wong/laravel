@@ -564,8 +564,4 @@ $(function (){
 	});
 // END CREATE COMPANY
 
-// TABLESAW
-	$('.table-referral').tablesaw();
-// END TABLESAW
-
 });

@@ -1831,7 +1831,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(169)("./" + name);
+            __webpack_require__(170)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4466,7 +4466,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(132)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(133)(module)))
 
 /***/ }),
 /* 1 */,
@@ -4476,7 +4476,7 @@ return hooks;
 "use strict";
 
 
-var bind = __webpack_require__(12);
+var bind = __webpack_require__(13);
 
 /*global toString:true*/
 
@@ -5768,7 +5768,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(2);
-var normalizeHeaderName = __webpack_require__(150);
+var normalizeHeaderName = __webpack_require__(151);
 
 var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 var DEFAULT_CONTENT_TYPE = {
@@ -5785,10 +5785,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(9);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(9);
   }
   return adapter;
 }
@@ -5865,16 +5865,2346 @@ module.exports = defaults;
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Shoestring - v2.0.0 - 2017-02-14
+* http://github.com/filamentgroup/shoestring/
+* Copyright (c) 2017 Scott Jehl, Filament Group, Inc; Licensed MIT & GPLv2 */ 
+(function( factory ) {
+	if( true ) {
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(8) ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof module === 'object' && module.exports) {
+		// Node/CommonJS
+		module.exports = factory();
+	} else {
+		// Browser globals
+		factory();
+	}
+}(function () {
+	var win = typeof window !== "undefined" ? window : this;
+	var doc = win.document;
+
+
+	/**
+	 * The shoestring object constructor.
+	 *
+	 * @param {string,object} prim The selector to find or element to wrap.
+	 * @param {object} sec The context in which to match the `prim` selector.
+	 * @returns shoestring
+	 * @this window
+	 */
+	function shoestring( prim, sec ){
+		var pType = typeof( prim ),
+				ret = [],
+				sel;
+
+		// return an empty shoestring object
+		if( !prim ){
+			return new Shoestring( ret );
+		}
+
+		// ready calls
+		if( prim.call ){
+			return shoestring.ready( prim );
+		}
+
+		// handle re-wrapping shoestring objects
+		if( prim.constructor === Shoestring && !sec ){
+			return prim;
+		}
+
+		// if string starting with <, make html
+		if( pType === "string" && prim.indexOf( "<" ) === 0 ){
+			var dfrag = doc.createElement( "div" );
+
+			dfrag.innerHTML = prim;
+
+			// TODO depends on children (circular)
+			return shoestring( dfrag ).children().each(function(){
+				dfrag.removeChild( this );
+			});
+		}
+
+		// if string, it's a selector, use qsa
+		if( pType === "string" ){
+			if( sec ){
+				return shoestring( sec ).find( prim );
+			}
+
+			try {
+				sel = doc.querySelectorAll( prim );
+			} catch( e ) {
+				shoestring.error( 'queryselector', prim );
+			}
+
+			return new Shoestring( sel, prim );
+		}
+
+		// array like objects or node lists
+		if( Object.prototype.toString.call( pType ) === '[object Array]' ||
+				(win.NodeList && prim instanceof win.NodeList) ){
+
+			return new Shoestring( prim, prim );
+		}
+
+		// if it's an array, use all the elements
+		if( prim.constructor === Array ){
+			return new Shoestring( prim, prim );
+		}
+
+		// otherwise assume it's an object the we want at an index
+		return new Shoestring( [prim], prim );
+	}
+
+	var Shoestring = function( ret, prim ) {
+		this.length = 0;
+		this.selector = prim;
+		shoestring.merge(this, ret);
+	};
+
+	// TODO only required for tests
+	Shoestring.prototype.reverse = [].reverse;
+
+	// For adding element set methods
+	shoestring.fn = Shoestring.prototype;
+
+	shoestring.Shoestring = Shoestring;
+
+	// For extending objects
+	// TODO move to separate module when we use prototypes
+	shoestring.extend = function( first, second ){
+		for( var i in second ){
+			if( second.hasOwnProperty( i ) ){
+				first[ i ] = second[ i ];
+			}
+		}
+
+		return first;
+	};
+
+	// taken directly from jQuery
+	shoestring.merge = function( first, second ) {
+		var len, j, i;
+
+		len = +second.length,
+		j = 0,
+		i = first.length;
+
+		for ( ; j < len; j++ ) {
+			first[ i++ ] = second[ j ];
+		}
+
+		first.length = i;
+
+		return first;
+	};
+
+	// expose
+	win.shoestring = shoestring;
+
+
+
+	shoestring.enUS = {
+		errors: {
+			"prefix": "Shoestring does not support",
+
+			"ajax-url-query": "data with urls that have existing query params",
+			"children-selector" : "passing selectors into .child, try .children().filter( selector )",
+			"click": "the click method. Try using .on( 'click', function(){}) or .trigger( 'click' ) instead.",
+			"css-get" : "getting computed attributes from the DOM.",
+			"data-attr-alias": "the data method aliased to `data-` DOM attributes.",
+			"each-length": "objects without a length passed into each",
+			"has-class" : "the hasClass method. Try using .is( '.klassname' ) instead.",
+			"html-function" : "passing a function into .html. Try generating the html you're passing in an outside function",
+			"index-shoestring-object": "an index call with a shoestring object argument. Use .get(0) on the argument instead.",
+			"live-delegate" : "the .live or .delegate methods. Use .bind or .on instead.",
+			"map": "the map method. Try using .each to make a new object.",
+			"next-selector" : "passing selectors into .next, try .next().filter( selector )",
+			"off-delegate" : ".off( events, selector, handler ) or .off( events, selector ). Use .off( eventName, callback ) instead.",
+			"next-until" : "the .nextUntil method. Use .next in a loop until you reach the selector, don't include the selector",
+			"on-delegate" : "the .on method with three or more arguments. Using .on( eventName, callback ) instead.",
+			"outer-width": "the outerWidth method. Try combining .width() with .css for padding-left, padding-right, and the border of the left and right side.",
+			"prev-selector" : "passing selectors into .prev, try .prev().filter( selector )",
+			"prevall-selector" : "passing selectors into .prevAll, try .prevAll().filter( selector )",
+			"queryselector": "all CSS selectors on querySelector (varies per browser support). Specifically, this failed: ",
+			"siblings-selector": "passing selector into siblings not supported, try .siblings().find( ... )",
+			"show-hide": "the show or hide methods. Use display: block (or whatever you'd like it to be) or none instead",
+			"text-setter": "setting text via the .text method.",
+			"toggle-class" : "the toggleClass method. Try using addClass or removeClass instead.",
+			"trim": "the trim method. Use String.prototype.trim."
+		}
+	};
+
+	shoestring.error = function( id, str ) {
+		var errors = shoestring.enUS.errors;
+		throw new Error( errors.prefix + " " + errors[id] + ( str ? " " + str : "" ) );
+	};
+
+
+
+	var xmlHttp = function() {
+		try {
+			return new XMLHttpRequest();
+		}
+		catch( e ){
+			return new ActiveXObject( "Microsoft.XMLHTTP" );
+		}
+	};
+
+	/**
+	 * Make an HTTP request to a url.
+	 *
+	 * **NOTE** the following options are supported:
+	 *
+	 * - *method* - The HTTP method used with the request. Default: `GET`.
+	 * - *data* - Raw object with keys and values to pass with request as query params. Default `null`.
+	 * - *headers* - Set of request headers to add. Default `{}`.
+	 * - *async* - Whether the opened request is asynchronouse. Default `true`.
+	 * - *success* - Callback for successful request and response. Passed the response data.
+	 * - *error* - Callback for failed request and response.
+	 * - *cancel* - Callback for cancelled request and response.
+	 *
+	 * @param {string} url The url to request.
+	 * @param {object} options The options object, see Notes.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+
+	shoestring.ajax = function( url, options ) {
+		var params = "", req = xmlHttp(), settings, key;
+
+		settings = shoestring.extend( {}, shoestring.ajax.settings );
+
+		if( options ){
+			shoestring.extend( settings, options );
+		}
+
+		if( !url ){
+			url = settings.url;
+		}
+
+		if( !req || !url ){
+			return;
+		}
+
+		// create parameter string from data object
+		if( settings.data ){
+			for( key in settings.data ){
+				if( settings.data.hasOwnProperty( key ) ){
+					if( params !== "" ){
+						params += "&";
+					}
+					params += encodeURIComponent( key ) + "=" +
+						encodeURIComponent( settings.data[key] );
+				}
+			}
+		}
+
+		// append params to url for GET requests
+		if( settings.method === "GET" && params ){
+						if( url.indexOf("?") >= 0 ){
+				shoestring.error( 'ajax-url-query' );
+			}
+			
+			url += "?" + params;
+		}
+
+		req.open( settings.method, url, settings.async );
+
+		if( req.setRequestHeader ){
+			req.setRequestHeader( "X-Requested-With", "XMLHttpRequest" );
+
+			// Set 'Content-type' header for POST requests
+			if( settings.method === "POST" && params ){
+				req.setRequestHeader( "Content-type", "application/x-www-form-urlencoded" );
+			}
+
+			for( key in settings.headers ){
+				if( settings.headers.hasOwnProperty( key ) ){
+					req.setRequestHeader(key, settings.headers[ key ]);
+				}
+			}
+		}
+
+		req.onreadystatechange = function () {
+			if( req.readyState === 4 ){
+				// Trim the whitespace so shoestring('<div>') works
+				var res = (req.responseText || '').replace(/^\s+|\s+$/g, '');
+				if( req.status.toString().indexOf( "0" ) === 0 ){
+					return settings.cancel( res, req.status, req );
+				}
+				else if ( req.status.toString().match( /^(4|5)/ ) && RegExp.$1 ){
+					return settings.error( res, req.status, req );
+				}
+				else if (settings.success) {
+					return settings.success( res, req.status, req );
+				}
+			}
+		};
+
+		if( req.readyState === 4 ){
+			return req;
+		}
+
+		// Send request
+		if( settings.method === "POST" && params ){
+			req.send( params );
+		} else {
+			req.send();
+		}
+
+		return req;
+	};
+
+	shoestring.ajax.settings = {
+		success: function(){},
+		error: function(){},
+		cancel: function(){},
+		method: "GET",
+		async: true,
+		data: null,
+		headers: {}
+	};
+
+
+
+	/**
+	 * Helper function wrapping a call to [ajax](ajax.js.html) using the `GET` method.
+	 *
+	 * @param {string} url The url to GET from.
+	 * @param {function} callback Callback to invoke on success.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.get = function( url, callback ){
+		return shoestring.ajax( url, { success: callback } );
+	};
+
+
+
+  /**
+	 * Load the HTML response from `url` into the current set of elements.
+	 *
+	 * @param {string} url The url to GET from.
+	 * @param {function} callback Callback to invoke after HTML is inserted.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.load = function( url, callback ){
+		var self = this,
+			args = arguments,
+			intCB = function( data ){
+				self.each(function(){
+					shoestring( this ).html( data );
+				});
+
+				if( callback ){
+					callback.apply( self, args );
+				}
+		  };
+
+		shoestring.ajax( url, { success: intCB } );
+		return this;
+	};
+
+
+
+	/**
+	 * Helper function wrapping a call to [ajax](ajax.js.html) using the `POST` method.
+	 *
+	 * @param {string} url The url to POST to.
+	 * @param {object} data The data to send.
+	 * @param {function} callback Callback to invoke on success.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.post = function( url, data, callback ){
+		return shoestring.ajax( url, { data: data, method: "POST", success: callback } );
+	};
+
+
+
+	/**
+	 * Iterates over `shoestring` collections.
+	 *
+	 * @param {function} callback The callback to be invoked on each element and index
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.each = function( callback ){
+		return shoestring.each( this, callback );
+	};
+
+	shoestring.each = function( collection, callback ) {
+		var val;
+		if( !( "length" in collection ) ) {
+			shoestring.error( 'each-length' );
+		}
+		for( var i = 0, il = collection.length; i < il; i++ ){
+			val = callback.call( collection[i], i, collection[i] );
+			if( val === false ){
+				break;
+			}
+		}
+
+		return collection;
+	};
+
+
+
+  /**
+	 * Check for array membership.
+	 *
+	 * @param {object} needle The thing to find.
+	 * @param {object} haystack The thing to find the needle in.
+	 * @return {boolean}
+	 * @this window
+	 */
+	shoestring.inArray = function( needle, haystack ){
+		var isin = -1;
+		for( var i = 0, il = haystack.length; i < il; i++ ){
+			if( haystack.hasOwnProperty( i ) && haystack[ i ] === needle ){
+				isin = i;
+			}
+		}
+		return isin;
+	};
+
+
+
+  /**
+	 * Bind callbacks to be run when the DOM is "ready".
+	 *
+	 * @param {function} fn The callback to be run
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.ready = function( fn ){
+		if( ready && fn ){
+			fn.call( doc );
+		}
+		else if( fn ){
+			readyQueue.push( fn );
+		}
+		else {
+			runReady();
+		}
+
+		return [doc];
+	};
+
+	// TODO necessary?
+	shoestring.fn.ready = function( fn ){
+		shoestring.ready( fn );
+		return this;
+	};
+
+	// Empty and exec the ready queue
+	var ready = false,
+		readyQueue = [],
+		runReady = function(){
+			if( !ready ){
+				while( readyQueue.length ){
+					readyQueue.shift().call( doc );
+				}
+				ready = true;
+			}
+		};
+
+	// If DOM is already ready at exec time, depends on the browser.
+	// From: https://github.com/mobify/mobifyjs/blob/526841be5509e28fc949038021799e4223479f8d/src/capture.js#L128
+	if (doc.attachEvent ? doc.readyState === "complete" : doc.readyState !== "loading") {
+		runReady();
+	} else {
+		doc.addEventListener( "DOMContentLoaded", runReady, false );
+		doc.addEventListener( "readystatechange", runReady, false );
+		win.addEventListener( "load", runReady, false );
+	}
+
+
+
+  /**
+	 * Checks the current set of elements against the selector, if one matches return `true`.
+	 *
+	 * @param {string} selector The selector to check.
+	 * @return {boolean}
+	 * @this {shoestring}
+	 */
+	shoestring.fn.is = function( selector ){
+		var ret = false, self = this, parents, check;
+
+		// assume a dom element
+		if( typeof selector !== "string" ){
+			// array-like, ie shoestring objects or element arrays
+			if( selector.length && selector[0] ){
+				check = selector;
+			} else {
+				check = [selector];
+			}
+
+			return _checkElements(this, check);
+		}
+
+		parents = this.parent();
+
+		if( !parents.length ){
+			parents = shoestring( doc );
+		}
+
+		parents.each(function( i, e ) {
+			var children;
+
+				try {
+					children = e.querySelectorAll( selector );
+				} catch( e ) {
+					shoestring.error( 'queryselector', selector );
+				}
+
+			ret = _checkElements( self, children );
+		});
+
+		return ret;
+	};
+
+	function _checkElements(needles, haystack){
+		var ret = false;
+
+		needles.each(function() {
+			var j = 0;
+
+			while( j < haystack.length ){
+				if( this === haystack[j] ){
+					ret = true;
+				}
+
+				j++;
+			}
+		});
+
+		return ret;
+	}
+
+
+
+	/**
+	 * Get data attached to the first element or set data values on all elements in the current set.
+	 *
+	 * @param {string} name The data attribute name.
+	 * @param {any} value The value assigned to the data attribute.
+	 * @return {any|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.data = function( name, value ){
+		if( name !== undefined ){
+			if( value !== undefined ){
+				return this.each(function(){
+					if( !this.shoestringData ){
+						this.shoestringData = {};
+					}
+
+					this.shoestringData[ name ] = value;
+				});
+			}
+			else {
+				if( this[ 0 ] ) {
+					if( this[ 0 ].shoestringData ) {
+						return this[ 0 ].shoestringData[ name ];
+					}
+					if( shoestring( this[ 0 ] ).is( "[data-" + name + "]" ) ){
+						shoestring.error( 'data-attr-alias' );
+					}
+				}
+			}
+		}
+		else {
+			return this[ 0 ] ? this[ 0 ].shoestringData || {} : undefined;
+		}
+	};
+
+
+	/**
+	 * Remove data associated with `name` or all the data, for each element in the current set.
+	 *
+	 * @param {string} name The data attribute name.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeData = function( name ){
+		return this.each(function(){
+			if( name !== undefined && this.shoestringData ){
+				this.shoestringData[ name ] = undefined;
+				delete this.shoestringData[ name ];
+			}	else {
+				this[ 0 ].shoestringData = {};
+			}
+		});
+	};
+
+
+
+	/**
+	 * An alias for the `shoestring` constructor.
+	 */
+	win.$ = shoestring;
+
+
+
+	/**
+	 * Add a class to each DOM element in the set of elements.
+	 *
+	 * @param {string} className The name of the class to be added.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.addClass = function( className ){
+		var classes = className.replace(/^\s+|\s+$/g, '').split( " " );
+
+		return this.each(function(){
+			for( var i = 0, il = classes.length; i < il; i++ ){
+				if( this.className !== undefined &&
+						(this.className === "" ||
+						!this.className.match( new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)"))) ){
+					this.className += " " + classes[ i ];
+				}
+			}
+		});
+	};
+
+
+
+  /**
+	 * Add elements matching the selector to the current set.
+	 *
+	 * @param {string} selector The selector for the elements to add from the DOM
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.add = function( selector ){
+		var ret = [];
+		this.each(function(){
+			ret.push( this );
+		});
+
+		shoestring( selector ).each(function(){
+			ret.push( this );
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Insert an element or HTML string after each element in the current set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.after = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		if( fragment.length > 1 ){
+			fragment = fragment.reverse();
+		}
+		return this.each(function( i ){
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				var insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
+				this.parentNode.insertBefore( insertEl, this.nextSibling );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Insert an element or HTML string as the last child of each element in the set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.append = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				this.appendChild( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ] );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Insert the current set as the last child of the elements matching the selector.
+	 *
+	 * @param {string} selector The selector after which to append the current set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.appendTo = function( selector ){
+		return this.each(function(){
+			shoestring( selector ).append( this );
+		});
+	};
+
+
+
+  /**
+	 * Get the value of the first element of the set or set the value of all the elements in the set.
+	 *
+	 * @param {string} name The attribute name.
+	 * @param {string} value The new value for the attribute.
+	 * @return {shoestring|string|undefined}
+	 * @this {shoestring}
+	 */
+	shoestring.fn.attr = function( name, value ){
+		var nameStr = typeof( name ) === "string";
+
+		if( value !== undefined || !nameStr ){
+			return this.each(function(){
+				if( nameStr ){
+					this.setAttribute( name, value );
+				}	else {
+					for( var i in name ){
+						if( name.hasOwnProperty( i ) ){
+							this.setAttribute( i, name[ i ] );
+						}
+					}
+				}
+			});
+		} else {
+			return this[ 0 ] ? this[ 0 ].getAttribute( name ) : undefined;
+		}
+	};
+
+
+
+	/**
+	 * Insert an element or HTML string before each element in the current set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.before = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				this.parentNode.insertBefore( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ], this );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Get the children of the current collection.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.children = function(){
+				if( arguments.length > 0 ){
+			shoestring.error( 'children-selector' );
+		}
+				var ret = [],
+			childs,
+			j;
+		this.each(function(){
+			childs = this.children;
+			j = -1;
+
+			while( j++ < childs.length-1 ){
+				if( shoestring.inArray(  childs[ j ], ret ) === -1 ){
+					ret.push( childs[ j ] );
+				}
+			}
+		});
+		return shoestring(ret);
+	};
+
+
+
+	/**
+	 * Clone and return the current set of nodes into a new `shoestring` object.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.clone = function() {
+		var ret = [];
+
+		this.each(function() {
+			ret.push( this.cloneNode( true ) );
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Find an element matching the selector in the set of the current element and its parents.
+	 *
+	 * @param {string} selector The selector used to identify the target element.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.closest = function( selector ){
+		var ret = [];
+
+		if( !selector ){
+			return shoestring( ret );
+		}
+
+		this.each(function(){
+			var element, $self = shoestring( element = this );
+
+			if( $self.is(selector) ){
+				ret.push( this );
+				return;
+			}
+
+			while( element.parentElement ) {
+				if( shoestring(element.parentElement).is(selector) ){
+					ret.push( element.parentElement );
+					break;
+				}
+
+				element = element.parentElement;
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+  shoestring.cssExceptions = {
+		'float': [ 'cssFloat' ]
+	};
+
+
+
+	(function() {
+		var cssExceptions = shoestring.cssExceptions;
+
+		// IE8 uses marginRight instead of margin-right
+		function convertPropertyName( str ) {
+			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
+				return character.toUpperCase();
+			});
+		}
+
+		function _getStyle( element, property ) {
+			return win.getComputedStyle( element, null ).getPropertyValue( property );
+		}
+
+		var vendorPrefixes = [ '', '-webkit-', '-ms-', '-moz-', '-o-', '-khtml-' ];
+
+		/**
+		 * Private function for getting the computed style of an element.
+		 *
+		 * **NOTE** Please use the [css](../css.js.html) method instead.
+		 *
+		 * @method _getStyle
+		 * @param {HTMLElement} element The element we want the style property for.
+		 * @param {string} property The css property we want the style for.
+		 */
+		shoestring._getStyle = function( element, property ) {
+			var convert, value, j, k;
+
+			if( cssExceptions[ property ] ) {
+				for( j = 0, k = cssExceptions[ property ].length; j < k; j++ ) {
+					value = _getStyle( element, cssExceptions[ property ][ j ] );
+
+					if( value ) {
+						return value;
+					}
+				}
+			}
+
+			for( j = 0, k = vendorPrefixes.length; j < k; j++ ) {
+				convert = convertPropertyName( vendorPrefixes[ j ] + property );
+
+				// VendorprefixKeyName || key-name
+				value = _getStyle( element, convert );
+
+				if( convert !== property ) {
+					value = value || _getStyle( element, property );
+				}
+
+				if( vendorPrefixes[ j ] ) {
+					// -vendorprefix-key-name
+					value = value || _getStyle( element, vendorPrefixes[ j ] + property );
+				}
+
+				if( value ) {
+					return value;
+				}
+			}
+
+			return undefined;
+		};
+	})();
+
+
+
+	(function() {
+		var cssExceptions = shoestring.cssExceptions;
+
+		// IE8 uses marginRight instead of margin-right
+		function convertPropertyName( str ) {
+			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
+				return character.toUpperCase();
+			});
+		}
+
+		/**
+		 * Private function for setting the style of an element.
+		 *
+		 * **NOTE** Please use the [css](../css.js.html) method instead.
+		 *
+		 * @method _setStyle
+		 * @param {HTMLElement} element The element we want to style.
+		 * @param {string} property The property being used to style the element.
+		 * @param {string} value The css value for the style property.
+		 */
+		shoestring._setStyle = function( element, property, value ) {
+			var convertedProperty = convertPropertyName(property);
+
+			element.style[ property ] = value;
+
+			if( convertedProperty !== property ) {
+				element.style[ convertedProperty ] = value;
+			}
+
+			if( cssExceptions[ property ] ) {
+				for( var j = 0, k = cssExceptions[ property ].length; j<k; j++ ) {
+					element.style[ cssExceptions[ property ][ j ] ] = value;
+				}
+			}
+		};
+	})();
+
+
+
+	/**
+	 * Get the compute style property of the first element or set the value of a style property
+	 * on all elements in the set.
+	 *
+	 * @method _setStyle
+	 * @param {string} property The property being used to style the element.
+	 * @param {string|undefined} value The css value for the style property.
+	 * @return {string|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.css = function( property, value ){
+		if( !this[0] ){
+			return;
+		}
+
+		if( typeof property === "object" ) {
+			return this.each(function() {
+				for( var key in property ) {
+					if( property.hasOwnProperty( key ) ) {
+						shoestring._setStyle( this, key, property[key] );
+					}
+				}
+			});
+		}	else {
+			// assignment else retrieve first
+			if( value !== undefined ){
+				return this.each(function(){
+					shoestring._setStyle( this, property, value );
+				});
+			}
+
+			return shoestring._getStyle( this[0], property );
+		}
+	};
+
+
+
+	/**
+	 * Returns the indexed element wrapped in a new `shoestring` object.
+	 *
+	 * @param {integer} index The index of the element to wrap and return.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.eq = function( index ){
+		if( this[index] ){
+			return shoestring( this[index] );
+		}
+
+		return shoestring([]);
+	};
+
+
+
+	/**
+	 * Filter out the current set if they do *not* match the passed selector or
+	 * the supplied callback returns false
+	 *
+	 * @param {string,function} selector The selector or boolean return value callback used to filter the elements.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.filter = function( selector ){
+		var ret = [];
+
+		this.each(function( index ){
+			var wsel;
+
+			if( typeof selector === 'function' ) {
+				if( selector.call( this, index ) !== false ) {
+					ret.push( this );
+				}
+			} else {
+				if( !this.parentNode ){
+					var context = shoestring( doc.createDocumentFragment() );
+
+					context[ 0 ].appendChild( this );
+					wsel = shoestring( selector, context );
+				} else {
+					wsel = shoestring( selector, this.parentNode );
+				}
+
+				if( shoestring.inArray( this, wsel ) > -1 ){
+					ret.push( this );
+				}
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Find descendant elements of the current collection.
+	 *
+	 * @param {string} selector The selector used to find the children
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.find = function( selector ){
+		var ret = [],
+			finds;
+		this.each(function(){
+			try {
+				finds = this.querySelectorAll( selector );
+			} catch( e ) {
+				shoestring.error( 'queryselector', selector );
+			}
+
+			for( var i = 0, il = finds.length; i < il; i++ ){
+				ret = ret.concat( finds[i] );
+			}
+		});
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Returns the first element of the set wrapped in a new `shoestring` object.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.first = function(){
+		return this.eq( 0 );
+	};
+
+
+
+	/**
+	 * Returns the raw DOM node at the passed index.
+	 *
+	 * @param {integer} index The index of the element to wrap and return.
+	 * @return {HTMLElement|undefined|array}
+	 * @this shoestring
+	 */
+	shoestring.fn.get = function( index ){
+
+		// return an array of elements if index is undefined
+		if( index === undefined ){
+			var elements = [];
+
+			for( var i = 0; i < this.length; i++ ){
+				elements.push( this[ i ] );
+			}
+
+			return elements;
+		} else {
+			return this[ index ];
+		}
+	};
+
+
+
+	/**
+	 * Private function for setting/getting the offset property for height/width.
+	 *
+	 * **NOTE** Please use the [width](width.js.html) or [height](height.js.html) methods instead.
+	 *
+	 * @param {shoestring} set The set of elements.
+	 * @param {string} name The string "height" or "width".
+	 * @param {float|undefined} value The value to assign.
+	 * @return shoestring
+	 * @this window
+	 */
+	shoestring._dimension = function( set, name, value ){
+		var offsetName;
+
+		if( value === undefined ){
+			offsetName = name.replace(/^[a-z]/, function( letter ) {
+				return letter.toUpperCase();
+			});
+
+			return set[ 0 ][ "offset" + offsetName ];
+		} else {
+			// support integer values as pixels
+			value = typeof value === "string" ? value : value + "px";
+
+			return set.each(function(){
+				this.style[ name ] = value;
+			});
+		}
+	};
+
+
+
+	/**
+	 * Gets the height value of the first element or sets the height for the whole set.
+	 *
+	 * @param {float|undefined} value The value to assign.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.height = function( value ){
+		return shoestring._dimension( this, "height", value );
+	};
+
+
+
+	var set = function( html ){
+		if( typeof html === "string" || typeof html === "number" ){
+			return this.each(function(){
+				this.innerHTML = "" + html;
+			});
+		} else {
+			var h = "";
+			if( typeof html.length !== "undefined" ){
+				for( var i = 0, l = html.length; i < l; i++ ){
+					h += html[i].outerHTML;
+				}
+			} else {
+				h = html.outerHTML;
+			}
+			return this.each(function(){
+				this.innerHTML = h;
+			});
+		}
+	};
+	/**
+	 * Gets or sets the `innerHTML` from all the elements in the set.
+	 *
+	 * @param {string|undefined} html The html to assign
+	 * @return {string|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.html = function( html ){
+				if( !!html && typeof html === "function" ){
+			shoestring.error( 'html-function' );
+		}
+				if( typeof html !== "undefined" ){
+			return set.call( this, html );
+		} else { // get
+			var pile = "";
+
+			this.each(function(){
+				pile += this.innerHTML;
+			});
+
+			return pile;
+		}
+	};
+
+
+
+	(function() {
+		function _getIndex( set, test ) {
+			var i, result, element;
+
+			for( i = result = 0; i < set.length; i++ ) {
+				element = set.item ? set.item(i) : set[i];
+
+				if( test(element) ){
+					return result;
+				}
+
+				// ignore text nodes, etc
+				// NOTE may need to be more permissive
+				if( element.nodeType === 1 ){
+					result++;
+				}
+			}
+
+			return -1;
+		}
+
+		/**
+		 * Find the index in the current set for the passed selector.
+		 * Without a selector it returns the index of the first node within the array of its siblings.
+		 *
+		 * @param {string|undefined} selector The selector used to search for the index.
+		 * @return {integer}
+		 * @this {shoestring}
+		 */
+		shoestring.fn.index = function( selector ){
+			var self, children;
+
+			self = this;
+
+			// no arg? check the children, otherwise check each element that matches
+			if( selector === undefined ){
+				children = ( ( this[ 0 ] && this[0].parentNode ) || doc.documentElement).childNodes;
+
+				// check if the element matches the first of the set
+				return _getIndex(children, function( element ) {
+					return self[0] === element;
+				});
+			} else {
+				if( selector.constructor === shoestring.Shoestring ) {
+					shoestring.error( "index-shoestring-object" );
+				}
+
+				// check if the element matches the first selected node from the parent
+				return _getIndex(self, function( element ) {
+					return element === (shoestring( selector, element.parentNode )[ 0 ]);
+				});
+			}
+		};
+	})();
+
+
+
+	/**
+	 * Insert the current set after the elements matching the selector.
+	 *
+	 * @param {string} selector The selector after which to insert the current set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.insertAfter = function( selector ){
+		return this.each(function(){
+			shoestring( selector ).after( this );
+		});
+	};
+
+
+
+	/**
+	 * Insert the current set before the elements matching the selector.
+	 *
+	 * @param {string} selector The selector before which to insert the current set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.insertBefore = function( selector ){
+		return this.each(function(){
+			shoestring( selector ).before( this );
+		});
+	};
+
+
+
+	/**
+	 * Returns the last element of the set wrapped in a new `shoestring` object.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.last = function(){
+		return this.eq( this.length - 1 );
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of siblings of each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.next = function(){
+				if( arguments.length > 0 ){
+			shoestring.error( 'next-selector' );
+		}
+		
+		var result = [];
+
+		// TODO need to implement map
+		this.each(function() {
+			var children, item, found;
+
+			// get the child nodes for this member of the set
+			children = shoestring( this.parentNode )[0].childNodes;
+
+			for( var i = 0; i < children.length; i++ ){
+				item = children.item( i );
+
+				// found the item we needed (found) which means current item value is
+				// the next node in the list, as long as it's viable grab it
+				// NOTE may need to be more permissive
+				if( found && item.nodeType === 1 ){
+					result.push( item );
+					break;
+				}
+
+				// find the current item and mark it as found
+				if( item === this ){
+					found = true;
+				}
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	/**
+	 * Removes elements from the current set.
+	 *
+	 * @param {string} selector The selector to use when removing the elements.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.not = function( selector ){
+		var ret = [];
+
+		this.each(function(){
+			var found = shoestring( selector, this.parentNode );
+
+			if( shoestring.inArray(this, found) === -1 ){
+				ret.push( this );
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Returns an object with the `top` and `left` properties corresponging to the first elements offsets.
+	 *
+	 * @return object
+	 * @this shoestring
+	 */
+	shoestring.fn.offset = function(){
+		return {
+			top: this[ 0 ].offsetTop,
+			left: this[ 0 ].offsetLeft
+		};
+	};
+
+
+
+	/**
+	 * Returns the set of first parents for each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.parent = function(){
+		var ret = [],
+			parent;
+
+		this.each(function(){
+			// no parent node, assume top level
+			// jQuery parent: return the document object for <html> or the parent node if it exists
+			parent = (this === doc.documentElement ? doc : this.parentNode);
+
+			// if there is a parent and it's not a document fragment
+			if( parent && parent.nodeType !== 11 ){
+				ret.push( parent );
+			}
+		});
+
+		return shoestring(ret);
+	};
+
+
+
+	/**
+	 * Returns the set of all parents matching the selector if provided for each element in the current set.
+	 *
+	 * @param {string} selector The selector to check the parents with.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.parents = function( selector ){
+		var ret = [];
+
+		this.each(function(){
+			var curr = this, match;
+
+			while( curr.parentElement && !match ){
+				curr = curr.parentElement;
+
+				if( selector ){
+					if( curr === shoestring( selector )[0] ){
+						match = true;
+
+						if( shoestring.inArray( curr, ret ) === -1 ){
+							ret.push( curr );
+						}
+					}
+				} else {
+					if( shoestring.inArray( curr, ret ) === -1 ){
+						ret.push( curr );
+					}
+				}
+			}
+		});
+
+		return shoestring(ret);
+	};
+
+
+
+	/**
+	 * Add an HTML string or element before the children of each element in the current set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML string or element to add.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prepend = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				var insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
+				if ( this.firstChild ){
+					this.insertBefore( insertEl, this.firstChild );
+				} else {
+					this.appendChild( insertEl );
+				}
+			}
+		});
+	};
+
+
+
+	/**
+	 * Add each element of the current set before the children of the selected elements.
+	 *
+	 * @param {string} selector The selector for the elements to add the current set to..
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prependTo = function( selector ){
+		return this.each(function(){
+			shoestring( selector ).prepend( this );
+		});
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of *one* siblingx before each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prev = function(){
+				if( arguments.length > 0 ){
+			shoestring.error( 'prev-selector' );
+		}
+		
+		var result = [];
+
+		// TODO need to implement map
+		this.each(function() {
+			var children, item, found;
+
+			// get the child nodes for this member of the set
+			children = shoestring( this.parentNode )[0].childNodes;
+
+			for( var i = children.length -1; i >= 0; i-- ){
+				item = children.item( i );
+
+				// found the item we needed (found) which means current item value is
+				// the next node in the list, as long as it's viable grab it
+				// NOTE may need to be more permissive
+				if( found && item.nodeType === 1 ){
+					result.push( item );
+					break;
+				}
+
+				// find the current item and mark it as found
+				if( item === this ){
+					found = true;
+				}
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of *all* siblings before each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prevAll = function(){
+				if( arguments.length > 0 ){
+			shoestring.error( 'prevall-selector' );
+		}
+		
+		var result = [];
+
+		this.each(function() {
+			var $previous = shoestring( this ).prev();
+
+			while( $previous.length ){
+				result.push( $previous[0] );
+				$previous = $previous.prev();
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	// Property normalization, a subset taken from jQuery src
+	shoestring.propFix = {
+		"class": "className",
+		contenteditable: "contentEditable",
+		"for": "htmlFor",
+		readonly: "readOnly",
+		tabindex: "tabIndex"
+	};
+
+
+
+	/**
+	 * Gets the property value from the first element or sets the property value on all elements of the currrent set.
+   *
+	 * @param {string} name The property name.
+   * @param {any} value The property value.
+	 * @return {any|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.prop = function( name, value ){
+		if( !this[0] ){
+			return;
+		}
+
+		name = shoestring.propFix[ name ] || name;
+
+		if( value !== undefined ){
+			return this.each(function(){
+				this[ name ] = value;
+			});
+		}	else {
+			return this[ 0 ][ name ];
+		}
+	};
+
+
+
+	/**
+	 * Remove an attribute from each element in the current set.
+	 *
+	 * @param {string} name The name of the attribute.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeAttr = function( name ){
+		return this.each(function(){
+			this.removeAttribute( name );
+		});
+	};
+
+
+
+	/**
+	 * Remove a class from each DOM element in the set of elements.
+	 *
+	 * @param {string} className The name of the class to be removed.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeClass = function( cname ){
+		var classes = cname.replace(/^\s+|\s+$/g, '').split( " " );
+
+		return this.each(function(){
+			var newClassName, regex;
+
+			for( var i = 0, il = classes.length; i < il; i++ ){
+				if( this.className !== undefined ){
+					regex = new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)", "gmi" );
+					newClassName = this.className.replace( regex, " " );
+
+					this.className = newClassName.replace(/^\s+|\s+$/g, '');
+				}
+			}
+		});
+	};
+
+
+
+	/**
+	 * Remove the current set of elements from the DOM.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.remove = function(){
+		return this.each(function(){
+			if( this.parentNode ) {
+				this.parentNode.removeChild( this );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Remove a proprety from each element in the current set.
+	 *
+	 * @param {string} name The name of the property.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeProp = function( property ){
+		var name = shoestring.propFix[ property ] || property;
+
+		return this.each(function(){
+			this[ name ] = undefined;
+			delete this[ name ];
+		});
+	};
+
+
+
+	/**
+	 * Replace each element in the current set with that argument HTML string or HTMLElement.
+	 *
+	 * @param {string|HTMLElement} fragment The value to assign.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.replaceWith = function( fragment ){
+		if( typeof( fragment ) === "string" ){
+			fragment = shoestring( fragment );
+		}
+
+		var ret = [];
+
+		if( fragment.length > 1 ){
+			fragment = fragment.reverse();
+		}
+		this.each(function( i ){
+			var clone = this.cloneNode( true ),
+				insertEl;
+			ret.push( clone );
+
+			// If there is no parentNode, this is pointless, drop it.
+			if( !this.parentNode ){ return; }
+
+			if( fragment.length === 1 ){
+				insertEl = i > 0 ? fragment[ 0 ].cloneNode( true ) : fragment[ 0 ];
+				this.parentNode.replaceChild( insertEl, this );
+			} else {
+				for( var j = 0, jl = fragment.length; j < jl; j++ ){
+					insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
+					this.parentNode.insertBefore( insertEl, this.nextSibling );
+				}
+				this.parentNode.removeChild( this );
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	shoestring.inputTypes = [
+		"text",
+		"hidden",
+		"password",
+		"color",
+		"date",
+		"datetime",
+		// "datetime\-local" matched by datetime
+		"email",
+		"month",
+		"number",
+		"range",
+		"search",
+		"tel",
+		"time",
+		"url",
+		"week"
+	];
+
+	shoestring.inputTypeTest = new RegExp( shoestring.inputTypes.join( "|" ) );
+
+
+	/**
+	 * Serialize child input element values into an object.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.serialize = function(){
+		var data = {};
+
+		shoestring( "input, select", this ).each(function(){
+			var type = this.type, name = this.name,	value = this.value;
+
+			if( shoestring.inputTypeTest.test( type ) ||
+					( type === "checkbox" || type === "radio" ) &&
+					this.checked ){
+
+				data[ name ] = value;
+			}	else if( this.nodeName === "SELECT" ){
+				data[ name ] = this.options[ this.selectedIndex ].nodeValue;
+			}
+		});
+
+		return data;
+	};
+
+
+
+  /**
+	 * Get all of the sibling elements for each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.siblings = function(){
+				if( arguments.length > 0 ) {
+			shoestring.error( 'siblings-selector' );
+		}
+		
+		if( !this.length ) {
+			return shoestring( [] );
+		}
+
+		var sibs = [], el = this[ 0 ].parentNode.firstChild;
+
+		do {
+			if( el.nodeType === 1 && el !== this[ 0 ] ) {
+				sibs.push( el );
+			}
+
+      el = el.nextSibling;
+		} while( el );
+
+		return shoestring( sibs );
+	};
+
+
+
+	var getText = function( elem ){
+		var node,
+			ret = "",
+			i = 0,
+			nodeType = elem.nodeType;
+
+		if ( !nodeType ) {
+			// If no nodeType, this is expected to be an array
+			while ( (node = elem[i++]) ) {
+				// Do not traverse comment nodes
+				ret += getText( node );
+			}
+		} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+			// Use textContent for elements
+			// innerText usage removed for consistency of new lines (jQuery #11153)
+			if ( typeof elem.textContent === "string" ) {
+				return elem.textContent;
+			} else {
+				// Traverse its children
+				for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+					ret += getText( elem );
+				}
+			}
+		} else if ( nodeType === 3 || nodeType === 4 ) {
+			return elem.nodeValue;
+		}
+		// Do not include comment or processing instruction nodes
+
+		return ret;
+	};
+
+  /**
+	 * Recursively retrieve the text content of the each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.text = function() {
+				if( arguments.length > 0 ){
+			shoestring.error( 'text-setter' );
+		}
+		
+		return getText( this );
+	};
+
+
+
+
+	/**
+	 * Get the value of the first element or set the value of all elements in the current set.
+	 *
+	 * @param {string} value The value to set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.val = function( value ){
+		var el;
+		if( value !== undefined ){
+			return this.each(function(){
+				if( this.tagName === "SELECT" ){
+					var optionSet, option,
+						options = this.options,
+						values = [],
+						i = options.length,
+						newIndex;
+
+					values[0] = value;
+					while ( i-- ) {
+						option = options[ i ];
+						if ( (option.selected = shoestring.inArray( option.value, values ) >= 0) ) {
+							optionSet = true;
+							newIndex = i;
+						}
+					}
+					// force browsers to behave consistently when non-matching value is set
+					if ( !optionSet ) {
+						this.selectedIndex = -1;
+					} else {
+						this.selectedIndex = newIndex;
+					}
+				} else {
+					this.value = value;
+				}
+			});
+		} else {
+			el = this[0];
+
+			if( el.tagName === "SELECT" ){
+				if( el.selectedIndex < 0 ){ return ""; }
+				return el.options[ el.selectedIndex ].value;
+			} else {
+				return el.value;
+			}
+		}
+	};
+
+
+
+	/**
+	 * Gets the width value of the first element or sets the width for the whole set.
+	 *
+	 * @param {float|undefined} value The value to assign.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.width = function( value ){
+		return shoestring._dimension( this, "width", value );
+	};
+
+
+
+	/**
+	 * Wraps the child elements in the provided HTML.
+	 *
+	 * @param {string} html The wrapping HTML.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.wrapInner = function( html ){
+		return this.each(function(){
+			var inH = this.innerHTML;
+
+			this.innerHTML = "";
+			shoestring( this ).append( shoestring( html ).html( inH ) );
+		});
+	};
+
+
+
+	function initEventCache( el, evt ) {
+		if ( !el.shoestringData ) {
+			el.shoestringData = {};
+		}
+		if ( !el.shoestringData.events ) {
+			el.shoestringData.events = {};
+		}
+		if ( !el.shoestringData.loop ) {
+			el.shoestringData.loop = {};
+		}
+		if ( !el.shoestringData.events[ evt ] ) {
+			el.shoestringData.events[ evt ] = [];
+		}
+	}
+
+	function addToEventCache( el, evt, eventInfo ) {
+		var obj = {};
+		obj.isCustomEvent = eventInfo.isCustomEvent;
+		obj.callback = eventInfo.callfunc;
+		obj.originalCallback = eventInfo.originalCallback;
+		obj.namespace = eventInfo.namespace;
+
+		el.shoestringData.events[ evt ].push( obj );
+
+		if( eventInfo.customEventLoop ) {
+			el.shoestringData.loop[ evt ] = eventInfo.customEventLoop;
+		}
+	}
+
+	/**
+	 * Bind a callback to an event for the currrent set of elements.
+	 *
+	 * @param {string} evt The event(s) to watch for.
+	 * @param {object,function} data Data to be included with each event or the callback.
+	 * @param {function} originalCallback Callback to be invoked when data is define.d.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.bind = function( evt, data, originalCallback ){
+
+				if( arguments.length > 3 ){
+			shoestring.error( 'on-delegate' );
+		}
+		if( typeof data === "string" ){
+			shoestring.error( 'on-delegate' );
+		}
+				if( typeof data === "function" ){
+			originalCallback = data;
+			data = null;
+		}
+
+		var evts = evt.split( " " );
+
+		// NOTE the `triggeredElement` is purely for custom events from IE
+		function encasedCallback( e, namespace, triggeredElement ){
+			var result;
+
+			if( e._namespace && e._namespace !== namespace ) {
+				return;
+			}
+
+			e.data = data;
+			e.namespace = e._namespace;
+
+			var returnTrue = function(){
+				return true;
+			};
+
+			e.isDefaultPrevented = function(){
+				return false;
+			};
+
+			var originalPreventDefault = e.preventDefault;
+			var preventDefaultConstructor = function(){
+				if( originalPreventDefault ) {
+					return function(){
+						e.isDefaultPrevented = returnTrue;
+						originalPreventDefault.call(e);
+					};
+				} else {
+					return function(){
+						e.isDefaultPrevented = returnTrue;
+						e.returnValue = false;
+					};
+				}
+			};
+
+			// thanks https://github.com/jonathantneal/EventListener
+			e.target = triggeredElement || e.target || e.srcElement;
+			e.preventDefault = preventDefaultConstructor();
+			e.stopPropagation = e.stopPropagation || function () {
+				e.cancelBubble = true;
+			};
+
+			result = originalCallback.apply(this, [ e ].concat( e._args ) );
+
+			if( result === false ){
+				e.preventDefault();
+				e.stopPropagation();
+			}
+
+			return result;
+		}
+
+		return this.each(function(){
+			var domEventCallback,
+				customEventCallback,
+				customEventLoop,
+				oEl = this;
+
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				var split = evts[ i ].split( "." ),
+					evt = split[ 0 ],
+					namespace = split.length > 0 ? split[ 1 ] : null;
+
+				domEventCallback = function( originalEvent ) {
+					if( oEl.ssEventTrigger ) {
+						originalEvent._namespace = oEl.ssEventTrigger._namespace;
+						originalEvent._args = oEl.ssEventTrigger._args;
+
+						oEl.ssEventTrigger = null;
+					}
+					return encasedCallback.call( oEl, originalEvent, namespace );
+				};
+				customEventCallback = null;
+				customEventLoop = null;
+
+				initEventCache( this, evt );
+
+				this.addEventListener( evt, domEventCallback, false );
+
+				addToEventCache( this, evt, {
+					callfunc: customEventCallback || domEventCallback,
+					isCustomEvent: !!customEventCallback,
+					customEventLoop: customEventLoop,
+					originalCallback: originalCallback,
+					namespace: namespace
+				});
+			}
+		});
+	};
+
+	shoestring.fn.on = shoestring.fn.bind;
+
+		shoestring.fn.live = function(){
+		shoestring.error( 'live-delegate' );
+	};
+
+	shoestring.fn.delegate = function(){
+		shoestring.error( 'live-delegate' );
+	};
+	
+
+
+	/**
+	 * Unbind a previous bound callback for an event.
+	 *
+	 * @param {string} event The event(s) the callback was bound to..
+	 * @param {function} callback Callback to unbind.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.unbind = function( event, callback ){
+
+				if( arguments.length >= 3 || typeof callback === "string" ){
+			shoestring.error( 'off-delegate' );
+		}
+		
+		var evts = event ? event.split( " " ) : [];
+
+		return this.each(function(){
+			if( !this.shoestringData || !this.shoestringData.events ) {
+				return;
+			}
+
+			if( !evts.length ) {
+				unbindAll.call( this );
+			} else {
+				var split, evt, namespace;
+				for( var i = 0, il = evts.length; i < il; i++ ){
+					split = evts[ i ].split( "." ),
+					evt = split[ 0 ],
+					namespace = split.length > 0 ? split[ 1 ] : null;
+
+					if( evt ) {
+						unbind.call( this, evt, namespace, callback );
+					} else {
+						unbindAll.call( this, namespace, callback );
+					}
+				}
+			}
+		});
+	};
+
+	function unbind( evt, namespace, callback ) {
+		var bound = this.shoestringData.events[ evt ];
+		if( !(bound && bound.length) ) {
+			return;
+		}
+
+		var matched = [], j, jl;
+		for( j = 0, jl = bound.length; j < jl; j++ ) {
+			if( !namespace || namespace === bound[ j ].namespace ) {
+				if( callback === undefined || callback === bound[ j ].originalCallback ) {
+					this.removeEventListener( evt, bound[ j ].callback, false );
+					matched.push( j );
+				}
+			}
+		}
+
+		for( j = 0, jl = matched.length; j < jl; j++ ) {
+			this.shoestringData.events[ evt ].splice( j, 1 );
+		}
+	}
+
+	function unbindAll( namespace, callback ) {
+		for( var evtKey in this.shoestringData.events ) {
+			unbind.call( this, evtKey, namespace, callback );
+		}
+	}
+
+	shoestring.fn.off = shoestring.fn.unbind;
+
+
+	/**
+	 * Bind a callback to an event for the currrent set of elements, unbind after one occurence.
+	 *
+	 * @param {string} event The event(s) to watch for.
+	 * @param {function} callback Callback to invoke on the event.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.one = function( event, callback ){
+		var evts = event.split( " " );
+
+		return this.each(function(){
+			var thisevt, cbs = {},	$t = shoestring( this );
+
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				thisevt = evts[ i ];
+
+				cbs[ thisevt ] = function( e ){
+					var $t = shoestring( this );
+
+					for( var j in cbs ) {
+						$t.unbind( j, cbs[ j ] );
+					}
+
+					return callback.apply( this, [ e ].concat( e._args ) );
+				};
+
+				$t.bind( thisevt, cbs[ thisevt ] );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Trigger an event on the first element in the set, no bubbling, no defaults.
+	 *
+	 * @param {string} event The event(s) to trigger.
+	 * @param {object} args Arguments to append to callback invocations.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.triggerHandler = function( event, args ){
+		var e = event.split( " " )[ 0 ],
+			el = this[ 0 ],
+			ret;
+
+		// See this.fireEvent( 'on' + evts[ i ], document.createEventObject() ); instead of click() etc in trigger.
+		if( doc.createEvent && el.shoestringData && el.shoestringData.events && el.shoestringData.events[ e ] ){
+			var bindings = el.shoestringData.events[ e ];
+			for (var i in bindings ){
+				if( bindings.hasOwnProperty( i ) ){
+					event = doc.createEvent( "Event" );
+					event.initEvent( e, true, true );
+					event._args = args;
+					args.unshift( event );
+
+					ret = bindings[ i ].originalCallback.apply( event.target, args );
+				}
+			}
+		}
+
+		return ret;
+	};
+
+
+
+	/**
+	 * Trigger an event on each of the DOM elements in the current set.
+	 *
+	 * @param {string} event The event(s) to trigger.
+	 * @param {object} args Arguments to append to callback invocations.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.trigger = function( event, args ){
+		var evts = event.split( " " );
+
+		return this.each(function(){
+			var split, evt, namespace;
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				split = evts[ i ].split( "." ),
+				evt = split[ 0 ],
+				namespace = split.length > 0 ? split[ 1 ] : null;
+
+				if( evt === "click" ){
+					if( this.tagName === "INPUT" && this.type === "checkbox" && this.click ){
+						this.click();
+						return false;
+					}
+				}
+
+				if( doc.createEvent ){
+					var event = doc.createEvent( "Event" );
+					event.initEvent( evt, true, true );
+					event._args = args;
+					event._namespace = namespace;
+
+					this.dispatchEvent( event );
+				}
+			}
+		});
+	};
+
+
+
+
+		shoestring.fn.hasClass = function(){
+		shoestring.error( 'has-class' );
+	};
+	
+
+
+		shoestring.fn.hide = function(){
+		shoestring.error( 'show-hide' );
+	};
+	
+
+
+		shoestring.fn.outerWidth = function(){
+		shoestring.error( 'outer-width' );
+	};
+	
+
+
+		shoestring.fn.show = function(){
+		shoestring.error( 'show-hide' );
+	};
+	
+
+
+		shoestring.fn.click = function(){
+		shoestring.error( 'click' );
+	};
+	
+
+
+		shoestring.map = function(){
+		shoestring.error( 'map' );
+	};
+	
+
+
+		shoestring.fn.map = function(){
+		shoestring.error( 'map' );
+	};
+	
+
+
+		shoestring.trim = function(){
+		shoestring.error( 'trim' );
+	};
+	
+
+
+	(function() {
+		shoestring.trackedMethodsKey = "shoestringMethods";
+
+		// simple check for localStorage from Modernizr - https://github.com/Modernizr/Modernizr/blob/master/feature-detects/storage/localstorage.js
+		function supportsStorage() {
+			var mod = "modernizr";
+			try {
+				localStorage.setItem(mod, mod);
+				localStorage.removeItem(mod);
+				return true;
+			} catch(e) {
+				return false;
+			}
+		}
+
+		// return a new function closed over the old implementation
+		function recordProxy( old, name ) {
+			return function() {
+				var tracked;
+				try {
+					tracked = JSON.parse(win.localStorage.getItem( shoestring.trackedMethodsKey ) || "{}");
+				} catch (e) {
+					if( e instanceof SyntaxError) {
+						tracked = {};
+					}
+				}
+
+				tracked[ name ] = true;
+				win.localStorage.setItem( shoestring.trackedMethodsKey, JSON.stringify(tracked) );
+
+				return old.apply(this, arguments);
+			};
+		}
+
+		// proxy each of the methods defined on fn
+		if( supportsStorage() ){
+			for( var method in shoestring.fn ){
+				if( shoestring.fn.hasOwnProperty(method) ) {
+					shoestring.fn[ method ] = recordProxy(shoestring.fn[ method ], method);
+				}
+			}
+		}
+	})();
+
+
+
+	return shoestring;
+}));
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(2);
-var settle = __webpack_require__(142);
-var buildURL = __webpack_require__(145);
-var parseHeaders = __webpack_require__(151);
-var isURLSameOrigin = __webpack_require__(149);
-var createError = __webpack_require__(11);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(144);
+var settle = __webpack_require__(143);
+var buildURL = __webpack_require__(146);
+var parseHeaders = __webpack_require__(152);
+var isURLSameOrigin = __webpack_require__(150);
+var createError = __webpack_require__(12);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(145);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -5970,7 +8300,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(147);
+      var cookies = __webpack_require__(148);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -6047,7 +8377,7 @@ module.exports = function xhrAdapter(config) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6073,7 +8403,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6085,13 +8415,13 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(141);
+var enhanceError = __webpack_require__(142);
 
 /**
  * Create an Error with the specified message, config, error code, and response.
@@ -6109,7 +8439,7 @@ module.exports = function createError(message, config, code, response) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6127,7 +8457,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
@@ -6151,7 +8481,7 @@ return $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -6205,7 +8535,7 @@ return $.ui.keyCode = {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -6712,7 +9042,7 @@ return $.ui.position;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
@@ -6761,7 +9091,7 @@ return $.ui.safeActiveElement = function( document ) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6839,7 +9169,7 @@ return af;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6903,7 +9233,7 @@ return arDz;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6967,7 +9297,7 @@ return arKw;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7098,7 +9428,7 @@ return arLy;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7163,7 +9493,7 @@ return arMa;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7273,7 +9603,7 @@ return arSa;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7337,7 +9667,7 @@ return arTn;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7484,7 +9814,7 @@ return ar;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7594,7 +9924,7 @@ return az;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7733,7 +10063,7 @@ return be;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7828,7 +10158,7 @@ return bg;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7952,7 +10282,7 @@ return bn;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8076,7 +10406,7 @@ return bo;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8189,7 +10519,7 @@ return br;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8337,7 +10667,7 @@ return bs;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8430,7 +10760,7 @@ return ca;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8607,7 +10937,7 @@ return cs;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8675,7 +11005,7 @@ return cv;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8761,7 +11091,7 @@ return cy;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8826,7 +11156,7 @@ return da;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8910,7 +11240,7 @@ return deAt;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8993,7 +11323,7 @@ return deCh;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9076,7 +11406,7 @@ return de;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9181,7 +11511,7 @@ return dv;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9286,7 +11616,7 @@ return el;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9358,7 +11688,7 @@ return enAu;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9426,7 +11756,7 @@ return enCa;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9498,7 +11828,7 @@ return enGb;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9570,7 +11900,7 @@ return enIe;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9642,7 +11972,7 @@ return enNz;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9720,7 +12050,7 @@ return eo;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9807,7 +12137,7 @@ return esDo;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9895,7 +12225,7 @@ return es;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9980,7 +12310,7 @@ return et;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10051,7 +12381,7 @@ return eu;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10163,7 +12493,7 @@ return fa;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10275,7 +12605,7 @@ return fi;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10340,7 +12670,7 @@ return fo;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10419,7 +12749,7 @@ return frCa;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10502,7 +12832,7 @@ return frCh;
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10590,7 +12920,7 @@ return fr;
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10670,7 +13000,7 @@ return fy;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10751,7 +13081,7 @@ return gd;
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10833,7 +13163,7 @@ return gl;
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10960,7 +13290,7 @@ return gomLatn;
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11064,7 +13394,7 @@ return he;
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11193,7 +13523,7 @@ return hi;
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11343,7 +13673,7 @@ return hr;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11457,7 +13787,7 @@ return hu;
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11557,7 +13887,7 @@ return hyAm;
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11645,7 +13975,7 @@ return id;
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11777,7 +14107,7 @@ return is;
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11852,7 +14182,7 @@ return it;
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11937,7 +14267,7 @@ return ja;
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12025,7 +14355,7 @@ return jv;
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12119,7 +14449,7 @@ return ka;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12211,7 +14541,7 @@ return kk;
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12274,7 +14604,7 @@ return km;
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12405,7 +14735,7 @@ return kn;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12479,7 +14809,7 @@ return ko;
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12572,7 +14902,7 @@ return ky;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12714,7 +15044,7 @@ return lb;
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12789,7 +15119,7 @@ return lo;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12911,7 +15241,7 @@ return lt;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13013,7 +15343,7 @@ return lv;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13129,7 +15459,7 @@ return me;
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13198,7 +15528,7 @@ return mi;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13293,7 +15623,7 @@ return mk;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13379,7 +15709,7 @@ return ml;
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13543,7 +15873,7 @@ return mr;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13631,7 +15961,7 @@ return msMy;
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13718,7 +16048,7 @@ return ms;
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13819,7 +16149,7 @@ return my;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13887,7 +16217,7 @@ return nb;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14015,7 +16345,7 @@ return ne;
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14108,7 +16438,7 @@ return nlBe;
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14201,7 +16531,7 @@ return nl;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14266,7 +16596,7 @@ return nn;
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14395,7 +16725,7 @@ return paIn;
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14507,7 +16837,7 @@ return pl;
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14573,7 +16903,7 @@ return ptBr;
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14643,7 +16973,7 @@ return pt;
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14723,7 +17053,7 @@ return ro;
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14911,7 +17241,7 @@ return ru;
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15014,7 +17344,7 @@ return sd;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15080,7 +17410,7 @@ return se;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15156,7 +17486,7 @@ return si;
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15311,7 +17641,7 @@ return sk;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15478,7 +17808,7 @@ return sl;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15553,7 +17883,7 @@ return sq;
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15668,7 +17998,7 @@ return srCyrl;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15783,7 +18113,7 @@ return sr;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15877,7 +18207,7 @@ return ss;
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15951,7 +18281,7 @@ return sv;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16015,7 +18345,7 @@ return sw;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16150,7 +18480,7 @@ return ta;
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16244,7 +18574,7 @@ return te;
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16317,7 +18647,7 @@ return tet;
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16389,7 +18719,7 @@ return th;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16456,7 +18786,7 @@ return tlPh;
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16581,7 +18911,7 @@ return tlh;
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16676,7 +19006,7 @@ return tr;
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16772,7 +19102,7 @@ return tzl;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16835,7 +19165,7 @@ return tzmLatn;
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16898,7 +19228,7 @@ return tzm;
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17054,7 +19384,7 @@ return uk;
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17158,7 +19488,7 @@ return ur;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17221,7 +19551,7 @@ return uzLatn;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17284,7 +19614,7 @@ return uz;
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17368,7 +19698,7 @@ return vi;
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17441,7 +19771,7 @@ return xPseudo;
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17506,7 +19836,7 @@ return yo;
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17622,7 +19952,7 @@ return zhCn;
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17732,7 +20062,7 @@ return zhHk;
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17841,7 +20171,7 @@ return zhTw;
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -17869,30 +20199,30 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery_ui_ui_widgets_autocomplete_js__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery_ui_ui_widgets_autocomplete_js__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery_ui_ui_widgets_autocomplete_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery_ui_ui_widgets_autocomplete_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_ui_ui_widgets_sortable_js__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_ui_ui_widgets_sortable_js__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_ui_ui_widgets_sortable_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_ui_ui_widgets_sortable_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_steps_build_jquery_steps_min_js__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_steps_build_jquery_steps_min_js__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_steps_build_jquery_steps_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery_steps_build_jquery_steps_min_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_formBuilder_dist_form_builder_min_js__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_formBuilder_dist_form_builder_min_js__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_formBuilder_dist_form_builder_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_formBuilder_dist_form_builder_min_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_formBuilder_dist_form_render_min_js__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_formBuilder_dist_form_render_min_js__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_formBuilder_dist_form_render_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_formBuilder_dist_form_render_min_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery_validation_dist_jquery_validate_min_js__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery_validation_dist_jquery_validate_min_js__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery_validation_dist_jquery_validate_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery_validation_dist_jquery_validate_min_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_tinymce_tinymce_min_js__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_tinymce_tinymce_min_js__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_tinymce_tinymce_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_tinymce_tinymce_min_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_daterangepicker_daterangepicker_js__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_daterangepicker_daterangepicker_js__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_daterangepicker_daterangepicker_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_daterangepicker_daterangepicker_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_tablesaw_dist_stackonly_tablesaw_stackonly_js__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_tablesaw_dist_stackonly_tablesaw_stackonly_js__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_tablesaw_dist_stackonly_tablesaw_stackonly_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_tablesaw_dist_stackonly_tablesaw_stackonly_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_tablesaw_dist_tablesaw_init_js__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_tablesaw_dist_tablesaw_init_js__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_tablesaw_dist_tablesaw_init_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_tablesaw_dist_tablesaw_init_js__);
 
 /**
@@ -17901,7 +20231,7 @@ module.exports = function(module) {
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(154);
+__webpack_require__(155);
 
 
 
@@ -17925,7 +20255,7 @@ __webpack_require__(154);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(173));
+Vue.component('example', __webpack_require__(176));
 
 var app = new Vue({
 	el: '#app'
@@ -18461,35 +20791,31 @@ $(function () {
 		readURL(this);
 	});
 	// END CREATE COMPANY
-
-	// TABLESAW
-	$('.table-referral').tablesaw();
-	// END TABLESAW
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(136);
+module.exports = __webpack_require__(137);
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(2);
-var bind = __webpack_require__(12);
-var Axios = __webpack_require__(138);
+var bind = __webpack_require__(13);
+var Axios = __webpack_require__(139);
 var defaults = __webpack_require__(7);
 
 /**
@@ -18523,15 +20849,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(9);
-axios.CancelToken = __webpack_require__(137);
-axios.isCancel = __webpack_require__(10);
+axios.Cancel = __webpack_require__(10);
+axios.CancelToken = __webpack_require__(138);
+axios.isCancel = __webpack_require__(11);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(152);
+axios.spread = __webpack_require__(153);
 
 module.exports = axios;
 
@@ -18540,13 +20866,13 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(9);
+var Cancel = __webpack_require__(10);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -18604,7 +20930,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18612,10 +20938,10 @@ module.exports = CancelToken;
 
 var defaults = __webpack_require__(7);
 var utils = __webpack_require__(2);
-var InterceptorManager = __webpack_require__(139);
-var dispatchRequest = __webpack_require__(140);
-var isAbsoluteURL = __webpack_require__(148);
-var combineURLs = __webpack_require__(146);
+var InterceptorManager = __webpack_require__(140);
+var dispatchRequest = __webpack_require__(141);
+var isAbsoluteURL = __webpack_require__(149);
+var combineURLs = __webpack_require__(147);
 
 /**
  * Create a new instance of Axios
@@ -18696,7 +21022,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18755,15 +21081,15 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(2);
-var transformData = __webpack_require__(143);
-var isCancel = __webpack_require__(10);
+var transformData = __webpack_require__(144);
+var isCancel = __webpack_require__(11);
 var defaults = __webpack_require__(7);
 
 /**
@@ -18841,7 +21167,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18867,13 +21193,13 @@ module.exports = function enhanceError(error, config, code, response) {
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(11);
+var createError = __webpack_require__(12);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -18899,7 +21225,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18926,7 +21252,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18969,7 +21295,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19044,7 +21370,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19063,7 +21389,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19123,7 +21449,7 @@ module.exports = (
 
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19144,7 +21470,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19219,7 +21545,7 @@ module.exports = (
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19238,7 +21564,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19282,7 +21608,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19316,7 +21642,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19345,11 +21671,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(168);
+window._ = __webpack_require__(169);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -19359,7 +21685,7 @@ window._ = __webpack_require__(168);
 
 window.$ = window.jQuery = __webpack_require__(1);
 
-__webpack_require__(155);
+__webpack_require__(156);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -19367,7 +21693,7 @@ __webpack_require__(155);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = __webpack_require__(176);
+window.Vue = __webpack_require__(179);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -19375,7 +21701,7 @@ window.Vue = __webpack_require__(176);
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(135);
+window.axios = __webpack_require__(136);
 
 window.axios.defaults.headers.common = {
   'X-CSRF-TOKEN': window.Laravel.csrfToken,
@@ -19396,7 +21722,7 @@ window.axios.defaults.headers.common = {
 // });
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -21780,7 +24106,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -23414,7 +25740,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, $, jQuery) {var require;var require;/*
@@ -23430,7 +25756,7 @@ templates:o,fields:r},a);var f=(0,c.default)(x.config.opts.templates).map(functi
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(1), __webpack_require__(1)))
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($, jQuery) {var require;var require;/*
@@ -23443,7 +25769,7 @@ e("./_object-gops").f=ee,i&&!e("./_library")&&s(B,"propertyIsEnumerable",Y,!0),_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(1)))
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*! 
@@ -23455,7 +25781,7 @@ e("./_object-gops").f=ee,i&&!e("./_library")&&s(B,"propertyIsEnumerable",Y,!0),_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -23503,7 +25829,7 @@ return $.extend( $.expr[ ":" ], {
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -23557,7 +25883,7 @@ return $.fn.scrollParent = function( includeHidden ) {
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -23615,7 +25941,7 @@ return $.fn.extend( {
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -23642,10 +25968,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 			__webpack_require__(1),
-			__webpack_require__(164),
-			__webpack_require__(14),
+			__webpack_require__(165),
 			__webpack_require__(15),
 			__webpack_require__(16),
+			__webpack_require__(17),
 			__webpack_require__(3),
 			__webpack_require__(4)
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -24306,7 +26632,7 @@ return $.ui.autocomplete;
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -24333,10 +26659,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 			__webpack_require__(1),
-			__webpack_require__(14),
 			__webpack_require__(15),
 			__webpack_require__(16),
-			__webpack_require__(162),
+			__webpack_require__(17),
+			__webpack_require__(163),
 			__webpack_require__(3),
 			__webpack_require__(4)
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -24988,7 +27314,7 @@ return $.widget( "ui.menu", {
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -25011,7 +27337,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 			__webpack_require__(1),
-			__webpack_require__(13),
+			__webpack_require__(14),
 			__webpack_require__(3),
 			__webpack_require__(4)
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -25223,7 +27549,7 @@ return $.widget( "ui.mouse", {
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -25248,10 +27574,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 			__webpack_require__(1),
-			__webpack_require__(165),
-			__webpack_require__(160),
-			__webpack_require__(13),
+			__webpack_require__(166),
 			__webpack_require__(161),
+			__webpack_require__(14),
+			__webpack_require__(162),
 			__webpack_require__(3),
 			__webpack_require__(4)
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -26786,7 +29112,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! jQuery Validation Plugin - v1.16.0 - 12/2/2016
@@ -26798,7 +29124,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"object"==typeof module&&module.exports?module.exports=a(require("jquery")):a(jQuery)}(function(a){a.extend(a.fn,{validate:function(b){if(!this.length)return void(b&&b.debug&&window.console&&console.warn("Nothing selected, can't validate, returning nothing."));var c=a.data(this[0],"validator");return c?c:(this.attr("novalidate","novalidate"),c=new a.validator(b,this[0]),a.data(this[0],"validator",c),c.settings.onsubmit&&(this.on("click.validate",":submit",function(b){c.settings.submitHandler&&(c.submitButton=b.target),a(this).hasClass("cancel")&&(c.cancelSubmit=!0),void 0!==a(this).attr("formnovalidate")&&(c.cancelSubmit=!0)}),this.on("submit.validate",function(b){function d(){var d,e;return!c.settings.submitHandler||(c.submitButton&&(d=a("<input type='hidden'/>").attr("name",c.submitButton.name).val(a(c.submitButton).val()).appendTo(c.currentForm)),e=c.settings.submitHandler.call(c,c.currentForm,b),c.submitButton&&d.remove(),void 0!==e&&e)}return c.settings.debug&&b.preventDefault(),c.cancelSubmit?(c.cancelSubmit=!1,d()):c.form()?c.pendingRequest?(c.formSubmitted=!0,!1):d():(c.focusInvalid(),!1)})),c)},valid:function(){var b,c,d;return a(this[0]).is("form")?b=this.validate().form():(d=[],b=!0,c=a(this[0].form).validate(),this.each(function(){b=c.element(this)&&b,b||(d=d.concat(c.errorList))}),c.errorList=d),b},rules:function(b,c){var d,e,f,g,h,i,j=this[0];if(null!=j&&null!=j.form){if(b)switch(d=a.data(j.form,"validator").settings,e=d.rules,f=a.validator.staticRules(j),b){case"add":a.extend(f,a.validator.normalizeRule(c)),delete f.messages,e[j.name]=f,c.messages&&(d.messages[j.name]=a.extend(d.messages[j.name],c.messages));break;case"remove":return c?(i={},a.each(c.split(/\s/),function(b,c){i[c]=f[c],delete f[c],"required"===c&&a(j).removeAttr("aria-required")}),i):(delete e[j.name],f)}return g=a.validator.normalizeRules(a.extend({},a.validator.classRules(j),a.validator.attributeRules(j),a.validator.dataRules(j),a.validator.staticRules(j)),j),g.required&&(h=g.required,delete g.required,g=a.extend({required:h},g),a(j).attr("aria-required","true")),g.remote&&(h=g.remote,delete g.remote,g=a.extend(g,{remote:h})),g}}}),a.extend(a.expr.pseudos||a.expr[":"],{blank:function(b){return!a.trim(""+a(b).val())},filled:function(b){var c=a(b).val();return null!==c&&!!a.trim(""+c)},unchecked:function(b){return!a(b).prop("checked")}}),a.validator=function(b,c){this.settings=a.extend(!0,{},a.validator.defaults,b),this.currentForm=c,this.init()},a.validator.format=function(b,c){return 1===arguments.length?function(){var c=a.makeArray(arguments);return c.unshift(b),a.validator.format.apply(this,c)}:void 0===c?b:(arguments.length>2&&c.constructor!==Array&&(c=a.makeArray(arguments).slice(1)),c.constructor!==Array&&(c=[c]),a.each(c,function(a,c){b=b.replace(new RegExp("\\{"+a+"\\}","g"),function(){return c})}),b)},a.extend(a.validator,{defaults:{messages:{},groups:{},rules:{},errorClass:"error",pendingClass:"pending",validClass:"valid",errorElement:"label",focusCleanup:!1,focusInvalid:!0,errorContainer:a([]),errorLabelContainer:a([]),onsubmit:!0,ignore:":hidden",ignoreTitle:!1,onfocusin:function(a){this.lastActive=a,this.settings.focusCleanup&&(this.settings.unhighlight&&this.settings.unhighlight.call(this,a,this.settings.errorClass,this.settings.validClass),this.hideThese(this.errorsFor(a)))},onfocusout:function(a){this.checkable(a)||!(a.name in this.submitted)&&this.optional(a)||this.element(a)},onkeyup:function(b,c){var d=[16,17,18,20,35,36,37,38,39,40,45,144,225];9===c.which&&""===this.elementValue(b)||a.inArray(c.keyCode,d)!==-1||(b.name in this.submitted||b.name in this.invalid)&&this.element(b)},onclick:function(a){a.name in this.submitted?this.element(a):a.parentNode.name in this.submitted&&this.element(a.parentNode)},highlight:function(b,c,d){"radio"===b.type?this.findByName(b.name).addClass(c).removeClass(d):a(b).addClass(c).removeClass(d)},unhighlight:function(b,c,d){"radio"===b.type?this.findByName(b.name).removeClass(c).addClass(d):a(b).removeClass(c).addClass(d)}},setDefaults:function(b){a.extend(a.validator.defaults,b)},messages:{required:"This field is required.",remote:"Please fix this field.",email:"Please enter a valid email address.",url:"Please enter a valid URL.",date:"Please enter a valid date.",dateISO:"Please enter a valid date (ISO).",number:"Please enter a valid number.",digits:"Please enter only digits.",equalTo:"Please enter the same value again.",maxlength:a.validator.format("Please enter no more than {0} characters."),minlength:a.validator.format("Please enter at least {0} characters."),rangelength:a.validator.format("Please enter a value between {0} and {1} characters long."),range:a.validator.format("Please enter a value between {0} and {1}."),max:a.validator.format("Please enter a value less than or equal to {0}."),min:a.validator.format("Please enter a value greater than or equal to {0}."),step:a.validator.format("Please enter a multiple of {0}.")},autoCreateRanges:!1,prototype:{init:function(){function b(b){!this.form&&this.hasAttribute("contenteditable")&&(this.form=a(this).closest("form")[0]);var c=a.data(this.form,"validator"),d="on"+b.type.replace(/^validate/,""),e=c.settings;e[d]&&!a(this).is(e.ignore)&&e[d].call(c,this,b)}this.labelContainer=a(this.settings.errorLabelContainer),this.errorContext=this.labelContainer.length&&this.labelContainer||a(this.currentForm),this.containers=a(this.settings.errorContainer).add(this.settings.errorLabelContainer),this.submitted={},this.valueCache={},this.pendingRequest=0,this.pending={},this.invalid={},this.reset();var c,d=this.groups={};a.each(this.settings.groups,function(b,c){"string"==typeof c&&(c=c.split(/\s/)),a.each(c,function(a,c){d[c]=b})}),c=this.settings.rules,a.each(c,function(b,d){c[b]=a.validator.normalizeRule(d)}),a(this.currentForm).on("focusin.validate focusout.validate keyup.validate",":text, [type='password'], [type='file'], select, textarea, [type='number'], [type='search'], [type='tel'], [type='url'], [type='email'], [type='datetime'], [type='date'], [type='month'], [type='week'], [type='time'], [type='datetime-local'], [type='range'], [type='color'], [type='radio'], [type='checkbox'], [contenteditable], [type='button']",b).on("click.validate","select, option, [type='radio'], [type='checkbox']",b),this.settings.invalidHandler&&a(this.currentForm).on("invalid-form.validate",this.settings.invalidHandler),a(this.currentForm).find("[required], [data-rule-required], .required").attr("aria-required","true")},form:function(){return this.checkForm(),a.extend(this.submitted,this.errorMap),this.invalid=a.extend({},this.errorMap),this.valid()||a(this.currentForm).triggerHandler("invalid-form",[this]),this.showErrors(),this.valid()},checkForm:function(){this.prepareForm();for(var a=0,b=this.currentElements=this.elements();b[a];a++)this.check(b[a]);return this.valid()},element:function(b){var c,d,e=this.clean(b),f=this.validationTargetFor(e),g=this,h=!0;return void 0===f?delete this.invalid[e.name]:(this.prepareElement(f),this.currentElements=a(f),d=this.groups[f.name],d&&a.each(this.groups,function(a,b){b===d&&a!==f.name&&(e=g.validationTargetFor(g.clean(g.findByName(a))),e&&e.name in g.invalid&&(g.currentElements.push(e),h=g.check(e)&&h))}),c=this.check(f)!==!1,h=h&&c,c?this.invalid[f.name]=!1:this.invalid[f.name]=!0,this.numberOfInvalids()||(this.toHide=this.toHide.add(this.containers)),this.showErrors(),a(b).attr("aria-invalid",!c)),h},showErrors:function(b){if(b){var c=this;a.extend(this.errorMap,b),this.errorList=a.map(this.errorMap,function(a,b){return{message:a,element:c.findByName(b)[0]}}),this.successList=a.grep(this.successList,function(a){return!(a.name in b)})}this.settings.showErrors?this.settings.showErrors.call(this,this.errorMap,this.errorList):this.defaultShowErrors()},resetForm:function(){a.fn.resetForm&&a(this.currentForm).resetForm(),this.invalid={},this.submitted={},this.prepareForm(),this.hideErrors();var b=this.elements().removeData("previousValue").removeAttr("aria-invalid");this.resetElements(b)},resetElements:function(a){var b;if(this.settings.unhighlight)for(b=0;a[b];b++)this.settings.unhighlight.call(this,a[b],this.settings.errorClass,""),this.findByName(a[b].name).removeClass(this.settings.validClass);else a.removeClass(this.settings.errorClass).removeClass(this.settings.validClass)},numberOfInvalids:function(){return this.objectLength(this.invalid)},objectLength:function(a){var b,c=0;for(b in a)a[b]&&c++;return c},hideErrors:function(){this.hideThese(this.toHide)},hideThese:function(a){a.not(this.containers).text(""),this.addWrapper(a).hide()},valid:function(){return 0===this.size()},size:function(){return this.errorList.length},focusInvalid:function(){if(this.settings.focusInvalid)try{a(this.findLastActive()||this.errorList.length&&this.errorList[0].element||[]).filter(":visible").focus().trigger("focusin")}catch(b){}},findLastActive:function(){var b=this.lastActive;return b&&1===a.grep(this.errorList,function(a){return a.element.name===b.name}).length&&b},elements:function(){var b=this,c={};return a(this.currentForm).find("input, select, textarea, [contenteditable]").not(":submit, :reset, :image, :disabled").not(this.settings.ignore).filter(function(){var d=this.name||a(this).attr("name");return!d&&b.settings.debug&&window.console&&console.error("%o has no name assigned",this),this.hasAttribute("contenteditable")&&(this.form=a(this).closest("form")[0]),!(d in c||!b.objectLength(a(this).rules()))&&(c[d]=!0,!0)})},clean:function(b){return a(b)[0]},errors:function(){var b=this.settings.errorClass.split(" ").join(".");return a(this.settings.errorElement+"."+b,this.errorContext)},resetInternals:function(){this.successList=[],this.errorList=[],this.errorMap={},this.toShow=a([]),this.toHide=a([])},reset:function(){this.resetInternals(),this.currentElements=a([])},prepareForm:function(){this.reset(),this.toHide=this.errors().add(this.containers)},prepareElement:function(a){this.reset(),this.toHide=this.errorsFor(a)},elementValue:function(b){var c,d,e=a(b),f=b.type;return"radio"===f||"checkbox"===f?this.findByName(b.name).filter(":checked").val():"number"===f&&"undefined"!=typeof b.validity?b.validity.badInput?"NaN":e.val():(c=b.hasAttribute("contenteditable")?e.text():e.val(),"file"===f?"C:\\fakepath\\"===c.substr(0,12)?c.substr(12):(d=c.lastIndexOf("/"),d>=0?c.substr(d+1):(d=c.lastIndexOf("\\"),d>=0?c.substr(d+1):c)):"string"==typeof c?c.replace(/\r/g,""):c)},check:function(b){b=this.validationTargetFor(this.clean(b));var c,d,e,f=a(b).rules(),g=a.map(f,function(a,b){return b}).length,h=!1,i=this.elementValue(b);if("function"==typeof f.normalizer){if(i=f.normalizer.call(b,i),"string"!=typeof i)throw new TypeError("The normalizer should return a string value.");delete f.normalizer}for(d in f){e={method:d,parameters:f[d]};try{if(c=a.validator.methods[d].call(this,i,b,e.parameters),"dependency-mismatch"===c&&1===g){h=!0;continue}if(h=!1,"pending"===c)return void(this.toHide=this.toHide.not(this.errorsFor(b)));if(!c)return this.formatAndAdd(b,e),!1}catch(j){throw this.settings.debug&&window.console&&console.log("Exception occurred when checking element "+b.id+", check the '"+e.method+"' method.",j),j instanceof TypeError&&(j.message+=".  Exception occurred when checking element "+b.id+", check the '"+e.method+"' method."),j}}if(!h)return this.objectLength(f)&&this.successList.push(b),!0},customDataMessage:function(b,c){return a(b).data("msg"+c.charAt(0).toUpperCase()+c.substring(1).toLowerCase())||a(b).data("msg")},customMessage:function(a,b){var c=this.settings.messages[a];return c&&(c.constructor===String?c:c[b])},findDefined:function(){for(var a=0;a<arguments.length;a++)if(void 0!==arguments[a])return arguments[a]},defaultMessage:function(b,c){"string"==typeof c&&(c={method:c});var d=this.findDefined(this.customMessage(b.name,c.method),this.customDataMessage(b,c.method),!this.settings.ignoreTitle&&b.title||void 0,a.validator.messages[c.method],"<strong>Warning: No message defined for "+b.name+"</strong>"),e=/\$?\{(\d+)\}/g;return"function"==typeof d?d=d.call(this,c.parameters,b):e.test(d)&&(d=a.validator.format(d.replace(e,"{$1}"),c.parameters)),d},formatAndAdd:function(a,b){var c=this.defaultMessage(a,b);this.errorList.push({message:c,element:a,method:b.method}),this.errorMap[a.name]=c,this.submitted[a.name]=c},addWrapper:function(a){return this.settings.wrapper&&(a=a.add(a.parent(this.settings.wrapper))),a},defaultShowErrors:function(){var a,b,c;for(a=0;this.errorList[a];a++)c=this.errorList[a],this.settings.highlight&&this.settings.highlight.call(this,c.element,this.settings.errorClass,this.settings.validClass),this.showLabel(c.element,c.message);if(this.errorList.length&&(this.toShow=this.toShow.add(this.containers)),this.settings.success)for(a=0;this.successList[a];a++)this.showLabel(this.successList[a]);if(this.settings.unhighlight)for(a=0,b=this.validElements();b[a];a++)this.settings.unhighlight.call(this,b[a],this.settings.errorClass,this.settings.validClass);this.toHide=this.toHide.not(this.toShow),this.hideErrors(),this.addWrapper(this.toShow).show()},validElements:function(){return this.currentElements.not(this.invalidElements())},invalidElements:function(){return a(this.errorList).map(function(){return this.element})},showLabel:function(b,c){var d,e,f,g,h=this.errorsFor(b),i=this.idOrName(b),j=a(b).attr("aria-describedby");h.length?(h.removeClass(this.settings.validClass).addClass(this.settings.errorClass),h.html(c)):(h=a("<"+this.settings.errorElement+">").attr("id",i+"-error").addClass(this.settings.errorClass).html(c||""),d=h,this.settings.wrapper&&(d=h.hide().show().wrap("<"+this.settings.wrapper+"/>").parent()),this.labelContainer.length?this.labelContainer.append(d):this.settings.errorPlacement?this.settings.errorPlacement.call(this,d,a(b)):d.insertAfter(b),h.is("label")?h.attr("for",i):0===h.parents("label[for='"+this.escapeCssMeta(i)+"']").length&&(f=h.attr("id"),j?j.match(new RegExp("\\b"+this.escapeCssMeta(f)+"\\b"))||(j+=" "+f):j=f,a(b).attr("aria-describedby",j),e=this.groups[b.name],e&&(g=this,a.each(g.groups,function(b,c){c===e&&a("[name='"+g.escapeCssMeta(b)+"']",g.currentForm).attr("aria-describedby",h.attr("id"))})))),!c&&this.settings.success&&(h.text(""),"string"==typeof this.settings.success?h.addClass(this.settings.success):this.settings.success(h,b)),this.toShow=this.toShow.add(h)},errorsFor:function(b){var c=this.escapeCssMeta(this.idOrName(b)),d=a(b).attr("aria-describedby"),e="label[for='"+c+"'], label[for='"+c+"'] *";return d&&(e=e+", #"+this.escapeCssMeta(d).replace(/\s+/g,", #")),this.errors().filter(e)},escapeCssMeta:function(a){return a.replace(/([\\!"#$%&'()*+,./:;<=>?@\[\]^`{|}~])/g,"\\$1")},idOrName:function(a){return this.groups[a.name]||(this.checkable(a)?a.name:a.id||a.name)},validationTargetFor:function(b){return this.checkable(b)&&(b=this.findByName(b.name)),a(b).not(this.settings.ignore)[0]},checkable:function(a){return/radio|checkbox/i.test(a.type)},findByName:function(b){return a(this.currentForm).find("[name='"+this.escapeCssMeta(b)+"']")},getLength:function(b,c){switch(c.nodeName.toLowerCase()){case"select":return a("option:selected",c).length;case"input":if(this.checkable(c))return this.findByName(c.name).filter(":checked").length}return b.length},depend:function(a,b){return!this.dependTypes[typeof a]||this.dependTypes[typeof a](a,b)},dependTypes:{"boolean":function(a){return a},string:function(b,c){return!!a(b,c.form).length},"function":function(a,b){return a(b)}},optional:function(b){var c=this.elementValue(b);return!a.validator.methods.required.call(this,c,b)&&"dependency-mismatch"},startRequest:function(b){this.pending[b.name]||(this.pendingRequest++,a(b).addClass(this.settings.pendingClass),this.pending[b.name]=!0)},stopRequest:function(b,c){this.pendingRequest--,this.pendingRequest<0&&(this.pendingRequest=0),delete this.pending[b.name],a(b).removeClass(this.settings.pendingClass),c&&0===this.pendingRequest&&this.formSubmitted&&this.form()?(a(this.currentForm).submit(),this.formSubmitted=!1):!c&&0===this.pendingRequest&&this.formSubmitted&&(a(this.currentForm).triggerHandler("invalid-form",[this]),this.formSubmitted=!1)},previousValue:function(b,c){return c="string"==typeof c&&c||"remote",a.data(b,"previousValue")||a.data(b,"previousValue",{old:null,valid:!0,message:this.defaultMessage(b,{method:c})})},destroy:function(){this.resetForm(),a(this.currentForm).off(".validate").removeData("validator").find(".validate-equalTo-blur").off(".validate-equalTo").removeClass("validate-equalTo-blur")}},classRuleSettings:{required:{required:!0},email:{email:!0},url:{url:!0},date:{date:!0},dateISO:{dateISO:!0},number:{number:!0},digits:{digits:!0},creditcard:{creditcard:!0}},addClassRules:function(b,c){b.constructor===String?this.classRuleSettings[b]=c:a.extend(this.classRuleSettings,b)},classRules:function(b){var c={},d=a(b).attr("class");return d&&a.each(d.split(" "),function(){this in a.validator.classRuleSettings&&a.extend(c,a.validator.classRuleSettings[this])}),c},normalizeAttributeRule:function(a,b,c,d){/min|max|step/.test(c)&&(null===b||/number|range|text/.test(b))&&(d=Number(d),isNaN(d)&&(d=void 0)),d||0===d?a[c]=d:b===c&&"range"!==b&&(a[c]=!0)},attributeRules:function(b){var c,d,e={},f=a(b),g=b.getAttribute("type");for(c in a.validator.methods)"required"===c?(d=b.getAttribute(c),""===d&&(d=!0),d=!!d):d=f.attr(c),this.normalizeAttributeRule(e,g,c,d);return e.maxlength&&/-1|2147483647|524288/.test(e.maxlength)&&delete e.maxlength,e},dataRules:function(b){var c,d,e={},f=a(b),g=b.getAttribute("type");for(c in a.validator.methods)d=f.data("rule"+c.charAt(0).toUpperCase()+c.substring(1).toLowerCase()),this.normalizeAttributeRule(e,g,c,d);return e},staticRules:function(b){var c={},d=a.data(b.form,"validator");return d.settings.rules&&(c=a.validator.normalizeRule(d.settings.rules[b.name])||{}),c},normalizeRules:function(b,c){return a.each(b,function(d,e){if(e===!1)return void delete b[d];if(e.param||e.depends){var f=!0;switch(typeof e.depends){case"string":f=!!a(e.depends,c.form).length;break;case"function":f=e.depends.call(c,c)}f?b[d]=void 0===e.param||e.param:(a.data(c.form,"validator").resetElements(a(c)),delete b[d])}}),a.each(b,function(d,e){b[d]=a.isFunction(e)&&"normalizer"!==d?e(c):e}),a.each(["minlength","maxlength"],function(){b[this]&&(b[this]=Number(b[this]))}),a.each(["rangelength","range"],function(){var c;b[this]&&(a.isArray(b[this])?b[this]=[Number(b[this][0]),Number(b[this][1])]:"string"==typeof b[this]&&(c=b[this].replace(/[\[\]]/g,"").split(/[\s,]+/),b[this]=[Number(c[0]),Number(c[1])]))}),a.validator.autoCreateRanges&&(null!=b.min&&null!=b.max&&(b.range=[b.min,b.max],delete b.min,delete b.max),null!=b.minlength&&null!=b.maxlength&&(b.rangelength=[b.minlength,b.maxlength],delete b.minlength,delete b.maxlength)),b},normalizeRule:function(b){if("string"==typeof b){var c={};a.each(b.split(/\s/),function(){c[this]=!0}),b=c}return b},addMethod:function(b,c,d){a.validator.methods[b]=c,a.validator.messages[b]=void 0!==d?d:a.validator.messages[b],c.length<3&&a.validator.addClassRules(b,a.validator.normalizeRule(b))},methods:{required:function(b,c,d){if(!this.depend(d,c))return"dependency-mismatch";if("select"===c.nodeName.toLowerCase()){var e=a(c).val();return e&&e.length>0}return this.checkable(c)?this.getLength(b,c)>0:b.length>0},email:function(a,b){return this.optional(b)||/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(a)},url:function(a,b){return this.optional(b)||/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(a)},date:function(a,b){return this.optional(b)||!/Invalid|NaN/.test(new Date(a).toString())},dateISO:function(a,b){return this.optional(b)||/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(a)},number:function(a,b){return this.optional(b)||/^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(a)},digits:function(a,b){return this.optional(b)||/^\d+$/.test(a)},minlength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||e>=d},maxlength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||e<=d},rangelength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||e>=d[0]&&e<=d[1]},min:function(a,b,c){return this.optional(b)||a>=c},max:function(a,b,c){return this.optional(b)||a<=c},range:function(a,b,c){return this.optional(b)||a>=c[0]&&a<=c[1]},step:function(b,c,d){var e,f=a(c).attr("type"),g="Step attribute on input type "+f+" is not supported.",h=["text","number","range"],i=new RegExp("\\b"+f+"\\b"),j=f&&!i.test(h.join()),k=function(a){var b=(""+a).match(/(?:\.(\d+))?$/);return b&&b[1]?b[1].length:0},l=function(a){return Math.round(a*Math.pow(10,e))},m=!0;if(j)throw new Error(g);return e=k(d),(k(b)>e||l(b)%l(d)!==0)&&(m=!1),this.optional(c)||m},equalTo:function(b,c,d){var e=a(d);return this.settings.onfocusout&&e.not(".validate-equalTo-blur").length&&e.addClass("validate-equalTo-blur").on("blur.validate-equalTo",function(){a(c).valid()}),b===e.val()},remote:function(b,c,d,e){if(this.optional(c))return"dependency-mismatch";e="string"==typeof e&&e||"remote";var f,g,h,i=this.previousValue(c,e);return this.settings.messages[c.name]||(this.settings.messages[c.name]={}),i.originalMessage=i.originalMessage||this.settings.messages[c.name][e],this.settings.messages[c.name][e]=i.message,d="string"==typeof d&&{url:d}||d,h=a.param(a.extend({data:b},d.data)),i.old===h?i.valid:(i.old=h,f=this,this.startRequest(c),g={},g[c.name]=b,a.ajax(a.extend(!0,{mode:"abort",port:"validate"+c.name,dataType:"json",data:g,context:f.currentForm,success:function(a){var d,g,h,j=a===!0||"true"===a;f.settings.messages[c.name][e]=i.originalMessage,j?(h=f.formSubmitted,f.resetInternals(),f.toHide=f.errorsFor(c),f.formSubmitted=h,f.successList.push(c),f.invalid[c.name]=!1,f.showErrors()):(d={},g=a||f.defaultMessage(c,{method:e,parameters:b}),d[c.name]=i.message=g,f.invalid[c.name]=!0,f.showErrors(d)),i.valid=j,f.stopRequest(c,j)}},d)),"pending")}}});var b,c={};return a.ajaxPrefilter?a.ajaxPrefilter(function(a,b,d){var e=a.port;"abort"===a.mode&&(c[e]&&c[e].abort(),c[e]=d)}):(b=a.ajax,a.ajax=function(d){var e=("mode"in d?d:a.ajaxSettings).mode,f=("port"in d?d:a.ajaxSettings).port;return"abort"===e?(c[f]&&c[f].abort(),c[f]=b.apply(this,arguments),c[f]):b.apply(this,arguments)}),a});
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -43887,243 +46213,243 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(132)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(133)(module)))
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 17,
-	"./af.js": 17,
-	"./ar": 24,
-	"./ar-dz": 18,
-	"./ar-dz.js": 18,
-	"./ar-kw": 19,
-	"./ar-kw.js": 19,
-	"./ar-ly": 20,
-	"./ar-ly.js": 20,
-	"./ar-ma": 21,
-	"./ar-ma.js": 21,
-	"./ar-sa": 22,
-	"./ar-sa.js": 22,
-	"./ar-tn": 23,
-	"./ar-tn.js": 23,
-	"./ar.js": 24,
-	"./az": 25,
-	"./az.js": 25,
-	"./be": 26,
-	"./be.js": 26,
-	"./bg": 27,
-	"./bg.js": 27,
-	"./bn": 28,
-	"./bn.js": 28,
-	"./bo": 29,
-	"./bo.js": 29,
-	"./br": 30,
-	"./br.js": 30,
-	"./bs": 31,
-	"./bs.js": 31,
-	"./ca": 32,
-	"./ca.js": 32,
-	"./cs": 33,
-	"./cs.js": 33,
-	"./cv": 34,
-	"./cv.js": 34,
-	"./cy": 35,
-	"./cy.js": 35,
-	"./da": 36,
-	"./da.js": 36,
-	"./de": 39,
-	"./de-at": 37,
-	"./de-at.js": 37,
-	"./de-ch": 38,
-	"./de-ch.js": 38,
-	"./de.js": 39,
-	"./dv": 40,
-	"./dv.js": 40,
-	"./el": 41,
-	"./el.js": 41,
-	"./en-au": 42,
-	"./en-au.js": 42,
-	"./en-ca": 43,
-	"./en-ca.js": 43,
-	"./en-gb": 44,
-	"./en-gb.js": 44,
-	"./en-ie": 45,
-	"./en-ie.js": 45,
-	"./en-nz": 46,
-	"./en-nz.js": 46,
-	"./eo": 47,
-	"./eo.js": 47,
-	"./es": 49,
-	"./es-do": 48,
-	"./es-do.js": 48,
-	"./es.js": 49,
-	"./et": 50,
-	"./et.js": 50,
-	"./eu": 51,
-	"./eu.js": 51,
-	"./fa": 52,
-	"./fa.js": 52,
-	"./fi": 53,
-	"./fi.js": 53,
-	"./fo": 54,
-	"./fo.js": 54,
-	"./fr": 57,
-	"./fr-ca": 55,
-	"./fr-ca.js": 55,
-	"./fr-ch": 56,
-	"./fr-ch.js": 56,
-	"./fr.js": 57,
-	"./fy": 58,
-	"./fy.js": 58,
-	"./gd": 59,
-	"./gd.js": 59,
-	"./gl": 60,
-	"./gl.js": 60,
-	"./gom-latn": 61,
-	"./gom-latn.js": 61,
-	"./he": 62,
-	"./he.js": 62,
-	"./hi": 63,
-	"./hi.js": 63,
-	"./hr": 64,
-	"./hr.js": 64,
-	"./hu": 65,
-	"./hu.js": 65,
-	"./hy-am": 66,
-	"./hy-am.js": 66,
-	"./id": 67,
-	"./id.js": 67,
-	"./is": 68,
-	"./is.js": 68,
-	"./it": 69,
-	"./it.js": 69,
-	"./ja": 70,
-	"./ja.js": 70,
-	"./jv": 71,
-	"./jv.js": 71,
-	"./ka": 72,
-	"./ka.js": 72,
-	"./kk": 73,
-	"./kk.js": 73,
-	"./km": 74,
-	"./km.js": 74,
-	"./kn": 75,
-	"./kn.js": 75,
-	"./ko": 76,
-	"./ko.js": 76,
-	"./ky": 77,
-	"./ky.js": 77,
-	"./lb": 78,
-	"./lb.js": 78,
-	"./lo": 79,
-	"./lo.js": 79,
-	"./lt": 80,
-	"./lt.js": 80,
-	"./lv": 81,
-	"./lv.js": 81,
-	"./me": 82,
-	"./me.js": 82,
-	"./mi": 83,
-	"./mi.js": 83,
-	"./mk": 84,
-	"./mk.js": 84,
-	"./ml": 85,
-	"./ml.js": 85,
-	"./mr": 86,
-	"./mr.js": 86,
-	"./ms": 88,
-	"./ms-my": 87,
-	"./ms-my.js": 87,
-	"./ms.js": 88,
-	"./my": 89,
-	"./my.js": 89,
-	"./nb": 90,
-	"./nb.js": 90,
-	"./ne": 91,
-	"./ne.js": 91,
-	"./nl": 93,
-	"./nl-be": 92,
-	"./nl-be.js": 92,
-	"./nl.js": 93,
-	"./nn": 94,
-	"./nn.js": 94,
-	"./pa-in": 95,
-	"./pa-in.js": 95,
-	"./pl": 96,
-	"./pl.js": 96,
-	"./pt": 98,
-	"./pt-br": 97,
-	"./pt-br.js": 97,
-	"./pt.js": 98,
-	"./ro": 99,
-	"./ro.js": 99,
-	"./ru": 100,
-	"./ru.js": 100,
-	"./sd": 101,
-	"./sd.js": 101,
-	"./se": 102,
-	"./se.js": 102,
-	"./si": 103,
-	"./si.js": 103,
-	"./sk": 104,
-	"./sk.js": 104,
-	"./sl": 105,
-	"./sl.js": 105,
-	"./sq": 106,
-	"./sq.js": 106,
-	"./sr": 108,
-	"./sr-cyrl": 107,
-	"./sr-cyrl.js": 107,
-	"./sr.js": 108,
-	"./ss": 109,
-	"./ss.js": 109,
-	"./sv": 110,
-	"./sv.js": 110,
-	"./sw": 111,
-	"./sw.js": 111,
-	"./ta": 112,
-	"./ta.js": 112,
-	"./te": 113,
-	"./te.js": 113,
-	"./tet": 114,
-	"./tet.js": 114,
-	"./th": 115,
-	"./th.js": 115,
-	"./tl-ph": 116,
-	"./tl-ph.js": 116,
-	"./tlh": 117,
-	"./tlh.js": 117,
-	"./tr": 118,
-	"./tr.js": 118,
-	"./tzl": 119,
-	"./tzl.js": 119,
-	"./tzm": 121,
-	"./tzm-latn": 120,
-	"./tzm-latn.js": 120,
-	"./tzm.js": 121,
-	"./uk": 122,
-	"./uk.js": 122,
-	"./ur": 123,
-	"./ur.js": 123,
-	"./uz": 125,
-	"./uz-latn": 124,
-	"./uz-latn.js": 124,
-	"./uz.js": 125,
-	"./vi": 126,
-	"./vi.js": 126,
-	"./x-pseudo": 127,
-	"./x-pseudo.js": 127,
-	"./yo": 128,
-	"./yo.js": 128,
-	"./zh-cn": 129,
-	"./zh-cn.js": 129,
-	"./zh-hk": 130,
-	"./zh-hk.js": 130,
-	"./zh-tw": 131,
-	"./zh-tw.js": 131
+	"./af": 18,
+	"./af.js": 18,
+	"./ar": 25,
+	"./ar-dz": 19,
+	"./ar-dz.js": 19,
+	"./ar-kw": 20,
+	"./ar-kw.js": 20,
+	"./ar-ly": 21,
+	"./ar-ly.js": 21,
+	"./ar-ma": 22,
+	"./ar-ma.js": 22,
+	"./ar-sa": 23,
+	"./ar-sa.js": 23,
+	"./ar-tn": 24,
+	"./ar-tn.js": 24,
+	"./ar.js": 25,
+	"./az": 26,
+	"./az.js": 26,
+	"./be": 27,
+	"./be.js": 27,
+	"./bg": 28,
+	"./bg.js": 28,
+	"./bn": 29,
+	"./bn.js": 29,
+	"./bo": 30,
+	"./bo.js": 30,
+	"./br": 31,
+	"./br.js": 31,
+	"./bs": 32,
+	"./bs.js": 32,
+	"./ca": 33,
+	"./ca.js": 33,
+	"./cs": 34,
+	"./cs.js": 34,
+	"./cv": 35,
+	"./cv.js": 35,
+	"./cy": 36,
+	"./cy.js": 36,
+	"./da": 37,
+	"./da.js": 37,
+	"./de": 40,
+	"./de-at": 38,
+	"./de-at.js": 38,
+	"./de-ch": 39,
+	"./de-ch.js": 39,
+	"./de.js": 40,
+	"./dv": 41,
+	"./dv.js": 41,
+	"./el": 42,
+	"./el.js": 42,
+	"./en-au": 43,
+	"./en-au.js": 43,
+	"./en-ca": 44,
+	"./en-ca.js": 44,
+	"./en-gb": 45,
+	"./en-gb.js": 45,
+	"./en-ie": 46,
+	"./en-ie.js": 46,
+	"./en-nz": 47,
+	"./en-nz.js": 47,
+	"./eo": 48,
+	"./eo.js": 48,
+	"./es": 50,
+	"./es-do": 49,
+	"./es-do.js": 49,
+	"./es.js": 50,
+	"./et": 51,
+	"./et.js": 51,
+	"./eu": 52,
+	"./eu.js": 52,
+	"./fa": 53,
+	"./fa.js": 53,
+	"./fi": 54,
+	"./fi.js": 54,
+	"./fo": 55,
+	"./fo.js": 55,
+	"./fr": 58,
+	"./fr-ca": 56,
+	"./fr-ca.js": 56,
+	"./fr-ch": 57,
+	"./fr-ch.js": 57,
+	"./fr.js": 58,
+	"./fy": 59,
+	"./fy.js": 59,
+	"./gd": 60,
+	"./gd.js": 60,
+	"./gl": 61,
+	"./gl.js": 61,
+	"./gom-latn": 62,
+	"./gom-latn.js": 62,
+	"./he": 63,
+	"./he.js": 63,
+	"./hi": 64,
+	"./hi.js": 64,
+	"./hr": 65,
+	"./hr.js": 65,
+	"./hu": 66,
+	"./hu.js": 66,
+	"./hy-am": 67,
+	"./hy-am.js": 67,
+	"./id": 68,
+	"./id.js": 68,
+	"./is": 69,
+	"./is.js": 69,
+	"./it": 70,
+	"./it.js": 70,
+	"./ja": 71,
+	"./ja.js": 71,
+	"./jv": 72,
+	"./jv.js": 72,
+	"./ka": 73,
+	"./ka.js": 73,
+	"./kk": 74,
+	"./kk.js": 74,
+	"./km": 75,
+	"./km.js": 75,
+	"./kn": 76,
+	"./kn.js": 76,
+	"./ko": 77,
+	"./ko.js": 77,
+	"./ky": 78,
+	"./ky.js": 78,
+	"./lb": 79,
+	"./lb.js": 79,
+	"./lo": 80,
+	"./lo.js": 80,
+	"./lt": 81,
+	"./lt.js": 81,
+	"./lv": 82,
+	"./lv.js": 82,
+	"./me": 83,
+	"./me.js": 83,
+	"./mi": 84,
+	"./mi.js": 84,
+	"./mk": 85,
+	"./mk.js": 85,
+	"./ml": 86,
+	"./ml.js": 86,
+	"./mr": 87,
+	"./mr.js": 87,
+	"./ms": 89,
+	"./ms-my": 88,
+	"./ms-my.js": 88,
+	"./ms.js": 89,
+	"./my": 90,
+	"./my.js": 90,
+	"./nb": 91,
+	"./nb.js": 91,
+	"./ne": 92,
+	"./ne.js": 92,
+	"./nl": 94,
+	"./nl-be": 93,
+	"./nl-be.js": 93,
+	"./nl.js": 94,
+	"./nn": 95,
+	"./nn.js": 95,
+	"./pa-in": 96,
+	"./pa-in.js": 96,
+	"./pl": 97,
+	"./pl.js": 97,
+	"./pt": 99,
+	"./pt-br": 98,
+	"./pt-br.js": 98,
+	"./pt.js": 99,
+	"./ro": 100,
+	"./ro.js": 100,
+	"./ru": 101,
+	"./ru.js": 101,
+	"./sd": 102,
+	"./sd.js": 102,
+	"./se": 103,
+	"./se.js": 103,
+	"./si": 104,
+	"./si.js": 104,
+	"./sk": 105,
+	"./sk.js": 105,
+	"./sl": 106,
+	"./sl.js": 106,
+	"./sq": 107,
+	"./sq.js": 107,
+	"./sr": 109,
+	"./sr-cyrl": 108,
+	"./sr-cyrl.js": 108,
+	"./sr.js": 109,
+	"./ss": 110,
+	"./ss.js": 110,
+	"./sv": 111,
+	"./sv.js": 111,
+	"./sw": 112,
+	"./sw.js": 112,
+	"./ta": 113,
+	"./ta.js": 113,
+	"./te": 114,
+	"./te.js": 114,
+	"./tet": 115,
+	"./tet.js": 115,
+	"./th": 116,
+	"./th.js": 116,
+	"./tl-ph": 117,
+	"./tl-ph.js": 117,
+	"./tlh": 118,
+	"./tlh.js": 118,
+	"./tr": 119,
+	"./tr.js": 119,
+	"./tzl": 120,
+	"./tzl.js": 120,
+	"./tzm": 122,
+	"./tzm-latn": 121,
+	"./tzm-latn.js": 121,
+	"./tzm.js": 122,
+	"./uk": 123,
+	"./uk.js": 123,
+	"./ur": 124,
+	"./ur.js": 124,
+	"./uz": 126,
+	"./uz-latn": 125,
+	"./uz-latn.js": 125,
+	"./uz.js": 126,
+	"./vi": 127,
+	"./vi.js": 127,
+	"./x-pseudo": 128,
+	"./x-pseudo.js": 128,
+	"./yo": 129,
+	"./yo.js": 129,
+	"./zh-cn": 130,
+	"./zh-cn.js": 130,
+	"./zh-hk": 131,
+	"./zh-hk.js": 131,
+	"./zh-tw": 132,
+	"./zh-tw.js": 132
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -44139,10 +46465,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 169;
+webpackContext.id = 170;
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -44335,7 +46661,2080 @@ webpackContext.id = 169;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(5)))
 
 /***/ }),
-/* 171 */
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Tablesaw - v3.0.0 - 2017-02-14
+* https://github.com/filamentgroup/tablesaw
+* Copyright (c) 2017 Filament Group; Licensed MIT */
+/*! Shoestring - v2.0.0 - 2017-02-14
+* http://github.com/filamentgroup/shoestring/
+* Copyright (c) 2017 Scott Jehl, Filament Group, Inc; Licensed MIT & GPLv2 */ 
+(function( factory ) {
+	if( true ) {
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(8) ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof module === 'object' && module.exports) {
+		// Node/CommonJS
+		module.exports = factory();
+	} else {
+		// Browser globals
+		factory();
+	}
+}(function () {
+	var win = typeof window !== "undefined" ? window : this;
+	var doc = win.document;
+
+
+	/**
+	 * The shoestring object constructor.
+	 *
+	 * @param {string,object} prim The selector to find or element to wrap.
+	 * @param {object} sec The context in which to match the `prim` selector.
+	 * @returns shoestring
+	 * @this window
+	 */
+	function shoestring( prim, sec ){
+		var pType = typeof( prim ),
+				ret = [],
+				sel;
+
+		// return an empty shoestring object
+		if( !prim ){
+			return new Shoestring( ret );
+		}
+
+		// ready calls
+		if( prim.call ){
+			return shoestring.ready( prim );
+		}
+
+		// handle re-wrapping shoestring objects
+		if( prim.constructor === Shoestring && !sec ){
+			return prim;
+		}
+
+		// if string starting with <, make html
+		if( pType === "string" && prim.indexOf( "<" ) === 0 ){
+			var dfrag = doc.createElement( "div" );
+
+			dfrag.innerHTML = prim;
+
+			// TODO depends on children (circular)
+			return shoestring( dfrag ).children().each(function(){
+				dfrag.removeChild( this );
+			});
+		}
+
+		// if string, it's a selector, use qsa
+		if( pType === "string" ){
+			if( sec ){
+				return shoestring( sec ).find( prim );
+			}
+
+				sel = doc.querySelectorAll( prim );
+
+			return new Shoestring( sel, prim );
+		}
+
+		// array like objects or node lists
+		if( Object.prototype.toString.call( pType ) === '[object Array]' ||
+				(win.NodeList && prim instanceof win.NodeList) ){
+
+			return new Shoestring( prim, prim );
+		}
+
+		// if it's an array, use all the elements
+		if( prim.constructor === Array ){
+			return new Shoestring( prim, prim );
+		}
+
+		// otherwise assume it's an object the we want at an index
+		return new Shoestring( [prim], prim );
+	}
+
+	var Shoestring = function( ret, prim ) {
+		this.length = 0;
+		this.selector = prim;
+		shoestring.merge(this, ret);
+	};
+
+	// TODO only required for tests
+	Shoestring.prototype.reverse = [].reverse;
+
+	// For adding element set methods
+	shoestring.fn = Shoestring.prototype;
+
+	shoestring.Shoestring = Shoestring;
+
+	// For extending objects
+	// TODO move to separate module when we use prototypes
+	shoestring.extend = function( first, second ){
+		for( var i in second ){
+			if( second.hasOwnProperty( i ) ){
+				first[ i ] = second[ i ];
+			}
+		}
+
+		return first;
+	};
+
+	// taken directly from jQuery
+	shoestring.merge = function( first, second ) {
+		var len, j, i;
+
+		len = +second.length,
+		j = 0,
+		i = first.length;
+
+		for ( ; j < len; j++ ) {
+			first[ i++ ] = second[ j ];
+		}
+
+		first.length = i;
+
+		return first;
+	};
+
+	// expose
+	win.shoestring = shoestring;
+
+
+
+	/**
+	 * Iterates over `shoestring` collections.
+	 *
+	 * @param {function} callback The callback to be invoked on each element and index
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.each = function( callback ){
+		return shoestring.each( this, callback );
+	};
+
+	shoestring.each = function( collection, callback ) {
+		var val;
+		for( var i = 0, il = collection.length; i < il; i++ ){
+			val = callback.call( collection[i], i, collection[i] );
+			if( val === false ){
+				break;
+			}
+		}
+
+		return collection;
+	};
+
+
+
+  /**
+	 * Check for array membership.
+	 *
+	 * @param {object} needle The thing to find.
+	 * @param {object} haystack The thing to find the needle in.
+	 * @return {boolean}
+	 * @this window
+	 */
+	shoestring.inArray = function( needle, haystack ){
+		var isin = -1;
+		for( var i = 0, il = haystack.length; i < il; i++ ){
+			if( haystack.hasOwnProperty( i ) && haystack[ i ] === needle ){
+				isin = i;
+			}
+		}
+		return isin;
+	};
+
+
+
+  /**
+	 * Bind callbacks to be run when the DOM is "ready".
+	 *
+	 * @param {function} fn The callback to be run
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.ready = function( fn ){
+		if( ready && fn ){
+			fn.call( doc );
+		}
+		else if( fn ){
+			readyQueue.push( fn );
+		}
+		else {
+			runReady();
+		}
+
+		return [doc];
+	};
+
+	// TODO necessary?
+	shoestring.fn.ready = function( fn ){
+		shoestring.ready( fn );
+		return this;
+	};
+
+	// Empty and exec the ready queue
+	var ready = false,
+		readyQueue = [],
+		runReady = function(){
+			if( !ready ){
+				while( readyQueue.length ){
+					readyQueue.shift().call( doc );
+				}
+				ready = true;
+			}
+		};
+
+	// If DOM is already ready at exec time, depends on the browser.
+	// From: https://github.com/mobify/mobifyjs/blob/526841be5509e28fc949038021799e4223479f8d/src/capture.js#L128
+	if (doc.attachEvent ? doc.readyState === "complete" : doc.readyState !== "loading") {
+		runReady();
+	} else {
+		doc.addEventListener( "DOMContentLoaded", runReady, false );
+		doc.addEventListener( "readystatechange", runReady, false );
+		win.addEventListener( "load", runReady, false );
+	}
+
+
+
+  /**
+	 * Checks the current set of elements against the selector, if one matches return `true`.
+	 *
+	 * @param {string} selector The selector to check.
+	 * @return {boolean}
+	 * @this {shoestring}
+	 */
+	shoestring.fn.is = function( selector ){
+		var ret = false, self = this, parents, check;
+
+		// assume a dom element
+		if( typeof selector !== "string" ){
+			// array-like, ie shoestring objects or element arrays
+			if( selector.length && selector[0] ){
+				check = selector;
+			} else {
+				check = [selector];
+			}
+
+			return _checkElements(this, check);
+		}
+
+		parents = this.parent();
+
+		if( !parents.length ){
+			parents = shoestring( doc );
+		}
+
+		parents.each(function( i, e ) {
+			var children;
+
+					children = e.querySelectorAll( selector );
+
+			ret = _checkElements( self, children );
+		});
+
+		return ret;
+	};
+
+	function _checkElements(needles, haystack){
+		var ret = false;
+
+		needles.each(function() {
+			var j = 0;
+
+			while( j < haystack.length ){
+				if( this === haystack[j] ){
+					ret = true;
+				}
+
+				j++;
+			}
+		});
+
+		return ret;
+	}
+
+
+
+	/**
+	 * Get data attached to the first element or set data values on all elements in the current set.
+	 *
+	 * @param {string} name The data attribute name.
+	 * @param {any} value The value assigned to the data attribute.
+	 * @return {any|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.data = function( name, value ){
+		if( name !== undefined ){
+			if( value !== undefined ){
+				return this.each(function(){
+					if( !this.shoestringData ){
+						this.shoestringData = {};
+					}
+
+					this.shoestringData[ name ] = value;
+				});
+			}
+			else {
+				if( this[ 0 ] ) {
+					if( this[ 0 ].shoestringData ) {
+						return this[ 0 ].shoestringData[ name ];
+					}
+				}
+			}
+		}
+		else {
+			return this[ 0 ] ? this[ 0 ].shoestringData || {} : undefined;
+		}
+	};
+
+
+	/**
+	 * Remove data associated with `name` or all the data, for each element in the current set.
+	 *
+	 * @param {string} name The data attribute name.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeData = function( name ){
+		return this.each(function(){
+			if( name !== undefined && this.shoestringData ){
+				this.shoestringData[ name ] = undefined;
+				delete this.shoestringData[ name ];
+			}	else {
+				this[ 0 ].shoestringData = {};
+			}
+		});
+	};
+
+
+
+	/**
+	 * An alias for the `shoestring` constructor.
+	 */
+	win.$ = shoestring;
+
+
+
+	/**
+	 * Add a class to each DOM element in the set of elements.
+	 *
+	 * @param {string} className The name of the class to be added.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.addClass = function( className ){
+		var classes = className.replace(/^\s+|\s+$/g, '').split( " " );
+
+		return this.each(function(){
+			for( var i = 0, il = classes.length; i < il; i++ ){
+				if( this.className !== undefined &&
+						(this.className === "" ||
+						!this.className.match( new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)"))) ){
+					this.className += " " + classes[ i ];
+				}
+			}
+		});
+	};
+
+
+
+  /**
+	 * Add elements matching the selector to the current set.
+	 *
+	 * @param {string} selector The selector for the elements to add from the DOM
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.add = function( selector ){
+		var ret = [];
+		this.each(function(){
+			ret.push( this );
+		});
+
+		shoestring( selector ).each(function(){
+			ret.push( this );
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Insert an element or HTML string as the last child of each element in the set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.append = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				this.appendChild( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ] );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Insert the current set as the last child of the elements matching the selector.
+	 *
+	 * @param {string} selector The selector after which to append the current set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.appendTo = function( selector ){
+		return this.each(function(){
+			shoestring( selector ).append( this );
+		});
+	};
+
+
+
+  /**
+	 * Get the value of the first element of the set or set the value of all the elements in the set.
+	 *
+	 * @param {string} name The attribute name.
+	 * @param {string} value The new value for the attribute.
+	 * @return {shoestring|string|undefined}
+	 * @this {shoestring}
+	 */
+	shoestring.fn.attr = function( name, value ){
+		var nameStr = typeof( name ) === "string";
+
+		if( value !== undefined || !nameStr ){
+			return this.each(function(){
+				if( nameStr ){
+					this.setAttribute( name, value );
+				}	else {
+					for( var i in name ){
+						if( name.hasOwnProperty( i ) ){
+							this.setAttribute( i, name[ i ] );
+						}
+					}
+				}
+			});
+		} else {
+			return this[ 0 ] ? this[ 0 ].getAttribute( name ) : undefined;
+		}
+	};
+
+
+
+	/**
+	 * Insert an element or HTML string before each element in the current set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.before = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				this.parentNode.insertBefore( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ], this );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Get the children of the current collection.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.children = function(){
+				var ret = [],
+			childs,
+			j;
+		this.each(function(){
+			childs = this.children;
+			j = -1;
+
+			while( j++ < childs.length-1 ){
+				if( shoestring.inArray(  childs[ j ], ret ) === -1 ){
+					ret.push( childs[ j ] );
+				}
+			}
+		});
+		return shoestring(ret);
+	};
+
+
+
+	/**
+	 * Find an element matching the selector in the set of the current element and its parents.
+	 *
+	 * @param {string} selector The selector used to identify the target element.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.closest = function( selector ){
+		var ret = [];
+
+		if( !selector ){
+			return shoestring( ret );
+		}
+
+		this.each(function(){
+			var element, $self = shoestring( element = this );
+
+			if( $self.is(selector) ){
+				ret.push( this );
+				return;
+			}
+
+			while( element.parentElement ) {
+				if( shoestring(element.parentElement).is(selector) ){
+					ret.push( element.parentElement );
+					break;
+				}
+
+				element = element.parentElement;
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+  shoestring.cssExceptions = {
+		'float': [ 'cssFloat' ]
+	};
+
+
+
+	(function() {
+		var cssExceptions = shoestring.cssExceptions;
+
+		// IE8 uses marginRight instead of margin-right
+		function convertPropertyName( str ) {
+			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
+				return character.toUpperCase();
+			});
+		}
+
+		function _getStyle( element, property ) {
+			return win.getComputedStyle( element, null ).getPropertyValue( property );
+		}
+
+		var vendorPrefixes = [ '', '-webkit-', '-ms-', '-moz-', '-o-', '-khtml-' ];
+
+		/**
+		 * Private function for getting the computed style of an element.
+		 *
+		 * **NOTE** Please use the [css](../css.js.html) method instead.
+		 *
+		 * @method _getStyle
+		 * @param {HTMLElement} element The element we want the style property for.
+		 * @param {string} property The css property we want the style for.
+		 */
+		shoestring._getStyle = function( element, property ) {
+			var convert, value, j, k;
+
+			if( cssExceptions[ property ] ) {
+				for( j = 0, k = cssExceptions[ property ].length; j < k; j++ ) {
+					value = _getStyle( element, cssExceptions[ property ][ j ] );
+
+					if( value ) {
+						return value;
+					}
+				}
+			}
+
+			for( j = 0, k = vendorPrefixes.length; j < k; j++ ) {
+				convert = convertPropertyName( vendorPrefixes[ j ] + property );
+
+				// VendorprefixKeyName || key-name
+				value = _getStyle( element, convert );
+
+				if( convert !== property ) {
+					value = value || _getStyle( element, property );
+				}
+
+				if( vendorPrefixes[ j ] ) {
+					// -vendorprefix-key-name
+					value = value || _getStyle( element, vendorPrefixes[ j ] + property );
+				}
+
+				if( value ) {
+					return value;
+				}
+			}
+
+			return undefined;
+		};
+	})();
+
+
+
+	(function() {
+		var cssExceptions = shoestring.cssExceptions;
+
+		// IE8 uses marginRight instead of margin-right
+		function convertPropertyName( str ) {
+			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
+				return character.toUpperCase();
+			});
+		}
+
+		/**
+		 * Private function for setting the style of an element.
+		 *
+		 * **NOTE** Please use the [css](../css.js.html) method instead.
+		 *
+		 * @method _setStyle
+		 * @param {HTMLElement} element The element we want to style.
+		 * @param {string} property The property being used to style the element.
+		 * @param {string} value The css value for the style property.
+		 */
+		shoestring._setStyle = function( element, property, value ) {
+			var convertedProperty = convertPropertyName(property);
+
+			element.style[ property ] = value;
+
+			if( convertedProperty !== property ) {
+				element.style[ convertedProperty ] = value;
+			}
+
+			if( cssExceptions[ property ] ) {
+				for( var j = 0, k = cssExceptions[ property ].length; j<k; j++ ) {
+					element.style[ cssExceptions[ property ][ j ] ] = value;
+				}
+			}
+		};
+	})();
+
+
+
+	/**
+	 * Get the compute style property of the first element or set the value of a style property
+	 * on all elements in the set.
+	 *
+	 * @method _setStyle
+	 * @param {string} property The property being used to style the element.
+	 * @param {string|undefined} value The css value for the style property.
+	 * @return {string|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.css = function( property, value ){
+		if( !this[0] ){
+			return;
+		}
+
+		if( typeof property === "object" ) {
+			return this.each(function() {
+				for( var key in property ) {
+					if( property.hasOwnProperty( key ) ) {
+						shoestring._setStyle( this, key, property[key] );
+					}
+				}
+			});
+		}	else {
+			// assignment else retrieve first
+			if( value !== undefined ){
+				return this.each(function(){
+					shoestring._setStyle( this, property, value );
+				});
+			}
+
+			return shoestring._getStyle( this[0], property );
+		}
+	};
+
+
+
+	/**
+	 * Returns the indexed element wrapped in a new `shoestring` object.
+	 *
+	 * @param {integer} index The index of the element to wrap and return.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.eq = function( index ){
+		if( this[index] ){
+			return shoestring( this[index] );
+		}
+
+		return shoestring([]);
+	};
+
+
+
+	/**
+	 * Filter out the current set if they do *not* match the passed selector or
+	 * the supplied callback returns false
+	 *
+	 * @param {string,function} selector The selector or boolean return value callback used to filter the elements.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.filter = function( selector ){
+		var ret = [];
+
+		this.each(function( index ){
+			var wsel;
+
+			if( typeof selector === 'function' ) {
+				if( selector.call( this, index ) !== false ) {
+					ret.push( this );
+				}
+			} else {
+				if( !this.parentNode ){
+					var context = shoestring( doc.createDocumentFragment() );
+
+					context[ 0 ].appendChild( this );
+					wsel = shoestring( selector, context );
+				} else {
+					wsel = shoestring( selector, this.parentNode );
+				}
+
+				if( shoestring.inArray( this, wsel ) > -1 ){
+					ret.push( this );
+				}
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Find descendant elements of the current collection.
+	 *
+	 * @param {string} selector The selector used to find the children
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.find = function( selector ){
+		var ret = [],
+			finds;
+		this.each(function(){
+				finds = this.querySelectorAll( selector );
+
+			for( var i = 0, il = finds.length; i < il; i++ ){
+				ret = ret.concat( finds[i] );
+			}
+		});
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Returns the first element of the set wrapped in a new `shoestring` object.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.first = function(){
+		return this.eq( 0 );
+	};
+
+
+
+	/**
+	 * Returns the raw DOM node at the passed index.
+	 *
+	 * @param {integer} index The index of the element to wrap and return.
+	 * @return {HTMLElement|undefined|array}
+	 * @this shoestring
+	 */
+	shoestring.fn.get = function( index ){
+
+		// return an array of elements if index is undefined
+		if( index === undefined ){
+			var elements = [];
+
+			for( var i = 0; i < this.length; i++ ){
+				elements.push( this[ i ] );
+			}
+
+			return elements;
+		} else {
+			return this[ index ];
+		}
+	};
+
+
+
+	var set = function( html ){
+		if( typeof html === "string" || typeof html === "number" ){
+			return this.each(function(){
+				this.innerHTML = "" + html;
+			});
+		} else {
+			var h = "";
+			if( typeof html.length !== "undefined" ){
+				for( var i = 0, l = html.length; i < l; i++ ){
+					h += html[i].outerHTML;
+				}
+			} else {
+				h = html.outerHTML;
+			}
+			return this.each(function(){
+				this.innerHTML = h;
+			});
+		}
+	};
+	/**
+	 * Gets or sets the `innerHTML` from all the elements in the set.
+	 *
+	 * @param {string|undefined} html The html to assign
+	 * @return {string|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.html = function( html ){
+				if( typeof html !== "undefined" ){
+			return set.call( this, html );
+		} else { // get
+			var pile = "";
+
+			this.each(function(){
+				pile += this.innerHTML;
+			});
+
+			return pile;
+		}
+	};
+
+
+
+	(function() {
+		function _getIndex( set, test ) {
+			var i, result, element;
+
+			for( i = result = 0; i < set.length; i++ ) {
+				element = set.item ? set.item(i) : set[i];
+
+				if( test(element) ){
+					return result;
+				}
+
+				// ignore text nodes, etc
+				// NOTE may need to be more permissive
+				if( element.nodeType === 1 ){
+					result++;
+				}
+			}
+
+			return -1;
+		}
+
+		/**
+		 * Find the index in the current set for the passed selector.
+		 * Without a selector it returns the index of the first node within the array of its siblings.
+		 *
+		 * @param {string|undefined} selector The selector used to search for the index.
+		 * @return {integer}
+		 * @this {shoestring}
+		 */
+		shoestring.fn.index = function( selector ){
+			var self, children;
+
+			self = this;
+
+			// no arg? check the children, otherwise check each element that matches
+			if( selector === undefined ){
+				children = ( ( this[ 0 ] && this[0].parentNode ) || doc.documentElement).childNodes;
+
+				// check if the element matches the first of the set
+				return _getIndex(children, function( element ) {
+					return self[0] === element;
+				});
+			} else {
+
+				// check if the element matches the first selected node from the parent
+				return _getIndex(self, function( element ) {
+					return element === (shoestring( selector, element.parentNode )[ 0 ]);
+				});
+			}
+		};
+	})();
+
+
+
+	/**
+	 * Insert the current set before the elements matching the selector.
+	 *
+	 * @param {string} selector The selector before which to insert the current set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.insertBefore = function( selector ){
+		return this.each(function(){
+			shoestring( selector ).before( this );
+		});
+	};
+
+
+
+	/**
+	 * Returns the last element of the set wrapped in a new `shoestring` object.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.last = function(){
+		return this.eq( this.length - 1 );
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of siblings of each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.next = function(){
+		
+		var result = [];
+
+		// TODO need to implement map
+		this.each(function() {
+			var children, item, found;
+
+			// get the child nodes for this member of the set
+			children = shoestring( this.parentNode )[0].childNodes;
+
+			for( var i = 0; i < children.length; i++ ){
+				item = children.item( i );
+
+				// found the item we needed (found) which means current item value is
+				// the next node in the list, as long as it's viable grab it
+				// NOTE may need to be more permissive
+				if( found && item.nodeType === 1 ){
+					result.push( item );
+					break;
+				}
+
+				// find the current item and mark it as found
+				if( item === this ){
+					found = true;
+				}
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	/**
+	 * Removes elements from the current set.
+	 *
+	 * @param {string} selector The selector to use when removing the elements.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.not = function( selector ){
+		var ret = [];
+
+		this.each(function(){
+			var found = shoestring( selector, this.parentNode );
+
+			if( shoestring.inArray(this, found) === -1 ){
+				ret.push( this );
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Returns the set of first parents for each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.parent = function(){
+		var ret = [],
+			parent;
+
+		this.each(function(){
+			// no parent node, assume top level
+			// jQuery parent: return the document object for <html> or the parent node if it exists
+			parent = (this === doc.documentElement ? doc : this.parentNode);
+
+			// if there is a parent and it's not a document fragment
+			if( parent && parent.nodeType !== 11 ){
+				ret.push( parent );
+			}
+		});
+
+		return shoestring(ret);
+	};
+
+
+
+	/**
+	 * Add an HTML string or element before the children of each element in the current set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML string or element to add.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prepend = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				var insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
+				if ( this.firstChild ){
+					this.insertBefore( insertEl, this.firstChild );
+				} else {
+					this.appendChild( insertEl );
+				}
+			}
+		});
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of *one* siblingx before each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prev = function(){
+		
+		var result = [];
+
+		// TODO need to implement map
+		this.each(function() {
+			var children, item, found;
+
+			// get the child nodes for this member of the set
+			children = shoestring( this.parentNode )[0].childNodes;
+
+			for( var i = children.length -1; i >= 0; i-- ){
+				item = children.item( i );
+
+				// found the item we needed (found) which means current item value is
+				// the next node in the list, as long as it's viable grab it
+				// NOTE may need to be more permissive
+				if( found && item.nodeType === 1 ){
+					result.push( item );
+					break;
+				}
+
+				// find the current item and mark it as found
+				if( item === this ){
+					found = true;
+				}
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of *all* siblings before each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prevAll = function(){
+		
+		var result = [];
+
+		this.each(function() {
+			var $previous = shoestring( this ).prev();
+
+			while( $previous.length ){
+				result.push( $previous[0] );
+				$previous = $previous.prev();
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	/**
+	 * Remove an attribute from each element in the current set.
+	 *
+	 * @param {string} name The name of the attribute.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeAttr = function( name ){
+		return this.each(function(){
+			this.removeAttribute( name );
+		});
+	};
+
+
+
+	/**
+	 * Remove a class from each DOM element in the set of elements.
+	 *
+	 * @param {string} className The name of the class to be removed.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeClass = function( cname ){
+		var classes = cname.replace(/^\s+|\s+$/g, '').split( " " );
+
+		return this.each(function(){
+			var newClassName, regex;
+
+			for( var i = 0, il = classes.length; i < il; i++ ){
+				if( this.className !== undefined ){
+					regex = new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)", "gmi" );
+					newClassName = this.className.replace( regex, " " );
+
+					this.className = newClassName.replace(/^\s+|\s+$/g, '');
+				}
+			}
+		});
+	};
+
+
+
+	/**
+	 * Remove the current set of elements from the DOM.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.remove = function(){
+		return this.each(function(){
+			if( this.parentNode ) {
+				this.parentNode.removeChild( this );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Replace each element in the current set with that argument HTML string or HTMLElement.
+	 *
+	 * @param {string|HTMLElement} fragment The value to assign.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.replaceWith = function( fragment ){
+		if( typeof( fragment ) === "string" ){
+			fragment = shoestring( fragment );
+		}
+
+		var ret = [];
+
+		if( fragment.length > 1 ){
+			fragment = fragment.reverse();
+		}
+		this.each(function( i ){
+			var clone = this.cloneNode( true ),
+				insertEl;
+			ret.push( clone );
+
+			// If there is no parentNode, this is pointless, drop it.
+			if( !this.parentNode ){ return; }
+
+			if( fragment.length === 1 ){
+				insertEl = i > 0 ? fragment[ 0 ].cloneNode( true ) : fragment[ 0 ];
+				this.parentNode.replaceChild( insertEl, this );
+			} else {
+				for( var j = 0, jl = fragment.length; j < jl; j++ ){
+					insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
+					this.parentNode.insertBefore( insertEl, this.nextSibling );
+				}
+				this.parentNode.removeChild( this );
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+  /**
+	 * Get all of the sibling elements for each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.siblings = function(){
+		
+		if( !this.length ) {
+			return shoestring( [] );
+		}
+
+		var sibs = [], el = this[ 0 ].parentNode.firstChild;
+
+		do {
+			if( el.nodeType === 1 && el !== this[ 0 ] ) {
+				sibs.push( el );
+			}
+
+      el = el.nextSibling;
+		} while( el );
+
+		return shoestring( sibs );
+	};
+
+
+
+	var getText = function( elem ){
+		var node,
+			ret = "",
+			i = 0,
+			nodeType = elem.nodeType;
+
+		if ( !nodeType ) {
+			// If no nodeType, this is expected to be an array
+			while ( (node = elem[i++]) ) {
+				// Do not traverse comment nodes
+				ret += getText( node );
+			}
+		} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+			// Use textContent for elements
+			// innerText usage removed for consistency of new lines (jQuery #11153)
+			if ( typeof elem.textContent === "string" ) {
+				return elem.textContent;
+			} else {
+				// Traverse its children
+				for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+					ret += getText( elem );
+				}
+			}
+		} else if ( nodeType === 3 || nodeType === 4 ) {
+			return elem.nodeValue;
+		}
+		// Do not include comment or processing instruction nodes
+
+		return ret;
+	};
+
+  /**
+	 * Recursively retrieve the text content of the each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.text = function() {
+		
+		return getText( this );
+	};
+
+
+
+
+	/**
+	 * Get the value of the first element or set the value of all elements in the current set.
+	 *
+	 * @param {string} value The value to set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.val = function( value ){
+		var el;
+		if( value !== undefined ){
+			return this.each(function(){
+				if( this.tagName === "SELECT" ){
+					var optionSet, option,
+						options = this.options,
+						values = [],
+						i = options.length,
+						newIndex;
+
+					values[0] = value;
+					while ( i-- ) {
+						option = options[ i ];
+						if ( (option.selected = shoestring.inArray( option.value, values ) >= 0) ) {
+							optionSet = true;
+							newIndex = i;
+						}
+					}
+					// force browsers to behave consistently when non-matching value is set
+					if ( !optionSet ) {
+						this.selectedIndex = -1;
+					} else {
+						this.selectedIndex = newIndex;
+					}
+				} else {
+					this.value = value;
+				}
+			});
+		} else {
+			el = this[0];
+
+			if( el.tagName === "SELECT" ){
+				if( el.selectedIndex < 0 ){ return ""; }
+				return el.options[ el.selectedIndex ].value;
+			} else {
+				return el.value;
+			}
+		}
+	};
+
+
+
+	/**
+	 * Private function for setting/getting the offset property for height/width.
+	 *
+	 * **NOTE** Please use the [width](width.js.html) or [height](height.js.html) methods instead.
+	 *
+	 * @param {shoestring} set The set of elements.
+	 * @param {string} name The string "height" or "width".
+	 * @param {float|undefined} value The value to assign.
+	 * @return shoestring
+	 * @this window
+	 */
+	shoestring._dimension = function( set, name, value ){
+		var offsetName;
+
+		if( value === undefined ){
+			offsetName = name.replace(/^[a-z]/, function( letter ) {
+				return letter.toUpperCase();
+			});
+
+			return set[ 0 ][ "offset" + offsetName ];
+		} else {
+			// support integer values as pixels
+			value = typeof value === "string" ? value : value + "px";
+
+			return set.each(function(){
+				this.style[ name ] = value;
+			});
+		}
+	};
+
+
+
+	/**
+	 * Gets the width value of the first element or sets the width for the whole set.
+	 *
+	 * @param {float|undefined} value The value to assign.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.width = function( value ){
+		return shoestring._dimension( this, "width", value );
+	};
+
+
+
+	/**
+	 * Wraps the child elements in the provided HTML.
+	 *
+	 * @param {string} html The wrapping HTML.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.wrapInner = function( html ){
+		return this.each(function(){
+			var inH = this.innerHTML;
+
+			this.innerHTML = "";
+			shoestring( this ).append( shoestring( html ).html( inH ) );
+		});
+	};
+
+
+
+	function initEventCache( el, evt ) {
+		if ( !el.shoestringData ) {
+			el.shoestringData = {};
+		}
+		if ( !el.shoestringData.events ) {
+			el.shoestringData.events = {};
+		}
+		if ( !el.shoestringData.loop ) {
+			el.shoestringData.loop = {};
+		}
+		if ( !el.shoestringData.events[ evt ] ) {
+			el.shoestringData.events[ evt ] = [];
+		}
+	}
+
+	function addToEventCache( el, evt, eventInfo ) {
+		var obj = {};
+		obj.isCustomEvent = eventInfo.isCustomEvent;
+		obj.callback = eventInfo.callfunc;
+		obj.originalCallback = eventInfo.originalCallback;
+		obj.namespace = eventInfo.namespace;
+
+		el.shoestringData.events[ evt ].push( obj );
+
+		if( eventInfo.customEventLoop ) {
+			el.shoestringData.loop[ evt ] = eventInfo.customEventLoop;
+		}
+	}
+
+	/**
+	 * Bind a callback to an event for the currrent set of elements.
+	 *
+	 * @param {string} evt The event(s) to watch for.
+	 * @param {object,function} data Data to be included with each event or the callback.
+	 * @param {function} originalCallback Callback to be invoked when data is define.d.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.bind = function( evt, data, originalCallback ){
+
+				if( typeof data === "function" ){
+			originalCallback = data;
+			data = null;
+		}
+
+		var evts = evt.split( " " );
+
+		// NOTE the `triggeredElement` is purely for custom events from IE
+		function encasedCallback( e, namespace, triggeredElement ){
+			var result;
+
+			if( e._namespace && e._namespace !== namespace ) {
+				return;
+			}
+
+			e.data = data;
+			e.namespace = e._namespace;
+
+			var returnTrue = function(){
+				return true;
+			};
+
+			e.isDefaultPrevented = function(){
+				return false;
+			};
+
+			var originalPreventDefault = e.preventDefault;
+			var preventDefaultConstructor = function(){
+				if( originalPreventDefault ) {
+					return function(){
+						e.isDefaultPrevented = returnTrue;
+						originalPreventDefault.call(e);
+					};
+				} else {
+					return function(){
+						e.isDefaultPrevented = returnTrue;
+						e.returnValue = false;
+					};
+				}
+			};
+
+			// thanks https://github.com/jonathantneal/EventListener
+			e.target = triggeredElement || e.target || e.srcElement;
+			e.preventDefault = preventDefaultConstructor();
+			e.stopPropagation = e.stopPropagation || function () {
+				e.cancelBubble = true;
+			};
+
+			result = originalCallback.apply(this, [ e ].concat( e._args ) );
+
+			if( result === false ){
+				e.preventDefault();
+				e.stopPropagation();
+			}
+
+			return result;
+		}
+
+		return this.each(function(){
+			var domEventCallback,
+				customEventCallback,
+				customEventLoop,
+				oEl = this;
+
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				var split = evts[ i ].split( "." ),
+					evt = split[ 0 ],
+					namespace = split.length > 0 ? split[ 1 ] : null;
+
+				domEventCallback = function( originalEvent ) {
+					if( oEl.ssEventTrigger ) {
+						originalEvent._namespace = oEl.ssEventTrigger._namespace;
+						originalEvent._args = oEl.ssEventTrigger._args;
+
+						oEl.ssEventTrigger = null;
+					}
+					return encasedCallback.call( oEl, originalEvent, namespace );
+				};
+				customEventCallback = null;
+				customEventLoop = null;
+
+				initEventCache( this, evt );
+
+				this.addEventListener( evt, domEventCallback, false );
+
+				addToEventCache( this, evt, {
+					callfunc: customEventCallback || domEventCallback,
+					isCustomEvent: !!customEventCallback,
+					customEventLoop: customEventLoop,
+					originalCallback: originalCallback,
+					namespace: namespace
+				});
+			}
+		});
+	};
+
+	shoestring.fn.on = shoestring.fn.bind;
+
+	
+
+
+	/**
+	 * Unbind a previous bound callback for an event.
+	 *
+	 * @param {string} event The event(s) the callback was bound to..
+	 * @param {function} callback Callback to unbind.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.unbind = function( event, callback ){
+
+		
+		var evts = event ? event.split( " " ) : [];
+
+		return this.each(function(){
+			if( !this.shoestringData || !this.shoestringData.events ) {
+				return;
+			}
+
+			if( !evts.length ) {
+				unbindAll.call( this );
+			} else {
+				var split, evt, namespace;
+				for( var i = 0, il = evts.length; i < il; i++ ){
+					split = evts[ i ].split( "." ),
+					evt = split[ 0 ],
+					namespace = split.length > 0 ? split[ 1 ] : null;
+
+					if( evt ) {
+						unbind.call( this, evt, namespace, callback );
+					} else {
+						unbindAll.call( this, namespace, callback );
+					}
+				}
+			}
+		});
+	};
+
+	function unbind( evt, namespace, callback ) {
+		var bound = this.shoestringData.events[ evt ];
+		if( !(bound && bound.length) ) {
+			return;
+		}
+
+		var matched = [], j, jl;
+		for( j = 0, jl = bound.length; j < jl; j++ ) {
+			if( !namespace || namespace === bound[ j ].namespace ) {
+				if( callback === undefined || callback === bound[ j ].originalCallback ) {
+					this.removeEventListener( evt, bound[ j ].callback, false );
+					matched.push( j );
+				}
+			}
+		}
+
+		for( j = 0, jl = matched.length; j < jl; j++ ) {
+			this.shoestringData.events[ evt ].splice( j, 1 );
+		}
+	}
+
+	function unbindAll( namespace, callback ) {
+		for( var evtKey in this.shoestringData.events ) {
+			unbind.call( this, evtKey, namespace, callback );
+		}
+	}
+
+	shoestring.fn.off = shoestring.fn.unbind;
+
+
+	/**
+	 * Bind a callback to an event for the currrent set of elements, unbind after one occurence.
+	 *
+	 * @param {string} event The event(s) to watch for.
+	 * @param {function} callback Callback to invoke on the event.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.one = function( event, callback ){
+		var evts = event.split( " " );
+
+		return this.each(function(){
+			var thisevt, cbs = {},	$t = shoestring( this );
+
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				thisevt = evts[ i ];
+
+				cbs[ thisevt ] = function( e ){
+					var $t = shoestring( this );
+
+					for( var j in cbs ) {
+						$t.unbind( j, cbs[ j ] );
+					}
+
+					return callback.apply( this, [ e ].concat( e._args ) );
+				};
+
+				$t.bind( thisevt, cbs[ thisevt ] );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Trigger an event on the first element in the set, no bubbling, no defaults.
+	 *
+	 * @param {string} event The event(s) to trigger.
+	 * @param {object} args Arguments to append to callback invocations.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.triggerHandler = function( event, args ){
+		var e = event.split( " " )[ 0 ],
+			el = this[ 0 ],
+			ret;
+
+		// See this.fireEvent( 'on' + evts[ i ], document.createEventObject() ); instead of click() etc in trigger.
+		if( doc.createEvent && el.shoestringData && el.shoestringData.events && el.shoestringData.events[ e ] ){
+			var bindings = el.shoestringData.events[ e ];
+			for (var i in bindings ){
+				if( bindings.hasOwnProperty( i ) ){
+					event = doc.createEvent( "Event" );
+					event.initEvent( e, true, true );
+					event._args = args;
+					args.unshift( event );
+
+					ret = bindings[ i ].originalCallback.apply( event.target, args );
+				}
+			}
+		}
+
+		return ret;
+	};
+
+
+
+	/**
+	 * Trigger an event on each of the DOM elements in the current set.
+	 *
+	 * @param {string} event The event(s) to trigger.
+	 * @param {object} args Arguments to append to callback invocations.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.trigger = function( event, args ){
+		var evts = event.split( " " );
+
+		return this.each(function(){
+			var split, evt, namespace;
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				split = evts[ i ].split( "." ),
+				evt = split[ 0 ],
+				namespace = split.length > 0 ? split[ 1 ] : null;
+
+				if( evt === "click" ){
+					if( this.tagName === "INPUT" && this.type === "checkbox" && this.click ){
+						this.click();
+						return false;
+					}
+				}
+
+				if( doc.createEvent ){
+					var event = doc.createEvent( "Event" );
+					event.initEvent( evt, true, true );
+					event._args = args;
+					event._namespace = namespace;
+
+					this.dispatchEvent( event );
+				}
+			}
+		});
+	};
+
+
+
+	return shoestring;
+}));
+
+// UMD module definition
+// From: https://github.com/umdjs/umd/blob/master/templates/jqueryPlugin.js
+
+(function (factory) {
+	if (true) {
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(8)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof module === 'object' && module.exports) {
+		// Node/CommonJS
+		module.exports = function( root, shoestring ) {
+			if ( shoestring === undefined ) {
+				// require('shoestring') returns a factory that requires window to
+				// build a shoestring instance, we normalize how we use modules
+				// that require this pattern but the window provided is a noop
+				// if it's defined (how jquery works)
+				if ( typeof window !== 'undefined' ) {
+					shoestring = require('shoestring');
+				} else {
+					shoestring = require('shoestring')(root);
+				}
+			}
+			factory(shoestring);
+			return shoestring;
+		};
+	} else {
+		// Browser globals
+		factory(shoestring);
+	}
+}(function ($) {
+	"use strict";
+
+	var win = typeof window !== "undefined" ? window : this;
+
+var Tablesaw = {
+	i18n: {
+		modes: [ 'Stack', 'Swipe', 'Toggle' ],
+		columns: 'Col<span class=\"a11y-sm\">umn</span>s',
+		columnBtnText: 'Columns',
+		columnsDialogError: 'No eligible columns.',
+		sort: 'Sort'
+	},
+	// cut the mustard
+	mustard: ( 'head' in document ) && // IE9+, Firefox 4+, Safari 5.1+, Mobile Safari 4.1+, Opera 11.5+, Android 2.3+
+		( !window.blackberry || window.WebKitPoint ) && // only WebKit Blackberry (OS 6+)
+		!window.operamini
+};
+
+if( Tablesaw.mustard ) {
+	$( document.documentElement ).addClass( 'tablesaw-enhanced' );
+}
+
+(function() {
+	var pluginName = "tablesaw",
+		classes = {
+			toolbar: "tablesaw-bar"
+		},
+		events = {
+			create: "tablesawcreate",
+			destroy: "tablesawdestroy",
+			refresh: "tablesawrefresh"
+		},
+		defaultMode = "stack",
+		initSelector = "table[data-tablesaw-mode],table[data-tablesaw-sortable]";
+
+	var Table = function( element ) {
+		if( !element ) {
+			throw new Error( "Tablesaw requires an element." );
+		}
+
+		this.table = element;
+		this.$table = $( element );
+
+		this.mode = this.$table.attr( "data-tablesaw-mode" ) || defaultMode;
+
+		this.init();
+	};
+
+	Table.prototype.init = function() {
+		// assign an id if there is none
+		if ( !this.$table.attr( "id" ) ) {
+			this.$table.attr( "id", pluginName + "-" + Math.round( Math.random() * 10000 ) );
+		}
+
+		this.createToolbar();
+
+		// TODO this is used inside stack table init for some reason? what does it do?
+		this._initCells();
+
+		this.$table.trigger( events.create, [ this ] );
+	};
+
+	Table.prototype._getPrimaryHeaders = function() {
+		return this.$table.find( "thead" ).children().filter( "tr" ).eq( 0 ).find( "th" );
+	};
+
+	Table.prototype._findHeadersForCell = function( cell ) {
+		var $headers = this._getPrimaryHeaders();
+		var results = [];
+
+		for( var rowNumber = 1; rowNumber < this.headerMapping.length; rowNumber++ ) {
+			for( var colNumber = 0; colNumber < this.headerMapping[ rowNumber ].length; colNumber++ ) {
+				if( this.headerMapping[ rowNumber ][ colNumber ] === cell ) {
+					results.push( $headers[ colNumber ] );
+				}
+			}
+		}
+		return results;
+	};
+
+	Table.prototype._initCells = function() {
+		var colstart = 0;
+		var $rows = this.$table.find( "tr" );
+		var columnLookup = [];
+
+		$rows.each(function( rowNumber ) {
+			columnLookup[ rowNumber ] = [];
+		});
+
+		$rows.each(function( rowNumber ) {
+			var coltally = 0;
+			var $t = $( this );
+			var children = $t.children();
+			// var isInHeader = $t.closest( "thead" ).length;
+
+			children.each(function() {
+				var colspan = parseInt( this.getAttribute( "colspan" ), 10 );
+				var rowspan = parseInt( this.getAttribute( "rowspan" ), 10 );
+
+				// set in a previous rowspan
+				while( columnLookup[ rowNumber ][ coltally ] ) {
+					coltally++;
+				}
+
+				columnLookup[ rowNumber ][ coltally ] = this;
+				colstart = coltally + 1;
+
+				// TODO both colspan and rowspan
+				if( colspan ) {
+					for( var k = 0; k < colspan - 1; k++ ){
+						coltally++;
+						columnLookup[ rowNumber ][ coltally ] = this;
+					}
+				}
+				if( rowspan ) {
+					for( var j = 1; j < rowspan; j++ ){
+						columnLookup[ rowNumber + j ][ coltally ] = this;
+					}
+				}
+
+				coltally++;
+			});
+		});
+
+		for( var colNumber = 0; colNumber < columnLookup[ 0 ].length; colNumber++ ) {
+			var headerCol = columnLookup[ 0 ][ colNumber ];
+			var rowNumber = 0;
+			var rowCell;
+
+			if( !headerCol.cells ) {
+				headerCol.cells = [];
+			}
+
+			while( rowNumber < columnLookup.length ) {
+				rowCell = columnLookup[ rowNumber ][ colNumber ];
+
+				if( headerCol !== rowCell ) {
+					headerCol.cells.push( rowCell );
+				}
+
+				rowNumber++;
+			}
+		}
+
+		this.headerMapping = columnLookup;
+	};
+
+	Table.prototype.refresh = function() {
+		this._initCells();
+
+		this.$table.trigger( events.refresh );
+	};
+
+	Table.prototype.createToolbar = function() {
+		// Insert the toolbar
+		// TODO move this into a separate component
+		var $toolbar = this.$table.prev().filter( '.' + classes.toolbar );
+		if( !$toolbar.length ) {
+			$toolbar = $( '<div>' )
+				.addClass( classes.toolbar )
+				.insertBefore( this.$table );
+		}
+		this.$toolbar = $toolbar;
+
+		if( this.mode ) {
+			this.$toolbar.addClass( 'tablesaw-mode-' + this.mode );
+		}
+	};
+
+	Table.prototype.destroy = function() {
+		// Don’t remove the toolbar. Some of the table features are not yet destroy-friendly.
+		this.$table.prev().filter( '.' + classes.toolbar ).each(function() {
+			this.className = this.className.replace( /\btablesaw-mode\-\w*\b/gi, '' );
+		});
+
+		var tableId = this.$table.attr( 'id' );
+		$( document ).off( "." + tableId );
+		$( window ).off( "." + tableId );
+
+		// other plugins
+		this.$table.trigger( events.destroy, [ this ] );
+
+		this.$table.removeData( pluginName );
+	};
+
+	// Collection method.
+	$.fn[ pluginName ] = function() {
+		return this.each( function() {
+			var $t = $( this );
+
+			if( $t.data( pluginName ) ){
+				return;
+			}
+
+			var table = new Table( this );
+			$t.data( pluginName, table );
+		});
+	};
+
+	$( document ).on( "enhance.tablesaw", function( e ) {
+		// Cut the mustard
+		if( Tablesaw.mustard ) {
+			$( e.target ).find( initSelector )[ pluginName ]();
+		}
+	});
+
+}());
+
+(function(){
+
+	var classes = {
+		stackTable: 'tablesaw-stack',
+		cellLabels: 'tablesaw-cell-label',
+		cellContentLabels: 'tablesaw-cell-content'
+	};
+
+	var data = {
+		obj: 'tablesaw-stack'
+	};
+
+	var attrs = {
+		labelless: 'data-tablesaw-no-labels',
+		hideempty: 'data-tablesaw-hide-empty'
+	};
+
+	var Stack = function( element, tablesaw ) {
+
+		this.tablesaw = tablesaw;
+		this.$table = $( element );
+
+		this.labelless = this.$table.is( '[' + attrs.labelless + ']' );
+		this.hideempty = this.$table.is( '[' + attrs.hideempty + ']' );
+
+		this.$table.data( data.obj, this );
+	};
+
+	// Stack.prototype.init = function( colstart ) {
+	Stack.prototype.init = function() {
+		this.$table.addClass( classes.stackTable );
+
+		if( this.labelless ) {
+			return;
+		}
+
+		var self = this;
+
+		this.$table.find( "th, td" ).filter(function() {
+			return !$( this ).closest( "thead" ).length;
+		}).filter(function() {
+			return !$( this ).closest( "tr" ).is( "[" + attrs.labelless + "]" ) &&
+				( !self.hideempty || !!$( this ).html() );
+		}).each(function() {
+			var html = [];
+			var $cell = $( this );
+
+			// headers
+			$( self.tablesaw._findHeadersForCell( this ) ).each(function() {
+				var $t = $( this );
+				// TODO decouple from sortable better
+				var $sortableButton = $t.find( ".tablesaw-sortable-btn" );
+				html.push( $sortableButton.length ? $sortableButton.html() : $t.html() );
+			});
+
+			$cell.wrapInner( "<span class='" + classes.cellContentLabels + "'></span>" );
+			$cell.prepend( "<b class='" + classes.cellLabels + "'>" + html.join( ", " ) + "</b>"  );
+		});
+	};
+
+	Stack.prototype.destroy = function() {
+		this.$table.removeClass( classes.stackTable );
+		this.$table.find( '.' + classes.cellLabels ).remove();
+		this.$table.find( '.' + classes.cellContentLabels ).each(function() {
+			$( this ).replaceWith( this.childNodes );
+		});
+	};
+
+	// on tablecreate, init
+	$( document ).on( "tablesawcreate", function( e, tablesaw ){
+		if( tablesaw.mode === 'stack' ){
+			var table = new Stack( tablesaw.table, tablesaw );
+			table.init();
+		}
+	});
+
+	$( document ).on( "tablesawdestroy", function( e, tablesaw ){
+		if( tablesaw.mode === 'stack' ){
+			$( tablesaw.table ).data( data.obj ).destroy();
+		}
+	});
+
+}());
+}));
+
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports) {
+
+/*! Tablesaw - v3.0.0 - 2017-02-14
+* https://github.com/filamentgroup/tablesaw
+* Copyright (c) 2017 Filament Group; Licensed MIT */
+(function( win ) {
+	"use strict";
+
+	var $;
+	if( 'shoestring' in win ) {
+		$ = win.shoestring;
+	} else if( 'jQuery' in win ) {
+		$ = win.jQuery;
+	} else {
+		throw new Error( "tablesaw: DOM library not found." );
+	}
+
+	// DOM-ready auto-init of plugins.
+	// Many plugins bind to an "enhance" event to init themselves on dom ready, or when new markup is inserted into the DOM
+	// Use raw DOMContentLoaded instead of shoestring (may have issues in Android 2.3, exhibited by stack table)
+	if( "addEventListener" in document ) {
+		document.addEventListener( "DOMContentLoaded", function() {
+			$( document ).trigger( "enhance.tablesaw" );
+		});
+	}
+
+})( typeof window !== "undefined" ? window : this );
+
+/***/ }),
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -44388,13 +48787,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(170);
+__webpack_require__(171);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 172 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {// 4.6.1 (2017-05-10)
@@ -44413,17 +48812,17 @@ f.layoutRect().contentH=f.layoutRect().innerH),f._super(),a=f.layoutRect(),f.set
 function d(a){this.settings=e({},a),this.count=0}var e=c.extend;return d.sendRPC=function(a){return(new d).send(a)},d.prototype={send:function(c){var d=c.error,f=c.success;c=e(this.settings,c),c.success=function(b,e){b=a.parse(b),"undefined"==typeof b&&(b={error:"JSON Parse error."}),b.error?d.call(c.error_scope||c.scope,b.error,e):f.call(c.success_scope||c.scope,b.result)},c.error=function(a,b){d&&d.call(c.error_scope||c.scope,a,b)},c.data=a.serialize({id:c.id||"c"+this.count++,method:c.method,params:c.params}),c.content_type="application/json",b.send(c)}},d}),g("1b",["e"],function(a){return{callbacks:{},count:0,send:function(b){var c=this,d=a.DOM,e=void 0!==b.count?b.count:c.count,f="tinymce_jsonp_"+e;c.callbacks[e]=function(a){d.remove(f),delete c.callbacks[e],b.callback(a)},d.add(d.doc.body,"script",{id:f,src:b.url,type:"text/javascript"}),c.count++}}}),g("1c",[],function(){function a(){g=[];for(var a in f)g.push(a);d.length=g.length}function b(){function b(a){var b,c;return c=void 0!==a?j+a:d.indexOf(",",j),c===-1||c>d.length?null:(b=d.substring(j,c),j=c+1,b)}var c,d,g,j=0;if(f={},i){e.load(h),d=e.getAttribute(h)||"";do{var k=b();if(null===k)break;if(c=b(parseInt(k,32)||0),null!==c){if(k=b(),null===k)break;g=b(parseInt(k,32)||0),c&&(f[c]=g)}}while(null!==c);a()}}function c(){var b,c="";if(i){for(var d in f)b=f[d],c+=(c?",":"")+d.length.toString(32)+","+d+","+b.length.toString(32)+","+b;e.setAttribute(h,c);try{e.save(h)}catch(a){}a()}}var d,e,f,g,h,i;try{if(window.localStorage)return localStorage}catch(a){}return h="tinymce",e=document.documentElement,i=!!e.addBehavior,i&&e.addBehavior("#default#userData"),d={key:function(a){return g[a]},getItem:function(a){return a in f?f[a]:null},setItem:function(a,b){f[a]=""+b,c()},removeItem:function(a){delete f[a],c()},clear:function(){f={},c()}},b(),d}),g("1d",["e","7","f","g","9","6"],function(a,b,c,d,e,f){var g=function(g){g.DOM=a.DOM,g.ScriptLoader=c.ScriptLoader,g.PluginManager=d.PluginManager,g.ThemeManager=d.ThemeManager,g.dom=g.dom||{},g.dom.Event=b.Event,e.each("trim isArray is toArray makeMap each map grep inArray extend create walk createNS resolve explode _addCacheSuffix".split(" "),function(a){g[a]=e[a]}),e.each("isOpera isWebKit isIE isGecko isMac".split(" "),function(a){g[a]=f[a.substr(2).toLowerCase()]})};return{register:g}}),g("1e",[],function(){function a(a){function e(a,e,f){var g,h,i,j,k,l;return g=0,h=0,i=0,a/=255,e/=255,f/=255,k=b(a,b(e,f)),l=c(a,c(e,f)),k==l?(i=k,{h:0,s:0,v:100*i}):(j=a==k?e-f:f==k?a-e:f-a,g=a==k?3:f==k?1:5,g=60*(g-j/(l-k)),h=(l-k)/l,i=l,{h:d(g),s:d(100*h),v:d(100*i)})}function f(a,e,f){var g,h,i,j;if(a=(parseInt(a,10)||0)%360,e=parseInt(e,10)/100,f=parseInt(f,10)/100,e=c(0,b(e,1)),f=c(0,b(f,1)),0===e)return void(l=m=n=d(255*f));switch(g=a/60,h=f*e,i=h*(1-Math.abs(g%2-1)),j=f-h,Math.floor(g)){case 0:l=h,m=i,n=0;break;case 1:l=i,m=h,n=0;break;case 2:l=0,m=h,n=i;break;case 3:l=0,m=i,n=h;break;case 4:l=i,m=0,n=h;break;case 5:l=h,m=0,n=i;break;default:l=m=n=0}l=d(255*(l+j)),m=d(255*(m+j)),n=d(255*(n+j))}function g(){function a(a){return a=parseInt(a,10).toString(16),a.length>1?a:"0"+a}return"#"+a(l)+a(m)+a(n)}function h(){return{r:l,g:m,b:n}}function i(){return e(l,m,n)}function j(a){var b;return"object"==typeof a?"r"in a?(l=a.r,m=a.g,n=a.b):"v"in a&&f(a.h,a.s,a.v):(b=/rgb\s*\(\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)[^\)]*\)/gi.exec(a))?(l=parseInt(b[1],10),m=parseInt(b[2],10),n=parseInt(b[3],10)):(b=/#([0-F]{2})([0-F]{2})([0-F]{2})/gi.exec(a))?(l=parseInt(b[1],16),m=parseInt(b[2],16),n=parseInt(b[3],16)):(b=/#([0-F])([0-F])([0-F])/gi.exec(a))&&(l=parseInt(b[1]+b[1],16),m=parseInt(b[2]+b[2],16),n=parseInt(b[3]+b[3],16)),l=l<0?0:l>255?255:l,m=m<0?0:m>255?255:m,n=n<0?0:n>255?255:n,k}var k=this,l=0,m=0,n=0;a&&j(a),k.toRgb=h,k.toHsv=i,k.toHex=g,k.parse=j}var b=Math.min,c=Math.max,d=Math.round;return a}),g("2n",["x","9"],function(a,b){"use strict";return a.extend({Defaults:{firstControlClass:"first",lastControlClass:"last"},init:function(a){this.settings=b.extend({},this.Defaults,a)},preRender:function(a){a.bodyClasses.add(this.settings.containerClass)},applyClasses:function(a){var b,c,d,e,f=this,g=f.settings;b=g.firstControlClass,c=g.lastControlClass,a.each(function(a){a.classes.remove(b).remove(c).add(g.controlClass),a.visible()&&(d||(d=a),e=a)}),d&&d.classes.add(b),e&&e.classes.add(c)},renderHtml:function(a){var b=this,c="";return b.applyClasses(a.items()),a.items().each(function(a){c+=a.renderHtml()}),c},recalc:function(){},postRender:function(){},isNative:function(){return!1}})}),g("2o",["2n"],function(a){"use strict";return a.extend({Defaults:{containerClass:"abs-layout",controlClass:"abs-layout-item"},recalc:function(a){a.items().filter(":visible").each(function(a){var b=a.settings;a.layoutRect({x:b.x,y:b.y,w:b.w,h:b.h}),a.recalc&&a.recalc()})},renderHtml:function(a){return'<div id="'+a._id+'-absend" class="'+a.classPrefix+'abs-end"></div>'+this._super(a)}})}),g("2p",["2l"],function(a){"use strict";return a.extend({Defaults:{classes:"widget btn",role:"button"},init:function(a){var b,c=this;c._super(a),a=c.settings,b=c.settings.size,c.on("click mousedown",function(a){a.preventDefault()}),c.on("touchstart",function(a){c.fire("click",a),a.preventDefault()}),a.subtype&&c.classes.add(a.subtype),b&&c.classes.add("btn-"+b),a.icon&&c.icon(a.icon)},icon:function(a){return arguments.length?(this.state.set("icon",a),this):this.state.get("icon")},repaint:function(){var a,b=this.getEl().firstChild;b&&(a=b.style,a.width=a.height="100%"),this._super()},renderHtml:function(){var a,b=this,c=b._id,d=b.classPrefix,e=b.state.get("icon"),f=b.state.get("text"),g="";return a=b.settings.image,a?(e="none","string"!=typeof a&&(a=window.getSelection?a[0]:a[1]),a=" style=\"background-image: url('"+a+"')\""):a="",f&&(b.classes.add("btn-has-text"),g='<span class="'+d+'txt">'+b.encode(f)+"</span>"),e=e?d+"ico "+d+"i-"+e:"",'<div id="'+c+'" class="'+b.classes+'" tabindex="-1"><button role="presentation" type="button" tabindex="-1">'+(e?'<i class="'+e+'"'+a+"></i>":"")+g+"</button></div>"},bindStates:function(){function a(a){var e=c("span."+d,b.getEl());a?(e[0]||(c("button:first",b.getEl()).append('<span class="'+d+'"></span>'),e=c("span."+d,b.getEl())),e.html(b.encode(a))):e.remove(),b.classes.toggle("btn-has-text",!!a)}var b=this,c=b.$,d=b.classPrefix+"txt";return b.state.on("change:text",function(b){a(b.value)}),b.state.on("change:icon",function(c){var d=c.value,e=b.classPrefix;b.settings.icon=d,d=d?e+"ico "+e+"i-"+b.settings.icon:"";var f=b.getEl().firstChild,g=f.getElementsByTagName("i")[0];d?(g&&g==f.firstChild||(g=document.createElement("i"),f.insertBefore(g,f.firstChild)),g.className=d):g&&f.removeChild(g),a(b.state.get("text"))}),b._super()}})}),g("2q",["2d"],function(a){"use strict";return a.extend({Defaults:{defaultType:"button",role:"group"},renderHtml:function(){var a=this,b=a._layout;return a.classes.add("btn-group"),a.preRender(),b.preRender(a),'<div id="'+a._id+'" class="'+a.classes+'"><div id="'+a._id+'-body">'+(a.settings.html||"")+b.renderHtml(a)+"</div></div>"}})}),g("2r",["2l"],function(a){"use strict";return a.extend({Defaults:{classes:"checkbox",role:"checkbox",checked:!1},init:function(a){var b=this;b._super(a),b.on("click mousedown",function(a){a.preventDefault()}),b.on("click",function(a){a.preventDefault(),b.disabled()||b.checked(!b.checked())}),b.checked(b.settings.checked)},checked:function(a){return arguments.length?(this.state.set("checked",a),this):this.state.get("checked")},value:function(a){return arguments.length?this.checked(a):this.checked()},renderHtml:function(){var a=this,b=a._id,c=a.classPrefix;return'<div id="'+b+'" class="'+a.classes+'" unselectable="on" aria-labelledby="'+b+'-al" tabindex="-1"><i class="'+c+"ico "+c+'i-checkbox"></i><span id="'+b+'-al" class="'+c+'label">'+a.encode(a.state.get("text"))+"</span></div>"},bindStates:function(){function a(a){b.classes.toggle("checked",a),b.aria("checked",a)}var b=this;return b.state.on("change:text",function(a){b.getEl("al").firstChild.data=b.translate(a.value)}),b.state.on("change:checked change:value",function(c){b.fire("change"),a(c.value)}),b.state.on("change:icon",function(a){var c=a.value,d=b.classPrefix;if("undefined"==typeof c)return b.settings.icon;b.settings.icon=c,c=c?d+"ico "+d+"i-"+b.settings.icon:"";var e=b.getEl().firstChild,f=e.getElementsByTagName("i")[0];c?(f&&f==e.firstChild||(f=document.createElement("i"),e.insertBefore(f,e.firstChild)),f.className=c):f&&e.removeChild(f)}),b.state.get("checked")&&a(!0),b._super()}})}),g("2s",["2l","2b","48","a","p","9"],function(a,b,c,d,e,f){"use strict";return a.extend({init:function(a){var b=this;b._super(a),a=b.settings,b.classes.add("combobox"),b.subinput=!0,b.ariaTarget="inp",a.menu=a.menu||a.values,a.menu&&(a.icon="caret"),b.on("click",function(c){var e=c.target,f=b.getEl();if(d.contains(f,e)||e==f)for(;e&&e!=f;)e.id&&e.id.indexOf("-open")!=-1&&(b.fire("action"),a.menu&&(b.showMenu(),c.aria&&b.menu.items()[0].focus())),e=e.parentNode}),b.on("keydown",function(a){var c;13==a.keyCode&&"INPUT"===a.target.nodeName&&(a.preventDefault(),b.parents().reverse().each(function(a){if(a.toJSON)return c=a,!1}),b.fire("submit",{data:c.toJSON()}))}),b.on("keyup",function(a){if("INPUT"==a.target.nodeName){var c=b.state.get("value"),d=a.target.value;d!==c&&(b.state.set("value",d),b.fire("autocomplete",a))}}),b.on("mouseover",function(a){var c=b.tooltip().moveTo(-65535);if(b.statusLevel()&&a.target.className.indexOf(b.classPrefix+"status")!==-1){var d=b.statusMessage()||"Ok",e=c.text(d).show().testMoveRel(a.target,["bc-tc","bc-tl","bc-tr"]);c.classes.toggle("tooltip-n","bc-tc"==e),c.classes.toggle("tooltip-nw","bc-tl"==e),c.classes.toggle("tooltip-ne","bc-tr"==e),c.moveRel(a.target,e)}})},statusLevel:function(a){return arguments.length>0&&this.state.set("statusLevel",a),this.state.get("statusLevel")},statusMessage:function(a){return arguments.length>0&&this.state.set("statusMessage",a),this.state.get("statusMessage")},showMenu:function(){var a,c=this,d=c.settings;c.menu||(a=d.menu||[],a.length?a={type:"menu",items:a}:a.type=a.type||"menu",c.menu=b.create(a).parent(c).renderTo(c.getContainerElm()),c.fire("createmenu"),c.menu.reflow(),c.menu.on("cancel",function(a){a.control===c.menu&&c.focus()}),c.menu.on("show hide",function(a){a.control.items().each(function(a){a.active(a.value()==c.value())})}).fire("show"),c.menu.on("select",function(a){c.value(a.control.value())}),c.on("focusin",function(a){"INPUT"==a.target.tagName.toUpperCase()&&c.menu.hide()}),c.aria("expanded",!0)),c.menu.show(),c.menu.layoutRect({w:c.layoutRect().w}),c.menu.moveRel(c.getEl(),c.isRtl()?["br-tr","tr-br"]:["bl-tl","tl-bl"])},focus:function(){this.getEl("inp").focus()},repaint:function(){var a,b,e=this,f=e.getEl(),g=e.getEl("open"),h=e.layoutRect(),i=0,j=f.firstChild;e.statusLevel()&&"none"!==e.statusLevel()&&(i=parseInt(c.getRuntimeStyle(j,"padding-right"),10)-parseInt(c.getRuntimeStyle(j,"padding-left"),10)),a=g?h.w-c.getSize(g).width-10:h.w-10;var k=document;return k.all&&(!k.documentMode||k.documentMode<=8)&&(b=e.layoutRect().h-2+"px"),d(j).css({width:a-i,lineHeight:b}),e._super(),e},postRender:function(){var a=this;return d(this.getEl("inp")).on("change",function(b){a.state.set("value",b.target.value),a.fire("change",b)}),a._super()},renderHtml:function(){var a,b,c=this,d=c._id,e=c.settings,f=c.classPrefix,g=c.state.get("value")||"",h="",i="",j="";return"spellcheck"in e&&(i+=' spellcheck="'+e.spellcheck+'"'),e.maxLength&&(i+=' maxlength="'+e.maxLength+'"'),e.size&&(i+=' size="'+e.size+'"'),e.subtype&&(i+=' type="'+e.subtype+'"'),j='<i id="'+d+'-status" class="mce-status mce-ico" style="display: none"></i>',c.disabled()&&(i+=' disabled="disabled"'),a=e.icon,a&&"caret"!=a&&(a=f+"ico "+f+"i-"+e.icon),b=c.state.get("text"),(a||b)&&(h='<div id="'+d+'-open" class="'+f+"btn "+f+'open" tabIndex="-1" role="button"><button id="'+d+'-action" type="button" hidefocus="1" tabindex="-1">'+("caret"!=a?'<i class="'+a+'"></i>':'<i class="'+f+'caret"></i>')+(b?(a?" ":"")+b:"")+"</button></div>",c.classes.add("has-open")),'<div id="'+d+'" class="'+c.classes+'"><input id="'+d+'-inp" class="'+f+'textbox" value="'+c.encode(g,!1)+'" hidefocus="1"'+i+' placeholder="'+c.encode(e.placeholder)+'" />'+j+h+"</div>"},value:function(a){return arguments.length?(this.state.set("value",a),this):(this.state.get("rendered")&&this.state.set("value",this.getEl("inp").value),this.state.get("value"))},showAutoComplete:function(a,c){var d=this;if(0===a.length)return void d.hideMenu();var e=function(a,b){return function(){d.fire("selectitem",{title:b,value:a})}};d.menu?d.menu.items().remove():d.menu=b.create({type:"menu",classes:"combobox-menu",layout:"flow"}).parent(d).renderTo(),f.each(a,function(a){d.menu.add({text:a.title,url:a.previewUrl,match:c,classes:"menu-item-ellipsis",onclick:e(a.value,a.title)})}),d.menu.renderNew(),d.hideMenu(),d.menu.on("cancel",function(a){a.control.parent()===d.menu&&(a.stopPropagation(),d.focus(),d.hideMenu())}),d.menu.on("select",function(){d.focus()});var g=d.layoutRect().w;d.menu.layoutRect({w:g,minW:0,maxW:g}),d.menu.reflow(),d.menu.show(),d.menu.moveRel(d.getEl(),d.isRtl()?["br-tr","tr-br"]:["bl-tl","tl-bl"])},hideMenu:function(){this.menu&&this.menu.hide()},bindStates:function(){var a=this;a.state.on("change:value",function(b){a.getEl("inp").value!=b.value&&(a.getEl("inp").value=b.value)}),a.state.on("change:disabled",function(b){a.getEl("inp").disabled=b.value}),a.state.on("change:statusLevel",function(b){var d=a.getEl("status"),e=a.classPrefix,f=b.value;c.css(d,"display","none"===f?"none":""),c.toggleClass(d,e+"i-checkmark","ok"===f),c.toggleClass(d,e+"i-warning","warn"===f),c.toggleClass(d,e+"i-error","error"===f),a.classes.toggle("has-status","none"!==f),a.repaint()}),c.on(a.getEl("status"),"mouseleave",function(){a.tooltip().hide()}),a.on("cancel",function(b){a.menu&&a.menu.visible()&&(b.stopPropagation(),a.hideMenu())});var b=function(a,b){b&&b.items().length>0&&b.items().eq(a)[0].focus()};return a.on("keydown",function(c){var d=c.keyCode;"INPUT"===c.target.nodeName&&(d===e.DOWN?(c.preventDefault(),a.fire("autocomplete"),b(0,a.menu)):d===e.UP&&(c.preventDefault(),b(-1,a.menu)))}),a._super()},remove:function(){d(this.getEl("inp")).off(),this.menu&&this.menu.remove(),this._super()}})}),g("2t",["2s"],function(a){"use strict";return a.extend({init:function(a){var b=this;a.spellcheck=!1,a.onaction&&(a.icon="none"),b._super(a),b.classes.add("colorbox"),b.on("change keyup postrender",function(){b.repaintColor(b.value())})},repaintColor:function(a){var b=this.getEl("open"),c=b?b.getElementsByTagName("i")[0]:null;if(c)try{c.style.background=a}catch(a){}},bindStates:function(){var a=this;return a.state.on("change:value",function(b){a.state.get("rendered")&&a.repaintColor(b.value)}),a._super()}})}),g("2u",["2p","2j"],function(a,b){"use strict";return a.extend({showPanel:function(){var a=this,c=a.settings;if(a.active(!0),a.panel)a.panel.show();else{var d=c.panel;d.type&&(d={layout:"grid",items:d}),d.role=d.role||"dialog",d.popover=!0,d.autohide=!0,d.ariaRoot=!0,a.panel=new b(d).on("hide",function(){a.active(!1)}).on("cancel",function(b){b.stopPropagation(),a.focus(),a.hidePanel()}).parent(a).renderTo(a.getContainerElm()),a.panel.fire("show"),a.panel.reflow()}a.panel.moveRel(a.getEl(),c.popoverAlign||(a.isRtl()?["bc-tr","bc-tc"]:["bc-tl","bc-tc"]))},hidePanel:function(){var a=this;a.panel&&a.panel.hide()},postRender:function(){var a=this;return a.aria("haspopup",!0),a.on("click",function(b){b.control===a&&(a.panel&&a.panel.visible()?a.hidePanel():(a.showPanel(),a.panel.focus(!!b.aria)))}),a._super()},remove:function(){return this.panel&&(this.panel.remove(),this.panel=null),this._super()}})}),g("2v",["2u","e"],function(a,b){"use strict";var c=b.DOM;return a.extend({init:function(a){this._super(a),this.classes.add("colorbutton")},color:function(a){return a?(this._color=a,this.getEl("preview").style.backgroundColor=a,this):this._color},resetColor:function(){return this._color=null,this.getEl("preview").style.backgroundColor=null,this},renderHtml:function(){var a=this,b=a._id,c=a.classPrefix,d=a.state.get("text"),e=a.settings.icon?c+"ico "+c+"i-"+a.settings.icon:"",f=a.settings.image?" style=\"background-image: url('"+a.settings.image+"')\"":"",g="";return d&&(a.classes.add("btn-has-text"),g='<span class="'+c+'txt">'+a.encode(d)+"</span>"),'<div id="'+b+'" class="'+a.classes+'" role="button" tabindex="-1" aria-haspopup="true"><button role="presentation" hidefocus="1" type="button" tabindex="-1">'+(e?'<i class="'+e+'"'+f+"></i>":"")+'<span id="'+b+'-preview" class="'+c+'preview"></span>'+g+'</button><button type="button" class="'+c+'open" hidefocus="1" tabindex="-1"> <i class="'+c+'caret"></i></button></div>'},postRender:function(){var a=this,b=a.settings.onclick;return a.on("click",function(d){d.aria&&"down"==d.aria.key||d.control!=a||c.getParent(d.target,"."+a.classPrefix+"open")||(d.stopImmediatePropagation(),b.call(a,d))}),delete a.settings.onclick,a._super()}})}),g("2w",["2l","2e","48","1e"],function(a,b,c,d){"use strict";return a.extend({Defaults:{classes:"widget colorpicker"},init:function(a){this._super(a)},postRender:function(){function a(a,b){var d,e,f=c.getPos(a);return d=b.pageX-f.x,e=b.pageY-f.y,d=Math.max(0,Math.min(d/a.clientWidth,1)),e=Math.max(0,Math.min(e/a.clientHeight,1)),{x:d,y:e}}function e(a,b){var e=(360-a.h)/360;c.css(j,{top:100*e+"%"}),b||c.css(l,{left:a.s+"%",top:100-a.v+"%"}),k.style.background=new d({s:100,v:100,h:a.h}).toHex(),m.color().parse({s:a.s,v:a.v,h:a.h})}function f(b){var c;c=a(k,b),h.s=100*c.x,h.v=100*(1-c.y),e(h),m.fire("change")}function g(b){var c;c=a(i,b),h=n.toHsv(),h.h=360*(1-c.y),e(h,!0),m.fire("change")}var h,i,j,k,l,m=this,n=m.color();i=m.getEl("h"),j=m.getEl("hp"),k=m.getEl("sv"),l=m.getEl("svp"),m._repaint=function(){h=n.toHsv(),e(h)},m._super(),m._svdraghelper=new b(m._id+"-sv",{start:f,drag:f}),m._hdraghelper=new b(m._id+"-h",{start:g,drag:g}),m._repaint()},rgb:function(){return this.color().toRgb()},value:function(a){var b=this;return arguments.length?(b.color().parse(a),void(b._rendered&&b._repaint())):b.color().toHex()},color:function(){return this._color||(this._color=new d),this._color},renderHtml:function(){function a(){var a,b,c,d,g="";for(c="filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=",d=f.split(","),a=0,b=d.length-1;a<b;a++)g+='<div class="'+e+'colorpicker-h-chunk" style="height:'+100/b+"%;"+c+d[a]+",endColorstr="+d[a+1]+");-ms-"+c+d[a]+",endColorstr="+d[a+1]+')"></div>';return g}var b,c=this,d=c._id,e=c.classPrefix,f="#ff0000,#ff0080,#ff00ff,#8000ff,#0000ff,#0080ff,#00ffff,#00ff80,#00ff00,#80ff00,#ffff00,#ff8000,#ff0000",g="background: -ms-linear-gradient(top,"+f+");background: linear-gradient(to bottom,"+f+");";return b='<div id="'+d+'-h" class="'+e+'colorpicker-h" style="'+g+'">'+a()+'<div id="'+d+'-hp" class="'+e+'colorpicker-h-marker"></div></div>','<div id="'+d+'" class="'+c.classes+'"><div id="'+d+'-sv" class="'+e+'colorpicker-sv"><div class="'+e+'colorpicker-overlay1"><div class="'+e+'colorpicker-overlay2"><div id="'+d+'-svp" class="'+e+'colorpicker-selector1"><div class="'+e+'colorpicker-selector2"></div></div></div></div></div>'+b+"</div>"}})}),g("2x",["2l"],function(a){"use strict";return a.extend({init:function(a){var b=this;a.delimiter||(a.delimiter="\xbb"),b._super(a),b.classes.add("path"),b.canFocus=!0,b.on("click",function(a){var c,d=a.target;(c=d.getAttribute("data-index"))&&b.fire("select",{value:b.row()[c],index:c})}),b.row(b.settings.row)},focus:function(){var a=this;return a.getEl().firstChild.focus(),a},row:function(a){return arguments.length?(this.state.set("row",a),this):this.state.get("row")},renderHtml:function(){var a=this;return'<div id="'+a._id+'" class="'+a.classes+'">'+a._getDataPathHtml(a.state.get("row"))+"</div>"},bindStates:function(){var a=this;return a.state.on("change:row",function(b){a.innerHtml(a._getDataPathHtml(b.value))}),a._super()},_getDataPathHtml:function(a){var b,c,d=this,e=a||[],f="",g=d.classPrefix;for(b=0,c=e.length;b<c;b++)f+=(b>0?'<div class="'+g+'divider" aria-hidden="true"> '+d.settings.delimiter+" </div>":"")+'<div role="button" class="'+g+"path-item"+(b==c-1?" "+g+"last":"")+'" data-index="'+b+'" tabindex="-1" id="'+d._id+"-"+b+'" aria-level="'+(b+1)+'">'+e[b].name+"</div>";return f||(f='<div class="'+g+'path-item">\xa0</div>'),f}})}),g("2y",["2x"],function(a){return a.extend({postRender:function(){function a(a){if(1===a.nodeType){if("BR"==a.nodeName||a.getAttribute("data-mce-bogus"))return!0;if("bookmark"===a.getAttribute("data-mce-type"))return!0}return!1}var b=this,c=b.settings.editor;return c.settings.elementpath!==!1&&(b.on("select",function(a){c.focus(),c.selection.select(this.row()[a.index].element),c.nodeChanged()}),c.on("nodeChange",function(d){for(var e=[],f=d.parents,g=f.length;g--;)if(1==f[g].nodeType&&!a(f[g])){var h=c.fire("ResolveName",{name:f[g].nodeName.toLowerCase(),target:f[g]});if(h.isDefaultPrevented()||e.push({name:h.name,element:f[g]}),h.isPropagationStopped())break}b.row(e)})),b._super()}})}),g("2z",["2d"],function(a){"use strict";return a.extend({Defaults:{layout:"flex",align:"center",defaults:{flex:1}},renderHtml:function(){var a=this,b=a._layout,c=a.classPrefix;return a.classes.add("formitem"),b.preRender(a),'<div id="'+a._id+'" class="'+a.classes+'" hidefocus="1" tabindex="-1">'+(a.settings.title?'<div id="'+a._id+'-title" class="'+c+'title">'+a.settings.title+"</div>":"")+'<div id="'+a._id+'-body" class="'+a.bodyClasses+'">'+(a.settings.html||"")+b.renderHtml(a)+"</div></div>"}})}),g("30",["2d","2z","9"],function(a,b,c){"use strict";return a.extend({Defaults:{containerCls:"form",layout:"flex",direction:"column",align:"stretch",flex:1,padding:20,labelGap:30,spacing:10,callbacks:{submit:function(){this.submit()}}},preRender:function(){var a=this,d=a.items();a.settings.formItemDefaults||(a.settings.formItemDefaults={layout:"flex",autoResize:"overflow",defaults:{flex:1}}),d.each(function(d){var e,f=d.settings.label;f&&(e=new b(c.extend({items:{type:"label",id:d._id+"-l",text:f,flex:0,forId:d._id,disabled:d.disabled()}},a.settings.formItemDefaults)),e.type="formitem",d.aria("labelledby",d._id+"-l"),"undefined"==typeof d.settings.flex&&(d.settings.flex=1),a.replace(d,e),e.add(d))})},submit:function(){return this.fire("submit",{data:this.toJSON()})},postRender:function(){var a=this;a._super(),a.fromJSON(a.settings.data)},bindStates:function(){function a(){var a,c,d,e=0,f=[];if(b.settings.labelGapCalc!==!1)for(d="children"==b.settings.labelGapCalc?b.find("formitem"):b.items(),d.filter("formitem").each(function(a){var b=a.items()[0],c=b.getEl().clientWidth;e=c>e?c:e,f.push(b)}),c=b.settings.labelGap||0,a=f.length;a--;)f[a].settings.minWidth=e+c}var b=this;b._super(),b.on("show",a),a()}})}),g("31",["30"],function(a){"use strict";return a.extend({Defaults:{containerCls:"fieldset",layout:"flex",direction:"column",align:"stretch",flex:1,padding:"25 15 5 15",labelGap:30,spacing:10,border:1},renderHtml:function(){var a=this,b=a._layout,c=a.classPrefix;return a.preRender(),b.preRender(a),'<fieldset id="'+a._id+'" class="'+a.classes+'" hidefocus="1" tabindex="-1">'+(a.settings.title?'<legend id="'+a._id+'-title" class="'+c+'fieldset-title">'+a.settings.title+"</legend>":"")+'<div id="'+a._id+'-body" class="'+a.bodyClasses+'">'+(a.settings.html||"")+b.renderHtml(a)+"</div></fieldset>"}})}),g("4f",["e","1j","1g","1r","9","24"],function(a,b,c,d,e,f){var g=e.trim,h=function(a,b,c,d,e){return{type:a,title:b,url:c,level:d,attach:e}},i=function(a){for(;a=a.parentNode;){var c=a.contentEditable;if(c&&"inherit"!==c)return b.isContentEditableTrue(a)}return!1},j=function(b,c){return a.DOM.select(b,c)},k=function(a){return a.innerText||a.textContent},l=function(a){return a.id?a.id:f.uuid("h")},m=function(a){return a&&"A"===a.nodeName&&(a.id||a.name)},n=function(a){return m(a)&&p(a)},o=function(a){return a&&/^(H[1-6])$/.test(a.nodeName)},p=function(a){return i(a)&&!b.isContentEditableFalse(a)},q=function(a){return o(a)&&p(a)},r=function(a){return o(a)?parseInt(a.nodeName.substr(1),10):0},s=function(a){var b=l(a),c=function(){a.id=b};return h("header",k(a),"#"+b,r(a),c)},t=function(a){var b=a.id||a.name,c=k(a);return h("anchor",c?c:"#"+b,"#"+b,0,d.noop)},u=function(a){return c.map(c.filter(a,q),s)},v=function(a){return c.map(c.filter(a,n),t)},w=function(a){var b=j("h1,h2,h3,h4,h5,h6,a:not([href])",a);return b},x=function(a){return g(a.title).length>0},y=function(a){var b=w(a);return c.filter(u(b).concat(v(b)),x)};return{find:y}}),g("32",["4b","4f","17","2s","1g","1r","9"],function(a,b,c,d,e,f,g){"use strict";var h=function(){return a.tinymce?a.tinymce.activeEditor:c.activeEditor},i={},j=5,k=function(a){return{title:a.title,value:{title:{raw:a.title},url:a.url,attach:a.attach}}},l=function(a){return g.map(a,k)},m=function(a,b){return{title:a,value:{title:a,url:b,attach:f.noop}}},n=function(a,b){var c=e.find(b,function(b){return b.url===a});return!c},o=function(a,b,c){var d=b in a?a[b]:c;return d===!1?null:d},p=function(a,b,c,d){var h={title:"-"},j=function(a){var d=e.filter(a[c],function(a){return n(a,b)});return g.map(d,function(a){return{title:a,value:{title:a,url:a,attach:f.noop}}})},k=function(a){var c=e.filter(b,function(b){return b.type==a});return l(c)},p=function(){var a=k("anchor"),b=o(d,"anchor_top","#top"),c=o(d,"anchor_bottom","#bottom");return null!==b&&a.unshift(m("<top>",b)),null!==c&&a.push(m("<bottom>",c)),a},q=function(a){return e.reduce(a,function(a,b){var c=0===a.length||0===b.length;return c?a.concat(b):a.concat(h,b)},[])};return d.typeahead_urls===!1?[]:"file"===c?q([r(a,j(i)),r(a,k("header")),r(a,p())]):r(a,j(i))},q=function(a,b){var c=i[b];/^https?/.test(a)&&(c?e.indexOf(c,a)===-1&&(i[b]=c.slice(0,j).concat(a)):i[b]=[a])},r=function(a,b){var c=a.toLowerCase(),d=g.grep(b,function(a){return a.title.toLowerCase().indexOf(c)!==-1});return 1===d.length&&d[0].title===a?[]:d},s=function(a){var b=a.title;return b.raw?b.raw:b},t=function(a,c,d,e){var f=function(f){var g=b.find(d),h=p(f,g,e,c);a.showAutoComplete(h,f)};a.on("autocomplete",function(){f(a.value())}),a.on("selectitem",function(b){var c=b.value;a.value(c.url);var d=s(c);"image"===e?a.fire("change",{meta:{alt:d,attach:c.attach}}):a.fire("change",{meta:{text:d,attach:c.attach}}),a.focus()}),a.on("click",function(b){0===a.value().length&&"INPUT"===b.target.nodeName&&f("")}),a.on("PostRender",function(){a.getRoot().on("submit",function(b){b.isDefaultPrevented()||q(a.value(),e)})})},u=function(a){var b=a.status,c=a.message;return"valid"===b?{status:"ok",message:c}:"unknown"===b?{status:"warn",message:c}:"invalid"===b?{status:"warn",message:c}:{status:"none",message:""}},v=function(a,b,c){var d=b.filepicker_validator_handler;if(d){var e=function(b){return 0===b.length?void a.statusLevel("none"):void d({url:b,type:c},function(b){var c=u(b);a.statusMessage(c.message),a.statusLevel(c.status)})};a.state.on("change:value",function(a){e(a.value)})}};return d.extend({init:function(b){var c,d,e,f=this,i=h(),j=i.settings,k=b.filetype;b.spellcheck=!1,e=j.file_picker_types||j.file_browser_callback_types,e&&(e=g.makeMap(e,/[, ]/)),e&&!e[k]||(d=j.file_picker_callback,!d||e&&!e[k]?(d=j.file_browser_callback,!d||e&&!e[k]||(c=function(){d(f.getEl("inp").id,f.value(),k,a)})):c=function(){var a=f.fire("beforecall").meta;a=g.extend({filetype:k},a),d.call(i,function(a,b){f.value(a).fire("change",{meta:b})},f.value(),a)}),c&&(b.icon="browse",b.onaction=c),f._super(b),t(f,j,i.getBody(),k),v(f,j,k)}})}),g("33",["2o"],function(a){"use strict";return a.extend({recalc:function(a){var b=a.layoutRect(),c=a.paddingBox;a.items().filter(":visible").each(function(a){a.layoutRect({x:c.left,y:c.top,w:b.innerW-c.right-c.left,h:b.innerH-c.top-c.bottom}),a.recalc&&a.recalc()})}})}),g("34",["2o"],function(a){"use strict";return a.extend({recalc:function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N=[],O=Math.max,P=Math.min;for(d=a.items().filter(":visible"),e=a.layoutRect(),f=a.paddingBox,g=a.settings,m=a.isRtl()?g.direction||"row-reversed":g.direction,h=g.align,i=a.isRtl()?g.pack||"end":g.pack,j=g.spacing||0,"row-reversed"!=m&&"column-reverse"!=m||(d=d.set(d.toArray().reverse()),m=m.split("-")[0]),"column"==m?(z="y",x="h",y="minH",A="maxH",C="innerH",B="top",D="deltaH",E="contentH",J="left",H="w",F="x",G="innerW",I="minW",K="right",L="deltaW",M="contentW"):(z="x",x="w",y="minW",A="maxW",C="innerW",B="left",D="deltaW",E="contentW",J="top",H="h",F="y",G="innerH",I="minH",K="bottom",L="deltaH",M="contentH"),l=e[C]-f[B]-f[B],w=k=0,b=0,c=d.length;b<c;b++)n=d[b],o=n.layoutRect(),p=n.settings,q=p.flex,l-=b<c-1?j:0,q>0&&(k+=q,o[A]&&N.push(n),o.flex=q),l-=o[y],r=f[J]+o[I]+f[K],r>w&&(w=r);if(u={},l<0?u[y]=e[y]-l+e[D]:u[y]=e[C]-l+e[D],u[I]=w+e[L],u[E]=e[C]-l,u[M]=w,u.minW=P(u.minW,e.maxW),u.minH=P(u.minH,e.maxH),u.minW=O(u.minW,e.startMinWidth),u.minH=O(u.minH,e.startMinHeight),!e.autoResize||u.minW==e.minW&&u.minH==e.minH){for(t=l/k,b=0,c=N.length;b<c;b++)n=N[b],o=n.layoutRect(),s=o[A],r=o[y]+o.flex*t,r>s?(l-=o[A]-o[y],k-=o.flex,o.flex=0,o.maxFlexSize=s):o.maxFlexSize=0;for(t=l/k,v=f[B],u={},0===k&&("end"==i?v=l+f[B]:"center"==i?(v=Math.round(e[C]/2-(e[C]-l)/2)+f[B],v<0&&(v=f[B])):"justify"==i&&(v=f[B],j=Math.floor(l/(d.length-1)))),u[F]=f[J],b=0,c=d.length;b<c;b++)n=d[b],o=n.layoutRect(),r=o.maxFlexSize||o[y],"center"===h?u[F]=Math.round(e[G]/2-o[H]/2):"stretch"===h?(u[H]=O(o[I]||0,e[G]-f[J]-f[K]),u[F]=f[J]):"end"===h&&(u[F]=e[G]-o[H]-f.top),o.flex>0&&(r+=o.flex*t),u[x]=r,u[z]=v,n.layoutRect(u),n.recalc&&n.recalc(),v+=r+j}else if(u.w=u.minW,u.h=u.minH,a.layoutRect(u),this.recalc(a),null===a._lastRect){var Q=a.parent();Q&&(Q._lastRect=null,Q.recalc())}}})}),g("35",["2n"],function(a){return a.extend({Defaults:{containerClass:"flow-layout",controlClass:"flow-layout-item",endClass:"break"},recalc:function(a){a.items().filter(":visible").each(function(a){a.recalc&&a.recalc()})},isNative:function(){return!0}})}),g("4g",["e"],function(a){var b=function(a,b,c){for(;c!==b;){if(c.style[a])return c.style[a];c=c.parentNode}return""},c=function(a){return/[0-9.]+px$/.test(a)?Math.round(72*parseInt(a,10)/96)+"pt":a},d=function(a){return a.replace(/[\'\"]/g,"").replace(/,\s+/g,",")},e=function(b,c){return a.DOM.getStyle(c,b,!0)},f=function(a,c){var d=b("fontSize",a,c);return""!==d?d:e("fontSize",c)},g=function(a,c){var f=b("fontFamily",a,c),g=""!==f?f:e("fontFamily",c);return void 0!==g?d(g):""};return{getFontSize:f,getFontFamily:g,toPt:c}}),g("36",["2a","2l","2j","9","1g","e","17","6","4g"],function(a,b,c,d,e,f,g,h,i){function j(a){a.settings.ui_container&&(h.container=f.DOM.select(a.settings.ui_container)[0])}function k(b){b.on("ScriptsLoaded",function(){b.rtl&&(a.rtl=!0)})}function l(a){function b(b,c){return function(){var d=this;a.on("nodeChange",function(e){var f=a.formatter,g=null;m(e.parents,function(a){if(m(b,function(b){if(c?f.matchNode(a,c,{value:b.value})&&(g=b.value):f.matchNode(a,b.value)&&(g=b.value),g)return!1}),g)return!1}),d.value(g)})}}function e(b){return function(){var c=this,d=function(a){return a?a.split(",")[0]:""};a.on("nodeChange",function(e){var f,g=null;f=i.getFontFamily(a.getBody(),e.element),m(b,function(a){a.value.toLowerCase()===f.toLowerCase()&&(g=a.value)}),m(b,function(a){g||d(a.value).toLowerCase()!==d(f).toLowerCase()||(g=a.value)}),c.value(g),!g&&f&&c.text(d(f))})}}function f(b){return function(){var c=this;a.on("nodeChange",function(d){var e,f,g=null;e=i.getFontSize(a.getBody(),d.element),f=i.toPt(e),m(b,function(a){a.value===e?g=e:a.value===f&&(g=f)}),c.value(g),g||c.text(f)})}}function g(a){a=a.replace(/;$/,"").split(";");for(var b=a.length;b--;)a[b]=a[b].split("=");return a}function h(){function b(a){var c=[];if(a)return m(a,function(a){var f={text:a.title,icon:a.icon};if(a.items)f.menu=b(a.items);else{var g=a.format||"custom"+d++;a.format||(a.name=g,e.push(a)),f.format=g,f.cmd=a.cmd}c.push(f)}),c}function c(){
 var c;return c=b(a.settings.style_formats_merge?a.settings.style_formats?f.concat(a.settings.style_formats):f:a.settings.style_formats||f)}var d=0,e=[],f=[{title:"Headings",items:[{title:"Heading 1",format:"h1"},{title:"Heading 2",format:"h2"},{title:"Heading 3",format:"h3"},{title:"Heading 4",format:"h4"},{title:"Heading 5",format:"h5"},{title:"Heading 6",format:"h6"}]},{title:"Inline",items:[{title:"Bold",icon:"bold",format:"bold"},{title:"Italic",icon:"italic",format:"italic"},{title:"Underline",icon:"underline",format:"underline"},{title:"Strikethrough",icon:"strikethrough",format:"strikethrough"},{title:"Superscript",icon:"superscript",format:"superscript"},{title:"Subscript",icon:"subscript",format:"subscript"},{title:"Code",icon:"code",format:"code"}]},{title:"Blocks",items:[{title:"Paragraph",format:"p"},{title:"Blockquote",format:"blockquote"},{title:"Div",format:"div"},{title:"Pre",format:"pre"}]},{title:"Alignment",items:[{title:"Left",icon:"alignleft",format:"alignleft"},{title:"Center",icon:"aligncenter",format:"aligncenter"},{title:"Right",icon:"alignright",format:"alignright"},{title:"Justify",icon:"alignjustify",format:"alignjustify"}]}];return a.on("init",function(){m(e,function(b){a.formatter.register(b.name,b)})}),{type:"menu",items:c(),onPostRender:function(b){a.fire("renderFormatsMenu",{control:b.control})},itemDefaults:{preview:!0,textStyle:function(){if(this.settings.format)return a.formatter.getCssText(this.settings.format)},onPostRender:function(){var b=this;b.parent().on("show",function(){var c,d;c=b.settings.format,c&&(b.disabled(!a.formatter.canApply(c)),b.active(a.formatter.match(c))),d=b.settings.cmd,d&&b.active(a.queryCommandState(d))})},onclick:function(){this.settings.format&&o(this.settings.format),this.settings.cmd&&a.execCommand(this.settings.cmd)}}}}function j(b){return function(){var c=this;a.formatter?a.formatter.formatChanged(b,function(a){c.active(a)}):a.on("init",function(){a.formatter.formatChanged(b,function(a){c.active(a)})})}}function k(b){return function(){function c(){var c="redo"==b?"hasRedo":"hasUndo";return!!a.undoManager&&a.undoManager[c]()}var d=this;d.disabled(!c()),a.on("Undo Redo AddUndo TypingUndo ClearUndos SwitchMode",function(){d.disabled(a.readonly||!c())})}}function l(){var b=this;a.on("VisualAid",function(a){b.active(a.hasVisual)}),b.active(a.hasVisual)}function o(b){b.control&&(b=b.control.value()),b&&a.execCommand("mceToggleFormat",!1,b)}function p(b){var c=b.length;return d.each(b,function(b){b.menu&&(b.hidden=0===p(b.menu));var d=b.format;d&&(b.hidden=!a.formatter.canApply(d)),b.hidden&&c--}),c}function q(b){var c=b.items().length;return b.items().each(function(b){b.menu&&b.visible(q(b.menu)>0),!b.menu&&b.settings.menu&&b.visible(p(b.settings.menu)>0);var d=b.settings.format;d&&b.visible(a.formatter.canApply(d)),b.visible()||c--}),c}var r;r=h(),m({bold:"Bold",italic:"Italic",underline:"Underline",strikethrough:"Strikethrough",subscript:"Subscript",superscript:"Superscript"},function(b,c){a.addButton(c,{tooltip:b,onPostRender:j(c),onclick:function(){o(c)}})}),m({outdent:["Decrease indent","Outdent"],indent:["Increase indent","Indent"],cut:["Cut","Cut"],copy:["Copy","Copy"],paste:["Paste","Paste"],help:["Help","mceHelp"],selectall:["Select all","SelectAll"],removeformat:["Clear formatting","RemoveFormat"],visualaid:["Visual aids","mceToggleVisualAid"],newdocument:["New document","mceNewDocument"]},function(b,c){a.addButton(c,{tooltip:b[0],cmd:b[1]})}),m({blockquote:["Blockquote","mceBlockQuote"],subscript:["Subscript","Subscript"],superscript:["Superscript","Superscript"],alignleft:["Align left","JustifyLeft"],aligncenter:["Align center","JustifyCenter"],alignright:["Align right","JustifyRight"],alignjustify:["Justify","JustifyFull"],alignnone:["No alignment","JustifyNone"]},function(b,c){a.addButton(c,{tooltip:b[0],cmd:b[1],onPostRender:j(c)})});var s=function(a){var b=a;return b.length>0&&"-"===b[0].text&&(b=b.slice(1)),b.length>0&&"-"===b[b.length-1].text&&(b=b.slice(0,b.length-1)),b},t=function(b){var c,e;if("string"==typeof b)e=b.split(" ");else if(d.isArray(b))return n(d.map(b,t));return c=d.grep(e,function(b){return"|"===b||b in a.menuItems}),d.map(c,function(b){return"|"===b?{text:"-"}:a.menuItems[b]})},u=function(b){var c=[{text:"-"}],e=d.grep(a.menuItems,function(a){return a.context===b});return d.each(e,function(a){"before"==a.separator&&c.push({text:"|"}),a.prependToContext?c.unshift(a):c.push(a),"after"==a.separator&&c.push({text:"|"})}),c},v=function(a){return s(a.insert_button_items?t(a.insert_button_items):u("insert"))};a.addButton("undo",{tooltip:"Undo",onPostRender:k("undo"),cmd:"undo"}),a.addButton("redo",{tooltip:"Redo",onPostRender:k("redo"),cmd:"redo"}),a.addMenuItem("newdocument",{text:"New document",icon:"newdocument",cmd:"mceNewDocument"}),a.addMenuItem("undo",{text:"Undo",icon:"undo",shortcut:"Meta+Z",onPostRender:k("undo"),cmd:"undo"}),a.addMenuItem("redo",{text:"Redo",icon:"redo",shortcut:"Meta+Y",onPostRender:k("redo"),cmd:"redo"}),a.addMenuItem("visualaid",{text:"Visual aids",selectable:!0,onPostRender:l,cmd:"mceToggleVisualAid"}),a.addButton("remove",{tooltip:"Remove",icon:"remove",cmd:"Delete"}),a.addButton("insert",{type:"menubutton",icon:"insert",menu:[],oncreatemenu:function(){this.menu.add(v(a.settings)),this.menu.renderNew()}}),m({cut:["Cut","Cut","Meta+X"],copy:["Copy","Copy","Meta+C"],paste:["Paste","Paste","Meta+V"],selectall:["Select all","SelectAll","Meta+A"],bold:["Bold","Bold","Meta+B"],italic:["Italic","Italic","Meta+I"],underline:["Underline","Underline","Meta+U"],strikethrough:["Strikethrough","Strikethrough"],subscript:["Subscript","Subscript"],superscript:["Superscript","Superscript"],removeformat:["Clear formatting","RemoveFormat"]},function(b,c){a.addMenuItem(c,{text:b[0],icon:c,shortcut:b[2],cmd:b[1]})}),a.on("mousedown",function(){c.hideAll()}),a.addButton("styleselect",{type:"menubutton",text:"Formats",menu:r,onShowMenu:function(){a.settings.style_formats_autohide&&q(this.menu)}}),a.addButton("formatselect",function(){var c=[],d=g(a.settings.block_formats||"Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6;Preformatted=pre");return m(d,function(b){c.push({text:b[0],value:b[1],textStyle:function(){return a.formatter.getCssText(b[1])}})}),{type:"listbox",text:d[0][0],values:c,fixedWidth:!0,onselect:o,onPostRender:b(c)}}),a.addButton("fontselect",function(){var b="Andale Mono=andale mono,monospace;Arial=arial,helvetica,sans-serif;Arial Black=arial black,sans-serif;Book Antiqua=book antiqua,palatino,serif;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier,monospace;Georgia=georgia,palatino,serif;Helvetica=helvetica,arial,sans-serif;Impact=impact,sans-serif;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco,monospace;Times New Roman=times new roman,times,serif;Trebuchet MS=trebuchet ms,geneva,sans-serif;Verdana=verdana,geneva,sans-serif;Webdings=webdings;Wingdings=wingdings,zapf dingbats",c=[],d=g(a.settings.font_formats||b);return m(d,function(a){c.push({text:{raw:a[0]},value:a[1],textStyle:a[1].indexOf("dings")==-1?"font-family:"+a[1]:""})}),{type:"listbox",text:"Font Family",tooltip:"Font Family",values:c,fixedWidth:!0,onPostRender:e(c),onselect:function(b){b.control.settings.value&&a.execCommand("FontName",!1,b.control.settings.value)}}}),a.addButton("fontsizeselect",function(){var b=[],c="8pt 10pt 12pt 14pt 18pt 24pt 36pt",d=a.settings.fontsize_formats||c;return m(d.split(" "),function(a){var c=a,d=a,e=a.split("=");e.length>1&&(c=e[0],d=e[1]),b.push({text:c,value:d})}),{type:"listbox",text:"Font Sizes",tooltip:"Font Sizes",values:b,fixedWidth:!0,onPostRender:f(b),onclick:function(b){b.control.settings.value&&a.execCommand("FontSize",!1,b.control.settings.value)}}}),a.addMenuItem("formats",{text:"Formats",menu:r})}var m=d.each,n=function(a){return e.reduce(a,function(a,b){return a.concat(b)},[])};return g.on("AddEditor",function(a){var b=a.editor;k(b),l(b),j(b)}),a.translate=function(a){return g.translate(a)},b.tooltips=!h.iOS,{}}),g("37",["2o"],function(a){"use strict";return a.extend({recalc:function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E=[],F=[];b=a.settings,e=a.items().filter(":visible"),f=a.layoutRect(),d=b.columns||Math.ceil(Math.sqrt(e.length)),c=Math.ceil(e.length/d),s=b.spacingH||b.spacing||0,t=b.spacingV||b.spacing||0,u=b.alignH||b.align,v=b.alignV||b.align,q=a.paddingBox,C="reverseRows"in b?b.reverseRows:a.isRtl(),u&&"string"==typeof u&&(u=[u]),v&&"string"==typeof v&&(v=[v]);for(l=0;l<d;l++)E.push(0);for(m=0;m<c;m++)F.push(0);for(m=0;m<c;m++)for(l=0;l<d&&(k=e[m*d+l],k);l++)j=k.layoutRect(),y=j.minW,z=j.minH,E[l]=y>E[l]?y:E[l],F[m]=z>F[m]?z:F[m];for(A=f.innerW-q.left-q.right,w=0,l=0;l<d;l++)w+=E[l]+(l>0?s:0),A-=(l>0?s:0)+E[l];for(B=f.innerH-q.top-q.bottom,x=0,m=0;m<c;m++)x+=F[m]+(m>0?t:0),B-=(m>0?t:0)+F[m];if(w+=q.left+q.right,x+=q.top+q.bottom,i={},i.minW=w+(f.w-f.innerW),i.minH=x+(f.h-f.innerH),i.contentW=i.minW-f.deltaW,i.contentH=i.minH-f.deltaH,i.minW=Math.min(i.minW,f.maxW),i.minH=Math.min(i.minH,f.maxH),i.minW=Math.max(i.minW,f.startMinWidth),i.minH=Math.max(i.minH,f.startMinHeight),!f.autoResize||i.minW==f.minW&&i.minH==f.minH){f.autoResize&&(i=a.layoutRect(i),i.contentW=i.minW-f.deltaW,i.contentH=i.minH-f.deltaH);var G;G="start"==b.packV?0:B>0?Math.floor(B/c):0;var H=0,I=b.flexWidths;if(I)for(l=0;l<I.length;l++)H+=I[l];else H=d;var J=A/H;for(l=0;l<d;l++)E[l]+=I?I[l]*J:J;for(o=q.top,m=0;m<c;m++){for(n=q.left,h=F[m]+G,l=0;l<d&&(D=C?m*d+d-1-l:m*d+l,k=e[D],k);l++)p=k.settings,j=k.layoutRect(),g=Math.max(E[l],j.startMinWidth),j.x=n,j.y=o,r=p.alignH||(u?u[l]||u[0]:null),"center"==r?j.x=n+g/2-j.w/2:"right"==r?j.x=n+g-j.w:"stretch"==r&&(j.w=g),r=p.alignV||(v?v[l]||v[0]:null),"center"==r?j.y=o+h/2-j.h/2:"bottom"==r?j.y=o+h-j.h:"stretch"==r&&(j.h=h),k.layoutRect(j),n+=g+s,k.recalc&&k.recalc();o+=h+t}}else if(i.w=i.minW,i.h=i.minH,a.layoutRect(i),this.recalc(a),null===a._lastRect){var K=a.parent();K&&(K._lastRect=null,K.recalc())}}})}),g("38",["2l","5"],function(a,b){"use strict";return a.extend({renderHtml:function(){var a=this;return a.classes.add("iframe"),a.canFocus=!1,'<iframe id="'+a._id+'" class="'+a.classes+'" tabindex="-1" src="'+(a.settings.url||"javascript:''")+'" frameborder="0"></iframe>'},src:function(a){this.getEl().src=a},html:function(a,c){var d=this,e=this.getEl().contentWindow.document.body;return e?(e.innerHTML=a,c&&c()):b.setTimeout(function(){d.html(a)}),this}})}),g("39",["2l"],function(a){"use strict";return a.extend({init:function(a){var b=this;b._super(a),b.classes.add("widget").add("infobox"),b.canFocus=!1},severity:function(a){this.classes.remove("error"),this.classes.remove("warning"),this.classes.remove("success"),this.classes.add(a)},help:function(a){this.state.set("help",a)},renderHtml:function(){var a=this,b=a.classPrefix;return'<div id="'+a._id+'" class="'+a.classes+'"><div id="'+a._id+'-body">'+a.encode(a.state.get("text"))+'<button role="button" tabindex="-1"><i class="'+b+"ico "+b+'i-help"></i></button></div></div>'},bindStates:function(){var a=this;return a.state.on("change:text",function(b){a.getEl("body").firstChild.data=a.encode(b.value),a.state.get("rendered")&&a.updateLayoutRect()}),a.state.on("change:help",function(b){a.classes.toggle("has-help",b.value),a.state.get("rendered")&&a.updateLayoutRect()}),a._super()}})}),g("3a",["2l","48"],function(a,b){"use strict";return a.extend({init:function(a){var b=this;b._super(a),b.classes.add("widget").add("label"),b.canFocus=!1,a.multiline&&b.classes.add("autoscroll"),a.strong&&b.classes.add("strong")},initLayoutRect:function(){var a=this,c=a._super();if(a.settings.multiline){var d=b.getSize(a.getEl());d.width>c.maxW&&(c.minW=c.maxW,a.classes.add("multiline")),a.getEl().style.width=c.minW+"px",c.startMinH=c.h=c.minH=Math.min(c.maxH,b.getSize(a.getEl()).height)}return c},repaint:function(){var a=this;return a.settings.multiline||(a.getEl().style.lineHeight=a.layoutRect().h+"px"),a._super()},severity:function(a){this.classes.remove("error"),this.classes.remove("warning"),this.classes.remove("success"),this.classes.add(a)},renderHtml:function(){var a,b,c=this,d=c.settings.forId,e=c.settings.html?c.settings.html:c.encode(c.state.get("text"));return!d&&(b=c.settings.forName)&&(a=c.getRoot().find("#"+b)[0],a&&(d=a._id)),d?'<label id="'+c._id+'" class="'+c.classes+'"'+(d?' for="'+d+'"':"")+">"+e+"</label>":'<span id="'+c._id+'" class="'+c.classes+'">'+e+"</span>"},bindStates:function(){var a=this;return a.state.on("change:text",function(b){a.innerHtml(a.encode(b.value)),a.state.get("rendered")&&a.updateLayoutRect()}),a._super()}})}),g("3b",["2d"],function(a){"use strict";return a.extend({Defaults:{role:"toolbar",layout:"flow"},init:function(a){var b=this;b._super(a),b.classes.add("toolbar")},postRender:function(){var a=this;return a.items().each(function(a){a.classes.add("toolbar-item")}),a._super()}})}),g("3c",["3b"],function(a){"use strict";return a.extend({Defaults:{role:"menubar",containerCls:"menubar",ariaRoot:!0,defaults:{type:"menubutton"}}})}),g("3d",["2p","2b","3c"],function(a,b,c){"use strict";function d(a,b){for(;a;){if(b===a)return!0;a=a.parentNode}return!1}var e=a.extend({init:function(a){var b=this;b._renderOpen=!0,b._super(a),a=b.settings,b.classes.add("menubtn"),a.fixedWidth&&b.classes.add("fixed-width"),b.aria("haspopup",!0),b.state.set("menu",a.menu||b.render())},showMenu:function(a){var c,d=this;return d.menu&&d.menu.visible()&&a!==!1?d.hideMenu():(d.menu||(c=d.state.get("menu")||[],c.length?c={type:"menu",items:c}:c.type=c.type||"menu",c.renderTo?d.menu=c.parent(d).show().renderTo():d.menu=b.create(c).parent(d).renderTo(),d.fire("createmenu"),d.menu.reflow(),d.menu.on("cancel",function(a){a.control.parent()===d.menu&&(a.stopPropagation(),d.focus(),d.hideMenu())}),d.menu.on("select",function(){d.focus()}),d.menu.on("show hide",function(a){a.control==d.menu&&d.activeMenu("show"==a.type),d.aria("expanded","show"==a.type)}).fire("show")),d.menu.show(),d.menu.layoutRect({w:d.layoutRect().w}),d.menu.moveRel(d.getEl(),d.isRtl()?["br-tr","tr-br"]:["bl-tl","tl-bl"]),void d.fire("showmenu"))},hideMenu:function(){var a=this;a.menu&&(a.menu.items().each(function(a){a.hideMenu&&a.hideMenu()}),a.menu.hide())},activeMenu:function(a){this.classes.toggle("active",a)},renderHtml:function(){var a,b=this,d=b._id,e=b.classPrefix,f=b.settings.icon,g=b.state.get("text"),h="";return a=b.settings.image,a?(f="none","string"!=typeof a&&(a=window.getSelection?a[0]:a[1]),a=" style=\"background-image: url('"+a+"')\""):a="",g&&(b.classes.add("btn-has-text"),h='<span class="'+e+'txt">'+b.encode(g)+"</span>"),f=b.settings.icon?e+"ico "+e+"i-"+f:"",b.aria("role",b.parent()instanceof c?"menuitem":"button"),'<div id="'+d+'" class="'+b.classes+'" tabindex="-1" aria-labelledby="'+d+'"><button id="'+d+'-open" role="presentation" type="button" tabindex="-1">'+(f?'<i class="'+f+'"'+a+"></i>":"")+h+' <i class="'+e+'caret"></i></button></div>'},postRender:function(){var a=this;return a.on("click",function(b){b.control===a&&d(b.target,a.getEl())&&(a.focus(),a.showMenu(!b.aria),b.aria&&a.menu.items().filter(":visible")[0].focus())}),a.on("mouseenter",function(b){var c,d=b.control,f=a.parent();d&&f&&d instanceof e&&d.parent()==f&&(f.items().filter("MenuButton").each(function(a){a.hideMenu&&a!=d&&(a.menu&&a.menu.visible()&&(c=!0),a.hideMenu())}),c&&(d.focus(),d.showMenu()))}),a._super()},bindStates:function(){var a=this;return a.state.on("change:menu",function(){a.menu&&a.menu.remove(),a.menu=null}),a._super()},remove:function(){this._super(),this.menu&&this.menu.remove()}});return e}),g("3e",["2l","2b","6","5"],function(a,b,c,d){"use strict";return a.extend({Defaults:{border:0,role:"menuitem"},init:function(a){var b,c=this;c._super(a),a=c.settings,c.classes.add("menu-item"),a.menu&&c.classes.add("menu-item-expand"),a.preview&&c.classes.add("menu-item-preview"),b=c.state.get("text"),"-"!==b&&"|"!==b||(c.classes.add("menu-item-sep"),c.aria("role","separator"),c.state.set("text","-")),a.selectable&&(c.aria("role","menuitemcheckbox"),c.classes.add("menu-item-checkbox"),a.icon="selected"),a.preview||a.selectable||c.classes.add("menu-item-normal"),c.on("mousedown",function(a){a.preventDefault()}),a.menu&&!a.ariaHideMenu&&c.aria("haspopup",!0)},hasMenus:function(){return!!this.settings.menu},showMenu:function(){var a,c=this,d=c.settings,e=c.parent();if(e.items().each(function(a){a!==c&&a.hideMenu()}),d.menu){a=c.menu,a?a.show():(a=d.menu,a.length?a={type:"menu",items:a}:a.type=a.type||"menu",e.settings.itemDefaults&&(a.itemDefaults=e.settings.itemDefaults),a=c.menu=b.create(a).parent(c).renderTo(),a.reflow(),a.on("cancel",function(b){b.stopPropagation(),c.focus(),a.hide()}),a.on("show hide",function(a){a.control.items&&a.control.items().each(function(a){a.active(a.settings.selected)})}).fire("show"),a.on("hide",function(b){b.control===a&&c.classes.remove("selected")}),a.submenu=!0),a._parentMenu=e,a.classes.add("menu-sub");var f=a.testMoveRel(c.getEl(),c.isRtl()?["tl-tr","bl-br","tr-tl","br-bl"]:["tr-tl","br-bl","tl-tr","bl-br"]);a.moveRel(c.getEl(),f),a.rel=f,f="menu-sub-"+f,a.classes.remove(a._lastRel).add(f),a._lastRel=f,c.classes.add("selected"),c.aria("expanded",!0)}},hideMenu:function(){var a=this;return a.menu&&(a.menu.items().each(function(a){a.hideMenu&&a.hideMenu()}),a.menu.hide(),a.aria("expanded",!1)),a},renderHtml:function(){function a(a){var b,d,e={};for(e=c.mac?{alt:"&#x2325;",ctrl:"&#x2318;",shift:"&#x21E7;",meta:"&#x2318;"}:{meta:"Ctrl"},a=a.split("+"),b=0;b<a.length;b++)d=e[a[b].toLowerCase()],d&&(a[b]=d);return a.join("+")}function b(a){return a.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function d(a){var c=h.match||"";return c?a.replace(new RegExp(b(c),"gi"),function(a){return"!mce~match["+a+"]mce~match!"}):a}function e(a){return a.replace(new RegExp(b("!mce~match["),"g"),"<b>").replace(new RegExp(b("]mce~match!"),"g"),"</b>")}var f=this,g=f._id,h=f.settings,i=f.classPrefix,j=f.state.get("text"),k=f.settings.icon,l="",m=h.shortcut,n=f.encode(h.url),o="";return k&&f.parent().classes.add("menu-has-icons"),h.image&&(l=" style=\"background-image: url('"+h.image+"')\""),m&&(m=a(m)),k=i+"ico "+i+"i-"+(f.settings.icon||"none"),o="-"!==j?'<i class="'+k+'"'+l+"></i>\xa0":"",j=e(f.encode(d(j))),n=e(f.encode(d(n))),'<div id="'+g+'" class="'+f.classes+'" tabindex="-1">'+o+("-"!==j?'<span id="'+g+'-text" class="'+i+'text">'+j+"</span>":"")+(m?'<div id="'+g+'-shortcut" class="'+i+'menu-shortcut">'+m+"</div>":"")+(h.menu?'<div class="'+i+'caret"></div>':"")+(n?'<div class="'+i+'menu-item-link">'+n+"</div>":"")+"</div>"},postRender:function(){var a=this,b=a.settings,c=b.textStyle;if("function"==typeof c&&(c=c.call(this)),c){var e=a.getEl("text");e&&e.setAttribute("style",c)}return a.on("mouseenter click",function(c){c.control===a&&(b.menu||"click"!==c.type?(a.showMenu(),c.aria&&a.menu.focus(!0)):(a.fire("select"),d.requestAnimationFrame(function(){a.parent().hideAll()})))}),a._super(),a},hover:function(){var a=this;return a.parent().items().each(function(a){a.classes.remove("selected")}),a.classes.toggle("selected",!0),a},active:function(a){return"undefined"!=typeof a&&this.aria("checked",a),this._super(a)},remove:function(){this._super(),this.menu&&this.menu.remove()}})}),g("3f",["a","2a","5"],function(a,b,c){"use strict";return function(d,e){var f,g,h=this,i=b.classPrefix;h.show=function(b,j){function k(){f&&(a(d).append('<div class="'+i+"throbber"+(e?" "+i+"throbber-inline":"")+'"></div>'),j&&j())}return h.hide(),f=!0,b?g=c.setTimeout(k,b):k(),h},h.hide=function(){var a=d.lastChild;return c.clearTimeout(g),a&&a.className.indexOf("throbber")!=-1&&a.parentNode.removeChild(a),f=!1,h}}}),g("3g",["2j","3e","3f","9"],function(a,b,c,d){"use strict";return a.extend({Defaults:{defaultType:"menuitem",border:1,layout:"stack",role:"application",bodyRole:"menu",ariaRoot:!0},init:function(a){var b=this;if(a.autohide=!0,a.constrainToViewport=!0,"function"==typeof a.items&&(a.itemsFactory=a.items,a.items=[]),a.itemDefaults)for(var c=a.items,e=c.length;e--;)c[e]=d.extend({},a.itemDefaults,c[e]);b._super(a),b.classes.add("menu")},repaint:function(){return this.classes.toggle("menu-align",!0),this._super(),this.getEl().style.height="",this.getEl("body").style.height="",this},cancel:function(){var a=this;a.hideAll(),a.fire("select")},load:function(){function a(){e.throbber&&(e.throbber.hide(),e.throbber=null)}var b,d,e=this;d=e.settings.itemsFactory,d&&(e.throbber||(e.throbber=new c(e.getEl("body"),!0),0===e.items().length?(e.throbber.show(),e.fire("loading")):e.throbber.show(100,function(){e.items().remove(),e.fire("loading")}),e.on("hide close",a)),e.requestTime=b=(new Date).getTime(),e.settings.itemsFactory(function(c){return 0===c.length?void e.hide():void(e.requestTime===b&&(e.getEl().style.width="",e.getEl("body").style.width="",a(),e.items().remove(),e.getEl("body").innerHTML="",e.add(c),e.renderNew(),e.fire("loaded")))}))},hideAll:function(){var a=this;return this.find("menuitem").exec("hideMenu"),a._super()},preRender:function(){var a=this;return a.items().each(function(b){var c=b.settings;if(c.icon||c.image||c.selectable)return a._hasIcons=!0,!1}),a.settings.itemsFactory&&a.on("postrender",function(){a.settings.itemsFactory&&a.load()}),a._super()}})}),g("3h",["3d","3g"],function(a,b){"use strict";return a.extend({init:function(a){function b(c){for(var f=0;f<c.length;f++){if(d=c[f].selected||a.value===c[f].value)return e=e||c[f].text,g.state.set("value",c[f].value),!0;if(c[f].menu&&b(c[f].menu))return!0}}var c,d,e,f,g=this;g._super(a),a=g.settings,g._values=c=a.values,c&&("undefined"!=typeof a.value&&b(c),!d&&c.length>0&&(e=c[0].text,g.state.set("value",c[0].value)),g.state.set("menu",c)),g.state.set("text",a.text||e),g.classes.add("listbox"),g.on("select",function(b){var c=b.control;f&&(b.lastControl=f),a.multiple?c.active(!c.active()):g.value(b.control.value()),f=c})},bindStates:function(){function a(a,c){a instanceof b&&a.items().each(function(a){a.hasMenus()||a.active(a.value()===c)})}function c(a,b){var d;if(a)for(var e=0;e<a.length;e++){if(a[e].value===b)return a[e];if(a[e].menu&&(d=c(a[e].menu,b)))return d}}var d=this;return d.on("show",function(b){a(b.control,d.value())}),d.state.on("change:value",function(a){var b=c(d.state.get("menu"),a.value);b?d.text(b.text):d.text(d.settings.text)}),d._super()}})}),g("3i",["2r"],function(a){"use strict";return a.extend({Defaults:{classes:"radio",role:"radio"}})}),g("3j",["2l","2e"],function(a,b){"use strict";return a.extend({renderHtml:function(){var a=this,b=a.classPrefix;return a.classes.add("resizehandle"),"both"==a.settings.direction&&a.classes.add("resizehandle-both"),a.canFocus=!1,'<div id="'+a._id+'" class="'+a.classes+'"><i class="'+b+"ico "+b+'i-resize"></i></div>'},postRender:function(){var a=this;a._super(),a.resizeDragHelper=new b(this._id,{start:function(){a.fire("ResizeStart")},drag:function(b){"both"!=a.settings.direction&&(b.deltaX=0),a.fire("Resize",b)},stop:function(){a.fire("ResizeEnd")}})},remove:function(){return this.resizeDragHelper&&this.resizeDragHelper.destroy(),this._super()}})}),g("3k",["2l"],function(a){"use strict";function b(a){var b="";if(a)for(var c=0;c<a.length;c++)b+='<option value="'+a[c]+'">'+a[c]+"</option>";return b}return a.extend({Defaults:{classes:"selectbox",role:"selectbox",options:[]},init:function(a){var b=this;b._super(a),b.settings.size&&(b.size=b.settings.size),b.settings.options&&(b._options=b.settings.options),b.on("keydown",function(a){var c;13==a.keyCode&&(a.preventDefault(),b.parents().reverse().each(function(a){if(a.toJSON)return c=a,!1}),b.fire("submit",{data:c.toJSON()}))})},options:function(a){return arguments.length?(this.state.set("options",a),this):this.state.get("options")},renderHtml:function(){var a,c=this,d="";return a=b(c._options),c.size&&(d=' size = "'+c.size+'"'),'<select id="'+c._id+'" class="'+c.classes+'"'+d+">"+a+"</select>"},bindStates:function(){var a=this;return a.state.on("change:options",function(c){a.getEl().innerHTML=b(c.value)}),a._super()}})}),g("3l",["2l","2e","48"],function(a,b,c){"use strict";function d(a,b,c){return a<b&&(a=b),a>c&&(a=c),a}function e(a,b,c){a.setAttribute("aria-"+b,c)}function f(a,b){var d,f,g,h,i,j;"v"==a.settings.orientation?(h="top",g="height",f="h"):(h="left",g="width",f="w"),j=a.getEl("handle"),d=(a.layoutRect()[f]||100)-c.getSize(j)[g],i=d*((b-a._minValue)/(a._maxValue-a._minValue))+"px",j.style[h]=i,j.style.height=a.layoutRect().h+"px",e(j,"valuenow",b),e(j,"valuetext",""+a.settings.previewFilter(b)),e(j,"valuemin",a._minValue),e(j,"valuemax",a._maxValue)}return a.extend({init:function(a){var b=this;a.previewFilter||(a.previewFilter=function(a){return Math.round(100*a)/100}),b._super(a),b.classes.add("slider"),"v"==a.orientation&&b.classes.add("vertical"),b._minValue=a.minValue||0,b._maxValue=a.maxValue||100,b._initValue=b.state.get("value")},renderHtml:function(){var a=this,b=a._id,c=a.classPrefix;return'<div id="'+b+'" class="'+a.classes+'"><div id="'+b+'-handle" class="'+c+'slider-handle" role="slider" tabindex="-1"></div></div>'},reset:function(){this.value(this._initValue).repaint()},postRender:function(){function a(a,b,c){return(c+a)/(b-a)}function e(a,b,c){return c*(b-a)-a}function f(b,c){function f(f){var g;g=n.value(),g=e(b,c,a(b,c,g)+.05*f),g=d(g,b,c),n.value(g),n.fire("dragstart",{value:g}),n.fire("drag",{value:g}),n.fire("dragend",{value:g})}n.on("keydown",function(a){switch(a.keyCode){case 37:case 38:f(-1);break;case 39:case 40:f(1)}})}function g(a,e,f){var g,h,i,o,p;n._dragHelper=new b(n._id,{handle:n._id+"-handle",start:function(a){g=a[j],h=parseInt(n.getEl("handle").style[k],10),i=(n.layoutRect()[m]||100)-c.getSize(f)[l],n.fire("dragstart",{value:p})},drag:function(b){var c=b[j]-g;o=d(h+c,0,i),f.style[k]=o+"px",p=a+o/i*(e-a),n.value(p),n.tooltip().text(""+n.settings.previewFilter(p)).show().moveRel(f,"bc tc"),n.fire("drag",{value:p})},stop:function(){n.tooltip().hide(),n.fire("dragend",{value:p})}})}var h,i,j,k,l,m,n=this;h=n._minValue,i=n._maxValue,"v"==n.settings.orientation?(j="screenY",k="top",l="height",m="h"):(j="screenX",k="left",l="width",m="w"),n._super(),f(h,i,n.getEl("handle")),g(h,i,n.getEl("handle"))},repaint:function(){this._super(),f(this,this.value())},bindStates:function(){var a=this;return a.state.on("change:value",function(b){f(a,b.value)}),a._super()}})}),g("3m",["2l"],function(a){"use strict";return a.extend({renderHtml:function(){var a=this;return a.classes.add("spacer"),a.canFocus=!1,'<div id="'+a._id+'" class="'+a.classes+'"></div>'}})}),g("3n",["3d","48","a"],function(a,b,c){return a.extend({Defaults:{classes:"widget btn splitbtn",role:"button"},repaint:function(){var a,d,e=this,f=e.getEl(),g=e.layoutRect();return e._super(),a=f.firstChild,d=f.lastChild,c(a).css({width:g.w-b.getSize(d).width,height:g.h-2}),c(d).css({height:g.h-2}),e},activeMenu:function(a){var b=this;c(b.getEl().lastChild).toggleClass(b.classPrefix+"active",a)},renderHtml:function(){var a,b=this,c=b._id,d=b.classPrefix,e=b.state.get("icon"),f=b.state.get("text"),g="";return a=b.settings.image,a?(e="none","string"!=typeof a&&(a=window.getSelection?a[0]:a[1]),a=" style=\"background-image: url('"+a+"')\""):a="",e=b.settings.icon?d+"ico "+d+"i-"+e:"",f&&(b.classes.add("btn-has-text"),g='<span class="'+d+'txt">'+b.encode(f)+"</span>"),'<div id="'+c+'" class="'+b.classes+'" role="button" tabindex="-1"><button type="button" hidefocus="1" tabindex="-1">'+(e?'<i class="'+e+'"'+a+"></i>":"")+g+'</button><button type="button" class="'+d+'open" hidefocus="1" tabindex="-1">'+(b._menuBtnText?(e?"\xa0":"")+b._menuBtnText:"")+' <i class="'+d+'caret"></i></button></div>'},postRender:function(){var a=this,b=a.settings.onclick;return a.on("click",function(a){var c=a.target;if(a.control==this)for(;c;){if(a.aria&&"down"!=a.aria.key||"BUTTON"==c.nodeName&&c.className.indexOf("open")==-1)return a.stopImmediatePropagation(),void(b&&b.call(this,a));c=c.parentNode}}),delete a.settings.onclick,a._super()}})}),g("3o",["35"],function(a){"use strict";return a.extend({Defaults:{containerClass:"stack-layout",controlClass:"stack-layout-item",endClass:"break"},isNative:function(){return!0}})}),g("3p",["2g","a","48"],function(a,b,c){"use strict";return a.extend({Defaults:{layout:"absolute",defaults:{type:"panel"}},activateTab:function(a){var c;this.activeTabId&&(c=this.getEl(this.activeTabId),b(c).removeClass(this.classPrefix+"active"),c.setAttribute("aria-selected","false")),this.activeTabId="t"+a,c=this.getEl("t"+a),c.setAttribute("aria-selected","true"),b(c).addClass(this.classPrefix+"active"),this.items()[a].show().fire("showtab"),this.reflow(),this.items().each(function(b,c){a!=c&&b.hide()})},renderHtml:function(){var a=this,b=a._layout,c="",d=a.classPrefix;return a.preRender(),b.preRender(a),a.items().each(function(b,e){var f=a._id+"-t"+e;b.aria("role","tabpanel"),b.aria("labelledby",f),c+='<div id="'+f+'" class="'+d+'tab" unselectable="on" role="tab" aria-controls="'+b._id+'" aria-selected="false" tabIndex="-1">'+a.encode(b.settings.title)+"</div>"}),'<div id="'+a._id+'" class="'+a.classes+'" hidefocus="1" tabindex="-1"><div id="'+a._id+'-head" class="'+d+'tabs" role="tablist">'+c+'</div><div id="'+a._id+'-body" class="'+a.bodyClasses+'">'+b.renderHtml(a)+"</div></div>"},postRender:function(){var a=this;a._super(),a.settings.activeTab=a.settings.activeTab||0,a.activateTab(a.settings.activeTab),this.on("click",function(b){var c=b.target.parentNode;if(c&&c.id==a._id+"-head")for(var d=c.childNodes.length;d--;)c.childNodes[d]==b.target&&a.activateTab(d)})},initLayoutRect:function(){var a,b,d,e=this;b=c.getSize(e.getEl("head")).width,b=b<0?0:b,d=0,e.items().each(function(a){b=Math.max(b,a.layoutRect().minW),d=Math.max(d,a.layoutRect().minH)}),e.items().each(function(a){a.settings.x=0,a.settings.y=0,a.settings.w=b,a.settings.h=d,a.layoutRect({x:0,y:0,w:b,h:d})});var f=c.getSize(e.getEl("head")).height;return e.settings.minWidth=b,e.settings.minHeight=d+f,a=e._super(),a.deltaH+=f,a.innerH=a.h-a.deltaH,a}})}),g("3q",["2l","9","48"],function(a,b,c){return a.extend({init:function(a){var b=this;b._super(a),b.classes.add("textbox"),a.multiline?b.classes.add("multiline"):(b.on("keydown",function(a){var c;13==a.keyCode&&(a.preventDefault(),b.parents().reverse().each(function(a){if(a.toJSON)return c=a,!1}),b.fire("submit",{data:c.toJSON()}))}),b.on("keyup",function(a){b.state.set("value",a.target.value)}))},repaint:function(){var a,b,c,d,e,f=this,g=0;a=f.getEl().style,b=f._layoutRect,e=f._lastRepaintRect||{};var h=document;return!f.settings.multiline&&h.all&&(!h.documentMode||h.documentMode<=8)&&(a.lineHeight=b.h-g+"px"),c=f.borderBox,d=c.left+c.right+8,g=c.top+c.bottom+(f.settings.multiline?8:0),b.x!==e.x&&(a.left=b.x+"px",e.x=b.x),b.y!==e.y&&(a.top=b.y+"px",e.y=b.y),b.w!==e.w&&(a.width=b.w-d+"px",e.w=b.w),b.h!==e.h&&(a.height=b.h-g+"px",e.h=b.h),f._lastRepaintRect=e,f.fire("repaint",{},!1),f},renderHtml:function(){var a,d,e=this,f=e.settings;return a={id:e._id,hidefocus:"1"},b.each(["rows","spellcheck","maxLength","size","readonly","min","max","step","list","pattern","placeholder","required","multiple"],function(b){a[b]=f[b]}),e.disabled()&&(a.disabled="disabled"),f.subtype&&(a.type=f.subtype),d=c.create(f.multiline?"textarea":"input",a),d.value=e.state.get("value"),d.className=e.classes,d.outerHTML},value:function(a){return arguments.length?(this.state.set("value",a),this):(this.state.get("rendered")&&this.state.set("value",this.getEl().value),this.state.get("value"))},postRender:function(){var a=this;a.getEl().value=a.state.get("value"),a._super(),a.$el.on("change",function(b){a.state.set("value",b.target.value),a.fire("change",b)})},bindStates:function(){var a=this;return a.state.on("change:value",function(b){a.getEl().value!=b.value&&(a.getEl().value=b.value)}),a.state.on("change:disabled",function(b){a.getEl().disabled=b.value}),a._super()},remove:function(){this.$el.off(),this._super();
 }})}),g("1f",["27","28","29","2a","2b","2c","2d","2e","2f","2g","2h","2i","2j","1y","1z","2k","2l","2m","20","2n","2o","2p","2q","2r","2s","2t","2u","2v","2w","2x","2y","2z","30","31","32","33","34","35","36","37","38","39","3a","3b","3c","3d","3e","3f","3g","3h","3i","3j","3k","3l","3m","3n","3o","3p","3q"],function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,$,_,aa,ba,ca,da,ea){"use strict";var fa=function(a,b){e.add(a.split(".").pop(),b)},ga=function(a,b,c){var d,e;for(e=b.split(/[.\/]/),d=0;d<e.length-1;++d)void 0===a[e[d]]&&(a[e[d]]={}),a=a[e[d]];a[e[e.length-1]]=c,fa(b,c)},ha=function(fa){ga(fa,"ui.Selector",a),ga(fa,"ui.Collection",b),ga(fa,"ui.ReflowQueue",c),ga(fa,"ui.Control",d),ga(fa,"ui.Factory",e),ga(fa,"ui.KeyboardNavigation",f),ga(fa,"ui.Container",g),ga(fa,"ui.DragHelper",h),ga(fa,"ui.Scrollable",i),ga(fa,"ui.Panel",j),ga(fa,"ui.Movable",k),ga(fa,"ui.Resizable",l),ga(fa,"ui.FloatPanel",m),ga(fa,"ui.Window",n),ga(fa,"ui.MessageBox",o),ga(fa,"ui.Tooltip",p),ga(fa,"ui.Widget",q),ga(fa,"ui.Progress",r),ga(fa,"ui.Notification",s),ga(fa,"ui.Layout",t),ga(fa,"ui.AbsoluteLayout",u),ga(fa,"ui.Button",v),ga(fa,"ui.ButtonGroup",w),ga(fa,"ui.Checkbox",x),ga(fa,"ui.ComboBox",y),ga(fa,"ui.ColorBox",z),ga(fa,"ui.PanelButton",A),ga(fa,"ui.ColorButton",B),ga(fa,"ui.ColorPicker",C),ga(fa,"ui.Path",D),ga(fa,"ui.ElementPath",E),ga(fa,"ui.FormItem",F),ga(fa,"ui.Form",G),ga(fa,"ui.FieldSet",H),ga(fa,"ui.FilePicker",I),ga(fa,"ui.FitLayout",J),ga(fa,"ui.FlexLayout",K),ga(fa,"ui.FlowLayout",L),ga(fa,"ui.FormatControls",M),ga(fa,"ui.GridLayout",N),ga(fa,"ui.Iframe",O),ga(fa,"ui.InfoBox",P),ga(fa,"ui.Label",Q),ga(fa,"ui.Toolbar",R),ga(fa,"ui.MenuBar",S),ga(fa,"ui.MenuButton",T),ga(fa,"ui.MenuItem",U),ga(fa,"ui.Throbber",V),ga(fa,"ui.Menu",W),ga(fa,"ui.ListBox",X),ga(fa,"ui.Radio",Y),ga(fa,"ui.ResizeHandle",Z),ga(fa,"ui.SelectBox",$),ga(fa,"ui.Slider",_),ga(fa,"ui.Spacer",aa),ga(fa,"ui.SplitButton",ba),ga(fa,"ui.StackLayout",ca),ga(fa,"ui.TabPanel",da),ga(fa,"ui.TextBox",ea),ga(fa,"ui.Api",ia)},ia={appendTo:ha};return ia}),g("1",["3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","10","11","12","13","14","15","16","17","18","19","1a","1b","1c","1d","1e","1f"],function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W){var X=O,Y=function(a,b,c){var d,e;for(e=b.split(/[.\/]/),d=0;d<e.length-1;++d)void 0===a[e[d]]&&(a[e[d]]={}),a=a[e[d]];a[e[e.length-1]]=c};return Y(X,"geom.Rect",a),Y(X,"util.Promise",b),Y(X,"util.Delay",c),Y(X,"Env",d),Y(X,"dom.EventUtils",e),Y(X,"dom.Sizzle",f),Y(X,"util.Tools",g),Y(X,"dom.DomQuery",h),Y(X,"html.Styles",i),Y(X,"dom.TreeWalker",j),Y(X,"html.Entities",k),Y(X,"dom.DOMUtils",l),Y(X,"dom.ScriptLoader",m),Y(X,"AddOnManager",n),Y(X,"dom.RangeUtils",o),Y(X,"html.Node",p),Y(X,"html.Schema",q),Y(X,"html.SaxParser",r),Y(X,"html.DomParser",s),Y(X,"html.Writer",t),Y(X,"html.Serializer",u),Y(X,"dom.Serializer",v),Y(X,"util.VK",w),Y(X,"dom.ControlSelection",x),Y(X,"dom.BookmarkManager",y),Y(X,"dom.Selection",z),Y(X,"Formatter",A),Y(X,"UndoManager",B),Y(X,"EditorCommands",C),Y(X,"util.URI",D),Y(X,"util.Class",E),Y(X,"util.EventDispatcher",F),Y(X,"util.Observable",G),Y(X,"WindowManager",H),Y(X,"NotificationManager",I),Y(X,"EditorObservable",J),Y(X,"Shortcuts",K),Y(X,"Editor",L),Y(X,"util.I18n",M),Y(X,"FocusManager",N),Y(X,"EditorManager",O),Y(X,"util.XHR",P),Y(X,"util.JSON",Q),Y(X,"util.JSONRequest",R),Y(X,"util.JSONP",S),Y(X,"util.LocalStorage",T),Y(X,"Compat",U),Y(X,"util.Color",V),W.appendTo(X),U.register(X),X}),g("2",[],function(){var a=this||window,b=function(b){"function"==typeof a.define&&(a.define.amd||(a.define("ephox/tinymce",[],function(){return b}),a.define("17",[],function(){return b}))),"object"==typeof module&&(module.exports=b)};return{exposeToModuleLoaders:b}}),g("0",["1","2"],function(a,b){return function(){return window.tinymce=a,window.tinyMCE=a,b.exposeToModuleLoaders(a),a}}),d("0")()}();
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(171).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(174).setImmediate))
 
 /***/ }),
-/* 173 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(174)(
+var Component = __webpack_require__(177)(
   /* script */
-  __webpack_require__(153),
+  __webpack_require__(154),
   /* template */
-  __webpack_require__(175),
+  __webpack_require__(178),
   /* scopeId */
   null,
   /* cssModules */
@@ -44450,7 +48849,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 174 */
+/* 177 */
 /***/ (function(module, exports) {
 
 module.exports = function normalizeComponent (
@@ -44503,7 +48902,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 175 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44532,7 +48931,7 @@ if (false) {
 }
 
 /***/ }),
-/* 176 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54159,4443 +58558,12 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(6)))
 
 /***/ }),
-/* 177 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(133);
-module.exports = __webpack_require__(134);
+__webpack_require__(134);
+module.exports = __webpack_require__(135);
 
-
-/***/ }),
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Shoestring - v2.0.0 - 2017-02-14
-* http://github.com/filamentgroup/shoestring/
-* Copyright (c) 2017 Scott Jehl, Filament Group, Inc; Licensed MIT & GPLv2 */ 
-(function( factory ) {
-	if( true ) {
-			// AMD. Register as an anonymous module.
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(206) ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else if (typeof module === 'object' && module.exports) {
-		// Node/CommonJS
-		module.exports = factory();
-	} else {
-		// Browser globals
-		factory();
-	}
-}(function () {
-	var win = typeof window !== "undefined" ? window : this;
-	var doc = win.document;
-
-
-	/**
-	 * The shoestring object constructor.
-	 *
-	 * @param {string,object} prim The selector to find or element to wrap.
-	 * @param {object} sec The context in which to match the `prim` selector.
-	 * @returns shoestring
-	 * @this window
-	 */
-	function shoestring( prim, sec ){
-		var pType = typeof( prim ),
-				ret = [],
-				sel;
-
-		// return an empty shoestring object
-		if( !prim ){
-			return new Shoestring( ret );
-		}
-
-		// ready calls
-		if( prim.call ){
-			return shoestring.ready( prim );
-		}
-
-		// handle re-wrapping shoestring objects
-		if( prim.constructor === Shoestring && !sec ){
-			return prim;
-		}
-
-		// if string starting with <, make html
-		if( pType === "string" && prim.indexOf( "<" ) === 0 ){
-			var dfrag = doc.createElement( "div" );
-
-			dfrag.innerHTML = prim;
-
-			// TODO depends on children (circular)
-			return shoestring( dfrag ).children().each(function(){
-				dfrag.removeChild( this );
-			});
-		}
-
-		// if string, it's a selector, use qsa
-		if( pType === "string" ){
-			if( sec ){
-				return shoestring( sec ).find( prim );
-			}
-
-			try {
-				sel = doc.querySelectorAll( prim );
-			} catch( e ) {
-				shoestring.error( 'queryselector', prim );
-			}
-
-			return new Shoestring( sel, prim );
-		}
-
-		// array like objects or node lists
-		if( Object.prototype.toString.call( pType ) === '[object Array]' ||
-				(win.NodeList && prim instanceof win.NodeList) ){
-
-			return new Shoestring( prim, prim );
-		}
-
-		// if it's an array, use all the elements
-		if( prim.constructor === Array ){
-			return new Shoestring( prim, prim );
-		}
-
-		// otherwise assume it's an object the we want at an index
-		return new Shoestring( [prim], prim );
-	}
-
-	var Shoestring = function( ret, prim ) {
-		this.length = 0;
-		this.selector = prim;
-		shoestring.merge(this, ret);
-	};
-
-	// TODO only required for tests
-	Shoestring.prototype.reverse = [].reverse;
-
-	// For adding element set methods
-	shoestring.fn = Shoestring.prototype;
-
-	shoestring.Shoestring = Shoestring;
-
-	// For extending objects
-	// TODO move to separate module when we use prototypes
-	shoestring.extend = function( first, second ){
-		for( var i in second ){
-			if( second.hasOwnProperty( i ) ){
-				first[ i ] = second[ i ];
-			}
-		}
-
-		return first;
-	};
-
-	// taken directly from jQuery
-	shoestring.merge = function( first, second ) {
-		var len, j, i;
-
-		len = +second.length,
-		j = 0,
-		i = first.length;
-
-		for ( ; j < len; j++ ) {
-			first[ i++ ] = second[ j ];
-		}
-
-		first.length = i;
-
-		return first;
-	};
-
-	// expose
-	win.shoestring = shoestring;
-
-
-
-	shoestring.enUS = {
-		errors: {
-			"prefix": "Shoestring does not support",
-
-			"ajax-url-query": "data with urls that have existing query params",
-			"children-selector" : "passing selectors into .child, try .children().filter( selector )",
-			"click": "the click method. Try using .on( 'click', function(){}) or .trigger( 'click' ) instead.",
-			"css-get" : "getting computed attributes from the DOM.",
-			"data-attr-alias": "the data method aliased to `data-` DOM attributes.",
-			"each-length": "objects without a length passed into each",
-			"has-class" : "the hasClass method. Try using .is( '.klassname' ) instead.",
-			"html-function" : "passing a function into .html. Try generating the html you're passing in an outside function",
-			"index-shoestring-object": "an index call with a shoestring object argument. Use .get(0) on the argument instead.",
-			"live-delegate" : "the .live or .delegate methods. Use .bind or .on instead.",
-			"map": "the map method. Try using .each to make a new object.",
-			"next-selector" : "passing selectors into .next, try .next().filter( selector )",
-			"off-delegate" : ".off( events, selector, handler ) or .off( events, selector ). Use .off( eventName, callback ) instead.",
-			"next-until" : "the .nextUntil method. Use .next in a loop until you reach the selector, don't include the selector",
-			"on-delegate" : "the .on method with three or more arguments. Using .on( eventName, callback ) instead.",
-			"outer-width": "the outerWidth method. Try combining .width() with .css for padding-left, padding-right, and the border of the left and right side.",
-			"prev-selector" : "passing selectors into .prev, try .prev().filter( selector )",
-			"prevall-selector" : "passing selectors into .prevAll, try .prevAll().filter( selector )",
-			"queryselector": "all CSS selectors on querySelector (varies per browser support). Specifically, this failed: ",
-			"siblings-selector": "passing selector into siblings not supported, try .siblings().find( ... )",
-			"show-hide": "the show or hide methods. Use display: block (or whatever you'd like it to be) or none instead",
-			"text-setter": "setting text via the .text method.",
-			"toggle-class" : "the toggleClass method. Try using addClass or removeClass instead.",
-			"trim": "the trim method. Use String.prototype.trim."
-		}
-	};
-
-	shoestring.error = function( id, str ) {
-		var errors = shoestring.enUS.errors;
-		throw new Error( errors.prefix + " " + errors[id] + ( str ? " " + str : "" ) );
-	};
-
-
-
-	var xmlHttp = function() {
-		try {
-			return new XMLHttpRequest();
-		}
-		catch( e ){
-			return new ActiveXObject( "Microsoft.XMLHTTP" );
-		}
-	};
-
-	/**
-	 * Make an HTTP request to a url.
-	 *
-	 * **NOTE** the following options are supported:
-	 *
-	 * - *method* - The HTTP method used with the request. Default: `GET`.
-	 * - *data* - Raw object with keys and values to pass with request as query params. Default `null`.
-	 * - *headers* - Set of request headers to add. Default `{}`.
-	 * - *async* - Whether the opened request is asynchronouse. Default `true`.
-	 * - *success* - Callback for successful request and response. Passed the response data.
-	 * - *error* - Callback for failed request and response.
-	 * - *cancel* - Callback for cancelled request and response.
-	 *
-	 * @param {string} url The url to request.
-	 * @param {object} options The options object, see Notes.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-
-	shoestring.ajax = function( url, options ) {
-		var params = "", req = xmlHttp(), settings, key;
-
-		settings = shoestring.extend( {}, shoestring.ajax.settings );
-
-		if( options ){
-			shoestring.extend( settings, options );
-		}
-
-		if( !url ){
-			url = settings.url;
-		}
-
-		if( !req || !url ){
-			return;
-		}
-
-		// create parameter string from data object
-		if( settings.data ){
-			for( key in settings.data ){
-				if( settings.data.hasOwnProperty( key ) ){
-					if( params !== "" ){
-						params += "&";
-					}
-					params += encodeURIComponent( key ) + "=" +
-						encodeURIComponent( settings.data[key] );
-				}
-			}
-		}
-
-		// append params to url for GET requests
-		if( settings.method === "GET" && params ){
-						if( url.indexOf("?") >= 0 ){
-				shoestring.error( 'ajax-url-query' );
-			}
-			
-			url += "?" + params;
-		}
-
-		req.open( settings.method, url, settings.async );
-
-		if( req.setRequestHeader ){
-			req.setRequestHeader( "X-Requested-With", "XMLHttpRequest" );
-
-			// Set 'Content-type' header for POST requests
-			if( settings.method === "POST" && params ){
-				req.setRequestHeader( "Content-type", "application/x-www-form-urlencoded" );
-			}
-
-			for( key in settings.headers ){
-				if( settings.headers.hasOwnProperty( key ) ){
-					req.setRequestHeader(key, settings.headers[ key ]);
-				}
-			}
-		}
-
-		req.onreadystatechange = function () {
-			if( req.readyState === 4 ){
-				// Trim the whitespace so shoestring('<div>') works
-				var res = (req.responseText || '').replace(/^\s+|\s+$/g, '');
-				if( req.status.toString().indexOf( "0" ) === 0 ){
-					return settings.cancel( res, req.status, req );
-				}
-				else if ( req.status.toString().match( /^(4|5)/ ) && RegExp.$1 ){
-					return settings.error( res, req.status, req );
-				}
-				else if (settings.success) {
-					return settings.success( res, req.status, req );
-				}
-			}
-		};
-
-		if( req.readyState === 4 ){
-			return req;
-		}
-
-		// Send request
-		if( settings.method === "POST" && params ){
-			req.send( params );
-		} else {
-			req.send();
-		}
-
-		return req;
-	};
-
-	shoestring.ajax.settings = {
-		success: function(){},
-		error: function(){},
-		cancel: function(){},
-		method: "GET",
-		async: true,
-		data: null,
-		headers: {}
-	};
-
-
-
-	/**
-	 * Helper function wrapping a call to [ajax](ajax.js.html) using the `GET` method.
-	 *
-	 * @param {string} url The url to GET from.
-	 * @param {function} callback Callback to invoke on success.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.get = function( url, callback ){
-		return shoestring.ajax( url, { success: callback } );
-	};
-
-
-
-  /**
-	 * Load the HTML response from `url` into the current set of elements.
-	 *
-	 * @param {string} url The url to GET from.
-	 * @param {function} callback Callback to invoke after HTML is inserted.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.load = function( url, callback ){
-		var self = this,
-			args = arguments,
-			intCB = function( data ){
-				self.each(function(){
-					shoestring( this ).html( data );
-				});
-
-				if( callback ){
-					callback.apply( self, args );
-				}
-		  };
-
-		shoestring.ajax( url, { success: intCB } );
-		return this;
-	};
-
-
-
-	/**
-	 * Helper function wrapping a call to [ajax](ajax.js.html) using the `POST` method.
-	 *
-	 * @param {string} url The url to POST to.
-	 * @param {object} data The data to send.
-	 * @param {function} callback Callback to invoke on success.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.post = function( url, data, callback ){
-		return shoestring.ajax( url, { data: data, method: "POST", success: callback } );
-	};
-
-
-
-	/**
-	 * Iterates over `shoestring` collections.
-	 *
-	 * @param {function} callback The callback to be invoked on each element and index
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.each = function( callback ){
-		return shoestring.each( this, callback );
-	};
-
-	shoestring.each = function( collection, callback ) {
-		var val;
-		if( !( "length" in collection ) ) {
-			shoestring.error( 'each-length' );
-		}
-		for( var i = 0, il = collection.length; i < il; i++ ){
-			val = callback.call( collection[i], i, collection[i] );
-			if( val === false ){
-				break;
-			}
-		}
-
-		return collection;
-	};
-
-
-
-  /**
-	 * Check for array membership.
-	 *
-	 * @param {object} needle The thing to find.
-	 * @param {object} haystack The thing to find the needle in.
-	 * @return {boolean}
-	 * @this window
-	 */
-	shoestring.inArray = function( needle, haystack ){
-		var isin = -1;
-		for( var i = 0, il = haystack.length; i < il; i++ ){
-			if( haystack.hasOwnProperty( i ) && haystack[ i ] === needle ){
-				isin = i;
-			}
-		}
-		return isin;
-	};
-
-
-
-  /**
-	 * Bind callbacks to be run when the DOM is "ready".
-	 *
-	 * @param {function} fn The callback to be run
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.ready = function( fn ){
-		if( ready && fn ){
-			fn.call( doc );
-		}
-		else if( fn ){
-			readyQueue.push( fn );
-		}
-		else {
-			runReady();
-		}
-
-		return [doc];
-	};
-
-	// TODO necessary?
-	shoestring.fn.ready = function( fn ){
-		shoestring.ready( fn );
-		return this;
-	};
-
-	// Empty and exec the ready queue
-	var ready = false,
-		readyQueue = [],
-		runReady = function(){
-			if( !ready ){
-				while( readyQueue.length ){
-					readyQueue.shift().call( doc );
-				}
-				ready = true;
-			}
-		};
-
-	// If DOM is already ready at exec time, depends on the browser.
-	// From: https://github.com/mobify/mobifyjs/blob/526841be5509e28fc949038021799e4223479f8d/src/capture.js#L128
-	if (doc.attachEvent ? doc.readyState === "complete" : doc.readyState !== "loading") {
-		runReady();
-	} else {
-		doc.addEventListener( "DOMContentLoaded", runReady, false );
-		doc.addEventListener( "readystatechange", runReady, false );
-		win.addEventListener( "load", runReady, false );
-	}
-
-
-
-  /**
-	 * Checks the current set of elements against the selector, if one matches return `true`.
-	 *
-	 * @param {string} selector The selector to check.
-	 * @return {boolean}
-	 * @this {shoestring}
-	 */
-	shoestring.fn.is = function( selector ){
-		var ret = false, self = this, parents, check;
-
-		// assume a dom element
-		if( typeof selector !== "string" ){
-			// array-like, ie shoestring objects or element arrays
-			if( selector.length && selector[0] ){
-				check = selector;
-			} else {
-				check = [selector];
-			}
-
-			return _checkElements(this, check);
-		}
-
-		parents = this.parent();
-
-		if( !parents.length ){
-			parents = shoestring( doc );
-		}
-
-		parents.each(function( i, e ) {
-			var children;
-
-				try {
-					children = e.querySelectorAll( selector );
-				} catch( e ) {
-					shoestring.error( 'queryselector', selector );
-				}
-
-			ret = _checkElements( self, children );
-		});
-
-		return ret;
-	};
-
-	function _checkElements(needles, haystack){
-		var ret = false;
-
-		needles.each(function() {
-			var j = 0;
-
-			while( j < haystack.length ){
-				if( this === haystack[j] ){
-					ret = true;
-				}
-
-				j++;
-			}
-		});
-
-		return ret;
-	}
-
-
-
-	/**
-	 * Get data attached to the first element or set data values on all elements in the current set.
-	 *
-	 * @param {string} name The data attribute name.
-	 * @param {any} value The value assigned to the data attribute.
-	 * @return {any|shoestring}
-	 * @this shoestring
-	 */
-	shoestring.fn.data = function( name, value ){
-		if( name !== undefined ){
-			if( value !== undefined ){
-				return this.each(function(){
-					if( !this.shoestringData ){
-						this.shoestringData = {};
-					}
-
-					this.shoestringData[ name ] = value;
-				});
-			}
-			else {
-				if( this[ 0 ] ) {
-					if( this[ 0 ].shoestringData ) {
-						return this[ 0 ].shoestringData[ name ];
-					}
-					if( shoestring( this[ 0 ] ).is( "[data-" + name + "]" ) ){
-						shoestring.error( 'data-attr-alias' );
-					}
-				}
-			}
-		}
-		else {
-			return this[ 0 ] ? this[ 0 ].shoestringData || {} : undefined;
-		}
-	};
-
-
-	/**
-	 * Remove data associated with `name` or all the data, for each element in the current set.
-	 *
-	 * @param {string} name The data attribute name.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.removeData = function( name ){
-		return this.each(function(){
-			if( name !== undefined && this.shoestringData ){
-				this.shoestringData[ name ] = undefined;
-				delete this.shoestringData[ name ];
-			}	else {
-				this[ 0 ].shoestringData = {};
-			}
-		});
-	};
-
-
-
-	/**
-	 * An alias for the `shoestring` constructor.
-	 */
-	win.$ = shoestring;
-
-
-
-	/**
-	 * Add a class to each DOM element in the set of elements.
-	 *
-	 * @param {string} className The name of the class to be added.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.addClass = function( className ){
-		var classes = className.replace(/^\s+|\s+$/g, '').split( " " );
-
-		return this.each(function(){
-			for( var i = 0, il = classes.length; i < il; i++ ){
-				if( this.className !== undefined &&
-						(this.className === "" ||
-						!this.className.match( new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)"))) ){
-					this.className += " " + classes[ i ];
-				}
-			}
-		});
-	};
-
-
-
-  /**
-	 * Add elements matching the selector to the current set.
-	 *
-	 * @param {string} selector The selector for the elements to add from the DOM
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.add = function( selector ){
-		var ret = [];
-		this.each(function(){
-			ret.push( this );
-		});
-
-		shoestring( selector ).each(function(){
-			ret.push( this );
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Insert an element or HTML string after each element in the current set.
-	 *
-	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.after = function( fragment ){
-		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
-			fragment = shoestring( fragment );
-		}
-
-		if( fragment.length > 1 ){
-			fragment = fragment.reverse();
-		}
-		return this.each(function( i ){
-			for( var j = 0, jl = fragment.length; j < jl; j++ ){
-				var insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
-				this.parentNode.insertBefore( insertEl, this.nextSibling );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Insert an element or HTML string as the last child of each element in the set.
-	 *
-	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.append = function( fragment ){
-		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
-			fragment = shoestring( fragment );
-		}
-
-		return this.each(function( i ){
-			for( var j = 0, jl = fragment.length; j < jl; j++ ){
-				this.appendChild( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ] );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Insert the current set as the last child of the elements matching the selector.
-	 *
-	 * @param {string} selector The selector after which to append the current set.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.appendTo = function( selector ){
-		return this.each(function(){
-			shoestring( selector ).append( this );
-		});
-	};
-
-
-
-  /**
-	 * Get the value of the first element of the set or set the value of all the elements in the set.
-	 *
-	 * @param {string} name The attribute name.
-	 * @param {string} value The new value for the attribute.
-	 * @return {shoestring|string|undefined}
-	 * @this {shoestring}
-	 */
-	shoestring.fn.attr = function( name, value ){
-		var nameStr = typeof( name ) === "string";
-
-		if( value !== undefined || !nameStr ){
-			return this.each(function(){
-				if( nameStr ){
-					this.setAttribute( name, value );
-				}	else {
-					for( var i in name ){
-						if( name.hasOwnProperty( i ) ){
-							this.setAttribute( i, name[ i ] );
-						}
-					}
-				}
-			});
-		} else {
-			return this[ 0 ] ? this[ 0 ].getAttribute( name ) : undefined;
-		}
-	};
-
-
-
-	/**
-	 * Insert an element or HTML string before each element in the current set.
-	 *
-	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.before = function( fragment ){
-		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
-			fragment = shoestring( fragment );
-		}
-
-		return this.each(function( i ){
-			for( var j = 0, jl = fragment.length; j < jl; j++ ){
-				this.parentNode.insertBefore( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ], this );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Get the children of the current collection.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.children = function(){
-				if( arguments.length > 0 ){
-			shoestring.error( 'children-selector' );
-		}
-				var ret = [],
-			childs,
-			j;
-		this.each(function(){
-			childs = this.children;
-			j = -1;
-
-			while( j++ < childs.length-1 ){
-				if( shoestring.inArray(  childs[ j ], ret ) === -1 ){
-					ret.push( childs[ j ] );
-				}
-			}
-		});
-		return shoestring(ret);
-	};
-
-
-
-	/**
-	 * Clone and return the current set of nodes into a new `shoestring` object.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.clone = function() {
-		var ret = [];
-
-		this.each(function() {
-			ret.push( this.cloneNode( true ) );
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Find an element matching the selector in the set of the current element and its parents.
-	 *
-	 * @param {string} selector The selector used to identify the target element.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.closest = function( selector ){
-		var ret = [];
-
-		if( !selector ){
-			return shoestring( ret );
-		}
-
-		this.each(function(){
-			var element, $self = shoestring( element = this );
-
-			if( $self.is(selector) ){
-				ret.push( this );
-				return;
-			}
-
-			while( element.parentElement ) {
-				if( shoestring(element.parentElement).is(selector) ){
-					ret.push( element.parentElement );
-					break;
-				}
-
-				element = element.parentElement;
-			}
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-  shoestring.cssExceptions = {
-		'float': [ 'cssFloat' ]
-	};
-
-
-
-	(function() {
-		var cssExceptions = shoestring.cssExceptions;
-
-		// IE8 uses marginRight instead of margin-right
-		function convertPropertyName( str ) {
-			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
-				return character.toUpperCase();
-			});
-		}
-
-		function _getStyle( element, property ) {
-			return win.getComputedStyle( element, null ).getPropertyValue( property );
-		}
-
-		var vendorPrefixes = [ '', '-webkit-', '-ms-', '-moz-', '-o-', '-khtml-' ];
-
-		/**
-		 * Private function for getting the computed style of an element.
-		 *
-		 * **NOTE** Please use the [css](../css.js.html) method instead.
-		 *
-		 * @method _getStyle
-		 * @param {HTMLElement} element The element we want the style property for.
-		 * @param {string} property The css property we want the style for.
-		 */
-		shoestring._getStyle = function( element, property ) {
-			var convert, value, j, k;
-
-			if( cssExceptions[ property ] ) {
-				for( j = 0, k = cssExceptions[ property ].length; j < k; j++ ) {
-					value = _getStyle( element, cssExceptions[ property ][ j ] );
-
-					if( value ) {
-						return value;
-					}
-				}
-			}
-
-			for( j = 0, k = vendorPrefixes.length; j < k; j++ ) {
-				convert = convertPropertyName( vendorPrefixes[ j ] + property );
-
-				// VendorprefixKeyName || key-name
-				value = _getStyle( element, convert );
-
-				if( convert !== property ) {
-					value = value || _getStyle( element, property );
-				}
-
-				if( vendorPrefixes[ j ] ) {
-					// -vendorprefix-key-name
-					value = value || _getStyle( element, vendorPrefixes[ j ] + property );
-				}
-
-				if( value ) {
-					return value;
-				}
-			}
-
-			return undefined;
-		};
-	})();
-
-
-
-	(function() {
-		var cssExceptions = shoestring.cssExceptions;
-
-		// IE8 uses marginRight instead of margin-right
-		function convertPropertyName( str ) {
-			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
-				return character.toUpperCase();
-			});
-		}
-
-		/**
-		 * Private function for setting the style of an element.
-		 *
-		 * **NOTE** Please use the [css](../css.js.html) method instead.
-		 *
-		 * @method _setStyle
-		 * @param {HTMLElement} element The element we want to style.
-		 * @param {string} property The property being used to style the element.
-		 * @param {string} value The css value for the style property.
-		 */
-		shoestring._setStyle = function( element, property, value ) {
-			var convertedProperty = convertPropertyName(property);
-
-			element.style[ property ] = value;
-
-			if( convertedProperty !== property ) {
-				element.style[ convertedProperty ] = value;
-			}
-
-			if( cssExceptions[ property ] ) {
-				for( var j = 0, k = cssExceptions[ property ].length; j<k; j++ ) {
-					element.style[ cssExceptions[ property ][ j ] ] = value;
-				}
-			}
-		};
-	})();
-
-
-
-	/**
-	 * Get the compute style property of the first element or set the value of a style property
-	 * on all elements in the set.
-	 *
-	 * @method _setStyle
-	 * @param {string} property The property being used to style the element.
-	 * @param {string|undefined} value The css value for the style property.
-	 * @return {string|shoestring}
-	 * @this shoestring
-	 */
-	shoestring.fn.css = function( property, value ){
-		if( !this[0] ){
-			return;
-		}
-
-		if( typeof property === "object" ) {
-			return this.each(function() {
-				for( var key in property ) {
-					if( property.hasOwnProperty( key ) ) {
-						shoestring._setStyle( this, key, property[key] );
-					}
-				}
-			});
-		}	else {
-			// assignment else retrieve first
-			if( value !== undefined ){
-				return this.each(function(){
-					shoestring._setStyle( this, property, value );
-				});
-			}
-
-			return shoestring._getStyle( this[0], property );
-		}
-	};
-
-
-
-	/**
-	 * Returns the indexed element wrapped in a new `shoestring` object.
-	 *
-	 * @param {integer} index The index of the element to wrap and return.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.eq = function( index ){
-		if( this[index] ){
-			return shoestring( this[index] );
-		}
-
-		return shoestring([]);
-	};
-
-
-
-	/**
-	 * Filter out the current set if they do *not* match the passed selector or
-	 * the supplied callback returns false
-	 *
-	 * @param {string,function} selector The selector or boolean return value callback used to filter the elements.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.filter = function( selector ){
-		var ret = [];
-
-		this.each(function( index ){
-			var wsel;
-
-			if( typeof selector === 'function' ) {
-				if( selector.call( this, index ) !== false ) {
-					ret.push( this );
-				}
-			} else {
-				if( !this.parentNode ){
-					var context = shoestring( doc.createDocumentFragment() );
-
-					context[ 0 ].appendChild( this );
-					wsel = shoestring( selector, context );
-				} else {
-					wsel = shoestring( selector, this.parentNode );
-				}
-
-				if( shoestring.inArray( this, wsel ) > -1 ){
-					ret.push( this );
-				}
-			}
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Find descendant elements of the current collection.
-	 *
-	 * @param {string} selector The selector used to find the children
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.find = function( selector ){
-		var ret = [],
-			finds;
-		this.each(function(){
-			try {
-				finds = this.querySelectorAll( selector );
-			} catch( e ) {
-				shoestring.error( 'queryselector', selector );
-			}
-
-			for( var i = 0, il = finds.length; i < il; i++ ){
-				ret = ret.concat( finds[i] );
-			}
-		});
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Returns the first element of the set wrapped in a new `shoestring` object.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.first = function(){
-		return this.eq( 0 );
-	};
-
-
-
-	/**
-	 * Returns the raw DOM node at the passed index.
-	 *
-	 * @param {integer} index The index of the element to wrap and return.
-	 * @return {HTMLElement|undefined|array}
-	 * @this shoestring
-	 */
-	shoestring.fn.get = function( index ){
-
-		// return an array of elements if index is undefined
-		if( index === undefined ){
-			var elements = [];
-
-			for( var i = 0; i < this.length; i++ ){
-				elements.push( this[ i ] );
-			}
-
-			return elements;
-		} else {
-			return this[ index ];
-		}
-	};
-
-
-
-	/**
-	 * Private function for setting/getting the offset property for height/width.
-	 *
-	 * **NOTE** Please use the [width](width.js.html) or [height](height.js.html) methods instead.
-	 *
-	 * @param {shoestring} set The set of elements.
-	 * @param {string} name The string "height" or "width".
-	 * @param {float|undefined} value The value to assign.
-	 * @return shoestring
-	 * @this window
-	 */
-	shoestring._dimension = function( set, name, value ){
-		var offsetName;
-
-		if( value === undefined ){
-			offsetName = name.replace(/^[a-z]/, function( letter ) {
-				return letter.toUpperCase();
-			});
-
-			return set[ 0 ][ "offset" + offsetName ];
-		} else {
-			// support integer values as pixels
-			value = typeof value === "string" ? value : value + "px";
-
-			return set.each(function(){
-				this.style[ name ] = value;
-			});
-		}
-	};
-
-
-
-	/**
-	 * Gets the height value of the first element or sets the height for the whole set.
-	 *
-	 * @param {float|undefined} value The value to assign.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.height = function( value ){
-		return shoestring._dimension( this, "height", value );
-	};
-
-
-
-	var set = function( html ){
-		if( typeof html === "string" || typeof html === "number" ){
-			return this.each(function(){
-				this.innerHTML = "" + html;
-			});
-		} else {
-			var h = "";
-			if( typeof html.length !== "undefined" ){
-				for( var i = 0, l = html.length; i < l; i++ ){
-					h += html[i].outerHTML;
-				}
-			} else {
-				h = html.outerHTML;
-			}
-			return this.each(function(){
-				this.innerHTML = h;
-			});
-		}
-	};
-	/**
-	 * Gets or sets the `innerHTML` from all the elements in the set.
-	 *
-	 * @param {string|undefined} html The html to assign
-	 * @return {string|shoestring}
-	 * @this shoestring
-	 */
-	shoestring.fn.html = function( html ){
-				if( !!html && typeof html === "function" ){
-			shoestring.error( 'html-function' );
-		}
-				if( typeof html !== "undefined" ){
-			return set.call( this, html );
-		} else { // get
-			var pile = "";
-
-			this.each(function(){
-				pile += this.innerHTML;
-			});
-
-			return pile;
-		}
-	};
-
-
-
-	(function() {
-		function _getIndex( set, test ) {
-			var i, result, element;
-
-			for( i = result = 0; i < set.length; i++ ) {
-				element = set.item ? set.item(i) : set[i];
-
-				if( test(element) ){
-					return result;
-				}
-
-				// ignore text nodes, etc
-				// NOTE may need to be more permissive
-				if( element.nodeType === 1 ){
-					result++;
-				}
-			}
-
-			return -1;
-		}
-
-		/**
-		 * Find the index in the current set for the passed selector.
-		 * Without a selector it returns the index of the first node within the array of its siblings.
-		 *
-		 * @param {string|undefined} selector The selector used to search for the index.
-		 * @return {integer}
-		 * @this {shoestring}
-		 */
-		shoestring.fn.index = function( selector ){
-			var self, children;
-
-			self = this;
-
-			// no arg? check the children, otherwise check each element that matches
-			if( selector === undefined ){
-				children = ( ( this[ 0 ] && this[0].parentNode ) || doc.documentElement).childNodes;
-
-				// check if the element matches the first of the set
-				return _getIndex(children, function( element ) {
-					return self[0] === element;
-				});
-			} else {
-				if( selector.constructor === shoestring.Shoestring ) {
-					shoestring.error( "index-shoestring-object" );
-				}
-
-				// check if the element matches the first selected node from the parent
-				return _getIndex(self, function( element ) {
-					return element === (shoestring( selector, element.parentNode )[ 0 ]);
-				});
-			}
-		};
-	})();
-
-
-
-	/**
-	 * Insert the current set after the elements matching the selector.
-	 *
-	 * @param {string} selector The selector after which to insert the current set.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.insertAfter = function( selector ){
-		return this.each(function(){
-			shoestring( selector ).after( this );
-		});
-	};
-
-
-
-	/**
-	 * Insert the current set before the elements matching the selector.
-	 *
-	 * @param {string} selector The selector before which to insert the current set.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.insertBefore = function( selector ){
-		return this.each(function(){
-			shoestring( selector ).before( this );
-		});
-	};
-
-
-
-	/**
-	 * Returns the last element of the set wrapped in a new `shoestring` object.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.last = function(){
-		return this.eq( this.length - 1 );
-	};
-
-
-
-	/**
-	 * Returns a `shoestring` object with the set of siblings of each element in the original set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.next = function(){
-				if( arguments.length > 0 ){
-			shoestring.error( 'next-selector' );
-		}
-		
-		var result = [];
-
-		// TODO need to implement map
-		this.each(function() {
-			var children, item, found;
-
-			// get the child nodes for this member of the set
-			children = shoestring( this.parentNode )[0].childNodes;
-
-			for( var i = 0; i < children.length; i++ ){
-				item = children.item( i );
-
-				// found the item we needed (found) which means current item value is
-				// the next node in the list, as long as it's viable grab it
-				// NOTE may need to be more permissive
-				if( found && item.nodeType === 1 ){
-					result.push( item );
-					break;
-				}
-
-				// find the current item and mark it as found
-				if( item === this ){
-					found = true;
-				}
-			}
-		});
-
-		return shoestring( result );
-	};
-
-
-
-	/**
-	 * Removes elements from the current set.
-	 *
-	 * @param {string} selector The selector to use when removing the elements.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.not = function( selector ){
-		var ret = [];
-
-		this.each(function(){
-			var found = shoestring( selector, this.parentNode );
-
-			if( shoestring.inArray(this, found) === -1 ){
-				ret.push( this );
-			}
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Returns an object with the `top` and `left` properties corresponging to the first elements offsets.
-	 *
-	 * @return object
-	 * @this shoestring
-	 */
-	shoestring.fn.offset = function(){
-		return {
-			top: this[ 0 ].offsetTop,
-			left: this[ 0 ].offsetLeft
-		};
-	};
-
-
-
-	/**
-	 * Returns the set of first parents for each element in the current set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.parent = function(){
-		var ret = [],
-			parent;
-
-		this.each(function(){
-			// no parent node, assume top level
-			// jQuery parent: return the document object for <html> or the parent node if it exists
-			parent = (this === doc.documentElement ? doc : this.parentNode);
-
-			// if there is a parent and it's not a document fragment
-			if( parent && parent.nodeType !== 11 ){
-				ret.push( parent );
-			}
-		});
-
-		return shoestring(ret);
-	};
-
-
-
-	/**
-	 * Returns the set of all parents matching the selector if provided for each element in the current set.
-	 *
-	 * @param {string} selector The selector to check the parents with.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.parents = function( selector ){
-		var ret = [];
-
-		this.each(function(){
-			var curr = this, match;
-
-			while( curr.parentElement && !match ){
-				curr = curr.parentElement;
-
-				if( selector ){
-					if( curr === shoestring( selector )[0] ){
-						match = true;
-
-						if( shoestring.inArray( curr, ret ) === -1 ){
-							ret.push( curr );
-						}
-					}
-				} else {
-					if( shoestring.inArray( curr, ret ) === -1 ){
-						ret.push( curr );
-					}
-				}
-			}
-		});
-
-		return shoestring(ret);
-	};
-
-
-
-	/**
-	 * Add an HTML string or element before the children of each element in the current set.
-	 *
-	 * @param {string|HTMLElement} fragment The HTML string or element to add.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.prepend = function( fragment ){
-		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
-			fragment = shoestring( fragment );
-		}
-
-		return this.each(function( i ){
-
-			for( var j = 0, jl = fragment.length; j < jl; j++ ){
-				var insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
-				if ( this.firstChild ){
-					this.insertBefore( insertEl, this.firstChild );
-				} else {
-					this.appendChild( insertEl );
-				}
-			}
-		});
-	};
-
-
-
-	/**
-	 * Add each element of the current set before the children of the selected elements.
-	 *
-	 * @param {string} selector The selector for the elements to add the current set to..
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.prependTo = function( selector ){
-		return this.each(function(){
-			shoestring( selector ).prepend( this );
-		});
-	};
-
-
-
-	/**
-	 * Returns a `shoestring` object with the set of *one* siblingx before each element in the original set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.prev = function(){
-				if( arguments.length > 0 ){
-			shoestring.error( 'prev-selector' );
-		}
-		
-		var result = [];
-
-		// TODO need to implement map
-		this.each(function() {
-			var children, item, found;
-
-			// get the child nodes for this member of the set
-			children = shoestring( this.parentNode )[0].childNodes;
-
-			for( var i = children.length -1; i >= 0; i-- ){
-				item = children.item( i );
-
-				// found the item we needed (found) which means current item value is
-				// the next node in the list, as long as it's viable grab it
-				// NOTE may need to be more permissive
-				if( found && item.nodeType === 1 ){
-					result.push( item );
-					break;
-				}
-
-				// find the current item and mark it as found
-				if( item === this ){
-					found = true;
-				}
-			}
-		});
-
-		return shoestring( result );
-	};
-
-
-
-	/**
-	 * Returns a `shoestring` object with the set of *all* siblings before each element in the original set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.prevAll = function(){
-				if( arguments.length > 0 ){
-			shoestring.error( 'prevall-selector' );
-		}
-		
-		var result = [];
-
-		this.each(function() {
-			var $previous = shoestring( this ).prev();
-
-			while( $previous.length ){
-				result.push( $previous[0] );
-				$previous = $previous.prev();
-			}
-		});
-
-		return shoestring( result );
-	};
-
-
-
-	// Property normalization, a subset taken from jQuery src
-	shoestring.propFix = {
-		"class": "className",
-		contenteditable: "contentEditable",
-		"for": "htmlFor",
-		readonly: "readOnly",
-		tabindex: "tabIndex"
-	};
-
-
-
-	/**
-	 * Gets the property value from the first element or sets the property value on all elements of the currrent set.
-   *
-	 * @param {string} name The property name.
-   * @param {any} value The property value.
-	 * @return {any|shoestring}
-	 * @this shoestring
-	 */
-	shoestring.fn.prop = function( name, value ){
-		if( !this[0] ){
-			return;
-		}
-
-		name = shoestring.propFix[ name ] || name;
-
-		if( value !== undefined ){
-			return this.each(function(){
-				this[ name ] = value;
-			});
-		}	else {
-			return this[ 0 ][ name ];
-		}
-	};
-
-
-
-	/**
-	 * Remove an attribute from each element in the current set.
-	 *
-	 * @param {string} name The name of the attribute.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.removeAttr = function( name ){
-		return this.each(function(){
-			this.removeAttribute( name );
-		});
-	};
-
-
-
-	/**
-	 * Remove a class from each DOM element in the set of elements.
-	 *
-	 * @param {string} className The name of the class to be removed.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.removeClass = function( cname ){
-		var classes = cname.replace(/^\s+|\s+$/g, '').split( " " );
-
-		return this.each(function(){
-			var newClassName, regex;
-
-			for( var i = 0, il = classes.length; i < il; i++ ){
-				if( this.className !== undefined ){
-					regex = new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)", "gmi" );
-					newClassName = this.className.replace( regex, " " );
-
-					this.className = newClassName.replace(/^\s+|\s+$/g, '');
-				}
-			}
-		});
-	};
-
-
-
-	/**
-	 * Remove the current set of elements from the DOM.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.remove = function(){
-		return this.each(function(){
-			if( this.parentNode ) {
-				this.parentNode.removeChild( this );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Remove a proprety from each element in the current set.
-	 *
-	 * @param {string} name The name of the property.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.removeProp = function( property ){
-		var name = shoestring.propFix[ property ] || property;
-
-		return this.each(function(){
-			this[ name ] = undefined;
-			delete this[ name ];
-		});
-	};
-
-
-
-	/**
-	 * Replace each element in the current set with that argument HTML string or HTMLElement.
-	 *
-	 * @param {string|HTMLElement} fragment The value to assign.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.replaceWith = function( fragment ){
-		if( typeof( fragment ) === "string" ){
-			fragment = shoestring( fragment );
-		}
-
-		var ret = [];
-
-		if( fragment.length > 1 ){
-			fragment = fragment.reverse();
-		}
-		this.each(function( i ){
-			var clone = this.cloneNode( true ),
-				insertEl;
-			ret.push( clone );
-
-			// If there is no parentNode, this is pointless, drop it.
-			if( !this.parentNode ){ return; }
-
-			if( fragment.length === 1 ){
-				insertEl = i > 0 ? fragment[ 0 ].cloneNode( true ) : fragment[ 0 ];
-				this.parentNode.replaceChild( insertEl, this );
-			} else {
-				for( var j = 0, jl = fragment.length; j < jl; j++ ){
-					insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
-					this.parentNode.insertBefore( insertEl, this.nextSibling );
-				}
-				this.parentNode.removeChild( this );
-			}
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-	shoestring.inputTypes = [
-		"text",
-		"hidden",
-		"password",
-		"color",
-		"date",
-		"datetime",
-		// "datetime\-local" matched by datetime
-		"email",
-		"month",
-		"number",
-		"range",
-		"search",
-		"tel",
-		"time",
-		"url",
-		"week"
-	];
-
-	shoestring.inputTypeTest = new RegExp( shoestring.inputTypes.join( "|" ) );
-
-
-	/**
-	 * Serialize child input element values into an object.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.serialize = function(){
-		var data = {};
-
-		shoestring( "input, select", this ).each(function(){
-			var type = this.type, name = this.name,	value = this.value;
-
-			if( shoestring.inputTypeTest.test( type ) ||
-					( type === "checkbox" || type === "radio" ) &&
-					this.checked ){
-
-				data[ name ] = value;
-			}	else if( this.nodeName === "SELECT" ){
-				data[ name ] = this.options[ this.selectedIndex ].nodeValue;
-			}
-		});
-
-		return data;
-	};
-
-
-
-  /**
-	 * Get all of the sibling elements for each element in the current set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.siblings = function(){
-				if( arguments.length > 0 ) {
-			shoestring.error( 'siblings-selector' );
-		}
-		
-		if( !this.length ) {
-			return shoestring( [] );
-		}
-
-		var sibs = [], el = this[ 0 ].parentNode.firstChild;
-
-		do {
-			if( el.nodeType === 1 && el !== this[ 0 ] ) {
-				sibs.push( el );
-			}
-
-      el = el.nextSibling;
-		} while( el );
-
-		return shoestring( sibs );
-	};
-
-
-
-	var getText = function( elem ){
-		var node,
-			ret = "",
-			i = 0,
-			nodeType = elem.nodeType;
-
-		if ( !nodeType ) {
-			// If no nodeType, this is expected to be an array
-			while ( (node = elem[i++]) ) {
-				// Do not traverse comment nodes
-				ret += getText( node );
-			}
-		} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
-			// Use textContent for elements
-			// innerText usage removed for consistency of new lines (jQuery #11153)
-			if ( typeof elem.textContent === "string" ) {
-				return elem.textContent;
-			} else {
-				// Traverse its children
-				for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
-					ret += getText( elem );
-				}
-			}
-		} else if ( nodeType === 3 || nodeType === 4 ) {
-			return elem.nodeValue;
-		}
-		// Do not include comment or processing instruction nodes
-
-		return ret;
-	};
-
-  /**
-	 * Recursively retrieve the text content of the each element in the current set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.text = function() {
-				if( arguments.length > 0 ){
-			shoestring.error( 'text-setter' );
-		}
-		
-		return getText( this );
-	};
-
-
-
-
-	/**
-	 * Get the value of the first element or set the value of all elements in the current set.
-	 *
-	 * @param {string} value The value to set.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.val = function( value ){
-		var el;
-		if( value !== undefined ){
-			return this.each(function(){
-				if( this.tagName === "SELECT" ){
-					var optionSet, option,
-						options = this.options,
-						values = [],
-						i = options.length,
-						newIndex;
-
-					values[0] = value;
-					while ( i-- ) {
-						option = options[ i ];
-						if ( (option.selected = shoestring.inArray( option.value, values ) >= 0) ) {
-							optionSet = true;
-							newIndex = i;
-						}
-					}
-					// force browsers to behave consistently when non-matching value is set
-					if ( !optionSet ) {
-						this.selectedIndex = -1;
-					} else {
-						this.selectedIndex = newIndex;
-					}
-				} else {
-					this.value = value;
-				}
-			});
-		} else {
-			el = this[0];
-
-			if( el.tagName === "SELECT" ){
-				if( el.selectedIndex < 0 ){ return ""; }
-				return el.options[ el.selectedIndex ].value;
-			} else {
-				return el.value;
-			}
-		}
-	};
-
-
-
-	/**
-	 * Gets the width value of the first element or sets the width for the whole set.
-	 *
-	 * @param {float|undefined} value The value to assign.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.width = function( value ){
-		return shoestring._dimension( this, "width", value );
-	};
-
-
-
-	/**
-	 * Wraps the child elements in the provided HTML.
-	 *
-	 * @param {string} html The wrapping HTML.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.wrapInner = function( html ){
-		return this.each(function(){
-			var inH = this.innerHTML;
-
-			this.innerHTML = "";
-			shoestring( this ).append( shoestring( html ).html( inH ) );
-		});
-	};
-
-
-
-	function initEventCache( el, evt ) {
-		if ( !el.shoestringData ) {
-			el.shoestringData = {};
-		}
-		if ( !el.shoestringData.events ) {
-			el.shoestringData.events = {};
-		}
-		if ( !el.shoestringData.loop ) {
-			el.shoestringData.loop = {};
-		}
-		if ( !el.shoestringData.events[ evt ] ) {
-			el.shoestringData.events[ evt ] = [];
-		}
-	}
-
-	function addToEventCache( el, evt, eventInfo ) {
-		var obj = {};
-		obj.isCustomEvent = eventInfo.isCustomEvent;
-		obj.callback = eventInfo.callfunc;
-		obj.originalCallback = eventInfo.originalCallback;
-		obj.namespace = eventInfo.namespace;
-
-		el.shoestringData.events[ evt ].push( obj );
-
-		if( eventInfo.customEventLoop ) {
-			el.shoestringData.loop[ evt ] = eventInfo.customEventLoop;
-		}
-	}
-
-	/**
-	 * Bind a callback to an event for the currrent set of elements.
-	 *
-	 * @param {string} evt The event(s) to watch for.
-	 * @param {object,function} data Data to be included with each event or the callback.
-	 * @param {function} originalCallback Callback to be invoked when data is define.d.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.bind = function( evt, data, originalCallback ){
-
-				if( arguments.length > 3 ){
-			shoestring.error( 'on-delegate' );
-		}
-		if( typeof data === "string" ){
-			shoestring.error( 'on-delegate' );
-		}
-				if( typeof data === "function" ){
-			originalCallback = data;
-			data = null;
-		}
-
-		var evts = evt.split( " " );
-
-		// NOTE the `triggeredElement` is purely for custom events from IE
-		function encasedCallback( e, namespace, triggeredElement ){
-			var result;
-
-			if( e._namespace && e._namespace !== namespace ) {
-				return;
-			}
-
-			e.data = data;
-			e.namespace = e._namespace;
-
-			var returnTrue = function(){
-				return true;
-			};
-
-			e.isDefaultPrevented = function(){
-				return false;
-			};
-
-			var originalPreventDefault = e.preventDefault;
-			var preventDefaultConstructor = function(){
-				if( originalPreventDefault ) {
-					return function(){
-						e.isDefaultPrevented = returnTrue;
-						originalPreventDefault.call(e);
-					};
-				} else {
-					return function(){
-						e.isDefaultPrevented = returnTrue;
-						e.returnValue = false;
-					};
-				}
-			};
-
-			// thanks https://github.com/jonathantneal/EventListener
-			e.target = triggeredElement || e.target || e.srcElement;
-			e.preventDefault = preventDefaultConstructor();
-			e.stopPropagation = e.stopPropagation || function () {
-				e.cancelBubble = true;
-			};
-
-			result = originalCallback.apply(this, [ e ].concat( e._args ) );
-
-			if( result === false ){
-				e.preventDefault();
-				e.stopPropagation();
-			}
-
-			return result;
-		}
-
-		return this.each(function(){
-			var domEventCallback,
-				customEventCallback,
-				customEventLoop,
-				oEl = this;
-
-			for( var i = 0, il = evts.length; i < il; i++ ){
-				var split = evts[ i ].split( "." ),
-					evt = split[ 0 ],
-					namespace = split.length > 0 ? split[ 1 ] : null;
-
-				domEventCallback = function( originalEvent ) {
-					if( oEl.ssEventTrigger ) {
-						originalEvent._namespace = oEl.ssEventTrigger._namespace;
-						originalEvent._args = oEl.ssEventTrigger._args;
-
-						oEl.ssEventTrigger = null;
-					}
-					return encasedCallback.call( oEl, originalEvent, namespace );
-				};
-				customEventCallback = null;
-				customEventLoop = null;
-
-				initEventCache( this, evt );
-
-				this.addEventListener( evt, domEventCallback, false );
-
-				addToEventCache( this, evt, {
-					callfunc: customEventCallback || domEventCallback,
-					isCustomEvent: !!customEventCallback,
-					customEventLoop: customEventLoop,
-					originalCallback: originalCallback,
-					namespace: namespace
-				});
-			}
-		});
-	};
-
-	shoestring.fn.on = shoestring.fn.bind;
-
-		shoestring.fn.live = function(){
-		shoestring.error( 'live-delegate' );
-	};
-
-	shoestring.fn.delegate = function(){
-		shoestring.error( 'live-delegate' );
-	};
-	
-
-
-	/**
-	 * Unbind a previous bound callback for an event.
-	 *
-	 * @param {string} event The event(s) the callback was bound to..
-	 * @param {function} callback Callback to unbind.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.unbind = function( event, callback ){
-
-				if( arguments.length >= 3 || typeof callback === "string" ){
-			shoestring.error( 'off-delegate' );
-		}
-		
-		var evts = event ? event.split( " " ) : [];
-
-		return this.each(function(){
-			if( !this.shoestringData || !this.shoestringData.events ) {
-				return;
-			}
-
-			if( !evts.length ) {
-				unbindAll.call( this );
-			} else {
-				var split, evt, namespace;
-				for( var i = 0, il = evts.length; i < il; i++ ){
-					split = evts[ i ].split( "." ),
-					evt = split[ 0 ],
-					namespace = split.length > 0 ? split[ 1 ] : null;
-
-					if( evt ) {
-						unbind.call( this, evt, namespace, callback );
-					} else {
-						unbindAll.call( this, namespace, callback );
-					}
-				}
-			}
-		});
-	};
-
-	function unbind( evt, namespace, callback ) {
-		var bound = this.shoestringData.events[ evt ];
-		if( !(bound && bound.length) ) {
-			return;
-		}
-
-		var matched = [], j, jl;
-		for( j = 0, jl = bound.length; j < jl; j++ ) {
-			if( !namespace || namespace === bound[ j ].namespace ) {
-				if( callback === undefined || callback === bound[ j ].originalCallback ) {
-					this.removeEventListener( evt, bound[ j ].callback, false );
-					matched.push( j );
-				}
-			}
-		}
-
-		for( j = 0, jl = matched.length; j < jl; j++ ) {
-			this.shoestringData.events[ evt ].splice( j, 1 );
-		}
-	}
-
-	function unbindAll( namespace, callback ) {
-		for( var evtKey in this.shoestringData.events ) {
-			unbind.call( this, evtKey, namespace, callback );
-		}
-	}
-
-	shoestring.fn.off = shoestring.fn.unbind;
-
-
-	/**
-	 * Bind a callback to an event for the currrent set of elements, unbind after one occurence.
-	 *
-	 * @param {string} event The event(s) to watch for.
-	 * @param {function} callback Callback to invoke on the event.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.one = function( event, callback ){
-		var evts = event.split( " " );
-
-		return this.each(function(){
-			var thisevt, cbs = {},	$t = shoestring( this );
-
-			for( var i = 0, il = evts.length; i < il; i++ ){
-				thisevt = evts[ i ];
-
-				cbs[ thisevt ] = function( e ){
-					var $t = shoestring( this );
-
-					for( var j in cbs ) {
-						$t.unbind( j, cbs[ j ] );
-					}
-
-					return callback.apply( this, [ e ].concat( e._args ) );
-				};
-
-				$t.bind( thisevt, cbs[ thisevt ] );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Trigger an event on the first element in the set, no bubbling, no defaults.
-	 *
-	 * @param {string} event The event(s) to trigger.
-	 * @param {object} args Arguments to append to callback invocations.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.triggerHandler = function( event, args ){
-		var e = event.split( " " )[ 0 ],
-			el = this[ 0 ],
-			ret;
-
-		// See this.fireEvent( 'on' + evts[ i ], document.createEventObject() ); instead of click() etc in trigger.
-		if( doc.createEvent && el.shoestringData && el.shoestringData.events && el.shoestringData.events[ e ] ){
-			var bindings = el.shoestringData.events[ e ];
-			for (var i in bindings ){
-				if( bindings.hasOwnProperty( i ) ){
-					event = doc.createEvent( "Event" );
-					event.initEvent( e, true, true );
-					event._args = args;
-					args.unshift( event );
-
-					ret = bindings[ i ].originalCallback.apply( event.target, args );
-				}
-			}
-		}
-
-		return ret;
-	};
-
-
-
-	/**
-	 * Trigger an event on each of the DOM elements in the current set.
-	 *
-	 * @param {string} event The event(s) to trigger.
-	 * @param {object} args Arguments to append to callback invocations.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.trigger = function( event, args ){
-		var evts = event.split( " " );
-
-		return this.each(function(){
-			var split, evt, namespace;
-			for( var i = 0, il = evts.length; i < il; i++ ){
-				split = evts[ i ].split( "." ),
-				evt = split[ 0 ],
-				namespace = split.length > 0 ? split[ 1 ] : null;
-
-				if( evt === "click" ){
-					if( this.tagName === "INPUT" && this.type === "checkbox" && this.click ){
-						this.click();
-						return false;
-					}
-				}
-
-				if( doc.createEvent ){
-					var event = doc.createEvent( "Event" );
-					event.initEvent( evt, true, true );
-					event._args = args;
-					event._namespace = namespace;
-
-					this.dispatchEvent( event );
-				}
-			}
-		});
-	};
-
-
-
-
-		shoestring.fn.hasClass = function(){
-		shoestring.error( 'has-class' );
-	};
-	
-
-
-		shoestring.fn.hide = function(){
-		shoestring.error( 'show-hide' );
-	};
-	
-
-
-		shoestring.fn.outerWidth = function(){
-		shoestring.error( 'outer-width' );
-	};
-	
-
-
-		shoestring.fn.show = function(){
-		shoestring.error( 'show-hide' );
-	};
-	
-
-
-		shoestring.fn.click = function(){
-		shoestring.error( 'click' );
-	};
-	
-
-
-		shoestring.map = function(){
-		shoestring.error( 'map' );
-	};
-	
-
-
-		shoestring.fn.map = function(){
-		shoestring.error( 'map' );
-	};
-	
-
-
-		shoestring.trim = function(){
-		shoestring.error( 'trim' );
-	};
-	
-
-
-	(function() {
-		shoestring.trackedMethodsKey = "shoestringMethods";
-
-		// simple check for localStorage from Modernizr - https://github.com/Modernizr/Modernizr/blob/master/feature-detects/storage/localstorage.js
-		function supportsStorage() {
-			var mod = "modernizr";
-			try {
-				localStorage.setItem(mod, mod);
-				localStorage.removeItem(mod);
-				return true;
-			} catch(e) {
-				return false;
-			}
-		}
-
-		// return a new function closed over the old implementation
-		function recordProxy( old, name ) {
-			return function() {
-				var tracked;
-				try {
-					tracked = JSON.parse(win.localStorage.getItem( shoestring.trackedMethodsKey ) || "{}");
-				} catch (e) {
-					if( e instanceof SyntaxError) {
-						tracked = {};
-					}
-				}
-
-				tracked[ name ] = true;
-				win.localStorage.setItem( shoestring.trackedMethodsKey, JSON.stringify(tracked) );
-
-				return old.apply(this, arguments);
-			};
-		}
-
-		// proxy each of the methods defined on fn
-		if( supportsStorage() ){
-			for( var method in shoestring.fn ){
-				if( shoestring.fn.hasOwnProperty(method) ) {
-					shoestring.fn[ method ] = recordProxy(shoestring.fn[ method ], method);
-				}
-			}
-		}
-	})();
-
-
-
-	return shoestring;
-}));
-
-
-/***/ }),
-/* 207 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Tablesaw - v3.0.0 - 2017-02-14
-* https://github.com/filamentgroup/tablesaw
-* Copyright (c) 2017 Filament Group; Licensed MIT */
-/*! Shoestring - v2.0.0 - 2017-02-14
-* http://github.com/filamentgroup/shoestring/
-* Copyright (c) 2017 Scott Jehl, Filament Group, Inc; Licensed MIT & GPLv2 */ 
-(function( factory ) {
-	if( true ) {
-			// AMD. Register as an anonymous module.
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(206) ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else if (typeof module === 'object' && module.exports) {
-		// Node/CommonJS
-		module.exports = factory();
-	} else {
-		// Browser globals
-		factory();
-	}
-}(function () {
-	var win = typeof window !== "undefined" ? window : this;
-	var doc = win.document;
-
-
-	/**
-	 * The shoestring object constructor.
-	 *
-	 * @param {string,object} prim The selector to find or element to wrap.
-	 * @param {object} sec The context in which to match the `prim` selector.
-	 * @returns shoestring
-	 * @this window
-	 */
-	function shoestring( prim, sec ){
-		var pType = typeof( prim ),
-				ret = [],
-				sel;
-
-		// return an empty shoestring object
-		if( !prim ){
-			return new Shoestring( ret );
-		}
-
-		// ready calls
-		if( prim.call ){
-			return shoestring.ready( prim );
-		}
-
-		// handle re-wrapping shoestring objects
-		if( prim.constructor === Shoestring && !sec ){
-			return prim;
-		}
-
-		// if string starting with <, make html
-		if( pType === "string" && prim.indexOf( "<" ) === 0 ){
-			var dfrag = doc.createElement( "div" );
-
-			dfrag.innerHTML = prim;
-
-			// TODO depends on children (circular)
-			return shoestring( dfrag ).children().each(function(){
-				dfrag.removeChild( this );
-			});
-		}
-
-		// if string, it's a selector, use qsa
-		if( pType === "string" ){
-			if( sec ){
-				return shoestring( sec ).find( prim );
-			}
-
-				sel = doc.querySelectorAll( prim );
-
-			return new Shoestring( sel, prim );
-		}
-
-		// array like objects or node lists
-		if( Object.prototype.toString.call( pType ) === '[object Array]' ||
-				(win.NodeList && prim instanceof win.NodeList) ){
-
-			return new Shoestring( prim, prim );
-		}
-
-		// if it's an array, use all the elements
-		if( prim.constructor === Array ){
-			return new Shoestring( prim, prim );
-		}
-
-		// otherwise assume it's an object the we want at an index
-		return new Shoestring( [prim], prim );
-	}
-
-	var Shoestring = function( ret, prim ) {
-		this.length = 0;
-		this.selector = prim;
-		shoestring.merge(this, ret);
-	};
-
-	// TODO only required for tests
-	Shoestring.prototype.reverse = [].reverse;
-
-	// For adding element set methods
-	shoestring.fn = Shoestring.prototype;
-
-	shoestring.Shoestring = Shoestring;
-
-	// For extending objects
-	// TODO move to separate module when we use prototypes
-	shoestring.extend = function( first, second ){
-		for( var i in second ){
-			if( second.hasOwnProperty( i ) ){
-				first[ i ] = second[ i ];
-			}
-		}
-
-		return first;
-	};
-
-	// taken directly from jQuery
-	shoestring.merge = function( first, second ) {
-		var len, j, i;
-
-		len = +second.length,
-		j = 0,
-		i = first.length;
-
-		for ( ; j < len; j++ ) {
-			first[ i++ ] = second[ j ];
-		}
-
-		first.length = i;
-
-		return first;
-	};
-
-	// expose
-	win.shoestring = shoestring;
-
-
-
-	/**
-	 * Iterates over `shoestring` collections.
-	 *
-	 * @param {function} callback The callback to be invoked on each element and index
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.each = function( callback ){
-		return shoestring.each( this, callback );
-	};
-
-	shoestring.each = function( collection, callback ) {
-		var val;
-		for( var i = 0, il = collection.length; i < il; i++ ){
-			val = callback.call( collection[i], i, collection[i] );
-			if( val === false ){
-				break;
-			}
-		}
-
-		return collection;
-	};
-
-
-
-  /**
-	 * Check for array membership.
-	 *
-	 * @param {object} needle The thing to find.
-	 * @param {object} haystack The thing to find the needle in.
-	 * @return {boolean}
-	 * @this window
-	 */
-	shoestring.inArray = function( needle, haystack ){
-		var isin = -1;
-		for( var i = 0, il = haystack.length; i < il; i++ ){
-			if( haystack.hasOwnProperty( i ) && haystack[ i ] === needle ){
-				isin = i;
-			}
-		}
-		return isin;
-	};
-
-
-
-  /**
-	 * Bind callbacks to be run when the DOM is "ready".
-	 *
-	 * @param {function} fn The callback to be run
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.ready = function( fn ){
-		if( ready && fn ){
-			fn.call( doc );
-		}
-		else if( fn ){
-			readyQueue.push( fn );
-		}
-		else {
-			runReady();
-		}
-
-		return [doc];
-	};
-
-	// TODO necessary?
-	shoestring.fn.ready = function( fn ){
-		shoestring.ready( fn );
-		return this;
-	};
-
-	// Empty and exec the ready queue
-	var ready = false,
-		readyQueue = [],
-		runReady = function(){
-			if( !ready ){
-				while( readyQueue.length ){
-					readyQueue.shift().call( doc );
-				}
-				ready = true;
-			}
-		};
-
-	// If DOM is already ready at exec time, depends on the browser.
-	// From: https://github.com/mobify/mobifyjs/blob/526841be5509e28fc949038021799e4223479f8d/src/capture.js#L128
-	if (doc.attachEvent ? doc.readyState === "complete" : doc.readyState !== "loading") {
-		runReady();
-	} else {
-		doc.addEventListener( "DOMContentLoaded", runReady, false );
-		doc.addEventListener( "readystatechange", runReady, false );
-		win.addEventListener( "load", runReady, false );
-	}
-
-
-
-  /**
-	 * Checks the current set of elements against the selector, if one matches return `true`.
-	 *
-	 * @param {string} selector The selector to check.
-	 * @return {boolean}
-	 * @this {shoestring}
-	 */
-	shoestring.fn.is = function( selector ){
-		var ret = false, self = this, parents, check;
-
-		// assume a dom element
-		if( typeof selector !== "string" ){
-			// array-like, ie shoestring objects or element arrays
-			if( selector.length && selector[0] ){
-				check = selector;
-			} else {
-				check = [selector];
-			}
-
-			return _checkElements(this, check);
-		}
-
-		parents = this.parent();
-
-		if( !parents.length ){
-			parents = shoestring( doc );
-		}
-
-		parents.each(function( i, e ) {
-			var children;
-
-					children = e.querySelectorAll( selector );
-
-			ret = _checkElements( self, children );
-		});
-
-		return ret;
-	};
-
-	function _checkElements(needles, haystack){
-		var ret = false;
-
-		needles.each(function() {
-			var j = 0;
-
-			while( j < haystack.length ){
-				if( this === haystack[j] ){
-					ret = true;
-				}
-
-				j++;
-			}
-		});
-
-		return ret;
-	}
-
-
-
-	/**
-	 * Get data attached to the first element or set data values on all elements in the current set.
-	 *
-	 * @param {string} name The data attribute name.
-	 * @param {any} value The value assigned to the data attribute.
-	 * @return {any|shoestring}
-	 * @this shoestring
-	 */
-	shoestring.fn.data = function( name, value ){
-		if( name !== undefined ){
-			if( value !== undefined ){
-				return this.each(function(){
-					if( !this.shoestringData ){
-						this.shoestringData = {};
-					}
-
-					this.shoestringData[ name ] = value;
-				});
-			}
-			else {
-				if( this[ 0 ] ) {
-					if( this[ 0 ].shoestringData ) {
-						return this[ 0 ].shoestringData[ name ];
-					}
-				}
-			}
-		}
-		else {
-			return this[ 0 ] ? this[ 0 ].shoestringData || {} : undefined;
-		}
-	};
-
-
-	/**
-	 * Remove data associated with `name` or all the data, for each element in the current set.
-	 *
-	 * @param {string} name The data attribute name.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.removeData = function( name ){
-		return this.each(function(){
-			if( name !== undefined && this.shoestringData ){
-				this.shoestringData[ name ] = undefined;
-				delete this.shoestringData[ name ];
-			}	else {
-				this[ 0 ].shoestringData = {};
-			}
-		});
-	};
-
-
-
-	/**
-	 * An alias for the `shoestring` constructor.
-	 */
-	win.$ = shoestring;
-
-
-
-	/**
-	 * Add a class to each DOM element in the set of elements.
-	 *
-	 * @param {string} className The name of the class to be added.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.addClass = function( className ){
-		var classes = className.replace(/^\s+|\s+$/g, '').split( " " );
-
-		return this.each(function(){
-			for( var i = 0, il = classes.length; i < il; i++ ){
-				if( this.className !== undefined &&
-						(this.className === "" ||
-						!this.className.match( new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)"))) ){
-					this.className += " " + classes[ i ];
-				}
-			}
-		});
-	};
-
-
-
-  /**
-	 * Add elements matching the selector to the current set.
-	 *
-	 * @param {string} selector The selector for the elements to add from the DOM
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.add = function( selector ){
-		var ret = [];
-		this.each(function(){
-			ret.push( this );
-		});
-
-		shoestring( selector ).each(function(){
-			ret.push( this );
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Insert an element or HTML string as the last child of each element in the set.
-	 *
-	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.append = function( fragment ){
-		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
-			fragment = shoestring( fragment );
-		}
-
-		return this.each(function( i ){
-			for( var j = 0, jl = fragment.length; j < jl; j++ ){
-				this.appendChild( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ] );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Insert the current set as the last child of the elements matching the selector.
-	 *
-	 * @param {string} selector The selector after which to append the current set.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.appendTo = function( selector ){
-		return this.each(function(){
-			shoestring( selector ).append( this );
-		});
-	};
-
-
-
-  /**
-	 * Get the value of the first element of the set or set the value of all the elements in the set.
-	 *
-	 * @param {string} name The attribute name.
-	 * @param {string} value The new value for the attribute.
-	 * @return {shoestring|string|undefined}
-	 * @this {shoestring}
-	 */
-	shoestring.fn.attr = function( name, value ){
-		var nameStr = typeof( name ) === "string";
-
-		if( value !== undefined || !nameStr ){
-			return this.each(function(){
-				if( nameStr ){
-					this.setAttribute( name, value );
-				}	else {
-					for( var i in name ){
-						if( name.hasOwnProperty( i ) ){
-							this.setAttribute( i, name[ i ] );
-						}
-					}
-				}
-			});
-		} else {
-			return this[ 0 ] ? this[ 0 ].getAttribute( name ) : undefined;
-		}
-	};
-
-
-
-	/**
-	 * Insert an element or HTML string before each element in the current set.
-	 *
-	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.before = function( fragment ){
-		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
-			fragment = shoestring( fragment );
-		}
-
-		return this.each(function( i ){
-			for( var j = 0, jl = fragment.length; j < jl; j++ ){
-				this.parentNode.insertBefore( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ], this );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Get the children of the current collection.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.children = function(){
-				var ret = [],
-			childs,
-			j;
-		this.each(function(){
-			childs = this.children;
-			j = -1;
-
-			while( j++ < childs.length-1 ){
-				if( shoestring.inArray(  childs[ j ], ret ) === -1 ){
-					ret.push( childs[ j ] );
-				}
-			}
-		});
-		return shoestring(ret);
-	};
-
-
-
-	/**
-	 * Find an element matching the selector in the set of the current element and its parents.
-	 *
-	 * @param {string} selector The selector used to identify the target element.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.closest = function( selector ){
-		var ret = [];
-
-		if( !selector ){
-			return shoestring( ret );
-		}
-
-		this.each(function(){
-			var element, $self = shoestring( element = this );
-
-			if( $self.is(selector) ){
-				ret.push( this );
-				return;
-			}
-
-			while( element.parentElement ) {
-				if( shoestring(element.parentElement).is(selector) ){
-					ret.push( element.parentElement );
-					break;
-				}
-
-				element = element.parentElement;
-			}
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-  shoestring.cssExceptions = {
-		'float': [ 'cssFloat' ]
-	};
-
-
-
-	(function() {
-		var cssExceptions = shoestring.cssExceptions;
-
-		// IE8 uses marginRight instead of margin-right
-		function convertPropertyName( str ) {
-			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
-				return character.toUpperCase();
-			});
-		}
-
-		function _getStyle( element, property ) {
-			return win.getComputedStyle( element, null ).getPropertyValue( property );
-		}
-
-		var vendorPrefixes = [ '', '-webkit-', '-ms-', '-moz-', '-o-', '-khtml-' ];
-
-		/**
-		 * Private function for getting the computed style of an element.
-		 *
-		 * **NOTE** Please use the [css](../css.js.html) method instead.
-		 *
-		 * @method _getStyle
-		 * @param {HTMLElement} element The element we want the style property for.
-		 * @param {string} property The css property we want the style for.
-		 */
-		shoestring._getStyle = function( element, property ) {
-			var convert, value, j, k;
-
-			if( cssExceptions[ property ] ) {
-				for( j = 0, k = cssExceptions[ property ].length; j < k; j++ ) {
-					value = _getStyle( element, cssExceptions[ property ][ j ] );
-
-					if( value ) {
-						return value;
-					}
-				}
-			}
-
-			for( j = 0, k = vendorPrefixes.length; j < k; j++ ) {
-				convert = convertPropertyName( vendorPrefixes[ j ] + property );
-
-				// VendorprefixKeyName || key-name
-				value = _getStyle( element, convert );
-
-				if( convert !== property ) {
-					value = value || _getStyle( element, property );
-				}
-
-				if( vendorPrefixes[ j ] ) {
-					// -vendorprefix-key-name
-					value = value || _getStyle( element, vendorPrefixes[ j ] + property );
-				}
-
-				if( value ) {
-					return value;
-				}
-			}
-
-			return undefined;
-		};
-	})();
-
-
-
-	(function() {
-		var cssExceptions = shoestring.cssExceptions;
-
-		// IE8 uses marginRight instead of margin-right
-		function convertPropertyName( str ) {
-			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
-				return character.toUpperCase();
-			});
-		}
-
-		/**
-		 * Private function for setting the style of an element.
-		 *
-		 * **NOTE** Please use the [css](../css.js.html) method instead.
-		 *
-		 * @method _setStyle
-		 * @param {HTMLElement} element The element we want to style.
-		 * @param {string} property The property being used to style the element.
-		 * @param {string} value The css value for the style property.
-		 */
-		shoestring._setStyle = function( element, property, value ) {
-			var convertedProperty = convertPropertyName(property);
-
-			element.style[ property ] = value;
-
-			if( convertedProperty !== property ) {
-				element.style[ convertedProperty ] = value;
-			}
-
-			if( cssExceptions[ property ] ) {
-				for( var j = 0, k = cssExceptions[ property ].length; j<k; j++ ) {
-					element.style[ cssExceptions[ property ][ j ] ] = value;
-				}
-			}
-		};
-	})();
-
-
-
-	/**
-	 * Get the compute style property of the first element or set the value of a style property
-	 * on all elements in the set.
-	 *
-	 * @method _setStyle
-	 * @param {string} property The property being used to style the element.
-	 * @param {string|undefined} value The css value for the style property.
-	 * @return {string|shoestring}
-	 * @this shoestring
-	 */
-	shoestring.fn.css = function( property, value ){
-		if( !this[0] ){
-			return;
-		}
-
-		if( typeof property === "object" ) {
-			return this.each(function() {
-				for( var key in property ) {
-					if( property.hasOwnProperty( key ) ) {
-						shoestring._setStyle( this, key, property[key] );
-					}
-				}
-			});
-		}	else {
-			// assignment else retrieve first
-			if( value !== undefined ){
-				return this.each(function(){
-					shoestring._setStyle( this, property, value );
-				});
-			}
-
-			return shoestring._getStyle( this[0], property );
-		}
-	};
-
-
-
-	/**
-	 * Returns the indexed element wrapped in a new `shoestring` object.
-	 *
-	 * @param {integer} index The index of the element to wrap and return.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.eq = function( index ){
-		if( this[index] ){
-			return shoestring( this[index] );
-		}
-
-		return shoestring([]);
-	};
-
-
-
-	/**
-	 * Filter out the current set if they do *not* match the passed selector or
-	 * the supplied callback returns false
-	 *
-	 * @param {string,function} selector The selector or boolean return value callback used to filter the elements.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.filter = function( selector ){
-		var ret = [];
-
-		this.each(function( index ){
-			var wsel;
-
-			if( typeof selector === 'function' ) {
-				if( selector.call( this, index ) !== false ) {
-					ret.push( this );
-				}
-			} else {
-				if( !this.parentNode ){
-					var context = shoestring( doc.createDocumentFragment() );
-
-					context[ 0 ].appendChild( this );
-					wsel = shoestring( selector, context );
-				} else {
-					wsel = shoestring( selector, this.parentNode );
-				}
-
-				if( shoestring.inArray( this, wsel ) > -1 ){
-					ret.push( this );
-				}
-			}
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Find descendant elements of the current collection.
-	 *
-	 * @param {string} selector The selector used to find the children
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.find = function( selector ){
-		var ret = [],
-			finds;
-		this.each(function(){
-				finds = this.querySelectorAll( selector );
-
-			for( var i = 0, il = finds.length; i < il; i++ ){
-				ret = ret.concat( finds[i] );
-			}
-		});
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Returns the first element of the set wrapped in a new `shoestring` object.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.first = function(){
-		return this.eq( 0 );
-	};
-
-
-
-	/**
-	 * Returns the raw DOM node at the passed index.
-	 *
-	 * @param {integer} index The index of the element to wrap and return.
-	 * @return {HTMLElement|undefined|array}
-	 * @this shoestring
-	 */
-	shoestring.fn.get = function( index ){
-
-		// return an array of elements if index is undefined
-		if( index === undefined ){
-			var elements = [];
-
-			for( var i = 0; i < this.length; i++ ){
-				elements.push( this[ i ] );
-			}
-
-			return elements;
-		} else {
-			return this[ index ];
-		}
-	};
-
-
-
-	var set = function( html ){
-		if( typeof html === "string" || typeof html === "number" ){
-			return this.each(function(){
-				this.innerHTML = "" + html;
-			});
-		} else {
-			var h = "";
-			if( typeof html.length !== "undefined" ){
-				for( var i = 0, l = html.length; i < l; i++ ){
-					h += html[i].outerHTML;
-				}
-			} else {
-				h = html.outerHTML;
-			}
-			return this.each(function(){
-				this.innerHTML = h;
-			});
-		}
-	};
-	/**
-	 * Gets or sets the `innerHTML` from all the elements in the set.
-	 *
-	 * @param {string|undefined} html The html to assign
-	 * @return {string|shoestring}
-	 * @this shoestring
-	 */
-	shoestring.fn.html = function( html ){
-				if( typeof html !== "undefined" ){
-			return set.call( this, html );
-		} else { // get
-			var pile = "";
-
-			this.each(function(){
-				pile += this.innerHTML;
-			});
-
-			return pile;
-		}
-	};
-
-
-
-	(function() {
-		function _getIndex( set, test ) {
-			var i, result, element;
-
-			for( i = result = 0; i < set.length; i++ ) {
-				element = set.item ? set.item(i) : set[i];
-
-				if( test(element) ){
-					return result;
-				}
-
-				// ignore text nodes, etc
-				// NOTE may need to be more permissive
-				if( element.nodeType === 1 ){
-					result++;
-				}
-			}
-
-			return -1;
-		}
-
-		/**
-		 * Find the index in the current set for the passed selector.
-		 * Without a selector it returns the index of the first node within the array of its siblings.
-		 *
-		 * @param {string|undefined} selector The selector used to search for the index.
-		 * @return {integer}
-		 * @this {shoestring}
-		 */
-		shoestring.fn.index = function( selector ){
-			var self, children;
-
-			self = this;
-
-			// no arg? check the children, otherwise check each element that matches
-			if( selector === undefined ){
-				children = ( ( this[ 0 ] && this[0].parentNode ) || doc.documentElement).childNodes;
-
-				// check if the element matches the first of the set
-				return _getIndex(children, function( element ) {
-					return self[0] === element;
-				});
-			} else {
-
-				// check if the element matches the first selected node from the parent
-				return _getIndex(self, function( element ) {
-					return element === (shoestring( selector, element.parentNode )[ 0 ]);
-				});
-			}
-		};
-	})();
-
-
-
-	/**
-	 * Insert the current set before the elements matching the selector.
-	 *
-	 * @param {string} selector The selector before which to insert the current set.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.insertBefore = function( selector ){
-		return this.each(function(){
-			shoestring( selector ).before( this );
-		});
-	};
-
-
-
-	/**
-	 * Returns the last element of the set wrapped in a new `shoestring` object.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.last = function(){
-		return this.eq( this.length - 1 );
-	};
-
-
-
-	/**
-	 * Returns a `shoestring` object with the set of siblings of each element in the original set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.next = function(){
-		
-		var result = [];
-
-		// TODO need to implement map
-		this.each(function() {
-			var children, item, found;
-
-			// get the child nodes for this member of the set
-			children = shoestring( this.parentNode )[0].childNodes;
-
-			for( var i = 0; i < children.length; i++ ){
-				item = children.item( i );
-
-				// found the item we needed (found) which means current item value is
-				// the next node in the list, as long as it's viable grab it
-				// NOTE may need to be more permissive
-				if( found && item.nodeType === 1 ){
-					result.push( item );
-					break;
-				}
-
-				// find the current item and mark it as found
-				if( item === this ){
-					found = true;
-				}
-			}
-		});
-
-		return shoestring( result );
-	};
-
-
-
-	/**
-	 * Removes elements from the current set.
-	 *
-	 * @param {string} selector The selector to use when removing the elements.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.not = function( selector ){
-		var ret = [];
-
-		this.each(function(){
-			var found = shoestring( selector, this.parentNode );
-
-			if( shoestring.inArray(this, found) === -1 ){
-				ret.push( this );
-			}
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-	/**
-	 * Returns the set of first parents for each element in the current set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.parent = function(){
-		var ret = [],
-			parent;
-
-		this.each(function(){
-			// no parent node, assume top level
-			// jQuery parent: return the document object for <html> or the parent node if it exists
-			parent = (this === doc.documentElement ? doc : this.parentNode);
-
-			// if there is a parent and it's not a document fragment
-			if( parent && parent.nodeType !== 11 ){
-				ret.push( parent );
-			}
-		});
-
-		return shoestring(ret);
-	};
-
-
-
-	/**
-	 * Add an HTML string or element before the children of each element in the current set.
-	 *
-	 * @param {string|HTMLElement} fragment The HTML string or element to add.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.prepend = function( fragment ){
-		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
-			fragment = shoestring( fragment );
-		}
-
-		return this.each(function( i ){
-
-			for( var j = 0, jl = fragment.length; j < jl; j++ ){
-				var insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
-				if ( this.firstChild ){
-					this.insertBefore( insertEl, this.firstChild );
-				} else {
-					this.appendChild( insertEl );
-				}
-			}
-		});
-	};
-
-
-
-	/**
-	 * Returns a `shoestring` object with the set of *one* siblingx before each element in the original set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.prev = function(){
-		
-		var result = [];
-
-		// TODO need to implement map
-		this.each(function() {
-			var children, item, found;
-
-			// get the child nodes for this member of the set
-			children = shoestring( this.parentNode )[0].childNodes;
-
-			for( var i = children.length -1; i >= 0; i-- ){
-				item = children.item( i );
-
-				// found the item we needed (found) which means current item value is
-				// the next node in the list, as long as it's viable grab it
-				// NOTE may need to be more permissive
-				if( found && item.nodeType === 1 ){
-					result.push( item );
-					break;
-				}
-
-				// find the current item and mark it as found
-				if( item === this ){
-					found = true;
-				}
-			}
-		});
-
-		return shoestring( result );
-	};
-
-
-
-	/**
-	 * Returns a `shoestring` object with the set of *all* siblings before each element in the original set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.prevAll = function(){
-		
-		var result = [];
-
-		this.each(function() {
-			var $previous = shoestring( this ).prev();
-
-			while( $previous.length ){
-				result.push( $previous[0] );
-				$previous = $previous.prev();
-			}
-		});
-
-		return shoestring( result );
-	};
-
-
-
-	/**
-	 * Remove an attribute from each element in the current set.
-	 *
-	 * @param {string} name The name of the attribute.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.removeAttr = function( name ){
-		return this.each(function(){
-			this.removeAttribute( name );
-		});
-	};
-
-
-
-	/**
-	 * Remove a class from each DOM element in the set of elements.
-	 *
-	 * @param {string} className The name of the class to be removed.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.removeClass = function( cname ){
-		var classes = cname.replace(/^\s+|\s+$/g, '').split( " " );
-
-		return this.each(function(){
-			var newClassName, regex;
-
-			for( var i = 0, il = classes.length; i < il; i++ ){
-				if( this.className !== undefined ){
-					regex = new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)", "gmi" );
-					newClassName = this.className.replace( regex, " " );
-
-					this.className = newClassName.replace(/^\s+|\s+$/g, '');
-				}
-			}
-		});
-	};
-
-
-
-	/**
-	 * Remove the current set of elements from the DOM.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.remove = function(){
-		return this.each(function(){
-			if( this.parentNode ) {
-				this.parentNode.removeChild( this );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Replace each element in the current set with that argument HTML string or HTMLElement.
-	 *
-	 * @param {string|HTMLElement} fragment The value to assign.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.replaceWith = function( fragment ){
-		if( typeof( fragment ) === "string" ){
-			fragment = shoestring( fragment );
-		}
-
-		var ret = [];
-
-		if( fragment.length > 1 ){
-			fragment = fragment.reverse();
-		}
-		this.each(function( i ){
-			var clone = this.cloneNode( true ),
-				insertEl;
-			ret.push( clone );
-
-			// If there is no parentNode, this is pointless, drop it.
-			if( !this.parentNode ){ return; }
-
-			if( fragment.length === 1 ){
-				insertEl = i > 0 ? fragment[ 0 ].cloneNode( true ) : fragment[ 0 ];
-				this.parentNode.replaceChild( insertEl, this );
-			} else {
-				for( var j = 0, jl = fragment.length; j < jl; j++ ){
-					insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
-					this.parentNode.insertBefore( insertEl, this.nextSibling );
-				}
-				this.parentNode.removeChild( this );
-			}
-		});
-
-		return shoestring( ret );
-	};
-
-
-
-  /**
-	 * Get all of the sibling elements for each element in the current set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.siblings = function(){
-		
-		if( !this.length ) {
-			return shoestring( [] );
-		}
-
-		var sibs = [], el = this[ 0 ].parentNode.firstChild;
-
-		do {
-			if( el.nodeType === 1 && el !== this[ 0 ] ) {
-				sibs.push( el );
-			}
-
-      el = el.nextSibling;
-		} while( el );
-
-		return shoestring( sibs );
-	};
-
-
-
-	var getText = function( elem ){
-		var node,
-			ret = "",
-			i = 0,
-			nodeType = elem.nodeType;
-
-		if ( !nodeType ) {
-			// If no nodeType, this is expected to be an array
-			while ( (node = elem[i++]) ) {
-				// Do not traverse comment nodes
-				ret += getText( node );
-			}
-		} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
-			// Use textContent for elements
-			// innerText usage removed for consistency of new lines (jQuery #11153)
-			if ( typeof elem.textContent === "string" ) {
-				return elem.textContent;
-			} else {
-				// Traverse its children
-				for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
-					ret += getText( elem );
-				}
-			}
-		} else if ( nodeType === 3 || nodeType === 4 ) {
-			return elem.nodeValue;
-		}
-		// Do not include comment or processing instruction nodes
-
-		return ret;
-	};
-
-  /**
-	 * Recursively retrieve the text content of the each element in the current set.
-	 *
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.text = function() {
-		
-		return getText( this );
-	};
-
-
-
-
-	/**
-	 * Get the value of the first element or set the value of all elements in the current set.
-	 *
-	 * @param {string} value The value to set.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.val = function( value ){
-		var el;
-		if( value !== undefined ){
-			return this.each(function(){
-				if( this.tagName === "SELECT" ){
-					var optionSet, option,
-						options = this.options,
-						values = [],
-						i = options.length,
-						newIndex;
-
-					values[0] = value;
-					while ( i-- ) {
-						option = options[ i ];
-						if ( (option.selected = shoestring.inArray( option.value, values ) >= 0) ) {
-							optionSet = true;
-							newIndex = i;
-						}
-					}
-					// force browsers to behave consistently when non-matching value is set
-					if ( !optionSet ) {
-						this.selectedIndex = -1;
-					} else {
-						this.selectedIndex = newIndex;
-					}
-				} else {
-					this.value = value;
-				}
-			});
-		} else {
-			el = this[0];
-
-			if( el.tagName === "SELECT" ){
-				if( el.selectedIndex < 0 ){ return ""; }
-				return el.options[ el.selectedIndex ].value;
-			} else {
-				return el.value;
-			}
-		}
-	};
-
-
-
-	/**
-	 * Private function for setting/getting the offset property for height/width.
-	 *
-	 * **NOTE** Please use the [width](width.js.html) or [height](height.js.html) methods instead.
-	 *
-	 * @param {shoestring} set The set of elements.
-	 * @param {string} name The string "height" or "width".
-	 * @param {float|undefined} value The value to assign.
-	 * @return shoestring
-	 * @this window
-	 */
-	shoestring._dimension = function( set, name, value ){
-		var offsetName;
-
-		if( value === undefined ){
-			offsetName = name.replace(/^[a-z]/, function( letter ) {
-				return letter.toUpperCase();
-			});
-
-			return set[ 0 ][ "offset" + offsetName ];
-		} else {
-			// support integer values as pixels
-			value = typeof value === "string" ? value : value + "px";
-
-			return set.each(function(){
-				this.style[ name ] = value;
-			});
-		}
-	};
-
-
-
-	/**
-	 * Gets the width value of the first element or sets the width for the whole set.
-	 *
-	 * @param {float|undefined} value The value to assign.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.width = function( value ){
-		return shoestring._dimension( this, "width", value );
-	};
-
-
-
-	/**
-	 * Wraps the child elements in the provided HTML.
-	 *
-	 * @param {string} html The wrapping HTML.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.wrapInner = function( html ){
-		return this.each(function(){
-			var inH = this.innerHTML;
-
-			this.innerHTML = "";
-			shoestring( this ).append( shoestring( html ).html( inH ) );
-		});
-	};
-
-
-
-	function initEventCache( el, evt ) {
-		if ( !el.shoestringData ) {
-			el.shoestringData = {};
-		}
-		if ( !el.shoestringData.events ) {
-			el.shoestringData.events = {};
-		}
-		if ( !el.shoestringData.loop ) {
-			el.shoestringData.loop = {};
-		}
-		if ( !el.shoestringData.events[ evt ] ) {
-			el.shoestringData.events[ evt ] = [];
-		}
-	}
-
-	function addToEventCache( el, evt, eventInfo ) {
-		var obj = {};
-		obj.isCustomEvent = eventInfo.isCustomEvent;
-		obj.callback = eventInfo.callfunc;
-		obj.originalCallback = eventInfo.originalCallback;
-		obj.namespace = eventInfo.namespace;
-
-		el.shoestringData.events[ evt ].push( obj );
-
-		if( eventInfo.customEventLoop ) {
-			el.shoestringData.loop[ evt ] = eventInfo.customEventLoop;
-		}
-	}
-
-	/**
-	 * Bind a callback to an event for the currrent set of elements.
-	 *
-	 * @param {string} evt The event(s) to watch for.
-	 * @param {object,function} data Data to be included with each event or the callback.
-	 * @param {function} originalCallback Callback to be invoked when data is define.d.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.bind = function( evt, data, originalCallback ){
-
-				if( typeof data === "function" ){
-			originalCallback = data;
-			data = null;
-		}
-
-		var evts = evt.split( " " );
-
-		// NOTE the `triggeredElement` is purely for custom events from IE
-		function encasedCallback( e, namespace, triggeredElement ){
-			var result;
-
-			if( e._namespace && e._namespace !== namespace ) {
-				return;
-			}
-
-			e.data = data;
-			e.namespace = e._namespace;
-
-			var returnTrue = function(){
-				return true;
-			};
-
-			e.isDefaultPrevented = function(){
-				return false;
-			};
-
-			var originalPreventDefault = e.preventDefault;
-			var preventDefaultConstructor = function(){
-				if( originalPreventDefault ) {
-					return function(){
-						e.isDefaultPrevented = returnTrue;
-						originalPreventDefault.call(e);
-					};
-				} else {
-					return function(){
-						e.isDefaultPrevented = returnTrue;
-						e.returnValue = false;
-					};
-				}
-			};
-
-			// thanks https://github.com/jonathantneal/EventListener
-			e.target = triggeredElement || e.target || e.srcElement;
-			e.preventDefault = preventDefaultConstructor();
-			e.stopPropagation = e.stopPropagation || function () {
-				e.cancelBubble = true;
-			};
-
-			result = originalCallback.apply(this, [ e ].concat( e._args ) );
-
-			if( result === false ){
-				e.preventDefault();
-				e.stopPropagation();
-			}
-
-			return result;
-		}
-
-		return this.each(function(){
-			var domEventCallback,
-				customEventCallback,
-				customEventLoop,
-				oEl = this;
-
-			for( var i = 0, il = evts.length; i < il; i++ ){
-				var split = evts[ i ].split( "." ),
-					evt = split[ 0 ],
-					namespace = split.length > 0 ? split[ 1 ] : null;
-
-				domEventCallback = function( originalEvent ) {
-					if( oEl.ssEventTrigger ) {
-						originalEvent._namespace = oEl.ssEventTrigger._namespace;
-						originalEvent._args = oEl.ssEventTrigger._args;
-
-						oEl.ssEventTrigger = null;
-					}
-					return encasedCallback.call( oEl, originalEvent, namespace );
-				};
-				customEventCallback = null;
-				customEventLoop = null;
-
-				initEventCache( this, evt );
-
-				this.addEventListener( evt, domEventCallback, false );
-
-				addToEventCache( this, evt, {
-					callfunc: customEventCallback || domEventCallback,
-					isCustomEvent: !!customEventCallback,
-					customEventLoop: customEventLoop,
-					originalCallback: originalCallback,
-					namespace: namespace
-				});
-			}
-		});
-	};
-
-	shoestring.fn.on = shoestring.fn.bind;
-
-	
-
-
-	/**
-	 * Unbind a previous bound callback for an event.
-	 *
-	 * @param {string} event The event(s) the callback was bound to..
-	 * @param {function} callback Callback to unbind.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.unbind = function( event, callback ){
-
-		
-		var evts = event ? event.split( " " ) : [];
-
-		return this.each(function(){
-			if( !this.shoestringData || !this.shoestringData.events ) {
-				return;
-			}
-
-			if( !evts.length ) {
-				unbindAll.call( this );
-			} else {
-				var split, evt, namespace;
-				for( var i = 0, il = evts.length; i < il; i++ ){
-					split = evts[ i ].split( "." ),
-					evt = split[ 0 ],
-					namespace = split.length > 0 ? split[ 1 ] : null;
-
-					if( evt ) {
-						unbind.call( this, evt, namespace, callback );
-					} else {
-						unbindAll.call( this, namespace, callback );
-					}
-				}
-			}
-		});
-	};
-
-	function unbind( evt, namespace, callback ) {
-		var bound = this.shoestringData.events[ evt ];
-		if( !(bound && bound.length) ) {
-			return;
-		}
-
-		var matched = [], j, jl;
-		for( j = 0, jl = bound.length; j < jl; j++ ) {
-			if( !namespace || namespace === bound[ j ].namespace ) {
-				if( callback === undefined || callback === bound[ j ].originalCallback ) {
-					this.removeEventListener( evt, bound[ j ].callback, false );
-					matched.push( j );
-				}
-			}
-		}
-
-		for( j = 0, jl = matched.length; j < jl; j++ ) {
-			this.shoestringData.events[ evt ].splice( j, 1 );
-		}
-	}
-
-	function unbindAll( namespace, callback ) {
-		for( var evtKey in this.shoestringData.events ) {
-			unbind.call( this, evtKey, namespace, callback );
-		}
-	}
-
-	shoestring.fn.off = shoestring.fn.unbind;
-
-
-	/**
-	 * Bind a callback to an event for the currrent set of elements, unbind after one occurence.
-	 *
-	 * @param {string} event The event(s) to watch for.
-	 * @param {function} callback Callback to invoke on the event.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.one = function( event, callback ){
-		var evts = event.split( " " );
-
-		return this.each(function(){
-			var thisevt, cbs = {},	$t = shoestring( this );
-
-			for( var i = 0, il = evts.length; i < il; i++ ){
-				thisevt = evts[ i ];
-
-				cbs[ thisevt ] = function( e ){
-					var $t = shoestring( this );
-
-					for( var j in cbs ) {
-						$t.unbind( j, cbs[ j ] );
-					}
-
-					return callback.apply( this, [ e ].concat( e._args ) );
-				};
-
-				$t.bind( thisevt, cbs[ thisevt ] );
-			}
-		});
-	};
-
-
-
-	/**
-	 * Trigger an event on the first element in the set, no bubbling, no defaults.
-	 *
-	 * @param {string} event The event(s) to trigger.
-	 * @param {object} args Arguments to append to callback invocations.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.triggerHandler = function( event, args ){
-		var e = event.split( " " )[ 0 ],
-			el = this[ 0 ],
-			ret;
-
-		// See this.fireEvent( 'on' + evts[ i ], document.createEventObject() ); instead of click() etc in trigger.
-		if( doc.createEvent && el.shoestringData && el.shoestringData.events && el.shoestringData.events[ e ] ){
-			var bindings = el.shoestringData.events[ e ];
-			for (var i in bindings ){
-				if( bindings.hasOwnProperty( i ) ){
-					event = doc.createEvent( "Event" );
-					event.initEvent( e, true, true );
-					event._args = args;
-					args.unshift( event );
-
-					ret = bindings[ i ].originalCallback.apply( event.target, args );
-				}
-			}
-		}
-
-		return ret;
-	};
-
-
-
-	/**
-	 * Trigger an event on each of the DOM elements in the current set.
-	 *
-	 * @param {string} event The event(s) to trigger.
-	 * @param {object} args Arguments to append to callback invocations.
-	 * @return shoestring
-	 * @this shoestring
-	 */
-	shoestring.fn.trigger = function( event, args ){
-		var evts = event.split( " " );
-
-		return this.each(function(){
-			var split, evt, namespace;
-			for( var i = 0, il = evts.length; i < il; i++ ){
-				split = evts[ i ].split( "." ),
-				evt = split[ 0 ],
-				namespace = split.length > 0 ? split[ 1 ] : null;
-
-				if( evt === "click" ){
-					if( this.tagName === "INPUT" && this.type === "checkbox" && this.click ){
-						this.click();
-						return false;
-					}
-				}
-
-				if( doc.createEvent ){
-					var event = doc.createEvent( "Event" );
-					event.initEvent( evt, true, true );
-					event._args = args;
-					event._namespace = namespace;
-
-					this.dispatchEvent( event );
-				}
-			}
-		});
-	};
-
-
-
-	return shoestring;
-}));
-
-// UMD module definition
-// From: https://github.com/umdjs/umd/blob/master/templates/jqueryPlugin.js
-
-(function (factory) {
-	if (true) {
-			// AMD. Register as an anonymous module.
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(206)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else if (typeof module === 'object' && module.exports) {
-		// Node/CommonJS
-		module.exports = function( root, shoestring ) {
-			if ( shoestring === undefined ) {
-				// require('shoestring') returns a factory that requires window to
-				// build a shoestring instance, we normalize how we use modules
-				// that require this pattern but the window provided is a noop
-				// if it's defined (how jquery works)
-				if ( typeof window !== 'undefined' ) {
-					shoestring = require('shoestring');
-				} else {
-					shoestring = require('shoestring')(root);
-				}
-			}
-			factory(shoestring);
-			return shoestring;
-		};
-	} else {
-		// Browser globals
-		factory(shoestring);
-	}
-}(function ($) {
-	"use strict";
-
-	var win = typeof window !== "undefined" ? window : this;
-
-var Tablesaw = {
-	i18n: {
-		modes: [ 'Stack', 'Swipe', 'Toggle' ],
-		columns: 'Col<span class=\"a11y-sm\">umn</span>s',
-		columnBtnText: 'Columns',
-		columnsDialogError: 'No eligible columns.',
-		sort: 'Sort'
-	},
-	// cut the mustard
-	mustard: ( 'head' in document ) && // IE9+, Firefox 4+, Safari 5.1+, Mobile Safari 4.1+, Opera 11.5+, Android 2.3+
-		( !window.blackberry || window.WebKitPoint ) && // only WebKit Blackberry (OS 6+)
-		!window.operamini
-};
-
-if( Tablesaw.mustard ) {
-	$( document.documentElement ).addClass( 'tablesaw-enhanced' );
-}
-
-(function() {
-	var pluginName = "tablesaw",
-		classes = {
-			toolbar: "tablesaw-bar"
-		},
-		events = {
-			create: "tablesawcreate",
-			destroy: "tablesawdestroy",
-			refresh: "tablesawrefresh"
-		},
-		defaultMode = "stack",
-		initSelector = "table[data-tablesaw-mode],table[data-tablesaw-sortable]";
-
-	var Table = function( element ) {
-		if( !element ) {
-			throw new Error( "Tablesaw requires an element." );
-		}
-
-		this.table = element;
-		this.$table = $( element );
-
-		this.mode = this.$table.attr( "data-tablesaw-mode" ) || defaultMode;
-
-		this.init();
-	};
-
-	Table.prototype.init = function() {
-		// assign an id if there is none
-		if ( !this.$table.attr( "id" ) ) {
-			this.$table.attr( "id", pluginName + "-" + Math.round( Math.random() * 10000 ) );
-		}
-
-		this.createToolbar();
-
-		// TODO this is used inside stack table init for some reason? what does it do?
-		this._initCells();
-
-		this.$table.trigger( events.create, [ this ] );
-	};
-
-	Table.prototype._getPrimaryHeaders = function() {
-		return this.$table.find( "thead" ).children().filter( "tr" ).eq( 0 ).find( "th" );
-	};
-
-	Table.prototype._findHeadersForCell = function( cell ) {
-		var $headers = this._getPrimaryHeaders();
-		var results = [];
-
-		for( var rowNumber = 1; rowNumber < this.headerMapping.length; rowNumber++ ) {
-			for( var colNumber = 0; colNumber < this.headerMapping[ rowNumber ].length; colNumber++ ) {
-				if( this.headerMapping[ rowNumber ][ colNumber ] === cell ) {
-					results.push( $headers[ colNumber ] );
-				}
-			}
-		}
-		return results;
-	};
-
-	Table.prototype._initCells = function() {
-		var colstart = 0;
-		var $rows = this.$table.find( "tr" );
-		var columnLookup = [];
-
-		$rows.each(function( rowNumber ) {
-			columnLookup[ rowNumber ] = [];
-		});
-
-		$rows.each(function( rowNumber ) {
-			var coltally = 0;
-			var $t = $( this );
-			var children = $t.children();
-			// var isInHeader = $t.closest( "thead" ).length;
-
-			children.each(function() {
-				var colspan = parseInt( this.getAttribute( "colspan" ), 10 );
-				var rowspan = parseInt( this.getAttribute( "rowspan" ), 10 );
-
-				// set in a previous rowspan
-				while( columnLookup[ rowNumber ][ coltally ] ) {
-					coltally++;
-				}
-
-				columnLookup[ rowNumber ][ coltally ] = this;
-				colstart = coltally + 1;
-
-				// TODO both colspan and rowspan
-				if( colspan ) {
-					for( var k = 0; k < colspan - 1; k++ ){
-						coltally++;
-						columnLookup[ rowNumber ][ coltally ] = this;
-					}
-				}
-				if( rowspan ) {
-					for( var j = 1; j < rowspan; j++ ){
-						columnLookup[ rowNumber + j ][ coltally ] = this;
-					}
-				}
-
-				coltally++;
-			});
-		});
-
-		for( var colNumber = 0; colNumber < columnLookup[ 0 ].length; colNumber++ ) {
-			var headerCol = columnLookup[ 0 ][ colNumber ];
-			var rowNumber = 0;
-			var rowCell;
-
-			if( !headerCol.cells ) {
-				headerCol.cells = [];
-			}
-
-			while( rowNumber < columnLookup.length ) {
-				rowCell = columnLookup[ rowNumber ][ colNumber ];
-
-				if( headerCol !== rowCell ) {
-					headerCol.cells.push( rowCell );
-				}
-
-				rowNumber++;
-			}
-		}
-
-		this.headerMapping = columnLookup;
-	};
-
-	Table.prototype.refresh = function() {
-		this._initCells();
-
-		this.$table.trigger( events.refresh );
-	};
-
-	Table.prototype.createToolbar = function() {
-		// Insert the toolbar
-		// TODO move this into a separate component
-		var $toolbar = this.$table.prev().filter( '.' + classes.toolbar );
-		if( !$toolbar.length ) {
-			$toolbar = $( '<div>' )
-				.addClass( classes.toolbar )
-				.insertBefore( this.$table );
-		}
-		this.$toolbar = $toolbar;
-
-		if( this.mode ) {
-			this.$toolbar.addClass( 'tablesaw-mode-' + this.mode );
-		}
-	};
-
-	Table.prototype.destroy = function() {
-		// Don’t remove the toolbar. Some of the table features are not yet destroy-friendly.
-		this.$table.prev().filter( '.' + classes.toolbar ).each(function() {
-			this.className = this.className.replace( /\btablesaw-mode\-\w*\b/gi, '' );
-		});
-
-		var tableId = this.$table.attr( 'id' );
-		$( document ).off( "." + tableId );
-		$( window ).off( "." + tableId );
-
-		// other plugins
-		this.$table.trigger( events.destroy, [ this ] );
-
-		this.$table.removeData( pluginName );
-	};
-
-	// Collection method.
-	$.fn[ pluginName ] = function() {
-		return this.each( function() {
-			var $t = $( this );
-
-			if( $t.data( pluginName ) ){
-				return;
-			}
-
-			var table = new Table( this );
-			$t.data( pluginName, table );
-		});
-	};
-
-	$( document ).on( "enhance.tablesaw", function( e ) {
-		// Cut the mustard
-		if( Tablesaw.mustard ) {
-			$( e.target ).find( initSelector )[ pluginName ]();
-		}
-	});
-
-}());
-
-(function(){
-
-	var classes = {
-		stackTable: 'tablesaw-stack',
-		cellLabels: 'tablesaw-cell-label',
-		cellContentLabels: 'tablesaw-cell-content'
-	};
-
-	var data = {
-		obj: 'tablesaw-stack'
-	};
-
-	var attrs = {
-		labelless: 'data-tablesaw-no-labels',
-		hideempty: 'data-tablesaw-hide-empty'
-	};
-
-	var Stack = function( element, tablesaw ) {
-
-		this.tablesaw = tablesaw;
-		this.$table = $( element );
-
-		this.labelless = this.$table.is( '[' + attrs.labelless + ']' );
-		this.hideempty = this.$table.is( '[' + attrs.hideempty + ']' );
-
-		this.$table.data( data.obj, this );
-	};
-
-	// Stack.prototype.init = function( colstart ) {
-	Stack.prototype.init = function() {
-		this.$table.addClass( classes.stackTable );
-
-		if( this.labelless ) {
-			return;
-		}
-
-		var self = this;
-
-		this.$table.find( "th, td" ).filter(function() {
-			return !$( this ).closest( "thead" ).length;
-		}).filter(function() {
-			return !$( this ).closest( "tr" ).is( "[" + attrs.labelless + "]" ) &&
-				( !self.hideempty || !!$( this ).html() );
-		}).each(function() {
-			var html = [];
-			var $cell = $( this );
-
-			// headers
-			$( self.tablesaw._findHeadersForCell( this ) ).each(function() {
-				var $t = $( this );
-				// TODO decouple from sortable better
-				var $sortableButton = $t.find( ".tablesaw-sortable-btn" );
-				html.push( $sortableButton.length ? $sortableButton.html() : $t.html() );
-			});
-
-			$cell.wrapInner( "<span class='" + classes.cellContentLabels + "'></span>" );
-			$cell.prepend( "<b class='" + classes.cellLabels + "'>" + html.join( ", " ) + "</b>"  );
-		});
-	};
-
-	Stack.prototype.destroy = function() {
-		this.$table.removeClass( classes.stackTable );
-		this.$table.find( '.' + classes.cellLabels ).remove();
-		this.$table.find( '.' + classes.cellContentLabels ).each(function() {
-			$( this ).replaceWith( this.childNodes );
-		});
-	};
-
-	// on tablecreate, init
-	$( document ).on( "tablesawcreate", function( e, tablesaw ){
-		if( tablesaw.mode === 'stack' ){
-			var table = new Stack( tablesaw.table, tablesaw );
-			table.init();
-		}
-	});
-
-	$( document ).on( "tablesawdestroy", function( e, tablesaw ){
-		if( tablesaw.mode === 'stack' ){
-			$( tablesaw.table ).data( data.obj ).destroy();
-		}
-	});
-
-}());
-}));
-
-
-/***/ }),
-/* 208 */
-/***/ (function(module, exports) {
-
-/*! Tablesaw - v3.0.0 - 2017-02-14
-* https://github.com/filamentgroup/tablesaw
-* Copyright (c) 2017 Filament Group; Licensed MIT */
-(function( win ) {
-	"use strict";
-
-	var $;
-	if( 'shoestring' in win ) {
-		$ = win.shoestring;
-	} else if( 'jQuery' in win ) {
-		$ = win.jQuery;
-	} else {
-		throw new Error( "tablesaw: DOM library not found." );
-	}
-
-	// DOM-ready auto-init of plugins.
-	// Many plugins bind to an "enhance" event to init themselves on dom ready, or when new markup is inserted into the DOM
-	// Use raw DOMContentLoaded instead of shoestring (may have issues in Android 2.3, exhibited by stack table)
-	if( "addEventListener" in document ) {
-		document.addEventListener( "DOMContentLoaded", function() {
-			$( document ).trigger( "enhance.tablesaw" );
-		});
-	}
-
-})( typeof window !== "undefined" ? window : this );
 
 /***/ })
-],[177]);
+],[180]);

@@ -96,7 +96,7 @@ class Referral extends Model
         $request = request();
 
         $referral = $this->find($request->get('id'));
-        $referral->status = $request->get('status');
+        $referral->join('users', 'users.id', 'referrals.user_id');
         return $referral;
         //$referral->save();
 
