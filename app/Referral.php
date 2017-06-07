@@ -96,16 +96,16 @@ class Referral extends Model
         $request = request();
 
         $referral = $this->find($request->get('id'));
-        $email = $referral->first()->referred->email;
+        $referral->status = $request->get('status');
+        $referral->save();
 
+        $email = $referral->first()->referred->email;
         \Mail::send('emails.notify-referred', array('user' => $email), function ($message) use ($email) {
             $message->from('admin@' . env('APP_URL'), 'Laravel');
             $message->to($email);
         });
 
-        return $referral->first();
-
-        return;
+        return $referral;
     }
 
     /**
