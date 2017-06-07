@@ -96,14 +96,14 @@ class Referral extends Model
         $request = request();
 
         $referral = $this->find($request->get('id'));
-        $referral->join('users', 'users.id', 'referrals.user_id');
-        return $referral;
-        //$referral->save();
+        $email = $referral->first()->referred->email;
 
-        \Mail::send('emails.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
+        \Mail::send('emails.notify-referred', array('user' => $email), function ($message) use ($email) {
             $message->from('admin@' . env('APP_URL'), 'Laravel');
-            $message->to($user->email);
+            $message->to($email);
         });
+
+        return $referral->first();
 
         return;
     }
