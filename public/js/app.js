@@ -20354,22 +20354,6 @@ $(function () {
 			return false;
 		}
 
-		// Prepare admin note
-		if (_this.text() == "Denied") {
-			var referrals_modal = $('.referrals-wrapper #incentful-modal');
-			referrals_modal.find('.modal-title').text('Note for Denying Referral');
-			referrals_modal.find('.modal-body').html('<textarea class="modal-textarea"></textarea>');
-			referrals_modal.modal('show');
-			referrals_modal.on('shown.bs.modal', function () {
-				var options = {
-					selector: '.modal-textarea',
-					menubar: false,
-					statusbar: false
-				};
-				tinymceHelper(options);
-			});
-		}
-
 		// Change status of referral
 		var data;
 		data = {
@@ -20377,7 +20361,6 @@ $(function () {
 			status: $(this).data('status')
 		};
 		function statusCallback(callbackData) {
-			console.log(callbackData);
 			_this.closest('td').find('.form-control').text(_this.text());
 			var approvalCnt = $('.pending-approval .rh-count span');
 			var rewardCnt = $('.pending-reward .rh-count span');
@@ -20403,7 +20386,25 @@ $(function () {
 					}
 			}
 		}
-		ajaxHelper("referral/update", data, "POST", statusCallback);
+
+		// Prepare admin note
+		if (_this.text() == "Denied") {
+			var referrals_modal = $('.referrals-wrapper #incentful-modal');
+			referrals_modal.find('.modal-title').text('Note for Denying Referral');
+			referrals_modal.find('.modal-body').html('<textarea class="modal-textarea"></textarea>');
+			referrals_modal.modal('show');
+			referrals_modal.on('shown.bs.modal', function () {
+				var options = {
+					selector: '.modal-textarea',
+					menubar: false,
+					statusbar: false
+				};
+				tinymceHelper(options);
+			});
+			ajaxHelper("referral/update", data, "POST", statusCallback);
+		} else {
+			ajaxHelper("referral/update", data, "POST", statusCallback);
+		}
 	});
 	// END - REFERRALS
 
