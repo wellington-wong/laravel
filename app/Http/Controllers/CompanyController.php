@@ -36,7 +36,7 @@ class CompanyController extends Controller
             'address2'=>'max:25',
             'city'=>'required',
             'state'=>'required|max:2',
-            'zip'=>'required|max:11',
+            'zip'=>'required|digits:5',
             'company_name'=>'required',
             'subdomain'=>'required|unique:companies|not_in:app',
             'phone'=>'required|phone:US'
@@ -90,7 +90,9 @@ class CompanyController extends Controller
             'state'=>'required|max:2',
             'zip'=>'required|digits:5',
             'company_name'=>'required',
-            'phone'=>'required|phone:US'
+            'phone'=>'required|phone:US',
+            'email'=>'required|email',
+            'website'=>'required|url'
         ];
         $validator = Validator::make($request->input(), $rules);
 
@@ -102,6 +104,8 @@ class CompanyController extends Controller
         $company = Company::find($request->get('company_id'));
         if (isset($company)) {
             $company->company_name = $request->get('company_name');
+            $company->email = $request->get('email');
+            $company->website = $request->get('website');
             $company->save();
 
             $company->address[0]->address = $request->get('city');
