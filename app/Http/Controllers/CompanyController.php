@@ -98,9 +98,14 @@ class CompanyController extends Controller
             return redirect()->back()->withInput()
                 ->with(['errors'=>$validator->errors()]);
         }
-        dd($request);
 
-        return ;
+        $company = Company::find($request->get('company_id'));
+        if (isset($company)) {
+            $company->company_name = $request->get('company_name');
+            $company->save();
+        }
+
+        return redirect(route('get-company', [34]));
 
     }
 

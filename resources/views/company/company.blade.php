@@ -44,6 +44,8 @@
 
 	        @include('forms.address', ['company' => true, 'city' => $company->address[0]->city, 'address' => $company->address[0]->address, 'address2' => $company->address[0]->address2, 'zip' => $company->address[0]->zip, 'state' => $company->address[0]->state])
 
+                {{ Form::hidden('company_id', (isset($company->id) ? $company->id : null )) }}
+
 	        <div class="form-group col-md-12 text-right">
 	        	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100']) }}
 	        </div>
