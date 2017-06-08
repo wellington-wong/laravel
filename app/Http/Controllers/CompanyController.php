@@ -88,7 +88,7 @@ class CompanyController extends Controller
             'address2'=>'max:25',
             'city'=>'required',
             'state'=>'required|max:2',
-            'zip'=>'required|max:11|numeric',
+            'zip'=>'required|digits:5',
             'company_name'=>'required',
             'phone'=>'required|phone:US'
         ];
