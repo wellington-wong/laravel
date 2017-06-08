@@ -8,6 +8,17 @@
 
         @include('layouts.page-header', ['header' => ucwords($company->company_name), 'col' => 12])
 
+        @if( !$errors->isEmpty() )
+            <div class="alert alert-warning">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+
+            </div>
+        @endif
+        
         <div class="col-md-8 no-padding-lr company-profile-left">
 	        {{ Form::open(['route'=>'post-company-update', 'id' => 'update-company-form', 'enctype' => 'multipart/form-data']) }}
 
@@ -35,7 +46,7 @@
 	        @include('forms.address', ['company' => true, 'city' => $company->address[0]->city, 'address' => $company->address[0]->address, 'address2' => $company->address[0]->address2, 'zip' => $company->address[0]->zip, 'state' => $company->address[0]->state])
 
 	        <div class="form-group col-md-12 text-right">
-	        	{{ Form::button('Update', ['class' => 'btn btn-primary button-responsive-100']) }}
+	        	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100']) }}
 	        </div>
 
 	    	{{ Form::close() }}

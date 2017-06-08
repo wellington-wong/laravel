@@ -76,4 +76,27 @@ class CompanyController extends Controller
 
     }
 
+    public function postUpdate(Request $request) {
+
+        $rules = [
+            'address'=>'required|max:100',
+            'address2'=>'max:25',
+            'city'=>'required',
+            'state'=>'required|max:2',
+            'zip'=>'required|max:11',
+            'company_name'=>'required',
+            'phone'=>'required|phone:US'
+        ];
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+        dd($request);
+
+        return ;
+
+    }
+
 }
