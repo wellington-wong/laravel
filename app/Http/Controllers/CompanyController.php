@@ -60,6 +60,7 @@ class CompanyController extends Controller
             $request->only('country', 'country_code', 'phone')
         );
         $company->addresses()->updateExistingPivot($address->id, ['default'=>1]);
+        $company->phones()->updateExistingPivot($phone->id, ['default'=>1]);
 
         // Save uploaded logo file url
         if ($request->file('logo')) {
