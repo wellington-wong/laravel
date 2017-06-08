@@ -877,9 +877,17 @@ div.tooltip.top {
 		label {
 			width: 100%;
 		}
-		.form-control.bfh-phone {
-			width: auto;
-			display: inline-block;
+		.form-control {
+			border-radius: 0;
+			border: 0;
+			&.bfh-phone {
+				width: auto;
+				display: inline-block;
+			}
+		}
+		.btn.btn-default {
+			border-radius: 0;
+			border: 0;
 		}
 		.logo-upload {
 			display: inline-block;
