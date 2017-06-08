@@ -103,6 +103,9 @@ class CompanyController extends Controller
         if (isset($company)) {
             $company->company_name = $request->get('company_name');
             $company->save();
+
+            $company->address[0]->city = $request->get('city');
+            $company->address[0]->save();
         }
 
         return redirect(route('get-company', [34]));

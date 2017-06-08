@@ -28,7 +28,7 @@
 
 	        <div class="col-md-6">
 	        	<label>Company Number</label>
-	        	@include('forms.phone', ['phone_label'=>'Company  Number', 'placeholder' => 'Company Number', 'no_col' => true, 'value' => $company->phone[0]->phone])
+	        	@include('forms.phone', ['phone_label'=>'Company  Number', 'placeholder' => 'Company Number', 'no_col' => true, 'value' => isset($company->phone[0]->phone) ? $company->phone[0]->phone : ''])
 	        </div>
 
 	        <div class="form-group col-md-6" >
