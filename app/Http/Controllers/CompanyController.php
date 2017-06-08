@@ -53,6 +53,12 @@ class CompanyController extends Controller
         $address = $company->address()->create(
             $request->only('address', 'address2', 'city', 'state', 'zip')
         );
+
+        $request->merge(['country'=>'']);
+        $request->merge(['country_code'=>'']);
+        $phone = $company->phone()->create(
+            $request->only('country', 'country_code', 'phone')
+        );
         $company->addresses()->updateExistingPivot($address->id, ['default'=>1]);
 
         // Save uploaded logo file url
