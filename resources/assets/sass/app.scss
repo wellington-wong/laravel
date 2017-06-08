@@ -922,16 +922,16 @@ div.tooltip.top {
 			margin-bottom: 30px;
 		}
 	}
-	.table-referral {
+	.table-plan, .table-credit-info {
 		border-spacing: 0 10px;
 		border-collapse: separate;
+		margin-bottom: 0;
 		tbody {
 			tr {
 				td {
 					line-height: 30px;
 					font-size: 13px;
 					padding: 10px;
-					margin: 100px;
 					border-bottom: 2px solid $bg-color3;
 					border-top: 2px solid $bg-color3;
 					&:first-child {
@@ -944,6 +944,18 @@ div.tooltip.top {
 			}
 		}
 	} 
+	.table-plan {
+		border-spacing: 0 5px;
+	}
+	.questions-wrapper {
+		margin-bottom: 22px;
+		.questions {
+			color: $text-color2;
+		}
+		.call-us {
+			color: $bg-color2;
+		}
+	}
 }
 /*** Company End ***/
 

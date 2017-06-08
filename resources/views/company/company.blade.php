@@ -72,7 +72,7 @@
         </div>
 	
         @include('layouts.page-header', ['header' => 'Plan', 'col' => 12])
-        <table class="table table-referral">
+        <table class="table table-plan">
         	<tbody>
         		<tr>
         			<td>Basic Plan</td>
@@ -81,9 +81,10 @@
         		</tr>
         	</tbody>
         </table>
+        <div class="questions-wrapper"><span class="questions">Questions about your plan?</span> <span class="call-us">Call Us: 000.000.0000</span></div>
 
         @include('layouts.page-header', ['header' => 'Billing', 'col' => 12])
-        <table class="table table-referral">
+        <table class="table table-credit-info">
         	<tbody>
         		<tr>
         			<td>Credit Card</td>
