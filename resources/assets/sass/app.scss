@@ -898,7 +898,7 @@ div.tooltip.top {
 		padding-bottom: 0;
 	}
 	#update-company-form {
-		input[type="text"] {
+		input[type="text"], select {
 			border-radius: 0;
 			border-width: 2px;
 			border-color: &bg-color3;

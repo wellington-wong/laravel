@@ -47,7 +47,7 @@
 </div>
 
 <div class="form-group col-lg-4">
-    <label>Countries</label>
+    <label>Country</label>
     @include('forms.countries', [])
 </div>
 @endif 
