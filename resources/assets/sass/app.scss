@@ -666,11 +666,24 @@ div.tooltip.top {
 		.terms-wrapper {
 			margin-top: 25px;
 			.terms-acceptance {
-				width: 20px;
+				width: 4%;
 				margin-right: 5px;
+				display: inline-block;
+			}
+			.terms-details {
+				width: 93%;
+				display: inline-block;
 			}
 			.terms-condition-link {
 				color: #d0df52;
+			}
+			@media (max-width: 480px) {
+				.terms-acceptance {
+					width: 2%;
+				}
+				.terms-details {
+					width: 90%;
+				}
 			}
 		}
 		.install-complete {
