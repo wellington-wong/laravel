@@ -258,12 +258,13 @@ header {
 		margin-bottom: 0;
 			padding-left: 0;
 			padding-right: 0;
-		h3 {
-			text-align: center;
-		}
 		h3, h4 {
 			font-weight: bold;
 			color: $text-color2;
+		}
+		h3 {
+			text-align: center;
+			color: $bg-color;
 		}
 	}
 	.panel-default {
@@ -656,7 +657,7 @@ div.tooltip.top {
 	padding: 25px 35px;
 	#referral-create-form {
 		label {
-			width: 30%;
+			width: 30%;			
 		}
 		.form-control.bfh-phone {
 			width: 100%;
@@ -678,6 +679,18 @@ div.tooltip.top {
 		.submit-referral {
 			padding-left: 35px;
 			padding-right: 35px;
+		}
+		input.form-control:-moz-placeholder {
+		    text-align: center;
+		    color: $bg-color;
+		}
+		input.form-control::-moz-placeholder {
+		    text-align: center;
+		    color: $bg-color;
+		}
+		input.form-control:-ms-input-placeholder {
+		    text-align: center;
+		    color: $bg-color;
 		}
 	}
 }
