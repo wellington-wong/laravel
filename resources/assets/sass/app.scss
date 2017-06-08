@@ -836,6 +836,20 @@ div.tooltip.top {
 							left: 10px;
 	    					font-size: 13px;
 						}
+						@media (max-width: 698px) {
+							.tablesaw-cell-content, .tablesaw-cell-label {
+								position: relative;
+							}
+							.fa.fa-angle-down {
+								top: 30%;
+								right: 10px;
+							}
+							.fa.fa-sort {
+								position: relative;
+								top: 0;
+								right: auto;
+							}
+						}
 					}
 				}
 			}
