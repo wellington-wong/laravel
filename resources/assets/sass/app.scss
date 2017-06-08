@@ -680,17 +680,23 @@ div.tooltip.top {
 			padding-left: 35px;
 			padding-right: 35px;
 		}
-		input.form-control:-moz-placeholder {
-		    text-align: center;
-		    color: $bg-color;
-		}
-		input.form-control::-moz-placeholder {
-		    text-align: center;
-		    color: $bg-color;
-		}
-		input.form-control:-ms-input-placeholder {
-		    text-align: center;
-		    color: $bg-color;
+		input.form-control {
+			&::-webkit-input-placeholder { 
+			    text-align: center;
+			    color: $bg-color;
+			}
+			&:-moz-placeholder { 
+			    text-align: center;
+			    color: $bg-color;
+			}
+			&::-moz-placeholder { 
+			    text-align: center;
+			    color: $bg-color;
+			}
+			&:-ms-input-placeholder { 
+			    text-align: center;
+			    color: $bg-color;
+			}
 		}
 	}
 }
@@ -898,6 +904,22 @@ div.tooltip.top {
 			&.bfh-phone {
 				width: auto;
 				display: inline-block;
+			}
+			&::-webkit-input-placeholder { 
+			    text-align: center;
+			    color: $bg-color;
+			}
+			&:-moz-placeholder { 
+			    text-align: center;
+			    color: $bg-color;
+			}
+			&::-moz-placeholder { 
+			    text-align: center;
+			    color: $bg-color;
+			}
+			&:-ms-input-placeholder { 
+			    text-align: center;
+			    color: $bg-color;
 			}
 		}
 		.btn.btn-default {
