@@ -88,7 +88,7 @@ class CompanyController extends Controller
             'address2'=>'max:25',
             'city'=>'required',
             'state'=>'required|max:2',
-            'zip'=>'required|max:11',
+            'zip'=>'required|max:11|numeric',
             'company_name'=>'required',
             'phone'=>'required|phone:US'
         ];
@@ -104,7 +104,11 @@ class CompanyController extends Controller
             $company->company_name = $request->get('company_name');
             $company->save();
 
+            $company->address[0]->address = $request->get('city');
+            $company->address[0]->address2 = $request->get('city');
             $company->address[0]->city = $request->get('city');
+            $company->address[0]->state = $request->get('state');
+            $company->address[0]->zip = $request->get('zip');
             $company->address[0]->save();
         }
 
