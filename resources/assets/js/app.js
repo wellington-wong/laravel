@@ -584,8 +584,11 @@ $(function (){
 	    $('.logo-preview img').prop('src', data).parent().removeClass('hidden');
 	    $('.logo-blob').val(data);
 	    $('.logo-blob-name').val(filename);
+		$('.submit-company').removeClass('disabled');
 	}
 	$("#logo-upload").change(function(){
+		$('.submit-company').addClass('disabled');
+	    $('.upload-label').text('Processing...');
 		readImage(this, processLogo);
 	});
 // END CREATE COMPANY

@@ -43,7 +43,7 @@
 
             <div class="form-group col-md-6">
                 <label for="logo-upload" class="btn btn-default upload-label">{{ old('logo_blob_name') ? 'Filename: ' . old('logo_blob_name') : 'Upload Company Logo' }}</label>
-                {{ Form::file('logo', array('class' => 'logo-upload hidden', 'id' => 'logo-upload')) }}
+                {{ Form::file('logo', array('class' => 'logo-upload hidden', 'id' => 'logo-upload', 'multiple' => 'multiple')) }}
             </div>    
 
             <div class="form-group col-md-12 text-center">
@@ -52,7 +52,7 @@
 
             {{ Form::hidden('logo_blob', old('logo_blob'), ['class' => 'logo-blob']) }}
             {{ Form::hidden('logo_blob_name', old('logo_blob_name'), ['class' => 'logo-blob-name']) }}
-
+            
             {{ Form::close() }}
             <div class="clearfix"></div>
         </div>

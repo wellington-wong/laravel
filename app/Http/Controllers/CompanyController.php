@@ -39,9 +39,15 @@ class CompanyController extends Controller
             'zip'=>'required|digits:5',
             'company_name'=>'required',
             'subdomain'=>'required|unique:companies|not_in:app',
-            'phone'=>'required|phone:US'
+            'phone'=>'required|phone:US',            
+            'logo_blob' => 'required',
         ];
-        $validator = Validator::make($request->input(), $rules);
+
+        $messages = [
+            'logo_blob.required' => 'The logo field is required.',
+        ];
+
+        $validator = Validator::make($request->input(), $rules, $messages);
 
         if ( $validator->fails() ) {
             return redirect()->back()->withInput()
