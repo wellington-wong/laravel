@@ -20709,7 +20709,9 @@ $(function () {
 			var reader = new FileReader();
 
 			reader.onload = function (e) {
+				console.log(e.target);
 				alert(e.target.result);
+				alert(input.files[0].name);
 			};
 
 			reader.readAsDataURL(input.files[0]);
