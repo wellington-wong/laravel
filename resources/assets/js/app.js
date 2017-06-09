@@ -505,17 +505,21 @@ $(function (){
 	}
 
 	// Get base64 of file uploaded
-	function readURL(input) {
+	function readImage(input, callback) {
 	    if (input.files && input.files[0]) {
-	        var reader = new FileReader();
+	    	var url = window.URL || window.webkitURL;
+	        var image = new Image();
 
-	        reader.onload = function (e) {
-	        	console.log(e.target);
-	           alert(e.target.result);
-	           alert(input.files[0].name);
+	        image.onload = function (e) {
+	           callback(input, this.src);
 	        }
 
-	        reader.readAsDataURL(input.files[0]);
+	        image.onerror = function (e) {
+	        	alert('Please upload a valid logo image.');
+	        	return false;
+	        }
+
+			image.src = url.createObjectURL(input.files[0]);
 	    }
 	}
 // END COMMON
@@ -574,9 +578,15 @@ $(function (){
 // SEARCH REFERRALS
 
 // CREATE COMPANY
+	function processLogo (input, data){
+		var filename = input.files[0].name;
+	    $('.upload-label').text('Filename: ' + filename);
+	    $('.logo-preview img').prop('src', data).parent().removeClass('hidden');
+	    $('.logo-blob').val(data);
+	    $('.logo-blob-name').val(filename);
+	}
 	$("#logo-upload").change(function(){
-	    alert (readURL(this));
-	    alert(this.files[0].name);
+		readImage(this, processLogo);
 	});
 // END CREATE COMPANY
 

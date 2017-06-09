@@ -24,8 +24,10 @@
             </div>
         </div>
         <div class="create-company-wrapper">
-            {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form', 'enctype' => 'multipart/form-data']) }}
 
+            <div class="logo-preview text-center {{ old('logo_blob') ? '' : 'hidden' }}"><img height="100" src="{{ old('logo_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}"></div>
+
+            {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form', 'enctype' => 'multipart/form-data']) }}
 
             <div class="form-group col-md-6">
                 {{ Form::text('company_name', old('company_name'), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
@@ -40,13 +42,16 @@
             @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Company Phone Number'])
 
             <div class="form-group col-md-6">
-                <label for="logo-upload" class="btn btn-default upload-label">Upload Company Logo</label>
+                <label for="logo-upload" class="btn btn-default upload-label">{{ old('logo_blob_name') ?: 'Upload Company Logo' }}</label>
                 {{ Form::file('logo', array('class' => 'logo-upload hidden', 'id' => 'logo-upload')) }}
             </div>    
 
             <div class="form-group col-md-12 text-center">
                 <button type="submit" class="btn btn-primary button-responsive-100 submit-company">Submit Company</button>
             </div>
+
+            {{ Form::hidden('logo_blob', old('logo_blob'), ['class' => 'logo-blob']) }}
+            {{ Form::hidden('logo_blob_name', old('logo_blob_name'), ['class' => 'logo-blob-name']) }}
 
             {{ Form::close() }}
             <div class="clearfix"></div>
