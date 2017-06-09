@@ -143,10 +143,10 @@ class Referral extends Model
 
         $pendingReferrals['approval'] = $request->user()->referrals()
             ->where('status', 1)
-            ->paginate(0);
+            ->get();
         $pendingReferrals['reward'] = $request->user()->referrals()
             ->where('status', 2)
-            ->paginate(0);
+            ->get();
 
         return $pendingReferrals;
     }
