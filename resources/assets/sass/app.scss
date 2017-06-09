@@ -958,7 +958,7 @@ div.tooltip.top {
 		margin: 0 auto 20px auto;
 		height: auto;
 		width: 200px;
-		@media (max-width: 320px) {
+		@media (max-width: 420px) {
 			& { width: 100px; }
 		}
 	}
