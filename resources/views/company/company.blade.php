@@ -67,7 +67,7 @@
                     </div>
                     <div class="program-url">
                         <h5>Program URL</h5>
-                        <span><a href="#">{{ auth()->user()->companies()->first()->subdomain }}.businessname.com</a></span>
+                        <span><a href="#">{{ isset($company->subdomain) ? $company->subdomain : 'nosubdomain' }}.businessname.com</a></span>
                     </div>
                 </div>
             </div>
