@@ -511,12 +511,12 @@ $(function (){
 	        var image = new Image();
 
 	        image.onload = function (e) {
-	           callback(input, this.src);
+	           callback(input, this.src, false);
 	        }
 
 	        image.onerror = function (e) {
 	        	alert('Please upload a valid logo image.');
-	        	return false;
+	           callback(input, this.src, true);
 	        }
 
 			image.src = url.createObjectURL(input.files[0]);
@@ -578,7 +578,15 @@ $(function (){
 // SEARCH REFERRALS
 
 // CREATE COMPANY
-	function processLogo (input, data){
+	function processLogo (input, data, error){
+		if (error) { 
+			$('.submit-company').removeClass('disabled');
+	    	$('.upload-label').text('Upload Company Logo');
+	    	$('.logo-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');	    	
+		    $('.logo-blob').val('');
+		    $('.logo-blob-name').val('');
+	    	return false;
+		}
 		var filename = input.files[0].name;
 	    $('.upload-label').text('Filename: ' + filename);
 	    $('.logo-preview img').prop('src', data).parent().removeClass('hidden');
