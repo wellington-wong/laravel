@@ -474,7 +474,7 @@ $(function (){
 // COMMON
 	$('.check-all').on('click', function (){
 		$('.checkbox-group').prop('checked', this.checked);
-	}); // <th>{{ Form::checkbox('check', '', false, ['class' => 'check-all']) }}</th><td class="td-checkbox">{{ Form::checkbox('referral_id', $r->referred->id, false, ['class' => 'checkbox-group']) }}</td>                            
+	});
 	
 	// Init bootstrap tooltip
 	$('[data-toggle="tooltip"]').tooltip();
@@ -482,6 +482,29 @@ $(function (){
 		$(this).tooltip('show');
 	});
 
+	// TinyMCE helper
+	function tinymceHelper(options, save) {
+		if (save) {
+			tinymce.triggerSave();
+		} else {
+			tinymce.init(options);
+		}
+	}
+
+	// Ajax helper
+	function ajaxHelper(url, data, method, callback) {
+		$.ajax({
+			url: url,
+			data: data,
+			type: method,
+			beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').prop('content'));},
+			success: function(data) { 
+				callback(data);
+			}
+        });
+	}
+
+	// Get base64 of file uploaded
 	function readURL(input) {
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
@@ -509,16 +532,6 @@ $(function (){
 
 // END SIDEBAR
 
-// TINYMCE
-	function tinymceHelper(options, save) {
-		if (save) {
-			tinymce.triggerSave();
-		} else {
-			tinymce.init(options);
-		}
-	}
-// END TINYMCE
-
 // JQUERY DATERANGEPICKER
 	var currentDate = new Date();
 	var dayFrom = currentDate.getDate() - 30;
@@ -542,20 +555,6 @@ $(function (){
 
 // END JQUERY DATERANGEPICKER
 
-// AJAX HELPER
-	function ajaxHelper(url, data, method, callback) {
-		$.ajax({
-			url: url,
-			data: data,
-			type: method,
-			beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').prop('content'));},
-			success: function(data) { 
-				callback(data);
-			}
-        });
-	}
-// END AJAX HELPER
-
 // FILTER REFERRALS BY STATUS
 	$('.filter-by .dropdown-menu li a').click(function(){
 		window.location.href = "/referrals?status=" + $(this).data('id') + $(this).data('query');
@@ -576,7 +575,8 @@ $(function (){
 
 // CREATE COMPANY
 	$("#logo-upload").change(function(){
-	    readURL(this);
+	    alert (readURL(this));
+	    alert(this.files[0].name);
 	});
 // END CREATE COMPANY
 
