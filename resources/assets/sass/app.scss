@@ -910,7 +910,7 @@ div.tooltip.top {
 /*** Company ***/
 .create-company-wrapper {
 	background: $bg-color3;
-	padding: 25px 35px;
+	padding: 40px 35px 25px 35px;
 	#create-company-form {
 		label {
 			width: 100%;
@@ -953,6 +953,14 @@ div.tooltip.top {
 	}
 	.company-title {
 		margin-bottom: 10px;
+	}
+	.logo-preview {
+		margin: 0 auto 20px auto;
+		height: auto;
+		width: 200px;
+		@media (max-width: 320px) {
+			& { width: 100px; }
+		}
 	}
 }
 .company-profile-wrapper {

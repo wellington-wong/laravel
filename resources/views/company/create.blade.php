@@ -25,7 +25,7 @@
         </div>
         <div class="create-company-wrapper">
 
-            <div class="logo-preview text-center {{ old('logo_blob') ? '' : 'hidden' }}"><img height="100" src="{{ old('logo_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}"></div>
+            <div class="logo-preview text-center {{ old('logo_blob') ? '' : 'hidden' }}"><img class="img-responsive center-block" height="100" src="{{ old('logo_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}"></div>
 
             {{ Form::open(['route'=>'post-company-create', 'id' => 'create-company-form', 'enctype' => 'multipart/form-data']) }}
 
@@ -42,7 +42,7 @@
             @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Company Phone Number'])
 
             <div class="form-group col-md-6">
-                <label for="logo-upload" class="btn btn-default upload-label">{{ old('logo_blob_name') ?: 'Upload Company Logo' }}</label>
+                <label for="logo-upload" class="btn btn-default upload-label">{{ old('logo_blob_name') ? 'Filename: ' . old('logo_blob_name') : 'Upload Company Logo' }}</label>
                 {{ Form::file('logo', array('class' => 'logo-upload hidden', 'id' => 'logo-upload')) }}
             </div>    
 
