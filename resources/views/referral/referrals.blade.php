@@ -68,6 +68,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
                 </table>
                 {{ $referrals->links() }}
             </div>
