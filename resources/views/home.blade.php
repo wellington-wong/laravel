@@ -30,6 +30,7 @@
                             <td><button class="btn btn-primary">view details</button></td>
                         </tr>
                         @endforeach
+                        @if (!count(auth()->user()->unreadNotifications()->get()))<tr><td colspan="3">No notifications found.</td></tr> @endif
                     </tbody>
                 </table>
                 <div class="col-md-12 pagination-wrapper">
