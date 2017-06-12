@@ -27,8 +27,8 @@ Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCa
 Auth::routes();
 
 // Home Routes
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('/');
+Route::get('/home', 'HomeController@index')->name('home');
 
 // Company Routes
 Route::get('/company/create', 'CompanyController@create')->name('company-create');

@@ -7,7 +7,7 @@
             <div class="row header-right">
                 <div class="col-xs-12 col-md-12 pull-right">
                     <ul class="nav navbar-nav navbar-right navbar-top-right">
-                        <li><a href="{{ route('register') }}">Login</a></li>
+                        <li><a href="{{ route('/') }}">Home</a></li>
                     </ul>
                 </div>
             </div>
