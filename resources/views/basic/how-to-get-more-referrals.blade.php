@@ -5,7 +5,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>How this works</h4>
+                    <h4>How to get more referrals</h4>
                 </div>
             </div>
         </div>
