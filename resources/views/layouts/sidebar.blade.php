@@ -82,22 +82,23 @@
                                             <li class="{{ Request::is('program-options/notification-emails') ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
                                         </ul>
                                     </li>
-                                    <!-- TO DO Global Admin functionalities
-                                    <li class="hidden">
+                                    @if (auth()->user()->companies()->first()->subdomain == 'exults')
+                                    <li class="">
                                         <div class="main-menu-item-wrapper">
                                             <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
                                             <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="global-settings" class="collapse{{ Request::is('global-settings*') ? ' in' : ''}}">
-                                            @can('submit-member-referral')<li class="{{ Request::is('global-settings/submit-referral-member') ? 'active' : '' }}"><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
-                                            @can('edit-member-information')<li class="{{ Request::is('global-settings/edit-member-information') ? 'active' : '' }}"><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
-                                            @can('export-member-information')<li class="{{ Request::is('global-settings/export-member-information') ? 'active' : '' }}"><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan                                            
-                                            @can('add-delete-admin')<li class="{{ Request::is('global-settings/add-delete-admin') ? 'active' : '' }}"><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
-                                            @can('define-user-roles')<li class="{{ Request::is('global-settings/define-user-roles') ? 'active' : '' }}"><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
-                                            @can('login-super-admin-all-accounts')<li class="{{ Request::is('global-settings/login-super-admin') ? 'active' : '' }}"><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
+                                            @can('submit-member-referral')<li class="hidden {{ Request::is('global-settings/submit-referral-member') ? 'active' : '' }}"><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
+                                            @can('edit-member-information')<li class="hidden {{ Request::is('global-settings/edit-member-information') ? 'active' : '' }}"><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
+                                            @can('export-member-information')<li class="hidden {{ Request::is('global-settings/export-member-information') ? 'active' : '' }}"><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan                                            
+                                            @can('add-delete-admin')<li class="hidden {{ Request::is('global-settings/add-delete-admin') ? 'active' : '' }}"><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
+                                            @can('define-user-roles')<li class="hidden {{ Request::is('global-settings/define-user-roles') ? 'active' : '' }}"><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
+                                            @can('login-super-admin-all-accounts')<li class="hidden {{ Request::is('global-settings/login-super-admin') ? 'active' : '' }}"><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
+                                            @can('login-as-user')<li class="{{ Request::is('global-settings/login-as-user') ? 'active' : '' }}"><a href="{{ route('login-as-user') }}">Login as User</a></li>@endcan
                                         </ul>
                                     </li>
-                                    -->
+                                    @endif
                                 </ul>
                                 @endrole
                         </div>
