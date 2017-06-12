@@ -670,6 +670,48 @@ table.table {
 		}
 	}
 }
+.table-wrapper {
+	padding-left: 0;
+  	padding-right: 0;
+	.table-custom {
+		border-spacing: 0 10px;
+		border-collapse: separate;    
+		thead {			
+			tr {
+				background: $bg-color3;
+				th {
+					font-size: 13px;
+					cursor: pointer;
+					border-bottom: 0;
+					a {
+						color: $bg-color;
+					}
+				}
+			}
+		}
+		tbody {
+			tr {
+				td {
+					line-height: 30px;
+					font-size: 13px;
+					padding: 10px;
+					border-bottom: 2px solid $bg-color3;
+					border-top: 2px solid $bg-color3;
+					vertical-align: middle;
+					&:first-child {
+						border-left: 2px solid $bg-color3;
+					}
+					&:last-child {
+						border-right: 2px solid $bg-color3;
+					}
+					@media (max-width: 698px) {
+						border: 0 !important;
+					}
+				}			
+			}
+		}
+	} 
+}
 /*** Common End ***/
 
 
@@ -830,44 +872,10 @@ table.table {
 		}
 	}
 	.table-referral-wrapper {
-		padding-left: 0;
-		padding-right: 0;
 		.table-referral {
-			border-spacing: 0 10px;
-			border-collapse: separate;
-			thead {			
-				tr {
-					background: $bg-color3;
-					th {
-						font-size: 13px;
-						cursor: pointer;
-						border-bottom: 0;
-						a {
-							color: $bg-color;
-						}
-					}
-				}
-			}
 			tbody {
-				tr {
-					td {
-						line-height: 30px;
-						font-size: 13px;
-						padding: 10px;
-						border-bottom: 2px solid $bg-color3;
-						border-top: 2px solid $bg-color3;
-						vertical-align: middle;
-						&:first-child {
-							border-left: 2px solid $bg-color3;
-						}
-						&:last-child {
-							border-right: 2px solid $bg-color3;
-						}
-						@media (max-width: 698px) {
-							border: 0 !important;
-						}
-					}				
-					.referral-status {
+				tr {				
+					td.referral-status {
 						position: relative;
 						.form-control {
 							padding-right: 25px;
@@ -1365,48 +1373,6 @@ table.table {
 		a {
 			highlight: none;
 		}
-	}
-	.table-members-wrapper {
-		padding-left: 0;
-    	padding-right: 0;
-		.table-members {
-			border-spacing: 0 10px;
-			border-collapse: separate;    
-			thead {			
-				tr {
-					background: $bg-color3;
-					th {
-						font-size: 13px;
-						cursor: pointer;
-						border-bottom: 0;
-						a {
-							color: $bg-color;
-						}
-					}
-				}
-			}
-			tbody {
-				tr {
-					td {
-						line-height: 30px;
-						font-size: 13px;
-						padding: 10px;
-						border-bottom: 2px solid $bg-color3;
-						border-top: 2px solid $bg-color3;
-						vertical-align: middle;
-						&:first-child {
-							border-left: 2px solid $bg-color3;
-						}
-						&:last-child {
-							border-right: 2px solid $bg-color3;
-						}
-						@media (max-width: 698px) {
-							border: 0 !important;
-						}
-					}			
-				}
-			}
-		} 
 	}
 }
 /*** Members End ***/

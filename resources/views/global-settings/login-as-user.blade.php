@@ -24,8 +24,8 @@
         <div class="clearfix"></div>
 
         <div class="row">
-            <div class="col-md-12 table-login-as-wrapper">
-                <table class="table table-login-as tablesaw tablesaw-stack" data-tablesaw-mode="stack">
+            <div class="col-md-12 table-login-as-wrapper table-wrapper">
+                <table class="table table-login-as tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                     <thead>
                         <tr>
                             <th>ID</th>

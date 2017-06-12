@@ -40,8 +40,8 @@
         <div class="clearfix"></div>
 
         <div class="row">
-            <div class="col-md-12 table-referral-wrapper">
-                <table class="table table-referral tablesaw tablesaw-stack" data-tablesaw-mode="stack">
+            <div class="col-md-12 table-referral-wrapper table-wrapper">
+                <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                     <thead>
                         <tr>
                             <th><a href="{{ route('referrals', [(isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['created_at'], 'column' => 'created_at']) }}">Submitted <i class="fa fa-sort{{ $sortc['created_at']?:'' }}" aria-hidden="true"></i></a></th>
