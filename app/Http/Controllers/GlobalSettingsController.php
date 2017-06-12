@@ -86,7 +86,9 @@ class GlobalSettingsController extends Controller
     public function loginAsUser(Request $request) 
     {
         // Get all users
-        $users = User::paginate(15);
+        $users = User::join('companies', 'owner_id', 'users.id')
+        ->orderBy('.companies.subdomain', 'desc')
+        ->paginate(15);
 
         return view('global-settings.login-as-user')
         ->with(compact('users'));
