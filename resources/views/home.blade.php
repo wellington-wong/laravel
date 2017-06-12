@@ -41,6 +41,7 @@
         <div class="col-md-4 dashboard-right">
             <div class="company-info text-center">            
                 <div class="company-logo">
+                    <i class="fa fa-pencil"></i>
                     <img alt="{{ isset(auth()->user()->companies()->first()->company_name) ? auth()->user()->companies()->first()->company_name : '' }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
                 </div>
                 <div class="clearfix"></div>
