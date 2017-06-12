@@ -31,6 +31,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Subdomain</th>
+                            <th>Action</th>
                         </tr>
                     </thead> 
                     @foreach ($users as $user)
@@ -38,6 +39,7 @@
                             <td>{{ $user->id }}</a></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ isset($user->companies->first()->subdomain) ? $user->companies->first()->subdomain : 'no subdomain' }}</td>
+                            <td><a href="" class="btn btn-primary">Login</a></td>
                         </tr>
                     @endforeach
                     @if (!count($users))<tr><td colspan="5">No users found.</td></tr>@endif

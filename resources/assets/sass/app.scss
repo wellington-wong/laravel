@@ -551,7 +551,8 @@ nav {
 }
 .btn-primary {
 	background: #1277c5;
-	padding: 3px 20px;
+	padding: 2px 20px;
+	line-height: 1.5;
 }
 .has-error {
 	border-color: #a94442;
@@ -660,6 +661,13 @@ div.tooltip.top {
 		position: absolute;
 		right: 0;
 		cursor: pointer;
+	}
+}
+table.table {
+	tbody {
+		tr {
+			td { vertical-align: middle; }
+		}
 	}
 }
 /*** Common End ***/
