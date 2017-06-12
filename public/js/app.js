@@ -20794,12 +20794,12 @@ $(function () {
 
 	// SEARCH REFERRALS
 	var query = $('input[name="q"]');
-	$('.btn-search').on('click', function () {
+	$('.btn-search.btn-referrals').on('click', function () {
 		window.location.href = "/referrals?q=" + query.val() + query.data('query');
 	});
 	query.keydown(function (e) {
 		if (e.keyCode == 13) {
-			$('.btn-search').trigger('click');
+			$('.btn-search.btn-referrals').trigger('click');
 		}
 	});
 	// SEARCH REFERRALS
