@@ -648,6 +648,20 @@ div.tooltip.top {
 .modal-footer {
 	border-top: 0;
 }
+.logo-pencil {
+	height: 20px;
+	position: relative;
+	width: 83.33333%;
+	margin: 0 auto;
+	.fa.fa-pencil {
+		background: #d2dd53;
+		border-radius: 20px;
+		padding: 10px;
+		position: absolute;
+		right: 0;
+		cursor: pointer;
+	}
+}
 /*** Common End ***/
 
 
@@ -1216,22 +1230,6 @@ div.tooltip.top {
 				}
 				.membership-role, .program-url, .company-info-name {
 					margin-bottom: 30px;
-				}
-				.company-logo {
-					.dashboard-pencil {
-						height: 20px;
-						position: relative;
-						width: 83.33333%;
-						margin: 0 auto;
-						.fa.fa-pencil {
-							background: #d2dd53;
-							border-radius: 20px;
-							padding: 10px;
-							position: absolute;
-							right: 0;
-							cursor: pointer;
-						}
-					}
 				}
 			}
 			@media (min-width: 1024px) {

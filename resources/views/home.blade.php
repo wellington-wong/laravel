@@ -42,7 +42,7 @@
             <div class="company-info text-center">            
                 <div class="company-logo">
                     <img alt="{{ isset(auth()->user()->companies()->first()->company_name) ? auth()->user()->companies()->first()->company_name : '' }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
-                    <div class="dashboard-pencil"><i class="fa fa-pencil"></i></div>
+                    <div class="logo-pencil"><i class="fa fa-pencil"></i></div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="company-info-name">{{ isset(auth()->user()->companies()->first()->company_name) ? auth()->user()->companies()->first()->company_name : '' }}</div>
