@@ -87,7 +87,7 @@ class GlobalSettingsController extends Controller
     {
         // Get all users
         $users = User::join('companies', 'owner_id', 'users.id')
-        ->orderBy('.subdomain', 'desc')
+        ->orderBy('subdomain', 'desc')
         ->paginate(15);
 
         return view('global-settings.login-as-user')
