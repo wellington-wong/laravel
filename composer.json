@@ -13,6 +13,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "lob/lob-php": "^2.0",
         "maatwebsite/excel": "~2.1.0",
         "propaganistas/laravel-intl": "^1.2",
         "propaganistas/laravel-phone": "^2.8",
