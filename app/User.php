@@ -118,4 +118,10 @@ class User extends Authenticatable
         return  Role::where('name','member')->first()->users()->pluck('id', 'name');
     }
 
+    public static function getUsersBySubdomain() {
+        return User::join('companies', 'owner_id', 'users.id')
+        ->orderBy('subdomain', 'desc')
+        ->paginate(15);
+    }
+
 }

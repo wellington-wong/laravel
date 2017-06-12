@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class GlobalSettingsController extends Controller
 {
@@ -86,11 +87,21 @@ class GlobalSettingsController extends Controller
     public function loginAsUser(Request $request) 
     {
         // Get all users
-        $users = User::join('companies', 'owner_id', 'users.id')
-        ->orderBy('subdomain', 'desc')
-        ->paginate(15);
+        $users = new User();
+        $users = $users->getUsersBySubdomain();
 
         return view('global-settings.login-as-user')
         ->with(compact('users'));
+    }
+
+    /**
+     * Show login as user id
+     *
+     * @return view
+     */
+    public function loginAsUserId(Request $request, $id) 
+    {
+        Session::put( 'currentUserId', Auth::user()->id);
+        return Auth::loginAsUser($id);
     }
 }
