@@ -78,6 +78,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('login-super-admin-all-accounts', function () {
             return Auth::user()->can('login_super_admin_all_accounts');
         });
+        
+        // Global Admin
+        Gate::define('login-as-user', function () {
+            return Auth::user()->can('login_as_user');
+        });
 
     }
 }
