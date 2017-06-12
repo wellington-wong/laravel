@@ -46,6 +46,7 @@ class DatabaseSeeder extends Seeder
             array('define_user_roles', 'Define user roles', 'A user is allowed to define user roles.', array('superAdmin', 'globalAdmin')),
             array('add_change_billing_information', 'Change billing information', 'A user is allowed to change billing information.', array('superAdmin', 'globalAdmin')),
             array('login_super_admin_all_accounts', 'Login as super admin for all accounts', 'A user is allowed to login as super admin for all accounts.', array('globalAdmin')),
+            array('login_as_user', 'Login as other user', 'A user is allowed to login as another user.', array('globalAdmin')),
         );        
         foreach ($permissions as $permission) {
             $fields = array(
