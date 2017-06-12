@@ -19,6 +19,15 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function home(Request $request)
+    {
+        if ( !is_null($request->subdomain_id) ) {
+            return redirect()->route('referral-create');
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
     /**
      * Show the application dashboard.
      *

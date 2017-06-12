@@ -19,16 +19,20 @@ Route::group(['domain' => '{subdomain}.' . Config::get('app.url') ], function ()
 });
 */
 
-Auth::routes();
 
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
+
+Route::get('register_simple', 'Auth\RegisterController@showRegistrationSimple')->name('register_simple');
+
+//$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//$this->post('register', 'Auth\RegisterController@register');
 Auth::routes();
 
 // Home Routes
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@home')->name('find-home');
 
 // Company Routes
 Route::get('/company/create', 'CompanyController@create')->name('company-create');
