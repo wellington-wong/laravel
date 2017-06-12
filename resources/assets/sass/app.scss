@@ -1252,3 +1252,139 @@ div.tooltip.top {
 	border: 0 !important;
 }
 /*** TinyMCE End ***/
+
+/*** Members ***/
+.members-wrapper {
+	.page-filters {
+		margin-top: 11px;	
+		margin-bottom: 11px;	
+		.row {
+			margin-right: 0;
+			margin-left: 0;
+			> div {				
+				padding-left: 5px;
+				padding-right: 5px;
+				margin-bottom: 10px;
+				input.text, div.text {
+					border: 2px solid $bg-color3;
+					height: 24px;
+					padding: 0 15px 0 25px;
+					font-size: 11px;
+					box-shadow: none;
+				}
+				div.text {
+					line-height: 21px;
+					padding-left: 10px;
+				}
+				&.filter-by {
+					.dropdown-menu {
+						left: 6px;
+						font-size: 13px;
+					}
+				}
+				input.text:-moz-placeholder {
+				    color: $bg-color;
+				    text-align: center;
+				}
+				input.text::-moz-placeholder {
+				    color: $bg-color;
+				    text-align: center;
+				}
+				input.text:-ms-input-placeholder {
+				    color: $bg-color;
+				    text-align: center;
+				}
+				.fa {
+					position: absolute;
+				}
+				.fa-search {
+					line-height: 20px;
+					margin-left: 9px;
+				}
+				.fa-calendar {
+					line-height: 23px;
+					margin-left: 9px;
+				}
+				.fa-angle-down {
+					top: 5px;
+					right: 12px;
+				}
+			}
+			.search {
+				position: relative;
+				input.text::-webkit-input-placeholder {
+				    color: $bg-color;
+				}
+				.btn-search {
+					background: url('/images/search-glyph.png') no-repeat 0 -1px;    
+					border: 0;
+				    padding: 0;
+				    text-indent: -99999em;
+				    width: 31px;
+				    height: 24px;
+				    top: 0;
+				    right: 6px;
+				    position: absolute;
+				}
+				input.text:-moz-placeholder {
+				    text-align: center;
+				}
+				input.text::-moz-placeholder {
+				    text-align: center;
+				}
+				input.text:-ms-input-placeholder {
+				    text-align: center;
+				}
+			}
+		}
+	}
+	.filter-buttons {
+		margin-bottom: 30px;
+		a {
+			highlight: none;
+		}
+	}
+	.table-members-wrapper {
+		padding-left: 0;
+    	padding-right: 0;
+		.table-members {
+			border-spacing: 0 10px;
+			border-collapse: separate;    
+			thead {			
+				tr {
+					background: $bg-color3;
+					th {
+						font-size: 13px;
+						cursor: pointer;
+						border-bottom: 0;
+						a {
+							color: $bg-color;
+						}
+					}
+				}
+			}
+			tbody {
+				tr {
+					td {
+						line-height: 30px;
+						font-size: 13px;
+						padding: 10px;
+						border-bottom: 2px solid $bg-color3;
+						border-top: 2px solid $bg-color3;
+						vertical-align: middle;
+						&:first-child {
+							border-left: 2px solid $bg-color3;
+						}
+						&:last-child {
+							border-right: 2px solid $bg-color3;
+						}
+						@media (max-width: 698px) {
+							border: 0 !important;
+						}
+					}			
+				}
+			}
+		} 
+	}
+}
+/*** Members End ***/

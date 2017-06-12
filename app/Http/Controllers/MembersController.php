@@ -21,7 +21,7 @@ class MembersController extends Controller
 	public function getIndex ()
 	{
             if ( !empty($members = Role::where('name','member')->first()) && !empty($members->users()) ) {
-                $members = $members->users()->get();
+                $members = $members->users()->paginate(15);
             } else {
                 $members = [];                
             }
