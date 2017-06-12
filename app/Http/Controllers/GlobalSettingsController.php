@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Session;
 
 class GlobalSettingsController extends Controller
 {
@@ -102,6 +103,19 @@ class GlobalSettingsController extends Controller
     public function loginAsUserId(Request $request, $id) 
     {
         Session::put( 'currentUserId', Auth::user()->id);
-        return Auth::loginAsUser($id);
+        Auth::loginUsingId($id);
+
+        return redirect(route('home'));
+    }
+
+    /**
+     * Show login as original user
+     *
+     * @return view
+     */
+    public function loginAsOrigin(Request $request) 
+    {   
+        Auth::loginUsingId(Session::get('currentUserId'));
+        return redirect(route('home'));
     }
 }

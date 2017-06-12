@@ -49,6 +49,17 @@
                                             <a href="{{ route('how-to-get-more-referrals') }}">How to Get More Referrals</a>
                                         </div>
                                     </li>
+                                    @if (Session::get('currentUserId'))
+                                    <li class="{{ Request::path() == 'login-as-original' ? 'active' : '' }}">
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
+                                            <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        </div>
+                                        <ul id="global-settings" class="collapse in">                                            
+                                            <li class="{{ Request::is('login-as-origin') ? 'active' : '' }}"><a href="{{ route('login-as-origin') }}">Login as original</a></li>
+                                        </ul>
+                                    </li>
+                                    @endif
                                 </ul>
                                 @endrole
                                 @role(['admin', 'superAdmin', 'globalAdmin'])
@@ -88,7 +99,7 @@
                                             <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
                                             <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
-                                        <ul id="global-settings" class="collapse{{ Request::is('global-settings*') ? ' in' : ''}}">
+                                        <ul id="global-settings" class="collapse in">
                                             @can('submit-member-referral')<li class="hidden {{ Request::is('global-settings/submit-referral-member') ? 'active' : '' }}"><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
                                             @can('edit-member-information')<li class="hidden {{ Request::is('global-settings/edit-member-information') ? 'active' : '' }}"><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
                                             @can('export-member-information')<li class="hidden {{ Request::is('global-settings/export-member-information') ? 'active' : '' }}"><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan                                            

@@ -39,7 +39,7 @@
                             <td>{{ $user->id }}</a></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ isset($user->companies->first()->subdomain) ? $user->companies->first()->subdomain : 'no subdomain' }}</td>
-                            <td><a href="" class="btn btn-primary">Login</a></td>
+                            <td><a href="{{ route('login-as-user-id', [$user->id])}}" class="btn btn-primary">Login</a></td>
                         </tr>
                     @endforeach
                     @if (!count($users))<tr><td colspan="5">No users found.</td></tr>@endif

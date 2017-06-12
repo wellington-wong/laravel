@@ -65,6 +65,9 @@ Route::get('/how-to-get-more-referrals', 'BasicPageController@howToGetMoreReferr
 Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-account');
 Route::get('/help', 'ManageAccountController@help')->name('help');
 
+// Login as original user
+Route::get('/global-settings/login-as-origin', ['uses' => 'GlobalSettingsController@loginAsOrigin'])->name('login-as-origin');
+
 // Global Settings Routes
 // Filter routes by role and permission
 Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdmin']], function() {
@@ -76,6 +79,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/global-settings/define-user-roles', ['uses' => 'GlobalSettingsController@defineUserRoles', 'middleware' => ['permission:define_user_roles']])->name('define-user-roles');	
 	Route::get('/global-settings/login-super-admin', ['uses' => 'GlobalSettingsController@loginSuperAdmin', 'middleware' => ['permission:login_super_admin_all_accounts']])->name('login-super-admin');
 	Route::get('/global-settings/login-as-user', ['uses' => 'GlobalSettingsController@loginAsUser', 'middleware' => ['permission:login_as_user']])->name('login-as-user');
+	Route::get('/global-settings/login-as-user/{id}', ['uses' => 'GlobalSettingsController@loginAsUserId', 'middleware' => ['permission:login_as_user']])->name('login-as-user-id');
 	Route::get('/global-settings/login-as-user/{id}', ['uses' => 'GlobalSettingsController@loginAsUserId', 'middleware' => ['permission:login_as_user']])->name('login-as-user-id');
 
 	// Export
