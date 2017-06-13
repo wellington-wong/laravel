@@ -152,7 +152,7 @@ class ReferralController extends Controller
         $address = $user->addDefaultAddress($request);
 
         //ADD THAT USER TO A NEW REFERRAL
-        $request->user()->referrals()->insert([
+        $user->referral_id = $request->user()->referrals()->insertGetId([
             'referrer_id'   => $request->user()->id,
             'company_id'    => $request->get('subdomain_id'),
             'user_id'       => $user->id,

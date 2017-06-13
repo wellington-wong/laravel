@@ -55,6 +55,7 @@ class ReferralNotify extends Notification
      */
     public function toDatabase($notifiable)
     {   
+        //dd($this->referral);
         return $this->referral->toArray();
     }
 
