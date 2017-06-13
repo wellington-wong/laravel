@@ -683,6 +683,9 @@ table.table {
 					font-size: 13px;
 					cursor: pointer;
 					border-bottom: 0;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
 					a {
 						color: $bg-color;
 					}
