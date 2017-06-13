@@ -82,6 +82,9 @@ class Referral extends Model
             case ('id' || 'user_id' || 'status'):
                 $referrals->orderBy('referrals.'.$column, $sort);
                 break;
+            default:
+                $referrals->orderBy('id', 'desc');
+                break;
         }
 
         $referrals = $referrals->paginate($paginate);

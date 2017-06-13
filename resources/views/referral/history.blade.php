@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Referrals')
+@section('pageTitle', 'Referral History')
 
 @section('content')
 
