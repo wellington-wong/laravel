@@ -199,7 +199,7 @@ class ReferralController extends Controller
         $param = [];
         if (count($request->all())) {
             $param = $referrals->getParams();
-            $referrals = $referrals->filterSortReferrals(15);
+            $referrals = $referrals->filterSortReferrals(15, 'updated_at');
         } else {
             $referrals = $request->user()->referrals()->orderBy('updated_at', 'desc')->paginate(15);
         }
