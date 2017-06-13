@@ -36,7 +36,7 @@ class Referral extends Model
      * Sort Referrals
      * @return
      */
-    public function filterSortReferrals($paginate, $defaultSort = 'id') {
+    public function filterSortReferrals($paginate, $defaultSort = 'created_at') {
 
         $request = request();
 
@@ -52,9 +52,11 @@ class Referral extends Model
         $datarangeTo = isset($daterange[1]) && (bool)strtotime($daterange[1]) ? $daterange[1] : null;
 
         // Change query when sorting and filtering.
-        $referrals = $this->select('referrals.*')
-        ->where('referrer_id', auth()->user()->id)
-        ->join('users', 'users.id', 'referrals.user_id');
+        $referrals = $this->select('referrals.*');
+        if ((auth()->user()->hasRole('member'))) {
+            $referrals->where('referrer_id', auth()->user()->id);
+        }
+        $referrals->join('users', 'users.id', 'referrals.user_id');
 
         if (isset($status)) {
             $referrals->where('referrals.status', $status);
