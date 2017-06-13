@@ -70,7 +70,7 @@
                     @endforeach
                     @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
                 </table>
-                {{ $referrals->links() }}
+                <div class="col-md-12 pagination-wrapper">{{ $referrals->links() }}</div>
             </div>
         </div>
         @include('layouts.modal')

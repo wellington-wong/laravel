@@ -44,7 +44,7 @@
                     @endforeach
                     @if (!count($users))<tr><td colspan="5">No users found.</td></tr>@endif
                 </table>
-                {{ $users->links() }}
+                <div class="col-md-12 pagination-wrapper">{{ $users->links() }}</div>
             </div>
         </div>
     </div>
