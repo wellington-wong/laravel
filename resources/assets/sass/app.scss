@@ -707,6 +707,9 @@ table.table {
 					@media (max-width: 698px) {
 						border: 0 !important;
 					}
+					.form-control {						
+						height: auto;
+					}
 				}			
 			}
 		}
