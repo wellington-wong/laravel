@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 class Referral extends Model
 {
+    use \Venturecraft\Revisionable\RevisionableTrait;
 
     const STATUS_SUBMITTED      = 1;
     const STATUS_APPROVED       = 2;
