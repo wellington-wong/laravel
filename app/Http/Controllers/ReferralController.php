@@ -201,7 +201,7 @@ class ReferralController extends Controller
             $param = $referrals->getParams();
             $referrals = $referrals->filterSortReferrals(15);
         } else {
-            $referrals = $request->user()->referrals()->paginate(15);
+            $referrals = $request->user()->referrals()->orderBy('id', 'desc')->paginate(15);
         }
 
         // Configure sort class
@@ -226,7 +226,19 @@ class ReferralController extends Controller
 
         return view('referral.history')
         ->with(compact('referrals', 'sort', 'sortc'));
-    }    
+    }
+
+    /**
+     * Referral history details
+     * @return
+     **/
+    public function historyDetails( Request $request, $id ) {
+
+        $referral = Referral::find($id);
+
+        return view('referral.history-details')
+        ->with(compact('referral'));
+    }
 
     /**
      * Update referral status

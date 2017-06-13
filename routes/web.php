@@ -49,6 +49,7 @@ Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->na
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 Route::get('/referral/rewards', 'ReferralController@rewards')->name('referral-rewards');
 Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
+Route::get('/referral/history/{id}', 'ReferralController@historyDetails')->name('referral-history-details');
 Route::get('/referral/export', 'ReferralController@referralsExport')->name('referrals-export');
 Route::post('/referral/update', 'ReferralController@update')->name('referrals-update');
 

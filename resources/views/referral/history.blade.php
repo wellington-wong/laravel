@@ -37,9 +37,9 @@
                     @foreach($referrals as $r)
                         <tr>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
-                            <td><a href="{{ $r->id }}">{{ $r->id }}</a></td>
-                            <td><a href="{{ $r->user_id }}">{{ auth()->user()->name }}</a></td>
-                            <td><a href="{{ $r->referred->id }}">{{ $r->referred->display_name }}</a></td>
+                            <td><a href="{{ route('referral-history-details', [$r->id]) }}">{{ $r->id }}</a></td>
+                            <td><a href="{{ route('referral-history-details', [$r->id]) }}">{{ auth()->user()->name }}</a></td>
+                            <td><a href="{{ route('referral-history-details', [$r->id]) }}">{{ $r->referred->display_name }}</a></td>
                             <td class="referral-status" data-id="{{ $r->id }}">{{ \App\Referral::$status[$r->status] }}</td>
                         </tr>
                     @endforeach
