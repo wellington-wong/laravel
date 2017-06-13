@@ -40,9 +40,7 @@
                             <td><a href="{{ $r->id }}">{{ $r->id }}</a></td>
                             <td><a href="{{ $r->user_id }}">{{ auth()->user()->name }}</a></td>
                             <td><a href="{{ $r->referred->id }}">{{ $r->referred->display_name }}</a></td>
-                            <td class="referral-status" data-id="{{ $r->id }}">
-                                <div class="form-control" data-toggle="dropdown">{{ \App\Referral::$status[$r->status] }}</div>
-                            </td>
+                            <td class="referral-status" data-id="{{ $r->id }}">{{ \App\Referral::$status[$r->status] }}</td>
                         </tr>
                     @endforeach
                     @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
