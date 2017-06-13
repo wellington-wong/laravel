@@ -7,7 +7,7 @@
     <div class="container-fluid referrals-history with-referral-counter">
         
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Referral Details for ' . $referral->referred->display_name, 'col' => 12])
+            @include('layouts.page-header', ['header' => 'Referral History Details for ' . $referral->referred->display_name, 'col' => 12])
         </div>
 
         <div class="clearfix"></div>
