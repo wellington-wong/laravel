@@ -78,12 +78,7 @@ class ReferralController extends Controller
         }
 
         return view('referral.referrals')
-            ->with(compact('referrals'))
-            ->with(compact('sort'))
-            ->with(compact('sortc'))
-            ->with(compact('referralStatus'))
-            ->with(compact('pendingReferrals'))
-            ->with(compact('param'));
+        ->with(compact('referrals', 'sort' ,'sortc', 'referralStatus', 'pendingReferrals', 'param'));
     }
 
     /**
@@ -197,10 +192,38 @@ class ReferralController extends Controller
      **/
     public function history( Request $request ) {
 
-        $referrals = $request->user()->referrals()->paginate(15);
+        $referrals = new Referral();
+        // Get query parameters
+        $param = [];
+        if (count($request->all())) {
+            $param = $referrals->getParams();
+            $referrals = $referrals->filterSortReferrals(15);
+        } else {
+            $referrals = $request->user()->referrals()->paginate(15);
+        }
+
+        // Configure sort class
+        $column = $request->get('column');
+        $sortc = array_fill_keys(['created_at', 'id', 'user_id', 'referred', 'status'], null);
+        $sort = array_fill_keys(['created_at', 'id', 'user_id', 'referred', 'status'], 'desc');
+
+        // Configure sort links
+        $sort[$column] = 'desc';
+        $sortClass = '';
+        switch ($request->get('sort')) {
+            case ('desc'):
+                $sort[$column] = 'asc';
+                $sortClass = '-desc';
+                break;
+            case ('asc'):
+                $sort[$column] = '';
+                $sortClass = '-asc';
+                break;
+        }
+        $sortc[$column] = $sortClass;
 
         return view('referral.history')
-            ->with(compact('referrals'));
+        ->with(compact('referrals', 'sort', 'sortc'));
     }    
 
     /**

@@ -4,20 +4,20 @@
 
 @section('content')
     <div class="container-fluid members-wrapper">
-        <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export</a></div>
+        <!--<div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export</a></div>-->
 
         <div class="row">
             @include('layouts.page-header', ['header' => 'Members', 'col' => 3])
 
-            <div class="col-md-9 page-filters no-padding-lr">
+            <!--<div class="col-md-9 page-filters no-padding-lr">
                 <div class="row">
                     <div class="col-md-4 filter-item search pull-right">
                         <i class="fa fa-search" aria-hidden="true"></i>
-                        {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                        {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : ''), 'data-url' => route("members")]) }}            
                         {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search members']) }}
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <div class="clearfix"></div>

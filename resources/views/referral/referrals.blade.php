@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-4 filter-item search">
                         <i class="fa fa-search" aria-hidden="true"></i>
-                        {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                        {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : ''), 'data-url' => route('referrals')]) }}            
                         {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search btn-referrals']) }}
                     </div>
                     <div class="col-md-4 filter-item date-range">

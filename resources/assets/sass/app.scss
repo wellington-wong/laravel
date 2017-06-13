@@ -712,6 +712,49 @@ table.table {
 		}
 	} 
 }
+.page-filters {
+	.fa-search {
+		line-height: 20px;
+		margin-left: 9px;
+		position: absolute;
+	}
+	.search {
+		position: relative;
+		padding-left: 5px;
+		padding-right: 5px;
+		margin-bottom: 10px;
+		input.text::-webkit-input-placeholder {
+		    color: $bg-color;
+		}
+		.btn-search {
+			background: url('/images/search-glyph.png') no-repeat 0 -1px;    
+			border: 0;
+		    padding: 0;
+		    text-indent: -99999em;
+		    width: 31px;
+		    height: 24px;
+		    top: 0;
+		    right: 6px;
+		    position: absolute;
+		}
+		input.text:-moz-placeholder {
+		    text-align: center;
+		}
+		input.text::-moz-placeholder {
+		    text-align: center;
+		}
+		input.text:-ms-input-placeholder {
+		    text-align: center;
+		}
+	}
+	input.text, div.text {
+		border: 2px solid $bg-color3;
+		height: 24px;
+		padding: 0 15px 0 25px;
+		font-size: 11px;
+		box-shadow: none;
+	}
+}
 /*** Common End ***/
 
 
@@ -824,10 +867,6 @@ table.table {
 				.fa {
 					position: absolute;
 				}
-				.fa-search {
-					line-height: 20px;
-					margin-left: 9px;
-				}
 				.fa-calendar {
 					line-height: 23px;
 					margin-left: 9px;
@@ -836,33 +875,7 @@ table.table {
 					top: 5px;
 					right: 12px;
 				}
-			}
-			.search {
-				position: relative;
-				input.text::-webkit-input-placeholder {
-				    color: $bg-color;
-				}
-				.btn-search {
-					background: url('/images/search-glyph.png') no-repeat 0 -1px;    
-					border: 0;
-				    padding: 0;
-				    text-indent: -99999em;
-				    width: 31px;
-				    height: 24px;
-				    top: 0;
-				    right: 6px;
-				    position: absolute;
-				}
-				input.text:-moz-placeholder {
-				    text-align: center;
-				}
-				input.text::-moz-placeholder {
-				    text-align: center;
-				}
-				input.text:-ms-input-placeholder {
-				    text-align: center;
-				}
-			}
+			}			
 		}
 	}
 	.filter-buttons {
@@ -1327,10 +1340,6 @@ table.table {
 				.fa {
 					position: absolute;
 				}
-				.fa-search {
-					line-height: 20px;
-					margin-left: 9px;
-				}
 				.fa-calendar {
 					line-height: 23px;
 					margin-left: 9px;
@@ -1338,32 +1347,6 @@ table.table {
 				.fa-angle-down {
 					top: 5px;
 					right: 12px;
-				}
-			}
-			.search {
-				position: relative;
-				input.text::-webkit-input-placeholder {
-				    color: $bg-color;
-				}
-				.btn-search {
-					background: url('/images/search-glyph.png') no-repeat 0 -1px;    
-					border: 0;
-				    padding: 0;
-				    text-indent: -99999em;
-				    width: 31px;
-				    height: 24px;
-				    top: 0;
-				    right: 6px;
-				    position: absolute;
-				}
-				input.text:-moz-placeholder {
-				    text-align: center;
-				}
-				input.text::-moz-placeholder {
-				    text-align: center;
-				}
-				input.text:-ms-input-placeholder {
-				    text-align: center;
 				}
 			}
 		}
