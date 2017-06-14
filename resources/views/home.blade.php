@@ -42,7 +42,9 @@
             <div class="company-info text-center">            
                 <div class="company-logo">
                     <img alt="{{ isset(auth()->user()->companies()->first()->company_name) ? auth()->user()->companies()->first()->company_name : '' }}" src="/{{ isset(auth()->user()->companies()->first()->logo) ? auth()->user()->companies()->first()->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
-                    <div class="logo-pencil"><i class="fa fa-pencil"></i></div>
+                    <div class="logo-pencil ajax-logo"><i class="fa fa-pencil"></i></div>
+                    {{ Form::file('update-logo', ['class' => 'hidden logo-input']) }}
+                    <div class="hidden processing">Processing...</div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="company-info-name">{{ isset(auth()->user()->companies()->first()->company_name) ? auth()->user()->companies()->first()->company_name : '' }}</div>
@@ -54,7 +56,7 @@
                     <h5>Program URL</h5>
                     <span><a href="#">{{ isset(auth()->user()->companies()->first()->subdomain) ? auth()->user()->companies()->first()->subdomain : '' }}.businessname.com</a></span>
                 </div>
-                <button class="btn btn-primary">Account Settings</button>
+                <a href="{{ route('manage-account') }}" class="btn btn-primary">Account Settings</a>
             </div>
         </div>
     </div>

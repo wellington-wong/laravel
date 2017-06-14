@@ -19,11 +19,20 @@ class ManageAccountController extends Controller
     /**
      * Show manage account.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function getIndex()
     {
+        return view('manage-account.index');
+    }
 
+    /**
+     * Update account.
+     *
+     * @return view
+     */
+    public function postUpdate()
+    {
         return view('manage-account.index');
     }
 
@@ -34,7 +43,6 @@ class ManageAccountController extends Controller
      */
     public function help()
     {
-
         return view('manage-account.help');
     }
 }

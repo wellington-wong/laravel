@@ -17,7 +17,7 @@
                                 <span class="nav-separator">|</span> <a href="#" class="navbar-settings no-padding" data-toggle="dropdown" data-hover="dropdown">Settings <i class="fa fa-angle-down" aria-hidden="true"></i></a> 
                                 <ul class="dropdown-menu">
                                   <li><a href="#">Program Options</a></li>
-                                  <li><a href="#">Manage Account</a></li>
+                                  <li><a href="{{ route('manage-account') }}">Manage Account</a></li>
                                   <li><a href="#">Logout</a></li>
                                 </ul>
                             </li>

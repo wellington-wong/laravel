@@ -78,6 +78,11 @@ class CompanyController extends Controller
 
     }
 
+    /**
+     * Show company
+     *
+     * @return
+     */
     public function getCompany(Request $request, $id) {
 
         $company = Company::find($id);
@@ -87,6 +92,11 @@ class CompanyController extends Controller
 
     }
 
+    /**
+     * Update company
+     *
+     * @return
+     */
     public function postUpdate(Request $request) {
 
         $rules = [
@@ -124,6 +134,16 @@ class CompanyController extends Controller
 
         return redirect(route('get-company', [34]));
 
+    }
+
+    /**
+     * Update logo via ajax
+     *
+     * @return
+     */
+    public function postUpdateLogo(Request $request) {
+
+        return 'update logo';
     }
 
 }
