@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Role;
+use App\RoleUser;
 use App\Company;
 use App\Referral;
 
@@ -39,6 +40,12 @@ class HomeController extends Controller
         if (auth()->check() && !count(auth()->user()->roles)) {
             if ($member = Role::where('name', 'member')->first()) {
                 auth()->user()->attachRole($member);
+                if (isset(auth()->user()->companies()->first()->subdomain)){
+                    $roleUser = RoleUser::where('user_id', auth()->user()->id)->first();
+                    $roleUser->subdomain = auth()->user()->companies()->first()->subdomain;
+                    $roleUser->timestamps = false;
+                    $roleUser->save();
+                }
             }
         }
 
