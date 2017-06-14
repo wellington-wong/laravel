@@ -20830,20 +20830,6 @@ $(function () {
 			$('.company-logo img').prop('src', data);
 			$('#company-update-logo').submit();
 		}
-		/*if (error) { 
-  	$('.submit-company').removeClass('disabled');
-     	$('.upload-label').text('Upload Company Logo');
-     	$('.logo-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');	    	
-      $('.logo-blob').val('');
-      $('.logo-blob-name').val('');
-     	return false;
-  }
-  var filename = input.files[0].name;
-     $('.upload-label').text('Filename: ' + filename);
-     $('.logo-preview img').prop('src', data).parent().removeClass('hidden');
-     $('.logo-blob').val(data);
-     $('.logo-blob-name').val(filename);
-  $('.submit-company').removeClass('disabled');*/
 	}
 	$('.logo-input').on('change', function () {
 		$('.processing').removeClass('hidden');
