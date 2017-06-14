@@ -36,18 +36,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // Assign user as member when no role is found
-        if (auth()->check() && !count(auth()->user()->roles)) {
-            if ($member = Role::where('name', 'member')->first()) {
-                auth()->user()->attachRole($member);
-                if (isset(auth()->user()->companies()->first()->subdomain)){
-                    $roleUser = RoleUser::where('user_id', auth()->user()->id)->first();
-                    $roleUser->subdomain = auth()->user()->companies()->first()->id;
-                    $roleUser->timestamps = false;
-                    $roleUser->save();
-                }
-            }
-        }
 
         $company = Company::find(auth()->user()->id);
 

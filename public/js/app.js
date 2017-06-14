@@ -20829,6 +20829,9 @@ $(function () {
 		if (!error) {
 			$('.company-logo img').prop('src', data);
 			$('#company-update-logo').submit();
+		} else {
+			$('.processing').addClass('hidden');
+			$('.company-logo img').css('opacity', 1);
 		}
 	}
 	$('.logo-input').on('change', function () {

@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Domain;
+use App\Http\Middleware\CheckRole;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -36,7 +37,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            Domain::class
+            Domain::class,
+            CheckRole::class
         ],
 
         'api' => [
