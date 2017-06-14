@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "axios": "^0.15.3",
+    "blueimp-file-upload": "^9.18.0",
     "bootstrap-sass": "^3.3.7",
     "daterangepicker": "^2.1.25",
     "font-awesome": "^4.7.0",
