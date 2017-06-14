@@ -1,6 +1,6 @@
 @if (!isset($company))
 <div class="form-group col-md-6">
-    {{ Form::text('address', null, ['placeholder' => 'Referral\'s Home Address', 'class' => 'form-control' . ($errors->has('address') ? ' has-error' : '')]) }}
+    {{ Form::text('address', null, ['placeholder' => (isset($address_placeholder) ? $address_placeholder : 'Referral\'s Home Address' ), 'class' => 'form-control' . ($errors->has('address') ? ' has-error' : '')]) }}
 </div>
 
 <div class="form-group col-md-6">
