@@ -20826,9 +20826,10 @@ $(function () {
 
 	// Update logo
 	function updateLogo(input, data, error) {
-		console.log(input);
-		console.log(data);
-		console.log(error);
+		if (!error) {
+			$('.company-logo img').prop('src', data);
+			$('#company-update-logo').submit();
+		}
 		/*if (error) { 
   	$('.submit-company').removeClass('disabled');
      	$('.upload-label').text('Upload Company Logo');
@@ -20848,7 +20849,7 @@ $(function () {
 		$('.processing').removeClass('hidden');
 		$('.company-logo img').css('opacity', .5);
 		console.log(readImage(this, updateLogo));
-	}).parent().find('.ajax-logo').on('click', function () {
+	}).closest('.company-logo').find('.ajax-logo').on('click', function () {
 		$('.logo-input').trigger('click');
 	});
 	// END CREATE COMPANY
@@ -20859,7 +20860,7 @@ $(function () {
 /* 135 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open '/var/www/incentful/node_modules/formBuilder/dist/form-builder.min.css'\n    at Error (native)\n    at runLoaders (/var/www/incentful/node_modules/webpack/lib/NormalModule.js:192:19)\n    at /var/www/incentful/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /var/www/incentful/node_modules/loader-runner/lib/LoaderRunner.js:200:19\n    at /var/www/incentful/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:62:14\n    at _combinedTickCallback (internal/process/next_tick.js:67:7)\n    at process._tickCallback (internal/process/next_tick.js:98:9)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 136 */

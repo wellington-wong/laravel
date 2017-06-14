@@ -40,7 +40,7 @@ Route::post('/company/create', 'CompanyController@postCreate')->name('post-compa
 Route::get('/company/{id}', 'CompanyController@getCompany')->name('get-company');
 Route::get('/companies', 'CompanyController@allCompanies')->name('all-companies');
 Route::post('/company/update', 'CompanyController@postUpdate')->name('post-company-update');
-Route::post('/company/update-logo', 'CompanyController@postUpdateLogo')->name('post-company-update-logo');
+Route::post('/company/update-logo/{cid}', 'CompanyController@postUpdateLogo')->name('post-company-update-logo');
 
 // Referral Routes
 Route::get('/referral/create', 'ReferralController@create')->name('referral-create');
