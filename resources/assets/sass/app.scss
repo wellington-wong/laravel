@@ -767,6 +767,15 @@ table.table {
 	border-width: 2px;
 	border-color: &bg-color3;
 }
+.company-logo {
+	position: relative;
+	.processing {
+		position: absolute;
+		top: 50px;
+		text-align: center;
+		width: 100%;
+	}
+}
 /*** Common End ***/
 
 
@@ -1265,15 +1274,6 @@ table.table {
 				}
 				.membership-role, .program-url, .company-info-name {
 					margin-bottom: 30px;
-				}
-				.company-logo {
-					position: relative;
-					.processing {
-						position: absolute;
-						top: 50px;
-						text-align: center;
-						width: 100%;
-					}
 				}
 			}
 			@media (min-width: 1024px) {
