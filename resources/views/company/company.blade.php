@@ -58,7 +58,9 @@
                 <div class="company-info text-center">            
                     <div class="company-logo">
                         <img alt="{{ $company->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
-                        <div class="logo-pencil"><i class="fa fa-pencil"></i></div>
+                        <div class="logo-pencil ajax-logo"><i class="fa fa-pencil"></i></div>
+                        {{ Form::file('update-logo', ['class' => 'hidden logo-input']) }}
+                        <div class="hidden processing">Processing...</div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="company-info-name">{{ auth()->user()->companies()->first()->company_name }}</div>
