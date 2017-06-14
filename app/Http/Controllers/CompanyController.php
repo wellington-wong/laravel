@@ -141,7 +141,13 @@ class CompanyController extends Controller
      *
      * @return
      */
-    public function postUpdateLogo(Request $request) {
+    public function postUpdateLogo(Request $request, $id) {
+
+        $company = Company::find($id);
+        if ($request->file('logo')) {
+            $company->logo = $request->file('logo')->store('company-logos');
+            $company->save();
+        }
 
         return 'update logo';
     }
