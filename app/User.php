@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use App\Role;
+use App\RoleUser;
 use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
@@ -114,7 +115,22 @@ class User extends Authenticatable
         return $address;
     }
 
-    public static function getMembers($id) {
+    public static function getMembers() {
+
+        // Get users with member and empty roles.
+        $members = User::paginate(15);
+        $roles = Role::where('name', '<>' ,'member')->get();
+        $roles->map(function ($role) use ($members) {
+            $role->users()->get()->map(function($user) use ($members) {
+                $members->forget($user->id);
+            });
+        });
+
+        return $members;
+    }
+
+
+    public static function getMember($id) {
         return  Role::where('name','member')->first()->users()->pluck('id', 'name');
     }
 

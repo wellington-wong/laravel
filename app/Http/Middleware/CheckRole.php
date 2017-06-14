@@ -20,7 +20,7 @@ class CheckRole
     {
         if(Auth::check()){
             // Assign user as member when no role is found
-            if (auth()->check() && !count(auth()->user()->roles)) {
+            if (!count(auth()->user()->roles)) {
                 if ($member = Role::where('name', 'member')->first()) {
                     auth()->user()->attachRole($member);
                     if (isset(auth()->user()->companies()->first()->subdomain)){
