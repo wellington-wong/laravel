@@ -35,7 +35,7 @@
                     @foreach ($members as $member)
                         <tr>
                             <td>{{ $member->id }}</a></td>
-                            <td>{{ $member->name }}</td>
+                            <td>{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</td>
                             <td>{{ $member->email }}</td>
                         </tr>
                     @endforeach
