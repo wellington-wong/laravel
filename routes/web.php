@@ -64,6 +64,7 @@ Route::get('/how-to-get-more-referrals', 'BasicPageController@howToGetMoreReferr
 
 // Manage Account
 Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-account');
+Route::post('/manage-account', 'ManageAccountController@postUpdate')->name('post-account-update');
 Route::get('/help', 'ManageAccountController@help')->name('help');
 
 // Login as original user
