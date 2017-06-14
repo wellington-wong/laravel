@@ -20746,6 +20746,14 @@ $(function () {
 			image.src = url.createObjectURL(input.files[0]);
 		}
 	}
+
+	// Update logo
+	$('.logo-input').on('click', function () {
+		$('.processing').removeClass('hidden');
+		$('.company-logo img').css('opacity', .5);
+	}).parent().find('.ajax-logo').on('click', function () {
+		$('.logo-input').trigger('click');
+	});
 	// END COMMON
 
 	// SIDEBAR
