@@ -3,7 +3,7 @@
 @section('pageTitle', auth()->user()->display_name)
 
 @section('content')
-{{ auth()->user()->phone }}
+
     <div class="container-fluid account-profile-wrapper">
 
         @include('layouts.page-header', ['header' => auth()->user()->display_name, 'col' => 12])
