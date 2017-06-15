@@ -35,6 +35,8 @@ class Domain
         $request->current_subdomain = $subdomain;
         $request->_company = $company;
 
+        View::share('_company', $company);
+
         return $next($request);
     }
 }
