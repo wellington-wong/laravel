@@ -21,7 +21,7 @@ class ManageAccountController extends Controller
      *
      * @return view
      */
-    public function getIndex()
+    public function getIndex( Request $request )
     {
         return view('manage-account.index');
     }
@@ -31,7 +31,7 @@ class ManageAccountController extends Controller
      *
      * @return view
      */
-    public function postUpdate()
+    public function postUpdate( Request $request )
     {
         return view('manage-account.index');
     }
@@ -41,7 +41,7 @@ class ManageAccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function help()
+    public function help( Request $request )
     {
         return view('manage-account.help');
     }
