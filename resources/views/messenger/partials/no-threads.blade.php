@@ -1,1 +1,1 @@
-<p>Sorry, no threads.</p>
+<tr><td colspan="3">No messages found.</td></tr>
