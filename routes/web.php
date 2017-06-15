@@ -110,8 +110,8 @@ Route::get('/api/search', [
 
 // Laravel messenger
 // https://github.com/cmgmyr/laravel-messenger
-Route::group(['prefix' => 'messages', 'as' => 'messages::'], function () {
-    Route::get('/', ['uses' => 'MessagesController@index'])->name('index');
+Route::group(['prefix' => 'messages'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
     Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
     Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
     Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
