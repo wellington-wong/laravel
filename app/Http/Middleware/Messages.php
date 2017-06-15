@@ -17,7 +17,10 @@ class Messages
     public function handle($request, Closure $next)
     {
 
-        \Session::put('messages', Thread::forUserWithNewMessages(auth()->user()->id)->latest('updated_at')->get());
+        if (auth()->check()) {
+            \Session::put('messages', Thread::forUserWithNewMessages(auth()->user()->id)->latest('updated_at')->get());
+        }    
+
 
         return $next($request);
     }
