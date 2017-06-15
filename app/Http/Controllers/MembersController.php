@@ -21,11 +21,11 @@ class MembersController extends Controller
 	public function getIndex ()
 	{
         
-            $members = auth()->user()->getMembers();  
+        $members = auth()->user()->getMembers();
 
-            return view('members.index')
-            ->with(compact('members'));
-        }
+        return view('members.index')
+        ->with(compact('members'));
+    }
 
 
     public function members(Request $request, User $user, $sid)

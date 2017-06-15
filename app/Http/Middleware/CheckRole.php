@@ -5,8 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 use app\Role;
-use App\RoleUser;
-use App\Company;
 
 class CheckRole
 {
@@ -20,16 +18,12 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            // Assign user as member when no role is found
-            if (!count(auth()->user()->roles)) {
+
+            // Assign member role when no role is found for this company
+            if ( auth()->user()->roles()->where('company_id', $request->current_company_id)->get()->isEmpty()) {
                 if ($member = Role::where('name', 'member')->first()) {
-                    auth()->user()->attachRole($member);
-                    if (isset(auth()->user()->companies()->first()->subdomain)){
-                        $roleUser = RoleUser::where('user_id', auth()->user()->id)->first();
-                        $roleUser->subdomain = auth()->user()->companies()->first()->id;
-                        $roleUser->timestamps = false;
-                        $roleUser->save();
-                    }
+                    auth()->user()->roles()->save($member,
+                        ['company_id'=>$request->current_company_id]);
                 }
             }
         }
