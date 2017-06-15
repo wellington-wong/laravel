@@ -85,10 +85,14 @@ class CompanyController extends Controller
      */
     public function getCompany(Request $request, $id) {
 
+        // Prepare variables
         $company = Company::find($id);
+        $user = auth()->user();
+        $hosts = explode('.', $request->getHost());
+        $shareUrl = (isset($user->companies()->first()->subdomain) ? $user->companies()->first()->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
 
         return view('company.company')
-            ->with(compact('company'));
+            ->with(compact('company', 'shareUrl', 'user'));
 
     }
 
