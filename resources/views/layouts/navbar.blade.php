@@ -2,7 +2,7 @@
             <div class="container-fluid">
                 <div class="col-sm-3 navbar-messages no-padding-lr">
                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <a href=""><strong>324 Messages</strong></a>
+                    <a href="{{ route('messages') }}"><strong>{{ count(Session::get('messages')) }} Messages</strong></a>
                 </div>
                 <div class="col-sm-9 no-padding-lr">
                     <!-- Right Side Of Navbar -->

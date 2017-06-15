@@ -36,18 +36,18 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-
+        
         // Optimize variables
         $user = auth()->user();
-        $company = Company::find(auth()->user()->id);
+        $_company = $request->_company;
         $hosts = explode('.', $request->getHost());
-        $shareUrl = (isset($user->companies()->first()->subdomain) ? $user->companies()->first()->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
+        $shareUrl = (isset($_company->subdomain) ? $_company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
 
         // Get referral pending approval and reward
         $pendingReferrals = new Referral();
         $pendingReferrals = $pendingReferrals->getReferralTally();
 
         return view('home')
-        ->with(compact('company', 'pendingReferrals', 'user', 'shareUrl'));
+        ->with(compact('_company', 'pendingReferrals', 'user', 'shareUrl'));
     }
 }

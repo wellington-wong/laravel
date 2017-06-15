@@ -190,7 +190,8 @@ return [
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Laravel\Cashier\CashierServiceProvider::class
+        Laravel\Cashier\CashierServiceProvider::class,
+        Cmgmyr\Messenger\MessengerServiceProvider::class
 
     ],
 
