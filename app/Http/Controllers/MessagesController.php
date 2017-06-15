@@ -65,7 +65,11 @@ class MessagesController extends Controller
      */
     public function create( Request $request )
     {    	
-        $users = $request->_company->members()->get();
+        if (isset($request->_company)) {
+            $users = $request->_company->members()->get();
+        } else {
+            return back()->withErrors(['Company not found.']);
+        }
         return view('messenger.create', compact('users'));
     }
     /**
