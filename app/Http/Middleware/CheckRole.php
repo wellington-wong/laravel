@@ -19,13 +19,17 @@ class CheckRole
     {
         if(Auth::check()){
 
-            // Assign member role when no role is found for this company
-            if ( auth()->user()->roles()->where('company_id', $request->_company->id)->get()->isEmpty()) {
-                if ($member = Role::where('name', 'member')->first()) {
-                    auth()->user()->roles()->save($member,
-                        ['company_id'=>$request->_company->id ]);
+            //IF THE SUBDOMAIN EXISTS AS A VALID COMPANY
+            if( !is_null( $request->_company ) ) {
+                // Assign member role when no role is found for this company
+                if ( auth()->user()->roles()->where('company_id', $request->_company->id)->get()->isEmpty()) {
+                    if ($member = Role::where('name', 'member')->first()) {
+                        auth()->user()->roles()->save($member,
+                            ['company_id'=>$request->_company->id ]);
+                    }
                 }
             }
+
         }
 
         return $next($request);

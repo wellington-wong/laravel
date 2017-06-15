@@ -22,9 +22,18 @@ class Domain
         //$subdomain = $request->route()->parameters()['subdomain'];
         $hosts = explode('.', $request->getHost());
         $subdomain = $hosts[0];
+
+        $company = Company::where('subdomain', $subdomain)->first();
+
+        //IF THE SUBDOMAIN IS NOT VALID
+        if ( 'app' != $subdomain ) {
+            if ( is_null($company) ) {
+                return redirect('https://app.' . $_ENV['APP_URL'] );
+            }
+        }
+
         $request->current_subdomain = $subdomain;
-        
-        $request->_company = Company::where('subdomain', $subdomain)->first();
+        $request->_company = $company;
 
         return $next($request);
     }

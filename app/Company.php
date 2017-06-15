@@ -30,5 +30,9 @@ class Company extends Model
         return $this->phones()->where('default', 1);
     }
 
+    public function members() {
+        return $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' );
+    }
+
 
 }

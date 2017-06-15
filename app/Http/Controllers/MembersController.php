@@ -18,10 +18,13 @@ class MembersController extends Controller
         $this->middleware('auth');
     }
 
-	public function getIndex ()
+	public function getIndex ( Request $request )
 	{
-        
-        $members = auth()->user()->getMembers();
+
+        if ( 'app' != $request->current_subdomain ) {
+            $members = $request->_company->members()->paginate(15);
+        }
+        //$members = auth()->user()->getMembers();
 
         return view('members.index')
         ->with(compact('members'));
