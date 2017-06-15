@@ -19,13 +19,13 @@ class MessagesController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Show all of the message threads to the user.
      *
      * @return mixed
      */
-    public function index()
+    public function index( Request $request )
     {
         // All threads, ignore deleted/archived participants
         $threads = Thread::getAllLatest()->get();
@@ -41,7 +41,7 @@ class MessagesController extends Controller
      * @param $id
      * @return mixed
      */
-    public function show($id)
+    public function show( Request $request, $id )
     {
         try {
             $thread = Thread::findOrFail($id);
@@ -62,9 +62,9 @@ class MessagesController extends Controller
      *
      * @return mixed
      */
-    public function create()
-    {
-        $users = User::where('id', '!=', Auth::id())->get();
+    public function create( Request $request )
+    {    	
+        $users = $request->_company->members()->get();
         return view('messenger.create', compact('users'));
     }
     /**
@@ -72,7 +72,7 @@ class MessagesController extends Controller
      *
      * @return mixed
      */
-    public function store()
+    public function store( Request $request )
     {
         $input = Input::all();
         $thread = Thread::create(
@@ -108,7 +108,7 @@ class MessagesController extends Controller
      * @param $id
      * @return mixed
      */
-    public function update($id)
+    public function update( Request $request, $id )
     {
         try {
             $thread = Thread::findOrFail($id);
