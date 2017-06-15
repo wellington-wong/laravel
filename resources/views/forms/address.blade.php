@@ -31,22 +31,22 @@
 </div>
 
 <div class="clearfix"></div>
-<div class="form-group col-lg-4">
+<div class="form-group col-md-4">
     <label>City</label>
     {{ Form::text('city', $city, ['placeholder' => 'City', 'class' => 'form-control' . ($errors->has('city') ? ' has-error' : '')]) }}
 </div>
 
-<div class="form-group col-lg-2">
+<div class="form-group col-md-2">
 	<label>States</label>
 	@include('forms.states', ['state' => $state])
 </div>
 
-<div class="form-group col-lg-2">
+<div class="form-group col-md-2 company-zip">
 	<label>Zip Code</label>
     {{ Form::text('zip', $zip, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
 </div>
 
-<div class="form-group col-lg-4">
+<div class="form-group col-md-4">
     <label>Country</label>
     @include('forms.countries', [])
 </div>

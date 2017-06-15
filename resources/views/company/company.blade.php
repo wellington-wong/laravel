@@ -6,7 +6,9 @@
 
     <div class="container-fluid company-profile-wrapper">
 
+        <div class="row">
         @include('layouts.page-header', ['header' => ucwords($company->company_name), 'col' => 12])
+        </div>
 
         @if( !$errors->isEmpty() )
             <div class="alert alert-warning col-md-12">
@@ -78,27 +80,32 @@
             </div>
         </div>
     
+        <div class="row">
         @include('layouts.page-header', ['header' => 'Plan', 'col' => 12])
-        <table class="table table-plan">
-            <tbody>
-                <tr>
-                    <td>Basic Plan</td>
-                    <td>1 of 2 Admin Accounts Used</td>
-                    <td class="col-md-2"><button class="btn btn-primary">upgrade</button></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="questions-wrapper"><span class="questions">Questions about your plan?</span> <span class="call-us">Call Us: 000.000.0000</span></div>
+            <table class="table table-plan">
+                <tbody>
+                    <tr>
+                        <td>Basic Plan</td>
+                        <td>1 of 2 Admin Accounts Used</td>
+                        <td class="col-md-2"><button class="btn btn-primary">upgrade</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="questions-wrapper"><span class="questions">Questions about your plan?</span> <span class="call-us">Call Us: 000.000.0000</span></div>
+        </div>
 
+
+        <div class="row">
         @include('layouts.page-header', ['header' => 'Billing', 'col' => 12])
-        <table class="table table-credit-info">
-            <tbody>
-                <tr>
-                    <td>Credit Card</td>
-                    <td>Mastercard Ending in 4466</td>
-                    <td class="col-md-2"><button class="btn btn-primary">update card</button></td>
-                </tr>
-            </tbody>
-        </table>
+            <table class="table table-credit-info">
+                <tbody>
+                    <tr>
+                        <td>Credit Card</td>
+                        <td>Mastercard Ending in 4466</td>
+                        <td class="col-md-2"><button class="btn btn-primary">update card</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

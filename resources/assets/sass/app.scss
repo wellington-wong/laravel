@@ -1035,7 +1035,18 @@ table.table {
 	.page-header {
 		padding-bottom: 0;
 	}
-	#update-company-form {}
+	#update-company-form {
+		> div {
+			padding-left: 0;
+		}
+	}
+	.company-profile-left {
+		.company-zip {
+			label {
+			 white-space: nowrap;
+			}
+		}
+	}
 	.company-profile-right {
 		color: #fff;
 		background: $bg-color;
