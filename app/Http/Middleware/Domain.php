@@ -23,8 +23,8 @@ class Domain
         $hosts = explode('.', $request->getHost());
         $subdomain = $hosts[0];
         $request->current_subdomain = $subdomain;
-        $request->current_company_id = Company::where('subdomain', $subdomain)->value('id');
-        //$request->current_subdomain_id = $request->current_sudomain_id;
+        
+        $request->_company = Company::where('subdomain', $subdomain)->first();
 
         return $next($request);
     }

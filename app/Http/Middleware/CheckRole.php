@@ -20,10 +20,10 @@ class CheckRole
         if(Auth::check()){
 
             // Assign member role when no role is found for this company
-            if ( auth()->user()->roles()->where('company_id', $request->current_company_id)->get()->isEmpty()) {
+            if ( auth()->user()->roles()->where('company_id', $request->_company->id)->get()->isEmpty()) {
                 if ($member = Role::where('name', 'member')->first()) {
                     auth()->user()->roles()->save($member,
-                        ['company_id'=>$request->current_company_id]);
+                        ['company_id'=>$request->_company->id ]);
                 }
             }
         }
