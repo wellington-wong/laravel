@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.messages')
 
 @section('content')
     @include('messenger.partials.flash')

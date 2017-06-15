@@ -43,7 +43,7 @@
                 <div class="company-logo">
                     <img alt="{{ isset($user->companies()->first()->company_name) ? $user->companies()->first()->company_name : '' }}" src="/{{ isset($user->companies()->first()->logo) ? $user->companies()->first()->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
                     <div class="logo-pencil ajax-logo"><i class="fa fa-pencil"></i></div>
-                    {{ Form::open(['route' => ['post-company-update-logo', $user->companies()->first()->id], 'id' => 'company-update-logo', 'enctype' => 'multipart/form-data']) }}
+                    {{ Form::open(['route' => ['post-company-update-logo', (isset($user->companies()->first()->id) ? $user->companies()->first()->id : '')], 'id' => 'company-update-logo', 'enctype' => 'multipart/form-data']) }}
                     {{ Form::file('update-logo', ['class' => 'hidden logo-input']) }}
                     {{ Form::close() }}
                     <div class="hidden processing">Processing...</div>
