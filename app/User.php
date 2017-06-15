@@ -8,12 +8,14 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use App\Role;
 use App\RoleUser;
 use Laravel\Cashier\Billable;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use EntrustUserTrait;
     use Billable;
+    use Messagable;
 
     /**
      * The attributes that are mass assignable.
