@@ -1,10 +1,10 @@
-@extends('layouts.messages')
+@extends('layouts.app')
+
+@section('pageTitle', $thread->subject)
 
 @section('content')
-    <div class="col-md-6">
-        <h1>{{ $thread->subject }}</h1>
-        @each('messenger.partials.messages', $thread->messages, 'message')
+    <h1>{{ $thread->subject }}</h1>
+    @each('messenger.partials.messages', $thread->messages, 'message')
 
-        @include('messenger.partials.form-message')
-    </div>
+    @include('messenger.partials.form-message')
 @stop

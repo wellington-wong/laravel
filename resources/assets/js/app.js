@@ -620,4 +620,13 @@ $(function (){
 	});
 // END CREATE COMPANY
 
+// MESSAGES
+	var options = {
+		selector: 'textarea[name="message"]',
+		menubar: false,
+		statusbar: false
+	}
+	tinymceHelper(options, false);
+// END MESSAGES
+
 });

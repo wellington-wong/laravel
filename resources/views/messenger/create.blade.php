@@ -3,7 +3,7 @@
 @section('pageTitle', 'New Message')
 
 @section('content')
-    <div class="container-fluid messages-wrapper">
+    <div class="container-fluid new-message-wrapper">
 
         <div class="row">
             @include('layouts.page-header', ['header' => 'New Message', 'col' => 6])

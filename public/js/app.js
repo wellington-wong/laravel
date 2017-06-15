@@ -20842,6 +20842,15 @@ $(function () {
 		$('.logo-input').trigger('click');
 	});
 	// END CREATE COMPANY
+
+	// MESSAGES
+	var options = {
+		selector: 'textarea[name="message"]',
+		menubar: false,
+		statusbar: false
+	};
+	tinymceHelper(options, false);
+	// END MESSAGES
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
