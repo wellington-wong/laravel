@@ -53,9 +53,10 @@ class MessagesController extends Controller
         // $users = User::whereNotIn('id', $thread->participantsUserIds())->get();
         // don't show the current user in list
         $userId = Auth::user()->id;
-        $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
+        $members = $request->_company->members()->get()->keyBy('id');
+        $members->forget(auth()->user()->id);
         $thread->markAsRead($userId);
-        return view('messenger.show', compact('thread', 'users'));
+        return view('messenger.show', compact('thread', 'members'));
     }
     /**
      * Creates a new message thread.

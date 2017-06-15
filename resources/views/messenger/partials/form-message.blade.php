@@ -1,4 +1,4 @@
-<h2>Reply</h2>
+<h4>Reply</h4>
 <form action="{{ route('messages.update', $thread->id) }}" method="post">
     {{ method_field('put') }}
     {{ csrf_field() }}
@@ -8,11 +8,12 @@
         <textarea name="message" class="form-control">{{ old('message') }}</textarea>
     </div>
 
-    @if($users->count() > 0)
-        <div class="checkbox">
-            @foreach($users as $user)
-                <label title="{{ $user->name }}">
-                    <input type="checkbox" name="recipients[]" value="{{ $user->id }}">{{ $user->name }}
+    @if($members->count() > 0)
+        <div class="checkbox message-checkbox">
+            <h5>Include as Receipients:</h5>
+            @foreach($members as $member)
+                <label title="{{ $member->name }}">
+                    <input type="checkbox" name="recipients[]" value="{{ $member->id }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}
                 </label>
             @endforeach
         </div>
