@@ -53,7 +53,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm( Request $request )
     {
-        if ( !is_null( $request->subdomain_id ) ) {
+        if ( !is_null( $request->_company ) ) {
             return $this->showRegistrationSimple();
         }
         return view('auth.register');
