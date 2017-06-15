@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
 
         <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 no-padding-lr">
                     <form action="{{ route('messages.store') }}" method="post">
                         {{ csrf_field() }}
                         <!-- Subject Form Input -->
@@ -29,10 +29,12 @@
                         </div>
 
                         @if(isset($users) && $users->count() > 0)
+                            <div><label class="control-label">Recipients</label></div>
                             <div class="checkbox message-checkbox">
                                 @foreach($users as $user)
-                                    <label title="{{ $user->name }}"><input type="checkbox" name="recipients[]"
-                                                                            value="{{ $user->id }}">{!!$user->name!!}</label>
+                                    <label title="{{ $user->name }}">
+                                        <input type="checkbox" name="recipients[]" value="{{ $user->id }}"> {!!$user->name!!}
+                                    </label>
                                 @endforeach
                             </div>
                         @endif
