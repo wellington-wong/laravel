@@ -39,15 +39,15 @@ class HomeController extends Controller
         
         // Optimize variables
         $user = auth()->user();
-        $company = $request->_company;
+        $_company = $request->_company;
         $hosts = explode('.', $request->getHost());
-        $shareUrl = (isset($company->subdomain) ? $company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
+        $shareUrl = (isset($_company->subdomain) ? $_company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
 
         // Get referral pending approval and reward
         $pendingReferrals = new Referral();
         $pendingReferrals = $pendingReferrals->getReferralTally();
 
         return view('home')
-        ->with(compact('company', 'pendingReferrals', 'user', 'shareUrl'));
+        ->with(compact('_company', 'pendingReferrals', 'user', 'shareUrl'));
     }
 }

@@ -42,15 +42,15 @@
         <div class="col-md-4 dashboard-right">
             <div class="company-info text-center">            
                 <div class="company-logo">
-                    <img alt="{{ isset($company->company_name) ? $company->company_name : '' }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
+                    <img alt="{{ isset($_company->company_name) ? $_company->company_name : '' }}" src="/{{ isset($_company->logo) ? $_company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
                     <div class="logo-pencil ajax-logo"><i class="fa fa-pencil"></i></div>
-                    {{ Form::open(['route' => ['post-company-update-logo', (isset($company->id) ? $company->id : '')], 'id' => 'company-update-logo', 'enctype' => 'multipart/form-data']) }}
+                    {{ Form::open(['route' => ['post-company-update-logo', (isset($_company->id) ? $_company->id : '')], 'id' => 'company-update-logo', 'enctype' => 'multipart/form-data']) }}
                     {{ Form::file('update-logo', ['class' => 'hidden logo-input']) }}
                     {{ Form::close() }}
                     <div class="hidden processing">Processing...</div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="company-info-name">{{ isset($company->company_name) ? $company->company_name : '' }}</div>
+                <div class="company-info-name">{{ isset($_company->company_name) ? $_company->company_name : '' }}</div>
                 <div class="membership-role">
                     <h4><strong>Membership Role</strong></h4>
                     <span>{{ isset($user->roles->first()->display_name) ? $user->roles->first()->display_name : '' }}</span>
