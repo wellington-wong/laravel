@@ -1,18 +1,29 @@
-        <div class="row">    
-            <div class="col-md-12 table-referral-wrapper table-wrapper">
-                <table class="table table-message tablesaw tablesaw-stack table-custom">
-                    <tbody>
                         <tr>
-                            <td class="col-md-1 avatar"><i class="fa fa-user-circle"></i></td>
-                            <td class="col-md-11">                                
-                                <strong>{{ $message->user->name }}</strong>
-                                {!! $message->body !!}
-                                <div class="text-muted">
-                                    <small>Posted {{ $message->created_at->diffForHumans() }}</small>
+                            @if ($message->user_id == Auth::user()->id)
+                            <td>                        
+                                <div class="col-md-11 text-right">
+                                    <strong>{{ $message->user->name }}</strong>
+                                    {!! $message->body !!}
+                                    <div class="text-muted">
+                                        <small>Posted {{ $message->created_at->diffForHumans() }}</small>
+                                    </div>
+                                </div>    
+                                <div class="col-md-1 no-padding-lr avatar text-center">
+                                    <i class="fa fa-user-circle"></i>
                                 </div>
                             </td>
+                            @else
+                            <td>        
+                                <div class="col-md-1 no-padding-lr avatar text-center">
+                                    <i class="fa fa-user-circle"></i>
+                                </div>
+                                <div class="col-md-11">
+                                    <strong>{{ $message->user->name }}</strong>
+                                    {!! $message->body !!}
+                                    <div class="text-muted">
+                                        <small>Posted {{ $message->created_at->diffForHumans() }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            @endif
                         </tr>
-                    </tbody>
-                </table>    
-            </div>
-        </div>
