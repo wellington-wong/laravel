@@ -42,7 +42,7 @@
 
                 <div class="form-group col-md-6" >
                     <label>Company Website</label>          
-                    {{ Form::text('website', isset($company->website) ? $company->website : 'http://', ['placeholder' => 'Company Website', 'class' => 'form-control company-website' . ($errors->has('website') ? ' has-error' : '') ]) }}            
+                    {{ Form::text('website', isset($company->website) ? $company->website : '', ['placeholder' => 'Company Website', 'class' => 'form-control company-website' . ($errors->has('website') ? ' has-error' : '') ]) }}            
                 </div>
 
                 @include('forms.address', ['company' => true, 'city' => $company->address[0]->city, 'address' => $company->address[0]->address, 'address2' => $company->address[0]->address2, 'zip' => $company->address[0]->zip, 'state' => $company->address[0]->state])

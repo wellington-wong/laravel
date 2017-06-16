@@ -111,12 +111,12 @@ class CompanyController extends Controller
             'zip'=>'required|digits:5',
             'company_name'=>'required',
             'phone'=>'required|phone:US',
-            'email'=>'required|email',
-            'website'=>'url'
+            'email'=>'nullable|email',
+            'website'=>'nullable|url'
         ];
 
         $messages = [
-            'website.url' => 'The website field is required, please use complete url starting with "http://" or "https://"',
+            'website.url' => 'Please use complete url starting with "http://" or "https://"',
         ];
 
         $validator = Validator::make($request->input(), $rules, $messages);
@@ -141,7 +141,7 @@ class CompanyController extends Controller
             $company->address[0]->save();
         }
 
-        return redirect(route('get-company', [34]));
+        return back();
 
     }
 
