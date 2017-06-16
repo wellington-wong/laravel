@@ -4,8 +4,18 @@
 
 @section('content')
     <div class="container-fluid messages-wrapper">
-
+        
         <div class="row">
+            @if( !$errors->isEmpty() )
+                <div class="alert alert-warning">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+
+                </div>
+            @endif
             @include('layouts.page-header', ['header' => 'Messages', 'col' => 6])
         </div>
 

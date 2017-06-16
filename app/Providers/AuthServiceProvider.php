@@ -26,6 +26,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // Check if user can update post
+        Gate::define('update-post', function ($user, $post) {
+            return $user->id == $post->user_id;
+        });
+
         // Member
         Gate::define('create-account', function () {
             return Auth::user()->can('create_account');

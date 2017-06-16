@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use App\Notifications\MessageReceived;
 
 class MessagesController extends Controller
 {
@@ -65,7 +66,11 @@ class MessagesController extends Controller
      */
     public function create( Request $request )
     {    	
-        $users = $request->_company->members()->get();
+        if (isset($request->_company)) {
+            $users = $request->_company->members()->get();
+        } else {
+            return back()->withErrors(['Company not found.']);
+        }
         return view('messenger.create', compact('users'));
     }
     /**
@@ -100,7 +105,12 @@ class MessagesController extends Controller
         // Recipients
         if (Input::has('recipients')) {
             $thread->addParticipant($input['recipients']);
+            foreach ($input['recipients'] as $recipient) {
+                $notifyUser = User::find($recipient);
+                $notifyUser->notify(new MessageReceived($notifyUser));
+            }
         }
+        
         return redirect('messages');
     }
     /**
