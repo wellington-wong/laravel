@@ -33,6 +33,7 @@ class ManageAccountController extends Controller
      */
     public function postUpdate( Request $request )
     {
+        dd($request->input());
         return view('manage-account.index');
     }
 
