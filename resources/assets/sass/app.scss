@@ -769,7 +769,7 @@ table.table {
 .form-control, select {
 	border-radius: 0;
 	border-width: 2px;
-	border-color: &bg-color3;
+	border-color: $bg-color3;
 }
 .company-logo {
 	position: relative;
