@@ -36,6 +36,77 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * Entrust overrides
+     */
+    public function isGlobalAdmin() {
+        return \App\RoleUser::where('user_id', $this->id)->where('role_id', 4)->count() == 1;
+    }
+
+    public function roles( Company $company = null )
+    {
+        if ( is_null($company) ) {
+            $company_id = config('company_id');
+        } else {
+            $company_id = $company->id;
+        }
+        return $this->belongsToMany(config('entrust.role'), config('entrust.role_user_table'), config('entrust.user_foreign_key'), config('entrust.role_foreign_key'))
+            ->where( 'company_id', $company_id );
+    }
+
+    public function hasAnyRole() {
+        return $this->roles()->count() > 0;
+    }
+
+    /**
+     * Alias to eloquent many-to-many relation's attach() method.
+     *
+     * @param mixed $role
+     */
+    public function attachRole( $role, Company $company = null )
+    {
+        if(is_object($role)) {
+            $role = $role->getKey();
+        }
+
+        if(is_array($role)) {
+            $role = $role['id'];
+        }
+
+        if( null == $company ) {
+            $company_id = config('company_id');
+        } else {
+            $company_id = $company->id;
+        }
+
+        //$this->roles()->attach($role);
+        $this->roles()->attach($role, ['company_id'=>$company_id ]);
+    }
+
+    public function detachRole( $role, Company $company = null )
+    {
+        if (is_object($role)) {
+            $role = $role->getKey();
+        }
+
+        if (is_array($role)) {
+            $role = $role['id'];
+        }
+
+        if( null == $company ) {
+            $company_id = config('company_id');
+        } else {
+            $company_id = $company->id;
+        }
+
+        $r = RoleUser::where( 'role_id', $role )
+            ->where( 'user_id', $this->id )
+            ->where( 'company_id', $company_id );
+        $r->delete();
+    }
+
+
+
     public function getDisplayNameAttribute() {
         if ( !is_null($this->name) ) {
             return $this->name;
