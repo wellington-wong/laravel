@@ -741,9 +741,6 @@ table.table {
 		padding-left: 5px;
 		padding-right: 5px;
 		margin-bottom: 10px;
-		input.text::-webkit-input-placeholder {
-		    color: $bg-color;
-		}
 		.btn-search {
 			background: url('/images/search-glyph.png') no-repeat 0 -1px;    
 			border: 0;
@@ -755,13 +752,20 @@ table.table {
 		    right: 6px;
 		    position: absolute;
 		}
+		input.text::-webkit-input-placeholder {
+		    color: $bg-color;
+		    text-align: center;
+		}
 		input.text:-moz-placeholder {
+		    color: $bg-color;
 		    text-align: center;
 		}
 		input.text::-moz-placeholder {
+		    color: $bg-color;
 		    text-align: center;
 		}
 		input.text:-ms-input-placeholder {
+		    color: $bg-color;
 		    text-align: center;
 		}
 	}
@@ -1428,3 +1432,15 @@ table.table {
 	}
 }
 /*** Messages End ***/
+
+/*** Manage Account ***/
+#update-user-form {
+	.upload-label {
+		width: 100%;
+		border-radius: 0 !important;
+		border-width: 2px;
+		border-color: #f0f0f0;
+		box-shadow: none;
+	}
+}
+/*** Manage Account End ***/
