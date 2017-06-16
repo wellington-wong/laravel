@@ -22,7 +22,7 @@
                 <div class="member-message">
                     <div class="rh-count"><span>{{ count(Session::get('messages')) }}</span></div><hr />                
                     <div class="rh-desc">
-                        <span>Member Message</span>
+                        <span>Member {{ count(Session::get('messages')) > 1 ? ' Messages' : ' Message' }}</span>
                         <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
                     </div>
                 </div>
