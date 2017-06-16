@@ -1405,4 +1405,17 @@ table.table {
 		margin-top: 11px; 
 	}
 }
+.message-wrapper {
+	.media-body {
+		width: auto;
+	}
+	td.avatar {    
+		vertical-align: top !important;
+		.fa.fa-user-circle {
+			font-size: 50px;
+			display: block;
+			margin-top: 3px;
+		}
+	}
+}
 /*** Messages End ***/
