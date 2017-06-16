@@ -34,5 +34,9 @@ class Company extends Model
         return $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' );
     }
 
+    public function emailLogs() {
+        return $this->hasMany( LogEmail::class, 'company_id' );
+    }
+
 
 }
