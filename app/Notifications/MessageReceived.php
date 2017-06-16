@@ -10,6 +10,7 @@ use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
 use Auth;
+use App\LogEmail;
 
 class MessageReceived extends Notification
 {
@@ -48,6 +49,8 @@ class MessageReceived extends Notification
      */
     public function toMail($notifiable)
     {        
+
+        LogEmail::insert(['user_id' => Auth::user()->id, 'recipient_id' => $this->participant->user_id, 'thread_id' => $this->thread->id]);
         return (new MailMessage)
                     ->subject('Perxi: New Message Received')
                     ->line('You have received a new message from ' . (isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->first_name . ' ' . Auth::user()->last_name) . '.')
