@@ -112,9 +112,14 @@ class CompanyController extends Controller
             'company_name'=>'required',
             'phone'=>'required|phone:US',
             'email'=>'required|email',
-            'website'=>'required|url'
+            'website'=>'url'
         ];
-        $validator = Validator::make($request->input(), $rules);
+
+        $messages = [
+            'website.url' => 'The website field is required, please use complete url starting with "http://" or "https://"',
+        ];
+
+        $validator = Validator::make($request->input(), $rules, $messages);
 
         if ( $validator->fails() ) {
             return redirect()->back()->withInput()
