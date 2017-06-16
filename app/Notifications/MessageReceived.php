@@ -49,7 +49,8 @@ class MessageReceived extends Notification
     public function toMail($notifiable)
     {        
         return (new MailMessage)
-                    ->line('You received a new message from ' . isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->first_name . ' ' . Auth::user()->last_name)
+                    ->subject('Perxi: New Message Received')
+                    ->line('You have received a new message from ' . (isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->first_name . ' ' . Auth::user()->last_name) . '.')
                     ->action('Go to message', url('/messages/' . $this->thread->id));
     }
 
