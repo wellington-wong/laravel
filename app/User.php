@@ -170,6 +170,32 @@ class User extends Authenticatable
         return $phone;
     }
 
+    /*
+     * update default phone number to a user from a request
+     */
+    public function updateDefaultPhone( \Illuminate\Http\Request $request ) {
+        if ( null == $request->input('phone')) {
+            return null;
+        } else {
+            $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
+            $request->merge(['number'=>Phone::sanitize($request->input('phone'))]);
+            $request->merge(['country'=>'']);
+            $request->merge(['country_code'=>'']);
+        }
+        $input = [];
+        $phone = new Phone();
+        foreach ($phone->getFillable() as $c) {
+            if ( isset($request->$c) ) {
+                $input[] = $c;
+            }
+        }
+        $phone = $this->phones()->first()->update(
+            $request->only($input)
+        );
+        $this->phone()->updateExistingPivot($phone->id, ['default'=>1]);
+        return $phone;
+    }
+
     public function addDefaultAddress( \Illuminate\Http\Request $request ) {
         if ( null == $request->input('address')) {
             return null;
@@ -188,7 +214,7 @@ class User extends Authenticatable
         return $address;
     }
 
-    public static function getMembers() {
+    public static function getMembers( \Illuminate\Http\Request $request ) {
 
         // Get users with member and empty roles.
         $members = User::paginate(15);
@@ -203,14 +229,25 @@ class User extends Authenticatable
     }
 
 
-    public static function getMember($id) {
+    public static function getMember( \Illuminate\Http\Request $request, $id) {
         return  Role::where('name','member')->first()->users()->pluck('id', 'name');
     }
 
-    public static function getUsersBySubdomain() {
+    public static function getUsersBySubdomain( \Illuminate\Http\Request $request ) {
         return User::join('companies', 'owner_id', 'users.id')
         ->orderBy('subdomain', 'desc')
         ->paginate(15);
+    }
+
+    public function updateProfile( \Illuminate\Http\Request $request ) {
+        foreach ($this->getFillable() as $c) {
+            if ( isset($request->$c) ) {
+                $input[] = $c;
+            }
+        }
+        return $this->update(
+            $request->only($input)
+        );
     }
 
 }
