@@ -34,10 +34,11 @@ class Domain
                 return redirect('https://app.' . $_ENV['APP_URL'] );
             }
         }
+        $company_id = isset($company->id) ? $company->id : 0;
 
         $request->current_subdomain = $subdomain;
         $request->_company = $company;
-        config(['company_id' => $company->id]);
+        config(['company_id' => $company_id]);
         View::share('_company', $company);
 
         return $next($request);
