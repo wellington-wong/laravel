@@ -16,9 +16,8 @@
                 </div>
             @endif
             @include('layouts.page-header', ['header' => 'Messages', 'col' => 6])            
-            <div class="text-right col-md-6 compose-message">
-                <i class="fa fa-pencil-square-o"></i>
-                <a href="/messages/create">Compose a New Message</a>
+            <div class="text-right col-md-6 compose-message">                
+                <a href="/messages/create"><i class="fa fa-pencil-square-o"></i> Compose a New Message</a>
             </div>
         </div>
 
@@ -32,6 +31,7 @@
                             <th>Subject</th>
                             <th>From</th>
                             <th>To</th>
+                            <th>Action</th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -39,8 +39,7 @@
                     </tbody>	
     		 </table>
                 <div class="text-right">
-                    <i class="fa fa-pencil-square-o"></i>
-                    <a href="/messages/create">Compose a New Message</a>
+                    <a href="/messages/create"><i class="fa fa-pencil-square-o"></i> Compose a New Message</a>
                 </div>
                  <div class="col-md-12 pagination-wrapper">{{ $threads->links() }}</div>
     	       </div>
