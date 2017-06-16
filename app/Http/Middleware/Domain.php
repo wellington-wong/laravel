@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Company;
 use Closure;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Config;
 
 class Domain
 {
@@ -23,6 +24,8 @@ class Domain
         $hosts = explode('.', $request->getHost());
         $subdomain = $hosts[0];
 
+        config(['company_id' => 0]);
+
         $company = Company::where('subdomain', $subdomain)->first();
 
         //IF THE SUBDOMAIN IS NOT VALID
@@ -34,7 +37,7 @@ class Domain
 
         $request->current_subdomain = $subdomain;
         $request->_company = $company;
-
+        config(['company_id' => $company->id]);
         View::share('_company', $company);
 
         return $next($request);
