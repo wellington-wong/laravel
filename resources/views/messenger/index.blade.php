@@ -13,7 +13,6 @@
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
-
                 </div>
             @endif
             @include('layouts.page-header', ['header' => 'Messages', 'col' => 6])            
