@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\LogEmail;
 
 class ProgramOptionsController extends Controller
 {
@@ -26,7 +27,7 @@ class ProgramOptionsController extends Controller
     }
 
     /**
-     * Display a listing of all users.
+     * Display a listing of referral program settings.
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -39,7 +40,7 @@ class ProgramOptionsController extends Controller
     }
 
     /**
-     * Display a listing of all users.
+     * Display a listing of reward settings
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -52,7 +53,7 @@ class ProgramOptionsController extends Controller
     }
 
     /**
-     * Display a listing of all users.
+     * Display a listing of notification emails
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -62,5 +63,18 @@ class ProgramOptionsController extends Controller
         $notificationSettings = [];
         return view('program-options.notification-emails')
         ->with(compact('notificationSettings'));
+    }
+
+    /**
+     * Display a listing of email logs
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function emailLogs( Request $request )
+    {
+        $emailLogs = LogEmail::paginate(15);
+        return view('program-options.email-logs')
+        ->with(compact('emailLogs'));
     }
 }
