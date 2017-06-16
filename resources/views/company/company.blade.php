@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('pageTitle', $company->company_name)
+@section('pageTitle', $_company->company_name)
 
 @section('content')
 
     <div class="container-fluid company-profile-wrapper">
 
         <div class="row">
-        @include('layouts.page-header', ['header' => ucwords($company->company_name), 'col' => 12])
+        @include('layouts.page-header', ['header' => ucwords($_company->company_name), 'col' => 12])
         </div>
 
         @if( !$errors->isEmpty() )
@@ -26,28 +26,28 @@
 
                 <div class="col-md-6">
                     <label>Company Name</label>
-                    {{ Form::text('company_name', (isset($company->company_name) ? $company->company_name : old('company_name')), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
+                    {{ Form::text('company_name', (isset($_company->company_name) ? $_company->company_name : old('company_name')), ['placeholder' => 'Company Name', 'class' => 'form-control' . ($errors->has('company_name') ? ' has-error' : '')]) }}
                 </div>
 
                 <div class="col-md-6">
                     <label>Company Number</label>
-                    @include('forms.phone', ['phone_label'=>'Company  Number', 'placeholder' => 'Company Number', 'no_col' => true, 'value' => isset($company->phone[0]->phone) ? $company->phone[0]->phone : ''])
+                    @include('forms.phone', ['phone_label'=>'Company  Number', 'placeholder' => 'Company Number', 'no_col' => true, 'value' => isset($_company->phone[0]->phone) ? $_company->phone[0]->phone : ''])
                 </div>
 
                 <div class="form-group col-md-6" >
                     <label>Company Email</label>
                     <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
-                    {{ Form::text('email', $company->email, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
+                    {{ Form::text('email', $_company->email, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
                 </div>
 
                 <div class="form-group col-md-6" >
                     <label>Company Website</label>          
-                    {{ Form::text('website', isset($company->website) ? $company->website : '', ['placeholder' => 'Company Website', 'class' => 'form-control company-website' . ($errors->has('website') ? ' has-error' : '') ]) }}            
+                    {{ Form::text('website', isset($_company->website) ? $_company->website : '', ['placeholder' => 'Company Website', 'class' => 'form-control company-website' . ($errors->has('website') ? ' has-error' : '') ]) }}            
                 </div>
 
-                @include('forms.address', ['company' => true, 'city' => $company->address[0]->city, 'address' => $company->address[0]->address, 'address2' => $company->address[0]->address2, 'zip' => $company->address[0]->zip, 'state' => $company->address[0]->state])
+                @include('forms.address', ['company' => true, 'city' => $_company->address[0]->city, 'address' => $_company->address[0]->address, 'address2' => $_company->address[0]->address2, 'zip' => $_company->address[0]->zip, 'state' => $_company->address[0]->state])
 
-                {{ Form::hidden('company_id', (isset($company->id) ? $company->id : null )) }}
+                {{ Form::hidden('company_id', (isset($_company->id) ? $_company->id : null )) }}
 
                 <div class="form-group col-md-12 text-right">
                     {{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100']) }}
@@ -59,15 +59,15 @@
             <div class="col-md-4 company-profile-right">
                 <div class="company-info text-center">            
                     <div class="company-logo">
-                        <img alt="{{ $company->company_name }}" src="/{{ isset($company->logo) ? $company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
+                        <img alt="{{ $_company->company_name }}" src="/{{ isset($_company->logo) ? $_company->logo : 'images/company-placeholder.png' }}" class="img-responsive col-xs-10 col-xs-offset-1"> 
                         <div class="logo-pencil ajax-logo"><i class="fa fa-pencil"></i></div>
-                        {{ Form::open(['route' => ['post-company-update-logo', $user->companies()->first()->id], 'id' => 'company-update-logo', 'enctype' => 'multipart/form-data']) }}
+                        {{ Form::open(['route' => ['post-company-update-logo', $_company->id], 'id' => 'company-update-logo', 'enctype' => 'multipart/form-data']) }}
                         {{ Form::file('update-logo', ['class' => 'hidden logo-input']) }}
                         {{ Form::close() }}
                         <div class="hidden processing">Processing...</div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="company-info-name">{{ $user->companies()->first()->company_name }}</div>
+                    <div class="company-info-name">{{ $_company->company_name }}</div>
                     <div class="membership-role">
                         <h4><strong>Membership Role</strong></h4>
                         <span>{{ $user->roles->first()->display_name  }}</span>

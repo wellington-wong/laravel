@@ -6,6 +6,7 @@ use App\Address;
 use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 
 class CompanyController extends Controller
 {
@@ -86,13 +87,13 @@ class CompanyController extends Controller
     public function getCompany(Request $request, $id) {
 
         // Prepare variables
-        $company = Company::find($id);
+        $_company = Company::find($id);
         $user = auth()->user();
         $hosts = explode('.', $request->getHost());
-        $shareUrl = (isset($user->companies()->first()->subdomain) ? $user->companies()->first()->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
+        $shareUrl = (isset($_company->subdomain) ? $_company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
 
         return view('company.company')
-            ->with(compact('company', 'shareUrl', 'user'));
+            ->with(compact('_company', 'shareUrl', 'user'));
 
     }
 
@@ -102,6 +103,10 @@ class CompanyController extends Controller
      * @return
      */
     public function postUpdate(Request $request) {
+
+        if (Gate::denies('update-post', $request->_company)){
+            return back()->withErrors('You do not have permission to update this company.');
+        }
 
         $rules = [
             'address'=>'required|max:100',
