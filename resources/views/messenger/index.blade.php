@@ -16,7 +16,11 @@
 
                 </div>
             @endif
-            @include('layouts.page-header', ['header' => 'Messages', 'col' => 6])
+            @include('layouts.page-header', ['header' => 'Messages', 'col' => 6])            
+            <div class="text-right col-md-6 compose-message">
+                <i class="fa fa-pencil-square-o"></i>
+                <a href="/messages/create">Compose a New Message</a>
+            </div>
         </div>
 
         <div class="clearfix"></div>
@@ -33,15 +37,12 @@
                     </thead> 
                     <tbody>
                     	@each('messenger.partials.thread', $threads, 'thread', 'messenger.partials.no-threads')
-                    </tbody>		
-                    <tfoot>
-                    	<tr>
-                    		<td colspan="3" class="">
-                    			<a href="/messages/create">New Message</a>
-                    		</td>
-                    	</tr>
-                    </tfoot>	 
-    		  </table>
+                    </tbody>	
+    		 </table>
+                <div class="text-right">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <a href="/messages/create">Compose a New Message</a>
+                </div>
                  <div class="col-md-12 pagination-wrapper">{{ $threads->links() }}</div>
     	       </div>
     	</div>
