@@ -29,7 +29,7 @@ class MessagesController extends Controller
     public function index( Request $request )
     {
         // All threads, ignore deleted/archived participants
-        $threads = Thread::getAllLatest()->get();
+        $threads = Thread::getAllLatest()->paginate(15);
         // All threads that user is participating in
         // $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
         // All threads that user is participating in, with new messages

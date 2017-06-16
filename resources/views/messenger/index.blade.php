@@ -41,8 +41,9 @@
                     		</td>
                     	</tr>
                     </tfoot>	 
-    			</table>
-    		</div>
+    		  </table>
+                 <div class="col-md-12 pagination-wrapper">{{ $threads->links() }}</div>
+    	       </div>
     	</div>
     </div>
 @stop
