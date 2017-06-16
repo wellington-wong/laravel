@@ -107,7 +107,7 @@ class MessagesController extends Controller
             $thread->addParticipant($input['recipients']);
             foreach ($input['recipients'] as $recipient) {
                 $notifyUser = User::find($recipient);
-                $notifyUser->notify(new MessageReceived($thread, $message, $participant));
+                $notifyUser->notify(new MessageReceived($thread, $message, $participant, $request));
             }
         }
         
