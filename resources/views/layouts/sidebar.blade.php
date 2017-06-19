@@ -27,7 +27,7 @@
                                 @if ( auth()->user()->getRoleCompanies(['admin', 'superadmin'])->count() > 1 || 0 == config('company_id') )
                                     <ul class="nav">
                                         <li>
-                                        My Companies
+                                        I Administer These Companies:
                                         @foreach( auth()->user()->getRoleCompanies(['admin', 'superadmin']) as $c )
                                             {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
                                             @if( $c->subdomain != $_company->subdomain )
@@ -35,6 +35,21 @@
                                             @endif
                                         @endforeach
                                         </li>
+                                    </ul>
+                                @endif
+
+                                {{-- IF THE USER IS AT THE app.perxi.com PAGE SHOW THE USER'S MEMBER ACCOUNTS --}}
+                                @if ( auth()->user()->getRoleCompanies(['member'])->count() > 1 || 0 == config('company_id') )
+                                    <ul class="nav">
+                                        <li>
+                                        Companies
+                                        @foreach( auth()->user()->getRoleCompanies(['admin', 'superadmin']) as $c )
+                                            {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
+                                            @if( $c->subdomain != $_company->subdomain )
+                                                <li><a href="//{{ $c->subdomain }}.{{ config('app.url') }}">{{ $c->company_name }}</a></li>
+                                                @endif
+                                                @endforeach
+                                                </li>
                                     </ul>
                                 @endif
 
