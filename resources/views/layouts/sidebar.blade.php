@@ -27,13 +27,17 @@
                                 @if ( auth()->user()->getRoleCompanies(['admin', 'superadmin'])->count() > 1 || 0 == config('company_id') )
                                     <ul class="nav">
                                         <li>
-                                        I Administer These Companies:
-                                        @foreach( auth()->user()->getRoleCompanies(['admin', 'superadmin']) as $c )
-                                            {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
-                                            @if( $c->subdomain != $_company->subdomain )
-                                                <li><a href="//{{ $c->subdomain }}.{{ config('app.url') }}">{{ $c->company_name }}</a></li>
-                                            @endif
-                                        @endforeach
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="#administer-companies" data-toggle="collapse" class="menu-marker">I Administer These Companies:</a>
+                                            </div>
+                                            <ul id="administer-companies" class="collapse in">
+                                                @foreach( auth()->user()->getRoleCompanies(['admin', 'superadmin']) as $c )
+                                                    {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
+                                                    @if( $c->subdomain != $_company->subdomain )
+                                                        <li><a href="//{{ $c->subdomain }}.{{ config('app.url') }}">{{ $c->company_name }}</a></li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
                                         </li>
                                     </ul>
                                 @endif
@@ -42,108 +46,114 @@
                                 @if ( auth()->user()->getRoleCompanies(['member'])->count() > 1 || 0 == config('company_id') )
                                     <ul class="nav">
                                         <li>
-                                        Companies
-                                        @foreach( auth()->user()->getRoleCompanies(['member']) as $c )
-                                            {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
-                                            @if( $c->subdomain != $_company->subdomain )
-                                                <li><a href="//{{ $c->subdomain }}.{{ config('app.url') }}">{{ $c->company_name }}</a></li>
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="#companies" data-toggle="collapse" class="menu-marker">Companies</a>
+                                            </div>                                        
+                                            <ul id="administer-companies" class="collapse in">
+                                            @foreach( auth()->user()->getRoleCompanies(['member']) as $c )
+                                                {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
+                                                @if( $c->subdomain != $_company->subdomain )
+                                                    <li><a href="//{{ $c->subdomain }}.{{ config('app.url') }}">{{ $c->company_name }}</a></li>
                                                 @endif
-                                                @endforeach
-                                                </li>
+                                            @endforeach
+                                            </ul>
+                                        </li>
                                     </ul>
                                 @endif
 
-                                @role(['member'])
-                                <ul class="nav">
-                                    <li class="{{ Request::path() == 'referrals' ? 'active' : '' }}">
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="{{ route('referrals') }}">Referrals</a>
-                                            <a href="#submenu-referrals" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                        </div>
-                                        <ul id="submenu-referrals" class="collapse in">
-                                            <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Submit a Referral</a></li>
-                                            <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-history') }}">Referral History</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="{{ route('referral-rewards') }}">Rewards</a>
-                                        </div>
-                                    </li>
-                                    <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="{{ route('how-this-works') }}">How This Works</a>
-                                        </div>
-                                    </li>
-                                    <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="{{ route('how-to-get-more-referrals') }}">How to Get More Referrals</a>
-                                        </div>
-                                    </li>
-                                    @if (Session::get('currentUserId'))
-                                    <li class="{{ Request::path() == 'login-as-original' ? 'active' : '' }}">
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
-                                            <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                        </div>
-                                        <ul id="global-settings" class="collapse in">                                            
-                                            <li class="{{ Request::is('login-as-origin') ? 'active' : '' }}"><a href="{{ route('login-as-origin') }}">Login as original</a></li>
-                                        </ul>
-                                    </li>
-                                    @endif
-                                </ul>
-                                @endrole
-                                @role(['admin', 'superAdmin', 'globalAdmin'])
-                                <ul class="nav">
-                                    <li class="{{ Request::is('referrals') ? 'active' : '' }}">
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="{{ route('referrals') }}">Referrals</a>
-                                            <a href="#submenu-referrals-member" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                        </div>
-                                        <ul id="submenu-referrals-member" class="collapse in">
-                                            <li class="{{ Request::is('referral/create') ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Add Referral</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="{{ Request::is('members') ? 'active' : '' }}">
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="{{ route('members') }}">Members</a>
-                                            <a href="#members" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="#program-options" data-toggle="collapse" class="menu-marker">Program Options</a>
-                                            <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                        </div>
-                                        <ul id="program-options" class="collapse in">
-                                            <li class="{{ (Request::is('company/*') && !Request::is('company/create')) ? 'active' : '' }}"><a href="{{ route('get-company', $_company->id ) }}">Company Profile</a></li>
-                                            <li class="{{ Request::is('company/create') ? 'active' : '' }}"><a href="{{ route('company-create') }}">Create Company</a></li>
-                                            <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
-                                            <li class="{{ Request::is('program-options/users') ? 'active' : '' }}"><a href="{{ route('program-options-users') }}">Users</a></li>
-                                            <li class="{{ Request::is('program-options/referral-program-settings') ? 'active' : '' }}"><a href="{{ route('program-options-referral-program-settings') }}">Referral Program Settings</a></li>
-                                            <li class="{{ Request::is('program-options/reward-settings') ? 'active' : '' }}"><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
-                                            <li class="{{ Request::is('program-options/notification-emails') ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
-                                        </ul>
-                                    </li>
-                                    @role( ['globalAdmin'] )
-                                    <li class="">
-                                        <div class="main-menu-item-wrapper">
-                                            <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
-                                            <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                        </div>
-                                        <ul id="global-settings" class="collapse in">
-                                            @can('submit-member-referral')<li class="hidden {{ Request::is('global-settings/submit-referral-member') ? 'active' : '' }}"><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
-                                            @can('edit-member-information')<li class="hidden {{ Request::is('global-settings/edit-member-information') ? 'active' : '' }}"><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
-                                            @can('export-member-information')<li class="hidden {{ Request::is('global-settings/export-member-information') ? 'active' : '' }}"><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan                                            
-                                            @can('add-delete-admin')<li class="hidden {{ Request::is('global-settings/add-delete-admin') ? 'active' : '' }}"><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
-                                            @can('define-user-roles')<li class="hidden {{ Request::is('global-settings/define-user-roles') ? 'active' : '' }}"><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
-                                            @can('login-super-admin-all-accounts')<li class="hidden {{ Request::is('global-settings/login-super-admin') ? 'active' : '' }}"><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
-                                            @can('login-as-user')<li class="{{ Request::is('global-settings/login-as-user') ? 'active' : '' }}"><a href="{{ route('login-as-user') }}">Login as User</a></li>@endcan
-                                        </ul>
-                                    </li>
+                                @if ($_subdomain->subdomain != 'app')
+                                    @role(['member'])
+                                    <ul class="nav">
+                                        <li class="{{ Request::path() == 'referrals' ? 'active' : '' }}">
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="{{ route('referrals') }}">Referrals</a>
+                                                <a href="#submenu-referrals" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            </div>
+                                            <ul id="submenu-referrals" class="collapse in">
+                                                <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Submit a Referral</a></li>
+                                                <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-history') }}">Referral History</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="{{ route('referral-rewards') }}">Rewards</a>
+                                            </div>
+                                        </li>
+                                        <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="{{ route('how-this-works') }}">How This Works</a>
+                                            </div>
+                                        </li>
+                                        <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="{{ route('how-to-get-more-referrals') }}">How to Get More Referrals</a>
+                                            </div>
+                                        </li>
+                                        @if (Session::get('currentUserId'))
+                                        <li class="{{ Request::path() == 'login-as-original' ? 'active' : '' }}">
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
+                                                <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            </div>
+                                            <ul id="global-settings" class="collapse in">                                            
+                                                <li class="{{ Request::is('login-as-origin') ? 'active' : '' }}"><a href="{{ route('login-as-origin') }}">Login as original</a></li>
+                                            </ul>
+                                        </li>
+                                        @endif
+                                    </ul>
                                     @endrole
-                                </ul>
-                                @endrole
+                                    @role(['admin', 'superAdmin', 'globalAdmin'])
+                                    <ul class="nav">
+                                        <li class="{{ Request::is('referrals') ? 'active' : '' }}">
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="{{ route('referrals') }}">Referrals</a>
+                                                <a href="#submenu-referrals-member" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            </div>
+                                            <ul id="submenu-referrals-member" class="collapse in">
+                                                <li class="{{ Request::is('referral/create') ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Add Referral</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="{{ Request::is('members') ? 'active' : '' }}">
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="{{ route('members') }}">Members</a>
+                                                <a href="#members" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="#program-options" data-toggle="collapse" class="menu-marker">Program Options</a>
+                                                <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            </div>
+                                            <ul id="program-options" class="collapse in">
+                                                <li class="{{ (Request::is('company/*') && !Request::is('company/create')) ? 'active' : '' }}"><a href="{{ route('get-company', $_company->id ) }}">Company Profile</a></li>
+                                                <li class="{{ Request::is('company/create') ? 'active' : '' }}"><a href="{{ route('company-create') }}">Create Company</a></li>
+                                                <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
+                                                <li class="{{ Request::is('program-options/users') ? 'active' : '' }}"><a href="{{ route('program-options-users') }}">Users</a></li>
+                                                <li class="{{ Request::is('program-options/referral-program-settings') ? 'active' : '' }}"><a href="{{ route('program-options-referral-program-settings') }}">Referral Program Settings</a></li>
+                                                <li class="{{ Request::is('program-options/reward-settings') ? 'active' : '' }}"><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
+                                                <li class="{{ Request::is('program-options/notification-emails') ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
+                                            </ul>
+                                        </li>
+                                        @role( ['globalAdmin'] )
+                                        <li class="">
+                                            <div class="main-menu-item-wrapper">
+                                                <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
+                                                <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            </div>
+                                            <ul id="global-settings" class="collapse in">
+                                                @can('submit-member-referral')<li class="hidden {{ Request::is('global-settings/submit-referral-member') ? 'active' : '' }}"><a href="{{ route('submit-referral-member') }}">Submit Referrals on Behalf of Member</a></li>@endcan
+                                                @can('edit-member-information')<li class="hidden {{ Request::is('global-settings/edit-member-information') ? 'active' : '' }}"><a href="{{ route('edit-member-information') }}">Edit Member Information</a></li>@endcan
+                                                @can('export-member-information')<li class="hidden {{ Request::is('global-settings/export-member-information') ? 'active' : '' }}"><a href="{{ route('export-member-information') }}">Export Member Information</a></li>@endcan                                            
+                                                @can('add-delete-admin')<li class="hidden {{ Request::is('global-settings/add-delete-admin') ? 'active' : '' }}"><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
+                                                @can('define-user-roles')<li class="hidden {{ Request::is('global-settings/define-user-roles') ? 'active' : '' }}"><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
+                                                @can('login-super-admin-all-accounts')<li class="hidden {{ Request::is('global-settings/login-super-admin') ? 'active' : '' }}"><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
+                                                @can('login-as-user')<li class="{{ Request::is('global-settings/login-as-user') ? 'active' : '' }}"><a href="{{ route('login-as-user') }}">Login as User</a></li>@endcan
+                                            </ul>
+                                        </li>
+                                        @endrole
+                                    </ul>
+                                    @endrole
+                                @endif
                         </div>
 
                         <div class="panel-footer">
