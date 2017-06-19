@@ -24,15 +24,17 @@
                             -->
 
                                 {{-- SHOW ALL THE CURRENT USER'S ADMINISTRATIVE COMPANIES (SUBDOMAINS) --}}
-                                @if ( auth()->user()->getRoleCompanies(['admin', 'superadmin'])->count() > 1 )
+                                @if ( auth()->user()->getRoleCompanies(['admin', 'superadmin'])->count() > 1 || 0 == config('company_id') )
                                     <ul class="nav">
-                                    @foreach( auth()->user()->getRoleCompanies(['admin', 'superadmin']) as $c )
-                                        {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
-                                        @if( $c->subdomain != $_company->subdomain )
-                                            {{ $c->name }}
-                                        <li>{{ $c->company_name }}</li>
-                                        @endif
-                                    @endforeach
+                                        <li>
+                                        My Companies
+                                        @foreach( auth()->user()->getRoleCompanies(['admin', 'superadmin']) as $c )
+                                            {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
+                                            @if( $c->subdomain != $_company->subdomain )
+                                                <li><a href="//{{ $c->subdomain }}.{{ config('app.url') }}">{{ $c->company_name }}</a></li>
+                                            @endif
+                                        @endforeach
+                                        </li>
                                     </ul>
                                 @endif
 
@@ -99,7 +101,7 @@
                                             <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="program-options" class="collapse in">
-                                            <li class="{{ (Request::is('company/*') && !Request::is('company/create')) ? 'active' : '' }}"><a href="{{ route('get-company', isset(auth()->user()->companies[0]->id) ? auth()->user()->companies[0]->id : '' ) }}">Company Profile</a></li>
+                                            <li class="{{ (Request::is('company/*') && !Request::is('company/create')) ? 'active' : '' }}"><a href="{{ route('get-company', $_company->id ) }}">Company Profile</a></li>
                                             <li class="{{ Request::is('company/create') ? 'active' : '' }}"><a href="{{ route('company-create') }}">Create Company</a></li>
                                             <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
                                             <li class="{{ Request::is('program-options/users') ? 'active' : '' }}"><a href="{{ route('program-options-users') }}">Users</a></li>
