@@ -5,6 +5,7 @@ namespace Tests\Browser;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\User;
 
 class EmailLogsTest extends DuskTestCase
 {
@@ -13,11 +14,13 @@ class EmailLogsTest extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testEmailLogs()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->loginAs(User::inRandomOrder()->first()->id)
+                ->visit('/email-logs')
+                ->waitForText('Email Logs')
+                ->assertSee('Email Logs');
         });
     }
 }

@@ -15,7 +15,7 @@ class ReferralsTest extends DuskTestCase
      *
      * @return void
      */
-    public function testView()
+    public function testReferrals()
     {
         // Prepare url parameters
         $sort = ['asc', 'desc'];
