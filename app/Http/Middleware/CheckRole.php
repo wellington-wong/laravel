@@ -20,7 +20,7 @@ class CheckRole
         if(Auth::check()){
             
             //IF THE SUBDOMAIN EXISTS AS A VALID COMPANY
-            if( !is_null( $request->_company ) ) {
+            if( 0 != $request->_company->id ) {
                 // Assign member role when no role is found for this company
                 if ( !$request->user()->hasAnyRole() ) {
                     if ($role = Role::where('name', 'member')->first()) {
@@ -30,6 +30,8 @@ class CheckRole
             }
 
         }
+
+        //dd( $request->user()->hasRole(['member'] ) );
 
         return $next($request);
     }
