@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Check if user can update post
         Gate::define('update-post', function ($user, $post) {
-            return $user->id == $post->user_id;
+               return $user->id == $post->owner_id;
         });
 
         // Member

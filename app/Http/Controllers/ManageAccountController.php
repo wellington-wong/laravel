@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Phone;
+use App\Address;
 
 class ManageAccountController extends Controller
 {
@@ -33,7 +35,11 @@ class ManageAccountController extends Controller
      */
     public function postUpdate( Request $request )
     {
-        return view('manage-account.index');
+        $phone = new Phone();
+        //$phone = auth()->user()->updateDefaultPhone($request);
+        auth()->user()->updateProfile($request);
+        //dd(auth()->user()->phones()->first()->update($request->only('phone')));
+        return back();
     }
 
     /**

@@ -6,19 +6,28 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Cmgmyr\Messenger\Models\Message;
+use Cmgmyr\Messenger\Models\Participant;
+use Cmgmyr\Messenger\Models\Thread;
+use Auth;
+use App\LogEmail;
 
 class MessageReceived extends Notification
 {
     use Queueable;
+
+    protected $thread;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Thread $thread, Message $message, Participant $participant)
     {
-        //
+        $this->thread = $thread;
+        $this->message = $message;
+        $this->participant = $participant;
     }
 
     /**
@@ -29,7 +38,7 @@ class MessageReceived extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail'];
     }
 
     /**
@@ -39,21 +48,13 @@ class MessageReceived extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('You received a new message')
-                    ->action('Go to message', url('/messages'));
-    }
+    {        
 
-    /**
-     * Get the database representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toDatabase($notifiable)
-    {   dd($this->toArray());
-        return $this->toArray();
+        LogEmail::insert(['user_id' => Auth::user()->id, 'recipient_id' => $this->participant->user_id, 'thread_id' => $this->thread->id]);
+        return (new MailMessage)
+                    ->subject('Perxi: New Message Received')
+                    ->line('You have received a new message from ' . (isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->first_name . ' ' . Auth::user()->last_name) . '.')
+                    ->action('Go to message', url('/messages/' . $this->thread->id));
     }
 
     /**

@@ -1,12 +1,29 @@
-<div class="media">
-    <div class="pull-left">
-        <i class="fa fa-envelope"></i>
-    </div>
-    <div class="media-body">
-        <h5 class="media-heading">{{ $message->user->name }}</h5>
-        <p>{!! $message->body !!}</p>
-        <div class="text-muted">
-            <small>Posted {{ $message->created_at->diffForHumans() }}</small>
-        </div>
-    </div>
-</div>
+                        <tr>
+                            @if ($message->user_id == Auth::user()->id)
+                            <td>                        
+                                <div class="col-md-11 text-right">
+                                    <strong>{{ $message->user->name }}</strong>
+                                    {!! $message->body !!}
+                                    <div class="text-muted">
+                                        <small>Posted {{ $message->created_at->diffForHumans() }}</small>
+                                    </div>
+                                </div>    
+                                <div class="col-md-1 no-padding-lr avatar text-center">
+                                    <i class="fa fa-user-circle"></i>
+                                </div>
+                            </td>
+                            @else
+                            <td>        
+                                <div class="col-md-1 no-padding-lr avatar text-center">
+                                    <i class="fa fa-user-circle"></i>
+                                </div>
+                                <div class="col-md-11">
+                                    <strong>{{ $message->user->name }}</strong>
+                                    {!! $message->body !!}
+                                    <div class="text-muted">
+                                        <small>Posted {{ $message->created_at->diffForHumans() }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            @endif
+                        </tr>

@@ -13,10 +13,12 @@
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
-
                 </div>
             @endif
-            @include('layouts.page-header', ['header' => 'Messages', 'col' => 6])
+            @include('layouts.page-header', ['header' => 'Messages', 'col' => 6])            
+            <div class="text-right col-md-6 compose-message">                
+                <a href="/messages/create"><i class="fa fa-pencil-square-o"></i> Compose a New Message</a>
+            </div>
         </div>
 
         <div class="clearfix"></div>
@@ -29,20 +31,18 @@
                             <th>Subject</th>
                             <th>From</th>
                             <th>To</th>
+                            <th>Action</th>
                         </tr>
                     </thead> 
                     <tbody>
                     	@each('messenger.partials.thread', $threads, 'thread', 'messenger.partials.no-threads')
-                    </tbody>		
-                    <tfoot>
-                    	<tr>
-                    		<td colspan="3" class="">
-                    			<a href="/messages/create">New Message</a>
-                    		</td>
-                    	</tr>
-                    </tfoot>	 
-    			</table>
-    		</div>
+                    </tbody>	
+    		 </table>
+                <div class="text-right">
+                    <a href="/messages/create"><i class="fa fa-pencil-square-o"></i> Compose a New Message</a>
+                </div>
+                 <div class="col-md-12 pagination-wrapper">{{ $threads->links() }}</div>
+    	       </div>
     	</div>
     </div>
 @stop

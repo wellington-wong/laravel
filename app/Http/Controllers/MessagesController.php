@@ -29,7 +29,7 @@ class MessagesController extends Controller
     public function index( Request $request )
     {
         // All threads, ignore deleted/archived participants
-        $threads = Thread::getAllLatest()->get();
+        $threads = Thread::getAllLatest()->paginate(15);
         // All threads that user is participating in
         // $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
         // All threads that user is participating in, with new messages
@@ -87,7 +87,7 @@ class MessagesController extends Controller
             ]
         );
         // Message
-        Message::create(
+        $message = Message::create(
             [
                 'thread_id' => $thread->id,
                 'user_id'   => Auth::user()->id,
@@ -95,7 +95,7 @@ class MessagesController extends Controller
             ]
         );
         // Sender
-        Participant::create(
+        $participant = Participant::create(
             [
                 'thread_id' => $thread->id,
                 'user_id'   => Auth::user()->id,
@@ -107,7 +107,7 @@ class MessagesController extends Controller
             $thread->addParticipant($input['recipients']);
             foreach ($input['recipients'] as $recipient) {
                 $notifyUser = User::find($recipient);
-                $notifyUser->notify(new MessageReceived($notifyUser));
+                $notifyUser->notify(new MessageReceived($thread, $message, $participant));
             }
         }
         
