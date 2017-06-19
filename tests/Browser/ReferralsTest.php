@@ -5,6 +5,7 @@ namespace Tests\Browser;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\User;
 
 class ReferralsTest extends DuskTestCase
 {
@@ -13,11 +14,13 @@ class ReferralsTest extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testView()
     {
+
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->loginAs(User::inRandomOrder()->first()->id)
+                ->visit('/referrals')
+                ->waitForText('Referrals');
         });
     }
 }
