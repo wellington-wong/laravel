@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use App\Notifications\MessageReceived;
+use App\Company;
 
 class MessagesController extends Controller
 {
@@ -29,11 +30,14 @@ class MessagesController extends Controller
     public function index( Request $request )
     {
         // All threads, ignore deleted/archived participants
-        $threads = Thread::getAllLatest()->paginate(15);
+        //$threads = Thread::getAllLatest()->paginate(15);
         // All threads that user is participating in
         // $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
         // All threads that user is participating in, with new messages
         // $threads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
+
+        // Get threads by company
+        $threads = $request->_company->emailLogs()->paginate(15);
         return view('messenger.index', compact('threads'));
     }
     /**

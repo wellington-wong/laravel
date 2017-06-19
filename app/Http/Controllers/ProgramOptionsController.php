@@ -73,7 +73,7 @@ class ProgramOptionsController extends Controller
      */
     public function emailLogs( Request $request )
     {
-        $emailLogs = LogEmail::paginate(15);
+        $emailLogs = $request->_company->emailLogs()->paginate(15);
         return view('program-options.email-logs')
         ->with(compact('emailLogs'));
     }
