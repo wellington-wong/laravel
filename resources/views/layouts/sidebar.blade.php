@@ -61,7 +61,7 @@
                                     </ul>
                                 @endif
 
-                                @if ($_subdomain->subdomain != 'app')
+                                @if (0 != config('company_id'))
                                     @role(['member'])
                                     <ul class="nav">
                                         <li class="{{ Request::path() == 'referrals' ? 'active' : '' }}">
