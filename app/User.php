@@ -41,9 +41,6 @@ class User extends Authenticatable
     /**
      * Entrust overrides
      */
-    public function isGlobalAdmin() {
-        return \App\RoleUser::where('user_id', $this->id)->where('role_id', 4)->count() == 1;
-    }
 
     public function allRoles() {
         return $this->belongsToMany(config('entrust.role'), config('entrust.role_user_table'),
