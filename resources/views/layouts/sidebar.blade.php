@@ -21,7 +21,21 @@
                             <div class="menu-item">
                                 <a href="{{ route('referrals') }}" >Referral History</a>
                             </div>
-                            -->           
+                            -->
+
+                                {{-- SHOW ALL THE CURRENT USER'S ADMINISTRATIVE COMPANIES (SUBDOMAINS) --}}
+                                @if ( auth()->user()->getRoleCompanies(['admin', 'superadmin'])->count() > 1 )
+                                    <ul class="nav">
+                                    @foreach( auth()->user()->getRoleCompanies(['admin', 'superadmin']) as $c )
+                                        {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
+                                        @if( $c->subdomain != $_company->subdomain )
+                                            {{ $c->name }}
+                                        <li>{{ $c->company_name }}</li>
+                                        @endif
+                                    @endforeach
+                                    </ul>
+                                @endif
+
                                 @role(['member'])
                                 <ul class="nav">
                                     <li class="{{ Request::path() == 'referrals' ? 'active' : '' }}">
@@ -94,7 +108,7 @@
                                             <li class="{{ Request::is('program-options/notification-emails') ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
                                         </ul>
                                     </li>
-                                    @if (auth()->user()->companies()->first()->subdomain == 'exults')
+                                    @role( ['globalAdmin'] )
                                     <li class="">
                                         <div class="main-menu-item-wrapper">
                                             <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
@@ -110,7 +124,7 @@
                                             @can('login-as-user')<li class="{{ Request::is('global-settings/login-as-user') ? 'active' : '' }}"><a href="{{ route('login-as-user') }}">Login as User</a></li>@endcan
                                         </ul>
                                     </li>
-                                    @endif
+                                    @endrole
                                 </ul>
                                 @endrole
                         </div>

@@ -2,11 +2,13 @@
 
 namespace App;
 
+use App\Role;
+use App\RoleUser;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
-use App\Role;
-use App\RoleUser;
 use Laravel\Cashier\Billable;
 use Cmgmyr\Messenger\Traits\Messagable;
 
@@ -57,7 +59,11 @@ class User extends Authenticatable
         }
         return $this->belongsToMany(config('entrust.role'), config('entrust.role_user_table'),
             config('entrust.user_foreign_key'), config('entrust.role_foreign_key'))
-            ->where( 'company_id', $company_id );
+            //->where( 'company_id', $company_id )
+            ->where( function($q) use ($company_id) {
+                $q->where( 'company_id', $company_id )
+                    ->orWhere('role_id', DB::raw(4));
+            });
     }
 
     public function hasAnyRole() {
@@ -109,6 +115,26 @@ class User extends Authenticatable
             ->where( 'user_id', $this->id )
             ->where( 'company_id', $company_id );
         $r->delete();
+    }
+
+    public function user_role() {
+        return $this->hasMany(RoleUser::class);
+    }
+
+
+    /*
+     * Entrust Extension
+     */
+    public function getRoleCompanies( $role )
+    {
+        if( !is_array($role) ) { $role = [$role]; }
+        $role_ids = $this->allRoles()->whereIn('name', $role)->pluck('id');
+
+        $companies = Company::leftJoin('role_user', 'role_user.company_id', 'companies.id')
+            ->whereIn('role_user.role_id', $role_ids)
+            ->where('role_user.user_id', $this->id)->get();
+
+        return $companies;
     }
 
 
