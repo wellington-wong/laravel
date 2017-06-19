@@ -89,7 +89,7 @@ class GlobalSettingsController extends Controller
     {
         // Get all users
         $users = new User();
-        $users = $users->getUsersBySubdomain();
+        $users = $users->getUsersBySubdomain($request);
 
         return view('global-settings.login-as-user')
         ->with(compact('users'));
