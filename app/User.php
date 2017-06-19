@@ -41,7 +41,6 @@ class User extends Authenticatable
     /**
      * Entrust overrides
      */
-
     public function allRoles() {
         return $this->belongsToMany(config('entrust.role'), config('entrust.role_user_table'),
             config('entrust.user_foreign_key'), config('entrust.role_foreign_key'));
@@ -56,7 +55,6 @@ class User extends Authenticatable
         }
         return $this->belongsToMany(config('entrust.role'), config('entrust.role_user_table'),
             config('entrust.user_foreign_key'), config('entrust.role_foreign_key'))
-            //->where( 'company_id', $company_id )
             ->where( function($q) use ($company_id) {
                 $q->where( 'company_id', $company_id )
                     ->orWhere('role_id', DB::raw(4));
@@ -113,11 +111,6 @@ class User extends Authenticatable
             ->where( 'company_id', $company_id );
         $r->delete();
     }
-
-    public function user_role() {
-        return $this->hasMany(RoleUser::class);
-    }
-
 
     /*
      * Entrust Extension
