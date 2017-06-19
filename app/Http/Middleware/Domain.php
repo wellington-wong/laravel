@@ -33,6 +33,10 @@ class Domain
             if ( is_null($company) ) {
                 return redirect('https://app.' . $_ENV['APP_URL'] );
             }
+        } else {
+            $company = new \stdClass();
+            $company->subdomain = 'app';
+            $company->id = 0;
         }
         $company_id = isset($company->id) ? $company->id : 0;
 
