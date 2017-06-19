@@ -21,10 +21,10 @@ class MembersController extends Controller
 	public function getIndex ( Request $request )
 	{
 
+        $members = collect(new User);
         if ( 'app' != $request->current_subdomain ) {
             $members = $request->_company->members()->paginate(15);
         }
-        //$members = auth()->user()->getMembers();
 
         return view('members.index')
         ->with(compact('members'));

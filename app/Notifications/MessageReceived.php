@@ -11,23 +11,28 @@ use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
 use Auth;
 use App\LogEmail;
+use Illuminate\Http\Request;
 
 class MessageReceived extends Notification
 {
     use Queueable;
 
     protected $thread;
+    protected $message;
+    protected $participant;
+    protected $request;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Thread $thread, Message $message, Participant $participant)
+    public function __construct(Thread $thread, Message $message, Participant $participant, Request $request)
     {
         $this->thread = $thread;
         $this->message = $message;
         $this->participant = $participant;
+        $this->request = $request;
     }
 
     /**
@@ -48,9 +53,9 @@ class MessageReceived extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {        
-
-        LogEmail::insert(['user_id' => Auth::user()->id, 'recipient_id' => $this->participant->user_id, 'thread_id' => $this->thread->id]);
+    {       
+        
+        LogEmail::insert(['user_id' => Auth::user()->id, 'recipient_id' => $this->participant->user_id, 'thread_id' => $this->thread->id, 'company_id' => $this->request->_company->id]);
         return (new MailMessage)
                     ->subject('Perxi: New Message Received')
                     ->line('You have received a new message from ' . (isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->first_name . ' ' . Auth::user()->last_name) . '.')

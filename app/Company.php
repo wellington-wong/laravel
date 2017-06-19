@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cmgmyr\Messenger\Models\Thread;
 
 class Company extends Model
 {
@@ -34,5 +35,8 @@ class Company extends Model
         return $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' );
     }
 
+    public function emailLogs() {
+        return $this->hasManyThrough( Thread::class, LogEmail::class, 'company_id', 'id' );
+    }
 
 }
