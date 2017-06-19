@@ -43,6 +43,11 @@ class User extends Authenticatable
         return \App\RoleUser::where('user_id', $this->id)->where('role_id', 4)->count() == 1;
     }
 
+    public function allRoles() {
+        return $this->belongsToMany(config('entrust.role'), config('entrust.role_user_table'),
+            config('entrust.user_foreign_key'), config('entrust.role_foreign_key'));
+    }
+
     public function roles( Company $company = null )
     {
         if ( is_null($company) ) {
@@ -50,7 +55,8 @@ class User extends Authenticatable
         } else {
             $company_id = $company->id;
         }
-        return $this->belongsToMany(config('entrust.role'), config('entrust.role_user_table'), config('entrust.user_foreign_key'), config('entrust.role_foreign_key'))
+        return $this->belongsToMany(config('entrust.role'), config('entrust.role_user_table'),
+            config('entrust.user_foreign_key'), config('entrust.role_foreign_key'))
             ->where( 'company_id', $company_id );
     }
 
