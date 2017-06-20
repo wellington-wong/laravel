@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="panel panel-default fill">
-                    <div class="panel-heading"><a class="logo" href="{!! url('/') !!}"></a></div>
+                    <div class="panel-heading"><a class="logo" style="background-image: url('/{{ isset($_company->logo) ? $_company->logo : 'images/logo.png' }}')" href="{!! url('/') !!}"></a></div>
                     <div id="app-sidebar-collapse" class=" collapse navbar-collapse">
                         <div class="panel-body">
                             <!-- 
