@@ -14,7 +14,7 @@
 									<h3>Contact Us</h3>
                             </div>
                             <div class="panel-body">                            	
-                            	{!! Form::open(array('route' => 'contact', 'class' => 'form')) !!}
+                            	{!! Form::open(array('route' => 'contact', 'class' => 'form', 'id' => 'contact-form')) !!}
 								<div class="form-group">
 								    {!! Form::label('Your Name') !!}
 								    {!! Form::text('name', null, 

@@ -20851,6 +20851,12 @@ $(function () {
 	};
 	tinymceHelper(options, false);
 	// END MESSAGES
+
+	// CONTACT
+	$('#contact-form').on('click', function () {
+		tinymceHelper(null, true);
+	});
+	// END CONTACT
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 

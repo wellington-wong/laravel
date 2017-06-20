@@ -629,4 +629,10 @@ $(function (){
 	tinymceHelper(options, false);
 // END MESSAGES
 
+// CONTACT
+	$('#contact-form').on('click', function (){
+		tinymceHelper(null, true);
+	});
+// END CONTACT
+
 });
