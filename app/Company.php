@@ -32,11 +32,27 @@ class Company extends Model
     }
 
     public function members() {
-        return $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' );
+        return $this->membersByRole('member');
+    }
+
+    public function admins() {
+        return $this->membersByRole('admin');
+    }
+
+    public function superAdmins() {
+        return $this->membersByRole('superadmin');
     }
 
     public function emailLogs() {
         return $this->hasManyThrough( Thread::class, LogEmail::class, 'company_id', 'id' );
+    }
+
+    public function membersByRole( $role ) {
+        if( !is_array($role) ) { $role = [$role]; }
+        $role_ids = Role::whereIn('name', $role)->pluck('id');
+
+        return $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' )
+            ->whereIn('role_id', $role_ids);
     }
 
 }

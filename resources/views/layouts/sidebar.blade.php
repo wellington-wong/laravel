@@ -24,7 +24,8 @@
                             -->
 
                                 {{-- SHOW ALL THE CURRENT USER'S ADMINISTRATIVE COMPANIES (SUBDOMAINS) --}}
-                                @if ( auth()->user()->getRoleCompanies(['admin', 'superadmin'])->count() > 1 || 0 == config('company_id') )
+                                @if ( auth()->user()->getRoleCompanies(['admin', 'superadmin'])->count() > 1 ||
+                                    (0 == config('company_id') && auth()->user()->getRoleCompanies(['admin', 'superadmin'])->count() > 0 ) )
                                     <ul class="nav">
                                         <li>
                                             <div class="main-menu-item-wrapper">

@@ -29,6 +29,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Email</th>
                             <th>Name</th>
                             <th>Subdomain</th>
                             <th>Action</th>
@@ -36,7 +37,8 @@
                     </thead> 
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</a></td>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->email }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ isset($user->companies->first()->subdomain) ? $user->companies->first()->subdomain : 'no subdomain' }}</td>
                             <td><a href="{{ route('login-as-user-id', [$user->id])}}" class="btn btn-primary">Login</a></td>
