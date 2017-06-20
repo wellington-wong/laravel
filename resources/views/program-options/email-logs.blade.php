@@ -16,6 +16,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Date</th>
                             <th>From</th>
                             <th>To</th>
                             <th>Subject</th>
@@ -25,6 +26,7 @@
                     @foreach ($emailLogs as $emailLog)
                         <tr>
                             <td>{{ $emailLog->id }}</td>
+                            <td>{{ isset($emailLog->created_at) ? $emailLog->created_at->format('m/d/Y') : '' }} </td>
                             <td>{{ $emailLog->sender->name }} </td>
                             <td>{{ $emailLog->recipient->name }}</td>
                             <td>{{ $emailLog->subject }}</td>
