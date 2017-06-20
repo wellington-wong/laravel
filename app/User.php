@@ -162,11 +162,6 @@ class User extends Authenticatable
         return $this->hasMany( Referral::class, 'referrer_id', 'id' );
     }
 
-    public function referralsFiltered() {
-        $referrals = $this->hasMany( Referral::class, 'referrer_id', 'id' )->with('referrer', 'referred');
-        return $referrals;
-    }
-
     public function referred_companies() {
         return $this->belongsToMany(Company::class, 'user_referred');
     }
