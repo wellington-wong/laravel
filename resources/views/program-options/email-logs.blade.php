@@ -33,7 +33,7 @@
                             <td>{{ strip_tags($emailLog->body) }}</td>
                         </tr>
                     @endforeach
-                    @if (!count($emailLogs))<tr><td colspan="5">No email found.</td></tr>@endif
+                    @if (!count($emailLogs))<tr><td colspan="6">No email found.</td></tr>@endif
                 </table>
                 <div class="col-md-12 pagination-wrapper">{{ $emailLogs->links() }}</div>
             </div>
