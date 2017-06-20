@@ -41,7 +41,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <figure class="logo col-md-3"><img src="/images/logo.png" alt=""></figure>
+                    <figure class="logo col-md-3"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo.png' }}" alt=""></figure>
                     <div class="col-md-9" id="app-navbar-collapse">
                         <ul class="nav navbar-nav navbar-right navbar-bottom-right">
                             <li><a href="#">How it Works</a></li>
