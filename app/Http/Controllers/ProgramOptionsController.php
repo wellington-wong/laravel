@@ -14,6 +14,17 @@ class ProgramOptionsController extends Controller
     }
 
     /**
+     * Display a listing of all program options.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index( Request $request )
+    {
+        return view('program-options.index');
+    }
+
+    /**
      * Display a listing of all users.
      *
      * @param  \Illuminate\Http\Request $request
