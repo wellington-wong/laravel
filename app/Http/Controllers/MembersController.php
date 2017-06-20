@@ -24,10 +24,13 @@ class MembersController extends Controller
         $members = collect(new User);
         if ( 'app' != $request->current_subdomain ) {
             $members = $request->_company->members()->paginate(15);
+            $admins = $request->_company->membersByRole(['admin', 'superadmin'])
+                ->paginate(15);
         }
+        //dd($admins);
 
         return view('members.index')
-        ->with(compact('members'));
+        ->with(compact('members', 'admins'));
     }
 
 

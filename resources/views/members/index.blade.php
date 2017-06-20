@@ -6,6 +6,38 @@
     <div class="container-fluid members-wrapper">
         <!--<div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export</a></div>-->
 
+
+        <div class="row">
+        @include('layouts.page-header', ['header' => 'Admins', 'col' => 3])
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 table-members-wrapper table-wrapper">
+                <table class="table table-members tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    @foreach ($admins as $member)
+                        <tr>
+                            <td>{{ $member->id }}</td>
+                            <td>{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</td>
+                            <td>{{ $member->email }}</td>
+                        </tr>
+                    @endforeach
+                    @if (!count($members))<tr><td colspan="5">No members found.</td></tr>@endif
+                </table>
+                <div class="col-md-12 pagination-wrapper">{{ count($members) ? $members->links() : '' }}</div>
+            </div>
+        </div>
+
+
+
         <div class="row">
             @include('layouts.page-header', ['header' => 'Members', 'col' => 3])
 
@@ -30,13 +62,15 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Referrals</th>
                         </tr>
                     </thead> 
                     @foreach ($members as $member)
                         <tr>
-                            <td>{{ $member->id }}</a></td>
+                            <td>{{ $member->id }}</td>
                             <td>{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</td>
                             <td>{{ $member->email }}</td>
+                            <td>{{ $member->referrals()->where('company_id', $_company->id)->count() }}</td>
                         </tr>
                     @endforeach
                     @if (!count($members))<tr><td colspan="5">No members found.</td></tr>@endif
@@ -44,6 +78,8 @@
                 <div class="col-md-12 pagination-wrapper">{{ count($members) ? $members->links() : '' }}</div>
             </div>
         </div>
+
+
     </div>
 
 @endsection
