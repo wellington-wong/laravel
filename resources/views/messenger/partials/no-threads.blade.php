@@ -1,1 +1,1 @@
-<tr><td colspan="3">No messages found.</td></tr>
+<tr><td colspan="4">No messages found.</td></tr>

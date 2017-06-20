@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
+use App\Thread as ThreadByCompany;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,7 @@ class MessagesController extends Controller
         // $threads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
 
         // Get threads by company
-        $threads = $request->_company->emailLogs()->paginate(15);
+        $threads = $request->_company->threads()->paginate(15);
         return view('messenger.index', compact('threads'));
     }
     /**
@@ -90,6 +91,13 @@ class MessagesController extends Controller
                 'subject' => $input['subject'],
             ]
         );
+        $threadByCompany = ThreadByCompany::create(
+            [
+                'thread_id' => $thread->id,
+                'company_id' => $request->_company->id,
+            ]
+        );
+
         // Message
         $message = Message::create(
             [
@@ -111,7 +119,7 @@ class MessagesController extends Controller
             $thread->addParticipant($input['recipients']);
             foreach ($input['recipients'] as $recipient) {
                 $notifyUser = User::find($recipient);
-                $notifyUser->notify(new MessageReceived($thread, $message, $participant, $request));
+                $notifyUser->notify(new MessageReceived($thread, $message, $recipient, $request));
             }
         }
         

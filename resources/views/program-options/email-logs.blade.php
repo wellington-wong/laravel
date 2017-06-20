@@ -23,15 +23,13 @@
                         </tr>
                     </thead> 
                     @foreach ($emailLogs as $emailLog)
-                        @foreach ($emailLog->messages as $message)
                         <tr>
-                            <td>{{ $message->id }}</td>
-                            <td>{{ $message->user->name }} </td>
-                            <td></td>
+                            <td>{{ $emailLog->id }}</td>
+                            <td>{{ $emailLog->sender->name }} </td>
+                            <td>{{ $emailLog->recipient->name }}</td>
                             <td>{{ $emailLog->subject }}</td>
-                            <td>{!! $message->body !!}</td>
+                            <td>{{ strip_tags($emailLog->body) }}</td>
                         </tr>
-                        @endforeach
                     @endforeach
                     @if (!count($emailLogs))<tr><td colspan="5">No email found.</td></tr>@endif
                 </table>

@@ -55,7 +55,15 @@ class MessageReceived extends Notification
     public function toMail($notifiable)
     {       
         
-        LogEmail::insert(['user_id' => Auth::user()->id, 'recipient_id' => $this->participant->user_id, 'thread_id' => $this->thread->id, 'company_id' => $this->request->_company->id]);
+        LogEmail::insert([
+            'user_id' => Auth::user()->id, 
+            'recipient_id' => $this->participant, 
+            'company_id' => $this->request->_company->id, 
+            'subject' => $this->thread->subject, 
+            'body' => $this->message->body, 
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(), 
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        ]);
         return (new MailMessage)
                     ->subject('Perxi: New Message Received')
                     ->line('You have received a new message from ' . (isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->first_name . ' ' . Auth::user()->last_name) . '.')
