@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cmgmyr\Messenger\Models\Thread;
+use App\Thread as ThreadByCompany;
 
 class Company extends Model
 {
@@ -44,7 +45,7 @@ class Company extends Model
     }
 
     public function emailLogs() {
-        return $this->hasManyThrough( Thread::class, LogEmail::class, 'company_id', 'id' );
+        return $this->hasMany( LogEmail::class )->with('sender', 'recipient');
     }
 
     public function membersByRole( $role ) {
@@ -53,6 +54,10 @@ class Company extends Model
 
         return $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' )
             ->whereIn('role_id', $role_ids);
+    }
+
+    public function threads() {
+        return $this->hasManyThrough( Thread::class, ThreadByCompany::class, 'company_id', 'id' );
     }
 
 }
