@@ -10,9 +10,15 @@
                 <div class="row">
                     <div class="col-md-12 main-content">
                         <div class="panel panel-default">
+							
                             <div class="panel-header">
 									<h3>Contact Us</h3>
                             </div>
+								@if(session()->has('success'))
+									<div class="alert alert-success">
+									{{ session()->get('success') }}
+									</div>
+								@endif
                             <div class="panel-body">                            	
                             	{!! Form::open(array('route' => 'contact', 'class' => 'form', 'id' => 'contact-form')) !!}
 								<div class="form-group">
@@ -25,7 +31,7 @@
 
 								<div class="form-group">
 								    {!! Form::label('Your E-mail Address') !!}
-								    {!! Form::text('email', null, 
+								    {!! Form::email('email', null, 
 								        array('required', 
 								              'class'=>'form-control', 
 								              'placeholder'=>'Your e-mail address')) !!}

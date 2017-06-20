@@ -60,8 +60,8 @@ class BasicPageController extends Controller
         foreach ($users as $user){            
             $user->notify(new ContactFormMessage($request));
         }
-        
-        return;
+
+        return back()->with('success', 'Thank you for contacting us, we will get back to you soon.');
     }
 
     /**
