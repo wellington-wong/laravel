@@ -9,4 +9,6 @@ Homestead.yaml
 .env
 composer.lock
 
+public/robots.txt
+
 local-staging.sh
