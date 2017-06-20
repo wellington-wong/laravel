@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Notifications\ContactFormMessage;
 
 class BasicPageController extends Controller
 {
@@ -39,11 +41,27 @@ class BasicPageController extends Controller
     }
 
     /**
-     * Contact
+     * Contact Form
      */
     public function contact(Request $request)
     {
 		return View('basic.contact');
+    }
+
+    /**
+     * Post Contact Form
+     */
+    public function postContact(Request $request)
+    {
+        $admins = $request->_company->admins;
+        $superAdmins = $request->_company->superAdmins;
+        $users = $admins->merge($superAdmins);
+
+        foreach ($users as $user){            
+            $user->notify(new ContactFormMessage($request));
+        }
+        
+        return;
     }
 
     /**

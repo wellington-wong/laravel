@@ -59,6 +59,7 @@ Route::get('/features', 'BasicPageController@features')->name('features');
 Route::get('/about-us', 'BasicPageController@aboutUs')->name('about-us');
 Route::get('/pricing', 'BasicPageController@pricing')->name('pricing');
 Route::get('/contact', 'BasicPageController@contact')->name('contact');
+Route::post('/contact', 'BasicPageController@postContact')->name('contact');
 Route::get('/how-this-works', 'BasicPageController@howThisWorks')->name('how-this-works');
 Route::get('/how-to-get-more-referrals', 'BasicPageController@howToGetMoreReferrals')->name('how-to-get-more-referrals');
 
