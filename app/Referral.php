@@ -36,7 +36,7 @@ class Referral extends Model
      * Sort Referrals
      * @return
      */
-    public function filterSortReferrals($paginate, $defaultSort = 'created_at') {
+    public function filterSortReferrals($defaultSort = 'created_at') {
 
         $request = request();
 
@@ -85,11 +85,10 @@ class Referral extends Model
                 $referrals->orderBy('referrals.'.$column, $sort);
                 break;
             default:
-                $referrals->orderBy('referrals.'.$defaultSort, 'desc');
+                $referrals->orderBy($defaultSort, 'desc');
                 break;
         }
 
-        $referrals = $referrals->paginate($paginate);
         return $referrals;
     }
 
