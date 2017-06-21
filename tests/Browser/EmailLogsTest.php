@@ -7,6 +7,7 @@ use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 use App\Company;
+use App\RoleUser;
 
 class EmailLogsTest extends DuskTestCase
 {
@@ -20,7 +21,7 @@ class EmailLogsTest extends DuskTestCase
         $subdomain = Company::inRandomOrder()->first()->subdomain;
         Browser::$baseUrl = 'https://'. $subdomain . '.' . env('DOMAIN');
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(4)
+            $browser->loginAs(RoleUser::where('role_id', '<>', 1)->inRandomOrder()->first()->user_id)
                 ->visit('/program-options/email-logs')
                 ->waitForText('Email Logs')
                 ->assertSee('Email Logs');
