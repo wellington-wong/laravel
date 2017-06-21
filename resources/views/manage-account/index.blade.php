@@ -32,7 +32,7 @@
     	        </div>
 
     	        <div class="col-md-6">
-    	        	@include('forms.phone', ['phone_label'=>'Phone Number', 'placeholder' => 'Phone Number', 'no_col' => true, 'value' => auth()->user()->phone->first()->phone])
+    	        	@include('forms.phone', ['phone_label'=>'Phone Number', 'placeholder' => 'Phone Number', 'no_col' => true, 'value' => (isset(auth()->user()->phone->first()->phone) ? auth()->user()->phone->first()->phone : '')])
     	        </div>
 
     	        <div class="form-group col-md-6" >
