@@ -39,8 +39,8 @@ class CompanyController extends Controller
             'state'=>'required|max:2',
             'zip'=>'required|digits:5',
             'company_name'=>'required',
-            'subdomain'=>'required|unique:companies|not_in:app',
-            'phone'=>'required|phone:US',            
+            'subdomain'=>'required|unique:companies|not_in:app,www',
+            'phone'=>'required|phone:LENIENT,AUTO,US',
             'logo_blob' => 'required',
         ];
 
@@ -115,7 +115,7 @@ class CompanyController extends Controller
             'state'=>'required|max:2',
             'zip'=>'required|digits:5',
             'company_name'=>'required',
-            'phone'=>'required|phone:US',
+            'phone'=>'required|phone:LENIENT,AUTO,US',
             'email'=>'nullable|email',
             'website'=>'nullable|url'
         ];
@@ -138,8 +138,8 @@ class CompanyController extends Controller
             $company->website = $request->get('website');
             $company->save();
 
-            $company->address[0]->address = $request->get('city');
-            $company->address[0]->address2 = $request->get('city');
+            $company->address[0]->address = $request->get('address');
+            $company->address[0]->address2 = $request->get('address2');
             $company->address[0]->city = $request->get('city');
             $company->address[0]->state = $request->get('state');
             $company->address[0]->zip = $request->get('zip');
