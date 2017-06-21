@@ -53,7 +53,7 @@
                 <div class="company-info-name">{{ isset($_company->company_name) ? $_company->company_name : '' }}</div>
                 <div class="membership-role">
                     <h4><strong>Membership Role</strong></h4>
-                    <span>{{ isset($user->roles->first()->display_name) ? $user->roles->first()->display_name : '' }}</span>
+                    <span>{{ isset($user->roles()->orderBy('role_id', 'DESC')->first()->display_name) ? $user->roles()->orderBy('role_id', 'DESC')->first()->display_name : '' }}</span>
                 </div>
                 <div class="program-url">
                     <h5>Program URL</h5>
