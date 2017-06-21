@@ -7,6 +7,7 @@ use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 use App\Company;
+use App\RoleUser;
 
 class LoginAsUserTest extends DuskTestCase
 {
@@ -15,18 +16,20 @@ class LoginAsUserTest extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testLoginAsUser()
     {
         // Visit random subdomain
         $subdomain = Company::inRandomOrder()->first()->subdomain;
         Browser::$baseUrl = 'https://'. $subdomain . '.' . env('DOMAIN');
-        
+
         // Perform browser test
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::inRandomOrder()->first()->id)
+            $browser->loginAs(RoleUser::where('role_id', 4)->inRandomOrder()->first()->user_id)
                 ->visit('/global-settings/login-as-user')
                 ->waitForText('Login as User')
-                ->assertSee('Login as User');
+                ->assertSee('Login as User')
+                ->click('.table-login-as-wrapper td a')
+                ->waitForText('Login as original');
         });
     }
 }
