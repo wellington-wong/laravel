@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Phone;
 use App\Address;
+use Illuminate\Support\Facades\Validator;
 
 class ManageAccountController extends Controller
 {
@@ -35,10 +36,8 @@ class ManageAccountController extends Controller
      */
     public function postUpdate( Request $request )
     {
-
         $rules = [
-            'first_name'=>'required',
-            'last_name'=>'required',
+            'name'=>'required',
             'email'=>'required|email',
             'phone'=>'required|phone:US',
             'address'=>'max:100',
@@ -46,8 +45,6 @@ class ManageAccountController extends Controller
             'city'=>'required',
             'state'=>'required|alpha|max:2',
             'zip'=>'required|max:11',
-            'subdomain_id'=>'required',
-            'install_complete'=>'required'
         ];
         $validator = Validator::make($request->input(), $rules);
 
@@ -60,6 +57,10 @@ class ManageAccountController extends Controller
         //$phone = auth()->user()->updateDefaultPhone($request);
         auth()->user()->updateProfile($request);
         //dd(auth()->user()->phones()->first()->update($request->only('phone')));
+
+
+        $user->logo = $request->file('profile')->store('profile-images');
+
         return back();
     }
 

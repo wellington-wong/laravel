@@ -635,4 +635,22 @@ $(function (){
 	});
 // END CONTACT
 
+// MANAGE ACCOUNT
+	function processProfile (input, data, error){
+		if (error) { 
+			alert('error');
+	    	return false;
+		}
+		var filename = input.files[0].name;
+	    $('.profile-preview img').prop('src', data).parent().removeClass('hidden');
+	    $('.upload-label').text('Filename: ' + filename);
+		$('.submit-profile').removeClass('disabled');
+	}
+	$("input[name='profile']").change(function(){alert();
+		$('.submit-profile').addClass('disabled');
+	    $('.upload-label').text('Processing...');
+		readImage(this, processProfile);
+	});	
+// END MANAGE ACCOUNT
+
 });

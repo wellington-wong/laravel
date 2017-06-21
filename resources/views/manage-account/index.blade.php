@@ -7,7 +7,10 @@
     <div class="container-fluid manage-account-wrapper">
 
         <div class="row">
-        @include('layouts.page-header', ['header' => auth()->user()->display_name, 'col' => 12])
+        @include('layouts.page-header', ['header' => auth()->user()->display_name, 'col' => 6])
+            <div class="profile-preview text-center {{ old('profile_blob') ? '' : 'hidden' }} col-md-6">
+                <img class="img-responsive center-block" height="100" src="{{ old('profile_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">
+            </div>
         </div>
 
         @if( !$errors->isEmpty() )
@@ -20,7 +23,7 @@
             </div>
         @endif
 
-        <div class="row">
+        <div class="row">            
             <div class="col-md-12 no-padding-lr">
     	        {{ Form::open(['route'=>'post-account-update', 'enctype' => 'multipart/form-data', 'id' => 'update-user-form', 'class' => 'update-form']) }}
 
@@ -47,7 +50,7 @@
                 {{ Form::hidden('profile_blob_name', old('profile_blob_name'), ['class' => 'profile-blob-name']) }}
 
     	        <div class="form-group col-md-12 text-right">
-    	        	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100']) }}
+    	        	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100 submit-profile']) }}
     	        </div>
 
     	    	{{ Form::close() }}
