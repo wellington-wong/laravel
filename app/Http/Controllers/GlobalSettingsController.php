@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -87,12 +88,10 @@ class GlobalSettingsController extends Controller
      */
     public function loginAsUser(Request $request) 
     {
-        // Get all users
-        $users = new User();
-        $users = $users->getUsersBySubdomain($request);
+        $companies = Company::orderBy('company_name')->get();
 
         return view('global-settings.login-as-user')
-        ->with(compact('users'));
+        ->with(compact('companies'));
     }
 
     /**

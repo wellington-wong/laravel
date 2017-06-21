@@ -23,31 +23,47 @@
 
         <div class="clearfix"></div>
 
-        <div class="row">
-            <div class="col-md-12 table-login-as-wrapper table-wrapper">
-                <table class="table table-login-as tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Email</th>
-                            <th>Name</th>
-                            <th>Subdomain</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead> 
-                    @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ isset($user->companies->first()->subdomain) ? $user->companies->first()->subdomain : 'no subdomain' }}</td>
-                            <td><a href="{{ route('login-as-user-id', [$user->id])}}" class="btn btn-primary">Login</a></td>
-                        </tr>
-                    @endforeach
-                    @if (!count($users))<tr><td colspan="5">No users found.</td></tr>@endif
-                </table>
-                <div class="col-md-12 pagination-wrapper">{{ $users->links() }}</div>
-            </div>
-        </div>
+        @foreach ( $companies as $c )
+
+            <h4>{{ $c->company_name }} (id: {{ $c->id }})</h4>
+
+            <?php $users = $c->membersByRole(['member', 'admin', 'superAdmin'])->distinct('user_id')->get(); ?>
+
+                <div class="row">
+                    <div class="col-md-12 table-login-as-wrapper table-wrapper">
+
+                        <table class="table table-login-as tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Level</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ isset($user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name) ? $user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name : '' }}</td>
+                                    <td><a href="{{ route('login-as-user-id', [$user->id])}}" class="btn btn-primary">Login</a></td>
+                                </tr>
+                            @endforeach
+                            @if (!count($users))<tr><td colspan="5">No users found.</td></tr>@endif
+                        </table>
+
+                    </div>
+                </div>
+
+
+        @endforeach
+
+
+
+
+
+
     </div>
 @endsection
