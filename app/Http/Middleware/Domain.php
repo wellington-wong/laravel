@@ -34,7 +34,9 @@ class Domain
                 return redirect('https://app.' . $_ENV['APP_URL'] );
             }
         } else {
-            if ( !in_array($request->route()->uri, ['companies', 'company/create'] ) ) {
+            if ( !in_array($request->route()->uri,
+                //OK ROUTES FOR app.perxi.com
+                ['companies', 'company/create', 'login', 'register'] ) ) {
                 return redirect()->route('all-companies');
             }
             $company = new \stdClass();
