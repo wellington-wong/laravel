@@ -40,11 +40,6 @@ class ManageAccountController extends Controller
             'name'=>'required',
             'email'=>'required|email',
             'phone'=>'required|phone:US',
-            'address'=>'max:100',
-            'address2'=>'max:25',
-            'city'=>'required',
-            'state'=>'required|alpha|max:2',
-            'zip'=>'required|max:11',
         ];
         $validator = Validator::make($request->input(), $rules);
 
@@ -55,11 +50,11 @@ class ManageAccountController extends Controller
 
         $phone = new Phone();
         //$phone = auth()->user()->updateDefaultPhone($request);
-        auth()->user()->updateProfile($request);
+        auth()->user()->updateDefaultPhone($request);
         //dd(auth()->user()->phones()->first()->update($request->only('phone')));
 
 
-        $user->logo = $request->file('profile')->store('profile-images');
+        //$user->profile_image = $request->file('profile')->store('profile-images');
 
         return back();
     }

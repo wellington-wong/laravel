@@ -20874,7 +20874,6 @@ $(function () {
 		$('.submit-profile').removeClass('disabled');
 	}
 	$("input[name='profile']").change(function () {
-		alert();
 		$('.submit-profile').addClass('disabled');
 		$('.upload-label').text('Processing...');
 		readImage(this, processProfile);

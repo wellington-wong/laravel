@@ -218,7 +218,7 @@ class User extends Authenticatable
         $phone = $this->phones()->first()->update(
             $request->only($input)
         );
-        $this->phone()->updateExistingPivot($phone->id, ['default'=>1]);
+        $this->phone()->updateExistingPivot($this->phones()->first()->id, ['default'=>1]);
         return $phone;
     }
 

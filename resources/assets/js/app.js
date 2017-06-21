@@ -650,7 +650,7 @@ $(function (){
 	    $('.profile-blob-name').val(filename);
 		$('.submit-profile').removeClass('disabled');
 	}
-	$("input[name='profile']").change(function(){alert();
+	$("input[name='profile']").change(function(){
 		$('.submit-profile').addClass('disabled');
 	    $('.upload-label').text('Processing...');
 		readImage(this, processProfile);
