@@ -242,6 +242,29 @@ class User extends Authenticatable
         return $address;
     }
 
+    /*
+     * update default address to a user from a request
+     */
+    public function updateDefaultAddress() {
+
+        $request = request();
+        if ( null == $request->input('address')) {
+            return null;
+        }
+        $input = [];
+        $address = new Address();
+        foreach ($address->getFillable() as $c) {
+            if ( isset($request->$c) ) {
+                $input[] = $c;
+            }
+        }
+        $address = $this->address()->update(
+            $request->only($input)
+        );
+        $this->address()->updateExistingPivot($address->id, ['default'=>1]);
+        return $address;
+    }
+
     public static function getMembers() {
 
         // Get users with member and empty roles.

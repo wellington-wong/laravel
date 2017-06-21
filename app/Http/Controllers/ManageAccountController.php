@@ -49,10 +49,10 @@ class ManageAccountController extends Controller
         }
 
         $phone = new Phone();
-        //$phone = auth()->user()->updateDefaultPhone($request);
         auth()->user()->updateDefaultPhone($request);
-        //dd(auth()->user()->phones()->first()->update($request->only('phone')));
 
+        $phone = new Phone();
+        auth()->user()->updateDefaultAddress($request);
 
         //$user->profile_image = $request->file('profile')->store('profile-images');
 
