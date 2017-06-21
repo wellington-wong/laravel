@@ -48,13 +48,17 @@ class ManageAccountController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        $phone = new Phone();
-        auth()->user()->updateDefaultPhone($request);
+        if (isset(auth()->user()->phone())) {
+            auth()->user()->updateDefaultPhone($request);
+        } else {
+            auth()->user()->addDefaultPhone($request);
+        }
 
-        $phone = new Phone();
-        auth()->user()->updateDefaultAddress($request);
-
-        //$user->profile_image = $request->file('profile')->store('profile-images');
+        if (isset(auth()->user()->address())) {
+            auth()->user()->updateDefaultAddress($request);
+        } else {
+            auth()->user()->addDefaultAddress($request);
+        }
 
         return back();
     }
