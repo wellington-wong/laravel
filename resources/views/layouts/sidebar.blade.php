@@ -72,7 +72,6 @@
 
 
                             @if (0 != config('company_id'))
-                                    @role(['member'])
                                     <ul class="nav">
                                         <li class="{{ Request::path() == 'referrals' ? 'active' : '' }}">
                                             <div class="main-menu-item-wrapper">
@@ -84,6 +83,7 @@
                                                 <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-history') }}">Referral History</a></li>
                                             </ul>
                                         </li>
+                                        @role(['member'])
                                         <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
                                             <div class="main-menu-item-wrapper">
                                                 <a href="{{ route('referral-rewards') }}">Rewards</a>
@@ -110,19 +110,8 @@
                                             </ul>
                                         </li>
                                         @endif
-                                    </ul>
-                                    @endrole
-                                    @role(['admin', 'superAdmin', 'globalAdmin'])
-                                    <ul class="nav">
-                                        <li class="{{ Request::is('referrals') ? 'active' : '' }}">
-                                            <div class="main-menu-item-wrapper">
-                                                <a href="{{ route('referrals') }}">Referrals</a>
-                                                <a href="#submenu-referrals-member" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                            </div>
-                                            <ul id="submenu-referrals-member" class="collapse in">
-                                                <li class="{{ Request::is('referral/create') ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Add Referral</a></li>
-                                            </ul>
-                                        </li>
+                                        @endrole
+                                        @role(['admin', 'superAdmin', 'globalAdmin'])
                                         <li class="{{ Request::is('members') ? 'active' : '' }}">
                                             <div class="main-menu-item-wrapper">
                                                 <a href="{{ route('members') }}">Members</a>
@@ -160,8 +149,8 @@
                                             </ul>
                                         </li>
                                         @endrole
+                                        @endrole
                                     </ul>
-                                    @endrole
                                 @endif
                         </div>
 
