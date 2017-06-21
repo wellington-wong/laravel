@@ -20837,7 +20837,6 @@ $(function () {
 	$('.logo-input').on('change', function () {
 		$('.processing').removeClass('hidden');
 		$('.company-logo img').css('opacity', .5);
-		console.log(readImage(this, updateLogo));
 	}).closest('.company-logo').find('.ajax-logo').on('click', function () {
 		$('.logo-input').trigger('click');
 	});
@@ -20862,11 +20861,16 @@ $(function () {
 	function processProfile(input, data, error) {
 		if (error) {
 			$('.upload-label').text('Upload Profile Image');
+			$('.profile-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');
+			$('.profile-blob').val('');
+			$('.profile-blob-name').val('');
 			return false;
 		}
 		var filename = input.files[0].name;
 		$('.profile-preview img').prop('src', data).parent().removeClass('hidden');
 		$('.upload-label').text('Filename: ' + filename);
+		$('.profile-blob').val(data);
+		$('.profile-blob-name').val(filename);
 		$('.submit-profile').removeClass('disabled');
 	}
 	$("input[name='profile']").change(function () {
