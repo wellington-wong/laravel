@@ -16,8 +16,10 @@ class LoginAsUserTest extends DuskTestCase
     public function testExample()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->loginAs(User::inRandomOrder()->first()->id)
+                ->visit('/global-settings/login-as-user')
+                ->waitForText('Login as User')
+                ->assertSee('Login as User');
         });
     }
 }
