@@ -638,7 +638,7 @@ $(function (){
 // MANAGE ACCOUNT
 	function processProfile (input, data, error){
 		if (error) { 
-			alert('error');
+	    	$('.upload-label').text('Upload Profile Image');
 	    	return false;
 		}
 		var filename = input.files[0].name;
