@@ -23,9 +23,6 @@ class ReferralsTest extends DuskTestCase
         $column = ['created_at', 'id', 'user_id', 'referred', 'status'];
         $search = ['zach', 'daniel', 'bilal', 'wellington'];
         $date = Carbon::create(2017, 1, 0);
-        $subdomain = Company::inRandomOrder()->first()->subdomain;
-        Browser::$baseUrl = 'https://'. $subdomain . '.' . env('DOMAIN');
-
         $parameters = [
             'status' => rand(1, 4),
             'sort' => $sort[array_rand($sort)],
@@ -33,6 +30,11 @@ class ReferralsTest extends DuskTestCase
             'daterange' => $date->format('m/d/Y') . '|' . $date->addWeeks(rand(1, 52))->format('m/d/Y'),
             'search' => $search[array_rand($search)],
         ];
+        
+        // Visit random subdomain
+        $subdomain = Company::inRandomOrder()->first()->subdomain;
+        Browser::$baseUrl = 'https://'. $subdomain . '.' . env('DOMAIN');
+
 
         // Perform browser test
         $this->browse(function (Browser $browser) use($parameters) {

@@ -17,6 +17,11 @@ class CompanyTest extends DuskTestCase
      */
     public function testCompanyProfile()
     {
+        // Visit random subdomain
+        $subdomain = Company::inRandomOrder()->first()->subdomain;
+        Browser::$baseUrl = 'https://'. $subdomain . '.' . env('DOMAIN');
+
+        // Perform browser test
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::inRandomOrder()->first()->id)
                 ->visit('/company/' . Company::inRandomOrder()->first()->id)
