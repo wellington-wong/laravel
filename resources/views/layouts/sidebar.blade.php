@@ -35,7 +35,7 @@
                                                 @foreach( auth()->user()->getRoleCompanies(['admin', 'superadmin']) as $c )
                                                     {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
                                                     @if( $c->subdomain != $_company->subdomain )
-                                                        <li><a href="//{{ $c->subdomain }}.{{ config('app.url') }}">{{ $c->company_name }}</a></li>
+                                                        <li><a href="//{{ $c->subdomain }}.{{ config('app.domain') }}">{{ $c->company_name }}</a></li>
                                                     @endif
                                                 @endforeach
                                             </ul>
@@ -54,7 +54,7 @@
                                             @foreach( auth()->user()->getRoleCompanies(['member']) as $c )
                                                 {{-- ONLY DISPLAY A LINK TO ANOTHER SUBDOMAIN IF IT IS NOT THIS DOMAIN --}}
                                                 @if( $c->subdomain != $_company->subdomain )
-                                                    <li><a href="//{{ $c->subdomain }}.{{ config('app.url') }}">{{ $c->company_name }}</a></li>
+                                                    <li><a href="//{{ $c->subdomain }}.{{ config('app.domain') }}">{{ $c->company_name }}</a></li>
                                                 @endif
                                             @endforeach
                                             </ul>
