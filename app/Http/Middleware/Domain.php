@@ -34,7 +34,7 @@ class Domain
                 return redirect('https://app.' . $_ENV['APP_URL'] );
             }
         } else {
-            if ( 'companies' != $request->route()->uri ) {
+            if ( !in_array($request->route()->uri, ['companies', 'company/create'] ) ) {
                 return redirect()->route('all-companies');
             }
             $company = new \stdClass();

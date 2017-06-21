@@ -62,7 +62,16 @@
                                     </ul>
                                 @endif
 
-                                @if (0 != config('company_id'))
+                                @if (0 == config('company_id'))
+                                <ul class="nav" >
+                                    <div class="main-menu-item-wrapper">
+                                    <li class="{{ Request::is('company/create') ? 'active' : '' }}"><a href="{{ route('company-create') }}">Create Company</a></li>
+                                        </div>
+                                </ul>
+                                @endif
+
+
+                            @if (0 != config('company_id'))
                                     @role(['member'])
                                     <ul class="nav">
                                         <li class="{{ Request::path() == 'referrals' ? 'active' : '' }}">
@@ -127,8 +136,7 @@
                                             </div>
                                             <ul id="program-options" class="collapse in">
                                                 <li class="{{ (Request::is('company/*') && !Request::is('company/create')) ? 'active' : '' }}"><a href="{{ route('get-company', $_company->id ) }}">Company Profile</a></li>
-                                                <li class="{{ Request::is('company/create') ? 'active' : '' }}"><a href="{{ route('company-create') }}">Create Company</a></li>
-                                                <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
+                                                                                                <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
                                                 <li class="{{ Request::is('program-options/users') ? 'active' : '' }}"><a href="{{ route('program-options-users') }}">Users</a></li>
                                                 <li class="{{ Request::is('program-options/referral-program-settings') ? 'active' : '' }}"><a href="{{ route('program-options-referral-program-settings') }}">Referral Program Settings</a></li>
                                                 <li class="{{ Request::is('program-options/reward-settings') ? 'active' : '' }}"><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
