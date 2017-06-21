@@ -102,6 +102,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/members/{id}', 'MembersController@members')->name('member');
 
 	// Notification Routes
+	Route::get('/notification/{nid}', 'NotificationsController@getNotification')->name('notification');
 	Route::post('/user/{id}/notification/{nid}', 'NotificationsController@markAsRead')->name('mark-notification');
 });
 

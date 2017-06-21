@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $notification->created_at->format('m/d/y') }}</td>
                             <td>Referral Submitted for Approval</td> 
-                            <td><button class="btn btn-primary">view details</button></td>
+                            <td><a href="{{ route('notification', $notification->id) }}" class="btn btn-primary">view details</a></td>
                         </tr>
                         @endforeach
                         @if (!count($user->unreadNotifications()->get()))<tr><td colspan="3">No notifications found.</td></tr> @endif
