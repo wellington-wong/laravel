@@ -1428,6 +1428,15 @@ table.table {
 			display: block;
 			margin-top: 5px;
 		}
+		.profile-image {
+				height: 50px;
+				width: 50px;
+				overflow: hidden;
+				border-radius: 50px;
+			img {
+				height: 50px;
+			}
+		}
 	}
 }
 /*** Messages End ***/
