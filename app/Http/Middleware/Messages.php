@@ -18,7 +18,7 @@ class Messages
     {
 
         if (auth()->check()) {
-            \Session::put('messages', Thread::forUserWithNewMessages(auth()->user()->id)->latest('updated_at')->get());
+            \Session::put('messages', $request->_company->threads()->get());
         }    
 
 
