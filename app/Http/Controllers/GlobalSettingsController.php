@@ -115,6 +115,7 @@ class GlobalSettingsController extends Controller
     public function loginAsOrigin(Request $request) 
     {   
         Auth::loginUsingId(Session::get('currentUserId'));
+        Session::forget( 'currentUserId' );
         return redirect(route('home'));
     }
 }

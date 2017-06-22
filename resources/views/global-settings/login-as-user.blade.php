@@ -43,6 +43,7 @@
                             </tr>
                             </thead>
                             @foreach ($users as $user)
+                                @if ($user->id != auth()->user()->id)
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->email }}</td>
@@ -50,6 +51,7 @@
                                     <td>{{ isset($user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name) ? $user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name : '' }}</td>
                                     <td><a href="{{ route('login-as-user-id', [$user->id])}}" class="btn btn-primary">Login</a></td>
                                 </tr>
+                                @endif
                             @endforeach
                             @if (!count($users))<tr><td colspan="5">No users found.</td></tr>@endif
                         </table>
