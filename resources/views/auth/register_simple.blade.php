@@ -68,6 +68,7 @@
                     <div class="col-md-8 col-md-offset-2 main-content">
                         <div class="panel panel-default">
                             <div class="panel-body">
+                                @if (isset($_company->subdomain) && $_company->subdomain != "app")
                                 <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                                     {{ csrf_field() }}
 
@@ -136,6 +137,9 @@
                                     </div>
 
                                 </form>
+                                @else 
+                                    @include('auth.multi-step-form')
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -198,6 +202,13 @@
             </div> 
         </footer>
         <!-- End Footer -->
+    
+        <!-- Scripts -->
+        <script src="{{ mix('/js/manifest.js') }}"></script>
+        <script src="{{ mix('/js/vendor.js') }}"></script>
+        <script src="{{ mix('/js/app.js') }}"></script>
+        <script src="{{ mix('/js/all.js') }}"></script>
+        {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 
     </body>
 </html>
