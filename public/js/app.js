@@ -20674,6 +20674,7 @@ $(function () {
 		},
 		onFinished: function onFinished(event, currentIndex) {
 			alert("Submitted!");
+			console.log(event);
 		},
 		labels: {
 			previous: 'Back',
@@ -20735,7 +20736,6 @@ $(function () {
 			};
 
 			image.onerror = function (e) {
-				alert('Please upload a valid logo image.');
 				callback(input, this.src, true);
 			};
 
@@ -20804,7 +20804,8 @@ $(function () {
 	// CREATE COMPANY
 	function processLogo(input, data, error) {
 		if (error) {
-			$('.submit-company').removeClass('disabled');
+			alert('Please upload a valid logo image.');
+			$('.submit-company').removeClass('disabled').removeAttr('disabled');
 			$('.upload-label').text('Upload Company Logo');
 			$('.logo-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');
 			$('.logo-blob').val('');
@@ -20816,10 +20817,10 @@ $(function () {
 		$('.logo-preview img').prop('src', data).parent().removeClass('hidden');
 		$('.logo-blob').val(data);
 		$('.logo-blob-name').val(filename);
-		$('.submit-company').removeClass('disabled');
+		$('.submit-company').removeClass('disabled').removeAttr('disabled');
 	}
 	$("#logo-upload").change(function () {
-		$('.submit-company').addClass('disabled');
+		$('.submit-company').addClass('disabled').prop('disabled', 'disabled');
 		$('.upload-label').text('Processing...');
 		readImage(this, processLogo);
 	});
@@ -20858,9 +20859,11 @@ $(function () {
 	// END CONTACT
 
 	// MANAGE ACCOUNT
+	var uploadLabel;
 	function processProfile(input, data, error) {
 		if (error) {
-			$('.upload-label').text('Upload Profile Image');
+			alert('Please upload a valid profile image.');
+			$('.upload-label').text(uploadLabel);
 			$('.profile-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');
 			$('.profile-blob').val('');
 			$('.profile-blob-name').val('');
@@ -20871,10 +20874,11 @@ $(function () {
 		$('.upload-label').text('Filename: ' + filename);
 		$('.profile-blob').val(data);
 		$('.profile-blob-name').val(filename);
-		$('.submit-profile').removeClass('disabled');
+		$('.submit-profile').removeClass('disabled').removeAttr('disabled');
 	}
 	$("input[name='profile']").change(function () {
-		$('.submit-profile').addClass('disabled');
+		$('.submit-profile').addClass('disabled').prop('disabled', 'disabled');
+		uploadLabel = $('.upload-label').text();
 		$('.upload-label').text('Processing...');
 		readImage(this, processProfile);
 	});

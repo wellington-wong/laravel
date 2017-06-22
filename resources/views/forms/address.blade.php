@@ -1,22 +1,22 @@
-@if (!isset($company))
+@if (!isset($company)) 
 <div class="form-group col-md-6">
-    {{ Form::text('address', null, ['placeholder' => (isset($address_placeholder) ? $address_placeholder : 'Referral\'s Home Address' ), 'class' => 'form-control' . ($errors->has('address') ? ' has-error' : '')]) }}
+    {{ Form::text('address', isset($address->address) ? $address->address : null, ['placeholder' => (isset($address_placeholder) ? $address_placeholder : 'Referral\'s Home Address' ), 'class' => 'form-control' . ($errors->has('address') ? ' has-error' : '')]) }}
 </div>
 
 <div class="form-group col-md-6">
-    {{ Form::text('address2', null, ['placeholder' => 'Address Line 2', 'class' => 'form-control' . ($errors->has('address2') ? ' has-error' : '')]) }}
+    {{ Form::text('address2', isset($address->address2) ? $address->address2 : null, ['placeholder' => 'Address Line 2', 'class' => 'form-control' . ($errors->has('address2') ? ' has-error' : '')]) }}
 </div>
 
 <div class="form-group col-md-4">
-    {{ Form::text('city', null, ['placeholder' => 'City', 'class' => 'form-control' . ($errors->has('city') ? ' has-error' : '')]) }}
+    {{ Form::text('city', isset($address->city) ? $address->city : null, ['placeholder' => 'City', 'class' => 'form-control' . ($errors->has('city') ? ' has-error' : '')]) }}
 </div>
 
 <div class="form-group col-md-2">
-	@include('forms.states', [])
+	@include('forms.states', ['state' => isset($address->state) ? $address->state : null])
 </div>
 
 <div class="form-group col-md-6">
-    {{ Form::text('zip', null, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
+    {{ Form::text('zip', isset($address->zip) ? $address->zip : null, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
 </div>
 @else 
 <!-- Company Profile -->
