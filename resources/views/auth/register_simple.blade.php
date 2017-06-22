@@ -44,11 +44,11 @@
                     <figure class="logo col-md-3"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo.png' }}" alt=""></figure>
                     <div class="col-md-9" id="app-navbar-collapse">
                         <ul class="nav navbar-nav navbar-right navbar-bottom-right">
-                            <li><a href="#">How it Works</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ route('how-it-works') }}">How it Works</a></li>
+                            <li><a href="{{ route('features') }}">Features</a></li>
+                            <li><a href="{{ route('about-us') }}">About Us</a></li>
+                            <li><a href="{{ route('pricing') }}">Pricing</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
