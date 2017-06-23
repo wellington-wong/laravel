@@ -16,8 +16,8 @@ class Messages
      */
     public function handle($request, Closure $next)
     {
-
-        if (auth()->check()) {
+        
+        if (auth()->check() && $request->_company->subdomain != 'app') {
             \Session::put('messages', $request->_company->threads()->get());
         }    
 
