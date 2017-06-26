@@ -358,113 +358,10 @@ main {
 		box-shadow: none;
 		&, .panel-body {
 			background: none;
-			#register-form-multistep {
-				display: none;
-				label {
-					text-align: left;
-					&.error {
-						margin-left: 0;
-					}
-				}
-				.form-group {
-					margin-left: 0;
-					margin-right: 0;
-				}
-				.password-note {
-					color: #2ba4eb;
-					font-size: 12px;
-				}
-				.actions {
-					width: 90%;
-					text-align: left;
-					margin-left: 35px;
-					ul{ 
-						li {
-							a {
-								background: $bg-color2;
-								color: #464950;
-								margin-top: 50px;
-								border: none;
-								border-radius: 0;
-								padding-left: 140px;				
-								padding-right: 140px;
-							}
-							&:first-child {
-								a {
-									background: #b0aeae;
-									padding-left: 50px;				
-									padding-right: 50px;
-								}
-							}
-						}
-					}
-				}
-				.link-social {
-					padding: 0;
-				}
-				.wizard .content {
-					background: none;
-				}
-			}
 		}
 	}
 }
 .register-bottom-wrapper {
-	.form-multistep-number {
-		background: #fff;
-		padding-top: 75px;
-		.steps {
-			ul {
-				li {
-					width: 20%;
-					height: 150px;
-					list-style: none;
-					&:last-child {
-						margin-right: 0;
-					}				
-					a {
-						border-radius: 50px;
-						width: 50px;
-						height: 50px;
-						text-align: center;
-						padding: 0;
-						position: relative;
-						margin: 0 auto;
-						background: #b0aeaf;
-						.number {
-							line-height: 50px;
-							color: #fff;
-							display: block;
-						}
-						.step-label {
-							line-height: 50px;
-							color: #b0aeaf;
-							display: inline-block;
-							width: 200px;
-							margin-left: -150%;
-						}
-						&:hover, &:active, &:focus {
-							background: #b0aeaf;
-						}
-					}
-					&.current a{						
-						background: #279fdc;
-					}
-				}
-			}			
-			@media (max-width:767px) {
-				& {
-					text-align: center;
-					ul {
-						display: inline-block;
-						li {
-							float: none;
-						}
-					}
-				}
-			}
-		}
-	}
 	.upgrade-wrapper {
 		background: #fff;
 		padding: 0 0 50px 0;
@@ -1151,6 +1048,109 @@ table.table {
 /*** Basic Page End ***/
 
 /*** Multistep form ***/
+#register-form-multistep {
+	display: none;
+	label {
+		text-align: left;
+		&.error {
+			margin-left: 0;
+		}
+	}
+	.form-group {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.password-note {
+		color: #2ba4eb;
+		font-size: 12px;
+	}
+	.actions {
+		width: 90%;
+		text-align: left;
+		margin-left: 35px;
+		ul{ 
+			li {
+				a {
+					background: $bg-color2;
+					color: #464950;
+					margin-top: 50px;
+					border: none;
+					border-radius: 0;
+					padding-left: 140px;				
+					padding-right: 140px;
+				}
+				&:first-child {
+					a {
+						background: #b0aeae;
+						padding-left: 50px;				
+						padding-right: 50px;
+					}
+				}
+			}
+		}
+	}
+	.link-social {
+		padding: 0;
+	}
+	.wizard .content {
+		background: none;
+	}
+}
+	.form-multistep-number {
+		background: #fff;
+		padding-top: 75px;
+		.steps {
+			ul {
+				li {
+					width: 20%;
+					height: 150px;
+					list-style: none;
+					&:last-child {
+						margin-right: 0;
+					}				
+					a {
+						border-radius: 50px;
+						width: 50px;
+						height: 50px;
+						text-align: center;
+						padding: 0;
+						position: relative;
+						margin: 0 auto;
+						background: #b0aeaf;
+						.number {
+							line-height: 50px;
+							color: #fff;
+							display: block;
+						}
+						.step-label {
+							line-height: 50px;
+							color: #b0aeaf;
+							display: inline-block;
+							width: 200px;
+							margin-left: -150%;
+						}
+						&:hover, &:active, &:focus {
+							background: #b0aeaf;
+						}
+					}
+					&.current a{						
+						background: #279fdc;
+					}
+				}
+			}			
+			@media (max-width:767px) {
+				& {
+					text-align: center;
+					ul {
+						display: inline-block;
+						li {
+							float: none;
+						}
+					}
+				}
+			}
+		}
+	}
 .form-multistep-number > .steps .current-info,
 .tabcontrol > .steps .current-info {
     position: absolute;
