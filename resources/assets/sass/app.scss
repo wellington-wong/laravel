@@ -1081,96 +1081,102 @@ table.table {
 	.wizard .content {
 		background: none;
 	}
-}
+	
+	.form-multistep-number > .steps .current-info, .tabcontrol > .steps .current-info, .form-multistep-number > .content > .title, .tabcontrol > .content > .title {
+	  position: absolute;
+	  left: -999em;
+	}
 
-.form-multistep-number, .tabcontrol  {	
-	 > .steps .current-info {
-	    position: absolute;
-	    left: -999em;
-	}
-	> .content > .title {
-	    position: absolute;
-	    left: -999em;
-	}
-}
-
-.form-multistep-number {
-	&.vertical {
-		.steps {
-		    display: inline;
-		    float: left;
-		    width: 30%;
-		}
-	}
-	> .steps {
+	.form-multistep-number {
+	  > .steps {
 	    position: relative;
 	    display: block;
 	    width: 100%;
-	    .number {
-			    font-size: 1.429em;
-		}
-		> ul {
-			> li {
-		    	width: 25%;
-			}
-		}
+	  }
+	  &.vertical {
+	    > .steps {
+	      display: inline;
+	      float: left;
+	      width: 30%;
+	    }
+	    > .steps > ul > li {
+	      float: none;
+	      width: 100%;
+	    }
+	  }
+	  > {
+	    .steps {
+	      .number {
+	        font-size: 1.429em;
+	      }
+	      > ul > li {
+	        width: 25%;
+	        float: left;
+	      }
+	    }
+	    .actions > ul > li {
+	      float: left;
+	    }
+	  }
+	  > .steps {
+	    a {
+	      display: block;
+	      width: auto;
+	      margin: 0 0.5em 0.5em;
+	      padding: 1em 1em;
+	      text-decoration: none;
+	      -webkit-border-radius: 5px;
+	      -moz-border-radius: 5px;
+	      border-radius: 5px;
+	      &:hover, &:active {
+	        display: block;
+	        width: auto;
+	        margin: 0 0.5em 0.5em;
+	        padding: 1em 1em;
+	        text-decoration: none;
+	        -webkit-border-radius: 5px;
+	        -moz-border-radius: 5px;
+	        border-radius: 5px;
+	      }
+	    }
+	    .disabled a {
+	      background: #eee;
+	      color: #aaa;
+	      cursor: default;
+	      &:hover, &:active {
+	        background: #eee;
+	        color: #aaa;
+	        cursor: default;
+	      }
+	    }
+	    .current a {
+	      background: #2184be;
+	      color: #fff;
+	      cursor: default;
+	      &:hover, &:active {
+	        background: #2184be;
+	        color: #fff;
+	        cursor: default;
+	      }
+	    }
+	    .done a {
+	      background: #9dc8e2;
+	      color: #fff;
+	      &:hover, &:active {
+	        background: #9dc8e2;
+	        color: #fff;
+	      }
+	    }
+	    .error a {
+	      background: #ff3111;
+	      color: #fff;
+	      &:hover, &:active {
+	        background: #ff3111;
+	        color: #fff;
+	      }
+	    }
+	  }
 	}
-	> .steps, > .actions {
-		> ul {
-			> li {
-    			float: left;
-			}
-		}
-	}
-}
-
-.form-multistep-number.vertical > .steps > ul > li {
-    float: none;
-    width: 100%;
-}
-
-.form-multistep-number > .steps a,
-.form-multistep-number > .steps a:hover,
-.form-multistep-number > .steps a:active {
-    display: block;
-    width: auto;
-    margin: 0 0.5em 0.5em;
-    padding: 1em 1em;
-    text-decoration: none;
-
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
-
-.form-multistep-number > .steps .disabled a,
-.form-multistep-number > .steps .disabled a:hover,
-.form-multistep-number > .steps .disabled a:active {
-    background: #eee;
-    color: #aaa;
-    cursor: default;
-}
-
-.form-multistep-number > .steps .current a,
-.form-multistep-number > .steps .current a:hover,
-.form-multistep-number > .steps .current a:active {
-    background: #2184be;
-    color: #fff;
-    cursor: default;
-}
-
-.form-multistep-number > .steps .done a,
-.form-multistep-number > .steps .done a:hover,
-.form-multistep-number > .steps .done a:active {
-    background: #9dc8e2;
-    color: #fff;
-}
-
-.form-multistep-number > .steps .error a,
-.form-multistep-number > .steps .error a:hover,
-.form-multistep-number > .steps .error a:active {
-    background: #ff3111;
-    color: #fff;
 }
 
 .register-bottom-wrapper {
