@@ -395,7 +395,7 @@ $(function (){
 	  });
 
 	  $(window).on('load', function (){
-		  $('#register-form-multistep section').eq(2).html($('.form-generator'));
+		  $('#register-form-multistep section:eq(2)').html($('.form-generator'));
 	  });
 
 	  //document.getElementById('edit-form').onclick = function() {
