@@ -1083,43 +1083,45 @@ table.table {
 	}
 }
 
-.form-multistep-number,.tabcontrol  {	
+.form-multistep-number, .tabcontrol  {	
 	 > .steps .current-info {
+	    position: absolute;
+	    left: -999em;
+	}
+	> .content > .title {
 	    position: absolute;
 	    left: -999em;
 	}
 }
 
-.form-multistep-number > .content > .title,
-.tabcontrol > .content > .title {
-    position: absolute;
-    left: -999em;
-}
-
-.form-multistep-number > .steps {
-    position: relative;
-    display: block;
-    width: 100%;
-}
-
-.form-multistep-number.vertical > .steps {
-    display: inline;
-    float: left;
-    width: 30%;
-}
-
-.form-multistep-number > .steps .number
-{
-    font-size: 1.429em;
-}
-
-.form-multistep-number > .steps > ul > li {
-    width: 25%;
-}
-
-.form-multistep-number > .steps > ul > li,
-.form-multistep-number > .actions > ul > li {
-    float: left;
+.form-multistep-number {
+	&.vertical {
+		.steps {
+		    display: inline;
+		    float: left;
+		    width: 30%;
+		}
+	}
+	> .steps {
+	    position: relative;
+	    display: block;
+	    width: 100%;
+	    .number {
+			    font-size: 1.429em;
+		}
+		> ul {
+			> li {
+		    	width: 25%;
+			}
+		}
+	}
+	> .steps, > .actions {
+		> ul {
+			> li {
+    			float: left;
+			}
+		}
+	}
 }
 
 .form-multistep-number.vertical > .steps > ul > li {
