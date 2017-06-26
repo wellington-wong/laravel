@@ -160,7 +160,7 @@
                                         <!-- Step 3 -->
                                         <h3>Form Builder</h3>
                                         <section>
-
+                                            <form class="render-wrap"></form>
                                         </section>
                                         <!-- Step 3 End -->
 
