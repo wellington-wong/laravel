@@ -361,20 +361,6 @@ main {
 		}
 	}
 }
-.register-bottom-wrapper {
-	.upgrade-wrapper {
-		background: #fff;
-		padding: 0 0 50px 0;
-		text-align: center;
-		h4 {
-			margin: 0;
-			font-weight: bold;
-		}
-		.upgrade-plan {
-			color: #28a7ea;
-		}
-	}
-}
 /*** Guest Main End ***/
 
 
@@ -1096,6 +1082,8 @@ table.table {
 		background: none;
 	}
 }
+
+.register-bottom-wrapper {
 	.form-multistep-number {
 		background: #fff;
 		padding-top: 75px;
@@ -1151,6 +1139,20 @@ table.table {
 			}
 		}
 	}
+	.upgrade-wrapper {
+		background: #fff;
+		padding: 0 0 50px 0;
+		text-align: center;
+		h4 {
+			margin: 0;
+			font-weight: bold;
+		}
+		.upgrade-plan {
+			color: #28a7ea;
+		}
+	}
+}
+	
 .form-multistep-number > .steps .current-info,
 .tabcontrol > .steps .current-info {
     position: absolute;
