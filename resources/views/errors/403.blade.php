@@ -1,6 +1,5 @@
 @include('auth.document-top')
 
-    <div id="stage1" class="build-wrap"></div>
     <form class="render-wrap"></form>
         <!-- Start Header -->
         <header>
