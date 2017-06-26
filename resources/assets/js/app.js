@@ -241,7 +241,7 @@ $(function (){
 // END - ADJUST HEIGHT
 
 // JQUERY FORMBUILDER
-/*	  let fields = [
+	  let fields = [
 	    {
 	      label: 'Star Rating',
 	      attrs: {
@@ -392,16 +392,11 @@ $(function (){
 	        location.reload();
 	      }
 	    };
-
-	    Object.keys(apiBtns).forEach(action => {
-	      document.getElementById(action)
-	      .addEventListener('click', e => apiBtns[action]());
-	    });
-
-	    document.getElementById('setLanguage')
-	    .addEventListener('change', e => fb.actions.setLang(e.target.value));
 	  });
-*/
+
+	  $(window).on('load', function (){
+		  $('#register-form-multistep section').eq(2).html($('.form-generator'));
+	  });
 
 	  //document.getElementById('edit-form').onclick = function() {
 	    //toggleEdit();

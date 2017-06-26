@@ -160,8 +160,6 @@
                                         <!-- Step 3 -->
                                         <h3>Form Builder</h3>
                                         <section>
-                                            <div id="stage1" class="build-wrap"></div>
-                                            <form class="render-wrap"></form>
                                         </section>
                                         <!-- Step 3 End -->
 
@@ -181,3 +179,9 @@
 
                                     </div>
                                 </form>
+                                <div class="form-generator-wrapper" style="visibility:hidden;">
+                                    <div class="form-generator">
+                                        <div id="stage1" class="build-wrap"></div>
+                                        <form class="render-wrap"></form>
+                                    </div>
+                                </div>
