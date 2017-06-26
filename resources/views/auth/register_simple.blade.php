@@ -148,6 +148,15 @@
         </main>
         <!-- End Main -->
 
+        <!-- Bottom Content -->
+        <div class="register-bottom-wrapper">
+            <div class="form-multistep-number"></div>
+            <div class="upgrade-wrapper">
+                <h4>You've selected the Basic plan at $49.99 per month - <a href="#" class="upgrade-plan">Upgrade to Premium</a></h4>
+            </div>
+        </div>
+        <!-- End Bottom Content -->
+
         <!-- Start Footer -->
         <footer>
             <div class="container">
