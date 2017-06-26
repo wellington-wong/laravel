@@ -8,8 +8,8 @@
 
         <div class="row">
         @include('layouts.page-header', ['header' => auth()->user()->display_name, 'col' => 6])
-            <div class="profile-preview text-center {{ old('profile_blob') ? '' : 'hidden' }} col-md-6">
-                <img class="img-responsive center-block" height="100" src="{{ old('profile_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">
+            <div class="profile-preview text-center {{ isset(auth()->user()->profile_image) ? '' : 'hidden' }} col-md-6">
+                <img class="img-responsive center-block" height="100" src="{{ isset(auth()->user()->profile_image) ? auth()->user()->profile_image : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">
             </div>
         </div>
 
@@ -39,15 +39,15 @@
     	        	{{ Form::text('email',  auth()->user()->email, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
     	        </div>
 
-    	        @include('forms.address', ['city' => null, 'address' => null, 'address2' => null, 'zip' => null, 'state' => null, 'address_placeholder' => 'Address'])
+    	        @include('forms.address', ['address_placeholder' => 'Address'])
 
                 <div class="form-group col-md-6">
-                    <label for="profile-upload" class="btn btn-default upload-label">{{ old('profile_blob_name') ? 'Filename: ' . old('profile_blob_name') : 'Upload Profile Image' }}</label>
+                    <label for="profile-upload" class="btn btn-default upload-label">{{ isset(auth()->user()->profile_image) ? 'Update Profile Image' : 'Upload Profile Image' }}</label>
                     {{ Form::file('profile', array('class' => 'profile-upload hidden', 'id' => 'profile-upload', 'multiple' => 'multiple')) }}
                 </div>    
 
-                {{ Form::hidden('profile_blob', old('profile_blob'), ['class' => 'profile-blob']) }}
-                {{ Form::hidden('profile_blob_name', old('profile_blob_name'), ['class' => 'profile-blob-name']) }}
+                {{ Form::hidden('profile_blob', null, ['class' => 'profile-blob']) }}
+                {{ Form::hidden('profile_blob_name', null, ['class' => 'profile-blob-name']) }}
 
     	        <div class="form-group col-md-12 text-right">
     	        	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100 submit-profile']) }}

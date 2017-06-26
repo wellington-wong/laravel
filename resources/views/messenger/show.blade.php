@@ -9,7 +9,7 @@
             @include('layouts.page-header', ['header' => $thread->subject, 'col' => 6])
 		</div>        
 		<div class="row">    
-            <div class="col-md-12 table-referral-wrapper table-wrapper">
+            <div class="col-md-12 table-message-wrapper table-wrapper">
                 <table class="table table-message tablesaw tablesaw-stack table-custom">
                     <tbody>
                     @each('messenger.partials.messages', $thread->messages, 'message')

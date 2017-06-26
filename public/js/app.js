@@ -20463,167 +20463,165 @@ $(function () {
 	// END - ADJUST HEIGHT
 
 	// JQUERY FORMBUILDER
-	/*	  let fields = [
- 	    {
- 	      label: 'Star Rating',
- 	      attrs: {
- 	        type: 'starRating'
- 	      },
- 	      icon: 'ðŸŒŸ'
- 	    }
- 	  ];
- 
- 	  let templates = {
- 	    starRating: function(fieldData) {
- 	      return {
- 	        field: '<span id="'+fieldData.name+'">',
- 	        onRender: function() {
- 	          $(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
- 	        }
- 	      };
- 	    }
- 	  };
- 
- 	  let inputSets = [{
- 	        label: 'User Details',
- 	        name: 'user-details', // optional
- 	        showHeader: true, // optional
- 	        fields: [{
- 	          type: 'text',
- 	          label: 'First Name',
- 	          className: 'form-control'
- 	        }, {
- 	          type: 'select',
- 	          label: 'Profession',
- 	          className: 'form-control',
- 	          values: [{
- 	            label: 'Street Sweeper',
- 	            value: 'option-2',
- 	            selected: false
- 	          }, {
- 	            label: 'Brain Surgeon',
- 	            value: 'option-3',
- 	            selected: false
- 	          }]
- 	        }, {
- 	          type: 'textarea',
- 	          label: 'Short Bio:',
- 	          className: 'form-control'
- 	        }]
- 	      }, {
- 	        label: 'User Agreement',
- 	        fields: [{
- 	          type: 'header',
- 	          subtype: 'h3',
- 	          label: 'Terms & Conditions',
- 	          className: 'header'
- 	        }, {
- 	          type: 'paragraph',
- 	          label: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.',
- 	        }, {
- 	          type: 'paragraph',
- 	          label: 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.',
- 	        }, {
- 	          type: 'checkbox',
- 	          label: 'Do you agree to the terms and conditions?',
- 	        }]
- 	      }];
- 
- 	  var typeUserDisabledAttrs = {
- 	    autocomplete: ['access']
- 	  };
- 
- 	  var typeUserAttrs = {
- 	    text: {
- 	      className: {
- 	        label: 'Class',
- 	        options: {
- 	          'red form-control': 'Red',
- 	          'green form-control': 'Green',
- 	          'blue form-control': 'Blue'
- 	        },
- 	        style: 'border: 1px solid red'
- 	      }
- 	    }
- 	  };
- 
- 	  // test disabledAttrs
- 	  let disabledAttrs = ['placeholder'];
- 
- 	  const fbOptions = {
- 	    subtypes: {
- 	      text: ['datetime-local']
- 	    },
- 	    onSave: function(e, formData) {
- 	      toggleEdit();
- 	      $('.render-wrap').formRender({
- 	        formData,
- 	        templates
- 	      });
- 	      window.sessionStorage.setItem('formData', JSON.stringify(formData));
- 	    },
- 	    stickyControls: {
- 	      enable: true
- 	    },
- 	    sortableControls: true,
- 	    fields,
- 	    templates,
- 	    inputSets,
- 	    typeUserDisabledAttrs,
- 	    typeUserAttrs,
- 	    // disabledAttrs
- 	  };
- 	  let formData = window.sessionStorage.getItem('formData');
- 	  let editing = true;
- 
- 	  if (formData) {
- 	    fbOptions.formData = JSON.parse(formData);
- 	  }
- 
- 	  function toggleEdit() {
- 	    document.body.classList.toggle('form-rendered', editing);
- 	    return editing = !editing;
- 	  }
- 
- 	  const setFormData = '[{"type":"text","label":"Full Name","subtype":"text","className":"form-control","name":"text-1476748004559"},{"type":"select","label":"Occupation","className":"form-control","name":"select-1476748006618","values":[{"label":"Street Sweeper","value":"option-1","selected":true},{"label":"Moth Man","value":"option-2"},{"label":"Chemist","value":"option-3"}]},{"type":"textarea","label":"Short Bio","rows":"5","className":"form-control","name":"textarea-1476748007461"}]';
- 
- 	  const formBuilder = $('.build-wrap').formBuilder(fbOptions);
- 	  const fbPromise = formBuilder.promise;
- 
- 	  fbPromise.then(function(fb) {
- 	    let apiBtns = {
- 	      showData: fb.actions.showData,
- 	      clearFields: fb.actions.clearFields,
- 	      getData: () => console.log(fb.actions.getData()),
- 	      setData: () => fb.actions.setData(setFormData),
- 	      addField: () => {
- 	        let field = {
- 	            type: 'text',
- 	            class: 'form-control',
- 	            label: 'Text Field added at: ' + new Date().getTime()
- 	          };
- 	        fb.actions.addField(field);
- 	      },
- 	      removeField: () => fb.actions.removeField(),
- 	      testSubmit: () => {
- 	        console.log(document.forms[0].checkValidity());
- 	        // document.forms[0].submit()
- 	      },
- 	      resetDemo: () => {
- 	        window.sessionStorage.removeItem('formData');
- 	        location.reload();
- 	      }
- 	    };
- 
- 	    Object.keys(apiBtns).forEach(action => {
- 	      document.getElementById(action)
- 	      .addEventListener('click', e => apiBtns[action]());
- 	    });
- 
- 	    document.getElementById('setLanguage')
- 	    .addEventListener('change', e => fb.actions.setLang(e.target.value));
- 	  });
- */
+	var fields = [{
+		label: 'Star Rating',
+		attrs: {
+			type: 'starRating'
+		},
+		icon: 'ðŸŒŸ'
+	}];
+
+	var templates = {
+		starRating: function starRating(fieldData) {
+			return {
+				field: '<span id="' + fieldData.name + '">',
+				onRender: function onRender() {
+					$(document.getElementById(fieldData.name)).rateYo({ rating: 3.6 });
+				}
+			};
+		}
+	};
+
+	var inputSets = [{
+		label: 'User Details',
+		name: 'user-details', // optional
+		showHeader: true, // optional
+		fields: [{
+			type: 'text',
+			label: 'First Name',
+			className: 'form-control'
+		}, {
+			type: 'select',
+			label: 'Profession',
+			className: 'form-control',
+			values: [{
+				label: 'Street Sweeper',
+				value: 'option-2',
+				selected: false
+			}, {
+				label: 'Brain Surgeon',
+				value: 'option-3',
+				selected: false
+			}]
+		}, {
+			type: 'textarea',
+			label: 'Short Bio:',
+			className: 'form-control'
+		}]
+	}, {
+		label: 'User Agreement',
+		fields: [{
+			type: 'header',
+			subtype: 'h3',
+			label: 'Terms & Conditions',
+			className: 'header'
+		}, {
+			type: 'paragraph',
+			label: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.'
+		}, {
+			type: 'paragraph',
+			label: 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.'
+		}, {
+			type: 'checkbox',
+			label: 'Do you agree to the terms and conditions?'
+		}]
+	}];
+
+	var typeUserDisabledAttrs = {
+		autocomplete: ['access']
+	};
+
+	var typeUserAttrs = {
+		text: {
+			className: {
+				label: 'Class',
+				options: {
+					'red form-control': 'Red',
+					'green form-control': 'Green',
+					'blue form-control': 'Blue'
+				},
+				style: 'border: 1px solid red'
+			}
+		}
+	};
+
+	// test disabledAttrs
+	var disabledAttrs = ['placeholder'];
+
+	var fbOptions = {
+		subtypes: {
+			text: ['datetime-local']
+		},
+		onSave: function onSave(e, formData) {
+			toggleEdit();
+			$('.render-wrap').formRender({
+				formData: formData,
+				templates: templates
+			});
+			window.sessionStorage.setItem('formData', JSON.stringify(formData));
+		},
+		stickyControls: {
+			enable: true
+		},
+		sortableControls: true,
+		fields: fields,
+		templates: templates,
+		inputSets: inputSets,
+		typeUserDisabledAttrs: typeUserDisabledAttrs,
+		typeUserAttrs: typeUserAttrs
+	};
+	var formData = window.sessionStorage.getItem('formData');
+	var editing = true;
+
+	if (formData) {
+		fbOptions.formData = JSON.parse(formData);
+	}
+
+	function toggleEdit() {
+		document.body.classList.toggle('form-rendered', editing);
+		return editing = !editing;
+	}
+
+	var setFormData = '[{"type":"text","label":"Full Name","subtype":"text","className":"form-control","name":"text-1476748004559"},{"type":"select","label":"Occupation","className":"form-control","name":"select-1476748006618","values":[{"label":"Street Sweeper","value":"option-1","selected":true},{"label":"Moth Man","value":"option-2"},{"label":"Chemist","value":"option-3"}]},{"type":"textarea","label":"Short Bio","rows":"5","className":"form-control","name":"textarea-1476748007461"}]';
+
+	var formBuilder = $('.build-wrap').formBuilder(fbOptions);
+	var fbPromise = formBuilder.promise;
+
+	fbPromise.then(function (fb) {
+		var apiBtns = {
+			showData: fb.actions.showData,
+			clearFields: fb.actions.clearFields,
+			getData: function getData() {
+				return console.log(fb.actions.getData());
+			},
+			setData: function setData() {
+				return fb.actions.setData(setFormData);
+			},
+			addField: function addField() {
+				var field = {
+					type: 'text',
+					class: 'form-control',
+					label: 'Text Field added at: ' + new Date().getTime()
+				};
+				fb.actions.addField(field);
+			},
+			removeField: function removeField() {
+				return fb.actions.removeField();
+			},
+			testSubmit: function testSubmit() {
+				console.log(document.forms[0].checkValidity());
+				// document.forms[0].submit()
+			},
+			resetDemo: function resetDemo() {
+				window.sessionStorage.removeItem('formData');
+				location.reload();
+			}
+		};
+	});
+
+	$(window).on('load', function () {
+		$('#register-form-multistep section').eq(2).html($('.form-generator'));
+	});
 
 	//document.getElementById('edit-form').onclick = function() {
 	//toggleEdit();
@@ -20674,6 +20672,7 @@ $(function () {
 		},
 		onFinished: function onFinished(event, currentIndex) {
 			alert("Submitted!");
+			console.log(event);
 		},
 		labels: {
 			previous: 'Back',
@@ -20735,7 +20734,6 @@ $(function () {
 			};
 
 			image.onerror = function (e) {
-				alert('Please upload a valid logo image.');
 				callback(input, this.src, true);
 			};
 
@@ -20804,7 +20802,8 @@ $(function () {
 	// CREATE COMPANY
 	function processLogo(input, data, error) {
 		if (error) {
-			$('.submit-company').removeClass('disabled');
+			alert('Please upload a valid logo image.');
+			$('.submit-company').removeClass('disabled').removeAttr('disabled');
 			$('.upload-label').text('Upload Company Logo');
 			$('.logo-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');
 			$('.logo-blob').val('');
@@ -20816,10 +20815,10 @@ $(function () {
 		$('.logo-preview img').prop('src', data).parent().removeClass('hidden');
 		$('.logo-blob').val(data);
 		$('.logo-blob-name').val(filename);
-		$('.submit-company').removeClass('disabled');
+		$('.submit-company').removeClass('disabled').removeAttr('disabled');
 	}
 	$("#logo-upload").change(function () {
-		$('.submit-company').addClass('disabled');
+		$('.submit-company').addClass('disabled').prop('disabled', 'disabled');
 		$('.upload-label').text('Processing...');
 		readImage(this, processLogo);
 	});
@@ -20858,9 +20857,11 @@ $(function () {
 	// END CONTACT
 
 	// MANAGE ACCOUNT
+	var uploadLabel;
 	function processProfile(input, data, error) {
 		if (error) {
-			$('.upload-label').text('Upload Profile Image');
+			alert('Please upload a valid profile image.');
+			$('.upload-label').text(uploadLabel);
 			$('.profile-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');
 			$('.profile-blob').val('');
 			$('.profile-blob-name').val('');
@@ -20871,10 +20872,11 @@ $(function () {
 		$('.upload-label').text('Filename: ' + filename);
 		$('.profile-blob').val(data);
 		$('.profile-blob-name').val(filename);
-		$('.submit-profile').removeClass('disabled');
+		$('.submit-profile').removeClass('disabled').removeAttr('disabled');
 	}
 	$("input[name='profile']").change(function () {
-		$('.submit-profile').addClass('disabled');
+		$('.submit-profile').addClass('disabled').prop('disabled', 'disabled');
+		uploadLabel = $('.upload-label').text();
 		$('.upload-label').text('Processing...');
 		readImage(this, processProfile);
 	});

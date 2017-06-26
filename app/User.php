@@ -261,7 +261,7 @@ class User extends Authenticatable
         $address = $this->address()->update(
             $request->only($input)
         );
-        $this->address()->updateExistingPivot($address->id, ['default'=>1]);
+        $this->address()->updateExistingPivot($this->address()->first()->id, ['default'=>1]);
         return $address;
     }
 

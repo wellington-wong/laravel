@@ -16,9 +16,9 @@ class Messages
      */
     public function handle($request, Closure $next)
     {
-
-        if (auth()->check()) {
-            \Session::put('messages', Thread::forUserWithNewMessages(auth()->user()->id)->latest('updated_at')->get());
+        
+        if (auth()->check() && $request->_company->subdomain != 'app') {
+            \Session::put('messages', $request->_company->threads()->get());
         }    
 
 

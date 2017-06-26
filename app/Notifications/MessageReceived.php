@@ -7,7 +7,6 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Cmgmyr\Messenger\Models\Message;
-use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
 use Auth;
 use App\LogEmail;
@@ -27,7 +26,7 @@ class MessageReceived extends Notification
      *
      * @return void
      */
-    public function __construct(Thread $thread, Message $message, Participant $participant, Request $request)
+    public function __construct(Thread $thread, Message $message, $participant, Request $request)
     {
         $this->thread = $thread;
         $this->message = $message;

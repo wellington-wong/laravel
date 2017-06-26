@@ -44,11 +44,11 @@
                     <figure class="logo col-md-3"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo.png' }}" alt=""></figure>
                     <div class="col-md-9" id="app-navbar-collapse">
                         <ul class="nav navbar-nav navbar-right navbar-bottom-right">
-                            <li><a href="#">How it Works</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ route('how-it-works') }}">How it Works</a></li>
+                            <li><a href="{{ route('features') }}">Features</a></li>
+                            <li><a href="{{ route('about-us') }}">About Us</a></li>
+                            <li><a href="{{ route('pricing') }}">Pricing</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -68,6 +68,7 @@
                     <div class="col-md-8 col-md-offset-2 main-content">
                         <div class="panel panel-default">
                             <div class="panel-body">
+                                @if (isset($_company->subdomain) && $_company->subdomain != "app")
                                 <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                                     {{ csrf_field() }}
 
@@ -136,6 +137,9 @@
                                     </div>
 
                                 </form>
+                                @else 
+                                    @include('auth.multi-step-form')
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -143,6 +147,15 @@
             </div>
         </main>
         <!-- End Main -->
+
+        <!-- Bottom Content -->
+        <div class="register-bottom-wrapper">
+            <div class="form-multistep-number"></div>
+            <div class="upgrade-wrapper">
+                <h4>You've selected the Basic plan at $49.99 per month - <a href="#" class="upgrade-plan">Upgrade to Premium</a></h4>
+            </div>
+        </div>
+        <!-- End Bottom Content -->
 
         <!-- Start Footer -->
         <footer>
@@ -198,6 +211,13 @@
             </div> 
         </footer>
         <!-- End Footer -->
+    
+        <!-- Scripts -->
+        <script src="{{ mix('/js/manifest.js') }}"></script>
+        <script src="{{ mix('/js/vendor.js') }}"></script>
+        <script src="{{ mix('/js/app.js') }}"></script>
+        <script src="{{ mix('/js/all.js') }}"></script>
+        {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 
     </body>
 </html>
