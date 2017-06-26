@@ -1083,80 +1083,11 @@ table.table {
 	}
 }
 
-.register-bottom-wrapper {
-	.form-multistep-number {
-		background: #fff;
-		padding-top: 75px;
-		.steps {
-			ul {
-				li {
-					width: 20%;
-					height: 150px;
-					list-style: none;
-					&:last-child {
-						margin-right: 0;
-					}				
-					a {
-						border-radius: 50px;
-						width: 50px;
-						height: 50px;
-						text-align: center;
-						padding: 0;
-						position: relative;
-						margin: 0 auto;
-						background: #b0aeaf;
-						.number {
-							line-height: 50px;
-							color: #fff;
-							display: block;
-						}
-						.step-label {
-							line-height: 50px;
-							color: #b0aeaf;
-							display: inline-block;
-							width: 200px;
-							margin-left: -150%;
-						}
-						&:hover, &:active, &:focus {
-							background: #b0aeaf;
-						}
-					}
-					&.current a{						
-						background: #279fdc;
-					}
-				}
-			}			
-			@media (max-width:767px) {
-				& {
-					text-align: center;
-					ul {
-						display: inline-block;
-						li {
-							float: none;
-						}
-					}
-				}
-			}
-		}
+.form-multistep-number,.tabcontrol  {	
+	 > .steps .current-info {
+	    position: absolute;
+	    left: -999em;
 	}
-	.upgrade-wrapper {
-		background: #fff;
-		padding: 0 0 50px 0;
-		text-align: center;
-		h4 {
-			margin: 0;
-			font-weight: bold;
-		}
-		.upgrade-plan {
-			color: #28a7ea;
-		}
-	}
-}
-	
-.form-multistep-number > .steps .current-info,
-.tabcontrol > .steps .current-info {
-    position: absolute;
-    left: -999em;
 }
 
 .form-multistep-number > .content > .title,
@@ -1240,6 +1171,75 @@ table.table {
     color: #fff;
 }
 
+.register-bottom-wrapper {
+	.form-multistep-number {
+		background: #fff;
+		padding-top: 75px;
+		.steps {
+			ul {
+				li {
+					width: 20%;
+					height: 150px;
+					list-style: none;
+					&:last-child {
+						margin-right: 0;
+					}				
+					a {
+						border-radius: 50px;
+						width: 50px;
+						height: 50px;
+						text-align: center;
+						padding: 0;
+						position: relative;
+						margin: 0 auto;
+						background: #b0aeaf;
+						.number {
+							line-height: 50px;
+							color: #fff;
+							display: block;
+						}
+						.step-label {
+							line-height: 50px;
+							color: #b0aeaf;
+							display: inline-block;
+							width: 200px;
+							margin-left: -150%;
+						}
+						&:hover, &:active, &:focus {
+							background: #b0aeaf;
+						}
+					}
+					&.current a{						
+						background: #279fdc;
+					}
+				}
+			}			
+			@media (max-width:767px) {
+				& {
+					text-align: center;
+					ul {
+						display: inline-block;
+						li {
+							float: none;
+						}
+					}
+				}
+			}
+		}
+	}
+	.upgrade-wrapper {
+		background: #fff;
+		padding: 0 0 50px 0;
+		text-align: center;
+		h4 {
+			margin: 0;
+			font-weight: bold;
+		}
+		.upgrade-plan {
+			color: #28a7ea;
+		}
+	}
+}
 /*** Multistep form End ***/
 
 /*** Daterangepicker ***/
