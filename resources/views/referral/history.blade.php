@@ -45,7 +45,7 @@
                     @endforeach
                     @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
                 </table>
-                
+
             </div>
         </div>
         @include('layouts.modal')
