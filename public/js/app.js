@@ -20619,10 +20619,6 @@ $(function () {
 		};
 	});
 
-	window.onload = function () {
-		$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
-	};
-
 	//document.getElementById('edit-form').onclick = function() {
 	//toggleEdit();
 	//};
@@ -20664,6 +20660,9 @@ $(function () {
 				stepsContentHeight();
 			});
 			stepsContentHeight();
+			if (newIndex == 2) {
+				$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
+			}
 			return true; //form.valid();
 		},
 		onFinishing: function onFinishing(event, currentIndex) {

@@ -179,7 +179,7 @@
 
                                     </div>
                                 </form>
-                                <div class="form-generator-wrapper">
+                                <div class="form-generator-wrapper" style="visibility: hidden; position: absolute;">
                                     <div class="form-generator">
                                         <div id="stage1" class="build-wrap"></div>
                                         <form class="render-wrap"></form>
