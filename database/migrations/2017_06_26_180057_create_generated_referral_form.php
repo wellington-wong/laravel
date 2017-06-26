@@ -19,6 +19,7 @@ class CreateGeneratedReferralForm extends Migration
             $table->string('field');
             $table->string('value');
             $table->string('default_value');
+            $table->string('raw_json');
             $table->timestamps();
         });
     }
