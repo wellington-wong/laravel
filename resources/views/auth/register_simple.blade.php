@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Register | {{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
-</head>
-    <body>
-
+@include('auth.document-top')
         <!-- Start Header -->
         <header>
             <div class="row no-margin-lr">
@@ -33,26 +8,7 @@
                     </ul>
                 </div>
             </div>
-            <section class="container">
-                <div class="row">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <figure class="logo col-md-3"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo.png' }}" alt=""></figure>
-                    <div class="col-md-9" id="app-navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right navbar-bottom-right">
-                            <li><a href="{{ route('how-it-works') }}">How it Works</a></li>
-                            <li><a href="{{ route('features') }}">Features</a></li>
-                            <li><a href="{{ route('about-us') }}">About Us</a></li>
-                            <li><a href="{{ route('pricing') }}">Pricing</a></li>
-                            <li><a href="{{ route('contact') }}">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+            @include('auth.header')
         </header>
         <!-- End Header -->
 
@@ -157,67 +113,6 @@
         </div>
         <!-- End Bottom Content -->
 
-        <!-- Start Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 footer-list">
-                        <h4>Headline 3</h4>
-                        <ul>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                        </ul>
-                    </div>  
-                    <div class="col-md-2 footer-list">
-                        <h4>Headline 3</h4>
-                        <ul>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                        </ul>
-                    </div>         
-                    <div class="col-md-2 footer-list">
-                        <h4>Headline 3</h4>
-                        <ul>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                        </ul>
-                    </div>     
-                    <div class="col-md-2 footer-list col-md-offset-4">
-                        <h4>Headline 3</h4>
-                        <ul>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                            <li><a href="#">List Item in Footer</a></li>
-                        </ul>
-                    </div> 
-                </div>   
-                <div class="row">
-                    <div class="middle-content">
-                        <span>Some random disclaimer text we may need to put here about something important.</span>
-                    </div>
-                </div> 
-            </div>    
-            <div class="row">
-                <div class="bottom-content text-center">
-                    <span>Copyright Stuffs</span>
-                </div>
-            </div> 
-        </footer>
-        <!-- End Footer -->
-    
-        <!-- Scripts -->
-        <script src="{{ mix('/js/manifest.js') }}"></script>
-        <script src="{{ mix('/js/vendor.js') }}"></script>
-        <script src="{{ mix('/js/app.js') }}"></script>
-        <script src="{{ mix('/js/all.js') }}"></script>
-        {{--<script src="{{ asset('js/app.js') }}"></script>--}}
-
-    </body>
-</html>
+<!-- Start Footer -->
+@include('auth.footer')
+<!-- End Footer -->
