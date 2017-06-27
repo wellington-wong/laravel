@@ -1082,146 +1082,178 @@ table.table {
 		background: none;
 	}
 }
-	
-.form-multistep-number > .steps .current-info, .tabcontrol > .steps .current-info, .form-multistep-number > .content > .title, .tabcontrol > .content > .title {
-  position: absolute;
-  left: -999em;
+.form-generator-wrapper {
+	visibility: hidden;
+	position: absolute;
 }
-
-.form-multistep-number {
-  > .steps {
-    position: relative;
-    display: block;
-    width: 100%;
-  }
-  &.vertical {
-    > .steps {
-      display: inline;
-      float: left;
-      width: 30%;
-    }
-    > .steps > ul > li {
-      float: none;
-      width: 100%;
-    }
-  }
-  > {
-    .steps {
-      .number {
-        font-size: 1.429em;
-      }
-      > ul > li {
-        width: 25%;
-        float: left;
-      }
-    }
-    .actions > ul > li {
-      float: left;
-    }
-  }
-  > .steps {
-    a {
-      display: block;
-      width: auto;
-      margin: 0 0.5em 0.5em;
-      padding: 1em 1em;
-      text-decoration: none;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      &:hover, &:active {
-        display: block;
-        width: auto;
-        margin: 0 0.5em 0.5em;
-        padding: 1em 1em;
-        text-decoration: none;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-      }
-    }
-    .disabled a {
-      background: #eee;
-      color: #aaa;
-      cursor: default;
-      &:hover, &:active {
-        background: #eee;
-        color: #aaa;
-        cursor: default;
-      }
-    }
-    .current a {
-      background: #2184be;
-      color: #fff;
-      cursor: default;
-      &:hover, &:active {
-        background: #2184be;
-        color: #fff;
-        cursor: default;
-      }
-    }
-    .done a {
-      background: #9dc8e2;
-      color: #fff;
-      &:hover, &:active {
-        background: #9dc8e2;
-        color: #fff;
-      }
-    }
-    .error a {
-      background: #ff3111;
-      color: #fff;
-      &:hover, &:active {
-        background: #ff3111;
-        color: #fff;
-      }
-    }
-  }
+#steps-uid-0-p-2 {
+	position: relative;
+	width: 100%;
+	.form-generator {
+		.cb-wrap {
+			position: absolute !important;
+			left: auto !important;
+			right: 0 !important;
+			width: 26% !important;
+			ul {
+				li {					
+					padding: 5px 10px;
+				}
+			}
+			> .btn-group {
+				width: 100%;
+				margin-top: 15px;
+				> button.btn {
+					width: 50%;
+				}
+				> .btn-default {
+					display: none;
+				}
+			}
+		}
+		.stage-wrap {
+			ul {
+				li {
+					list-style: none;
+					padding: 10px;
+				}
+			}
+			.frmb {
+				margin-right: 20px;
+			}
+		}
+	}
 }
-
 .register-bottom-wrapper {
+	.form-multistep-number > .steps .current-info, .tabcontrol > .steps .current-info, .form-multistep-number > .content > .title, .tabcontrol > .content > .title {
+	  position: absolute;
+	  left: -999em;
+	}
+
 	.form-multistep-number {
 		background: #fff;
 		padding-top: 75px;
-		.steps {
-			ul {
-				li {
+		> .steps {
+			position: relative;
+			display: block;
+			width: 100%;
+		}
+		&.vertical {
+			> .steps {
+				display: inline;
+				float: left;
+				width: 30%;
+			}
+			> .steps > ul > li {
+				float: none;
+				width: 100%;
+			}
+		}
+		> {
+			.steps {
+				.number {
+					font-size: 1.429em;
+				}
+				> ul > li {
+					width: 25%;
+					float: left;
 					width: 20%;
 					height: 150px;
 					list-style: none;
 					&:last-child {
 						margin-right: 0;
 					}				
-					a {
-						border-radius: 50px;
-						width: 50px;
-						height: 50px;
-						text-align: center;
-						padding: 0;
-						position: relative;
-						margin: 0 auto;
-						background: #b0aeaf;
-						.number {
-							line-height: 50px;
-							color: #fff;
-							display: block;
-						}
-						.step-label {
-							line-height: 50px;
-							color: #b0aeaf;
-							display: inline-block;
-							width: 200px;
-							margin-left: -150%;
-						}
-						&:hover, &:active, &:focus {
-							background: #b0aeaf;
-						}
-					}
-					&.current a{						
-						background: #279fdc;
-					}
+				}
+			}
+			.actions > ul > li {
+				float: left;
+			}
+		}
+		> .steps {
+			a {
+				display: block;
+				width: auto;
+				margin: 0 0.5em 0.5em;
+				padding: 1em 1em;
+				text-decoration: none;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				&:hover, &:active {
+					display: block;
+					width: auto;
+					margin: 0 0.5em 0.5em;
+					padding: 1em 1em;
+					text-decoration: none;
+					-webkit-border-radius: 5px;
+					-moz-border-radius: 5px;
+					border-radius: 5px;
 				}
 			}			
+			a, a:hover {
+				border-radius: 50px;
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				padding: 0;
+				position: relative;
+				margin: 0 auto;
+				background: #b0aeaf;
+				.number {
+					line-height: 50px;
+					color: #fff;
+					display: block;
+				}
+				.step-label {
+					line-height: 50px;
+					color: #b0aeaf;
+					display: inline-block;
+					width: 200px;
+					margin-left: -150%;
+				}
+				&:hover, &:active, &:focus {
+					background: #b0aeaf;
+				}
+			}
+			&.current a{						
+				background: #279fdc;
+			}
+			.disabled a {
+				background: #eee;
+				color: #aaa;
+				cursor: default;
+				&:hover, &:active {
+					background: #eee;
+					color: #aaa;
+					cursor: default;
+				}
+			}
+			.current a {
+					background: #2184be;
+					color: #fff;
+					cursor: default;
+					&:hover, &:active {
+					background: #2184be;
+					color: #fff;
+					cursor: default;
+				}
+			}
+			.done a {
+				background: #9dc8e2;
+				color: #fff;
+				&:hover, &:active {
+					background: #9dc8e2;
+					color: #fff;
+				}
+			}
+			.error a {
+				background: #ff3111;
+				color: #fff;
+				&:hover, &:active {
+					background: #ff3111;
+					color: #fff;
+				}
+			}
 			@media (max-width:767px) {
 				& {
 					text-align: center;
