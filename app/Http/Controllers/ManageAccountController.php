@@ -63,13 +63,13 @@ class ManageAccountController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        if (null !== auth()->user()->phones()->first()) {
+        if (null != auth()->user()->phone()) {
             auth()->user()->updateDefaultPhone($request);
         } else {
             auth()->user()->addDefaultPhone($request);
         }
 
-        if (null !== auth()->user()->addresses()->first()) {
+        if (null != auth()->user()->address()) {
             auth()->user()->updateDefaultAddress($request);
         } else {
             auth()->user()->addDefaultAddress($request);
