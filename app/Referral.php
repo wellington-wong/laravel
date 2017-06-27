@@ -68,10 +68,9 @@ class Referral extends Model
 
         if (isset($q)) {
             $referrals->where(function ($query) use ($q) {
-                //$query->whereRaw("LOWER(users.name) LIKE ?", ['%' . $q . '%']);
-                //$query->orWhereRaw("LOWER(users.first_name) LIKE ?", ['%' . $q . '%']);
                 $query->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%');
-                //$query->orWhereRaw("LOWER(users.last_name) LIKE ?", ['%' . $q . '%']);
+                $query->where(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q . '%');
+                $query->where(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q . '%');
             });
         }
 
