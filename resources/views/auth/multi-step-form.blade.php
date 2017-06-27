@@ -102,11 +102,11 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-12" >
-                                                    <div class="col-md-12" >
+                                                <div class="form-group col-md-12">
+                                                    <div class="col-md-12">
                                                         <label>Type of Business</label>
                                                     </div>
-                                                    <div class="col-md-12" >
+                                                    <div class="col-md-12">
                                                         {{ Form::select('business_type', ['small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
@@ -181,28 +181,43 @@
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('send_reward') ? ' has-error' : '' }} col-md-12">
-                                                    <div class="col-md-12" >
+                                                    <div class="col-md-12">
                                                         <label>How will you send the reward?</label>
                                                     </div>
-                                                    <div class="col-md-12" >
+                                                    <div class="col-md-12">
                                                         {{ Form::select('send_reward', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check'], old('send_reward'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('leader_board') ? ' has-error' : '' }} col-md-12">
-                                                    <div class="col-md-12" >
+                                                    <div class="col-md-12">
                                                         <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
                                                     </div>
-                                                    <div class="col-md-12" >
+                                                    <div class="col-md-12">
                                                         {{ Form::select('leader_board', ['' => 'Please Select One', '1' => 'Yes', '0' => 'No'], old('leader_board'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
-                                                <div class="form-group{{ $errors->has('leader_board') ? ' has-error' : '' }} col-md-12">
-                                                    <div class="col-md-12" >
+                                                <div class="form-group col-md-12 reward-ratio-wrapper">
+                                                    <div class="col-md-12">
                                                         <h4 class="text-center"><strong>Your Reward Ratio</strong></h4>
                                                     </div>
-                                                    <div class="col-md-12" >
-                                                     </div>
+                                                    <div class="col-md-12 reward-ratio">
+                                                        <div class="col-md-6 col-md-offset-3">
+                                                            <span>1</span>
+                                                            <span class="reward-equals">=</span>
+                                                            <span>1</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 reward-ratio-desc">
+                                                        <div class="col-md-6 col-md-offset-3">
+                                                            <span>Approved Referral</span>
+                                                            <span class="reward-equals-desc"></span>
+                                                            <span>$100 Gift Card</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 rewards-bottom">
+                                                        <span>Want to use a point system? <a href="#">Upgrade to premium</a></span>
+                                                    </div>
                                                 </div>
 
                                                 <div class="clearfix"></div>

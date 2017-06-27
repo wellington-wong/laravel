@@ -1134,7 +1134,51 @@ table.table {
 				}
 			}
 		}
-	}	
+	}
+	#steps-uid-0-p-3 {
+		position: relative;
+		.reward-ratio-wrapper {
+			background: #e6e4e5;
+			padding: 20px 0;
+			> div {
+				margin-bottom: 10px;
+			}
+			.reward-ratio {
+				> div {
+					text-align: center;
+					> span {
+						width: 70px;
+						display: inline-block;
+						line-height: 70px;
+						background: #fff;
+						font-weight: bold;
+						font-size: 20px;
+					}
+					> .reward-equals {
+						background: transparent;
+					}
+				}
+			}
+			.reward-ratio-desc {
+				> div {
+					text-align: center;
+					> span {
+						width: 70px;
+						display: inline-block;
+						font-weight: bold;
+						font-size: 12px;
+						color: #a39fa0;
+					}
+				}
+			}
+			.rewards-bottom {
+				color: #a39fa0;
+				text-align: center;
+				font-weight: bold;
+				margin-top: 10px;
+			}
+		}
+	}
 }
 .register-bottom-wrapper {
 	.form-multistep-number > .steps .current-info, .tabcontrol > .steps .current-info, .form-multistep-number > .content > .title, .tabcontrol > .content > .title {
