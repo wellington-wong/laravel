@@ -332,7 +332,7 @@ $(function (){
 	    subtypes: {
 	      text: ['datetime-local']
 	    },
-      	disableFields: ['autocomplete', 'starRating', 'hidden', 'user-details', 'file'],
+      	disableFields: ['autocomplete', 'starRating', 'hidden', 'user-details', 'file', 'date'],
 	    onSave: function(e, formData) {
 	      toggleEdit();
 	      $('.render-wrap').formRender({
