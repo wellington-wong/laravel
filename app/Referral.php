@@ -36,7 +36,7 @@ class Referral extends Model
      * Sort Referrals
      * @return
      */
-    public function filterSortReferrals($defaultSort = 'created_at') {
+    public function filterSortReferrals($defaultSort = 'referrals.created_at') {
 
         $request = request();
 
@@ -68,9 +68,10 @@ class Referral extends Model
 
         if (isset($q)) {
             $referrals->where(function ($query) use ($q) {
-                $query->whereRaw("LOWER(users.name) LIKE ?", ['%' . $q . '%']);
-                $query->orWhereRaw("LOWER(users.first_name) LIKE ?", ['%' . $q . '%']);
-                $query->orWhereRaw("LOWER(users.last_name) LIKE ?", ['%' . $q . '%']);
+                //$query->whereRaw("LOWER(users.name) LIKE ?", ['%' . $q . '%']);
+                //$query->orWhereRaw("LOWER(users.first_name) LIKE ?", ['%' . $q . '%']);
+                $query->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%');
+                //$query->orWhereRaw("LOWER(users.last_name) LIKE ?", ['%' . $q . '%']);
             });
         }
 
