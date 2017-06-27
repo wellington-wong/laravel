@@ -1230,14 +1230,23 @@ table.table {
 				}
 			}
 			.current a {
-					background: #2184be;
+					background: #2ba8e8;
 					color: #fff;
 					cursor: default;
+					border: 8px solid #269cda;
+					height: 60px;
+					width: 60px;
 					&:hover, &:active {
-					background: #2184be;
-					color: #fff;
-					cursor: default;
-				}
+						background: #2ba8e8;
+						color: #fff;
+						cursor: default;
+					}
+					.step-label {
+						margin-left: -180%;
+					}
+					.number {
+						line-height: 45px;
+					}
 			}
 			.done a {
 				background: #9dc8e2;
