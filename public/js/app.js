@@ -20636,6 +20636,7 @@ $(function () {
  		}
  	}
  });*/
+	var setFormGen = 0;
 	form.children("div").steps({
 		headerTag: "h3",
 		bodyTag: "section",
@@ -20661,8 +20662,9 @@ $(function () {
 				stepsContentHeight();
 			});
 			stepsContentHeight();
-			if (newIndex == 2) {
+			if (newIndex == 2 && !setFormGen) {
 				$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
+				setFormGen = 1;
 			}
 			return true; //form.valid();
 		},
