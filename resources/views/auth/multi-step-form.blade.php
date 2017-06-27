@@ -226,7 +226,7 @@
                                         <!-- Step 4 End -->
 
                                         <!-- Step 5 -->
-                                        <h3>Reward Info</h3>
+                                        <h3>Review</h3>
                                         <section>
 
                                         </section>
