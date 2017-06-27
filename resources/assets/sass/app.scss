@@ -1034,96 +1034,107 @@ table.table {
 /*** Basic Page End ***/
 
 /*** Multistep form ***/
-#register-form-multistep {
-	display: none;
-	label {
-		text-align: left;
-		&.error {
-			margin-left: 0;
+.register-main {
+	.main-content {
+		.panel-default {
+			border-color: transparent;
+			box-shadow: none;
+			&, .panel-body {
+				background-color: transparent;
+			}
 		}
 	}
-	.form-group {
-		margin-left: 0;
-		margin-right: 0;
-	}
-	.password-note {
-		color: #2ba4eb;
-		font-size: 12px;
-	}
-	.actions {
-		width: 90%;
-		text-align: left;
-		margin-left: 35px;
-		ul{ 
-			li {
-				a {
-					background: $bg-color2;
-					color: #464950;
-					margin-top: 50px;
-					border: none;
-					border-radius: 0;
-					padding-left: 140px;				
-					padding-right: 140px;
-				}
-				&:first-child {
+	#register-form-multistep {
+		display: none;
+		label {
+			text-align: left;
+			&.error {
+				margin-left: 0;
+			}
+		}
+		.form-group {
+			margin-left: 0;
+			margin-right: 0;
+		}
+		.password-note {
+			color: #2ba4eb;
+			font-size: 12px;
+		}
+		.actions {
+			width: 90%;
+			text-align: left;
+			margin-left: 35px;
+			ul{ 
+				li {
 					a {
-						background: #b0aeae;
-						padding-left: 50px;				
-						padding-right: 50px;
-						color: #fff;
+						background: $bg-color2;
+						color: #464950;
+						margin-top: 50px;
+						border: none;
+						border-radius: 0;
+						padding-left: 140px;				
+						padding-right: 140px;
+					}
+					&:first-child {
+						a {
+							background: #b0aeae;
+							padding-left: 50px;				
+							padding-right: 50px;
+							color: #fff;
+						}
 					}
 				}
 			}
 		}
+		.link-social {
+			padding: 0;
+		}
+		.wizard .content {
+			background: none;
+		}
 	}
-	.link-social {
-		padding: 0;
+	.form-generator-wrapper {
+		visibility: hidden;
+		position: absolute;
 	}
-	.wizard .content {
-		background: none;
-	}
-}
-.form-generator-wrapper {
-	visibility: hidden;
-	position: absolute;
-}
-#steps-uid-0-p-2 {
-	position: relative;
-	width: 100%;
-	.form-generator {
-		.cb-wrap {
-			position: absolute !important;
-			left: auto !important;
-			right: 0 !important;
-			width: 26% !important;
-			ul {
-				li {					
-					padding: 5px 10px;
+	#steps-uid-0-p-2 {
+		position: relative;
+		width: 100%;
+		.form-generator {
+			.cb-wrap {
+				position: absolute !important;
+				left: auto !important;
+				right: 0 !important;
+				width: 26% !important;
+				ul {
+					li {					
+						padding: 5px 10px;
+					}
+				}
+				> .btn-group {
+					width: 100%;
+					margin-top: 15px;
+					> button.btn {
+						width: 50%;
+					}
+					> .btn-default {
+						display: none;
+					}
 				}
 			}
-			> .btn-group {
-				width: 100%;
-				margin-top: 15px;
-				> button.btn {
-					width: 50%;
+			.stage-wrap {
+				ul {
+					li {
+						list-style: none;
+						padding: 10px;
+					}
 				}
-				> .btn-default {
-					display: none;
+				.frmb {
+					margin-right: 20px;
 				}
 			}
 		}
-		.stage-wrap {
-			ul {
-				li {
-					list-style: none;
-					padding: 10px;
-				}
-			}
-			.frmb {
-				margin-right: 20px;
-			}
-		}
-	}
+	}	
 }
 .register-bottom-wrapper {
 	.form-multistep-number > .steps .current-info, .tabcontrol > .steps .current-info, .form-multistep-number > .content > .title, .tabcontrol > .content > .title {

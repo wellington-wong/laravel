@@ -57,7 +57,7 @@
         <!-- End Header -->
 
         <!-- Start Main -->
-        <main>
+        <main class="register-main">
             <div class="row no-margin-lr">
                 <div class="top-content text-center">
                     <span>Fill out the form to register</span>

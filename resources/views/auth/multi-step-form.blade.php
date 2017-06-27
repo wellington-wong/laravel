@@ -197,7 +197,13 @@
                                                         {{ Form::select('leader_board', ['' => 'Please Select One', '1' => 'Yes', '0' => 'No'], old('leader_board'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
-
+                                                <div class="form-group{{ $errors->has('leader_board') ? ' has-error' : '' }} col-md-12">
+                                                    <div class="col-md-12" >
+                                                        <h4 class="text-center"><strong>Your Reward Ratio</strong></h4>
+                                                    </div>
+                                                    <div class="col-md-12" >
+                                                     </div>
+                                                </div>
 
                                                 <div class="clearfix"></div>
                                             </div>
