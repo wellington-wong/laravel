@@ -197,7 +197,7 @@
                                                         {{ Form::select('leader_board', ['' => 'Please Select One', '1' => 'Yes', '0' => 'No'], old('leader_board'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
-                                                <div class="form-group col-md-12 reward-ratio-wrapper">
+                                                <div class="form-group col-md-11 reward-ratio-wrapper">
                                                     <div class="col-md-12">
                                                         <h4 class="text-center"><strong>Your Reward Ratio</strong></h4>
                                                     </div>
