@@ -727,19 +727,19 @@ table.table {
 		}
 		input.form-control {
 			&::-webkit-input-placeholder { 
-			    text-align: center;
+			    //text-align: center;
 			    color: $bg-color;
 			}
 			&:-moz-placeholder { 
-			    text-align: center;
+			    //text-align: center;
 			    color: $bg-color;
 			}
 			&::-moz-placeholder { 
-			    text-align: center;
+			    //text-align: center;
 			    color: $bg-color;
 			}
 			&:-ms-input-placeholder { 
-			    text-align: center;
+			    //text-align: center;
 			    color: $bg-color;
 			}
 		}
