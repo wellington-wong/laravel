@@ -27,7 +27,7 @@ class Domain
         config(['company_id' => 0]);
 
         $company = Company::where('subdomain', $subdomain)->first();
-        
+
         //IF THE SUBDOMAIN IS NOT VALID
         if ( 'app' != $subdomain ) {
             if ( is_null($company) ) {
@@ -36,7 +36,7 @@ class Domain
         } else {
             if ( !in_array( trim($request->getRequestUri(), '/') ,
                 //OK ROUTES FOR app.perxi.com
-                ['companies', 'company/create', 'login', 'register'] ) ) {
+                ['companies', 'company/create', 'login', 'register', 'logout', 'manage-account'] ) ) {
                 return redirect()->route('all-companies');
             }
             $company = new \stdClass();
