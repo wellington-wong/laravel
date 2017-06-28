@@ -13,7 +13,7 @@
         <div class="row">      	
           	<div class="form-group col-md-12 no-padding-lr">
           		<label>Template Name:</label>
-      			<input class="form-control" type="text" name="template_name" value="" placeholder="Template Name">
+      			<input class="form-control" type="text" name="template_name" value="{{ isset($companyReferralForm->raw_form_json) ? $companyReferralForm->template_name : '' }}" placeholder="Template Name">
           	</div>
         </div>
 
@@ -29,6 +29,7 @@
 				        	<button class="submit-custom-form btn btn-primary">Save</button>
 				        </div>
 				        <form id="fb-rerender"></form>
+				        <div class="raw-form-json hidden">{{ isset($companyReferralForm->raw_form_json) ? $companyReferralForm->raw_form_json : '' }}</div>
 				    </div>
 				</div>
             </div>

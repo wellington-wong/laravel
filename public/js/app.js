@@ -20936,6 +20936,14 @@ $(function () {
 	// END MANAGE ACCOUNT
 
 	// REFERRAL PROGRAM SETTINGS
+	window.onload = function () {
+		console.log($('.raw-form-json').text());
+		if ($('.raw-form-json').text()) {
+			formBuilder.actions.setData($('.raw-form-json').text());
+		}
+		$('.frmb').show(gs);
+	};
+
 	function formBuilderCallback(data) {
 		location.reload();
 	}
@@ -20959,7 +20967,7 @@ $(function () {
       dataType: 'json'
     };
     $(fbRender).formRender(formRenderOpts);
-    formBuilder.actions.setData(`[{"type":"header","subtype":"h3","label":"Terms &amp; Conditions","className":"header"},{"type":"paragraph","subtype":"p","label":"I understand that the receipt of the $100.00 Cash Reward is dependent on my referral's AC installation Status. I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc. View our full terms and conditions. "},{"type":"checkbox","required":true,"label":"Do you agree to the terms and conditions?","name":"checkbox-1498671081392","values":[{"label":"Option 1","value":"option-1","selected":true}]},{"type":"paragraph","subtype":"p","label":"Paragraph"},{"type":"select","label":"Select","className":"form-control","name":"select-1498675178791","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}]}]`);
+    
   */
 	});
 	$('.clear-all-trigger').on('click', function () {

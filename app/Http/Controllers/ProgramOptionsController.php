@@ -46,8 +46,7 @@ class ProgramOptionsController extends Controller
      */
     public function referralProgramSettings( Request $request )
     {
-        $companyReferralForm = CompanyReferralForms::find($request->get('company_id'));
-        
+        $companyReferralForm = CompanyReferralForms::find($request->_company->id);
         return view('program-options.referral-program-settings')
         ->with(compact('companyReferralForm'));
     }
