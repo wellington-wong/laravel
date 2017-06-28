@@ -34,8 +34,8 @@ class MembersController extends Controller
     }
 
 
-    public function members(Request $request, User $user, $sid)
+    public function create(Request $request)
     {
-        return $user->getMember($sid);
+        return view('members.create');
     }
 }

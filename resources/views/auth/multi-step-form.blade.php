@@ -102,12 +102,12 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-12" >
-                                                    <div class="col-md-12" >
+                                                <div class="form-group col-md-12">
+                                                    <div class="col-md-12">
                                                         <label>Type of Business</label>
                                                     </div>
-                                                    <div class="col-md-12" >
-                                                        {{ Form::select('business_type', ['small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
+                                                    <div class="col-md-12">
+                                                        {{ Form::select('business_type', ['' => 'Please Select One', 'small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -151,7 +151,6 @@
                                                         {{ Form::text('company_country', old('company_country'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
-
                                                 <div class="clearfix"></div>
                                             </div>
                                         </section>
@@ -166,12 +165,68 @@
                                         <!-- Step 4 -->
                                         <h3>Reward Info</h3>
                                         <section>
+                                            <div class="form-group-wrapper">
+                                                <div class="form-group{{ $errors->has('reward_title') ? ' has-error' : '' }} col-md-12">
+                                                    <label for="name" class="col-md-12 control-label">Reward Title</label>
 
+                                                    <div class="col-md-12">
+                                                        <input id="reward-title" type="text" class="form-control" name="reward_title" value="{{ old('reward_title') }}" required autofocus>
+
+                                                        @if ($errors->has('name'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group{{ $errors->has('send_reward') ? ' has-error' : '' }} col-md-12">
+                                                    <div class="col-md-12">
+                                                        <label>How will you send the reward?</label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        {{ Form::select('send_reward', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check'], old('send_reward'), array('class' => 'form-control')) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group{{ $errors->has('leader_board') ? ' has-error' : '' }} col-md-12">
+                                                    <div class="col-md-12">
+                                                        <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        {{ Form::select('leader_board', ['' => 'Please Select One', '1' => 'Yes', '0' => 'No'], old('leader_board'), array('class' => 'form-control')) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-11 reward-ratio-wrapper">
+                                                    <div class="col-md-12">
+                                                        <h4 class="text-center"><strong>Your Reward Ratio</strong></h4>
+                                                    </div>
+                                                    <div class="col-md-12 reward-ratio">
+                                                        <div class="col-md-6 col-md-offset-3">
+                                                            <span>1</span>
+                                                            <span class="reward-equals">=</span>
+                                                            <span>1</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 reward-ratio-desc">
+                                                        <div class="col-md-6 col-md-offset-3">
+                                                            <span>Approved Referral</span>
+                                                            <span class="reward-equals-desc"></span>
+                                                            <span>$100 Gift Card</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 rewards-bottom">
+                                                        <span>Want to use a point system? <a href="#">Upgrade to premium</a></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
                                         </section>
                                         <!-- Step 4 End -->
 
                                         <!-- Step 5 -->
-                                        <h3>Reward Info</h3>
+                                        <h3>Review</h3>
                                         <section>
 
                                         </section>

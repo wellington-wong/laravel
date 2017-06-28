@@ -20517,10 +20517,7 @@ $(function () {
 			className: 'header'
 		}, {
 			type: 'paragraph',
-			label: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.'
-		}, {
-			type: 'paragraph',
-			label: 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.'
+			label: 'I understand that the receipt of the $100.00 Cash Reward is dependent on my referral\'s AC installation Status. I am only entitled for a Referral Reward if/when this referral\'s AC Unit has been installed by All Year Cooling and Heating, Inc. View our full terms and conditions. '
 		}, {
 			type: 'checkbox',
 			label: 'Do you agree to the terms and conditions?'
@@ -20552,6 +20549,58 @@ $(function () {
 		subtypes: {
 			text: ['datetime-local']
 		},
+		disableFields: ['autocomplete', 'starRating', 'hidden', 'user-details', 'file', 'date'],
+		defaultFields: [{
+			className: "form-control",
+			label: "First Name",
+			placeholder: "Enter your first name",
+			name: "first-name",
+			required: true,
+			type: "text"
+		}, {
+			className: "form-control",
+			label: "Last Name",
+			placeholder: "Enter your last name",
+			name: "last-name",
+			required: true,
+			type: "text"
+		}, {
+			className: "form-control",
+			label: "Phone",
+			placeholder: "Enter your phone number",
+			name: "phone",
+			required: true,
+			type: "text"
+		}, {
+			className: "form-control",
+			label: "Address",
+			placeholder: "Enter your address",
+			name: "address",
+			required: true,
+			type: "text"
+		}, {
+			className: "form-control",
+			label: "Line 2",
+			placeholder: "Enter your address line 2",
+			name: "address2",
+			required: true,
+			type: "text"
+		}, {
+			className: "form-control",
+			label: "City",
+			placeholder: "Enter your City",
+			name: "city",
+			required: true,
+			type: "text"
+		}, {
+			className: "form-control",
+			label: "Zip",
+			placeholder: "Enter your Zip",
+			name: "zip",
+			required: true,
+			type: "text"
+		}],
+		roles: {},
 		onSave: function onSave(e, formData) {
 			toggleEdit();
 			$('.render-wrap').formRender({
@@ -20617,6 +20666,11 @@ $(function () {
 				location.reload();
 			}
 		};
+
+		if ($('.raw-form-json').text()) {
+			formBuilder.actions.setData($('.raw-form-json').text());
+		}
+		$('.frmb').show();
 	});
 
 	//document.getElementById('edit-form').onclick = function() {
@@ -20627,6 +20681,8 @@ $(function () {
 
 	// JQUERY STEPS
 	var form = $("#register-form-multistep");
+	var multiStepRegistration = ['We need some basic information about you to get started.', 'Tell Us About Your Company', 'What information do you need to follow up with a referral?<span class="subtext">This is the information your referral club members will enter when submitting a referral.</span>', 'How will you reward your members for their qualifying referrals?', 'Please review the information you have entered.'];
+	form.closest('.register-main').find('.top-content').text(multiStepRegistration[0]);
 	/*form.validate({
  	errorPlacement: function errorPlacement(error, element) { element.after(error); },
  	rules: {
@@ -20635,6 +20691,7 @@ $(function () {
  		}
  	}
  });*/
+	var setFormGen = 0;
 	form.children("div").steps({
 		headerTag: "h3",
 		bodyTag: "section",
@@ -20660,9 +20717,11 @@ $(function () {
 				stepsContentHeight();
 			});
 			stepsContentHeight();
-			if (newIndex == 2) {
+			if (newIndex == 2 && !setFormGen) {
 				$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
+				setFormGen = 1;
 			}
+			form.closest('.register-main').find('.top-content').html(multiStepRegistration[newIndex]);
 			return true; //form.valid();
 		},
 		onFinishing: function onFinishing(event, currentIndex) {
@@ -20880,6 +20939,39 @@ $(function () {
 		readImage(this, processProfile);
 	});
 	// END MANAGE ACCOUNT
+
+	// REFERRAL PROGRAM SETTINGS
+	function formBuilderCallback(data) {
+		location.reload();
+	}
+	$('.submit-custom-form').on('click', function () {
+		var formBuilderData = formBuilder.actions.getData('json');
+		var formGenerator = $('.form-generator');
+		if (formBuilderData != "[]") {
+			$(this).addClass('disabled');
+			$(this).button('loading');
+			var data = {
+				company_id: formGenerator.data('company-id'),
+				raw_form_json: formBuilderData,
+				template_name: $('input[name="template_name"]').val() != '' ? $('input[name="template_name"]').val() : 'Referral form template'
+			};
+			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
+		}
+		/* var fbRender = document.getElementById('fb-rerender'),
+    formData = formBuilder.actions.getData("json");
+    var formRenderOpts = {
+      formData,
+      dataType: 'json'
+    };
+    $(fbRender).formRender(formRenderOpts);
+    
+  */
+	});
+	$('.clear-all-trigger').on('click', function () {
+		$('.clear-all').click();
+	});
+	// END REFERRAL PROGRAM SETTINGS
+
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 

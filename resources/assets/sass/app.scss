@@ -680,6 +680,11 @@ table.table {
 		padding-left: 0;
 	}
 }
+.frmb {
+	border: 3px dashed #ccc;
+	margin-right: 20px !important;
+	display: none;
+}
 /*** Common End ***/
 
 
@@ -1034,92 +1039,152 @@ table.table {
 /*** Basic Page End ***/
 
 /*** Multistep form ***/
-#register-form-multistep {
-	display: none;
-	label {
-		text-align: left;
-		&.error {
-			margin-left: 0;
+.register-main {
+	.main-content {
+		.panel-default {
+			border-color: transparent;
+			box-shadow: none;
+			&, .panel-body {
+				background-color: transparent;
+			}
 		}
 	}
-	.form-group {
-		margin-left: 0;
-		margin-right: 0;
-	}
-	.password-note {
-		color: #2ba4eb;
-		font-size: 12px;
-	}
-	.actions {
-		width: 90%;
-		text-align: left;
-		margin-left: 35px;
-		ul{ 
-			li {
-				a {
-					background: $bg-color2;
-					color: #464950;
-					margin-top: 50px;
-					border: none;
-					border-radius: 0;
-					padding-left: 140px;				
-					padding-right: 140px;
-				}
-				&:first-child {
+	#register-form-multistep {
+		display: none;
+		label {
+			text-align: left;
+			&.error {
+				margin-left: 0;
+			}
+		}
+		.form-group {
+			margin-left: 0;
+			margin-right: 0;
+			label {
+				color: #a4a0a1;
+			}
+			.password-note {
+				color: #2ba4eb;
+				font-size: 12px;
+			}
+		}
+		.actions {
+			width: 90%;
+			text-align: left;
+			margin-left: 35px;
+			ul{ 
+				li {
 					a {
-						background: #b0aeae;
-						padding-left: 50px;				
-						padding-right: 50px;
+						background: $bg-color2;
+						color: #464950;
+						margin-top: 50px;
+						border: none;
+						border-radius: 0;
+						padding-left: 140px;				
+						padding-right: 140px;
+					}
+					&:first-child {
+						a {
+							background: #b0aeae;
+							padding-left: 50px;				
+							padding-right: 50px;
+							color: #fff;
+						}
+					}
+				}
+			}
+		}
+		.link-social {
+			padding: 0;
+		}
+		.wizard .content {
+			background: none;
+		}
+		.form-control {
+			border: 0;
+		}
+	}
+	.form-generator-wrapper {
+		visibility: hidden;
+		position: absolute;
+	}
+	#steps-uid-0-p-2 {
+		position: relative;
+		width: 100%;
+		.form-generator {
+			.cb-wrap {
+				position: absolute !important;
+				left: auto !important;
+				right: 0 !important;
+				width: 26% !important;
+				ul {
+					li {					
+						padding: 5px 10px;
+					}
+				}
+				> .btn-group {
+					width: 100%;
+					margin-top: 15px;
+					> button.btn {
+						width: 50%;
+					}
+					> .btn-default {
+						display: none;
+					}
+				}
+			}
+			.stage-wrap {
+				ul {
+					li {
+						list-style: none;
+						padding: 10px;
 					}
 				}
 			}
 		}
 	}
-	.link-social {
-		padding: 0;
-	}
-	.wizard .content {
-		background: none;
-	}
-}
-.form-generator-wrapper {
-	visibility: hidden;
-	position: absolute;
-}
-#steps-uid-0-p-2 {
-	position: relative;
-	width: 100%;
-	.form-generator {
-		.cb-wrap {
-			position: absolute !important;
-			left: auto !important;
-			right: 0 !important;
-			width: 26% !important;
-			ul {
-				li {					
-					padding: 5px 10px;
+	#steps-uid-0-p-3 {
+		position: relative;
+		.reward-ratio-wrapper {
+			background: #e6e4e5;
+			padding: 20px 0;
+			margin-left: 4.151515%;
+			> div {
+				margin-bottom: 10px;
+			}
+			.reward-ratio {
+				> div {
+					text-align: center;
+					> span {
+						width: 70px;
+						display: inline-block;
+						line-height: 70px;
+						background: #fff;
+						font-weight: bold;
+						font-size: 20px;
+					}
+					> .reward-equals {
+						background: transparent;
+					}
 				}
 			}
-			> .btn-group {
-				width: 100%;
-				margin-top: 15px;
-				> button.btn {
-					width: 50%;
-				}
-				> .btn-default {
-					display: none;
-				}
-			}
-		}
-		.stage-wrap {
-			ul {
-				li {
-					list-style: none;
-					padding: 10px;
+			.reward-ratio-desc {
+				> div {
+					text-align: center;
+					> span {
+						width: 70px;
+						display: inline-block;
+						font-weight: bold;
+						font-size: 12px;
+						color: #a39fa0;
+					}
 				}
 			}
-			.frmb {
-				margin-right: 20px;
+			.rewards-bottom {
+				color: #a39fa0;
+				text-align: center;
+				font-weight: bold;
+				margin-top: 10px;
 			}
 		}
 	}
@@ -1219,24 +1284,33 @@ table.table {
 				background: #279fdc;
 			}
 			.disabled a {
-				background: #eee;
+				background: #b0aeaf;
 				color: #aaa;
 				cursor: default;
 				&:hover, &:active {
-					background: #eee;
+					background: #b0aeaf;
 					color: #aaa;
 					cursor: default;
 				}
 			}
 			.current a {
-					background: #2184be;
+					background: #2ba8e8;
 					color: #fff;
 					cursor: default;
+					border: 8px solid #269cda;
+					height: 60px;
+					width: 60px;
 					&:hover, &:active {
-					background: #2184be;
-					color: #fff;
-					cursor: default;
-				}
+						background: #2ba8e8;
+						color: #fff;
+						cursor: default;
+					}
+					.step-label {
+						margin-left: -180%;
+					}
+					.number {
+						line-height: 45px;
+					}
 			}
 			.done a {
 				background: #9dc8e2;
@@ -1281,6 +1355,20 @@ table.table {
 	}
 }
 /*** Multistep form End ***/
+
+/*** Form Generator ***/
+.form-generator-wrapper {
+	.form-group.access-wrap {
+		display: none;
+	}
+	.build-wrap {
+		.btn-group {
+			visibility: hidden;
+			height: 1px;
+		}
+	}
+}
+/*** Form Generator End ***/
 
 /*** Daterangepicker ***/
 .daterangepicker {	

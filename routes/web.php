@@ -94,12 +94,14 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/program-options/email-logs', 'ProgramOptionsController@emailLogs')->name('program-options-email-logs');
 	Route::get('/program-options/users', 'ProgramOptionsController@users')->name('program-options-users');
 	Route::get('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettings')->name('program-options-referral-program-settings');
+	Route::post('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettingsPost')->name('program-options-referral-program-settings-save');
 	Route::get('/program-options/reward-settings', 'ProgramOptionsController@rewardSettings')->name('program-options-reward-settings');
 	Route::get('/program-options/notification-emails', 'ProgramOptionsController@notificationEmails')->name('program-options-notification-emails');
 
 	// Member Routes
 	Route::get('/members', 'MembersController@getIndex')->name('members');
-	Route::get('/members/{id}', 'MembersController@members')->name('member');
+	//Route::get('/members/{id}', 'MembersController@members')->name('member');
+	Route::get('/member/create', 'MembersController@create')->name('members-create');
 
 	// Notification Routes
 	Route::get('/notification/{nid}', 'NotificationsController@getNotification')->name('notification');

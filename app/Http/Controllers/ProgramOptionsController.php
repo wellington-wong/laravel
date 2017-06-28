@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LogEmail;
+use App\CompanyReferralForms;
 
 class ProgramOptionsController extends Controller
 {
@@ -45,9 +46,26 @@ class ProgramOptionsController extends Controller
      */
     public function referralProgramSettings( Request $request )
     {
-        $referralProgramSettings = [];
+        $companyReferralForm = CompanyReferralForms::where('company_id', $request->_company->id)->first();
         return view('program-options.referral-program-settings')
-        ->with(compact('referralProgramSettings'));
+        ->with(compact('companyReferralForm'));
+    }
+
+    /**
+     * Save/Update referral program settings.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function referralProgramSettingsPost( Request $request )
+    {
+        if (!$companyReferralForm = CompanyReferralForms::where('company_id', $request->get('company_id'))->first()) {
+            $companyReferralForm = new CompanyReferralForms();
+            $companyReferralForm->create($request->all());
+        } else {
+            $companyReferralForm->update($request->all());
+        }
+        return $request;
     }
 
     /**
