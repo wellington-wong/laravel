@@ -20941,7 +20941,7 @@ $(function () {
 		if ($('.raw-form-json').text()) {
 			formBuilder.actions.setData($('.raw-form-json').text());
 		}
-		$('.frmb').show(gs);
+		$('.frmb').show();
 	};
 
 	function formBuilderCallback(data) {

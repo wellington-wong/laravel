@@ -46,7 +46,7 @@ class ProgramOptionsController extends Controller
      */
     public function referralProgramSettings( Request $request )
     {
-        $companyReferralForm = CompanyReferralForms::find($request->_company->id);
+        $companyReferralForm = CompanyReferralForms::where('company_id', $request->_company->id)->first();
         return view('program-options.referral-program-settings')
         ->with(compact('companyReferralForm'));
     }
@@ -59,7 +59,7 @@ class ProgramOptionsController extends Controller
      */
     public function referralProgramSettingsPost( Request $request )
     {
-        if (!$companyReferralForm = CompanyReferralForms::find($request->get('company_id'))) {
+        if (!$companyReferralForm = CompanyReferralForms::where('company_id', $request->get('company_id'))->first()) {
             $companyReferralForm = new CompanyReferralForms();
             $companyReferralForm->create($request->all());
         } else {
