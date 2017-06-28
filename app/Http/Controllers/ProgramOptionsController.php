@@ -51,6 +51,18 @@ class ProgramOptionsController extends Controller
     }
 
     /**
+     * Save/Update referral program settings.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function referralProgramSettingsPost( Request $request )
+    {
+        
+        return 'referralProgramSettingsPost';
+    }
+
+    /**
      * Display a listing of reward settings
      *
      * @param  \Illuminate\Http\Request $request

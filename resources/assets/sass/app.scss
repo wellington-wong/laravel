@@ -1356,8 +1356,16 @@ table.table {
 /*** Multistep form End ***/
 
 /*** Form Generator ***/
-.form-group.access-wrap {
-	display: none;
+.form-generator-wrapper {
+	.form-group.access-wrap {
+		display: none;
+	}
+	.build-wrap {
+		.btn-group {
+			visibility: hidden;
+			height: 1px;
+		}
+	}
 }
 /*** Form Generator End ***/
 

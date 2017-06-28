@@ -13,11 +13,11 @@
         <div class="row">
             <div class="col-md-12 table-referral-settings-wrapper table-wrapper">
                 <div class="form-generator-wrapper">
-                    <div class="form-generator">
+                    <div class="form-generator" data-company_id="{{ $_company->id }}">
                         <div id="stage1" class="build-wrap"></div>
                         <form class="render-wrap"></form>
                         <div class="form-actions btn-group">
-                        	<button class="submit-custom-form btn btn-danger">Clear</button>
+                        	<button class="clear-all-trigger btn btn-danger">Clear</button>
                         	<button class="submit-custom-form btn btn-primary">Save</button>
                         </div>
                         <form id="fb-rerender"></form>
