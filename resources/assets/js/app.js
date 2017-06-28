@@ -715,4 +715,19 @@ $(function (){
 	});	
 // END MANAGE ACCOUNT
 
+// REFERRAL PROGRAM SETTINGS
+	$('.submit-custom-form').on('click', function (){
+    	alert(formBuilder.actions.getData('json'));
+
+		  var fbRender = document.getElementById('fb-rerender'),
+		  formData = formBuilder.actions.getData("json");
+		  var formRenderOpts = {
+		    formData,
+		    dataType: 'json'
+		  };
+		  $(fbRender).formRender(formRenderOpts);
+	});
+// END REFERRAL PROGRAM SETTINGS
+
+
 });

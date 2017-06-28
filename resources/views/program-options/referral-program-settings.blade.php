@@ -16,6 +16,11 @@
                     <div class="form-generator">
                         <div id="stage1" class="build-wrap"></div>
                         <form class="render-wrap"></form>
+                        <div class="form-actions btn-group">
+                        	<button class="submit-custom-form btn btn-danger">Clear</button>
+                        	<button class="submit-custom-form btn btn-primary">Save</button>
+                        </div>
+                        <form id="fb-rerender"></form>
                     </div>
                 </div>
             </div>

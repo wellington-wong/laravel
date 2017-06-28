@@ -20934,6 +20934,21 @@ $(function () {
 		readImage(this, processProfile);
 	});
 	// END MANAGE ACCOUNT
+
+	// REFERRAL PROGRAM SETTINGS
+	$('.submit-custom-form').on('click', function () {
+		alert(formBuilder.actions.getData('json'));
+
+		var fbRender = document.getElementById('fb-rerender'),
+		    formData = formBuilder.actions.getData("json");
+		var formRenderOpts = {
+			formData: formData,
+			dataType: 'json'
+		};
+		$(fbRender).formRender(formRenderOpts);
+	});
+	// END REFERRAL PROGRAM SETTINGS
+
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
