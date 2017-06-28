@@ -107,7 +107,7 @@
                                                         <label>Type of Business</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('business_type', ['small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
+                                                        {{ Form::select('business_type', ['' => 'Please Select One', 'small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
