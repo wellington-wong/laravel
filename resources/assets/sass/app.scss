@@ -1355,6 +1355,12 @@ table.table {
 }
 /*** Multistep form End ***/
 
+/*** Form Generator ***/
+.form-group.access-wrap {
+	display: none;
+}
+/*** Form Generator End ***/
+
 /*** Daterangepicker ***/
 .daterangepicker {	
 	.calendar {

@@ -380,6 +380,7 @@ $(function (){
 			required: true,
 			type: "text"
 		}],
+	    roles: {},
 	    onSave: function(e, formData) {
 	      toggleEdit();
 	      $('.render-wrap').formRender({

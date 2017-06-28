@@ -20600,6 +20600,7 @@ $(function () {
 			required: true,
 			type: "text"
 		}],
+		roles: {},
 		onSave: function onSave(e, formData) {
 			toggleEdit();
 			$('.render-wrap').formRender({
