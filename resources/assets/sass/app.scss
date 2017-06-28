@@ -680,6 +680,10 @@ table.table {
 		padding-left: 0;
 	}
 }
+.frmb {
+	border: 3px dashed #ccc;
+	margin-right: 20px !important;
+}
 /*** Common End ***/
 
 
@@ -1134,10 +1138,6 @@ table.table {
 						list-style: none;
 						padding: 10px;
 					}
-				}
-				.frmb {
-					margin-right: 20px;
-					border: 3px dashed #ccc;
 				}
 			}
 		}
