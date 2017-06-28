@@ -29,6 +29,7 @@ class CreateReferralFormFields extends Migration
             $table->integer('min')->nullable();
             $table->integer('max')->nullable();
             $table->integer('max_length')->nullable();
+            $table->integer('rows')->nullable();
             $table->integer('step')->nullable();
             $table->boolean('display_inline')->nullable();
             $table->boolean('allow_multiple')->nullable();
