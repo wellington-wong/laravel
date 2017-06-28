@@ -20937,8 +20937,7 @@ $(function () {
 
 	// REFERRAL PROGRAM SETTINGS
 	function formBuilderCallback(data) {
-		alert('formBuilderCallback');
-		console.log(data);
+		location.reload();
 	}
 	$('.submit-custom-form').on('click', function () {
 		var formBuilderData = formBuilder.actions.getData('json');
@@ -20951,6 +20950,8 @@ $(function () {
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
 		}
+		$(this).addClass('disabled');
+		$(this).button('loading');
 		/* var fbRender = document.getElementById('fb-rerender'),
     formData = formBuilder.actions.getData("json");
     var formRenderOpts = {
