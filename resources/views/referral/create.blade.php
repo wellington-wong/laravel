@@ -49,12 +49,14 @@
             </div>
 
             <div class="form-group col-md-12 terms-wrapper">
+                <label style="">
                 <input type="checkbox" name="terms[]" class="terms-acceptance pull-left" @if(count($errors)) checked="checked" @endif>
                 <div class="terms-details">
                     I understand that the receipt of the $100.00 Cash Reward is dependent on my referral's AC installation Status.
                     I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc.
                     View our full <a href="#" class="terms-condition-link">terms and conditions</a>.
                 </div>
+                </label>
             </div>
 
             <div class="form-group col-md-12 text-center">
