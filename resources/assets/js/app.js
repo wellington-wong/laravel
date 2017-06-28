@@ -297,10 +297,7 @@ $(function (){
 	          className: 'header'
 	        }, {
 	          type: 'paragraph',
-	          label: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.',
-	        }, {
-	          type: 'paragraph',
-	          label: 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.',
+	          label: 'I understand that the receipt of the $100.00 Cash Reward is dependent on my referral\'s AC installation Status. I am only entitled for a Referral Reward if/when this referral\'s AC Unit has been installed by All Year Cooling and Heating, Inc. View our full terms and conditions. ',
 	        }, {
 	          type: 'checkbox',
 	          label: 'Do you agree to the terms and conditions?',
@@ -332,7 +329,7 @@ $(function (){
 	    subtypes: {
 	      text: ['datetime-local']
 	    },
-      	disableFields: ['autocomplete', 'starRating', 'hidden', 'user-details', 'file'],
+      	disableFields: ['autocomplete', 'starRating', 'hidden', 'user-details', 'file', 'date'],
 		defaultFields: [{
 			className: "form-control",
 			label: "First Name",
