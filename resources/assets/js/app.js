@@ -716,10 +716,21 @@ $(function (){
 // END MANAGE ACCOUNT
 
 // REFERRAL PROGRAM SETTINGS
+	function formBuilderCallback() {
+		alert('formBuilderCallback');
+	}
 	$('.submit-custom-form').on('click', function (){
-    	alert(formBuilder.actions.getData('json'));
-
-		  var fbRender = document.getElementById('fb-rerender'),
+    	var formBuilderData = formBuilder.actions.getData('json');
+    	var formGenerator = $('.form-generator');
+    	if (formBuilderData != "[]") {
+			var data = {
+				company_id: formGenerator.data('company-id'),
+				raw_form_data: formBuilderData,
+				template_name: $('input[name="template_name"]')
+			};
+			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
+    	}
+		/* var fbRender = document.getElementById('fb-rerender'),
 		  formData = formBuilder.actions.getData("json");
 		  var formRenderOpts = {
 		    formData,
@@ -727,13 +738,7 @@ $(function (){
 		  };
 		  $(fbRender).formRender(formRenderOpts);
 		  formBuilder.actions.setData(`[{"type":"header","subtype":"h3","label":"Terms &amp; Conditions","className":"header"},{"type":"paragraph","subtype":"p","label":"I understand that the receipt of the $100.00 Cash Reward is dependent on my referral's AC installation Status. I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc. View our full terms and conditions. "},{"type":"checkbox","required":true,"label":"Do you agree to the terms and conditions?","name":"checkbox-1498671081392","values":[{"label":"Option 1","value":"option-1","selected":true}]},{"type":"paragraph","subtype":"p","label":"Paragraph"},{"type":"select","label":"Select","className":"form-control","name":"select-1498675178791","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}]}]`);
-
-		var data;
-		data = {
-			id: $(this).closest('td').data('id'),
-			status: $(this).data('status')
-		};
-		ajaxHelper("/program-options/referral-program-settings", data, "POST", statusCallback);
+		*/
 	});
 	$('.clear-all-trigger').on('click', function (){
 		$('.clear-all').click();
