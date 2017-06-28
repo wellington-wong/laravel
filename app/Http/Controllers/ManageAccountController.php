@@ -26,8 +26,7 @@ class ManageAccountController extends Controller
      */
     public function getIndex( Request $request )
     {
-
-        $address = null !== auth()->user()->address()->first() ? auth()->user()->address()->first() : '';
+        $address = $request->user()->address->first();
 
         return view('manage-account.index')->with(compact('address'));
     }
@@ -49,7 +48,7 @@ class ManageAccountController extends Controller
             'city'=>'required',
             'state'=>'required|alpha|max:2',
             'zip'=>'required|digits:5',
-            'profile_blob' => 'required',
+            //'profile_blob' => 'required',
         ];
 
         $messages = [
@@ -75,7 +74,10 @@ class ManageAccountController extends Controller
             auth()->user()->addDefaultAddress($request);
         }
 
-        auth()->user()->profile_image = $request->file('profile')->store('profile-images');
+        if ( $request->file('profile') ) {
+            auth()->user()->profile_image = $request->file('profile')->store('profile-images');
+        }
+        
         auth()->user()->save();
 
         return back();
