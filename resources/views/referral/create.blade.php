@@ -49,7 +49,7 @@
             </div>
 
             <div class="form-group col-md-12 terms-wrapper">
-                <label style="">
+                <label >
                 <input type="checkbox" name="terms[]" class="terms-acceptance pull-left" @if(count($errors)) checked="checked" @endif>
                 <div class="terms-details">
                     I understand that the receipt of the $100.00 Cash Reward is dependent on my referral's AC installation Status.
