@@ -20943,11 +20943,12 @@ $(function () {
 		var formBuilderData = formBuilder.actions.getData('json');
 		var formGenerator = $('.form-generator');
 		if (formBuilderData != "[]") {
+			alert('submitin');
 			var data = {
 				company_id: formGenerator.data('company-id'),
 				raw_form_data: formBuilderData,
-				template_name: $('input[name="template_name"]')
-			};
+				template_name: $('input[name="template_name"]').val()
+			};console.log(data);
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
 		}
 		/* var fbRender = document.getElementById('fb-rerender'),

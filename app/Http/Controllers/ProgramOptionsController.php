@@ -59,7 +59,7 @@ class ProgramOptionsController extends Controller
     public function referralProgramSettingsPost( Request $request )
     {
         
-        return 'referralProgramSettingsPost';
+        return $request;
     }
 
     /**
