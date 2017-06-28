@@ -716,18 +716,19 @@ $(function (){
 // END MANAGE ACCOUNT
 
 // REFERRAL PROGRAM SETTINGS
-	function formBuilderCallback() {
+	function formBuilderCallback(data) {
 		alert('formBuilderCallback');
+		console.log(data);
 	}
 	$('.submit-custom-form').on('click', function (){
     	var formBuilderData = formBuilder.actions.getData('json');
     	var formGenerator = $('.form-generator');
-    	if (formBuilderData != "[]") {alert('submitin');
+    	if (formBuilderData != "[]") {
 			var data = {
 				company_id: formGenerator.data('company-id'),
-				raw_form_data: formBuilderData,
-				template_name: $('input[name="template_name"]').val()
-			};console.log(data);
+				raw_form_json: formBuilderData,
+				template_name: ($('input[name="template_name"]').val() != '') ? $('input[name="template_name"]').val() : 'Referral form template'
+			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
     	}
 		/* var fbRender = document.getElementById('fb-rerender'),

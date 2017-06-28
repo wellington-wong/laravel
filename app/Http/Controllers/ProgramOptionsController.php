@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LogEmail;
+use App\CompanyReferralForms;
 
 class ProgramOptionsController extends Controller
 {
@@ -58,7 +59,8 @@ class ProgramOptionsController extends Controller
      */
     public function referralProgramSettingsPost( Request $request )
     {
-        
+        $CompanyReferralForm = new CompanyReferralForms();
+        $CompanyReferralForm->create($request->all());
         return $request;
     }
 
