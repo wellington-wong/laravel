@@ -441,6 +441,11 @@ $(function (){
 	        location.reload();
 	      }
 	    };
+	    
+		if ($('.raw-form-json').text()) {
+			formBuilder.actions.setData($('.raw-form-json').text());
+		}
+		$('.frmb').show();
 	  });	  
 
 	  //document.getElementById('edit-form').onclick = function() {
@@ -716,14 +721,6 @@ $(function (){
 // END MANAGE ACCOUNT
 
 // REFERRAL PROGRAM SETTINGS
-	window.onload = function () {
-		console.log($('.raw-form-json').text());
-		if ($('.raw-form-json').text()) {
-			formBuilder.actions.setData($('.raw-form-json').text());
-		}
-		$('.frmb').show();
-	}
-
 	function formBuilderCallback(data) {
 	    location.reload();
 	}
@@ -731,6 +728,8 @@ $(function (){
     	var formBuilderData = formBuilder.actions.getData('json');
     	var formGenerator = $('.form-generator');
     	if (formBuilderData != "[]") {
+	    	$(this).addClass('disabled');
+	    	$(this).button('loading');
 			var data = {
 				company_id: formGenerator.data('company-id'),
 				raw_form_json: formBuilderData,
@@ -738,8 +737,6 @@ $(function (){
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
     	}
-    	$(this).addClass('disabled');
-    	$(this).button('loading');
 		/* var fbRender = document.getElementById('fb-rerender'),
 		  formData = formBuilder.actions.getData("json");
 		  var formRenderOpts = {
