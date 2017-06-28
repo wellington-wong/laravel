@@ -1055,10 +1055,13 @@ table.table {
 		.form-group {
 			margin-left: 0;
 			margin-right: 0;
-		}
-		.password-note {
-			color: #2ba4eb;
-			font-size: 12px;
+			label {
+				color: #a4a0a1;
+			}
+			.password-note {
+				color: #2ba4eb;
+				font-size: 12px;
+			}
 		}
 		.actions {
 			width: 90%;
@@ -1091,6 +1094,9 @@ table.table {
 		}
 		.wizard .content {
 			background: none;
+		}
+		.form-control {
+			border: 0;
 		}
 	}
 	.form-generator-wrapper {
@@ -1131,6 +1137,7 @@ table.table {
 				}
 				.frmb {
 					margin-right: 20px;
+					border: 3px dashed #ccc;
 				}
 			}
 		}
