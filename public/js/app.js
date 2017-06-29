@@ -20580,7 +20580,7 @@ $(function () {
 		placeholder: "Enter your Friend's email",
 		name: "email",
 		required: true,
-		type: "text"
+		type: "email"
 	}, {
 		className: "form-control",
 		label: "Phone",
