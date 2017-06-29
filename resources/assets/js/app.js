@@ -248,16 +248,14 @@ $(function (){
 	      label: 'Email',
 	      attrs: {
 	        type: 'email',
-	        subtype: 'email',
-	        className: 'form-control'
+	        subtype: 'email'
 	      },
 	      icon: '<i class="fa fa-envelope-o"></i>'
 	    }, {
 	      label: 'Phone',
 	      attrs: {
 	        type: 'phone',
-	        subtype: 'number',
-	        className: 'form-control'
+	        subtype: 'number'
 	      },
 	      icon: '<i class="fa fa-phone"></i>'
 	    }
@@ -265,7 +263,7 @@ $(function (){
 	  let templates = {
 	    email: function(fieldData) {
 	      return {
-	        field: '<input type="email" name="email" />',
+	        field: '<input type="email" name="email" class="form-control" />',
 	        onRender: function() {
 	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 	        }
@@ -273,7 +271,7 @@ $(function (){
 	    },
 	    phone: function(fieldData) {
 	      return {
-	        field: '<input type="number" name="number" />',
+	        field: '<input type="number" name="number" class="form-control" />',
 	        onRender: function() {
 	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 	        }
@@ -361,14 +359,14 @@ $(function (){
 			placeholder: "Enter your Friend's email",
 			name: "phone",
 			required: true,
-			type: "text"
+			type: "email"
 		},{
 			className: "form-control",
 			label: "Phone",
 			placeholder: "Enter your Friend's phone number",
 			name: "phone",
 			required: true,
-			type: "text"
+			type: "phone"
 		}]
 		var defaultFieldsComplete = defaultFieldsBasic.slice(0);
 		$.each(addressSetArr, function (){
