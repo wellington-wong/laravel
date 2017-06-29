@@ -20464,19 +20464,19 @@ $(function () {
 
 	// JQUERY FORMBUILDER
 	var fields = [{
-		label: 'Star Rating',
+		label: 'Email',
 		attrs: {
-			type: 'starRating'
+			type: 'email'
 		},
-		icon: 'ðŸŒŸ'
+		icon: 'email'
 	}];
 
 	var templates = {
-		starRating: function starRating(fieldData) {
+		email: function email(fieldData) {
 			return {
-				field: '<span id="' + fieldData.name + '">',
+				field: '<input type="email" name="email" class="form-control" />',
 				onRender: function onRender() {
-					$(document.getElementById(fieldData.name)).rateYo({ rating: 3.6 });
+					//$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 				}
 			};
 		}

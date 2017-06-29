@@ -243,20 +243,20 @@ $(function (){
 // JQUERY FORMBUILDER
 	  let fields = [
 	    {
-	      label: 'Star Rating',
+	      label: 'Email',
 	      attrs: {
-	        type: 'starRating'
+	        type: 'email'
 	      },
-	      icon: 'ðŸŒŸ'
+	      icon: 'email'
 	    }
 	  ];
 
 	  let templates = {
-	    starRating: function(fieldData) {
+	    email: function(fieldData) {
 	      return {
-	        field: '<span id="'+fieldData.name+'">',
+	        field: '<input type="email" name="email" class="form-control" />',
 	        onRender: function() {
-	          $(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
+	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 	        }
 	      };
 	    }
