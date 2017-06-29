@@ -20489,22 +20489,22 @@ $(function () {
 		type: 'text',
 		label: 'Address',
 		placeholder: 'Enter your Friend\'s address',
-		className: 'form-control'
+		className: 'form-control address-group'
 	}, {
 		type: 'text',
 		label: 'Line 2',
 		placeholder: 'Enter your Friend\'s address line 2',
-		className: 'form-control'
+		className: 'form-control address-group'
 	}, {
 		type: 'text',
 		label: 'City:',
 		placeholder: 'Enter your Friend\'s city',
-		className: 'form-control'
+		className: 'form-control address-group'
 	}, {
 		type: 'select',
 		label: 'State',
 		placeholder: 'Enter your Friend\'s state',
-		className: 'form-control',
+		className: 'form-control address-group',
 		values: [{
 			label: 'Alabama',
 			value: 'al'
@@ -20517,7 +20517,7 @@ $(function () {
 		type: 'number',
 		label: 'Zip',
 		placeholder: 'Enter your Friend\'s zip',
-		className: 'form-control'
+		className: 'form-control address-group'
 	}];
 	var addressSet = {
 		label: 'Address',
@@ -20564,7 +20564,8 @@ $(function () {
 		placeholder: "Enter your Friend's email",
 		name: "email",
 		required: true,
-		type: "email"
+		type: "text",
+		subtype: 'email'
 	}, {
 		className: "form-control",
 		label: "Phone",
@@ -20586,21 +20587,6 @@ $(function () {
 		autocomplete: ['access']
 	};
 
-	var typeUserAttrs = {
-		text: {
-			className: {
-				label: 'Class',
-				options: {
-					'red form-control': 'Red',
-					'green form-control': 'Green',
-					'blue form-control': 'Blue'
-				},
-				style: 'border: 1px solid red'
-			}
-		}
-	};
-
-	// test disabledAttrs
 	var disabledAttrs = ['placeholder'];
 
 	var fbOptions = {
@@ -20624,8 +20610,7 @@ $(function () {
 		fields: fields,
 		templates: templates,
 		inputSets: inputSets,
-		typeUserDisabledAttrs: typeUserDisabledAttrs,
-		typeUserAttrs: typeUserAttrs
+		typeUserDisabledAttrs: typeUserDisabledAttrs
 	};
 	var formData = window.sessionStorage.getItem('formData');
 	var editing = true;
