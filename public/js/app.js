@@ -20474,7 +20474,7 @@ $(function () {
 	}, {
 		label: 'Phone',
 		attrs: {
-			type: 'number',
+			type: 'phone',
 			subtype: 'number',
 			className: 'form-control'
 		},
