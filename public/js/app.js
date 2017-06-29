@@ -20590,7 +20590,7 @@ $(function () {
 		required: true,
 		type: "text"
 	}];
-	var defaultFieldsComplete = defaultFieldsBasic;
+	var defaultFieldsComplete = defaultFieldsBasic.slice(0);
 	$.each(addressSetArr, function () {
 		defaultFieldsComplete.push($(this)[0]);
 	});

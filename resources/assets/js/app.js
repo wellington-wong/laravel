@@ -316,12 +316,12 @@ $(function (){
 			placeholder: 'Enter your Friend\'s zip',
 			className: 'form-control'
 		}]
-		  let addressSet = {
-		        label: 'Address',
-		        name: 'address', // optional
-		        showHeader: false, // optional
-		        fields: addressSetArr
-		   }
+		let addressSet = {
+		      label: 'Address',
+		      name: 'address', // optional
+		      showHeader: false, // optional
+		      fields: addressSetArr
+		 }
 
 	  // Init input sets
 	  let inputSets = [addressSet, {
@@ -370,7 +370,7 @@ $(function (){
 			required: true,
 			type: "text"
 		}]
-		let defaultFieldsComplete = defaultFieldsBasic;
+		let defaultFieldsComplete = defaultFieldsBasic.slice(0);
 		$.each(addressSetArr, function (){
 			defaultFieldsComplete.push($(this)[0]);
 		});
