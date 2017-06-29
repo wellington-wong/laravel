@@ -248,36 +248,21 @@ $(function (){
 	      label: 'Email',
 	      attrs: {
 	        type: 'text',
-	        subtype: 'email'
+	        subtype: 'email',
 	      },
+		  placeholder: "Enter your Friend's email",
 	      subtype: 'email',
 	      icon: '<i class="fa fa-envelope-o"></i>'
 	    }, {
 	      label: 'Phone',
 	      attrs: {
-	        type: 'number'
+	        type: 'number',
 	      },
-	      subtype: 'number',
+		  placeholder: "Enter your Friend's phone number",
 	      icon: '<i class="fa fa-phone"></i>'
 	    }
 	  ];
 	  let templates = {
-	    email: function(fieldData) {
-	      return {
-	        field: '<input type="email" name="email" class="form-control" />',
-	        onRender: function() {
-	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
-	        }
-	      };
-	    },
-	    phone: function(fieldData) {
-	      return {
-	        field: '<input type="number" name="number" class="form-control" />',
-	        onRender: function() {
-	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
-	        }
-	      };
-	    }
 	  };
 
 	  // Add fields of address set

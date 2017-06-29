@@ -20471,6 +20471,7 @@ $(function () {
 			type: 'text',
 			subtype: 'email'
 		},
+		placeholder: "Enter your Friend's email",
 		subtype: 'email',
 		icon: '<i class="fa fa-envelope-o"></i>'
 	}, {
@@ -20478,27 +20479,10 @@ $(function () {
 		attrs: {
 			type: 'number'
 		},
-		subtype: 'number',
+		placeholder: "Enter your Friend's phone number",
 		icon: '<i class="fa fa-phone"></i>'
 	}];
-	var templates = {
-		email: function email(fieldData) {
-			return {
-				field: '<input type="email" name="email" class="form-control" />',
-				onRender: function onRender() {
-					//$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
-				}
-			};
-		},
-		phone: function phone(fieldData) {
-			return {
-				field: '<input type="number" name="number" class="form-control" />',
-				onRender: function onRender() {
-					//$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
-				}
-			};
-		}
-	};
+	var templates = {};
 
 	// Add fields of address set
 	var addressSetArr = [{
