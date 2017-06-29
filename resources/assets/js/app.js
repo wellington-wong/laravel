@@ -268,18 +268,22 @@ $(function (){
 		{
 			type: 'text',
 			label: 'Address',
+			placeholder: 'Enter your Friend\'s address',
 			className: 'form-control'
 		}, {
 			type: 'text',
 			label: 'Line 2',
+			placeholder: 'Enter your Friend\'s address line 2',
 			className: 'form-control',
 		}, {
 			type: 'text',
 			label: 'City:',
+			placeholder: 'Enter your Friend\'s city',
 			className: 'form-control'
 		}, {
 			type: 'select',
 			label: 'State',
+			placeholder: 'Enter your Friend\'s state',
 			className: 'form-control',
 			values: [{
 				label: 'Alabama',
@@ -292,6 +296,7 @@ $(function (){
 		}, {
 			type: 'number',
 			label: 'Zip',
+			placeholder: 'Enter your Friend\'s zip',
 			className: 'form-control'
 		}
 	  ]

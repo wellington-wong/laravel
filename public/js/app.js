@@ -20487,6 +20487,7 @@ $(function () {
 	var addressSetArr = [{
 		type: 'text',
 		label: 'Address',
+		placeholder: 'Enter your Friend\'s Address',
 		className: 'form-control'
 	}, {
 		type: 'text',
