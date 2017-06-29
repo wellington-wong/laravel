@@ -246,14 +246,15 @@ $(function (){
 	      label: 'Email',
 	      attrs: {
 	        type: 'email'
-	      }
+	      },
+	      icon: '<i class="fa fa-envelope-o"></i>'
 	    }
 	  ];
 
 	  let templates = {
 	    email: function(fieldData) {
 	      return {
-	        field: '<input type="email" name="email" class="form-control fa fa-envelope-o" />',
+	        field: '<input type="email" name="email" class="form-control" />',
 	        onRender: function() {
 	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 	        }
