@@ -357,16 +357,16 @@ $(function (){
 			className: "form-control",
 			label: "Email",
 			placeholder: "Enter your Friend's email",
-			name: "phone",
+			name: "email",
 			required: true,
-			type: "email"
+			type: "text"
 		},{
 			className: "form-control",
 			label: "Phone",
 			placeholder: "Enter your Friend's phone number",
 			name: "phone",
 			required: true,
-			type: "phone"
+			type: "number"
 		}]
 		var defaultFieldsComplete = defaultFieldsBasic.slice(0);
 		$.each(addressSetArr, function (){
