@@ -20463,6 +20463,8 @@ $(function () {
 	// END - ADJUST HEIGHT
 
 	// JQUERY FORMBUILDER
+
+	// Setup custom fields
 	var fields = [{
 		label: 'Email',
 		attrs: {
@@ -20480,7 +20482,6 @@ $(function () {
 		},
 		icon: '<i class="fa fa-phone"></i>'
 	}];
-
 	var templates = {
 		email: function email(fieldData) {
 			return {
@@ -20500,6 +20501,7 @@ $(function () {
 		}
 	};
 
+	// Add fields of address set
 	var addressSetArr = [{
 		type: 'text',
 		label: 'Address',
