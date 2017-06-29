@@ -710,7 +710,7 @@ $(function (){
 			var data = {
 				company_id: formGenerator.data('company-id'),
 				raw_form_json: formBuilderData,
-				form_name: ($('input[name="template_name"]').val() != '') ? $('input[name="template_name"]').val() : 'Referral form template'
+				form_name: ($('input[name="form_name"]').val() != '') ? $('input[name="form_name"]').val() : 'Referral form'
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
     	}
