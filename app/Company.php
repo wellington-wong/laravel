@@ -60,4 +60,8 @@ class Company extends Model
         return $this->hasManyThrough( Thread::class, ThreadByCompany::class, 'company_id', 'id' );
     }
 
+    public function forms() {
+        return $this->hasMany( CompanyReferralForms::class );
+    }
+
 }

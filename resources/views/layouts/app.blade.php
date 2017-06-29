@@ -62,5 +62,8 @@
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ mix('/js/all.js') }}"></script>
     {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+
+    @yield('js')
+
 </body>
 </html>

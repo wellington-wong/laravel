@@ -23,50 +23,28 @@
             </div>
         @endif
 
-        <div class="referral-create-form-wrapper">
-            {{ Form::open(['route'=>'post-referral-create', 'id' => 'referral-create-form']) }}
 
-            <input type="hidden" name="subdomain_id" value="2{{ $subdomain_id }}" >
-
-            <div class="form-group col-md-6" >
-                {{ Form::text('first_name', old('first_name'), ['placeholder' => 'Referral\'s First Name', 'class' => 'form-control' . ($errors->has('first_name') ? ' has-error' : '')]) }}
-            </div>
-
-            <div class="form-group col-md-6" >
-                {{ Form::text('last_name', old('last_name'), ['placeholder' => 'Referral\'s Last Name', 'class' => 'form-control' . ($errors->has('last_name') ? ' has-error' : '')]) }}
-            </div>
-
-            @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Referral\'s Phone Number'])
-
-            <div class="form-group col-md-6" >
-                {{ Form::text('email', old('email'), ['placeholder' => 'Referral\'s Email', 'class' => 'form-control referral-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
-            </div>
-
-            @include('forms.address')
-
-            <div class="form-group col-md-12" >
-                {{ Form::select('install_complete', ['' => 'Was your friend\'s new AC installation already complete?', '1' => 'Yes', '0' => 'No'], old('install_complete'), ['class' => 'form-control install-complete']) }}
-            </div>
-
-            <div class="form-group col-md-12 terms-wrapper">
-                <label >
-                <input type="checkbox" name="terms[]" class="terms-acceptance pull-left" @if(count($errors)) checked="checked" @endif>
-                <div class="terms-details">
-                    I understand that the receipt of the $100.00 Cash Reward is dependent on my referral's AC installation Status.
-                    I am only entitled for a Referral Reward if/when this referral's AC Unit has been installed by All Year Cooling and Heating, Inc.
-                    View our full <a href="#" class="terms-condition-link">terms and conditions</a>.
+        @if( isset($form->raw_form_json) )
+            {{ Form::open() }}
+                <div id="fb-render" >
                 </div>
-                </label>
-            </div>
-
-            <div class="form-group col-md-12 text-center">
-                <button type="submit" class="terms-button btn btn-primary button-responsive-100 submit-referral">Submit Referral</button>
-            </div>
-
+                <button >Submit</button>
             {{ Form::close() }}
-            <div class="clearfix"></div>
-        </div>
+        @else
+            This company has no referral forms.
+        @endif
+
         @include('layouts.modal')
     </div>
 
+@endsection
+
+@section('js')
+    @if( isset($form->raw_form_json) )
+    <script type="text/javascript">
+        $(document).ready( function() {
+             $('#fb-render').formRender({ formData: <? echo json_encode($form->raw_form_json); ?> });
+        });
+    </script>
+    @endif
 @endsection

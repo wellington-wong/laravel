@@ -43,7 +43,11 @@ Route::post('/company/update', 'CompanyController@postUpdate')->name('post-compa
 Route::post('/company/update-logo/{cid}', 'CompanyController@postUpdateLogo')->name('post-company-update-logo');
 
 // Referral Routes
-Route::get('/referral/create', 'ReferralController@create')->name('referral-create');
+Route::get('/form/{id}', 'ReferralController@formJson')->name('form-json');
+
+Route::get('/referral/create/{id}', 'ReferralController@create')->name('referral-create-id');
+Route::post('/referral/create/{id}', 'ReferralController@postCreate')->name('post-referral-create-id');
+Route::get('/referral/create', 'ReferralController@findForm')->name('referral-create');
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');

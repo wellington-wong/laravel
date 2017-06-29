@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CompanyReferralForms;
 use App\User;
 use App\Phone;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class ReferralController extends Controller
         $this->middleware('auth');
     }
 
-    public function create( Request $request )
+    public function create( Request $request, $id = null )
     {
 
         //IF THERE IS NO SUBDOMAIN
@@ -30,10 +31,29 @@ class ReferralController extends Controller
         }
 
 
+        $form = CompanyReferralForms::find($id);
+        //dd($form);
 
         //dd($request->subdomain);
         return view('referral.create')
+            ->with(compact('form'))
             ->with('subdomain_id', $request->subdomain_id);
+    }
+
+    public function formJson( $id ) {
+        $form = CompanyReferralForms::find($id);
+        return $form->raw_form_json;
+    }
+
+    public function findForm( Request $request ) {
+        $company = $request->_company;
+        if ( $id = $company->forms->first() ) {
+            return redirect()->route( 'referral-create-id' , [$id] );
+        } else {
+            return view('referral.create')
+                ->with(compact('form'))
+                ->with('subdomain_id', $request->subdomain_id);
+        }
     }
 
     public function referrals( Request $request ) {
@@ -118,6 +138,7 @@ class ReferralController extends Controller
     public function postCreate( Request $request )
     {
 
+        /*
         $rules = [
             'first_name'=>'required',
             'last_name'=>'required',
@@ -130,6 +151,13 @@ class ReferralController extends Controller
             'zip'=>'required|max:11',
             'subdomain_id'=>'required',
             'install_complete'=>'required'
+        ];
+        */
+        $request->merge(['subdomain_id' => $request->_company->id]);
+
+        $rules = [
+            'email'=>'required|email',
+            'phone'=>'phone:US',
         ];
         $validator = Validator::make($request->input(), $rules);
 
