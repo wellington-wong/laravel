@@ -20466,7 +20466,9 @@ $(function () {
 	var fields = [{
 		label: 'Email',
 		attrs: {
-			type: 'email'
+			type: 'email',
+			subtype: 'email',
+			className: 'form-control'
 		},
 		icon: '<i class="fa fa-envelope-o"></i>'
 	}];
@@ -20474,7 +20476,7 @@ $(function () {
 	var templates = {
 		email: function email(fieldData) {
 			return {
-				field: '<input type="email" name="email" class="form-control" />',
+				field: '<input type="email" name="email" />',
 				onRender: function onRender() {
 					//$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 				}
@@ -20485,30 +20487,36 @@ $(function () {
 	var inputSets = [{
 		label: 'Address',
 		name: 'address', // optional
-		showHeader: true, // optional
+		showHeader: false, // optional
 		fields: [{
 			type: 'text',
-			label: 'First Name',
+			label: 'Address',
+			className: 'form-control'
+		}, {
+			type: 'text',
+			label: 'Line 2',
+			className: 'form-control'
+		}, {
+			type: 'text',
+			label: 'City:',
 			className: 'form-control'
 		}, {
 			type: 'select',
-			label: 'Profession',
+			label: 'State',
 			className: 'form-control',
 			values: [{
-				label: 'Street Sweeper',
-				value: 'option-2',
-				selected: false
+				label: 'Alabama',
+				value: 'al'
 			}, {
-				label: 'Brain Surgeon',
-				value: 'option-3',
+				label: 'Wyoming',
+				value: 'wy',
 				selected: false
 			}]
 		}, {
-			type: 'textarea',
-			label: 'Short Bio:',
+			type: 'number',
+			label: 'Zip',
 			className: 'form-control'
-		}]
-	}, {
+		}] }, {
 		label: 'User Agreement',
 		fields: [{
 			type: 'header',
