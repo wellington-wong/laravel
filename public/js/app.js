@@ -20675,8 +20675,8 @@ $(function () {
 		// Lock name fields
 		$('.frmb .text-field').each(function () {
 			var label = $(this).find('label.field-label').text();
-			if (label == "First Name" || label == "Last Name") {
-				$('.field-actions').addClass('hidden');
+			if (label == "First Name" || label == "Last Name" || label == "Email") {
+				$(this).closest('.text-field').find('.field-actions').addClass('hidden');
 			}
 		});
 	});
