@@ -344,21 +344,28 @@ $(function (){
 		let defaultFieldsBasic = [{
 			className: "form-control",
 			label: "First Name",
-			placeholder: "Enter your first name",
+			placeholder: "Enter your Friend's first name",
 			name: "first-name",
 			required: true,
 			type: "text"
 		},{
 			className: "form-control",
 			label: "Last Name",
-			placeholder: "Enter your last name",
+			placeholder: "Enter your Friend's last name",
 			name: "last-name",
 			required: true,
 			type: "text"
 		},{
 			className: "form-control",
+			label: "Email",
+			placeholder: "Enter your Friend's email",
+			name: "phone",
+			required: true,
+			type: "text"
+		},{
+			className: "form-control",
 			label: "Phone",
-			placeholder: "Enter your phone number",
+			placeholder: "Enter your Friend's phone number",
 			name: "phone",
 			required: true,
 			type: "text"
@@ -431,14 +438,14 @@ $(function (){
 
 	  // Trigger after form generator has loaded
 	  fbPromise.then(function(fb) {	    
-	    // Apply saved form from db
+	    // Display saved form from db
 		if ($('.raw-form-json').text()) {
 			formBuilder.actions.setData($('.raw-form-json').text());
 		}
 		$('.frmb').show();
 
     	if (formBuilder.actions.getData('json') == '[]') {
-    		//formBuilder.actions.setData(JSON.stringify(defaultFieldsArr));
+			formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));		
     	}
 
 		// Lock name fields
@@ -449,10 +456,6 @@ $(function (){
 			}
 		});
 	  });	  
-
-	  //document.getElementById('edit-form').onclick = function() {
-	    //toggleEdit();
-	  //};
 
 	// Update db with current form settings
 	function formBuilderCallback(data) {
