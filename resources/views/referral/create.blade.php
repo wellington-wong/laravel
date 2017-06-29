@@ -28,7 +28,10 @@
             {{ Form::open() }}
                 <div id="fb-render" >
                 </div>
-                <button >Submit</button>
+                <div class="form-actions btn-group">
+                    <button class="btn btn-danger">Clear</button>
+                    <button class="btn btn-primary">Submit</button>
+                </div>
             {{ Form::close() }}
         @else
             This company has no referral forms.
