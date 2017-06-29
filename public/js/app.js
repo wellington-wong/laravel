@@ -20468,16 +20468,17 @@ $(function () {
 	var fields = [{
 		label: 'Email',
 		attrs: {
-			type: 'email',
+			type: 'text',
 			subtype: 'email'
 		},
+		subtype: 'email',
 		icon: '<i class="fa fa-envelope-o"></i>'
 	}, {
 		label: 'Phone',
 		attrs: {
-			type: 'phone',
-			subtype: 'number'
+			type: 'number'
 		},
+		subtype: 'number',
 		icon: '<i class="fa fa-phone"></i>'
 	}];
 	var templates = {
