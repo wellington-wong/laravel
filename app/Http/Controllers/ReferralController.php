@@ -194,11 +194,6 @@ class ReferralController extends Controller
             $user->duplicate = $duplicate;
         }
 
-        \Mail::send('emails.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
-            $message->from('admin@' . env('APP_URL'), 'Laravel');
-            $message->to($user->email);
-        });
-
         auth()->user()->notify(new ReferralNotify($user));
 
         return redirect(route('referrals'));
