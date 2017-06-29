@@ -12,7 +12,7 @@
 
         <div class="row">      	
           	<div class="form-group col-md-12 no-padding-lr">
-          		<label>Template Name:</label>
+          		<label>Form Name:</label>
       			<input class="form-control" type="text" name="template_name" value="{{ isset($companyReferralForm->raw_form_json) ? $companyReferralForm->template_name : '' }}" placeholder="Template Name">
           	</div>
         </div>
