@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CompanyReferralForms;
+use App\ReferralForms;
 use App\User;
 use App\Phone;
 use Illuminate\Http\Request;
@@ -31,7 +31,7 @@ class ReferralController extends Controller
         }
 
 
-        $form = CompanyReferralForms::find($id);
+        $form = ReferralForms::find($id);
         //dd($form);
 
         //dd($request->subdomain);
@@ -41,7 +41,7 @@ class ReferralController extends Controller
     }
 
     public function formJson( $id ) {
-        $form = CompanyReferralForms::find($id);
+        $form = ReferralForms::find($id);
         return $form->raw_form_json;
     }
 

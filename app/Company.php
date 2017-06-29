@@ -61,7 +61,7 @@ class Company extends Model
     }
 
     public function forms() {
-        return $this->hasMany( CompanyReferralForms::class );
+        return $this->hasMany( ReferralForms::class );
     }
 
 }

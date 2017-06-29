@@ -20667,10 +20667,18 @@ $(function () {
 			}
 		};
 
+		// Apply saved form from db
 		if ($('.raw-form-json').text()) {
 			formBuilder.actions.setData($('.raw-form-json').text());
 		}
 		$('.frmb').show();
+
+		// Lock name fields
+		$('.frmb .text-field').each(function () {
+			if ($(this).find('label') == "First Name" || $(this).find('label') == "Last Name") {
+				$('.frmb-control .icon-file-input, .frmb-control .icon-hidden-input').hide();
+			}
+		});
 	});
 
 	//document.getElementById('edit-form').onclick = function() {
