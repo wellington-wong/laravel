@@ -20534,7 +20534,6 @@ $(function () {
 		placeholder: 'Enter your Friend\'s zip',
 		className: 'form-control'
 	}];
-
 	var addressSet = {
 		label: 'Address',
 		name: 'address', // optional
@@ -20542,6 +20541,7 @@ $(function () {
 		fields: addressSetArr
 	};
 
+	// Init input sets
 	var inputSets = [addressSet, {
 		label: 'User Agreement',
 		fields: [{
@@ -20558,6 +20558,7 @@ $(function () {
 		}]
 	}];
 
+	// Setup basic and complete fields template
 	var defaultFieldsBasic = [{
 		className: "form-control",
 		label: "First Name",
@@ -20580,13 +20581,10 @@ $(function () {
 		required: true,
 		type: "text"
 	}];
-
 	var defaultFieldsComplete = defaultFieldsBasic;
 	$.each(addressSetArr, function () {
-		console.log($(this)[0]);
 		defaultFieldsComplete.push($(this)[0]);
 	});
-	console.log(defaultFieldsComplete);
 
 	var typeUserDisabledAttrs = {
 		autocomplete: ['access']
@@ -20648,6 +20646,7 @@ $(function () {
 	var formBuilder = $('.build-wrap').formBuilder(fbOptions);
 	var fbPromise = formBuilder.promise;
 
+	// Trigger after form generator has loaded
 	fbPromise.then(function (fb) {
 		// Apply saved form from db
 		if ($('.raw-form-json').text()) {
@@ -20671,6 +20670,8 @@ $(function () {
 	//document.getElementById('edit-form').onclick = function() {
 	//toggleEdit();
 	//};
+
+	// Update db with current form settings
 	function formBuilderCallback(data) {
 		location.reload();
 	}
@@ -20687,19 +20688,20 @@ $(function () {
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
 		}
-		/* var fbRender = document.getElementById('fb-rerender'),
-    formData = formBuilder.actions.getData("json");
-    var formRenderOpts = {
-      formData,
-      dataType: 'json'
-    };
-    $(fbRender).formRender(formRenderOpts);
-    
-  */
 	});
+
+	// Set basic fields on clearing form
 	$('.clear-all-trigger').on('click', function () {
 		formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));
 	});
+	/* var fbRender = document.getElementById('fb-rerender'),
+   formData = formBuilder.actions.getData("json");
+   var formRenderOpts = {
+     formData,
+     dataType: 'json'
+   };
+   $(fbRender).formRender(formRenderOpts);		  
+ */
 
 	// END - JQUERY FORMBUILDER
 

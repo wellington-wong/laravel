@@ -241,6 +241,8 @@ $(function (){
 // END - ADJUST HEIGHT
 
 // JQUERY FORMBUILDER
+
+	  // Setup custom fields
 	  let fields = [
 	    {
 	      label: 'Email',
@@ -260,7 +262,6 @@ $(function (){
 	      icon: '<i class="fa fa-phone"></i>'
 	    }
 	  ];
-
 	  let templates = {
 	    email: function(fieldData) {
 	      return {
@@ -280,6 +281,7 @@ $(function (){
 	    }
 	  };
 
+	  // Add fields of address set
 	  let addressSetArr = [{
 			type: 'text',
 			label: 'Address',
@@ -314,14 +316,14 @@ $(function (){
 			placeholder: 'Enter your Friend\'s zip',
 			className: 'form-control'
 		}]
+		  let addressSet = {
+		        label: 'Address',
+		        name: 'address', // optional
+		        showHeader: false, // optional
+		        fields: addressSetArr
+		   }
 
-	  let addressSet = {
-	        label: 'Address',
-	        name: 'address', // optional
-	        showHeader: false, // optional
-	        fields: addressSetArr
-	   }
-
+	  // Init input sets
 	  let inputSets = [addressSet, {
         label: 'User Agreement',
         fields: [{
@@ -338,6 +340,7 @@ $(function (){
         }]
       }];
 
+		// Setup basic and complete fields template
 		let defaultFieldsBasic = [{
 			className: "form-control",
 			label: "First Name",
@@ -360,13 +363,10 @@ $(function (){
 			required: true,
 			type: "text"
 		}]
-
 		let defaultFieldsComplete = defaultFieldsBasic;
 		$.each(addressSetArr, function (){
-		console.log($(this)[0]);
 			defaultFieldsComplete.push($(this)[0]);
 		});
-		console.log(defaultFieldsComplete);
 
 	  var typeUserDisabledAttrs = {
 	    autocomplete: ['access']
@@ -429,6 +429,7 @@ $(function (){
 	  const formBuilder = $('.build-wrap').formBuilder(fbOptions);
 	  const fbPromise = formBuilder.promise;
 
+	  // Trigger after form generator has loaded
 	  fbPromise.then(function(fb) {	    
 	    // Apply saved form from db
 		if ($('.raw-form-json').text()) {
@@ -452,6 +453,8 @@ $(function (){
 	  //document.getElementById('edit-form').onclick = function() {
 	    //toggleEdit();
 	  //};
+
+	// Update db with current form settings
 	function formBuilderCallback(data) {
 	    location.reload();
 	}
@@ -468,19 +471,20 @@ $(function (){
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
     	}
-		/* var fbRender = document.getElementById('fb-rerender'),
-		  formData = formBuilder.actions.getData("json");
-		  var formRenderOpts = {
-		    formData,
-		    dataType: 'json'
-		  };
-		  $(fbRender).formRender(formRenderOpts);
-		  
-		*/
 	});
+
+	// Set basic fields on clearing form
 	$('.clear-all-trigger').on('click', function (){
 		formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));		
 	});
+	/* var fbRender = document.getElementById('fb-rerender'),
+	  formData = formBuilder.actions.getData("json");
+	  var formRenderOpts = {
+	    formData,
+	    dataType: 'json'
+	  };
+	  $(fbRender).formRender(formRenderOpts);		  
+	*/
 
 // END - JQUERY FORMBUILDER
 
