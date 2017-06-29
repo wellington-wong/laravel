@@ -20471,6 +20471,14 @@ $(function () {
 			className: 'form-control'
 		},
 		icon: '<i class="fa fa-envelope-o"></i>'
+	}, {
+		label: 'Phone',
+		attrs: {
+			type: 'number',
+			subtype: 'number',
+			className: 'form-control'
+		},
+		icon: '<i class="fa fa-phone"></i>'
 	}];
 
 	var templates = {
@@ -20481,25 +20489,36 @@ $(function () {
 					//$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 				}
 			};
+		},
+		phone: function phone(fieldData) {
+			return {
+				field: '<input type="number" name="number" />',
+				onRender: function onRender() {
+					//$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
+				}
+			};
 		}
 	};
 
 	var addressSetArr = [{
 		type: 'text',
 		label: 'Address',
-		placeholder: 'Enter your Friend\'s Address',
+		placeholder: 'Enter your Friend\'s address',
 		className: 'form-control'
 	}, {
 		type: 'text',
 		label: 'Line 2',
+		placeholder: 'Enter your Friend\'s address line 2',
 		className: 'form-control'
 	}, {
 		type: 'text',
 		label: 'City:',
+		placeholder: 'Enter your Friend\'s city',
 		className: 'form-control'
 	}, {
 		type: 'select',
 		label: 'State',
+		placeholder: 'Enter your Friend\'s state',
 		className: 'form-control',
 		values: [{
 			label: 'Alabama',
@@ -20512,6 +20531,7 @@ $(function () {
 	}, {
 		type: 'number',
 		label: 'Zip',
+		placeholder: 'Enter your Friend\'s zip',
 		className: 'form-control'
 	}];
 	var addressSet = {

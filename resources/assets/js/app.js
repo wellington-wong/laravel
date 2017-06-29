@@ -250,6 +250,14 @@ $(function (){
 	        className: 'form-control'
 	      },
 	      icon: '<i class="fa fa-envelope-o"></i>'
+	    }, {
+	      label: 'Phone',
+	      attrs: {
+	        type: 'number',
+	        subtype: 'number',
+	        className: 'form-control'
+	      },
+	      icon: '<i class="fa fa-phone"></i>'
 	    }
 	  ];
 
@@ -257,6 +265,14 @@ $(function (){
 	    email: function(fieldData) {
 	      return {
 	        field: '<input type="email" name="email" />',
+	        onRender: function() {
+	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
+	        }
+	      };
+	    },
+	    phone: function(fieldData) {
+	      return {
+	        field: '<input type="number" name="number" />',
 	        onRender: function() {
 	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 	        }
