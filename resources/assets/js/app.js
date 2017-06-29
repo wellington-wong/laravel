@@ -246,15 +246,14 @@ $(function (){
 	      label: 'Email',
 	      attrs: {
 	        type: 'email'
-	      },
-	      icon: 'email'
+	      }
 	    }
 	  ];
 
 	  let templates = {
 	    email: function(fieldData) {
 	      return {
-	        field: '<input type="email" name="email" class="form-control" />',
+	        field: '<input type="email" name="email" class="form-control fa fa-envelope-o" />',
 	        onRender: function() {
 	          //$(document.getElementById(fieldData.name)).rateYo({rating: 3.6});
 	        }
@@ -263,8 +262,8 @@ $(function (){
 	  };
 
 	  let inputSets = [{
-	        label: 'User Details',
-	        name: 'user-details', // optional
+	        label: 'Address',
+	        name: 'address', // optional
 	        showHeader: true, // optional
 	        fields: [{
 	          type: 'text',
@@ -329,7 +328,7 @@ $(function (){
 	    subtypes: {
 	      text: ['datetime-local']
 	    },
-      	disableFields: ['autocomplete', 'starRating', 'hidden', 'user-details', 'file', 'date'],
+      	disableFields: ['autocomplete', 'starRating', 'hidden', 'file', 'date'],
 		defaultFields: [{
 			className: "form-control",
 			label: "First Name",
