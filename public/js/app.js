@@ -20484,39 +20484,43 @@ $(function () {
 		}
 	};
 
-	var inputSets = [{
+	var addressSetArr = [{
+		type: 'text',
+		label: 'Address',
+		className: 'form-control'
+	}, {
+		type: 'text',
+		label: 'Line 2',
+		className: 'form-control'
+	}, {
+		type: 'text',
+		label: 'City:',
+		className: 'form-control'
+	}, {
+		type: 'select',
+		label: 'State',
+		className: 'form-control',
+		values: [{
+			label: 'Alabama',
+			value: 'al'
+		}, {
+			label: 'Wyoming',
+			value: 'wy',
+			selected: false
+		}]
+	}, {
+		type: 'number',
+		label: 'Zip',
+		className: 'form-control'
+	}];
+	var addressSet = {
 		label: 'Address',
 		name: 'address', // optional
 		showHeader: false, // optional
-		fields: [{
-			type: 'text',
-			label: 'Address',
-			className: 'form-control'
-		}, {
-			type: 'text',
-			label: 'Line 2',
-			className: 'form-control'
-		}, {
-			type: 'text',
-			label: 'City:',
-			className: 'form-control'
-		}, {
-			type: 'select',
-			label: 'State',
-			className: 'form-control',
-			values: [{
-				label: 'Alabama',
-				value: 'al'
-			}, {
-				label: 'Wyoming',
-				value: 'wy',
-				selected: false
-			}]
-		}, {
-			type: 'number',
-			label: 'Zip',
-			className: 'form-control'
-		}] }, {
+		fields: addressSetArr
+	};
+
+	var inputSets = [addressSet, {
 		label: 'User Agreement',
 		fields: [{
 			type: 'header',
@@ -20558,56 +20562,6 @@ $(function () {
 			text: ['datetime-local']
 		},
 		disableFields: ['autocomplete', 'starRating', 'hidden', 'file', 'date'],
-		defaultFields: [{
-			className: "form-control",
-			label: "First Name",
-			placeholder: "Enter your first name",
-			name: "first-name",
-			required: true,
-			type: "text"
-		}, {
-			className: "form-control",
-			label: "Last Name",
-			placeholder: "Enter your last name",
-			name: "last-name",
-			required: true,
-			type: "text"
-		}, {
-			className: "form-control",
-			label: "Phone",
-			placeholder: "Enter your phone number",
-			name: "phone",
-			required: true,
-			type: "text"
-		}, {
-			className: "form-control",
-			label: "Address",
-			placeholder: "Enter your address",
-			name: "address",
-			required: true,
-			type: "text"
-		}, {
-			className: "form-control",
-			label: "Line 2",
-			placeholder: "Enter your address line 2",
-			name: "address2",
-			required: true,
-			type: "text"
-		}, {
-			className: "form-control",
-			label: "City",
-			placeholder: "Enter your City",
-			name: "city",
-			required: true,
-			type: "text"
-		}, {
-			className: "form-control",
-			label: "Zip",
-			placeholder: "Enter your Zip",
-			name: "zip",
-			required: true,
-			type: "text"
-		}],
 		roles: {},
 		onSave: function onSave(e, formData) {
 			toggleEdit();
@@ -20680,6 +20634,10 @@ $(function () {
 			formBuilder.actions.setData($('.raw-form-json').text());
 		}
 		$('.frmb').show();
+
+		if (formBuilder.actions.getData('json') == '[]') {}
+		//formBuilder.actions.setData(JSON.stringify(defaultFieldsArr));
+
 
 		// Lock name fields
 		$('.frmb .text-field').each(function () {
