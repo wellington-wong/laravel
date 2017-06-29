@@ -280,8 +280,7 @@ $(function (){
 	    }
 	  };
 
-	  let addressSetArr = [
-		{
+	  let addressSetArr = [{
 			type: 'text',
 			label: 'Address',
 			placeholder: 'Enter your Friend\'s address',
@@ -314,8 +313,8 @@ $(function (){
 			label: 'Zip',
 			placeholder: 'Enter your Friend\'s zip',
 			className: 'form-control'
-		}
-	  ]
+		}]
+
 	  let addressSet = {
 	        label: 'Address',
 	        name: 'address', // optional
@@ -324,20 +323,50 @@ $(function (){
 	   }
 
 	  let inputSets = [addressSet, {
-	        label: 'User Agreement',
-	        fields: [{
-	          type: 'header',
-	          subtype: 'h3',
-	          label: 'Terms & Conditions',
-	          className: 'header'
-	        }, {
-	          type: 'paragraph',
-	          label: 'I understand that the receipt of the $100.00 Cash Reward is dependent on my referral\'s AC installation Status. I am only entitled for a Referral Reward if/when this referral\'s AC Unit has been installed by All Year Cooling and Heating, Inc. View our full terms and conditions. ',
-	        }, {
-	          type: 'checkbox',
-	          label: 'Do you agree to the terms and conditions?',
-	        }]
-	      }];
+        label: 'User Agreement',
+        fields: [{
+          type: 'header',
+          subtype: 'h3',
+          label: 'Terms & Conditions',
+          className: 'header'
+        }, {
+          type: 'paragraph',
+          label: 'I understand that the receipt of the $100.00 Cash Reward is dependent on my referral\'s AC installation Status. I am only entitled for a Referral Reward if/when this referral\'s AC Unit has been installed by All Year Cooling and Heating, Inc. View our full terms and conditions. ',
+        }, {
+          type: 'checkbox',
+          label: 'Do you agree to the terms and conditions?',
+        }]
+      }];
+
+		let defaultFieldsBasic = [{
+			className: "form-control",
+			label: "First Name",
+			placeholder: "Enter your first name",
+			name: "first-name",
+			required: true,
+			type: "text"
+		},{
+			className: "form-control",
+			label: "Last Name",
+			placeholder: "Enter your last name",
+			name: "last-name",
+			required: true,
+			type: "text"
+		},{
+			className: "form-control",
+			label: "Phone",
+			placeholder: "Enter your phone number",
+			name: "phone",
+			required: true,
+			type: "text"
+		}]
+
+		let defaultFieldsComplete = defaultFieldsBasic;
+		$.each(addressSetArr, function (){
+		console.log($(this)[0]);
+			defaultFieldsComplete.push($(this)[0]);
+		});
+		console.log(defaultFieldsComplete);
 
 	  var typeUserDisabledAttrs = {
 	    autocomplete: ['access']
@@ -397,36 +426,10 @@ $(function (){
 	    return editing = !editing;
 	  }
 
-	  const setFormData = '[{"type":"text","label":"Full Name","subtype":"text","className":"form-control","name":"text-1476748004559"},{"type":"select","label":"Occupation","className":"form-control","name":"select-1476748006618","values":[{"label":"Street Sweeper","value":"option-1","selected":true},{"label":"Moth Man","value":"option-2"},{"label":"Chemist","value":"option-3"}]},{"type":"textarea","label":"Short Bio","rows":"5","className":"form-control","name":"textarea-1476748007461"}]';
-
 	  const formBuilder = $('.build-wrap').formBuilder(fbOptions);
 	  const fbPromise = formBuilder.promise;
 
-	  fbPromise.then(function(fb) {
-	    let apiBtns = {
-	      showData: fb.actions.showData,
-	      clearFields: fb.actions.clearFields,
-	      getData: () => console.log(fb.actions.getData()),
-	      setData: () => fb.actions.setData(setFormData),
-	      addField: () => {
-	        let field = {
-	            type: 'text',
-	            class: 'form-control',
-	            label: 'Text Field added at: ' + new Date().getTime()
-	          };
-	        fb.actions.addField(field);
-	      },
-	      removeField: () => fb.actions.removeField(),
-	      testSubmit: () => {
-	        console.log(document.forms[0].checkValidity());
-	        // document.forms[0].submit()
-	      },
-	      resetDemo: () => {
-	        window.sessionStorage.removeItem('formData');
-	        location.reload();
-	      }
-	    };
-	    
+	  fbPromise.then(function(fb) {	    
 	    // Apply saved form from db
 		if ($('.raw-form-json').text()) {
 			formBuilder.actions.setData($('.raw-form-json').text());
@@ -476,7 +479,7 @@ $(function (){
 		*/
 	});
 	$('.clear-all-trigger').on('click', function (){
-		$('.clear-all').click();
+		formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));		
 	});
 
 // END - JQUERY FORMBUILDER

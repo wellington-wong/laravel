@@ -20534,6 +20534,7 @@ $(function () {
 		placeholder: 'Enter your Friend\'s zip',
 		className: 'form-control'
 	}];
+
 	var addressSet = {
 		label: 'Address',
 		name: 'address', // optional
@@ -20556,6 +20557,36 @@ $(function () {
 			label: 'Do you agree to the terms and conditions?'
 		}]
 	}];
+
+	var defaultFieldsBasic = [{
+		className: "form-control",
+		label: "First Name",
+		placeholder: "Enter your first name",
+		name: "first-name",
+		required: true,
+		type: "text"
+	}, {
+		className: "form-control",
+		label: "Last Name",
+		placeholder: "Enter your last name",
+		name: "last-name",
+		required: true,
+		type: "text"
+	}, {
+		className: "form-control",
+		label: "Phone",
+		placeholder: "Enter your phone number",
+		name: "phone",
+		required: true,
+		type: "text"
+	}];
+
+	var defaultFieldsComplete = defaultFieldsBasic;
+	$.each(addressSetArr, function () {
+		console.log($(this)[0]);
+		defaultFieldsComplete.push($(this)[0]);
+	});
+	console.log(defaultFieldsComplete);
 
 	var typeUserDisabledAttrs = {
 		autocomplete: ['access']
@@ -20614,42 +20645,10 @@ $(function () {
 		return editing = !editing;
 	}
 
-	var setFormData = '[{"type":"text","label":"Full Name","subtype":"text","className":"form-control","name":"text-1476748004559"},{"type":"select","label":"Occupation","className":"form-control","name":"select-1476748006618","values":[{"label":"Street Sweeper","value":"option-1","selected":true},{"label":"Moth Man","value":"option-2"},{"label":"Chemist","value":"option-3"}]},{"type":"textarea","label":"Short Bio","rows":"5","className":"form-control","name":"textarea-1476748007461"}]';
-
 	var formBuilder = $('.build-wrap').formBuilder(fbOptions);
 	var fbPromise = formBuilder.promise;
 
 	fbPromise.then(function (fb) {
-		var apiBtns = {
-			showData: fb.actions.showData,
-			clearFields: fb.actions.clearFields,
-			getData: function getData() {
-				return console.log(fb.actions.getData());
-			},
-			setData: function setData() {
-				return fb.actions.setData(setFormData);
-			},
-			addField: function addField() {
-				var field = {
-					type: 'text',
-					class: 'form-control',
-					label: 'Text Field added at: ' + new Date().getTime()
-				};
-				fb.actions.addField(field);
-			},
-			removeField: function removeField() {
-				return fb.actions.removeField();
-			},
-			testSubmit: function testSubmit() {
-				console.log(document.forms[0].checkValidity());
-				// document.forms[0].submit()
-			},
-			resetDemo: function resetDemo() {
-				window.sessionStorage.removeItem('formData');
-				location.reload();
-			}
-		};
-
 		// Apply saved form from db
 		if ($('.raw-form-json').text()) {
 			formBuilder.actions.setData($('.raw-form-json').text());
@@ -20699,7 +20698,7 @@ $(function () {
   */
 	});
 	$('.clear-all-trigger').on('click', function () {
-		$('.clear-all').click();
+		formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));
 	});
 
 	// END - JQUERY FORMBUILDER
