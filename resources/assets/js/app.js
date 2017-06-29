@@ -341,7 +341,7 @@ $(function (){
       }];
 
 		// Setup basic and complete fields template
-		let defaultFieldsBasic = [{
+		var defaultFieldsBasic = [{
 			className: "form-control",
 			label: "First Name",
 			placeholder: "Enter your Friend's first name",
@@ -370,10 +370,14 @@ $(function (){
 			required: true,
 			type: "text"
 		}]
-		let defaultFieldsComplete = defaultFieldsBasic.slice(0);
+		var defaultFieldsComplete = defaultFieldsBasic.slice(0);
 		$.each(addressSetArr, function (){
 			defaultFieldsComplete.push($(this)[0]);
 		});
+		var templateObj = {
+			defaultFieldsBasic: defaultFieldsBasic,
+			defaultFieldsComplete: defaultFieldsComplete
+		}
 
 	  var typeUserDisabledAttrs = {
 	    autocomplete: ['access']
@@ -453,6 +457,13 @@ $(function (){
 			var label = $(this).find('label.field-label').text();
 			if (label == "First Name" || label == "Last Name" || label == "Email") {
 				$(this).closest('.text-field').find('.field-actions').addClass('hidden');
+			}
+		});
+
+		// Process template dropdown change
+		$('select[name="referral_template"]').change(function (){
+			if ($(this).val()) {
+				formBuilder.actions.setData(JSON.stringify(templateObj[$(this).val()]));	
 			}
 		});
 	  });	  

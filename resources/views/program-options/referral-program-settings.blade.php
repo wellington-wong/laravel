@@ -17,7 +17,7 @@
             </div>
           	<div class="form-group col-md-6 no-padding-r">
           		<label>Templates:</label>
-      		    {{ Form::select('state', ['' => 'Select Template', '1' => 'Basic', '2' => 'Complete'], isset($state) ? $state : old('state'), ['class' => 'form-control']) }}
+      		    {{ Form::select('referral_template', ['' => 'Select Template', 'defaultFieldsBasic' => 'Basic', 'defaultFieldsComplete' => 'Complete'], isset($state) ? $state : old('state'), ['class' => 'form-control']) }}
             </div>
         </div>
 

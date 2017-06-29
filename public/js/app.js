@@ -20594,6 +20594,10 @@ $(function () {
 	$.each(addressSetArr, function () {
 		defaultFieldsComplete.push($(this)[0]);
 	});
+	var templateObj = {
+		defaultFieldsBasic: defaultFieldsBasic,
+		defaultFieldsComplete: defaultFieldsComplete
+	};
 
 	var typeUserDisabledAttrs = {
 		autocomplete: ['access']
@@ -20672,6 +20676,13 @@ $(function () {
 			var label = $(this).find('label.field-label').text();
 			if (label == "First Name" || label == "Last Name" || label == "Email") {
 				$(this).closest('.text-field').find('.field-actions').addClass('hidden');
+			}
+		});
+
+		// Process template dropdown change
+		$('select[name="referral_template"]').change(function () {
+			if ($(this).val()) {
+				formBuilder.actions.setData(JSON.stringify(templateObj[$(this).val()]));
 			}
 		});
 	});
