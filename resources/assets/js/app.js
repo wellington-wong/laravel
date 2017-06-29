@@ -449,6 +449,35 @@ $(function (){
 	  //document.getElementById('edit-form').onclick = function() {
 	    //toggleEdit();
 	  //};
+	function formBuilderCallback(data) {
+	    location.reload();
+	}
+	$('.submit-custom-form').on('click', function (){
+    	var formBuilderData = formBuilder.actions.getData('json');
+    	var formGenerator = $('.form-generator');
+    	if (formBuilderData != "[]") {
+	    	$(this).addClass('disabled');
+	    	$(this).button('loading');
+			var data = {
+				company_id: formGenerator.data('company-id'),
+				raw_form_json: formBuilderData,
+				form_name: ($('input[name="form_name"]').val() != '') ? $('input[name="form_name"]').val() : 'Referral form'
+			};
+			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
+    	}
+		/* var fbRender = document.getElementById('fb-rerender'),
+		  formData = formBuilder.actions.getData("json");
+		  var formRenderOpts = {
+		    formData,
+		    dataType: 'json'
+		  };
+		  $(fbRender).formRender(formRenderOpts);
+		  
+		*/
+	});
+	$('.clear-all-trigger').on('click', function (){
+		$('.clear-all').click();
+	});
 
 // END - JQUERY FORMBUILDER
 
@@ -717,38 +746,4 @@ $(function (){
 		readImage(this, processProfile);
 	});	
 // END MANAGE ACCOUNT
-
-// REFERRAL PROGRAM SETTINGS
-	function formBuilderCallback(data) {
-	    location.reload();
-	}
-	$('.submit-custom-form').on('click', function (){
-    	var formBuilderData = formBuilder.actions.getData('json');
-    	var formGenerator = $('.form-generator');
-    	if (formBuilderData != "[]") {
-	    	$(this).addClass('disabled');
-	    	$(this).button('loading');
-			var data = {
-				company_id: formGenerator.data('company-id'),
-				raw_form_json: formBuilderData,
-				form_name: ($('input[name="form_name"]').val() != '') ? $('input[name="form_name"]').val() : 'Referral form'
-			};
-			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
-    	}
-		/* var fbRender = document.getElementById('fb-rerender'),
-		  formData = formBuilder.actions.getData("json");
-		  var formRenderOpts = {
-		    formData,
-		    dataType: 'json'
-		  };
-		  $(fbRender).formRender(formRenderOpts);
-		  
-		*/
-	});
-	$('.clear-all-trigger').on('click', function (){
-		$('.clear-all').click();
-	});
-// END REFERRAL PROGRAM SETTINGS
-
-
 });
