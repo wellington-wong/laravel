@@ -11,10 +11,14 @@
         <div class="clearfix"></div>
 
         <div class="row">      	
-          	<div class="form-group col-md-12 no-padding-lr">
-          		<label>Form Name:</label>
-      			<input class="form-control" type="text" name="form_name" value="{{ isset($companyReferralForm->form_name) ? $companyReferralForm->form_name : '' }}" placeholder="Form Name">
-          	</div>
+            <div class="form-group col-md-6 no-padding-l">
+              <label>Form Name:</label>
+              {{ Form::text('form_name', isset($companyReferralForm->form_name) ? $companyReferralForm->form_name : '', ['placeholder' => 'Form Name', 'class' => 'form-control']) }}
+            </div>
+          	<div class="form-group col-md-6 no-padding-r">
+          		<label>Templates:</label>
+      		    {{ Form::select('state', ['' => 'Select Template', '1' => 'Basic', '2' => 'Complete'], isset($state) ? $state : old('state'), ['class' => 'form-control']) }}
+            </div>
         </div>
 
         <div class="row">
