@@ -13,7 +13,7 @@
         <div class="row">      	
           	<div class="form-group col-md-12 no-padding-lr">
           		<label>Form Name:</label>
-      			<input class="form-control" type="text" name="template_name" value="{{ isset($companyReferralForm->form_name) ? $companyReferralForm->form_name : '' }}" placeholder="Template Name">
+      			<input class="form-control" type="text" name="form_name" value="{{ isset($companyReferralForm->form_name) ? $companyReferralForm->form_name : '' }}" placeholder="Form Name">
           	</div>
         </div>
 
