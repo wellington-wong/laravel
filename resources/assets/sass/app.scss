@@ -694,6 +694,9 @@ table.table {
 		input[type="number"]#phone-preview {
 	    	width: 100%;
 		}
+		input[type="number"].address-group {
+	    	width: 100%;
+		}
 	}
 }
 /*** Common End ***/
