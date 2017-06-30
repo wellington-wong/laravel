@@ -20545,7 +20545,7 @@ $(function () {
 
 	// Setup basic and complete fields template
 	var defaultFieldsBasic = [{
-		className: "form-control col-md-6",
+		className: "form-control",
 		label: "First Name",
 		placeholder: "Enter your Friend's first name",
 		name: "first_name",

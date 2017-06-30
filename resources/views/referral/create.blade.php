@@ -29,8 +29,8 @@
                 <div id="fb-render" >
                 </div>
                 <div class="form-actions btn-group">
-                    <button class="btn btn-danger" type="reset">Clear</button>
-                    <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-primary pull-right">Submit</button>
+                    <button class="btn btn-danger pull-right" type="reset">Clear</button>
                 </div>
             {{ Form::close() }}
         @else
@@ -58,6 +58,9 @@
              $('.old-input > div').each(function(){
                 $('input[name="' + $(this).data('field-name') + '"]').val($(this).data('value'));
              });
+
+             // Make 2 columns for each row
+             $('#fb-render > div').addClass('col-md-6');
         });
     </script>
     @endif
