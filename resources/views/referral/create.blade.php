@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Create Referral')
+@section('pageTitle', 'Submit a New Referral')
 
 @section('content')
 
