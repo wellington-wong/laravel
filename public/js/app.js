@@ -20545,7 +20545,7 @@ $(function () {
 
 	// Setup basic and complete fields template
 	var defaultFieldsBasic = [{
-		className: "form-control",
+		className: "form-control col-md-6",
 		label: "First Name",
 		placeholder: "Enter your Friend's first name",
 		name: "first_name",
@@ -20635,7 +20635,7 @@ $(function () {
 		}
 		$('.frmb').show();
 
-		if (formBuilder.actions.getData) {
+		if (formBuilder.actions.getData && formBuilder.actions.getData('json') == '[]') {
 			formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));
 		}
 
