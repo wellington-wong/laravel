@@ -29,7 +29,7 @@
                 <div id="fb-render" >
                 </div>
                 <div class="form-actions btn-group">
-                    <button class="btn btn-danger">Clear</button>
+                    <button class="btn btn-danger" type="reset">Clear</button>
                     <button class="btn btn-primary">Submit</button>
                 </div>
             {{ Form::close() }}
