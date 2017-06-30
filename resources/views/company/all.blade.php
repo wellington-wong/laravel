@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'All Companies')
+
 @section('content')
 
     @foreach( $companies as $c )
