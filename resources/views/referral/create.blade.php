@@ -53,6 +53,11 @@
     <script type="text/javascript">
         $(document).ready( function() {
              $('#fb-render').formRender({ formData: <? echo json_encode($form->raw_form_json); ?> });
+
+             // Place old value to appropriate input field
+             $('.old-input > div').each(function(){
+                $('input[name="' + $(this).data('field-name') + '"]').val($(this).data('value'));
+             });
         });
     </script>
     @endif
