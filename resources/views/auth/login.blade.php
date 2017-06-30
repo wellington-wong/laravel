@@ -1,3 +1,4 @@
+@section('pageTitle', 'Login')
 @include('auth.document-top')
 
     <form class="render-wrap"></form>
