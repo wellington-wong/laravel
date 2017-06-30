@@ -20548,14 +20548,14 @@ $(function () {
 		className: "form-control",
 		label: "First Name",
 		placeholder: "Enter your Friend's first name",
-		name: "first-name",
+		name: "first_name",
 		required: true,
 		type: "text"
 	}, {
 		className: "form-control",
 		label: "Last Name",
 		placeholder: "Enter your Friend's last name",
-		name: "last-name",
+		name: "last_name",
 		required: true,
 		type: "text"
 	}, {
