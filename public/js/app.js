@@ -20632,15 +20632,10 @@ $(function () {
 		// Display saved form from db
 		if ($('.raw-form-json').text()) {
 			formBuilder.actions.setData($('.raw-form-json').text());
-			$('.frmb li').mousedown(function () {
-				alert();
-				$(this).unbind();
-				$(this).off();
-			});
 		}
 		$('.frmb').show();
 
-		if (formBuilder.actions.getData('json') == '[]') {
+		if (formBuilder.actions.getData) {
 			formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));
 		}
 
