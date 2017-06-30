@@ -20653,6 +20653,8 @@ $(function () {
 				formBuilder.actions.setData(JSON.stringify(templateObj[$(this).val()]));
 			}
 		});
+
+		$('.cb-wrap').append($('.form-generator .form-actions'));
 	});
 
 	// Update db with current form settings

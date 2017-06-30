@@ -28,7 +28,7 @@
 				    <div class="form-generator" data-company-id="{{ $_company->id }}">
 				        <div id="stage1" class="build-wrap"></div>
 				        <form class="render-wrap"></form>
-				        <div class="form-actions btn-group">
+				        <div class="form-actions btn-group custom-btn">
 				        	<button class="clear-all-trigger btn btn-danger">Clear</button>
 				        	<button class="submit-custom-form btn btn-primary">Save</button>
 				        </div>
