@@ -278,7 +278,7 @@ $(function (){
 			className: 'form-control address-group',
 		}, {
 			type: 'text',
-			label: 'City:',
+			label: 'City',
 			placeholder: 'Enter your Friend\'s city',
 			className: 'form-control address-group'
 		}, {
@@ -413,6 +413,11 @@ $(function (){
 	    // Display saved form from db
 		if ($('.raw-form-json').text()) {
 			formBuilder.actions.setData($('.raw-form-json').text());
+			$('.frmb li').mousedown(function (){
+				alert();
+				$(this).unbind();
+				$(this).off();
+			});
 		}
 		$('.frmb').show();
 
