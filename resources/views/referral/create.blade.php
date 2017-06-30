@@ -30,8 +30,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-actions btn-group">
-                        <button class="btn btn-primary">Submit</button>
-                        <button class="btn btn-danger" type="reset">Clear</button>
+                        <button class="btn btn-primary">Submit Referral</button>
                     </div>
                 </div>
             {{ Form::close() }}
