@@ -37,6 +37,12 @@
             This company has no referral forms.
         @endif
 
+        <div class="old-input hidden">            
+            @foreach (session()->getOldInput() as $key => $val)
+                <div data-field-name="{{ $key }}" data-value="{{ $val }}"></div>
+            @endforeach
+        </div>
+
         @include('layouts.modal')
     </div>
 
