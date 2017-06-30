@@ -156,7 +156,7 @@ class ReferralController extends Controller
         $request->merge(['subdomain_id' => $request->_company->id]);
 
         $rules = [
-            'email'=>'required|email',
+            'email'=>'unique:users|required|email',
             'phone'=>'phone:US',
         ];
         $validator = Validator::make($request->input(), $rules);
@@ -169,11 +169,12 @@ class ReferralController extends Controller
         $duplicate = $this->checkDuplicate($request);
 
         //CREATE USER
-        $user = User::firstOrCreate(
-            ['email'=>$request->input('email')],
-            ['first_name'=>$request->input('first_name'),
-             'last_name'=>$request->input('last_name')]
-        );
+        $user = User::firstOrCreate([
+            'email'=>$request->input('email'),
+            'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
+            'first_name'=>$request->input('first_name'),
+            'last_name'=>$request->input('last_name')
+        ]);
         //ADD PHONE
         $phone = $user->addDefaultPhone($request);
         //ADD ADDRESS
