@@ -28,9 +28,11 @@
             {{ Form::open() }}
                 <div id="fb-render" >
                 </div>
-                <div class="form-actions btn-group">
-                    <button class="btn btn-primary pull-right">Submit</button>
-                    <button class="btn btn-danger pull-right" type="reset">Clear</button>
+                <div class="col-md-12">
+                    <div class="form-actions btn-group">
+                        <button class="btn btn-primary">Submit</button>
+                        <button class="btn btn-danger" type="reset">Clear</button>
+                    </div>
                 </div>
             {{ Form::close() }}
         @else
