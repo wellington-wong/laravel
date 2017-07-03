@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ReferralForms;
+use App\ReferralValues;
 use App\User;
 use App\Phone;
 use Illuminate\Http\Request;
@@ -153,6 +154,7 @@ class ReferralController extends Controller
             'install_complete'=>'required'
         ];
         */
+        
         $request->merge(['subdomain_id' => $request->_company->id]);
 
         $rules = [
@@ -193,6 +195,14 @@ class ReferralController extends Controller
 
         if (isset($duplicate['email']) || isset($duplicate['phone'])) {
             $user->duplicate = $duplicate;
+        }
+
+        // Save custom fields
+        $referralValues = new ReferralValues();
+        foreach ($request->request as $key => $val) {
+            if ($key != '_token') {
+                $referralValues->insert(['name' => $key, 'value' => $val]);
+            }
         }
 
         /*\Mail::send('emails.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
