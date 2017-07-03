@@ -338,6 +338,14 @@ class User extends Authenticatable
             $referrals->whereBetween('created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->addDay()->toDateTimeString()]);
         }
 
+        if (isset($q)) {
+            $referrals->whereHas('referred', function ($query) use ($q) {
+                $query->where(\DB::raw('lower(first_name)'), 'LIKE', '%' . $q . '%');
+                $query->orWhere(\DB::raw('lower(last_name)'), 'LIKE', '%' . $q . '%');
+                $query->orWhere(\DB::raw('lower(name)'), 'LIKE', '%' . $q . '%');
+            });
+        }
+
         switch ($column) {
             case ('referred'):
                 $referrals->orderBy('id', $sort);
@@ -352,7 +360,7 @@ class User extends Authenticatable
                 $referrals->orderBy($defaultSort, 'desc');
                 break;
         }
-        
+
         return $referrals;
     }
 
