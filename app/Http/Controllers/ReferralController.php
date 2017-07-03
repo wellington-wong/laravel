@@ -314,7 +314,7 @@ class ReferralController extends Controller
      **/
     public function update( Request $request ) {
 
-        $referral = new Referral();
+        $referral = new ReferralSubmissions();
         return $referral->updateReferral();
     }
 

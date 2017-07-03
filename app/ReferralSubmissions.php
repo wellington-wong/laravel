@@ -35,6 +35,39 @@ class ReferralSubmissions extends Model
     }
 
     /**
+     * Update Referrals
+     * @return
+     */
+    public function updateReferral() {
+
+        $request = request();
+
+        $referral = $this->find($request->get('id'));
+        $referral->status = $request->get('status');
+        $referral->note = $request->get('note');
+        $referral->save();dd($referral);
+
+        $referral_message = '';
+        if ($referral->status == self::STATUS_DENIED) {
+            $referral_message = 'Your referral has been denied.';
+        } else if ($referral->status == self::STATUS_APPROVED) {
+            $referral_message = 'Your referral has been approved.';
+        } else if ($referral->status == self::STATUS_REWARD_SENT) {
+            $referral_message = 'Your reward has been sent.';
+        }
+
+        if ($referral->status > 1) {
+            $email = $referral->first()->referred->email;
+            /*\Mail::send('emails.notify-referred', array('user' => auth()->user(), 'referral' => $referral,'note' => $referral->note, 'referral_message' => $referral_message, 'referred' => $referral->referred), function ($message) use ($email) {
+                $message->from('admin@' . env('APP_URL'), 'Laravel');
+                $message->to($email);
+            });*/
+        }
+
+        return $referral;
+    }
+
+    /**
      * Delete Referrals
      * @return
      */
