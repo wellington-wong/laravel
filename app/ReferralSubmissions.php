@@ -33,4 +33,35 @@ class ReferralSubmissions extends Model
     public function referred() {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    /**
+     * Delete Referrals
+     * @return
+     */
+    public function deleteReferral() {
+
+        $request = request();
+
+        $referral = $this->find($request->get('id'));
+        $referral->status = $request->get('status');
+        return $referral->delete();
+    }
+
+    /**
+     * Get referral pending approval and reward
+     * @return
+     */
+    public function getReferralTally() {
+
+        $request = request();
+
+        $pendingReferrals['approval'] = $request->user()->referrals()
+            ->where('status', 1)
+            ->get();
+        $pendingReferrals['reward'] = $request->user()->referrals()
+            ->where('status', 2)
+            ->get();
+
+        return $pendingReferrals;
+    }
 }
