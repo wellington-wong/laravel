@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ReferralForms;
 use App\ReferralValues;
+use App\ReferralSubmissions;
 use App\User;
 use App\Phone;
 use Illuminate\Http\Request;
@@ -197,10 +198,19 @@ class ReferralController extends Controller
             $user->duplicate = $duplicate;
         }
 
+        // Save referral submission
+        $referral = ReferralSubmissions::create([
+            'referrer_id' => $request->user()->id,
+            'company_id'    => $request->_company->id,
+            'user_id'    => $user->id
+        ]);
+
         // Save referral values
-        foreach ($request->request as $key => $val) {
-            if ($key != '_token') {
-               ReferralValues::create(['name' => $key, 'value' => $val]);
+        if (isset($referral->id)) {
+            foreach ($request->request as $key => $val) {
+                if ($key != '_token') {
+                   ReferralValues::create(['name' => $key, 'value' => $val, 'referral_id' => $referral->id]);
+                }
             }
         }
 
