@@ -94,7 +94,7 @@ class ReferralController extends Controller
         $param = [];
         if (count($request->all())) {
             $param = $referrals->getParams();
-            $referrals = $referrals->filterSortReferrals()->paginate(15);
+            $referrals = $request->user()->filterSortReferralSubmissions()->paginate(15);
         } else {
             $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->paginate(15);
         }
@@ -184,7 +184,7 @@ class ReferralController extends Controller
         $address = $user->addDefaultAddress($request);
 
         //ADD THAT USER TO A NEW REFERRAL
-        $user->referral_id = $request->user()->referrals()->insertGetId([
+        /*$user->referral_id = $request->user()->referrals()->insertGetId([
             'referrer_id'   => $request->user()->id,
             'company_id'    => $request->get('subdomain_id'),
             'user_id'       => $user->id,
@@ -193,7 +193,7 @@ class ReferralController extends Controller
             //'installation_complete' => $request->has('install_complete') ? $request->get('install_complete') : 0,
             'created_at' =>  \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
-        ]);
+        ]);*/
 
         if (isset($duplicate['email']) || isset($duplicate['phone'])) {
             $user->duplicate = $duplicate;
