@@ -9,6 +9,5 @@ class ReferralValues extends Model
 
 	protected $table = 'referral_values';
 
-    protected $fillable = ['name', 'value'];
-    public $timestamps = true;
+    protected $fillable = ['referral_id', 'name', 'value'];
 }
