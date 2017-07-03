@@ -1,3 +1,4 @@
+@section('pageTitle', '404 Not Found')
 @include('auth.document-top')
 
     <form class="render-wrap"></form>

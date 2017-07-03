@@ -1,3 +1,4 @@
+@section('pageTitle', '403 Forbidden')
 @include('auth.document-top')
 
     <form class="render-wrap"></form>
