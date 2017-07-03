@@ -25,4 +25,12 @@ class ReferralSubmissions extends Model
 	protected $table = 'referral_submissions';
 
 	protected $fillable = ['referrer_id', 'company_id', 'user_id', 'as_admin_id', 'status', 'note'];
+
+    public function referrer() {
+        return $this->hasOne(User::class, 'id', 'referrer_id');
+    }
+
+    public function referred() {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
