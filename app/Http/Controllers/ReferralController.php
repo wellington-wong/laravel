@@ -188,8 +188,9 @@ class ReferralController extends Controller
             'referrer_id'   => $request->user()->id,
             'company_id'    => $request->get('subdomain_id'),
             'user_id'       => $user->id,
-            'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,            
-            'installation_complete' => $request->has('install_complete') ? $request->get('install_complete') : 0,
+            'as_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,            
+            //'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,  
+            //'installation_complete' => $request->has('install_complete') ? $request->get('install_complete') : 0,
             'created_at' =>  \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
