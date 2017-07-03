@@ -154,7 +154,7 @@ class ReferralController extends Controller
             'install_complete'=>'required'
         ];
         */
-        
+
         $request->merge(['subdomain_id' => $request->_company->id]);
 
         $rules = [
@@ -197,11 +197,10 @@ class ReferralController extends Controller
             $user->duplicate = $duplicate;
         }
 
-        // Save custom fields
-        $referralValues = new ReferralValues();
+        // Save referral values
         foreach ($request->request as $key => $val) {
             if ($key != '_token') {
-                $referralValues->insert(['name' => $key, 'value' => $val]);
+               ReferralValues::create(['name' => $key, 'value' => $val]);
             }
         }
 
