@@ -292,6 +292,18 @@ class ReferralController extends Controller
     }
 
     /**
+     * View referral
+     * @return
+     **/
+    public function getView( Request $request, $id ) {
+
+        $referralValues = ReferralValues::where('referral_id', $id)->get();
+
+        return view('referral.view')
+        ->with(compact('referralValues'));
+    }
+
+    /**
      * Update referral status
      * @return
      **/
