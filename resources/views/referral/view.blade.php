@@ -29,7 +29,7 @@
                             <td>{{ $r->value }}</td>
                         </tr>
                     @endforeach
-                    @if (!count($referralValues))<tr><td colspan="5">No referrals found.</td></tr>@endif
+                    @if (!count($referralValues))<tr><td colspan="5">No referral value/s found.</td></tr>@endif
                 </table>
 
             </div>
