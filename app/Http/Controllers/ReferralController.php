@@ -210,7 +210,11 @@ class ReferralController extends Controller
         if (isset($referral->id)) {
             foreach ($request->request as $key => $val) {
                 if ($key != '_token') {
-                   ReferralValues::create(['name' => $key, 'value' => $val, 'referral_id' => $referral->id]);
+                   ReferralValues::create([
+                        'name' => $key, 
+                        'value' => $val, 
+                        'referral_id' => $referral->id
+                    ]);
                 }
             }
         }
