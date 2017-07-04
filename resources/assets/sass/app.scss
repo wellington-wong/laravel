@@ -699,6 +699,16 @@ table.table {
 		}
 	}
 }
+.upload-label {
+	width: 100%;
+	border-radius: 0 !important;
+	border-width: 2px;
+	border-color: #f0f0f0;
+	box-shadow: none;
+}
+.create-user-link {
+	line-height: 2;
+}
 /*** Common End ***/
 
 
@@ -1591,13 +1601,6 @@ table.table {
 
 /*** Manage Account ***/
 #update-user-form {
-	.upload-label {
-		width: 100%;
-		border-radius: 0 !important;
-		border-width: 2px;
-		border-color: #f0f0f0;
-		box-shadow: none;
-	}
 }
 .profile-preview {
 	margin-bottom: 20px;

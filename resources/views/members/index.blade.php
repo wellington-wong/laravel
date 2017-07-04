@@ -8,7 +8,10 @@
 
 
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Admins', 'col' => 3])
+        @include('layouts.page-header', ['header' => 'Admins', 'col' => 6])
+            <div class="text-right col-md-6 create-user-link">
+                <a href="{{ route('create-user') }}"><i class="fa fa-user-secret"></i> Create New Admin</a>
+            </div>
         </div>
 
         <div class="clearfix"></div>
@@ -39,17 +42,10 @@
 
 
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Members', 'col' => 3])
-
-            <!--<div class="col-md-9 page-filters no-padding-lr">
-                <div class="row">
-                    <div class="col-md-4 filter-item search pull-right">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                        {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : ''), 'data-url' => route("members")]) }}            
-                        {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search members']) }}
-                    </div>
-                </div>
-            </div>-->
+            @include('layouts.page-header', ['header' => 'Members', 'col' => 6])
+            <div class="text-right col-md-6 create-user-link">
+                <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>
+            </div>
         </div>
 
         <div class="clearfix"></div>
@@ -76,7 +72,7 @@
                     @if (!count($members))<tr><td colspan="5">No members found.</td></tr>@endif
                 </table>
                 <div class="text-right">
-                    <a href="{{ route('create-user') }}"><i class="fa fa-user-circle"></i> Create New User</a>
+                    <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>
                 </div>
                 <div class="col-md-12 pagination-wrapper">{{ count($members) ? $members->links() : '' }}</div>
             </div>

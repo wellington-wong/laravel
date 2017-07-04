@@ -6,13 +6,15 @@
     <div class="container-fluid create-user-wrapper">    
 
         @if( !$errors->isEmpty() )
-            <div class="alert alert-warning col-md-12">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+	        <div class="row">
+	            <div class="alert alert-warning col-md-12">
+	                <ul>
+	                    @foreach ($errors->all() as $error)
+	                        <li>{{ $error }}</li>
+	                    @endforeach
+	                </ul>
+	            </div>
+	        </div>
         @endif
 
         <div class="row">
@@ -26,7 +28,7 @@
 
         <div class="row">            
             <div class="col-md-12 no-padding-lr">
-    	        {{ Form::open(['route'=>'post-account-update', 'enctype' => 'multipart/form-data', 'id' => 'update-user-form', 'class' => 'update-form']) }}
+    	        {{ Form::open(['route'=>'post-create-user', 'enctype' => 'multipart/form-data', 'id' => 'create-user-form', 'class' => 'create-user-form']) }}
 
     	        <div class="col-md-6">
     	        	{{ Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control' . ($errors->has('name') ? ' has-error' : '')]) }}
