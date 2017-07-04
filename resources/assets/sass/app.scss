@@ -1603,3 +1603,15 @@ table.table {
 	margin-bottom: 20px;
 }
 /*** Manage Account End ***/
+
+/*** Create User ***/
+.create-user-wrapper {
+	.profile-preview {
+		img.user-placeholder {
+		    height: 200px;
+		    border: 1px solid #ccc;
+		    border-radius: 100px;
+		}
+	}
+}
+/*** Create User End ***/

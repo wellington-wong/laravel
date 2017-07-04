@@ -3,10 +3,23 @@
 @section('pageTitle', 'Create User')
 
 @section('content')
-    <div class="container-fluid create-customer-wrapper">
-    
+    <div class="container-fluid create-user-wrapper">    
+
+        @if( !$errors->isEmpty() )
+            <div class="alert alert-warning col-md-12">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Create User', 'col' => 3])
+        @include('layouts.page-header', ['header' => 'Create User', 'col' => 12])
+            <div class="profile-preview text-center col-md-12">
+                <img class="img-responsive center-block user-placeholder" height="100" src="/images/avatar-placeholder.png">
+            </div>
         </div>
 
         <div class="clearfix"></div>

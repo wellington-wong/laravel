@@ -41,6 +41,26 @@ class UserController extends Controller
      */
     public function postCreate( Request $request )
     {
-        return view('user.create');
+
+        $rules = [
+            'name'=>'required',
+            'email'=>'required|email',
+            'phone'=>'required|phone:US',
+            'address'=>'max:100',
+            'address2'=>'max:25',
+            'city'=>'required',
+            'state'=>'required|alpha|max:2',
+            'zip'=>'required|digits:5'
+        ];
+
+        $validator = Validator::make($request->input(), $rules, $messages);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+
+        return back;
     }
 }
