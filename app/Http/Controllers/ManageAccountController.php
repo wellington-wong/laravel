@@ -78,7 +78,7 @@ class ManageAccountController extends Controller
             auth()->user()->profile_image = $request->file('profile')->store('profile-images');
         }
         
-        auth()->user()->save();
+        auth()->user()->update( $request->all() );
 
         return back();
     }

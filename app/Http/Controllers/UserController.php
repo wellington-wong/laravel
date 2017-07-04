@@ -41,6 +41,18 @@ class UserController extends Controller
      */
     public function postCreate( Request $request )
     {
+        
+        $rules = [
+            'name'=>'required',
+            'email'=>'unique:users|required|email',
+            'phone'=>'required|phone:US',
+            'address'=>'max:100',
+            'address2'=>'max:25',
+            'city'=>'required',
+            'state'=>'required|alpha|max:2',
+            'zip'=>'required|digits:5',
+            //'profile_blob' => 'required',
+        ];
 
         return redirect(route('view-user', 2));
     }

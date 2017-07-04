@@ -7,8 +7,8 @@
     <div class="container-fluid manage-account-wrapper">
 
         <div class="row">
-        @include('layouts.page-header', ['header' => auth()->user()->display_name, 'col' => 6])
-            <div class="profile-preview text-center {{ isset(auth()->user()->profile_image) ? '' : 'hidden' }} col-md-6">
+        @include('layouts.page-header', ['header' => auth()->user()->display_name, 'col' => 12])
+            <div class="profile-preview text-center {{ isset(auth()->user()->profile_image) ? '' : 'hidden' }} col-md-12">
                 <img class="img-responsive center-block" height="100" src="{{ isset(auth()->user()->profile_image) ? auth()->user()->profile_image : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">
             </div>
         </div>
@@ -36,7 +36,7 @@
     	        </div>
 
     	        <div class="form-group col-md-6" >
-    	        	{{ Form::text('email',  auth()->user()->email, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
+    	        	{{ Form::text('email',  auth()->user()->email, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : ''), 'readonly']) }}            
     	        </div>
 
     	        @include('forms.address', ['address_placeholder' => 'Address'])
