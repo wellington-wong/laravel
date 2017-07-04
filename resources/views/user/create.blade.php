@@ -30,8 +30,12 @@
             <div class="col-md-12 no-padding-lr">
     	        {{ Form::open(['route'=>'post-create-user', 'enctype' => 'multipart/form-data', 'id' => 'create-user-form', 'class' => 'create-user-form']) }}
 
-    	        <div class="col-md-6">
-    	        	{{ Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control' . ($errors->has('name') ? ' has-error' : '')]) }}
+    	        <div class="form-group col-md-6">
+    	        	{{ Form::text('first_name', null, ['placeholder' => 'First Name', 'class' => 'form-control' . ($errors->has('first_name') ? ' has-error' : '')]) }}
+    	        </div>
+
+    	        <div class="form-group col-md-6">
+    	        	{{ Form::text('last_name', null, ['placeholder' => 'Last Name', 'class' => 'form-control' . ($errors->has('last_name') ? ' has-error' : '')]) }}
     	        </div>
 
     	        <div class="col-md-6">
@@ -39,13 +43,13 @@
     	        </div>
 
     	        <div class="form-group col-md-6" >
-    	        	{{ Form::text('email',  null, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
+    	        	{{ Form::text('email',  null, ['placeholder' => 'Email', 'class' => 'form-control email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
     	        </div>
 
     	        @include('forms.address', ['address_placeholder' => 'Address'])
 
-                <div class="form-group col-md-6">
-                    <label for="profile-upload" class="btn btn-default upload-label">{{ isset(auth()->user()->profile_image) ? 'Update Profile Image' : 'Upload Profile Image' }}</label>
+                <div class="form-group col-md-12">
+                    <label for="profile-upload" class="btn btn-default upload-label">Upload Profile Image</label>
                     {{ Form::file('profile', array('class' => 'profile-upload hidden', 'id' => 'profile-upload', 'multiple' => 'multiple')) }}
                 </div>    
 

@@ -58,11 +58,15 @@ class UserController extends Controller
         ];
 
         $validator = Validator::make($request->input(), $rules);
-        
+
         if ( $validator->fails() ) {
             return redirect()->back()->withInput()
                 ->with(['errors'=>$validator->errors()]);
         }
+
+        $user = new User();
+        $user->create($request->all());
+        dd($user);
 
         return redirect(route('view-user', 2));
     }
