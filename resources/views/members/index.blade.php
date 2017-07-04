@@ -26,7 +26,7 @@
                     @foreach ($admins as $member)
                         <tr>
                             <td>{{ $member->id }}</td>
-                            <td>{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</td>
+                            <td><a href="{{ route('view-user', $member->id) }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</a></td>
                             <td>{{ $member->email }}</td>
                         </tr>
                     @endforeach
