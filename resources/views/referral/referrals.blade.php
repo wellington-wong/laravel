@@ -55,8 +55,8 @@
                         <tr>
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             <td><a href="{{ route('referral-view', $r->id) }}">{{ $r->id }}</a></td>
-                            <td><a href="{{ $r->user_id }}">{{ auth()->user()->name }}</a></td>
-                            <td><a href="{{ $r->referred->id }}">{{ $r->referred->display_name }}</a></td>
+                            <td><a href="{{ route('view-user', auth()->user()->id) }}">{{ auth()->user()->name }}</a></td>
+                            <td><a href="{{ route('view-user', $r->referred->id) }}">{{ $r->referred->display_name }}</a></td>
                             <td class="referral-status" data-id="{{ $r->id }}">
                                 <div class="form-control" data-toggle="dropdown">{{ \App\Referral::$status[$r->status] }}</div>
                                 @can('change-referral-statuses')<ul class="dropdown-menu">                                
