@@ -16,15 +16,15 @@
     	        {{ Form::open(['route'=>'post-account-update', 'enctype' => 'multipart/form-data', 'id' => 'update-user-form', 'class' => 'update-form']) }}
 
     	        <div class="col-md-6">
-    	        	{{ Form::text('name', auth()->user()->name, ['placeholder' => 'Name', 'class' => 'form-control' . ($errors->has('name') ? ' has-error' : '')]) }}
+    	        	{{ Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control' . ($errors->has('name') ? ' has-error' : '')]) }}
     	        </div>
 
     	        <div class="col-md-6">
-    	        	@include('forms.phone', ['phone_label'=>'Phone Number', 'placeholder' => 'Phone Number', 'no_col' => true, 'value' => (isset(auth()->user()->phone->first()->phone) ? auth()->user()->phone->first()->phone : '')])
+    	        	@include('forms.phone', ['phone_label'=>'Phone Number', 'placeholder' => 'Phone Number', 'no_col' => true, 'value' => null])
     	        </div>
 
     	        <div class="form-group col-md-6" >
-    	        	{{ Form::text('email',  auth()->user()->email, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
+    	        	{{ Form::text('email',  null, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : '') ]) }}            
     	        </div>
 
     	        @include('forms.address', ['address_placeholder' => 'Address'])
@@ -38,7 +38,7 @@
                 {{ Form::hidden('profile_blob_name', null, ['class' => 'profile-blob-name']) }}
 
     	        <div class="form-group col-md-12 text-right">
-    	        	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100 submit-profile']) }}
+    	        	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100 submit-create']) }}
     	        </div>
 
     	    	{{ Form::close() }}
