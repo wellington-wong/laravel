@@ -2,7 +2,7 @@
             <div class="container-fluid">
                 <div class="col-sm-3 navbar-messages no-padding-lr">
                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <a href="{{ route('messages') }}"><strong>{{ count(Session::get('messages')) > 1 || count(Session::get('messages')) == 0 ? count(Session::get('messages')) . ' Messages' : count(Session::get('messages')) . ' Message' }} </strong></a>
+                    <a href="{{ route('messages') }}"><strong>{{ Session::get('messageCount') > 1 || Session::get('messageCount') == 0 ? Session::get('messageCount') . ' Messages' : Session::get('messageCount') . ' Message' }} </strong></a>
                 </div>
                 <div class="col-sm-9 no-padding-lr">
                     <!-- Right Side Of Navbar -->

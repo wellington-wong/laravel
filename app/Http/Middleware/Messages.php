@@ -16,9 +16,14 @@ class Messages
      */
     public function handle($request, Closure $next)
     {
-        
+        // Count all unread message/s for user in current company
+        $userThreadsByCompany = $request->_company->threads()->get();
+        $messageCount = 0;
+        foreach ($userThreadsByCompany as $key => $thread) {
+            $messageCount = $messageCount + $thread->userUnreadMessagesCount(auth()->user()->id);
+        }
         if (auth()->check() && $request->_company->subdomain != 'app') {
-            \Session::put('messages', $request->_company->threads()->get());
+            \Session::put('messageCount', $messageCount);
         }    
 
 

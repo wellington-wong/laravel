@@ -30,7 +30,7 @@
                 <div class="member-message">
                     <div class="rh-count">
                         <span><a href="{{ route('messages') }}">
-                            {{ count(Session::get('messages')) }}
+                            {{ Session::get('messageCount') }}
                         </a></span>
                     </div><hr />
                     <div class="rh-desc">
