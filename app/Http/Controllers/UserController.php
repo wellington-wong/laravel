@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Phone;
+use App\Address;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -41,7 +44,7 @@ class UserController extends Controller
      */
     public function postCreate( Request $request )
     {
-        
+
         $rules = [
             'name'=>'required',
             'email'=>'unique:users|required|email',
@@ -53,6 +56,13 @@ class UserController extends Controller
             'zip'=>'required|digits:5',
             //'profile_blob' => 'required',
         ];
+
+        $validator = Validator::make($request->input(), $rules);
+        
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
 
         return redirect(route('view-user', 2));
     }
