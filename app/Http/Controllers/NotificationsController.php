@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notification;
-use App\Referral;
+use App\ReferralSubmissions;
 
 class NotificationsController extends Controller
 {
@@ -22,7 +22,7 @@ class NotificationsController extends Controller
         
         $notification = Notification::find($nid);
         $data = json_decode($notification->data);
-        $referral = isset($data->referral_id) ? Referral::find($data->referral_id) : 0;
+        $referral = isset($data->id) ? ReferralSubmissions::where('user_id', $data->id)->first() : 0;
 
         return view('notifications.view')->with(compact('notification', 'referral'));
 
