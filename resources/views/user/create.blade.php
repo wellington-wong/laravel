@@ -38,7 +38,7 @@
                 {{ Form::hidden('profile_blob_name', null, ['class' => 'profile-blob-name']) }}
 
     	        <div class="form-group col-md-12 text-right">
-    	        	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100 submit-create']) }}
+    	        	{{ Form::submit('Create User', ['class' => 'btn btn-primary button-responsive-100 submit-create']) }}
     	        </div>
 
     	    	{{ Form::close() }}
