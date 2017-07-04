@@ -33,4 +33,14 @@ class UserController extends Controller
     {
         return view('user.create');
     }
+
+    /**
+     * Save user account.
+     *
+     * @return view
+     */
+    public function postCreate( Request $request )
+    {
+        return view('user.create');
+    }
 }

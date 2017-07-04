@@ -76,6 +76,7 @@ Route::get('/help', 'ManageAccountController@help')->name('help');
 // User
 Route::get('/user/view/{id}', 'UserController@getView')->name('view-user');
 Route::get('/user/create', 'UserController@create')->name('create-user');
+Route::post('/user/create', 'UserController@create')->name('post-create-user');
 
 // Login as original user
 Route::get('/global-settings/login-as-origin', ['uses' => 'GlobalSettingsController@loginAsOrigin'])->name('login-as-origin');
