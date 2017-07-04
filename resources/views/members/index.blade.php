@@ -76,7 +76,7 @@
                     @if (!count($members))<tr><td colspan="5">No members found.</td></tr>@endif
                 </table>
                 <div class="text-right">
-                    <a href="/messages/create"><i class="fa fa-pencil-square-o"></i> Compose a New Message</a>
+                    <a href="{{ route('create-user') }}"><i class="fa fa-user-circle"></i> Create New User</a>
                 </div>
                 <div class="col-md-12 pagination-wrapper">{{ count($members) ? $members->links() : '' }}</div>
             </div>

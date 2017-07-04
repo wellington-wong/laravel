@@ -23,4 +23,14 @@ class UserController extends Controller
     	$user = User::find($id);
         return view('user.view')->with(compact('user'));
     }
+
+    /**
+     * Create user account.
+     *
+     * @return view
+     */
+    public function create( Request $request )
+    {
+        return view('user.create');
+    }
 }
