@@ -19,25 +19,49 @@
 
                 <div class="row">           
                     <div class="form-group col-md-6">
-                        <label>Name</label>
-                        <div class="form-control">{{ $user->name }}</div>
-                    </div>    
-
+                        <label>First Name</label>
+                        <div class="form-control">{{ $user->first_name }}</div>
+                    </div>        
                     <div class="form-group col-md-6">
-                        <label>Email</label>
-                        <div class="form-control">{{ $user->email }}</div>
-                    </div>
+                        <label>Last Name</label>
+                        <div class="form-control">{{ $user->last_name }}</div>
+                    </div>    
                 </div>    
 
                 <div class="row">           
                     <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <div class="form-control">{{ $user->email }}</div>
+                    </div>
+                    <div class="form-group col-md-6">
                         <label>Phone</label>
                         <div class="form-control">{{ isset($user->phones()->first()->phone) ? $user->phones()->first()->phone : '' }}</div>
                     </div>
+                </div>
 
+                <div class="row">      
                     <div class="form-group col-md-6">
                         <label>Address</label>
                         <div class="form-control">{{ isset($user->addresses()->first()->address) ? $user->addresses()->first()->address : '' }}</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Line 2</label>
+                        <div class="form-control">{{ isset($user->addresses()->first()->address2) ? $user->addresses()->first()->address2 : '' }}</div>
+                    </div>
+                </div>    
+
+                <div class="row">      
+                    <div class="form-group col-md-4">
+                        <label>City</label>
+                        <div class="form-control">{{ isset($user->addresses()->first()->city) ? $user->addresses()->first()->city : '' }}</div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>State</label>
+                        <div class="form-control">{{ isset($user->addresses()->first()->state) ? strtoupper($user->addresses()->first()->state) : '' }}</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Zip</label>
+                        <div class="form-control">{{ isset($user->addresses()->first()->zip) ? strtoupper($user->addresses()->first()->zip) : '' }}</div>
                     </div>
                 </div>    
 
