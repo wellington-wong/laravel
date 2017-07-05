@@ -17,25 +17,29 @@
         <div class="row">            
             <div class="col-md-12 no-padding-lr">   
 
-                <div class="form-group col-md-6">
-                    <label>Name</label>
-                    <div class="form-control">{{ $user->name }}</div>
+                <div class="row">           
+                    <div class="form-group col-md-6">
+                        <label>Name</label>
+                        <div class="form-control">{{ $user->name }}</div>
+                    </div>    
+
+                    <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <div class="form-control">{{ $user->email }}</div>
+                    </div>
                 </div>    
 
-                <div class="form-group col-md-6">
-                    <label>Email</label>
-                    <div class="form-control">{{ $user->email }}</div>
-                </div>
+                <div class="row">           
+                    <div class="form-group col-md-6">
+                        <label>Phone</label>
+                        <div class="form-control">{{ isset($user->phones()->first()->phone) ? $user->phones()->first()->phone : '' }}</div>
+                    </div>
 
-                <div class="form-group col-md-6">
-                    <label>Phone</label>
-                    <div class="form-control">{{ isset($user->phones()->first()->phone) ? $user->phones()->first()->phone : '' }}</div>
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label>Address</label>
-                    <div class="form-control">{{ isset($user->addresses()->first()->address) ? $user->addresses()->first()->address : '' }}</div>
-                </div>
+                    <div class="form-group col-md-6">
+                        <label>Address</label>
+                        <div class="form-control">{{ isset($user->addresses()->first()->address) ? $user->addresses()->first()->address : '' }}</div>
+                    </div>
+                </div>    
 
             </div>
 
