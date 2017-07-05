@@ -50,7 +50,7 @@ class UserController extends Controller
             'last_name'=>'required',
             'email'=>'unique:users|required|email',
             'phone'=>'required|phone:US',
-            'address'=>'max:100',
+            'address'=>'unique:addresses|max:100',
             'address2'=>'max:25',
             'city'=>'required',
             'state'=>'required|alpha|max:2',
@@ -65,17 +65,23 @@ class UserController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
+        if ( $request->file('profile') ) {
+            $profile_image = $request->file('profile')->store('profile-images');
+        }
+
         $user = User::firstOrCreate([
             'email'=>$request->input('email'),
             'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
             'first_name'=>$request->input('first_name'),
-            'last_name'=>$request->input('last_name')
+            'last_name'=>$request->input('last_name'),
+            'profile_image'=>isset($profile_image) ? $profile_image : null
         ]);
 
         //ADD PHONE
         $phone = $user->addDefaultPhone($request);
         //ADD ADDRESS
         $address = $user->addDefaultAddress($request);
+
 
         return redirect(route('view-user', $user->id));
     }
