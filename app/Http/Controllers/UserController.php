@@ -46,7 +46,8 @@ class UserController extends Controller
     {
 
         $rules = [
-            'name'=>'required',
+            'first_name'=>'required',
+            'last_name'=>'required',
             'email'=>'unique:users|required|email',
             'phone'=>'required|phone:US',
             'address'=>'max:100',
@@ -64,9 +65,7 @@ class UserController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        $user = new User();
-        $user->create($request->all());
-        dd($user);
+        $user = User::create($request->all());
 
         return redirect(route('view-user', 2));
     }
