@@ -65,8 +65,18 @@ class UserController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        $user = User::create($request->all());
+        $user = User::firstOrCreate([
+            'email'=>$request->input('email'),
+            'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
+            'first_name'=>$request->input('first_name'),
+            'last_name'=>$request->input('last_name')
+        ]);
 
-        return redirect(route('view-user', 2));
+        //ADD PHONE
+        $phone = $user->addDefaultPhone($request);
+        //ADD ADDRESS
+        $address = $user->addDefaultAddress($request);
+
+        return redirect(route('view-user', $user->id));
     }
 }
