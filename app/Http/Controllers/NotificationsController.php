@@ -22,7 +22,7 @@ class NotificationsController extends Controller
         
         $notification = Notification::find($nid);
         $data = json_decode($notification->data);
-        $referral = isset($data->id) ? ReferralSubmissions::where('user_id', $data->id)->first() : 0;
+        $referral = isset($data->id) ? Referral::where('user_id', $data->id)->first() : 0;
 
         return view('notifications.view')->with(compact('notification', 'referral'));
 
