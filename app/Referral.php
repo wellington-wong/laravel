@@ -33,66 +33,6 @@ class Referral extends Model
     }
 
     /**
-     * Sort Referrals
-     * @return
-     */
-    public function filterSortReferrals($defaultSort = 'referrals.created_at') {
-
-        $request = request();
-
-        // Get sort and filter
-        $column = $request->has('column') ? $request->get('column') : null;
-        $sort = $request->has('sort') ? $request->get('sort') : null;
-        $status = $request->has('status') ? $request->get('status') : null;
-        $q = strtolower($request->has('q') ? $request->get('q') : null);
-
-        // Get date range
-        $daterange = explode('|', $request->get('daterange'));
-        $datarangeFrom = isset($daterange[0]) && (bool)strtotime($daterange[0]) ? $daterange[0] : null;
-        $datarangeTo = isset($daterange[1]) && (bool)strtotime($daterange[1]) ? $daterange[1] : null;
-
-        // Change query when sorting and filtering.
-        $referrals = $this->join('users', 'users.id', 'referrals.user_id');
-
-        if ((auth()->user()->hasRole('member'))) {
-            $referrals->where('referrer_id', auth()->user()->id);
-        }
-
-        if (isset($status)) {
-            $referrals->where('referrals.status', $status);
-        }
-
-        if (isset($datarangeFrom) && isset($datarangeTo)) {
-            $referrals->whereBetween('users.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->addDay()->toDateTimeString()]);
-        }
-
-        if (isset($q)) {
-            $referrals->where(function ($query) use ($q) {
-                $query->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%');
-                $query->where(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q . '%');
-                $query->where(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q . '%');
-            });
-        }
-
-        switch ($column) {
-            case ('referred'):
-                $referrals->orderBy('users.id', $sort);
-                break;        
-            case ('created_at'):
-                $referrals->orderBy('users.'.$column, $sort);
-                break;
-            case ('id' || 'user_id' || 'status'):
-                $referrals->orderBy('referrals.'.$column, $sort);
-                break;
-            default:
-                $referrals->orderBy($defaultSort, 'desc');
-                break;
-        }
-
-        return $referrals;
-    }
-
-    /**
      * Update Referrals
      * @return
      */
@@ -114,13 +54,14 @@ class Referral extends Model
             $referral_message = 'Your reward has been sent.';
         }
 
+        /*
         if ($referral->status > 1) {
             $email = $referral->first()->referred->email;
             \Mail::send('emails.notify-referred', array('user' => auth()->user(), 'referral' => $referral,'note' => $referral->note, 'referral_message' => $referral_message, 'referred' => $referral->referred), function ($message) use ($email) {
                 $message->from('admin@' . env('APP_URL'), 'Laravel');
                 $message->to($email);
             });
-        }
+        }*/
 
         return $referral;
     }

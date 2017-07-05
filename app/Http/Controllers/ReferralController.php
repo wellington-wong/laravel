@@ -184,36 +184,36 @@ class ReferralController extends Controller
         $address = $user->addDefaultAddress($request);
 
         //ADD THAT USER TO A NEW REFERRAL
-        /*$user->referral_id = $request->user()->referrals()->insertGetId([
+        $user->referral_id = $request->user()->referrals()->insertGetId([
             'referrer_id'   => $request->user()->id,
             'company_id'    => $request->get('subdomain_id'),
             'user_id'       => $user->id,
-            'as_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,            
+            //'as_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,            
             //'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,  
             //'installation_complete' => $request->has('install_complete') ? $request->get('install_complete') : 0,
             'created_at' =>  \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
-        ]);*/
+        ]);
 
         if (isset($duplicate['email']) || isset($duplicate['phone'])) {
             $user->duplicate = $duplicate;
         }
 
         // Save referral submission
-        $referral = ReferralSubmissions::create([
+        /*$referral = ReferralSubmissions::create([
             'referrer_id' => $request->user()->id,
             'company_id'    => $request->_company->id,
             'user_id'    => $user->id
-        ]);
+        ]);*/
 
         // Save referral values
-        if (isset($referral->id)) {
+        if (isset($user->referral_id)) {
             foreach ($request->request as $key => $val) {
                 if ($key != '_token') {
                    ReferralValues::create([
                         'name' => $key, 
                         'value' => $val, 
-                        'referral_id' => $referral->id
+                        'referral_id' => $user->referral_id
                     ]);
                 }
             }
