@@ -103,7 +103,6 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	// Program Options
 	Route::get('/program-options', 'ProgramOptionsController@index')->name('program-options');
 	Route::get('/program-options/email-logs', 'ProgramOptionsController@emailLogs')->name('program-options-email-logs');
-	Route::get('/program-options/email-template', 'ProgramOptionsController@emailTemplate')->name('program-options-email-template');
 	Route::get('/program-options/users', 'ProgramOptionsController@users')->name('program-options-users');
 	Route::get('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettings')->name('program-options-referral-program-settings');
 	Route::post('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettingsPost')->name('program-options-referral-program-settings-save');

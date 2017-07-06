@@ -108,12 +108,11 @@
                                         </div>
                                         <ul id="program-options" class="collapse in">
                                             <li class="{{ (Request::is('company/*') && !Request::is('company/create')) ? 'active' : '' }}"><a href="{{ route('get-company', $_company->id ) }}">Company Profile</a></li>
-                                            <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
-                                            <li class="{{ Request::is('program-options/email-template') ? 'active' : '' }}"><a href="{{ route('program-options-email-template') }}">Email Template</a></li>
                                             <li class="{{ Request::is('members') ? 'active' : '' }}"><a href="{{ route('members') }}">Users</a></li>
                                             <li class="{{ Request::is('program-options/referral-program-settings') ? 'active' : '' }}"><a href="{{ route('program-options-referral-program-settings') }}">Referral Program Settings</a></li>
                                             <li class="{{ Request::is('program-options/reward-settings') ? 'active' : '' }}"><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
                                             <li class="{{ Request::is('program-options/notification-emails') ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
+                                            <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
                                         </ul>
                                     </li>
                                     @endrole
