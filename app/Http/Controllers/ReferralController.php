@@ -313,7 +313,7 @@ class ReferralController extends Controller
      **/
     public function update( Request $request ) {
 
-        $referral = new ReferralSubmissions();
+        $referral = new Referral();
         return $referral->updateReferral();
     }
 
