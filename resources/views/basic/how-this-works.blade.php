@@ -9,12 +9,21 @@
         </div>
         <div class="row">
             <div class="col-md-12 no-padding-lr">
-                <p>Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei. Cum modo inani ex, eu vidit ipsum sadipscing mei. Mel te reque ornatus oportere, ius maiorum mediocrem iudicabit ne. Iriure dolorum complectitur usu cu, primis deseruisse et duo.</p>
-                <p>Pro adhuc aliquip numquam et. Id vim meis vidisse luptatum, vix case fastidii no. Ponderum cotidieque appellantur usu ex, legimus reprehendunt nam ex, at bonorum fabulas definitionem mei. Nec solet fabulas ocurreret te, scripta similique moderatius nec et. In regione detracto qui, et postea nemore labores per. Ad tation ubique sensibus sea, eum laudem eruditi fierent id, quaestio assentior elaboraret eam id. Veri vivendo appetere sea no.</p>
-                <p>Labitur complectitur vel ea. Vis falli oportere ei, assentior consectetuer vel ei. Id sea dictas meliore. Ut eam fabulas periculis. Populo pericula vel ea, nulla doctus deleniti vis ea, sea ut partiendo patrioque iracundia.</p>
-                <p>Vide definitiones ex eam. Pro mazim propriae ex, et sea purto omittantur, pri in stet eligendi mandamus. Te cum eirmod debitis persecuti. Usu odio quando luptatum in. Alienum quaerendum neglegentur an per, odio vide exerci eu ius, fabellas petentium vix et. Vel eu quod essent, no eos aeque sapientem facilisis.</p>
-                <p>Cu rationibus sadipscing eam, ut ius vero aperiam, quo ne nostro labitur consulatu. Cu vim assum ignota similique, eius comprehensam mei ea. Ut decore aeterno aperiri usu, at usu illud persecuti, solet nonumes adversarium ex vel. Cum eu voluptaria persequeris, in mei quem fabulas, est luptatum adipiscing cu. Mel at dolorum admodum, ea malorum omnesque disputando mei, mel eruditi voluptua ne.</p>
-            </div>
+                  <strong>Create your program</strong>
+                    <p>All you need is a name and a credit card. We handle the rest! </p>
+
+                  <strong>Send your customers to a unique subdomain so they can start submitting referrals.</strong>
+                  <p>Once your custom referral program is created, you’ll receive the custom URL for your program. You can share your link with your customers and start receiving new referrals instantly!</p>
+    
+                  <strong>Once logged in to your custom referral program. Your customers can easily submit referrals</strong>
+                  <p>Your customers will be able to create a free account within your referral program so that they can easily login, submit, and keep track of their rewards and referrals. </p>
+    
+                  <strong>Custom notification emails for your customers.</strong>
+                  <p>Your customers will be able to create a free account within your referral program so that they can easily login, submit, and keep track of their rewards and referrals. Keep your customers engaged with our custom email templates. Notify your customer with updates on their pending referrals. You can even export your member’s emails to use within your own Email management System.</p>
+    
+                  <strong>Start a Contest and increase your referral count.</strong>
+                  <p>Perxi even offers a leaderboard option for your referral program. Award customers with the most referrals.</p>
+                </div>
         </div>
     </div>
 @endsection
