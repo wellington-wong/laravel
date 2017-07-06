@@ -20726,6 +20726,13 @@ $(function () {
 				$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
 				setFormGen = 1;
 			}
+
+			if (newIndex == 4) {
+				$('#register-form-multistep input').each(function () {
+					$('.review-form').append('<div class="form-field-review">' + $(this).closest('.form-group').find('label').text() + ': ' + $(this).val() + '</div>');
+				});
+			}
+
 			form.closest('.register-main').find('.top-content').html(multiStepRegistration[newIndex]);
 			return true; //form.valid();
 		},

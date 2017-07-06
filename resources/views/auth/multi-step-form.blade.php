@@ -227,7 +227,7 @@
 
                                         <!-- Step 5 -->
                                         <h3>Review</h3>
-                                        <section>
+                                        <section class="review-form">
 
                                         </section>
                                         <!-- Step 5 End -->
