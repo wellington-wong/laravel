@@ -364,4 +364,8 @@ class User extends Authenticatable
         return $referrals;
     }
 
+    public function getName() {
+        return isset($this->name) ? $this->name : (isset($this->first_name) || isset($this->last_name) ? $this->first_name . ' ' . $this->last_name : '') ;
+    }
+
 }
