@@ -158,7 +158,7 @@
 
                                         <!-- Step 3 -->
                                         <h3>Form Builder</h3>
-                                        <section>
+                                        <section class="form-builder">
                                         </section>
                                         <!-- Step 3 End -->
 

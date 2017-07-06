@@ -20728,7 +20728,7 @@ $(function () {
 			}
 
 			if (newIndex == 4) {
-				$('#register-form-multistep input').each(function () {
+				$('#register-form-multistep section:not(.form-builder) input').each(function () {
 					$('.review-form').append('<div class="form-group"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
 				});
 			}
