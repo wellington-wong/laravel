@@ -532,7 +532,7 @@ $(function (){
 		},
 		onFinished: function (event, currentIndex)
 		{
-			alert("Submitted!");
+			$('#register-form-multistep').submit();
 			console.log(event);
 		},
 		labels: {

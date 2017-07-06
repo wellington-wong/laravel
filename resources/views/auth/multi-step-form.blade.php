@@ -1,4 +1,4 @@
-                                <form id="register-form-multistep" action="#">
+                                <form id="register-form-multistep" method="POST" action="{{ route('post_register_simple') }}">
                                 {{ csrf_field() }}
                                     <div>
                                         <h3>Your Info</h3>

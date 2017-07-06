@@ -20741,7 +20741,7 @@ $(function () {
 			return true; //form.valid();
 		},
 		onFinished: function onFinished(event, currentIndex) {
-			alert("Submitted!");
+			$('#register-form-multistep').submit();
 			console.log(event);
 		},
 		labels: {

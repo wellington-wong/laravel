@@ -158,4 +158,13 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * Process simple register with multistep registration
+     * @return
+     */
+    public function postRegistrationSimple($user, $provider)
+    {
+            return dd($request);
+    }
+
 }
