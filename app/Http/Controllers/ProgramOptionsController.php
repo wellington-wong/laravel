@@ -106,4 +106,15 @@ class ProgramOptionsController extends Controller
         return view('program-options.email-logs')
         ->with(compact('emailLogs'));
     }
+
+    /**
+     * Display email template form
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function emailTemplate( Request $request )
+    {
+        return view('program-options.email-template');
+    }
 }
