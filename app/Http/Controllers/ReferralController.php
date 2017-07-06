@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\ReferralForms;
 use App\ReferralValues;
-use App\ReferralSubmissions;
 use App\User;
 use App\Phone;
 use Illuminate\Http\Request;
