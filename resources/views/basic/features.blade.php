@@ -1,3 +1,4 @@
+@section('pageTitle', 'Features')
 @include('auth.document-top')
         <!-- Start Header -->
         <header>
