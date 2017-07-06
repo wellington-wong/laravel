@@ -164,7 +164,7 @@ class RegisterController extends Controller
      */
     public function postRegistrationSimple($user, $provider)
     {
-            return dd($request);
+            return;
     }
 
 }
