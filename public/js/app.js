@@ -20993,6 +20993,7 @@ $(function () {
 		renderHTML();
 	});
 
+	renderHTML();
 	showBack();
 	// END EMAIL TEMPLATE FORM
 

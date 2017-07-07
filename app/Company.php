@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cmgmyr\Messenger\Models\Thread;
 use App\Thread as ThreadByCompany;
+use App\EmailTemplate;
 
 class Company extends Model
 {
@@ -62,6 +63,10 @@ class Company extends Model
 
     public function forms() {
         return $this->hasMany( ReferralForms::class );
+    }
+
+    public function emailTemplate() {
+        return $this->hasOne( EmailTemplate::class );
     }
 
 }

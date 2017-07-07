@@ -768,9 +768,8 @@ $(function (){
 	 </div>
 	 </div>`;
 
-	    $('#email_html').val(html2);
-	    renderHTML();
-	        
+		$('#email_html').val(html2);
+	    renderHTML();	        
 	}
 
 
@@ -793,6 +792,7 @@ $(function (){
 	    renderHTML();
 	});
 
+	renderHTML();
 	showBack();
 // END EMAIL TEMPLATE FORM
 
