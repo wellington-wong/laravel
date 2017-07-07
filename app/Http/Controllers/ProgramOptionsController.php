@@ -95,6 +95,17 @@ class ProgramOptionsController extends Controller
     }
 
     /**
+     * Save notification email template
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postNotificationEmails( Request $request )
+    {
+        return 'success';
+    }
+
+    /**
      * Display a listing of email logs
      *
      * @param  \Illuminate\Http\Request $request
