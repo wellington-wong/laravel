@@ -20951,6 +20951,51 @@ $(function () {
 		readImage(this, processProfile);
 	});
 	// END MANAGE ACCOUNT
+
+	// EMAIL TEMPLATE FORM
+
+	function renderHTML() {
+		$('#postcard_iframe').contents().find('body').html($('#postcard_html').val());
+		$('#postcard_iframe').contents().find('body').css('border', '1px solid black');
+		$('#postcard_iframe').contents().find('#safe-area').css('border', '1px solid gray');
+	}
+
+	function changeToDefaultHTML() {
+
+		html2 = '<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">\n\n\t <style>\n\t .text {\n\t margin: 10px;\n\t font-family: \'Open Sans\';\n\t font-weight: 400;\n\t font-size: 40px;\n\t color: white;\n\t text-shadow: 2px 2px black;\n\t }\n\t </style>\n\n\t <div id="safe-area">\n\t <!-- All text should appear within the safe area. -->\n\t <div class="text">\n\t Do not put text outside the safe area.\n\t </div>\n\t </div>';
+
+		$('#postcard_html').val(html2);
+		renderHTML();
+	}
+
+	function showBack() {
+		if ($('[name=back_or_message]:checked').val() == 1) {
+			$('#postcard_back_message').hide();
+			$('#postcard_back_image').show();
+		}
+		if ($('[name=back_or_message]:checked').val() == 0) {
+			$('#postcard_back_message').show();
+			$('#postcard_back_image').hide();
+		}
+	}
+
+	$('#renderHtml').on('click', function () {
+		renderHTML();
+	});
+	$('#defaultHtml').on('click', function () {
+		changeToDefaultHTML();
+	});
+	$('[name=back_or_message]').on('click', function () {
+		showBack();
+	});
+
+	$('#postcard_iframe').on("load", function () {
+		renderHTML();
+	});
+
+	showBack();
+	// END EMAIL TEMPLATE FORM
+
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
