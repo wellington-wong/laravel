@@ -3,15 +3,6 @@
 @section('pageTitle', 'Home')
 
 @section('content')
-@if (\Session::has('success'))
-    <div class="alert alert-success">
-        <ul>
-            @foreach (Session::get('success') as $msg)
-            <li>{!! $msg !!}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 <div class="container-fluid with-referral-counter admin-dashboard">
     @include('referral.counter')
     <div class="row dashboard-top">

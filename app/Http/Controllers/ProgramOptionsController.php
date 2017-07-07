@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LogEmail;
-use App\ReferralForms;
+use App\EmailTemplate;
 
 class ProgramOptionsController extends Controller
 {
@@ -102,7 +102,10 @@ class ProgramOptionsController extends Controller
      */
     public function postNotificationEmails( Request $request )
     {
-        return dd($request);
+        $request->merge(['user_id' => auth()->user()->id]);
+        $request->merge(['company_id' => $request->_company->id]);
+
+        return back()->with('success', ['Email template successfully saved.']);
     }
 
     /**
@@ -118,14 +121,4 @@ class ProgramOptionsController extends Controller
         ->with(compact('emailLogs'));
     }
 
-    /**
-     * Display email template form
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function emailTemplate( Request $request )
-    {
-        return view('program-options.email-template');
-    }
 }
