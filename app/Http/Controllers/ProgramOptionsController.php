@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LogEmail;
 use App\EmailTemplate;
+use Illuminate\Support\Facades\Validator;
 
 class ProgramOptionsController extends Controller
 {
@@ -102,9 +103,20 @@ class ProgramOptionsController extends Controller
      */
     public function postNotificationEmails( Request $request )
     {
+        $rules = [
+            'email_html'=>'required'
+        ];
+        
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
         $request->merge(['user_id' => auth()->user()->id]);
         $request->merge(['company_id' => $request->_company->id]);
-        if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)) {
+        if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->first()) {
             $emailTemplate->update([
                 'email_html' => $request->input('email_html')
             ]);
