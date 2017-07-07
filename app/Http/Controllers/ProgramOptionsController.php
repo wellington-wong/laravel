@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LogEmail;
 use App\EmailTemplate;
+use App\ReferralForms;
 use Illuminate\Support\Facades\Validator;
 
 class ProgramOptionsController extends Controller
@@ -106,7 +107,7 @@ class ProgramOptionsController extends Controller
         $rules = [
             'email_html'=>'required'
         ];
-        
+
         $validator = Validator::make($request->input(), $rules);
 
         if ( $validator->fails() ) {
