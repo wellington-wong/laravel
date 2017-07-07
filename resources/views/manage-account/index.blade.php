@@ -12,17 +12,7 @@
                 <img class="img-responsive center-block" height="100" src="{{ isset(auth()->user()->profile_image) ? auth()->user()->profile_image : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">
             </div>
         </div>
-
-        @if( !$errors->isEmpty() )
-            <div class="alert alert-warning col-md-12">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
+        
         <div class="row">            
             <div class="col-md-12 no-padding-lr">
     	        {{ Form::open(['route'=>'post-account-update', 'enctype' => 'multipart/form-data', 'id' => 'update-user-form', 'class' => 'update-form']) }}

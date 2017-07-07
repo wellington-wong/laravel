@@ -6,15 +6,6 @@
     <div class="container-fluid messages-wrapper">
         
         <div class="row">
-            @if( !$errors->isEmpty() )
-                <div class="alert alert-warning">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             @include('layouts.page-header', ['header' => 'Messages', 'col' => 6])            
             <div class="text-right col-md-6 compose-message">                
                 <a href="/messages/create"><i class="fa fa-pencil-square-o"></i> Compose a New Message</a>

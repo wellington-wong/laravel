@@ -12,18 +12,7 @@
                 </div>
             </div>
         </div>
-        @if( !$errors->isEmpty() )
-            <div class="alert alert-warning">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-
-            </div>
-        @endif
-
-
+        
         @if( isset($form->raw_form_json) )
             {{ Form::open() }}
                 <div id="fb-render" >

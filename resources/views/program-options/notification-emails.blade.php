@@ -26,7 +26,7 @@
             <textarea class="form-control" name="email_html" id="email_html">{{ isset($_company->emailTemplate()->first()->email_html) ? $_company->emailTemplate()->first()->email_html : '' }}</textarea>
         </div>
         <div class="form-group btn-group pull-right">
-            <button class="btn btn-danger">Clear</button>
+            <button class="btn btn-danger btn-reset" type="reset">Clear</button>
             <button class="btn btn-primary">Save</button>
         </div>
         {{ Form::close() }}
