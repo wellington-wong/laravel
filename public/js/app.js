@@ -20995,6 +20995,11 @@ $(function () {
 
 	renderHTML();
 	showBack();
+
+	$('.btn-reset').click(function () {
+		$('#email_html').html('');
+		renderHTML();
+	});
 	// END EMAIL TEMPLATE FORM
 
 });
