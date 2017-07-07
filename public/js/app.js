@@ -20957,12 +20957,12 @@ $(function () {
 	function renderHTML() {
 		$('#renderer_iframe').contents().find('body').html($('#email_html').val());
 		//$('#renderer_iframe').contents().find('body').css('border', '1px solid black');
-		$('#renderer_iframe').contents().find('#safe-area').css('border', '1px solid gray');
+		//$('#renderer_iframe').contents().find('#safe-area').css('border', '1px solid gray');
 	}
 
 	function changeToDefaultHTML() {
 
-		html2 = '<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">\n\n\t <style>\n\t .text {\n\t margin: 10px;\n\t font-family: \'Open Sans\';\n\t font-weight: 400;\n\t font-size: 40px;\n\t color: white;\n\t text-shadow: 2px 2px black;\n\t }\n\t </style>\n\n\t <div id="safe-area">\n\t <!-- All text should appear within the safe area. -->\n\t <div class="text">\n\t Do not put text outside the safe area.\n\t </div>\n\t </div>';
+		var html2 = '<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">\n\n\t\t <style>\n\t\t .text {\n\t\t margin: 10px;\n\t\t font-family: \'Open Sans\';\n\t\t font-weight: 400;\n\t\t font-size: 40px;\n\t\t color: white;\n\t\t text-shadow: 2px 2px black;\n\t\t }\n\t\t </style>\n\n\t\t <div id="safe-area">\n\t\t <!-- All text should appear within the safe area. -->\n\t\t <div class="text">\n\t\t Do not put text outside the safe area.\n\t\t </div>\n\t\t </div>';
 
 		$('#email_html').val(html2);
 		renderHTML();
