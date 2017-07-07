@@ -9,7 +9,7 @@ use App\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Referral;
-use App\Notifications\ReferralNotify;
+use App\Notifications\ReferralNotifyUser;
 
 class ReferralController extends Controller
 {
@@ -223,7 +223,7 @@ class ReferralController extends Controller
             $message->to($user->email);
         });*/
 
-        auth()->user()->notify(new ReferralNotify($user));
+        auth()->user()->notify(new ReferralNotifyUser());
 
         return redirect(route('referrals'));
     }

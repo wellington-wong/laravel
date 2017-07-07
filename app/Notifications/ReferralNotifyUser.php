@@ -40,7 +40,10 @@ class ReferralNotifyUser extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('email-templates.referral-notify-user');
+        return (new MailMessage)
+            ->line( 'test' )
+            ->action('Go to referrals', url('/referrals'))
+            ->markdown('email-templates.referral-notify-user', ['test' => 234]);
     }
 
     /**
