@@ -13,15 +13,15 @@
 
     <div class="row">    	
       <div class="col-md-12 notificaiton-email-wrapper">
-        <div>
-        	<iframe src="/contact/lob/postcard/" id="postcard_iframe"></iframe>
+        <div class="form-group">
+        	<iframe src="/contact/lob/postcard/" id="postcard_iframe" class="form-control"></iframe>
         </div>
 
         <label>Postcard HTML</label>
         <span id="renderHtml" class="btn btn-link" >Render HTML</span>
         <span id="defaultHtml" class="btn btn-link" >Change to Example HTML (over-writes but doesn't save current HTML)</span>
-        <div>
-        	<textarea name="postcard_html" id="postcard_html"></textarea>
+        <div class="form-group">
+        	<textarea class="form-control" name="postcard_html" id="postcard_html"></textarea>
         </div>
       </div>
     </div>
