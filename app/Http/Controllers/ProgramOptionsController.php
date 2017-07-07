@@ -102,7 +102,7 @@ class ProgramOptionsController extends Controller
      */
     public function postNotificationEmails( Request $request )
     {
-        return 'success';
+        return dd($request);
     }
 
     /**

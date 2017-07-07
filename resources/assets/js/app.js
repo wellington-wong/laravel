@@ -741,9 +741,9 @@ $(function (){
 // EMAIL TEMPLATE FORM
 
 	function renderHTML() {
-	    $('#postcard_iframe').contents().find('body').html( $('#postcard_html').val() );
-	    $('#postcard_iframe').contents().find('body').css('border', '1px solid black');
-	    $('#postcard_iframe').contents().find('#safe-area').css('border', '1px solid gray');
+	    $('#renderer_iframe').contents().find('body').html( $('#email_html').val() );
+	    //$('#renderer_iframe').contents().find('body').css('border', '1px solid black');
+	    $('#renderer_iframe').contents().find('#safe-area').css('border', '1px solid gray');
 	}
 
 	function changeToDefaultHTML() {
@@ -768,7 +768,7 @@ $(function (){
 	 </div>
 	 </div>`;
 
-	    $('#postcard_html').val(html2);
+	    $('#email_html').val(html2);
 	    renderHTML();
 	        
 	}
@@ -789,7 +789,7 @@ $(function (){
 	$('#defaultHtml').on('click', function() { changeToDefaultHTML(); });
 	$('[name=back_or_message]').on('click', function() { showBack(); });
 
-	$('#postcard_iframe').on("load", function() {
+	$('#renderer_iframe').on("load", function() {
 	    renderHTML();
 	});
 

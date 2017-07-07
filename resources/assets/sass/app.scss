@@ -1623,7 +1623,10 @@ table.table {
 /*** Create User End ***/
 
 /*** Email Template Form ***/
-#postcard_iframe {
-	height: 500px;
+#renderer_iframe {
+	height: 400px;
+}
+#email_html {
+	height: 300px;
 }
 /*** Email Template Form End ***/
