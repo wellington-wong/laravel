@@ -218,7 +218,7 @@ class ReferralController extends Controller
             }
         }
 
-        /*\Mail::send('emails.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
+        /*\Mail::send('email-templates.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
             $message->from('admin@' . env('APP_URL'), 'Laravel');
             $message->to($user->email);
         });*/
