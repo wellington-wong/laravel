@@ -20,9 +20,15 @@
         <label>Postcard HTML</label>
         <span id="renderHtml" class="btn btn-link" >Render HTML</span>
         <span id="defaultHtml" class="btn btn-link" >Change to Example HTML (over-writes but doesn't save current HTML)</span>
+        {{ Form::open(['route' => 'program-options-post-notification-emails', 'id' => 'create-email-template']) }}
         <div class="form-group">
         	<textarea class="form-control" name="postcard_html" id="postcard_html"></textarea>
         </div>
+        <div class="form-group btn-group pull-right">
+            <button class="btn btn-danger">Clear</button>
+            <button class="btn btn-primary">Save</button>
+        </div>
+        {{ Form::close() }}
       </div>
     </div>
 
