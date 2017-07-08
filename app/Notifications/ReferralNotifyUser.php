@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use App\Company;
 
 class ReferralNotifyUser extends Notification
 {
@@ -17,9 +16,10 @@ class ReferralNotifyUser extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($referral, $request)
     {
-        //
+        $this->referral = $referral;
+        $this->request = $request;
     }
 
     /**
@@ -30,7 +30,7 @@ class ReferralNotifyUser extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -40,11 +40,22 @@ class ReferralNotifyUser extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {
+    {   
         return (new MailMessage)
             ->line( 'test' )
             ->action('Go to referrals', url('/referrals'))
-            ->markdown('email-templates.referral-notify-user', ['test' => 234]);
+            ->markdown('email-templates.referral-notify-user', ['referral' => $this->referral, 'email_template' => $this->request->_company->emailTemplate()->first()->email_html]);
+    }
+
+    /**
+     * Get the database representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {
+        return $this->referral->toArray();
     }
 
     /**
