@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Referral;
 use App\Notifications\ReferralNotifyUser;
+use App\Notifications\ReferralNotifyAdmin;
 
 class ReferralController extends Controller
 {
@@ -198,13 +199,6 @@ class ReferralController extends Controller
             $user->duplicate = $duplicate;
         }
 
-        // Save referral submission
-        /*$referral = ReferralSubmissions::create([
-            'referrer_id' => $request->user()->id,
-            'company_id'    => $request->_company->id,
-            'user_id'    => $user->id
-        ]);*/
-
         // Save referral values
         if (isset($user->referral_id)) {
             foreach ($request->request as $key => $val) {
@@ -223,7 +217,8 @@ class ReferralController extends Controller
             $message->to($user->email);
         });*/
 
-        auth()->user()->notify(new ReferralNotifyUser());
+        //auth()->user()->notify(new ReferralNotifyAdmin());
+        $user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request));
 
         return redirect(route('referrals'));
     }
