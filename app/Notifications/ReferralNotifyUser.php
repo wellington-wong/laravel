@@ -42,8 +42,6 @@ class ReferralNotifyUser extends Notification
     public function toMail($notifiable)
     {   
         return (new MailMessage)
-            ->line( 'test' )
-            ->action('Go to referrals', url('/referrals'))
             ->markdown('email-templates.referral-notify-user', ['referral' => $this->referral, 'email_template' => $this->request->_company->emailTemplate()->first()->email_html]);
     }
 
