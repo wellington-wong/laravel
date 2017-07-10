@@ -20357,6 +20357,7 @@ $(function () {
 			status: $(this).data('status')
 		};
 		function statusCallback(callbackData) {
+			console.log(callbackData);
 			_this.closest('td').find('.form-control').text(_this.text());
 			var approvalCnt = $('.pending-approval .rh-count span');
 			var rewardCnt = $('.pending-reward .rh-count span');

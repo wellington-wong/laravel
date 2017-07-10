@@ -134,7 +134,7 @@ $(function (){
 			id: $(this).closest('td').data('id'),
 			status: $(this).data('status')
 		};
-		function statusCallback(callbackData){
+		function statusCallback(callbackData){console.log(callbackData);
          	_this.closest('td').find('.form-control').text(_this.text());
    			var approvalCnt = $('.pending-approval .rh-count span');
    			var rewardCnt = $('.pending-reward .rh-count span');
@@ -142,7 +142,7 @@ $(function (){
          		case ('Submitted'):
          			approvalCnt.text(parseInt(approvalCnt.text()) + 1);
          			if (currentStatus == "Approved") {
-         			rewardCnt.text(parseInt(rewardCnt.text()) - 1);
+         				rewardCnt.text(parseInt(rewardCnt.text()) - 1);
          			}
          			break;
          		case ('Approved'):
