@@ -20411,6 +20411,11 @@ $(function () {
 			ajaxHelper("referral/update", data, "POST", statusCallback);
 		}
 	});
+	$('.current-referral-status').each(function () {
+		if ($(this).data('status') == 3) {
+			$(this).addClass('disabled');
+		}
+	});
 	// END - REFERRALS
 
 	// NOTIFICATIONS

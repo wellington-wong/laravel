@@ -17,7 +17,7 @@
                             <td><a href="{{ route('view-user', auth()->user()->id) }}">{{ auth()->user()->name }}</a></td>
                             <td><a href="{{ route('view-user', $r->referred->id) }}">{{ $r->referred->display_name }}</a></td>
                             <td class="referral-status" data-id="{{ $r->id }}">
-                                <div class="form-control" data-toggle="dropdown">{{ \App\Referral::$status[$r->status] }}</div>
+                                <div class="form-control current-referral-status" data-toggle="dropdown" data-status="{{ $r->status }}">{{ \App\Referral::$status[$r->status] }}</div>
                                 @if (auth()->user()->can(['change_referral_statuses']) && !isset($viewOnly))
                                 <ul class="dropdown-menu">                                
                                     @foreach ($referralStatus as $key => $status)
