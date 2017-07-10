@@ -156,7 +156,7 @@ $(function (){
          				approvalCnt.text(parseInt(approvalCnt.text()) - 1);
          			}
          			if (currentStatus == "Approved") {
-         			rewardCnt.text(parseInt(rewardCnt.text()) - 1);
+         				rewardCnt.text(parseInt(rewardCnt.text()) - 1);
          			}
          	}
 		}

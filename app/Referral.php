@@ -40,6 +40,10 @@ class Referral extends Model
 
         $request = request();
 
+        if ($referral->status == 3) {
+            return 'The referral status cannot be changed after being set as "Reward Sent".';
+        }
+
         $referral = $this->find($request->get('id'));
         $referral->status = $request->get('status');
         $referral->note = $request->get('note');
