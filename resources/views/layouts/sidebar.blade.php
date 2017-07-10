@@ -80,8 +80,7 @@
                                         </div>
                                         <ul id="submenu-referrals" class="collapse in">
                                             <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Submit a Referral</a></li>
-                                            <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-history') }}">Referral History</a></li>
-                                        </ul>
+                                         </ul>
                                     </li>
                                     @role(['member'])
                                     <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
