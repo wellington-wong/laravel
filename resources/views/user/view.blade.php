@@ -73,7 +73,7 @@
         @include('layouts.page-header', ['header' => 'Referrals' , 'col' => 6])
         </div>
 
-        @include('referral.partials.referral-table')
+        @include('referral.partials.referral-table', ['viewOnly' => true])
 
     </div>
 

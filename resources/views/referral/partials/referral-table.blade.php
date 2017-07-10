@@ -18,12 +18,14 @@
                             <td><a href="{{ route('view-user', $r->referred->id) }}">{{ $r->referred->display_name }}</a></td>
                             <td class="referral-status" data-id="{{ $r->id }}">
                                 <div class="form-control" data-toggle="dropdown">{{ \App\Referral::$status[$r->status] }}</div>
-                                @can('change-referral-statuses')<ul class="dropdown-menu">                                
+                                @if (auth()->user()->can(['change_referral_statuses']) && !isset($viewOnly))
+                                <ul class="dropdown-menu">                                
                                     @foreach ($referralStatus as $key => $status)
                                         <li><a href="javascript:void(0)" data-status="{{ $status }}">{{ \App\Referral::$status[$status] }}</a></li>
                                     @endforeach
                                 </ul>
-                                <i class="fa fa-angle-down" aria-hidden="true"></i>@endcan
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
