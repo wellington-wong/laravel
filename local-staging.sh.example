@@ -1,2 +1,3 @@
 #!/bin/bash
 ssh referraldev@hiv "mysqldump referral_w --lock-tables=false " | mysql -uincentful -pincentful -Dincentful
+rsync -u referraldev@hiv:~/site/public/company-logos/ /var/www/incentful/public/company-logos/
