@@ -39,6 +39,6 @@
 
         <div class="clearfix"></div>
 
-        @include('referral.partials.referral-table')
+        @include('referral.partials.referral-table', ['route' => 'referrals'])
 
 @endsection
