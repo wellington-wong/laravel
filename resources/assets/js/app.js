@@ -793,7 +793,7 @@ $(function (){
 	    renderHTML();
 	});
 
-	renderHTML();
+	if ($('#email_html').length) {renderHTML();}
 	showBack();
 
 	$('.btn-reset').click(function (){
