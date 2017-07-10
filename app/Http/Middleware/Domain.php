@@ -31,7 +31,7 @@ class Domain
         //IF THE SUBDOMAIN IS NOT VALID
         if ( 'app' != $subdomain ) {
             if ( is_null($company) ) {
-                return redirect('https://app.' . $_ENV['APP_URL'] );
+                return redirect('https://app.' . config('app.domain') );
             }
         } else {
             if ( !in_array( trim($request->getRequestUri(), '/') ,
