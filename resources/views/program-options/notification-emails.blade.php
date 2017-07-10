@@ -22,6 +22,24 @@
         <span id="renderHtml" class="btn btn-link" >Render HTML</span>
         <span id="defaultHtml" class="btn btn-link" >Change to Example HTML (over-writes but doesn't save current HTML)</span>
         {{ Form::open(['route' => 'program-options-post-notification-emails', 'id' => 'create-email-template']) }}
+        <div class="referrer-data">
+            <label>Available referrer data:</label>
+            <ul class="list-inline">
+                <li>&#123; &#123; referrer_name }}</li>
+                <li>&#123; &#123; referrer_email }}</li>
+                <li>&#123; &#123; referrer_phone }}</li>
+                <li>&#123; &#123; referrer_address }}</li>
+            </ul>
+        </div>
+        <div class="referred-data">
+            <label>Available referrer data:</label>
+            <ul class="list-inline">
+                <li>&#123; &#123; referred_name }}</li>
+                <li>&#123; &#123; referred_email }}</li>
+                <li>&#123; &#123; referred_phone }}</li>
+                <li>&#123; &#123; referred_address }}</li>
+            </ul>
+        </div>
         <div class="form-group">
             <textarea class="form-control" name="email_html" id="email_html">{{ isset($_company->emailTemplate()->first()->email_html) ? str_replace('{{' , '@[[*', $_company->emailTemplate()->first()->email_html) : '' }}</textarea>
         </div>

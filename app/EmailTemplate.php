@@ -15,4 +15,8 @@ class EmailTemplate extends Model
     	return $this->hasOne(User::class);
     }
 
+    public function prepareEmail($referral) {
+    	return dd($referral);
+    }
+
 }
