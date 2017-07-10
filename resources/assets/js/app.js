@@ -737,4 +737,69 @@ $(function (){
 		readImage(this, processProfile);
 	});	
 // END MANAGE ACCOUNT
+
+// EMAIL TEMPLATE FORM
+
+	function renderHTML() {
+	    $('#renderer_iframe').contents().find('body').html( $('#email_html').val() );
+	    //$('#renderer_iframe').contents().find('body').css('border', '1px solid black');
+	    //$('#renderer_iframe').contents().find('#safe-area').css('border', '1px solid gray');
+	}
+
+	function changeToDefaultHTML() {
+	    
+	var html2 = `<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
+		 <style>
+		 .text {
+		 margin: 10px;
+		 font-family: 'Open Sans';
+		 font-weight: 400;
+		 font-size: 40px;
+		 color: white;
+		 text-shadow: 2px 2px black;
+		 }
+		 </style>
+
+		 <div id="safe-area">
+		 <!-- All text should appear within the safe area. -->
+		 <div class="text">
+		 Do not put text outside the safe area.
+		 </div>
+		 </div>`;
+
+		$('#email_html').val(html2);
+	    renderHTML();	        
+	}
+
+
+	function showBack() {
+	    if ( $('[name=back_or_message]:checked').val() == 1 ) {
+	        $('#postcard_back_message').hide();
+	        $('#postcard_back_image').show();
+	    }
+	    if ( $('[name=back_or_message]:checked').val() == 0 ) {
+	        $('#postcard_back_message').show();
+	        $('#postcard_back_image').hide();
+	    }
+	}
+
+	$('#renderHtml').on('click', function() { renderHTML(); });
+	$('#defaultHtml').on('click', function() { changeToDefaultHTML(); });
+	$('[name=back_or_message]').on('click', function() { showBack(); });
+
+	$('#renderer_iframe').on("load", function() {
+	    renderHTML();
+	});
+
+	renderHTML();
+	showBack();
+
+	$('.btn-reset').click(function (){
+		$('#email_html').html('');
+	    renderHTML();	        
+	});
+// END EMAIL TEMPLATE FORM
+
+
 });

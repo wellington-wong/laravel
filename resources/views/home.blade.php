@@ -3,7 +3,6 @@
 @section('pageTitle', 'Home')
 
 @section('content')
-
 <div class="container-fluid with-referral-counter admin-dashboard">
     @include('referral.counter')
     <div class="row dashboard-top">

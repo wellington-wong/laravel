@@ -10,16 +10,6 @@
         @include('layouts.page-header', ['header' => ucwords($_company->company_name), 'col' => 12])
         </div>
 
-        @if( !$errors->isEmpty() )
-            <div class="alert alert-warning col-md-12">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="row">
             <div class="col-md-8 no-padding-lr company-profile-left">
                 {{ Form::open(['route'=>'post-company-update', 'id' => 'update-company-form', 'enctype' => 'multipart/form-data']) }}

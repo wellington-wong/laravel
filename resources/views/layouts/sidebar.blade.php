@@ -80,7 +80,8 @@
                                         </div>
                                         <ul id="submenu-referrals" class="collapse in">
                                             <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Submit a Referral</a></li>
-                                         </ul>
+                                            <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-history') }}">Referral History</a></li>
+                                        </ul>
                                     </li>
                                     @role(['member'])
                                     <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
@@ -98,17 +99,6 @@
                                             <a href="{{ route('how-to-get-more-referrals') }}">How to Get More Referrals</a>
                                         </div>
                                     </li>
-                                    @if (Session::get('currentUserId'))
-                                        <li class="{{ Request::path() == 'login-as-original' ? 'active' : '' }}">
-                                            <div class="main-menu-item-wrapper">
-                                                <a href="#global-settings" data-toggle="collapse" class="menu-marker">Global Settings</a>
-                                                <a href="#global-settings" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                            </div>
-                                            <ul id="global-settings" class="collapse in">
-                                                <li class="{{ Request::is('login-as-origin') ? 'active' : '' }}"><a href="{{ route('login-as-origin') }}">Login as original</a></li>
-                                            </ul>
-                                        </li>
-                                    @endif
                                     @endrole
                                     @role(['admin', 'superAdmin', 'globalAdmin'])
                                     <li>
@@ -118,19 +108,18 @@
                                         </div>
                                         <ul id="program-options" class="collapse in">
                                             <li class="{{ (Request::is('company/*') && !Request::is('company/create')) ? 'active' : '' }}"><a href="{{ route('get-company', $_company->id ) }}">Company Profile</a></li>
-                                                                                            <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
                                             <li class="{{ Request::is('members') ? 'active' : '' }}"><a href="{{ route('members') }}">Users</a></li>
                                             <li class="{{ Request::is('program-options/referral-program-settings') ? 'active' : '' }}"><a href="{{ route('program-options-referral-program-settings') }}">Referral Program Settings</a></li>
                                             <li class="{{ Request::is('program-options/reward-settings') ? 'active' : '' }}"><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
                                             <li class="{{ Request::is('program-options/notification-emails') ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
+                                            <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
                                         </ul>
                                     </li>
-
                                     @endrole
                                 </ul>
                             @endif
 
-                            @role( ['globalAdmin'] )
+                            @if (auth()->user()->hasRole(['globalAdmin']) || Session::get('currentUserId'))
                             <ul class="nav" >
                                 <li class="">
                                     <div class="main-menu-item-wrapper">
@@ -144,11 +133,14 @@
                                         @can('add-delete-admin')<li class="hidden {{ Request::is('global-settings/add-delete-admin') ? 'active' : '' }}"><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
                                         @can('define-user-roles')<li class="hidden {{ Request::is('global-settings/define-user-roles') ? 'active' : '' }}"><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
                                         @can('login-super-admin-all-accounts')<li class="hidden {{ Request::is('global-settings/login-super-admin') ? 'active' : '' }}"><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
-                                        @can('login-as-user')<li class="{{ Request::is('global-settings/login-as-user') ? 'active' : '' }}"><a href="{{ route('login-as-user') }}">Login as User</a></li>@endcan
+                                        @can('login-as-user') @if (!Session::get('currentUserId'))<li class="{{ Request::is('global-settings/login-as-user') ? 'active' : '' }}"><a href="{{ route('login-as-user') }}">Login as User</a></li>@endif @endcan                                        
+                                        @if (Session::get('currentUserId')) 
+                                            <li class="{{ Request::is('login-as-origin') ? 'active' : '' }}"><a href="{{ route('login-as-origin') }}">Login as original</a></li>      
+                                        @endif 
                                     </ul>
                                 </li>
                             </ul>
-                            @endrole
+                            @endif
 
 
                         </div>

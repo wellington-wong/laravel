@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LogEmail;
+use App\EmailTemplate;
 use App\ReferralForms;
+use Illuminate\Support\Facades\Validator;
 
 class ProgramOptionsController extends Controller
 {
@@ -95,6 +97,39 @@ class ProgramOptionsController extends Controller
     }
 
     /**
+     * Save notification email template
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postNotificationEmails( Request $request )
+    {
+        $rules = [
+            'email_html'=>'required'
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+        $request->merge(['user_id' => auth()->user()->id]);
+        $request->merge(['company_id' => $request->_company->id]);
+        if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->first()) {
+            $emailTemplate->update([
+                'email_html' => $request->input('email_html')
+            ]);
+            return back()->with('success', ['Email template successfully saved.']);
+        } else {
+            EmailTemplate::create($request->all());
+            return back()->with('success', ['Email template successfully created.']);
+        }
+
+    }
+
+    /**
      * Display a listing of email logs
      *
      * @param  \Illuminate\Http\Request $request
@@ -106,4 +141,5 @@ class ProgramOptionsController extends Controller
         return view('program-options.email-logs')
         ->with(compact('emailLogs'));
     }
+
 }

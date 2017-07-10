@@ -9,7 +9,8 @@ use App\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Referral;
-use App\Notifications\ReferralNotify;
+use App\Notifications\ReferralNotifyUser;
+use App\Notifications\ReferralNotifyAdmin;
 
 class ReferralController extends Controller
 {
@@ -198,13 +199,6 @@ class ReferralController extends Controller
             $user->duplicate = $duplicate;
         }
 
-        // Save referral submission
-        /*$referral = ReferralSubmissions::create([
-            'referrer_id' => $request->user()->id,
-            'company_id'    => $request->_company->id,
-            'user_id'    => $user->id
-        ]);*/
-
         // Save referral values
         if (isset($user->referral_id)) {
             foreach ($request->request as $key => $val) {
@@ -218,12 +212,13 @@ class ReferralController extends Controller
             }
         }
 
-        /*\Mail::send('emails.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
+        /*\Mail::send('email-templates.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
             $message->from('admin@' . env('APP_URL'), 'Laravel');
             $message->to($user->email);
         });*/
 
-        auth()->user()->notify(new ReferralNotify($user));
+        //auth()->user()->notify(new ReferralNotifyAdmin());
+        $user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request));
 
         return redirect(route('referrals'));
     }

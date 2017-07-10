@@ -5,18 +5,6 @@
 @section('content')
     <div class="container-fluid create-user-wrapper">    
 
-        @if( !$errors->isEmpty() )
-	        <div class="row">
-	            <div class="alert alert-warning col-md-12">
-	                <ul>
-	                    @foreach ($errors->all() as $error)
-	                        <li>{{ $error }}</li>
-	                    @endforeach
-	                </ul>
-	            </div>
-	        </div>
-        @endif
-
         <div class="row">
         @include('layouts.page-header', ['header' => 'Create User', 'col' => 12])
             <div class="profile-preview text-center col-md-12">

@@ -108,6 +108,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::post('/program-options/referral-program-settings', 'ProgramOptionsController@referralProgramSettingsPost')->name('program-options-referral-program-settings-save');
 	Route::get('/program-options/reward-settings', 'ProgramOptionsController@rewardSettings')->name('program-options-reward-settings');
 	Route::get('/program-options/notification-emails', 'ProgramOptionsController@notificationEmails')->name('program-options-notification-emails');
+	Route::post('/program-options/notification-emails', 'ProgramOptionsController@postNotificationEmails')->name('program-options-post-notification-emails');
 
 	// Member Routes
 	Route::get('/members', 'MembersController@getIndex')->name('members');

@@ -45,6 +45,24 @@
                         </div>
 
                         <div class="panel-body">
+                            @if (\Session::has('success'))
+                                <div class="alert alert-success">
+                                    <ul>
+                                        @foreach (Session::get('success') as $msg)
+                                        <li>{!! $msg !!}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if( !$errors->isEmpty() )
+                                <div class="alert alert-warning">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             @yield('content')
                         </div>
                     </div>

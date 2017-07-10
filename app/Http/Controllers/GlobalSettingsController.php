@@ -104,7 +104,7 @@ class GlobalSettingsController extends Controller
         Session::put( 'currentUserId', Auth::user()->id);
         Auth::loginUsingId($id);
 
-        return redirect(route('home'));
+        return redirect(route('home'))->with('success', ['Successfully logged in as ' . auth()->user()->getName()]);
     }
 
     /**
@@ -116,6 +116,6 @@ class GlobalSettingsController extends Controller
     {   
         Auth::loginUsingId(Session::get('currentUserId'));
         Session::forget( 'currentUserId' );
-        return redirect(route('home'));
+        return redirect(route('home'))->with('success', ['Successfully logged in back as ' . auth()->user()->getName()]);
     }
 }
