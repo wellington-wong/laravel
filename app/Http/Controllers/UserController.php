@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Phone;
 use App\Address;
+use App\Referral;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -22,9 +23,47 @@ class UserController extends Controller
      * @return view
      */
     public function getView( Request $request, $id )
-    {
+    {    
+
+        $referrals = new Referral();
+
+        // Get constants
+        $referralStatus = new \ReflectionClass(new Referral());
+        $referralStatus = $referralStatus->getConstants();
+        $referralStatus = array_splice($referralStatus, 0, count($referralStatus) -2);
+
+        // Configure sort class
+        $column = $request->get('column');
+        $sortc = array_fill_keys(['created_at', 'id', 'user_id', 'referred', 'status'], null);
+        $sort = array_fill_keys(['created_at', 'id', 'user_id', 'referred', 'status'], 'desc');
+
+        // Configure sort links
+        $sort[$column] = 'desc';
+        $sortClass = '';
+        switch ($request->get('sort')) {
+            case ('desc'):
+                $sort[$column] = 'asc';
+                $sortClass = '-desc';
+                break;
+            case ('asc'):
+                $sort[$column] = '';
+                $sortClass = '-asc';
+                break;
+        }
+        $sortc[$column] = $sortClass;        
+
+        // Get query parameters
+        $param = [];
+        if (count($request->all())) {
+            $param = $referrals->getParams();
+            $referrals = $request->user()->filterSortReferralSubmissions()->paginate(15);
+        } else {
+            $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->paginate(15);
+        }
+
     	$user = User::find($id);
-        return view('user.view')->with(compact('user'));
+        return view('user.view')->with(compact('user'))
+        ->with(compact('referrals', 'sort' ,'sortc', 'referralStatus', 'param'));
     }
 
     /**
