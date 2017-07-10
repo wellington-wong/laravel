@@ -2,9 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Mail\ExceptionOccured;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
+use Mail;
+use Symfony\Component\Debug\Exception\FlattenException;
+use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -32,7 +37,30 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+
+        if ( ! in_array( config('app.env'), ['local', 'staging'] ) ) {
+            $this->sendEmail($exception); // sends an email
+        }
+
         parent::report($exception);
+    }
+
+    public function sendEmail(Exception $exception)
+    {
+        try {
+            $e = FlattenException::create($exception);
+
+            $handler = new SymfonyExceptionHandler();
+
+            $html = $handler->getHtml($e);
+
+            $emails = ['daniel.ahern@exults.com', 'bilal.jermim@exults.com',
+                'zach.hoffman@exults.com', 'wellington.wong@gmail.com'];
+
+            Mail::to($emails)->send(new ExceptionOccured($html));
+        } catch (Exception $ex) {
+            dd($ex);
+        }
     }
 
     /**
