@@ -21001,6 +21001,7 @@ $(function () {
 	});
 
 	if ($('#email_html').length) {
+		$('.placeholder-name').html($('.placeholder-name').html().split("{ {").join("{{"));
 		renderHTML();
 	}
 	showBack();

@@ -796,7 +796,10 @@ $(function (){
 	    renderHTML();
 	});
 
-	if ($('#email_html').length) {renderHTML();}
+	if ($('#email_html').length) {
+		$('.placeholder-name').html($('.placeholder-name').html().split("{ {").join("{{"));
+		renderHTML();
+	}
 	showBack();
 
 	$('.btn-reset').click(function (){

@@ -22,22 +22,22 @@
         <span id="renderHtml" class="btn btn-link" >Render HTML</span>
         <span id="defaultHtml" class="btn btn-link" >Change to Example HTML (over-writes but doesn't save current HTML)</span>
         {{ Form::open(['route' => 'program-options-post-notification-emails', 'id' => 'create-email-template']) }}
-        <div class="referrer-data">
+        <div class="referrer-data placeholder-name">
             <label>Available referrer data:</label>
             <ul class="list-inline">
-                <li>&#123; &#123; referrer_name }}</li>
-                <li>&#123; &#123; referrer_email }}</li>
-                <li>&#123; &#123; referrer_phone }}</li>
-                <li>&#123; &#123; referrer_address }}</li>
+                <li><a href="javascript:void(0);" data-var="referrer_name">&#123; &#123; referrer_name }}</a></li>
+                <li><a href="javascript:void(0);" data-var="referrer_email">&#123; &#123; referrer_email }}</a></li>
+                <li><a href="javascript:void(0);" data-var="referrer_phone">&#123; &#123; referrer_phone }}</a></li>
+                <li><a href="javascript:void(0);" data-var="referrer_address">&#123; &#123; referrer_address }}</a></li>
             </ul>
         </div>
-        <div class="referred-data">
+        <div class="referred-data placeholder-name">
             <label>Available referrer data:</label>
             <ul class="list-inline">
-                <li>&#123; &#123; referred_name }}</li>
-                <li>&#123; &#123; referred_email }}</li>
-                <li>&#123; &#123; referred_phone }}</li>
-                <li>&#123; &#123; referred_address }}</li>
+                <li><a href="javascript:void(0);" data-var="referred_name">&#123; &#123; referred_name }}</a></li>
+                <li><a href="javascript:void(0);" data-var="referred_email">&#123; &#123; referred_email }}</a></li>
+                <li><a href="javascript:void(0);" data-var="referred_phone">&#123; &#123; referred_phone }}</a></li>
+                <li><a href="javascript:void(0);" data-var="referred_address">&#123; &#123; referred_address }}</a></li>
             </ul>
         </div>
         <div class="form-group">
