@@ -20961,7 +20961,7 @@ $(function () {
 	// EMAIL TEMPLATE FORM
 
 	function renderHTML() {
-		$('#email_html').val($('#email_html').val().replace('@[[*', '{{'));
+		$('#email_html').val($('#email_html').val().split("{ {").join("{{"));
 		$('#renderer_iframe').contents().find('body').html($('#email_html').val());
 		//$('#renderer_iframe').contents().find('body').css('border', '1px solid black');
 		//$('#renderer_iframe').contents().find('#safe-area').css('border', '1px solid gray');
@@ -21002,6 +21002,9 @@ $(function () {
 
 	if ($('#email_html').length) {
 		$('.placeholder-name').html($('.placeholder-name').html().split("{ {").join("{{"));
+		$('.placeholder-name .list-inline li a').click(function () {
+			$('#email_html').val($('#email_html').val() + $(this).text());
+		});
 		renderHTML();
 	}
 	showBack();
