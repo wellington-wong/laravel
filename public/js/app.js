@@ -21001,10 +21001,12 @@ $(function () {
 	});
 
 	if ($('#email_html').length) {
-		$('.placeholder-name').html($('.placeholder-name').html().split("{ {").join("{{"));
+		// Fix curly brackets being hidden automatically
 		$('.placeholder-name .list-inline li a').click(function () {
 			$('#email_html').val($('#email_html').val() + $(this).text());
 			$('#email_html').focus();
+		}).each(function () {
+			$(this).html($(this).html().split("{ {").join("{{"));
 		});
 		renderHTML();
 	}
