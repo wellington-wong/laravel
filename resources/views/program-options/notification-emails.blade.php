@@ -32,7 +32,7 @@
             </ul>
         </div>
         <div class="referred-data placeholder-name">
-            <label>Available referrer data:</label>
+            <label>Available referred data:</label>
             <ul class="list-inline">
                 <li><a href="javascript:void(0);" data-var="referred_name">&#123; &#123; referred_name }}</a></li>
                 <li><a href="javascript:void(0);" data-var="referred_email">&#123; &#123; referred_email }}</a></li>

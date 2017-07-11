@@ -298,6 +298,20 @@ class ReferralController extends Controller
      **/
     public function getView( Request $request, $id ) {
         $referralValues = ReferralValues::where('referral_id', $id)->get();
+        $referral = Referral::find($id)->first();
+        if ($emailHtml = $request->_company->emailTemplate()->first()) {
+            $regex = '#{{(.*?)}}#';
+            $code = preg_match_all($regex, $emailHtml, $matches);
+            $referralValues->map(function ($referralVal) use ($matches) {
+                array_map(function ($match) use ($referralVal) {
+                    //print '<pre>'.print_r($match,1).'</pre>';
+                    //print '<pre>'.print_r($referralVal->name,1).'</pre>';
+                    if ($referralVal->name == $match) {
+                        print_r($referralVal->name);
+                    }
+                }, $matches[1]);
+            });
+        }
 
         return view('referral.view')
         ->with(compact('referralValues'));
