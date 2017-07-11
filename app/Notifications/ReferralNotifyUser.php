@@ -41,13 +41,34 @@ class ReferralNotifyUser extends Notification
      */
     public function toMail($notifiable)
     {   
+        $referralValues = ReferralValues::where('referral_id', $id)->get();
+        $referral = Referral::find($id);
 
-        // Group referral vars from referred
-        $referrer = [];
-        foreach ($matches[1] as $match) {
-            if (stristr($match, 'referred')) {
-                $referrer[] = str_replace('referred_', '', trim($match));
-            }                
+        if ($emailHtml = $request->_company->emailTemplate()->first()) {
+            $regex = '#{{(.*?)}}#';
+            $code = preg_match_all($regex, $emailHtml, $matches);
+
+            // Group referral vars from referred
+            $referrer = [];
+            foreach ($matches[1] as $match) {
+                if (stristr($match, 'referrer')) {
+                    $varName = str_replace('referrer_', '', trim($match));
+                    if ($varName == 'address') {
+                        // /dd($referral->referrer->$varName);
+                    }
+                    $referrer[str_replace('referrer_', '', trim($match))] = $referral->referrer->$varName;
+                }                
+            }
+
+            $referralValues->map(function ($referralVal) use ($matches) {
+                array_map(function ($match) use ($referralVal) {
+                    //print '<pre>'.print_r($referralVal->name,1).'</pre>';
+                    //print '<pre>'.print_r('str  ' . stristr($match, 'referred'),1).'</pre>';
+                    if ($referralVal->name == $match) {
+                        print_r($referralVal->name);
+                    }
+                }, $matches[1]);
+            });
         }
 
         if (isset($this->request->_company->emailTemplate()->first()->email_html)) {
