@@ -159,8 +159,10 @@ class ReferralController extends Controller
         $request->merge(['subdomain_id' => $request->_company->id]);
 
         $rules = [
+            'first_name'=>'required',
+            'last_name'=>'required',
             'email'=>'unique:users|required|email',
-            'phone'=>'phone:US',
+            'phone'=>'phone:US|required',
         ];
         $validator = Validator::make($request->input(), $rules);
 
@@ -295,7 +297,6 @@ class ReferralController extends Controller
      * @return
      **/
     public function getView( Request $request, $id ) {
-
         $referralValues = ReferralValues::where('referral_id', $id)->get();
 
         return view('referral.view')
