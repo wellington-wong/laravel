@@ -21009,6 +21009,12 @@ $(function () {
 			$(this).html($(this).html().split("{ {").join("{{"));
 		});
 		renderHTML();
+		var options = {
+			selector: '#email_html',
+			menubar: false,
+			statusbar: false
+		};
+		tinymceHelper(options, false);
 	}
 	showBack();
 
