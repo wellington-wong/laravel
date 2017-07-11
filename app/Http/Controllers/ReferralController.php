@@ -202,10 +202,11 @@ class ReferralController extends Controller
         }
 
         // Save referral values
+        $referralValues = null;
         if (isset($user->referral_id)) {
             foreach ($request->request as $key => $val) {
                 if ($key != '_token') {
-                   ReferralValues::create([
+                   $referralValues = ReferralValues::create([
                         'name' => $key, 
                         'value' => $val, 
                         'referral_id' => $user->referral_id
@@ -220,7 +221,7 @@ class ReferralController extends Controller
         });*/
 
         //auth()->user()->notify(new ReferralNotifyAdmin());
-        $user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request));
+        $user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request, $referralValues));
 
         return redirect(route('referrals'));
     }
@@ -297,35 +298,8 @@ class ReferralController extends Controller
      * @return
      **/
     public function getView( Request $request, $id ) {
+        
         $referralValues = ReferralValues::where('referral_id', $id)->get();
-        $referral = Referral::find($id);
-
-        if ($emailHtml = $request->_company->emailTemplate()->first()) {
-            $regex = '#{{(.*?)}}#';
-            $code = preg_match_all($regex, $emailHtml, $matches);
-
-            // Group referral vars from referred
-            $referrer = [];
-            foreach ($matches[1] as $match) {
-                if (stristr($match, 'referrer')) {
-                    $varName = str_replace('referrer_', '', trim($match));
-                    if ($varName == 'address') {
-                        // /dd($referral->referrer->$varName);
-                    }
-                    $referrer[str_replace('referrer_', '', trim($match))] = $referral->referrer->$varName;
-                }                
-            }
-
-            $referralValues->map(function ($referralVal) use ($matches) {
-                array_map(function ($match) use ($referralVal) {
-                    //print '<pre>'.print_r($referralVal->name,1).'</pre>';
-                    //print '<pre>'.print_r('str  ' . stristr($match, 'referred'),1).'</pre>';
-                    if ($referralVal->name == $match) {
-                        print_r($referralVal->name);
-                    }
-                }, $matches[1]);
-            });
-        }
 
         return view('referral.view')
         ->with(compact('referralValues'));
