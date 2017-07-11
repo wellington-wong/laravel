@@ -42,15 +42,14 @@ class ReferralNotifyUser extends Notification
     public function toMail($notifiable)
     {   
 
-
         // Group referral vars from referred
         $referrer = [];
         foreach ($matches[1] as $match) {
             if (stristr($match, 'referred')) {
-                $referrer[] = $match;
+                $referrer[] = str_replace('referred_', '', trim($match));
             }                
         }
-        
+
         if (isset($this->request->_company->emailTemplate()->first()->email_html)) {
             return (new MailMessage)
                 ->markdown('email-templates.referral-notify-user', ['referral' => $this->referral, 'email_template' => $this->request->_company->emailTemplate()->first()->email_html]);
