@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid referral-program-settings-wrapper">
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Referral Program Setings', 'col' => 12])
+        @include('layouts.page-header', ['header' => 'Referral Program Settings', 'col' => 12])
         </div>
 
         <div class="clearfix"></div>
