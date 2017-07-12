@@ -21003,8 +21003,10 @@ $(function () {
 	if ($('#email_html').length) {
 		// Fix curly brackets being hidden automatically
 		$('.placeholder-name .list-inline li a').click(function () {
-			$('#email_html').val($('#email_html').val() + $(this).text());
-			$('#email_html').focus();
+			var caretPos = document.getElementById("email_html").selectionStart;
+			var textAreaTxt = $("#email_html").val();
+			var txtToAdd = $(this).text();
+			$("#email_html").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos));
 		}).each(function () {
 			$(this).html($(this).html().split("{ {").join("{{"));
 		});
@@ -21015,7 +21017,7 @@ $(function () {
 			statusbar: false
 		};
 		//tinymceHelper(options, false);
-		tinyMCE.activeEditor.setContent('33333333');
+		//tinyMCE.activeEditor.setContent('33333333');
 	}
 	showBack();
 
