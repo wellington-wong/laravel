@@ -20427,7 +20427,6 @@ $(function () {
 			$(this).addClass('disabled');
 		}
 	});
-	$('div[data-status="3"]').closest('td').find('i').toggleClass('fa-angle-down fa-lock');
 	// END - REFERRALS
 
 	// NOTIFICATIONS

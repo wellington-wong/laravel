@@ -204,7 +204,6 @@ $(function (){
  	$('.current-referral-status').each(function (){
  		if ($(this).data('status') == 3) {$(this).addClass('disabled');}
  	});
- 	$('div[data-status="3"]').closest('td').find('i').toggleClass('fa-angle-down fa-lock');
 // END - REFERRALS
 
 // NOTIFICATIONS

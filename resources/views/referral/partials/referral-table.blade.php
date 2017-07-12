@@ -24,7 +24,7 @@
                                         <li><a href="javascript:void(0)" data-status="{{ $status }}">{{ \App\Referral::$status[$status] }}</a></li>
                                     @endforeach
                                 </ul>
-                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                <i class="fa {{ isset($r->status) ? ($r->status == 3 ? 'fa-lock' : 'fa-angle-down' ) : '' }}" aria-hidden="true"></i>
                                 @endif
                             </td>
                         </tr>
