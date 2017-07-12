@@ -20385,8 +20385,8 @@ $(function () {
 		}
 
 		// Prepare admin note
-		if (_this.text() == "Denied") {
-			var referrals_modal = $('.referrals-wrapper #incentful-modal');
+		var referrals_modal = $('.referrals-wrapper #incentful-modal');
+		if (_this.data('status') == 4) {
 			referrals_modal.find('.modal-title').text('Note for Denying Referral');
 			referrals_modal.find('.modal-body').html('<textarea class="referrals modal-textarea"></textarea>');
 			referrals_modal.modal('show');
@@ -20407,6 +20407,8 @@ $(function () {
 			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function () {
 				referrals_modal.modal('hide');
 			});
+		} else if (_this.data('status') == 3) {
+			console.log('Reward Sent');
 		} else {
 			ajaxHelper("referral/update", data, "POST", statusCallback);
 		}
