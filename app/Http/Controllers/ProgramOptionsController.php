@@ -97,6 +97,19 @@ class ProgramOptionsController extends Controller
     }
 
     /**
+     * Display a listing of notification emails
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function notificationEmails( Request $request )
+    {
+        $notificationSettings = [];
+        return view('program-options.notification-email')
+        ->with(compact('notificationSettings'));
+    }
+
+    /**
      * Save notification email template
      *
      * @param  \Illuminate\Http\Request $request
