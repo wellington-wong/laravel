@@ -134,7 +134,7 @@ $(function (){
 			id: $(this).closest('td').data('id'),
 			status: $(this).data('status')
 		};
-		function statusCallback(callbackData){console.log(callbackData);
+		function statusCallback(callbackData){
          	_this.closest('td').find('.form-control').text(_this.text());
    			var approvalCnt = $('.pending-approval .rh-count span');
    			var rewardCnt = $('.pending-reward .rh-count span');
@@ -185,7 +185,17 @@ $(function (){
 				referrals_modal.modal('hide');
 			});
        	} else if (_this.data('status') == 3) {
-       		console.log('Reward Sent');
+       		referrals_modal.find('.modal-title').text('Reward Sent Notification');
+       		referrals_modal.find('.modal-body').html('Please take note that the referral status cannot be changed after being set as "Reward Sent"');
+			referrals_modal.modal('show');
+			$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function (){
+				tinymceHelper(null, true);
+				ajaxHelper("referral/update", data, "POST", statusCallback);
+				referrals_modal.modal('hide');
+			});
+			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function (){
+				referrals_modal.modal('hide');
+			});
        	}
        	else {
 			ajaxHelper("referral/update", data, "POST", statusCallback);

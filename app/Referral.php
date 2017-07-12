@@ -42,14 +42,14 @@ class Referral extends Model
 
 
         $referral = $this->find($request->get('id'));
-        $referral->status = $request->get('status');
-        $referral->note = $request->get('note');
 
         // Disable updating of referral after reward is sent.
         if ($referral->status == 3) {
-            return 'The referral status cannot be changed after being set as "Reward Sent".';
+            return;
         }
-
+        
+        $referral->status = $request->get('status');
+        $referral->note = $request->get('note');
         $referral->save();
 
         $referral_message = '';
