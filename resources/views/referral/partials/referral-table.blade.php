@@ -1,5 +1,5 @@
         <div class="row">
-            <div class="col-md-12 table-referral-wrapper table-wrapper">
+            <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
                 <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                     <thead>
                         <tr>

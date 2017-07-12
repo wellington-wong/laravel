@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="container-fluid referrals-wrapper with-referral-counter">
-        @include('referral.counter')
+        @include('referral.partials.counter')
 
         @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))
         <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export</a></div>

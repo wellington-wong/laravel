@@ -908,6 +908,11 @@ table.table {
 			color: $text-color;
 		}
 	}
+	.member-referrals {
+		.current-referral-status {
+			border-width: 0;
+		}
+	}
 }
 /*** Referrals End ***/
 

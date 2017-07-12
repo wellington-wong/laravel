@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid with-referral-counter admin-dashboard">
-    @include('referral.counter')
+    @include('referral.partials.counter')
     <div class="row dashboard-top">
         <div class="col-md-8 dashboard-left-wrapper">
             <div class="dashboard-left cta">
