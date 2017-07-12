@@ -7,11 +7,11 @@
     <div class="container-fluid referrals-wrapper with-referral-counter">
         @include('referral.counter')
 
+        @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))
         <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export</a></div>
 
         <div class="row">
             @include('layouts.page-header', ['header' => 'Referrals', 'col' => 3])
-
             <div class="col-md-9 page-filters no-padding-lr">
                 <div class="row">
                     <div class="col-md-4 filter-item search">
@@ -36,9 +36,20 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="row">
+        @include('layouts.page-header', ['header' => 'Your Submitted Referrals', 'col' => 12, 'class' => 'customer-referrals'])
+        </div>
+        @endif
 
         <div class="clearfix"></div>
 
         @include('referral.partials.referral-table', ['route' => 'referrals'])
+
+        @if (auth()->user()->hasRole(['member']))
+            <div class="btn-group">
+                <a href="{{ route('referral-create') }}" class="btn btn-primary">Submit a New Referral</a>
+            </div>
+        @endif
 
 @endsection
