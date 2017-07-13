@@ -21,15 +21,15 @@
     	        	{{ Form::text('name', auth()->user()->name, ['placeholder' => 'Name', 'class' => 'form-control' . ($errors->has('name') ? ' has-error' : '')]) }}
     	        </div>
 
-    	        <div class="col-md-6">
-    	        	@include('forms.phone', ['phone_label'=>'Phone Number', 'placeholder' => 'Phone Number', 'no_col' => true, 'value' => (isset(auth()->user()->phone->first()->phone) ? auth()->user()->phone->first()->phone : '')])
-    	        </div>
-
     	        <div class="form-group col-md-6" >
     	        	{{ Form::text('email',  auth()->user()->email, ['placeholder' => 'Company Email', 'class' => 'form-control company-email' . ($errors->has('email') ? ' has-error' : ''), 'readonly']) }}            
     	        </div>
 
     	        @include('forms.address', ['address_placeholder' => 'Address'])
+
+                <div class="col-md-6">
+                    @include('forms.phone', ['phone_label'=>'Phone Number', 'placeholder' => 'Phone Number', 'no_col' => true, 'value' => (isset(auth()->user()->phone->first()->phone) ? auth()->user()->phone->first()->phone : '')])
+                </div>
 
                 <div class="form-group col-md-6">
                     <label for="profile-upload" class="btn btn-default upload-label">{{ isset(auth()->user()->profile_image) ? 'Update Profile Image' : 'Upload Profile Image' }}</label>
