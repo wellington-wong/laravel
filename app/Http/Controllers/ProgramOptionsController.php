@@ -89,7 +89,7 @@ class ProgramOptionsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function notificationEmails( Request $request )
+    public function notificationEmails ( Request $request )
     {
         $notificationSettings = [];
         return view('program-options.notification-emails')
@@ -102,7 +102,7 @@ class ProgramOptionsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function notificationEmails( Request $request )
+    public function notificationEmail ( Request $request )
     {
         $notificationSettings = [];
         return view('program-options.notification-email')
