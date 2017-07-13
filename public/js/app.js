@@ -20923,6 +20923,8 @@ $(function () {
 	$('.logo-input').on('change', function () {
 		$('.processing').removeClass('hidden');
 		$('.company-logo img').css('opacity', .5);
+		console.log(this);
+		readImage(this, updateLogo);
 	}).closest('.company-logo').find('.ajax-logo').on('click', function () {
 		$('.logo-input').trigger('click');
 	});
