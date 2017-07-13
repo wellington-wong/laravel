@@ -48,7 +48,7 @@
 
         @if (auth()->user()->hasRole(['member']))
             <div class="btn-group">
-                <a href="{{ route('referral-create') }}" class="btn btn-primary">Submit a New Referral</a>
+                <a href="{{ route('referral-create') }}" class="btn btn-primary no-radius">Submit a New Referral</a>
             </div>
         @endif
 

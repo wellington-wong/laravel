@@ -287,10 +287,9 @@ class ReferralController extends Controller
     public function historyDetails( Request $request, $id ) {
 
         $referral = Referral::find($id);
-        $referralHistory = Referral::find($id);
 
         return view('referral.history-details')
-        ->with(compact('referral', 'referralHistory'));
+        ->with(compact('referral'));
     }
 
     /**
@@ -299,10 +298,11 @@ class ReferralController extends Controller
      **/
     public function getView( Request $request, $id ) {
         
+        $referral = Referral::find($id);
         $referralValues = ReferralValues::where('referral_id', $id)->get();
 
         return view('referral.view')
-        ->with(compact('referralValues'));
+        ->with(compact(['referralValues', 'referral']));
     }
 
     /**
