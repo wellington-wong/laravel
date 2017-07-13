@@ -1,5 +1,5 @@
 
-        <div class="row">
+        <div class="row referral-counter">
             <div class="col-md-4 referral-hub">
                 <div class="pending-approval">
                     <div class="rh-count">
