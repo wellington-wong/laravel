@@ -420,7 +420,7 @@ nav {
 		line-height: 32px;
 	}
 }
-.btn {
+.btn.no-radius {
 	border-radius: 0 !important;
 }
 .btn-details {
@@ -904,6 +904,7 @@ table.table {
 		padding-right: 0;
 	}
 	.customer-referrals {
+		padding-bottom: 0;
 		h4 {
 			color: $text-color;
 		}
@@ -911,6 +912,14 @@ table.table {
 	.member-referrals {
 		.current-referral-status {
 			border-width: 0;
+			padding: 0;
+			color: $text-color2;
+		}
+		.view-details {
+			a {
+				padding: 0 20px;
+				border-radius: 4px;
+			}
 		}
 	}
 }
