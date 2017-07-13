@@ -51,4 +51,47 @@
       </div>
     </div>
 
+    <div class="row">        
+        <div class="col-md-12">        
+            <label>Customer Notification Emails</label>
+        </div> 
+        <div class="col-md-12 table-wrapper">        
+            <table class="table tablesaw tablesaw-stack table-custom table-notification-emails" data-tablesaw-mode="stack">
+                <tbody>
+                    <tr>
+                        <td>Inactive</td>
+                        <td>New Member Welcome Email</td>
+                        <td><a href="#" class="btn btn-primary">view/edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Active</td>
+                        <td>Referral Received Email</td>
+                        <td><a href="#" class="btn btn-primary">view/edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Active</td>
+                        <td>Referral Verified Notification Email</td>
+                        <td><a href="#" class="btn btn-primary">view/edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Active</td>
+                        <td>Referral Has Been Sent Email</td>
+                        <td><a href="#" class="btn btn-primary">view/edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Active</td>
+                        <td>Referral Has Been Declined Email</td>
+                        <td><a href="#" class="btn btn-primary">view/edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">        
+        <div class="col-md-12">        
+            <label>Admin Notification Emails</label>
+        </div>
+    </div>
+
 @endsection
