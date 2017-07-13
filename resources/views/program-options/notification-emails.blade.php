@@ -92,6 +92,22 @@
         <div class="col-md-12">        
             <label>Admin Notification Emails</label>
         </div>
+        <div class="col-md-12 table-wrapper">        
+            <table class="table tablesaw tablesaw-stack table-custom table-notification-emails" data-tablesaw-mode="stack">
+                <tbody>
+                    <tr>
+                        <td>Inactive</td>
+                        <td>New Member Signup</td>
+                        <td><a href="#" class="btn btn-primary">view/edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Active</td>
+                        <td>New Referral</td>
+                        <td><a href="#" class="btn btn-primary">view/edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 @endsection
