@@ -894,8 +894,10 @@ $(function (){
 
 	$('.btn-reset').click(function (){
 		$('#email_html').html('');
-	    renderHTML();	        
+	    renderHTML();
 	});
+
+	$('.etemplate-toggle').bootstrapToggle();
 // END EMAIL TEMPLATE FORM
 
 

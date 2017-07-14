@@ -59,27 +59,57 @@
             <table class="table tablesaw tablesaw-stack table-custom table-notification-emails" data-tablesaw-mode="stack">
                 <tbody>
                     <tr>
-                        <td>Inactive</td>
+                        <td>
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider"></span>
+                            </label>
+                            Inactive
+                        </td>
                         <td>New Member Welcome Email</td>
                         <td><a href="#" class="btn btn-primary">view/edit</a></td>
                     </tr>
                     <tr>
-                        <td>Active</td>
+                        <td>
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider"></span>
+                            </label>
+                            Active
+                        </td>
                         <td>Referral Received Email</td>
                         <td><a href="#" class="btn btn-primary">view/edit</a></td>
                     </tr>
                     <tr>
-                        <td>Active</td>
+                        <td>
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider"></span>
+                            </label>
+                            Active
+                        </td>
                         <td>Referral Verified Notification Email</td>
                         <td><a href="#" class="btn btn-primary">view/edit</a></td>
                     </tr>
                     <tr>
-                        <td>Active</td>
+                        <td>
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider"></span>
+                            </label>
+                            Active
+                        </td>
                         <td>Referral Has Been Sent Email</td>
                         <td><a href="#" class="btn btn-primary">view/edit</a></td>
                     </tr>
                     <tr>
-                        <td>Active</td>
+                        <td>
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider"></span>
+                            </label>
+                            Active
+                        </td>
                         <td>Referral Has Been Declined Email</td>
                         <td><a href="#" class="btn btn-primary">view/edit</a></td>
                     </tr>
@@ -96,12 +126,24 @@
             <table class="table tablesaw tablesaw-stack table-custom table-notification-emails" data-tablesaw-mode="stack">
                 <tbody>
                     <tr>
-                        <td>Inactive</td>
+                        <td>
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider"></span>
+                            </label>
+                            Inactive
+                        </td>
                         <td>New Member Signup</td>
                         <td><a href="#" class="btn btn-primary">view/edit</a></td>
                     </tr>
                     <tr>
-                        <td>Active</td>
+                        <td>
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider"></span>
+                            </label>
+                            Active
+                        </td>
                         <td>New Referral</td>
                         <td><a href="#" class="btn btn-primary">view/edit</a></td>
                     </tr>
