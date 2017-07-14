@@ -616,6 +616,10 @@ table.table {
 					}
 					.form-control {						
 						height: auto;
+					}					
+					a.btn {
+						padding: 0 20px;
+						font-size: 13px;
 					}
 				}			
 			}
@@ -914,12 +918,6 @@ table.table {
 			border-width: 0;
 			padding: 0;
 			color: $text-color2;
-		}
-		.view-details {
-			a {
-				padding: 0 20px;
-				border-radius: 4px;
-			}
 		}
 	}
 }
