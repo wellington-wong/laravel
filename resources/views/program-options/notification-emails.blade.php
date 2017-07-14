@@ -62,7 +62,7 @@
                         <td>
                             <label class="switch">
                               <input type="checkbox">
-                              <span class="slider"></span>
+                              <span class="slider round"></span>
                             </label>
                             Inactive
                         </td>
@@ -73,7 +73,7 @@
                         <td>
                             <label class="switch">
                               <input type="checkbox">
-                              <span class="slider"></span>
+                              <span class="slider round"></span>
                             </label>
                             Active
                         </td>
@@ -84,7 +84,7 @@
                         <td>
                             <label class="switch">
                               <input type="checkbox">
-                              <span class="slider"></span>
+                              <span class="slider round"></span>
                             </label>
                             Active
                         </td>
@@ -95,7 +95,7 @@
                         <td>
                             <label class="switch">
                               <input type="checkbox">
-                              <span class="slider"></span>
+                              <span class="slider round"></span>
                             </label>
                             Active
                         </td>
@@ -106,7 +106,7 @@
                         <td>
                             <label class="switch">
                               <input type="checkbox">
-                              <span class="slider"></span>
+                              <span class="slider round"></span>
                             </label>
                             Active
                         </td>
@@ -129,7 +129,7 @@
                         <td>
                             <label class="switch">
                               <input type="checkbox">
-                              <span class="slider"></span>
+                              <span class="slider round"></span>
                             </label>
                             Inactive
                         </td>
@@ -140,7 +140,7 @@
                         <td>
                             <label class="switch">
                               <input type="checkbox">
-                              <span class="slider"></span>
+                              <span class="slider round"></span>
                             </label>
                             Active
                         </td>

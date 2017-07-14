@@ -896,8 +896,6 @@ $(function (){
 		$('#email_html').html('');
 	    renderHTML();
 	});
-
-	$('.etemplate-toggle').bootstrapToggle();
 // END EMAIL TEMPLATE FORM
 
 
