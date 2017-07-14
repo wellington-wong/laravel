@@ -24,7 +24,7 @@
                 </div>
             {{ Form::close() }}
         @else
-            This company has no referral forms.
+            This company has no referral forms, click <a href="{{ route('program-options-referral-program-settings') }}">here</a> to create one.
         @endif
 
         <div class="old-input hidden">            
