@@ -139,6 +139,7 @@ class CompanyController extends Controller
         }
 
         $company->updateDefaultAddress($request);
+        $company->updateDefaultPhone($request);
 
         return back();
 

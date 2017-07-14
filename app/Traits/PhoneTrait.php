@@ -27,6 +27,7 @@ trait PhoneTrait {
                 $input[] = $c;
             }
         }
+        if (null === $this->phones()->first()) { return; }
         $phone = $this->phones()->first()->update(
             $request->only($input)
         );

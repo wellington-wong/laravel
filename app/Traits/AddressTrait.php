@@ -21,6 +21,7 @@ trait AddressTrait {
         foreach ($address->getFillable() as $c) {
             $input[] = $c;
         }
+        if (null === $this->address()->first()) { return; }
         $address = $this->address()->first()->update(
             $request->only($input)
         );
