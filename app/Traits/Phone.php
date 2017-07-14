@@ -7,24 +7,30 @@ use User;
 trait Phone {
 
     /*
-     * update default address to a user from a request
+     * update default phone number to a user from a request
      */
-    public function updateDefaultAddress() {
+    public function updateDefaultPhone() {
 
         $request = request();
-        if ( null == $request->input('address')) {
+        if ( null == $request->input('phone')) {
             return null;
+        } else {
+            $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
+            $request->merge(['number'=>Phone::sanitize($request->input('phone'))]);
+            $request->merge(['country'=>'']);
+            $request->merge(['country_code'=>'']);
         }
-
         $input = [];
-        $address = new Address();
-        foreach ($address->getFillable() as $c) {
-            $input[] = $c;
+        $phone = new Phone();
+        foreach ($phone->getFillable() as $c) {
+            if ( isset($request->$c) ) {
+                $input[] = $c;
+            }
         }
-        $address = $this->address()->first()->update(
+        $phone = $this->phones()->first()->update(
             $request->only($input)
         );
-        $this->address()->updateExistingPivot($this->address()->first()->id, ['default'=>1]);
-        return $address;
+        $this->phone()->updateExistingPivot($this->phones()->first()->id, ['default'=>1]);
+        return $phone;
     }
 }

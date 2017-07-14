@@ -12,6 +12,8 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Laravel\Cashier\Billable;
 use Cmgmyr\Messenger\Traits\Messagable;
 use Carbon\Carbon;
+use App\Traits\Phone;
+use App\Traits\Address;
 
 class User extends Authenticatable
 {
@@ -196,34 +198,6 @@ class User extends Authenticatable
         return $phone;
     }
 
-    /*
-     * update default phone number to a user from a request
-     */
-    public function updateDefaultPhone() {
-
-        $request = request();
-        if ( null == $request->input('phone')) {
-            return null;
-        } else {
-            $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
-            $request->merge(['number'=>Phone::sanitize($request->input('phone'))]);
-            $request->merge(['country'=>'']);
-            $request->merge(['country_code'=>'']);
-        }
-        $input = [];
-        $phone = new Phone();
-        foreach ($phone->getFillable() as $c) {
-            if ( isset($request->$c) ) {
-                $input[] = $c;
-            }
-        }
-        $phone = $this->phones()->first()->update(
-            $request->only($input)
-        );
-        $this->phone()->updateExistingPivot($this->phones()->first()->id, ['default'=>1]);
-        return $phone;
-    }
-
     public function addDefaultAddress() {
 
         $request = request();
@@ -241,28 +215,6 @@ class User extends Authenticatable
             $request->only($input)
         );
         $this->address()->updateExistingPivot($address->id, ['default'=>1]);
-        return $address;
-    }
-
-    /*
-     * update default address to a user from a request
-     */
-    public function updateDefaultAddress() {
-
-        $request = request();
-        if ( null == $request->input('address')) {
-            return null;
-        }
-
-        $input = [];
-        $address = new Address();
-        foreach ($address->getFillable() as $c) {
-            $input[] = $c;
-        }
-        $address = $this->address()->first()->update(
-            $request->only($input)
-        );
-        $this->address()->updateExistingPivot($this->address()->first()->id, ['default'=>1]);
         return $address;
     }
 
