@@ -12,8 +12,8 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Laravel\Cashier\Billable;
 use Cmgmyr\Messenger\Traits\Messagable;
 use Carbon\Carbon;
-use App\Traits\Phone;
-use App\Traits\Address;
+use App\Traits\PhoneTrait;
+use App\Traits\AddressTrait;
 
 class User extends Authenticatable
 {

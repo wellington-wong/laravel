@@ -2,9 +2,7 @@
 
 namespace App\Traits;
 
-use User;
-
-trait Address {
+trait AddressTrait {
 
     /*
      * update default address to a user from a request

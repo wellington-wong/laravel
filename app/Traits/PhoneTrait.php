@@ -2,9 +2,7 @@
 
 namespace App\Traits;
 
-use User;
-
-trait Phone {
+trait PhoneTrait {
 
     /*
      * update default phone number to a user from a request
