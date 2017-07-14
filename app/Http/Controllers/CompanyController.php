@@ -115,7 +115,6 @@ class CompanyController extends Controller
             'state'=>'required|max:2',
             'zip'=>'required|digits:5',
             'company_name'=>'required',
-            'phone'=>'required|phone:LENIENT,AUTO,US',
             'email'=>'nullable|email',
             'website'=>'nullable|url'
         ];
