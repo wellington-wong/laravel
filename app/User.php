@@ -21,6 +21,8 @@ class User extends Authenticatable
     use EntrustUserTrait;
     use Billable;
     use Messagable;
+    use PhoneTrait;
+    use AddressTrait;
 
     /**
      * The attributes that are mass assignable.
