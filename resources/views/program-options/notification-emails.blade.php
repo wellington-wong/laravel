@@ -22,10 +22,10 @@
                 <tr>
                     <td>
                         <label class="switch">
-                          <input type="checkbox">
+                          <input type="checkbox" checked>
                           <span class="slider round"></span>
                         </label>
-                        Inactive
+                        <span class="status">Inactive</span>
                     </td>
                     <td>New Member Welcome Email</td>
                     <td><a href="{{ route('program-options-notification-email', 1) }}" class="btn btn-primary">view/edit</a></td>
@@ -36,7 +36,7 @@
                           <input type="checkbox">
                           <span class="slider round"></span>
                         </label>
-                        Active
+                        <span class="status">Active</span>
                     </td>
                     <td>Referral Received Email</td>
                     <td><a href="{{ route('program-options-notification-email', 1) }}" class="btn btn-primary">view/edit</a></td>
@@ -47,7 +47,7 @@
                           <input type="checkbox">
                           <span class="slider round"></span>
                         </label>
-                        Active
+                        <span class="status">Active</span>
                     </td>
                     <td>Referral Verified Notification Email</td>
                     <td><a href="{{ route('program-options-notification-email', 1) }}" class="btn btn-primary">view/edit</a></td>
@@ -58,7 +58,7 @@
                           <input type="checkbox">
                           <span class="slider round"></span>
                         </label>
-                        Active
+                        <span class="status">Active</span>
                     </td>
                     <td>Referral Has Been Sent Email</td>
                     <td><a href="{{ route('program-options-notification-email', 1) }}" class="btn btn-primary">view/edit</a></td>
@@ -69,7 +69,7 @@
                           <input type="checkbox">
                           <span class="slider round"></span>
                         </label>
-                        Active
+                        <span class="status">Active</span>
                     </td>
                     <td>Referral Has Been Declined Email</td>
                     <td><a href="{{ route('program-options-notification-email', 1) }}" class="btn btn-primary">view/edit</a></td>
@@ -89,10 +89,10 @@
                 <tr>
                     <td>
                         <label class="switch">
-                          <input type="checkbox">
+                          <input type="checkbox" checked>
                           <span class="slider round"></span>
                         </label>
-                        Inactive
+                        <span class="status">Inactive</span>
                     </td>
                     <td>New Member Signup</td>
                     <td><a href="{{ route('program-options-notification-email', 1) }}" class="btn btn-primary">view/edit</a></td>
@@ -103,7 +103,7 @@
                           <input type="checkbox">
                           <span class="slider round"></span>
                         </label>
-                        Active
+                        <span class="status">Active</span>
                     </td>
                     <td>New Referral</td>
                     <td><a href="{{ route('program-options-notification-email', 1) }}" class="btn btn-primary">view/edit</a></td>
