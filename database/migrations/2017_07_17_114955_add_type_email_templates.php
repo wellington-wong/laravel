@@ -14,7 +14,7 @@ class AddTypeEmailTemplates extends Migration
     public function up()
     {
         Schema::table('email_templates', function (Blueprint $table) {
-            $table->integer('type')->after('id')->unsigned();
+            $table->integer('type')->nullable()->change();
         });
     }
 
@@ -26,9 +26,7 @@ class AddTypeEmailTemplates extends Migration
     public function down()
     {
         Schema::table('email_templates', function (Blueprint $table) {
-            if(Schema::hasColumn('email_templates', 'type')) {
-                $table->dropColumn('type');
-            }
+            $table->integer('type')->nullable(false)->change();
         });
     }
 }
