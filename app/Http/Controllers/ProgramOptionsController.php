@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\LogEmail;
 use App\EmailTemplate;
 use App\ReferralForms;
+use App\Company;
 use Illuminate\Support\Facades\Validator;
 
 class ProgramOptionsController extends Controller
@@ -61,6 +62,10 @@ class ProgramOptionsController extends Controller
      */
     public function referralProgramSettingsPost( Request $request )
     {
+        $company = Company::find($request->get('company_id'));
+        $company->subdomain_login_text = $request->input('subdomain_login_text');
+        $company->save();
+
         if (!$companyReferralForm = ReferralForms::where('company_id', $request->get('company_id'))->first()) {
             $companyReferralForm = new ReferralForms();
             $companyReferralForm->create($request->all());
