@@ -115,6 +115,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/program-options/notification-emails', 'ProgramOptionsController@notificationEmails')->name('program-options-notification-emails');
 	Route::get('/program-options/notification-email/{id}', 'ProgramOptionsController@notificationEmail')->name('program-options-notification-email');
 	Route::post('/program-options/notification-emails', 'ProgramOptionsController@postNotificationEmails')->name('program-options-post-notification-emails');
+	Route::get('/program-options/subdomain-registration', 'ProgramOptionsController@subdomainRegistration')->name('program-options-subdomain-registration');
 
 	Route::get('/program-options/lob', 'ProgramOptionsController@getLobConfig')->name('program-options-lob');
 	Route::post('/program-options/lob', 'ProgramOptionsController@postLobConfig')->name('post-program-options-lob');

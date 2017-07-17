@@ -156,6 +156,17 @@ class ProgramOptionsController extends Controller
         ->with(compact('emailLogs'));
     }
 
+    /**
+     * HTML for subdomain registration
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function subdomainRegistration( Request $request )
+    {
+
+        return view('program-options.subdomain-registration');
+    } 
 
     public function getLobConfig( Request $request )
     {
