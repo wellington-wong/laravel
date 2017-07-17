@@ -32,6 +32,10 @@ class Referral extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function check() {
+        return $this->hasOne(Check::class);
+    }
+
     /**
      * Update Referrals
      * @return

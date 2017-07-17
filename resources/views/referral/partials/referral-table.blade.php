@@ -32,6 +32,16 @@
                             </td>
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">view details</a></td>@endif
                         </tr>
+                        @if( count($r->check) == 1 )
+                            <?php $check = $r->check->first(); ?>
+                            <tr>
+                                <td>CHECK SENT</td>
+                                <td>{{ $check->check_number }}</td>
+                                <td>${{ round($check->amount, 2) }}</td>
+                                <td>Send Date: {{ $check->send_date }}</td>
+                                <td>Expected: {{ $check->expected_delivery_date }}</td>
+                            </tr>
+                        @endif
                     @endforeach
                     @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
                 </table>
