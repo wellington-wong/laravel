@@ -42,7 +42,6 @@ class ManageAccountController extends Controller
         $rules = [
             'name'=>'required',
             'email'=>'required|email',
-            'phone'=>'required|phone:US',
             'address'=>'max:100',
             'address2'=>'max:25',
             'city'=>'required',
