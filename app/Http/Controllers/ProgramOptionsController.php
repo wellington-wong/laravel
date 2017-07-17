@@ -142,4 +142,32 @@ class ProgramOptionsController extends Controller
         ->with(compact('emailLogs'));
     }
 
+
+    public function getLobConfig( Request $request )
+    {
+        $l = $request->_company->lob()->first();
+
+        //dd ( $l->verifyKey() );
+
+        return view('program-options.lob')
+            ->with(compact('l'));
+
+        return $view;
+        return view('program-options.lob');
+    }
+
+    public function postLobConfig( Request $request ) {
+
+        //dd( $request->input('apikey') );
+
+        $l = $request->_company->lob()
+            ->firstOrCreate( ['company_id'=>$request->_company->id],
+                ['apikey'=>$request->input('apikey')] );
+        $l->apikey = $request->input('apikey');
+        $l->save();
+        return redirect()->route('program-options-lob');
+
+    }
+
+
 }

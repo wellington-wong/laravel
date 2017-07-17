@@ -36,7 +36,7 @@ class Domain
         } else {
             if ( !in_array( trim($request->getRequestUri(), '/') ,
                 //OK ROUTES FOR app.perxi.com
-                ['companies', 'company/create', 'login', 'register', 'logout', 'manage-account'] ) ) {
+                ['companies', 'company/create', 'login', 'register', 'logout', 'manage-account', 'global-settings/login-as-user'] ) ) {
                 return redirect()->route('all-companies');
             }
             $company = new \stdClass();

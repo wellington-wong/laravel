@@ -69,4 +69,8 @@ class Company extends Model
         return $this->hasOne( EmailTemplate::class );
     }
 
+    public function lob() {
+        return $this->hasOne( Lob::class );
+    }
+
 }

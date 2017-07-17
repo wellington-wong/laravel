@@ -217,7 +217,7 @@ class User extends Authenticatable
                 $input[] = $c;
             }
         }
-        $phone = $this->phones()->first()->update(
+        $phone = $this->phones()->create(
             $request->only($input)
         );
         $this->phone()->updateExistingPivot($this->phones()->first()->id, ['default'=>1]);
@@ -259,8 +259,9 @@ class User extends Authenticatable
         foreach ($address->getFillable() as $c) {
             $input[] = $c;
         }
+        //THIS REMOVES LOB VERIFICATION INFO FOR THE OLD ADDRESS
         $address = $this->address()->first()->update(
-            $request->only($input)
+            ['lob_verified'=>'0', 'lob_response'=>null] + $request->only($input)
         );
         $this->address()->updateExistingPivot($this->address()->first()->id, ['default'=>1]);
         return $address;

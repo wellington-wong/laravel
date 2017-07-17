@@ -62,13 +62,13 @@ class ManageAccountController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        if (null != auth()->user()->phone()) {
+        if ( !auth()->user()->phone->isEmpty() ) {
             auth()->user()->updateDefaultPhone($request);
         } else {
             auth()->user()->addDefaultPhone($request);
         }
 
-        if (null != auth()->user()->address()) {
+        if ( !auth()->user()->address->isEmpty() ) {
             auth()->user()->updateDefaultAddress($request);
         } else {
             auth()->user()->addDefaultAddress($request);

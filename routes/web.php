@@ -74,6 +74,10 @@ Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-
 Route::post('/manage-account', 'ManageAccountController@postUpdate')->name('post-account-update');
 Route::get('/help', 'ManageAccountController@help')->name('help');
 
+Route::get('/testlob', 'TestController@testlob');
+
+
+
 // User
 Route::get('/user/view/{id}', 'UserController@getView')->name('view-user');
 Route::get('/user/create', 'UserController@create')->name('create-user');
@@ -109,6 +113,10 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/program-options/reward-settings', 'ProgramOptionsController@rewardSettings')->name('program-options-reward-settings');
 	Route::get('/program-options/notification-emails', 'ProgramOptionsController@notificationEmails')->name('program-options-notification-emails');
 	Route::post('/program-options/notification-emails', 'ProgramOptionsController@postNotificationEmails')->name('program-options-post-notification-emails');
+
+	Route::get('/program-options/lob', 'ProgramOptionsController@getLobConfig')->name('program-options-lob');
+	Route::post('/program-options/lob', 'ProgramOptionsController@postLobConfig')->name('post-program-options-lob');
+
 
 	// Member Routes
 	Route::get('/members', 'MembersController@getIndex')->name('members');

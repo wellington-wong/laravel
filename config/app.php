@@ -146,6 +146,8 @@ return [
         Propaganistas\LaravelPhone\LaravelPhoneServiceProvider::class,
         Propaganistas\LaravelIntl\IntlServiceProvider::class,
 
+        //Exults\CustomForms\CustomFormsServiceProvider::class,
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -213,7 +215,12 @@ return [
 
         'Form'     => Collective\Html\FormFacade::class,
         'HTML'     => Collective\Html\HtmlFacade::class,
+
         'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
+
+        'Input'    => \Illuminate\Support\Facades\Input::class,
+        //'Validator' => \Illuminate\Support\Facades\Validator::class,
+        //'CustomEntity' => Exults\CustomForms\CustomEntity::class,
 
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
