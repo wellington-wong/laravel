@@ -20384,8 +20384,8 @@ $(function () {
 		}
 
 		// Prepare admin note
-		if (_this.text() == "Denied") {
-			var referrals_modal = $('.referrals-wrapper #incentful-modal');
+		var referrals_modal = $('.referrals-wrapper #incentful-modal');
+		if (_this.data('status') == 4) {
 			referrals_modal.find('.modal-title').text('Note for Denying Referral');
 			referrals_modal.find('.modal-body').html('<textarea class="referrals modal-textarea"></textarea>');
 			referrals_modal.modal('show');
@@ -20406,8 +20406,25 @@ $(function () {
 			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function () {
 				referrals_modal.modal('hide');
 			});
+		} else if (_this.data('status') == 3) {
+			referrals_modal.find('.modal-title').text('Reward Sent Notification');
+			referrals_modal.find('.modal-body').html('Please take note that the referral status cannot be changed after being set as "Reward Sent"');
+			referrals_modal.modal('show');
+			$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function () {
+				tinymceHelper(null, true);
+				ajaxHelper("referral/update", data, "POST", statusCallback);
+				referrals_modal.modal('hide');
+			});
+			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function () {
+				referrals_modal.modal('hide');
+			});
 		} else {
 			ajaxHelper("referral/update", data, "POST", statusCallback);
+		}
+	});
+	$('.current-referral-status').each(function () {
+		if ($(this).data('status') == 3) {
+			$(this).addClass('disabled');
 		}
 	});
 	// END - REFERRALS
@@ -20906,6 +20923,8 @@ $(function () {
 	$('.logo-input').on('change', function () {
 		$('.processing').removeClass('hidden');
 		$('.company-logo img').css('opacity', .5);
+		console.log(this);
+		readImage(this, updateLogo);
 	}).closest('.company-logo').find('.ajax-logo').on('click', function () {
 		$('.logo-input').trigger('click');
 	});
@@ -20955,6 +20974,7 @@ $(function () {
 	// EMAIL TEMPLATE FORM
 
 	function renderHTML() {
+		$('#email_html').val($('#email_html').val().split("{ {").join("{{"));
 		$('#renderer_iframe').contents().find('body').html($('#email_html').val());
 		//$('#renderer_iframe').contents().find('body').css('border', '1px solid black');
 		//$('#renderer_iframe').contents().find('#safe-area').css('border', '1px solid gray');
@@ -20962,7 +20982,7 @@ $(function () {
 
 	function changeToDefaultHTML() {
 
-		var html2 = '<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">\n\n\t\t <style>\n\t\t .text {\n\t\t margin: 10px;\n\t\t font-family: \'Open Sans\';\n\t\t font-weight: 400;\n\t\t font-size: 40px;\n\t\t color: white;\n\t\t text-shadow: 2px 2px black;\n\t\t }\n\t\t </style>\n\n\t\t <div id="safe-area">\n\t\t <!-- All text should appear within the safe area. -->\n\t\t <div class="text">\n\t\t Do not put text outside the safe area.\n\t\t </div>\n\t\t </div>';
+		var html2 = '\n<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; background-color: #f5f8fa; margin: 0; padding: 0; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;">\n         <tr>\n            <td align="center" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">\n               <table class="content" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; margin: 0; padding: 0; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;">\n                  <tr>\n                     <td class="header" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 25px 0; text-align: center;">\n                        <a href="incentful.loc" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #bbbfc3; font-size: 19px; font-weight: bold; text-decoration: none; text-shadow: 0 1px 0 white;">\n                        Incentful\n                        </a>\n                     </td>\n                  </tr>\n                  <!-- Email Body -->\n                  <tr>\n                     <td class="body" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; background-color: #FFFFFF; border-bottom: 1px solid #EDEFF2; border-top: 1px solid #EDEFF2; margin: 0; padding: 0; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;">\n                        <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; background-color: #FFFFFF; margin: 0 auto; padding: 0; width: 570px; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px;">\n                           <!-- Body content -->\n                           <tr>\n                              <td class="content-cell" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 35px;">\n                                 <h1 style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #2F3133; font-size: 19px; font-weight: bold; margin-top: 0; text-align: left;">Hello!</h1>\n                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">You have been referred.</p>\n                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Name: {{ $referred_name }}</p>\n                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Email: {{ $referred_email }}</p>\n                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Phone: {{ $referred_phone }}</p>\n                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Address: {{ $referred_address }}</p>\n                                 <table class="action" align="center" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; margin: 30px auto; padding: 0; text-align: center; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;">\n                                    <tr>\n                                       <td align="center" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">\n                                          <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">\n                                             <tr>\n                                                <td align="center" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">\n                                                   <table border="0" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">\n                                                      <tr>\n                                                         <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">\n                                                            <a href="{{ perxi_home }}" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #FFF; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097D1; border-top: 10px solid #3097D1; border-right: 18px solid #3097D1; border-bottom: 10px solid #3097D1; border-left: 18px solid #3097D1;">Join the club and refer others!</a>\n                                                         </td>\n                                                      </tr>\n                                                   </table>\n                                                </td>\n                                             </tr>\n                                          </table>\n                                       </td>\n                                    </tr>\n                                 </table>\n                                 <!-- Salutation -->\n                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Regards,<br>Incentful</p>\n                                 <!-- Subcopy -->\n                                 <table class="subcopy" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-top: 1px solid #EDEFF2; margin-top: 25px; padding-top: 25px;">\n                                    <tr>\n                                       <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">\n                                          <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; line-height: 1.5em; margin-top: 0; text-align: left; font-size: 12px;">If you\u2019re having trouble clicking the "Join the club and refere others!" button, copy and paste the URL below\n                                             into your web browser: <a href="{{ perxi_home }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;"></a><a href="{{ env(\'APP_URL\') }}/referrals" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;">Perxi</a>\n                                          </p>\n                                       </td>\n                                    </tr>\n                                 </table>\n                              </td>\n                           </tr>\n                        </table>\n                     </td>\n                  </tr>\n                  <tr>\n                     <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">\n                        <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; margin: 0 auto; padding: 0; text-align: center; width: 570px; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px;">\n                           <tr>\n                              <td class="content-cell" align="center" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 35px;">\n                                 <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; line-height: 1.5em; margin-top: 0; color: #AEAEAE; font-size: 12px; text-align: center;">\xA9 2017 Incentful. All rights reserved.</p>\n                              </td>\n                           </tr>\n                        </table>\n                     </td>\n                  </tr>\n               </table>\n            </td>\n         </tr>\n      </table>\n\t';
 
 		$('#email_html').val(html2);
 		renderHTML();
@@ -20993,7 +21013,25 @@ $(function () {
 		renderHTML();
 	});
 
-	renderHTML();
+	if ($('#email_html').length) {
+		// Fix curly brackets being hidden automatically
+		$('.placeholder-name .list-inline li a').click(function () {
+			var caretPos = document.getElementById("email_html").selectionStart;
+			var textAreaTxt = $("#email_html").val();
+			var txtToAdd = $(this).text();
+			$("#email_html").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos));
+		}).each(function () {
+			$(this).html($(this).html().split("{ {").join("{{"));
+		});
+		renderHTML();
+		var options = {
+			selector: '#email_html',
+			menubar: false,
+			statusbar: false
+		};
+		//tinymceHelper(options, false);
+		//tinyMCE.activeEditor.setContent('33333333');
+	}
 	showBack();
 
 	$('.btn-reset').click(function () {

@@ -115,7 +115,6 @@ class CompanyController extends Controller
             'state'=>'required|max:2',
             'zip'=>'required|digits:5',
             'company_name'=>'required',
-            'phone'=>'required|phone:LENIENT,AUTO,US',
             'email'=>'nullable|email',
             'website'=>'nullable|url'
         ];
@@ -137,14 +136,10 @@ class CompanyController extends Controller
             $company->email = $request->get('email');
             $company->website = $request->get('website');
             $company->save();
-
-            $company->address[0]->address = $request->get('address');
-            $company->address[0]->address2 = $request->get('address2');
-            $company->address[0]->city = $request->get('city');
-            $company->address[0]->state = $request->get('state');
-            $company->address[0]->zip = $request->get('zip');
-            $company->address[0]->save();
         }
+
+        $company->updateDefaultAddress($request);
+        $company->updateDefaultPhone($request);
 
         return back();
 

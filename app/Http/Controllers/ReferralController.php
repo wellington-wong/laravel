@@ -159,8 +159,10 @@ class ReferralController extends Controller
         $request->merge(['subdomain_id' => $request->_company->id]);
 
         $rules = [
+            'first_name'=>'required',
+            'last_name'=>'required',
             'email'=>'unique:users|required|email',
-            'phone'=>'phone:US',
+            'phone'=>'phone:US|required',
         ];
         $validator = Validator::make($request->input(), $rules);
 
@@ -200,10 +202,11 @@ class ReferralController extends Controller
         }
 
         // Save referral values
+        $referralValues = null;
         if (isset($user->referral_id)) {
             foreach ($request->request as $key => $val) {
                 if ($key != '_token') {
-                   ReferralValues::create([
+                   $referralValues = ReferralValues::create([
                         'name' => $key, 
                         'value' => $val, 
                         'referral_id' => $user->referral_id
@@ -218,7 +221,7 @@ class ReferralController extends Controller
         });*/
 
         //auth()->user()->notify(new ReferralNotifyAdmin());
-        $user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request));
+        $user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request, $referralValues));
 
         return redirect(route('referrals'));
     }
@@ -284,10 +287,9 @@ class ReferralController extends Controller
     public function historyDetails( Request $request, $id ) {
 
         $referral = Referral::find($id);
-        $referralHistory = Referral::find($id);
 
         return view('referral.history-details')
-        ->with(compact('referral', 'referralHistory'));
+        ->with(compact('referral'));
     }
 
     /**
@@ -295,11 +297,12 @@ class ReferralController extends Controller
      * @return
      **/
     public function getView( Request $request, $id ) {
-
+        
+        $referral = Referral::find($id);
         $referralValues = ReferralValues::where('referral_id', $id)->get();
 
         return view('referral.view')
-        ->with(compact('referralValues'));
+        ->with(compact(['referralValues', 'referral']));
     }
 
     /**

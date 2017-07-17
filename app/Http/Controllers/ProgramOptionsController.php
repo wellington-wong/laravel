@@ -89,10 +89,23 @@ class ProgramOptionsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function notificationEmails( Request $request )
+    public function notificationEmails ( Request $request )
     {
         $notificationSettings = [];
         return view('program-options.notification-emails')
+        ->with(compact('notificationSettings'));
+    }
+
+    /**
+     * Display a listing of notification emails
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function notificationEmail ( Request $request )
+    {
+        $notificationSettings = [];
+        return view('program-options.notification-email')
         ->with(compact('notificationSettings'));
     }
 
@@ -117,6 +130,7 @@ class ProgramOptionsController extends Controller
 
         $request->merge(['user_id' => auth()->user()->id]);
         $request->merge(['company_id' => $request->_company->id]);
+        
         if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->first()) {
             $emailTemplate->update([
                 'email_html' => $request->input('email_html')

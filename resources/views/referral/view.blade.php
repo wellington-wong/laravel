@@ -34,6 +34,8 @@
 
             </div>
         </div>
+
+        @include('referral.partials.history-details')
     </div>
 
 @endsection

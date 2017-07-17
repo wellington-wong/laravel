@@ -68,6 +68,12 @@
             </div>
 
         </div>
+   
+        <div class="row">
+        @include('layouts.page-header', ['header' => 'Referrals' , 'col' => 6])
+        </div>
+
+        @include('referral.partials.referral-table', ['viewOnly' => true, 'route' => 'view-user', 'args' => auth()->user()->id])
 
     </div>
 

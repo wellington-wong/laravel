@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Cmgmyr\Messenger\Models\Thread;
 use App\Thread as ThreadByCompany;
 use App\EmailTemplate;
+use App\Traits\PhoneTrait;
+use App\Traits\AddressTrait;
 
 class Company extends Model
 {
+    use PhoneTrait;
+    use AddressTrait;
+    
     protected $table = 'companies';
 
     protected $fillable = ['company_name', 'subdomain', 'owner_id'];

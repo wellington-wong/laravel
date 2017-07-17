@@ -420,6 +420,9 @@ nav {
 		line-height: 32px;
 	}
 }
+.btn.no-radius {
+	border-radius: 0 !important;
+}
 .btn-details {
 	background: #1373bf;
 	color: #fff;
@@ -613,6 +616,10 @@ table.table {
 					}
 					.form-control {						
 						height: auto;
+					}					
+					a.btn {
+						padding: 2px 20px;
+						font-size: 13px;
 					}
 				}			
 			}
@@ -708,6 +715,56 @@ table.table {
 }
 .create-user-link {
 	line-height: 2;
+}
+/* The switch - the box around the slider */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 70px;
+	height: 30px;
+	margin-bottom: 0;
+	vertical-align: middle;
+	margin-right: 10px;
+	input {display:none;}
+	/* The slider */
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $bg-color3;
+		-webkit-transition: .4s;
+		transition: .4s;
+		&:before {
+			position: absolute;
+			content: "";
+			height: 30px;
+			width: 40px;
+			bottom: 0;
+			background-color: #7ff25f;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+	}
+}
+input:checked + .slider:before {
+	background-color: #f27860;
+}
+input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+	-webkit-transform: translateX(29px);
+	-ms-transform: translateX(29px);
+	transform: translateX(29px);
+}
+.slider.round {
+	border-radius: 34px;
+}
+.slider.round:before {
+	border-radius: 48%;
 }
 /*** Common End ***/
 
@@ -863,7 +920,7 @@ table.table {
 						    right: 20px;
 						}
 						.dropdown-menu {
-							top: 52px;
+							top: 40px;
 							left: 10px;
 	    					font-size: 13px;
 						}
@@ -899,6 +956,19 @@ table.table {
 		font-size: 11px;
 		padding-left: 0;
 		padding-right: 0;
+	}
+	.customer-referrals {
+		padding-bottom: 0;
+		h4 {
+			color: $text-color;
+		}
+	}
+	.member-referrals {
+		.current-referral-status {
+			border-width: 0;
+			padding: 0;
+			color: $text-color2;
+		}
 	}
 }
 /*** Referrals End ***/
@@ -1632,3 +1702,11 @@ table.table {
     height: 2in;
 }
 /*** Email Template Form End ***/
+
+/*** User View ***/
+.user-wrapper {
+	.current-referral-status {
+		border-width: 0;
+	}
+}
+/*** User View End ***/

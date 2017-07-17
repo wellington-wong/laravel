@@ -1,17 +1,3 @@
-@extends('layouts.app')
-
-@section('pageTitle', 'Referral History Details')
-
-@section('content')
-
-    <div class="container-fluid referrals-history with-referral-counter">
-        
-        <div class="row">
-            @include('layouts.page-header', ['header' => 'Referral History Details for ' . $referral->referred->display_name, 'col' => 12])
-        </div>
-
-        <div class="clearfix"></div>
-
         <div class="row">
             <div class="col-md-12 table-referral-wrapper table-wrapper">
                 <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
@@ -37,7 +23,3 @@
                 </table>
             </div>
         </div>
-        @include('layouts.modal')
-    </div>
-
-@endsection

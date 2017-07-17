@@ -12,6 +12,8 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Laravel\Cashier\Billable;
 use Cmgmyr\Messenger\Traits\Messagable;
 use Carbon\Carbon;
+use App\Traits\PhoneTrait;
+use App\Traits\AddressTrait;
 
 class User extends Authenticatable
 {
@@ -19,6 +21,8 @@ class User extends Authenticatable
     use EntrustUserTrait;
     use Billable;
     use Messagable;
+    use PhoneTrait;
+    use AddressTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -196,6 +200,7 @@ class User extends Authenticatable
         return $phone;
     }
 
+
     /*
      * update default phone number to a user from a request
      */
@@ -224,6 +229,7 @@ class User extends Authenticatable
         return $phone;
     }
 
+
     public function addDefaultAddress() {
 
         $request = request();
@@ -243,6 +249,7 @@ class User extends Authenticatable
         $this->address()->updateExistingPivot($address->id, ['default'=>1]);
         return $address;
     }
+
 
     /*
      * update default address to a user from a request
@@ -266,6 +273,7 @@ class User extends Authenticatable
         $this->address()->updateExistingPivot($this->address()->first()->id, ['default'=>1]);
         return $address;
     }
+
 
     public static function getMembers() {
 
