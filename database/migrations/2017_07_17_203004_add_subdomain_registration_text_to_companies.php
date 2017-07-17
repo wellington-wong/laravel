@@ -14,7 +14,7 @@ class AddSubdomainRegistrationTextToCompanies extends Migration
     public function up()
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->text('subdomain_login_text');
+            $table->text('subdomain_login_text')->nullable();
         });
     }
 
