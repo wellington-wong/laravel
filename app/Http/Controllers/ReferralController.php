@@ -306,6 +306,15 @@ class ReferralController extends Controller
     }
 
     /**
+     * View referral
+     * @return
+     **/
+    public function confirmation( Request $request ) {
+
+        return view('referral.confirmation');
+    }
+
+    /**
      * Update referral status
      * @return
      **/

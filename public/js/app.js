@@ -20447,7 +20447,18 @@ $(function () {
 			}
 		});
 	});
+
 	// END - NOTIFICATIONS
+
+	// NOTIFICATION EMAILS
+	$('.table-notification-emails input[type="checkbox"]').change(function () {
+		if ($(this).is(':checked')) {
+			$(this).closest('td').find('.status').text('Inactive');
+		} else {
+			$(this).closest('td').find('.status').text('Active');
+		}
+	});
+	// END - NOTIFICATIONS EMAILS
 
 	// GET MEMBERS
 	// Retrieve all members
