@@ -118,7 +118,7 @@ class ProgramOptionsController extends Controller
     public function postNotificationEmails( Request $request )
     {
         $rules = [
-            'email_html'=>'required'
+            //'email_html'=>'required'
         ];
 
         $validator = Validator::make($request->input(), $rules);
@@ -133,7 +133,7 @@ class ProgramOptionsController extends Controller
         
         if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->first()) {
             $emailTemplate->update([
-                'email_html' => $request->input('email_html')
+                'email_html' => $request->input('email_html') ? : ''
             ]);
             return back()->with('success', ['Email template successfully saved.']);
         } else {

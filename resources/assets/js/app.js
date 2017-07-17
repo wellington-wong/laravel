@@ -892,6 +892,11 @@ $(function (){
 		}).each(function (){
 			$(this).html($(this).html().split("{ {").join("{{"));
 		});
+
+		if (!$('#email_html').val()) {
+			changeToDefaultHTML();
+		}
+
 		renderHTML();		
 		var options = {
 			selector: '#email_html',
