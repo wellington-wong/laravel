@@ -75,7 +75,7 @@ Route::post('/manage-account', 'ManageAccountController@postUpdate')->name('post
 Route::get('/help', 'ManageAccountController@help')->name('help');
 
 Route::get('/testlob', 'TestController@testlob');
-
+Route::get('/testsavecheck', 'TestController@testSaveCheck');
 
 
 // User

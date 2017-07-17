@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Http\Request;
@@ -80,6 +81,10 @@ class Lob extends Model
         if ( null == $this->lob ) {
             $this->lob = new OfficialLob( $this->apikey );
         }
+    }
+
+    public function company() {
+        return $this->belongsTo(Company::class);
     }
 
     public function verifySenderAddress() {
@@ -166,6 +171,50 @@ API Version:
     2016-06-30 Outdated Version
 
   live_b34bf034adf37acb52f6b933e2850f12dff
+
+
+CHECK:
+array:23 [▼
+  "id" => "chk_59054f3f32e13af1"
+  "description" => "Reward Check"
+  "metadata" => []
+  "check_number" => 10006
+  "amount" => 10
+  "url" => "https://s3-us-west-2.amazonaws.com/assets.lob.com/chk_59054f3f32e13af1.pdf?AWSAccessKeyId=AKIAIILJUBJGGIBQDPQQ&Expires=1502863023&Signature=9f0GGdb7UbNxpznEZlqPaXGXDKQ%3D ◀"
+  "check_bottom_template_id" => null
+  "attachment_template_id" => null
+  "check_bottom_template_version_id" => null
+  "attachment_template_version_id" => null
+  "to" => array:16 [▶]
+  "from" => array:17 [▶]
+  "bank_account" => array:13 [▼
+    "id" => "bank_68cb4166a42f962"
+    "description" => "Test Bank"
+    "metadata" => []
+    "routing_number" => "322271627"
+    "account_number" => "000123456789"
+    "account_type" => "company"
+    "signatory" => "John Doe"
+    "signature_url" => "https://s3-us-west-2.amazonaws.com/assets.lob.com/bank_68cb4166a42f962_signature.png?AWSAccessKeyId=AKIAIILJUBJGGIBQDPQQ&Expires=1502863023&Signature=uWk6lWpC%2BrYQCuG5WQMkQHiW2kc%3D ◀"
+    "bank_name" => "J.P. MORGAN CHASE BANK, N.A."
+    "verified" => true
+    "date_created" => "2017-07-11T07:16:06.050Z"
+    "date_modified" => "2017-07-11T07:16:21.316Z"
+    "object" => "bank_account"
+  ]
+  "carrier" => "USPS"
+  "tracking_number" => null
+  "tracking_events" => []
+  "thumbnails" => array:2 [▶]
+  "expected_delivery_date" => "2017-07-25"
+  "mail_type" => "usps_first_class"
+  "date_created" => "2017-07-17T05:57:03.621Z"
+  "date_modified" => "2017-07-17T05:57:03.621Z"
+  "send_date" => "2017-07-19T00:00:00.000Z"
+  "object" => "check"
+]
+
+
 
 
 array:10 [▼
@@ -320,14 +369,20 @@ array:10 [▼
             //$this->lob = new OfficialLob( $this->apikey );
             $bank_account_id = $this->lob->bankAccounts()->all()[0]['id'];
 
+            $send_date = new Carbon('today + 2 days');
+            $send_date = $send_date->format('Y-m-d');
+
             if ( null != $u->address->first()->lob_adr_id ) {
-                $this->lob->checks()->create([
+                $check = $this->lob->checks()->create([
                     'description' => 'Reward Check',
                     'to' => $u->address->first()->lob_adr_id,
                     'from' => $business_address,
                     'bank_account' => $bank_account_id,
-                    'amount' => $amount
+                    'amount' => $amount,
+                    'send_date' => $send_date,
                 ]);
+
+                var_export($check);
             }
 
 
@@ -336,6 +391,29 @@ array:10 [▼
         dd($u->address);
 
     }
+
+
+    public function saveCheck( $lob_response, User $u, Referral $r ) {
+
+        $c = new Check();
+        $c->lob_id          = $this->id;
+        $c->company_id      = $this->company->id;
+        $c->user_id         = $u->id;
+        $c->referral_id     = $r->id;
+        $c->lob_check_id    = $lob_response['id'];
+        $c->amount          = $lob_response['amount'];
+        $c->check_number    = $lob_response['check_number'];
+        $c->send_date       = Carbon::createFromTimestamp(strtotime($lob_response['send_date']))->format('Y-m-d');
+        $c->expected_delivery_date = Carbon::createFromTimestamp(strtotime($lob_response['expected_delivery_date']))->format('Y-m-d');
+        $c->lob_response    = json_encode($lob_response);
+        $c->save();
+
+
+        dd( $lob_response );
+
+    }
+
+
 
     /*
      * copied from Unim - non-functioning

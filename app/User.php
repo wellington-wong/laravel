@@ -268,7 +268,8 @@ class User extends Authenticatable
         }
         //THIS REMOVES LOB VERIFICATION INFO FOR THE OLD ADDRESS
         $address = $this->address()->first()->update(
-            ['lob_verified'=>'0', 'lob_response'=>null] + $request->only($input)
+            array_merge($request->only($input), ['lob_verified'=>'0', 'lob_response'=>null])
+            //['lob_verified'=>'0', 'lob_response'=>null] + $request->only($input)
         );
         $this->address()->updateExistingPivot($this->address()->first()->id, ['default'=>1]);
         return $address;
