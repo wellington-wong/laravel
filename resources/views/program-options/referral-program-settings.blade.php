@@ -38,6 +38,13 @@
 				</div>
             </div>
         </div>
+
+        <div class="row">
+        @include('layouts.page-header', ['header' => 'Subdomain Login', 'col' => 12])
+        </div>
+        <div class="row">
+          <textarea class="subdomain-login tinymce" name="subdomain_login"></textarea>
+        </div>
     </div>
 
 @endsection

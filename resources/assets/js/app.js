@@ -588,7 +588,13 @@ $(function (){
 		$(this).tooltip('show');
 	});
 
-	// TinyMCE helper
+	// TinyMCE helper	
+	var options = {
+		selector: '.tinymce',
+		menubar: false,
+		statusbar: false
+	}
+	tinymceHelper(options, false);
 	function tinymceHelper(options, save) {
 		if (save) {
 			tinymce.triggerSave();
