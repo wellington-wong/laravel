@@ -24,7 +24,7 @@ class ChecksTable extends Migration
             $table->smallInteger('check_number')->unsigned();
             $table->date('send_date');
             $table->date('expected_delivery_date');
-            $table->json('lob_response');
+            $table->text('lob_response');
             $table->timestamps();
         });
     }

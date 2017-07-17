@@ -15,7 +15,7 @@ class AddressesAddLobFields extends Migration
     {
         Schema::table('addresses', function (Blueprint $table) {
             $table->boolean('lob_verified')->default(0);
-            $table->json('lob_response')->nullable()->default(null);
+            $table->text('lob_response')->nullable()->default(null);
             $table->string('lob_adr_id')->nullable()->default(null);
         });
     }
