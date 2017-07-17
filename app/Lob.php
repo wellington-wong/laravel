@@ -146,7 +146,7 @@ class Lob extends Model
     }
 
 
-    public function sendCheck( Request $request, User $u, $amount ) {
+    public function sendCheck( Request $request, Referral $r, User $u, $amount ) {
 
         /*
 https://app.incentful.loc/
@@ -315,6 +315,10 @@ array:10 [▼
 ]
          */
 
+        if( count($r->check) > 0 ) {
+            dd($r->check);
+        }
+
         $this->startLob();
 
         //MAKE SURE BUSINESS HAS ADDRESS
@@ -382,13 +386,13 @@ array:10 [▼
                     'send_date' => $send_date,
                 ]);
 
-                var_export($check);
+                //var_export($check);
             }
 
 
 
         }
-        dd($u->address);
+        //dd($u->address);
 
     }
 
@@ -407,9 +411,6 @@ array:10 [▼
         $c->expected_delivery_date = Carbon::createFromTimestamp(strtotime($lob_response['expected_delivery_date']))->format('Y-m-d');
         $c->lob_response    = json_encode($lob_response);
         $c->save();
-
-
-        dd( $lob_response );
 
     }
 
