@@ -1722,12 +1722,15 @@ table.table {
 	.top-navbar {
 		padding: 0;
 		.navbar.navbar-static-top {
-			background: #25272b;
+			background: $custom-company-bg;
 			&, a {
 				color: #fff;
 				font-weight: normal;
 			}
 		}
+	}
+	footer {
+		background: $custom-company-bg;
 	}
 }
 /*** Custom Company Login End ***/
