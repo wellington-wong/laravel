@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
 @section('pageTitle', $_company->company_name . ' Referral Program')
 
 @section('content')
