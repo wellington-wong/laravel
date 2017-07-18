@@ -8,11 +8,13 @@ use App\Thread as ThreadByCompany;
 use App\EmailTemplate;
 use App\Traits\PhoneTrait;
 use App\Traits\AddressTrait;
+use App\Traits\ReferralTrait;
 
 class Company extends Model
 {
     use PhoneTrait;
     use AddressTrait;
+    use ReferralTrait;
     
     protected $table = 'companies';
 
@@ -20,6 +22,10 @@ class Company extends Model
 
     public function owner() {
         return $this->hasOne(User::class);
+    }
+
+    public function referrals() {
+        return $this->hasMany(Referral::class);
     }
 
     public function addresses() {

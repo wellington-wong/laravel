@@ -15,8 +15,8 @@
                         <tr>
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             @if (!auth()->user()->hasRole('member'))<td><a href="{{ route('referral-view', $r->id) }}">{{ $r->id }}</a></td>@endif
-                            @if (!auth()->user()->hasRole('member'))<td><a href="{{ route('view-user', auth()->user()->id) }}">{{ auth()->user()->name }}</a></td>@endif
-                            @if (!auth()->user()->hasRole('member'))<td><a href="{{ route('view-user', $r->referred->id) }}">{{ $r->referred->display_name }}</a></td>
+                            @if (!auth()->user()->hasRole('member'))<td><a href="{{ route('view-user', $r->referrer->id) }}">{{ $r->referrer->name }}</a></td>@endif
+                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', $r->referred->id) }}">{{ $r->referred->display_name }}</a></td>
                             @else <td>{{ $r->referred->display_name }}</td>
                             @endif
                             <td class="referral-status" data-id="{{ $r->id }}">
@@ -37,7 +37,7 @@
                             <tr>
                                 <td>CHECK SENT</td>
                                 <td>{{ $check->check_number }}</td>
-                                <td>${{ round($check->amount, 2) }}</td>
+                                <td>${{ round($check->amount,2) }}</td>
                                 <td>Send Date: {{ $check->send_date }}</td>
                                 <td>Expected: {{ $check->expected_delivery_date }}</td>
                             </tr>

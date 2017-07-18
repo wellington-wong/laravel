@@ -75,7 +75,7 @@
                                 <ul class="nav">
                                     <li class="{{ Request::path() == 'referrals' ? 'active' : '' }}">
                                         <div class="main-menu-item-wrapper">
-                                            <a href="{{ route('referrals') }}">Referrals</a>
+                                            <a href="{{ route('referrals') }}">My Referrals</a>
                                             <a href="#submenu-referrals" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="submenu-referrals" class="collapse in">
@@ -106,6 +106,7 @@
                                             <a href="#program-options" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="program-options" class="collapse in">
+                                            <li class="{{ Request::is('company/referrals') ? 'active' : '' }}"><a href="{{ route('company-referrals') }}">Company Referrals</a></li>
                                             <li class="{{ (Request::is('company/*') && !Request::is('company/create')) ? 'active' : '' }}"><a href="{{ route('get-company', $_company->id ) }}">Company Profile</a></li>
                                             <li class="{{ Request::is('members') ? 'active' : '' }}"><a href="{{ route('members') }}">Users</a></li>
                                             <li class="{{ Request::is('program-options/referral-program-settings') ? 'active' : '' }}"><a href="{{ route('program-options-referral-program-settings') }}">Referral Program Settings</a></li>
