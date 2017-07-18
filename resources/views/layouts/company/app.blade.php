@@ -28,13 +28,13 @@
     </script>
 </head>
 <body class="logged-in">
-    <div id="app" class="fill">
+    <div id="app">
 
-        <div class="container-fluid fill">
-            <div class="row fill">
+        <div class="container-fluid">
+            <div class="row">
 
                 <div class="col-sm-12 main-content company-custom">
-                    <div class="panel panel-default fill">
+                    <div class="panel panel-default">
                         <div class="panel-heading top-navbar">
 
                             <nav class="navbar navbar-default navbar-static-top">
