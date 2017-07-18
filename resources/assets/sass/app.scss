@@ -1720,9 +1720,13 @@ table.table {
 /*** Custom Company Login ***/
 .company-custom {
 	.top-navbar {
+		padding: 0;
 		.navbar.navbar-static-top {
 			background: #25272b;
-			color: #fff;
+			&, a {
+				color: #fff;
+				font-weight: normal;
+			}
 		}
 	}
 }
