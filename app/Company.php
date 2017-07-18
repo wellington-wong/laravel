@@ -9,6 +9,7 @@ use App\EmailTemplate;
 use App\Traits\PhoneTrait;
 use App\Traits\AddressTrait;
 use App\Traits\ReferralTrait;
+use App\Referral;
 
 class Company extends Model
 {
@@ -83,5 +84,6 @@ class Company extends Model
     public function lob() {
         return $this->hasOne( Lob::class );
     }
+    
 
 }

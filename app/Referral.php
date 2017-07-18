@@ -98,12 +98,21 @@ class Referral extends Model
 
         $request = request();
 
-        $pendingReferrals['approval'] = $request->user()->referrals()
-            ->where('status', 1)
-            ->get();
-        $pendingReferrals['reward'] = $request->user()->referrals()
-            ->where('status', 2)
-            ->get();
+        if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin'])) {
+            $pendingReferrals['approval'] = $request->_company->referrals()
+                ->where('status', 1)
+                ->get();
+            $pendingReferrals['reward'] = $request->_company->referrals()
+                ->where('status', 2)
+                ->get();
+        } else {
+            $pendingReferrals['approval'] = $request->user()->referrals()
+                ->where('status', 1)
+                ->get();
+            $pendingReferrals['reward'] = $request->user()->referrals()
+                ->where('status', 2)
+                ->get();
+        }
 
         return $pendingReferrals;
     }

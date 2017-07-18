@@ -28,15 +28,24 @@
 				    <div class="form-generator" data-company-id="{{ $_company->id }}">
 				        <div id="stage1" class="build-wrap"></div>
 				        <form class="render-wrap"></form>
-				        <div class="form-actions btn-group custom-btn">
-				        	<button class="clear-all-trigger btn btn-danger">Clear</button>
-				        	<button class="submit-custom-form btn btn-primary">Save</button>
-				        </div>
 				        <form id="fb-rerender"></form>
 				        <div class="raw-form-json hidden">{{ isset($companyReferralForm->raw_form_json) ? $companyReferralForm->raw_form_json : '' }}</div>
 				    </div>
 				</div>
             </div>
+        </div>
+
+        <div>&nbsp;</div>
+
+        <div class="row">
+        @include('layouts.page-header', ['header' => 'Subdomain Login Text', 'col' => 12])
+        </div>
+        <div class="row">
+          <textarea class="subdomain-login tinymce" name="subdomain_login_text">{{ isset($_company->subdomain_login_text) ? $_company->subdomain_login_text : '' }}</textarea>
+          <div class="form-actions btn-group custom-btn">
+            <button class="clear-all-trigger btn btn-danger">Clear</button>
+            <button class="submit-custom-form btn btn-primary">Save</button>
+          </div>
         </div>
     </div>
 

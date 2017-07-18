@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\LogEmail;
 use App\EmailTemplate;
 use App\ReferralForms;
+use App\Company;
 use Illuminate\Support\Facades\Validator;
 
 class ProgramOptionsController extends Controller
@@ -61,6 +62,10 @@ class ProgramOptionsController extends Controller
      */
     public function referralProgramSettingsPost( Request $request )
     {
+        $company = Company::find($request->get('company_id'));
+        $company->subdomain_login_text = $request->input('subdomain_login_text');
+        $company->save();
+
         if (!$companyReferralForm = ReferralForms::where('company_id', $request->get('company_id'))->first()) {
             $companyReferralForm = new ReferralForms();
             $companyReferralForm->create($request->all());
@@ -118,7 +123,7 @@ class ProgramOptionsController extends Controller
     public function postNotificationEmails( Request $request )
     {
         $rules = [
-            'email_html'=>'required'
+            //'email_html'=>'required'
         ];
 
         $validator = Validator::make($request->input(), $rules);
@@ -133,7 +138,7 @@ class ProgramOptionsController extends Controller
         
         if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->first()) {
             $emailTemplate->update([
-                'email_html' => $request->input('email_html')
+                'email_html' => $request->input('email_html') ? : ''
             ]);
             return back()->with('success', ['Email template successfully saved.']);
         } else {
@@ -155,7 +160,6 @@ class ProgramOptionsController extends Controller
         return view('program-options.email-logs')
         ->with(compact('emailLogs'));
     }
-
 
     public function getLobConfig( Request $request )
     {
