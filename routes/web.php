@@ -36,6 +36,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@home')->name('find-home');
 
 // Company Routes
+Route::get('/company/referrals', 'ReferralController@companyReferrals')->name('company-referrals');
+
 Route::get('/company/create', 'CompanyController@create')->name('company-create');
 Route::post('/company/create', 'CompanyController@postCreate')->name('post-company-create');
 Route::get('/company/{id}', 'CompanyController@getCompany')->name('get-company');
@@ -46,12 +48,13 @@ Route::post('/company/update-logo/{cid}', 'CompanyController@postUpdateLogo')->n
 // Referral Routes
 Route::get('/form/{id}', 'ReferralController@formJson')->name('form-json');
 
+Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
+
 Route::get('/referral/create/{id}', 'ReferralController@create')->name('referral-create-id');
 Route::post('/referral/create/{id}', 'ReferralController@postCreate')->name('post-referral-create-id');
 Route::get('/referral/create', 'ReferralController@findForm')->name('referral-create');
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
-Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 Route::get('/referral/rewards', 'ReferralController@rewards')->name('referral-rewards');
 Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
 Route::get('/referral/history/{id}', 'ReferralController@historyDetails')->name('referral-history-details');

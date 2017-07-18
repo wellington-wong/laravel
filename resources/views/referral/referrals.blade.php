@@ -44,7 +44,7 @@
 
         <div class="clearfix"></div>
 
-        @include('referral.partials.referral-table', ['route' => 'referrals'])
+        @include('referral.partials.referral-table', [ 'route' => $route ])
 
         @if (auth()->user()->hasRole(['member']))
             <div class="btn-group">

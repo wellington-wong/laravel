@@ -58,6 +58,55 @@ class ReferralController extends Controller
         }
     }
 
+
+    public function companyReferrals( Request $request ) {
+
+        $referrals = new Referral();
+
+        // Get constants
+        $referralStatus = new \ReflectionClass(new Referral());
+        $referralStatus = $referralStatus->getConstants();
+        $referralStatus = array_splice($referralStatus, 0, count($referralStatus) -2);
+
+        // Configure sort class
+        $column = $request->get('column');
+        $sortc = array_fill_keys(['created_at', 'id', 'user_id', 'referred', 'status'], null);
+        $sort = array_fill_keys(['created_at', 'id', 'user_id', 'referred', 'status'], 'desc');
+
+        // Configure sort links
+        $sort[$column] = 'desc';
+        $sortClass = '';
+        switch ($request->get('sort')) {
+            case ('desc'):
+                $sort[$column] = 'asc';
+                $sortClass = '-desc';
+                break;
+            case ('asc'):
+                $sort[$column] = '';
+                $sortClass = '-asc';
+                break;
+        }
+        $sortc[$column] = $sortClass;
+
+        // Get referral pending approval and reward
+        $pendingReferrals = $referrals->getReferralTally();
+
+        // Get query parameters
+        $param = [];
+        if (count($request->all())) {
+            $param = $referrals->getParams();
+            $referrals = $request->_company->filterSortReferralSubmissions()->paginate(15);
+        } else {
+            $referrals = $request->_company->referrals()->orderBy('user_id')->paginate(15);
+        }
+
+        $route = $request->route()->action['as'];
+
+        return view('referral.referrals')
+            ->with(compact('referrals', 'sort' ,'sortc', 'referralStatus', 'pendingReferrals', 'param', 'route'));
+    }
+
+
     public function referrals( Request $request ) {
 
         $referrals = new Referral();
@@ -107,8 +156,10 @@ class ReferralController extends Controller
             }
         }
 
+        $route = $request->route()->action['as'];
+
         return view('referral.referrals')
-        ->with(compact('referrals', 'sort' ,'sortc', 'referralStatus', 'pendingReferrals', 'param'));
+        ->with(compact('referrals', 'sort' ,'sortc', 'referralStatus', 'pendingReferrals', 'param', 'route'));
     }
 
     /**
