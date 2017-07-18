@@ -48,6 +48,12 @@ class AuthServiceProvider extends ServiceProvider
             return Auth::user()->can('track_referral');
         });
 
+        // Super Admin only
+        Gate::define('send-check', function () {
+            return true;
+            return Auth::user()->can('send-check');
+        });
+
         // Admin, Super Admin, Global Admin
         Gate::define('submit-member-referral', function () {
             return Auth::user()->can('submit_member_referral');

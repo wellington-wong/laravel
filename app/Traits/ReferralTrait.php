@@ -48,7 +48,7 @@ trait ReferralTrait {
 
         switch ($column) {
             case ('referred'):
-                $referrals->orderBy('id', $sort);
+                $referrals->orderBy('user_id', $sort);
                 break;
             case ('created_at'):
                 $referrals->orderBy($column, $sort);
