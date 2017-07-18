@@ -455,8 +455,6 @@ $(function (){
 				formBuilder.actions.setData(JSON.stringify(templateObj[$(this).val()]));	
 			}
 		});
-
-		$('.cb-wrap').append($('.form-generator .form-actions'));
 	  });	  
 
 	// Update db with current form settings
@@ -472,7 +470,8 @@ $(function (){
 			var data = {
 				company_id: formGenerator.data('company-id'),
 				raw_form_json: formBuilderData,
-				form_name: ($('input[name="form_name"]').val() != '') ? $('input[name="form_name"]').val() : 'Referral form'
+				form_name: ($('input[name="form_name"]').val() != '') ? $('input[name="form_name"]').val() : 'Referral form',
+				subdomain_login_text: tinyMCE.activeEditor.getContent()
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
     	}
@@ -588,7 +587,13 @@ $(function (){
 		$(this).tooltip('show');
 	});
 
-	// TinyMCE helper
+	// TinyMCE helper	
+	var options = {
+		selector: '.tinymce',
+		menubar: false,
+		statusbar: false
+	}
+	tinymceHelper(options, false);
 	function tinymceHelper(options, save) {
 		if (save) {
 			tinymce.triggerSave();
