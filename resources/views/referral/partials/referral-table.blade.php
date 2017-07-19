@@ -31,7 +31,12 @@
                                 @endif
 
                                 @if (Gate::allows('send-check') && count($r->check) == 0 && $r->status == \App\Referral::STATUS_APPROVED )
-                                    <div class="btn btn-primary">Send Check</div>
+                                    <form method="POST" action="{{ route('post-send-check', ['referral_id'=>$r->id]) }}" >
+                                    {{ csrf_field() }}
+                                    $<input name="amount" >
+                                    <input name="memo" >
+                                    <button class="btn btn-primary">Send Check</button>
+                                    </form>
                                 @endif
 
 

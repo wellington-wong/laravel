@@ -7,6 +7,7 @@ use App\ReferralValues;
 use App\User;
 use App\Phone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use App\Referral;
 use App\Notifications\ReferralNotifyUser;
@@ -284,6 +285,60 @@ class ReferralController extends Controller
 
         return redirect(route('referrals'));
     }
+
+
+    public function sendCheck( Request $request, $referral_id ) {
+
+        if ( Gate::denies('send-check') ) {
+            return App::abort(401, 'Access Denied');
+        }
+
+        $rules = ['amount'=>'required'];
+        $validator = Validator::make( $request->input() , $rules );
+        if ( $validator->fails() ) {
+            dd('fail!');
+        }
+
+        $amount = $request->input('amount');
+        $memo   = $request->input('memo');
+
+        //CHECK ADDRESS
+        if ( 0 == $request->_company->address()->count() ) {
+            return redirect()->back()->withErrors('Your company needs an address to mail a check.');
+        }
+
+        //CHECK IF THERE IS A LOB ID TIED TO THIS COMPANY
+        if ( 0 == $request->_company->lob()->count() ) {
+            return redirect()->back()->withErrors("Your company needs to have a Lob API key associated with your account.  Click on 'Bank Account' in the sidebar.");
+        }
+
+        //THEN VERIFY THE LOB ACCOUNT
+        $request->_company->lob->verifyKey();
+        if ( false == $request->_company->lob->verified ) {
+            return redirect()->back()->withErrors("Your Lob API key is incorrect.  Click on 'Bank Account' in the sidebar.");
+        }
+
+        //THEN CHECK IF THERE'S A BANK ACCOUNT
+        if ( 0 == count( $request->_company->lob->lob->bankAccounts()->all() ) ) {
+            return redirect()->back()->withErrors("You have no bank accounts set up in lob.  Please go to lob.com and set up a bank account.");
+        }
+
+        $referral = $request->_company->referrals()->findOrFail($referral_id);
+
+        //CHECK IF USER HAS AN ADDRESS
+        if ( 0 == $referral->referrer->address()->count() ) {
+            return redirect()->back()->withErrors("The referrer has no address");
+        }
+
+        //dd( $request->_company->lob->sendCheck() );
+        //dd( $request->input('amount') );
+
+        $request->_company->lob->sendCheck( $request, $referral, $amount, $memo );
+
+        return redirect()->route('company-referrals');
+
+    }
+
 
     /**
      * Rewards view

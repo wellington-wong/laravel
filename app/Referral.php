@@ -33,7 +33,7 @@ class Referral extends Model
     }
 
     public function check() {
-        return $this->hasOne(Check::class);
+        return $this->belongsToMany( Check::class );
     }
 
     /**

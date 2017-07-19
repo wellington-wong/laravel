@@ -52,6 +52,7 @@ Route::get('/form/{id}', 'ReferralController@formJson')->name('form-json');
 
 Route::get('/referrals', 'ReferralController@referrals')->name('referrals');
 
+Route::post('/referral/sendCheck/{referral_id}', 'ReferralController@sendCheck')->name('post-send-check');
 Route::get('/referral/create/{id}', 'ReferralController@create')->name('referral-create-id');
 Route::post('/referral/create/{id}', 'ReferralController@postCreate')->name('post-referral-create-id');
 Route::get('/referral/create', 'ReferralController@findForm')->name('referral-create');
