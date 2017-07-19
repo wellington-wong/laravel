@@ -165,10 +165,19 @@ class ProgramOptionsController extends Controller
     {
         $l = $request->_company->lob()->first();
 
-        //dd ( $l->verifyKey() );
+        $num_bankaccounts = null;
+        if ( !is_null($l) ) {
+            $l->verifyKey();
+
+            if ( true == $l->verified ) {
+                $num_bankaccounts = $l->numberBankAccounts();
+                $all_verified = $l->banksVerified();
+            }
+        }
+
 
         return view('program-options.lob')
-            ->with(compact('l'));
+            ->with(compact('l', 'num_bankaccounts', 'all_verified'));
 
         return $view;
         return view('program-options.lob');

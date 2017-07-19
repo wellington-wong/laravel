@@ -30,24 +30,37 @@
                                 <i class="fa {{ isset($r->status) ? ($r->status == 3 ? 'fa-lock' : 'fa-angle-down' ) : '' }}" aria-hidden="true"></i>
                                 @endif
 
-                                @if (Gate::allows('send-check') && count($r->check) == 0 && $r->status == \App\Referral::STATUS_APPROVED )
-                                    <form method="POST" action="{{ route('post-send-check', ['referral_id'=>$r->id]) }}" >
-                                    {{ csrf_field() }}
-                                    $<input name="amount" >
-                                    <input name="memo" >
-                                    <button class="btn btn-primary">Send Check</button>
-                                    </form>
-                                @endif
-
-
                             </td>
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">view details</a></td>@endif
                         </tr>
+
+
+                        @if ( Gate::allows('send-check')
+                            && count($r->check) == 0
+                            && $r->status == \App\Referral::STATUS_APPROVED
+                            && ( null != $_company->lob && $_company->lob->numberBankAccounts() > 0 && $_company->lob->banksVerified() == true ) )
+                            <tr>
+                                <td></td><td></td>
+                                <td colspan="3" >
+                                <form method="POST" action="{{ route('post-send-check', ['referral_id'=>$r->id]) }}" >
+                                    {{ csrf_field() }}
+
+                                    <input name="amount" placeholder="$" length="5" style="width:100px" >
+
+                                    <input name="memo" placeholder="MEMO" >
+
+                                    <button class="btn btn-primary">Send Check</button>
+                                </form>
+                                </td>
+                            </tr>
+                        @endif
+
+
                         @if( count($r->check) == 1 )
                             <?php $check = $r->check->first(); ?>
                             <tr>
                                 <td>CHECK SENT</td>
-                                <td>{{ $check->check_number }}</td>
+                                <td><a href="{{ $check->pdf }}" target="_blank">{{ $check->check_number }}</a></td>
                                 <td>${{ round($check->amount,2) }}</td>
                                 <td>Send Date: {{ $check->send_date }}</td>
                                 <td>Expected: {{ $check->expected_delivery_date }}</td>

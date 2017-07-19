@@ -20,9 +20,12 @@ class Lob extends Model
 
     protected $fillable = ['company_id', 'apikey'];
 
-    public $verified = false;
+    public $verified = null;
 
     public $lob;
+
+    public $bankAccounts;
+    protected $banksVerified = null;
 
     public static $states = array(
         'Alabama'=>'AL',
@@ -143,6 +146,35 @@ class Lob extends Model
         $a->save();
 
         return $lob_return;
+    }
+
+    public function numberBankAccounts() {
+        $this->startLob();
+        $this->verifyKey();
+        if ( false == $this->verified ) {
+            return 0;
+        }
+        $this->bankAccounts = $this->lob->bankAccounts()->all();
+        return count( $this->bankAccounts );
+    }
+
+    public function banksVerified() {
+        $this->verifyKey();
+        if ( false == $this->verified ) {
+            return false;
+        }
+        $this->numberBankAccounts();
+        if ( is_null( $this->banksVerified ) ) {
+            if ( count( $this->bankAccounts ) > 0 ) {
+                $this->banksVerified = true;
+                foreach ( $this->bankAccounts as $b ) {
+                    if ( false == $b['verified'] ) {
+                        $this->banksVerified = false;
+                    }
+                }
+            }
+        }
+        return $this->banksVerified;
     }
 
 

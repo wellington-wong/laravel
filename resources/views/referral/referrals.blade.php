@@ -44,6 +44,24 @@
 
         <div class="clearfix"></div>
 
+        @if ( Gate::allows('send-check') )
+            @if ( null == $_company->lob )
+                <div class="alert alert-warning text-center" >
+                    To send checks as rewards, click on <a href="{{ route('program-options-lob') }}">bank account</a> in the menu and configure Lob.
+                </div>
+            @elseif ( null != $_company->lob )
+                @if ( $_company->lob->numberBankAccounts() > 0 && $_company->lob->banksVerified() == false )
+                    <div class="alert alert-warning text-center" >
+                    To send checks as rewards, go to lob.com and <b>verify</b> your bank account.
+                    </div>
+                @elseif ( $_company->lob->numberBankAccounts() == 0 )
+                    <div class="alert alert-warning text-center" >
+                    To send checks as rewards, click on <a href="{{ route('program-options-lob') }}">bank account</a> in the menu and configure Lob.
+                    </div>
+                @endif
+            @endif
+        @endif
+
         @include('referral.partials.referral-table', [ 'route' => $route ])
 
         @if (auth()->user()->hasRole(['member']))

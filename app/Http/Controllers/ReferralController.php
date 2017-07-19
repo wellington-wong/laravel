@@ -296,7 +296,7 @@ class ReferralController extends Controller
         $rules = ['amount'=>'required'];
         $validator = Validator::make( $request->input() , $rules );
         if ( $validator->fails() ) {
-            dd('fail!');
+            return redirect()->back()->withErrors($validator->messages());
         }
 
         $amount = $request->input('amount');
