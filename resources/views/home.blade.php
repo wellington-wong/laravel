@@ -41,7 +41,7 @@
         <div class="col-md-4 dashboard-right">
             <div class="company-info text-center">            
 
-                @include( 'company.info_inner' )
+                @include( 'company.partials.info_inner' )
 
                 <a href="{{ route('manage-account') }}" class="btn btn-primary">Account Settings</a>
             </div>

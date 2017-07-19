@@ -1716,3 +1716,21 @@ table.table {
 	}
 }
 /*** User View End ***/
+
+/*** Custom Company Login ***/
+.company-custom {
+	.top-navbar {
+		padding: 0;
+		.navbar.navbar-static-top {
+			background: $custom-company-bg;
+			&, a {
+				color: #fff;
+				font-weight: normal;
+			}
+		}
+	}
+	footer {
+		background: $custom-company-bg;
+	}
+}
+/*** Custom Company Login End ***/

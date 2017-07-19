@@ -178,7 +178,7 @@ $(function (){
 			$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function (){
 				tinymceHelper(null, true);
 				data.note = $('.referrals.modal-textarea').val();
-				ajaxHelper("referral/update", data, "POST", statusCallback);
+				ajaxHelper("/referral/update", data, "POST", statusCallback);
 				referrals_modal.modal('hide');
 			});
 			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function (){
@@ -191,7 +191,7 @@ $(function (){
 			$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function (){
 				tinymceHelper(null, true);
 				_this.closest('.referral-status').find('.fa').removeClass('fa-angle-down').addClass('fa-lock');
-				ajaxHelper("referral/update", data, "POST", statusCallback);
+				ajaxHelper("/referral/update", data, "POST", statusCallback);
 				referrals_modal.modal('hide');
 			});
 			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function (){
@@ -199,7 +199,7 @@ $(function (){
 			});
        	}
        	else {
-			ajaxHelper("referral/update", data, "POST", statusCallback);
+			ajaxHelper("/referral/update", data, "POST", statusCallback);
        	}
 	});
  	$('.current-referral-status').each(function (){

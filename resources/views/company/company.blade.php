@@ -48,7 +48,7 @@
 
             <div class="col-md-4 company-profile-right">
                 <div class="company-info text-center">            
-                    @include('company.info_inner')
+                    @include('company.partials.info_inner')
                 </div>
             </div>
         </div>

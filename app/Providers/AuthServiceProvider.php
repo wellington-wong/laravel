@@ -94,5 +94,10 @@ class AuthServiceProvider extends ServiceProvider
             return Auth::user()->can('login_as_user');
         });
 
+        // Define send check gate
+        Gate::define('send-check', function () {
+              return Auth::user()->can('send-check');
+        });
+
     }
 }
