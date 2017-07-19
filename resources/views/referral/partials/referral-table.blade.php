@@ -49,7 +49,7 @@
 
                                     <input name="memo" placeholder="MEMO" >
 
-                                    <button class="btn btn-primary">Send Check</button>
+                                    <input type="submit" class="btn btn-primary" onclick="this.form.submit(); this.disabled=true; this.value='Sending…';" value="Send Check" >
                                 </form>
                                 </td>
                             </tr>

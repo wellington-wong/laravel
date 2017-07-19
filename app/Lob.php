@@ -257,6 +257,8 @@ class Lob extends Model
 
                 $this->saveCheck( $check, $r );
                 //var_export($check);
+                $r->status = Referral::STATUS_REWARD_SENT;
+                $r->save();
             }
 
         }
