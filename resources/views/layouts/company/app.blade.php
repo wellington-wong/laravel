@@ -39,10 +39,10 @@
 
                             <nav class="navbar navbar-default navbar-static-top">
                                 <div class="container-fluid col-md-10 col-md-offset-1">
-                                    <div class="col-sm-3 company-name no-padding-lr">
+                                    <div class="col-sm-9 company-name no-padding-lr">
                                         <h4><strong>{{ $_company->company_name }} Referral Program</strong></h4>
                                     </div>
-                                    <div class="col-sm-9 company-action no-padding-lr">
+                                    <div class="col-sm-3 company-action no-padding-lr">
                                         <!-- Right Side Of Navbar -->
                                         <ul class="nav navbar-nav navbar-right">
                                             <!-- Authentication Links -->
