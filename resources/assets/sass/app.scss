@@ -1733,6 +1733,13 @@ table.table {
 				color: #fff;
 				font-weight: normal;
 			}
+			.nav.navbar-nav {
+				.action {
+					border: 2px solid #1bbc9b;
+					border-radius: 10px;
+					padding: 4px 25px;
+				}
+			}
 		}
 	}
 	footer {

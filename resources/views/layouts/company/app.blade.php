@@ -46,7 +46,7 @@
                                         <!-- Right Side Of Navbar -->
                                         <ul class="nav navbar-nav navbar-right">
                                             <!-- Authentication Links -->
-                                            <li><a href="{{ route('company-register') }}">Register</a></li>
+                                            <li><a class="action" href="{{ route('company-register') }}">Register</a></li>
                                         </ul>
                                     </div>
                                 </div>
