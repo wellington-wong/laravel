@@ -11,6 +11,7 @@
                             @if (auth()->user()->hasRole('member'))<th></th>@endif
                         </tr>
                     </thead> 
+                    <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>
                     @foreach($referrals as $r)
 
                         @if ( Gate::allows('send-check')
@@ -71,7 +72,7 @@
                                 <td>Expected: {{ $check->expected_delivery_date }}</td>
                             </tr>
                         @endif
-
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
                     @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
                 </table>
