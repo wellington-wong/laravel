@@ -42,6 +42,17 @@
 
         </form>
 
+        {{-- THIS SECTION BRINGS UP INSTRUCTIONS FOR EACH TYPE OF LOB INCONSISTENCY --}}
+        {{-- IF NO LOB KEY OR LOB KEY IS NOT VERIFIED --}}
+        @if ( is_null($l) || false == $l->verified )
+            @include('lob.getAPIKey')
+        {{-- IF LOB HAS NO BANK ACCOUNTS --}}
+        @elseif ( 0 === $num_bankaccounts )
+            @include('lob.addBankAccount')
+        {{-- IF BANK ACCOUNT HAS NOT BEEN VERIFIED --}}
+        @elseif ( $num_bankaccounts > 0 && $all_verified == false )
+            @include('lob.verifyBankAccount')
+        @endif
 
     </div>
 
