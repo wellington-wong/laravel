@@ -22,7 +22,7 @@
                             <?php $canSendCheck = 0; ?>
                         @endif
 
-                        <tr @if(1==$canSendCheck) class="canSendCheck" @endif>
+                        <tr @if(1==$canSendCheck || count($r->check) == 1) class="canSendCheck" @endif>
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">{{ $r->id }}</a></td>@endif
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', $r->referrer->id) }}">{{ $r->referrer->name }}</a></td>@endif
