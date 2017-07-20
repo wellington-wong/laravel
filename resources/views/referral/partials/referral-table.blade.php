@@ -12,7 +12,17 @@
                         </tr>
                     </thead> 
                     @foreach($referrals as $r)
-                        <tr>
+
+                        @if ( Gate::allows('send-check')
+                            && count($r->check) == 0
+                            && $r->status == \App\Referral::STATUS_APPROVED
+                            && ( null != $_company->lob && $_company->lob->numberBankAccounts() > 0 && $_company->lob->banksVerified() == true ) )
+                            <?php $canSendCheck = 1; ?>
+                        @else
+                            <?php $canSendCheck = 0; ?>
+                        @endif
+
+                        <tr @if(1==$canSendCheck) class="canSendCheck" @endif>
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">{{ $r->id }}</a></td>@endif
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', $r->referrer->id) }}">{{ $r->referrer->name }}</a></td>@endif
@@ -34,12 +44,8 @@
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">view details</a></td>@endif
                         </tr>
 
-
-                        @if ( Gate::allows('send-check')
-                            && count($r->check) == 0
-                            && $r->status == \App\Referral::STATUS_APPROVED
-                            && ( null != $_company->lob && $_company->lob->numberBankAccounts() > 0 && $_company->lob->banksVerified() == true ) )
-                            <tr>
+                        @if ( 1 == $canSendCheck )
+                            <tr class="check" >
                                 <td></td><td></td>
                                 <td colspan="3" >
                                 <form method="POST" action="{{ route('post-send-check', ['referral_id'=>$r->id]) }}" >
@@ -55,10 +61,9 @@
                             </tr>
                         @endif
 
-
                         @if( count($r->check) == 1 )
                             <?php $check = $r->check->first(); ?>
-                            <tr>
+                            <tr class="check">
                                 <td>CHECK SENT</td>
                                 <td><a href="{{ $check->pdf }}" target="_blank">{{ $check->check_number }}</a></td>
                                 <td>${{ round($check->amount,2) }}</td>
@@ -66,6 +71,7 @@
                                 <td>Expected: {{ $check->expected_delivery_date }}</td>
                             </tr>
                         @endif
+
                     @endforeach
                     @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
                 </table>

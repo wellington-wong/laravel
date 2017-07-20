@@ -1734,3 +1734,18 @@ table.table {
 	}
 }
 /*** Custom Company Login End ***/
+
+/*** Referral Table ***/
+tr.canSendCheck {
+	border-bottom-color: white;
+}
+tr.canSendCheck td {
+	padding-bottom: 0 !important;
+}
+tr.check {
+	border-top-color: white;
+}
+tr.check td {
+	padding-top: 0 !important;
+}
+/*** Referral Table End ***/
