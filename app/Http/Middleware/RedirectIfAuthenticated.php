@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
         $hosts = explode('.', $request->getHost());
         $subdomain = $hosts[0];
         if ($company = Company::where('subdomain', $subdomain)->first()) {
-            return redirect()->guest('company-login');
+            //return redirect()->guest('company-login');
         }
 
         if (Auth::guard($guard)->check()) {
