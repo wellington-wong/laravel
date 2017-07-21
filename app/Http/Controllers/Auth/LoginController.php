@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Company;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,4 +38,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    public function showLoginForm( Request $request )
+    {        
+        if ($request->_company->subdomain != 'app') {
+            return view('layout.company.login');
+        } else {
+            return view('auth.login');
+        }
+    }
+
 }
