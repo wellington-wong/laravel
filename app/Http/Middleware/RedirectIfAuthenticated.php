@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
         // Redirect to custom company login
         $hosts = explode('.', $request->getHost());
         $subdomain = $hosts[0];
-        if ($company = Company::where('subdomain', $subdomain)->first()) {
+        if ($company = Company::where('subdomain', $subdomain)->first() && !Auth::check()) {
             return redirect()->guest('company-login');
         }
 
