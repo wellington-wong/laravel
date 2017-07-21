@@ -1731,6 +1731,7 @@ table.table {
 }
 .company-custom-body {
 	background: transparent;
+	margin-bottom: 100px;
 	.company-custom {
 		> .panel.panel-default {
 			border-color: transparent;
@@ -1765,7 +1766,6 @@ table.table {
 		}
 		.company-logo {
 			img {
-				padding-top: 10px;
 				padding-bottom: 20px;
 				margin: 0 auto;
 			}
@@ -1779,6 +1779,7 @@ table.table {
 				border: 0;
 				padding: 10px;
 				height: 40px;
+				border-radius: 3px;
 			}
 			a {
 				color: $custom-company-color;
