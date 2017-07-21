@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Validator;
 use App\Referral;
 use App\Notifications\ReferralNotifyUser;
 use App\Notifications\ReferralNotifyAdmin;
+use Cmgmyr\Messenger\Models\Message;
+use Cmgmyr\Messenger\Models\Participant;
+use Cmgmyr\Messenger\Models\Thread;
+use App\Thread as ThreadByCompany;
+use Carbon\Carbon;
+use App\Notifications\MessageReceived;
 
 class ReferralController extends Controller
 {
@@ -287,6 +293,50 @@ class ReferralController extends Controller
     }
 
 
+    public function sendMessage( Request $request, Referral $referral, $type  ) {
+        if ( 'No Address' == $type ) {
+            $subject = 'We need your address.';
+            $message = 'Please go to your ' . config('app.domain') . ' account and
+             click on '. link_to_route('manage-account') .' to
+             enter your address.';
+        }
+        //echo $message;exit();
+        $thread = Thread::create(
+            [
+                'subject' => $subject,
+            ]
+        );
+        $threadByCompany = ThreadByCompany::create(
+            [
+                'thread_id' => $thread->id,
+                'company_id' => $request->_company->id,
+            ]
+        );
+
+        // Message
+        $message = Message::create(
+            [
+                'thread_id' => $thread->id,
+                'user_id'   => $request->user()->id,
+                'body'      => $message,
+            ]
+        );
+        // Sender
+        $participant = Participant::create(
+            [
+                'thread_id' => $thread->id,
+                'user_id'   => $request->user()->id,
+                'last_read' => new Carbon,
+            ]
+        );
+        // Recipients
+        $recipient = $referral->referrer->id;
+        $notifyUser = User::find($recipient);
+        $notifyUser->notify(new MessageReceived($thread, $message, $recipient, $request));
+
+    }
+
+
     public function sendCheck( Request $request, $referral_id ) {
 
         if ( Gate::denies('send-check') ) {
@@ -327,7 +377,33 @@ class ReferralController extends Controller
 
         //CHECK IF USER HAS AN ADDRESS
         if ( 0 == $referral->referrer->address()->count() ) {
-            return redirect()->back()->withErrors("The referrer has no address");
+            //SEND MESSAGE/EMAIL TO USER
+            $this->sendMessage( $request, $referral, 'No Address' );
+            return redirect()->back()->withErrors("The referrer has no address to send a check to.");
+        }
+
+        //FIRST CHECK IF ADDRESS ALREADY HAS A lob_adr_id
+        if ( null == $referral->referrer->address->first()->lob_adr_id ) {
+            
+            //IF THERE'S NO lob_adr_id, CHECK IF VERIFIED
+            if ( 0 == $referral->referrer->address->first()->lob_verified ) {
+                $request->_company->lob->verifyAddress( $referral->referrer, $referral->referrer->address->first() );
+            }
+
+            //CHECK AGAIN
+            if ( 0 == $referral->referrer->address->first()->lob_verified ) {
+                //@todo CAN'T SEND A CHECK, NO VERIFIABLE ADDRESS
+                //SEND MESSAGE/EMAIL TO USER
+
+                //RETURN ERROR
+                return redirect()->back()->withErrors("The referrer's default address cannot be verified.");
+
+            //IF VERIFIED, CREATE LOB ADDRESS
+            } elseif ( 1 == $referral->referrer->address->first()->lob_verified ) {
+                if ( null == $referral->referrer->address->first()->lob_adr_id ) {
+                    $request->_company->lob->createAddress( $referral->referrer, $referral->referrer->address->first() );
+                }
+            }
         }
 
         //dd( $request->_company->lob->sendCheck() );

@@ -7,6 +7,15 @@ use Closure;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 
+function stripos_array($haystack, $needles){
+    foreach($needles as $needle) {
+        if(($res = stripos($haystack, $needle)) !== false) {
+            return $res;
+        }
+    }
+    return false;
+}
+
 class Domain
 {
     /**
@@ -34,9 +43,11 @@ class Domain
                 return redirect('https://app.' . config('app.domain') );
             }
         } else {
-            if ( !in_array( trim($request->getRequestUri(), '/') ,
-                //OK ROUTES FOR app.perxi.com
-                ['companies', 'company/create', 'login', 'register', 'logout', 'manage-account', 'global-settings/login-as-user'] ) ) {
+            //CHECKS IF ANY OF THESE STRINGS ARE IN THE URL
+            $ok_routes = ['companies', 'company/create', 'login', 'register', 'logout', 'manage-account',
+                'global-settings/login-as-user', 'password/reset', 'password/email', 'auth/facebook',
+                'auth/google'];
+            if ( stripos_array( trim($request->getRequestUri(), '/') , $ok_routes ) === false ) {
                 return redirect()->route('all-companies');
             }
             $company = new \stdClass();

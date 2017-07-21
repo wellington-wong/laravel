@@ -127,6 +127,7 @@ class Lob extends Model
             'address_zip'       => $a->zip,
         ));
         $a->lob_adr_id = $lob_address['id'];
+        $a->save();
         return $lob_address;
     }
 
