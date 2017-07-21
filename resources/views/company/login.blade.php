@@ -7,7 +7,7 @@
     <div class="container-fluid company-login-wrapper">
 
         <div class="row">
-        	<div class="col-md-2 col-md-offset-5"><img class="img-responsive" src="/{{ isset($_company->logo) ? $_company->logo : 'images/company-placeholder.png' }}" /></div>
+        	<div class="col-md-2 col-md-offset-5 company-logo"><img class="img-responsive" src="/{{ isset($_company->logo) ? $_company->logo : 'images/company-placeholder.png' }}" /></div>
         </div>
 
         <div class="row">
@@ -44,25 +44,23 @@
 			        </div>
 
 			        <div class="form-group">
-			            <div class="col-md-12 no-padding-lr">
-			                <a class="btn btn-link" href="{{ route('password.request') }}">FORGOT YOUR PASSWORD?</a>
+			            <div class="col-md-12">
+			                <a href="{{ route('password.request') }}">FORGOT PASSWORD?</a>
 			                <!--<div class="checkbox">
 			                    <label>
 			                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
 			                    </label>
 			                </div>-->
 			            </div>
-			            <div class="col-md-12 no-padding-lr">
-			                <a class="btn btn-link" href="{{ route('password.request') }}">DON'T HAVE AND ACCOUNT?</a>
-			                <span>CREATE ONE</span>
+			            <div class="col-md-12">
+			                <span>DON'T HAVE AND ACCOUNT?</span>
+			                <a href="{{ route('password.request') }}">CREATE ONE</a>
 			            </div>
 			        </div>
 
 			        <div class="form-group">
 			            <div class="col-md-12">
-			                <button type="submit" class="btn btn-primary">
-			                    LOGIN
-			                </button>
+			                <button type="submit" class="btn btn-primary btn-login col-md-12">LOGIN</button>
 			            </div>
 			        </div>
 			    </form>

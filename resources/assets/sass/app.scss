@@ -1763,10 +1763,32 @@ table.table {
 				}
 			}
 		}
+		.company-logo {
+			img {
+				padding-top: 10px;
+				padding-bottom: 20px;
+				margin: 0 auto;
+			}
+		}
 		.company-login-form-wrapper {
 			border: 4px solid $custom-company-color2;
 			padding: 38px;
 			border-radius: 10px;
+			input {
+				background: #efeeee;
+				border: 0;
+				padding: 10px;
+				height: 40px;
+			}
+			a {
+				color: $custom-company-color;
+			}
+			.btn-login {
+				background: $custom-company-color;
+				border: 0;
+				padding-top: 18px;
+				padding-bottom: 18px;
+			}
 		}
 	}
 	footer {
