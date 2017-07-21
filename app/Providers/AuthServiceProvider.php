@@ -91,7 +91,7 @@ class AuthServiceProvider extends ServiceProvider
         // Define send check gate
         // Super Admin only
         Gate::define('send-check', function () {
-            return auth()->user()->hasRole('superAdmin');
+            return auth()->user()->hasRole('superAdmin') || auth()->user()->hasRole('globalAdmin');
             //return Auth::user()->can('send-check');
         });
 
