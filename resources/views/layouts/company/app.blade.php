@@ -44,7 +44,7 @@
                                         <!-- Right Side Of Navbar -->
                                         <ul class="nav navbar-nav navbar-right">
                                             <!-- Authentication Links -->
-                                            <li><a class="action" href="{{ route('register') }}">REGISTER</a></li>
+                                            <li><a class="action" href="{{ Route::is('register') ? route('login') : route('register') }}">{{ Route::is('register') ? 'LOGIN' : 'REGISTER' }}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -78,8 +78,9 @@
         </div>
 
     <footer class="footer">
-      <div class="container">
-        <p class="text-center">Want to make your own referral program? Visit <a href="{{ env('APP_URL') }}">perxi.com</a></p>
+      <div class="container col-md-12 no-padding-lr">
+        <div class="col-md-12 cta-footer"><p class="text-center">Want to make your own referral program? Visit <a href="{{ env('APP_URL') }}" class="footer-link-home">perxi.com</a></p></div>
+        <div class="col-md-12 terms-company"><p class="text-center"><a href="{{ env('APP_URL') }}" class="terms-link">Terms and Conditions</a></p></div>
       </div>
     </footer>
 
