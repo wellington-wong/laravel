@@ -48,7 +48,7 @@
                         @if ( 1 == $canSendCheck )
                             <tr class="check" >
                                 <td></td><td></td>
-                                <td colspan="3" >
+                                <td colspan="4" >
                                 <form method="POST" action="{{ route('post-send-check', ['referral_id'=>$r->id]) }}" >
                                     {{ csrf_field() }}
 
