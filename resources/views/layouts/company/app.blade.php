@@ -27,9 +27,7 @@
         ]) !!};
     </script>
 </head>
-<body class="logged-in">
-    <div id="app">
-
+<body class="company-custom-body">
         <div class="container-fluid">
             <div class="row">
 
@@ -76,16 +74,14 @@
                         </div>
                     </div>
                 </div>
-                <footer class="footer">
-                  <div class="container">
-                    <p class="text-muted">Place sticky footer content here.</p>
-                  </div>
-                </footer>
             </div>
         </div>
 
-
-    </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>
 
     <!-- Scripts -->
 
