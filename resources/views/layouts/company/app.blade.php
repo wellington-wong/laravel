@@ -75,13 +75,13 @@
                     </div>
                 </div>
             </div>
-        <footer class="footer">
-          <div class="container">
-            <p class="text-muted">Place sticky footer content here.</p>
-          </div>
-        </footer>
         </div>
 
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>
 
     <!-- Scripts -->
 

@@ -1727,9 +1727,9 @@ table.table {
 .custom-company-html {
 	position: relative;
 	min-height: 100%;
+	height: auto;
 }
 .company-custom-body {
-	height: auto;
 	.company-custom {
 		.top-navbar {
 			padding: 0;
