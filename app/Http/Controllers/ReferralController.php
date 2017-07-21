@@ -300,6 +300,13 @@ class ReferralController extends Controller
              click on '. link_to_route('manage-account') .' to
              enter your address.';
         }
+        if ( 'Verify Address' == $type ) {
+            $subject = 'Please correct your address.';
+            $message = 'Your address could not be verified as deliverable.';
+            $message .= 'Please go to your ' . config('app.domain') . ' account and
+             click on '. link_to_route('manage-account') .' to
+             correct your address.';
+        }
         //echo $message;exit();
         $thread = Thread::create(
             [
@@ -394,7 +401,7 @@ class ReferralController extends Controller
             if ( 0 == $referral->referrer->address->first()->lob_verified ) {
                 //@todo CAN'T SEND A CHECK, NO VERIFIABLE ADDRESS
                 //SEND MESSAGE/EMAIL TO USER
-
+                $this->sendMessage( $request, $referral, 'Verify Address' );
                 //RETURN ERROR
                 return redirect()->back()->withErrors("The referrer's default address cannot be verified.");
 
