@@ -63,7 +63,13 @@ class MessageReceived extends Notification
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(), 
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
         ]);
+
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
+
         return (new MailMessage)
+                    ->from($from, $fromName)
                     ->subject('Perxi: New Message Received')
                     ->line('You have received a new message from ' . (isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->first_name . ' ' . Auth::user()->last_name) . '.')
                     ->action('Go to message', url('/messages/' . $this->thread->id));
