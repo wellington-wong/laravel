@@ -42,7 +42,7 @@ class LoginController extends Controller
     public function showLoginForm( Request $request )
     {        
         if ($request->_company->subdomain != 'app') {
-            return view('layout.company.login');
+            return view('company.login');
         } else {
             return view('auth.login');
         }
