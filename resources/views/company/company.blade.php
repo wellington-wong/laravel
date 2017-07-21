@@ -35,7 +35,7 @@
                     {{ Form::text('website', isset($_company->website) ? $_company->website : '', ['placeholder' => 'Company Website', 'class' => 'form-control company-website' . ($errors->has('website') ? ' has-error' : '') ]) }}            
                 </div>
 
-                @include('forms.address', ['company' => true, 'city' => $_company->address[0]->city, 'address' => $_company->address[0]->address, 'address2' => $_company->address[0]->address2, 'zip' => $_company->address[0]->zip, 'state' => $_company->address[0]->state])
+                @include('forms.address', ['company' => true, 'address' => $_company->address->first() or null  ])
 
                 {{ Form::hidden('company_id', (isset($_company->id) ? $_company->id : null )) }}
 
