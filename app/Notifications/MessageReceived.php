@@ -10,6 +10,7 @@ use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Thread;
 use Auth;
 use App\LogEmail;
+use App\User;
 use Illuminate\Http\Request;
 
 class MessageReceived extends Notification
@@ -67,11 +68,13 @@ class MessageReceived extends Notification
         // Custom 'from' email
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
-
+        $toName = User::find($this->participant);
+        
         return (new MailMessage)
                     ->from($from, $fromName)
                     ->subject('Perxi: New Message Received')
-                    ->line('You have received a new message from ' . (isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->first_name . ' ' . Auth::user()->last_name) . '.')
+                    ->greeting('Hello ' . $toName->getName())
+                    ->line('You have received a new message from ' . $fromName)
                     ->action('Go to message', url('/messages/' . $this->thread->id));
     }
 
