@@ -7,14 +7,17 @@
     <div class="container-fluid company-registration-wrapper">
 
         <div class="row">
-	        <div class="col-md-5 col-md-offset-1 custom-company-registration">
-	        	<div class="col-md-6"><img class="img-responsive" src="/{{ isset($_company->logo) ? $_company->logo : 'images/company-placeholder.png' }}" /></div>
-	        	<div class="col-md-12 custom-company-text">
-	        		{!! isset($_company->subdomain_login_text) ? $_company->subdomain_login_text : '<strong>Welcome to Our Referral Program</strong><br /><span>Create an account to start submitting referrals and earning rewards.</span>' !!}
-	        	</div>
-	        	<div class="cta-company-registration col-md-12">
-	        		<span>Already a member?</span> <a href="{{ route('login') }}">Sign in</a><br />
-	        		<span>Questions?</span> <a href="mailto:admin@perxi.com">Email Us</a>
+	        <div class="col-md-5 col-md-offset-1 custom-company-registration no-padding-lr">
+	        	<div class="row">
+                  <div class="col-md-6"><img class="img-responsive" src="/{{ isset($_company->logo) ? $_company->logo : 'images/company-placeholder.png' }}" /></div>
+  	        	
+                  <div class="col-md-12 custom-company-text">
+          		    {!! isset($_company->subdomain_login_text) ? $_company->subdomain_login_text : '<strong>Welcome to Our Referral Program</strong><br /><span>Create an account to start submitting referrals and earning rewards.</span>' !!}
+                  </div>
+  	        	  <div class="cta-company-registration col-md-12">
+  	        		<span>Already a member?</span> <a href="{{ route('login') }}">Sign in</a><br />
+  	        		<span>Questions?</span> <a href="mailto:admin@perxi.com">Email Us</a>
+                 </div>
 	        	</div>
 	        </div>
 	        <div class="company-register-form-wrapper col-md-5">
