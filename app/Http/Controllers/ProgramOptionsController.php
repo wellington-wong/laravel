@@ -133,8 +133,10 @@ class ProgramOptionsController extends Controller
     public function notificationEmail ( Request $request, $id )
     {
         $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $id)->first();
+        $emailTemplateType = $id;
+
         return view('program-options.notification-email')
-        ->with(compact('emailTemplate'));
+        ->with(compact('emailTemplate', 'emailTemplateType'));
     }
 
     /**

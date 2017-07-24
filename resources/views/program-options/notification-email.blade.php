@@ -43,7 +43,7 @@
         <div class="form-group">
             <textarea class="form-control" name="email_html" id="email_html">{{ isset($emailTemplate->email_html) ? str_replace('{{' , '&#123; &#123;', $emailTemplate->email_html) : '' }}</textarea>
         </div>
-        {{ Form::hidden('type', $emailTemplate->type) }}
+        {{ Form::hidden('type', isset($emailTemplate->type) ? $emailTemplate->type : $emailTemplateType) }}
         <div class="form-group btn-group pull-right">
             <button class="btn btn-danger btn-reset" type="reset">Reset</button>
             <button class="btn btn-primary">Save</button>
