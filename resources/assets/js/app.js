@@ -635,9 +635,9 @@ $(function (){
 
 	$('.accept-terms').change(function (){
 		if ($(this).prop('checked')) {
-			$('.btn-register').removeClass('disabled');
+			$('.btn-register').removeAttr('disabled');
 		} else {			
-			$('.btn-register').addClass('disabled');
+			$('.btn-register').prop('disabled', 'true');
 		}
 	});
 
