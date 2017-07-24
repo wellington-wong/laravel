@@ -108,7 +108,7 @@
 
                   <div class="form-group">
                       <div class="col-md-12">
-                          <button type="submit" class="btn btn-primary btn-register col-md-12 disabled">SUBMIT</button>
+                          <button type="submit" class="btn btn-primary btn-register col-md-12" disabled>SUBMIT</button>
                       </div>
                   </div>
 
