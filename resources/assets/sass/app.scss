@@ -1704,7 +1704,7 @@ table.table {
 }
 /*** Create User End ***/
 
-/*** Email Template Form ***/
+/*** Email Template formm ***/
 #renderer_iframe {
     width:100%;
     height:4.5in;
@@ -1724,34 +1724,102 @@ table.table {
 /*** User View End ***/
 
 /*** Custom Company Login ***/
-.company-custom {
-	.top-navbar {
-		padding: 0;
-		.navbar.navbar-static-top {
-			background: $custom-company-bg;
-			&, a {
-				color: #fff;
-				font-weight: normal;
-			}
-			.nav.navbar-nav {
-				.action {
-					border: 2px solid $custom-company-color;
-					border-radius: 7px;
-					padding: 5px 25px;
-					font-size: 11px;
-					outline: none;
+.custom-company-html {
+	position: relative;
+	min-height: 100%;
+	height: auto;
+}
+.company-custom-body {
+	background: transparent;
+	margin-bottom: 100px;
+	.company-custom {
+		> .panel.panel-default {
+			border-color: transparent;
+			border: 0;
+			border-radius: 0;
+			box-shadow: none;
+		}
+		.top-navbar {
+			padding: 0;
+			.navbar.navbar-static-top {
+				background: $custom-company-bg;
+				&, a {
+					color: #fff;
+					font-weight: normal;
+				}
+				.nav.navbar-nav {
+					.action {
+						border: 2px solid $custom-company-color;
+						border-radius: 7px;
+						padding: 5px 25px;
+						font-size: 11px;
+						outline: none;
+					}
+				}
+				.company-name {
+					padding-top: 10px;
+				}
+				.company-action {
+					padding-top: 5px;
 				}
 			}
-			.company-name {
-				padding-top: 10px;
+		}
+		.company-logo {
+			img {
+				padding-bottom: 20px;
+				margin: 0 auto;
 			}
-			.company-action {
-				padding-top: 5px;
+		}
+		.company-login-form-wrapper {
+			border: 4px solid $custom-company-color2;
+			padding: 38px;
+			border-radius: 10px;
+			input {
+				background: #efeeee;
+				border: 0;
+				padding: 10px;
+				height: 40px;
+				border-radius: 3px;
+			}
+			a {
+				color: $custom-company-color;
+			}
+			.btn-login {
+				background: $custom-company-color;
+				border: 0;
+				padding-top: 18px;
+				padding-bottom: 18px;
 			}
 		}
 	}
 	footer {
 		background: $custom-company-bg;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 95px;
+		.container {
+			padding-top: 0;
+		}
+		.cta-footer {
+			height: 60px;
+			.footer-link-home {
+				color: $custom-company-color;
+				line-height: 60px;
+			}
+		}
+		.terms-company {
+			background: $custom-company-color;
+			height: 35px;
+			.terms-link {
+				color: #fff;
+				line-height: 35px;
+			}		
+		}
+		p {
+			margin: 0;
+			line-height: 20px;
+		}
 	}
 }
 /*** Custom Company Login End ***/

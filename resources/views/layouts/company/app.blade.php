@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
+<html lang="{{ config('app.locale') }}" class="custom-company-html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,9 +27,7 @@
         ]) !!};
     </script>
 </head>
-<body class="logged-in">
-    <div id="app">
-
+<body class="company-custom-body">
         <div class="container-fluid">
             <div class="row">
 
@@ -46,7 +44,7 @@
                                         <!-- Right Side Of Navbar -->
                                         <ul class="nav navbar-nav navbar-right">
                                             <!-- Authentication Links -->
-                                            <li><a class="action" href="{{ route('company-register') }}">REGISTER</a></li>
+                                            <li><a class="action" href="{{ Route::is('register') ? route('login') : route('register') }}">{{ Route::is('register') ? 'LOGIN' : 'REGISTER' }}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -76,16 +74,15 @@
                         </div>
                     </div>
                 </div>
-                <footer class="footer">
-                  <div class="container">
-                    <p class="text-muted">Place sticky footer content here.</p>
-                  </div>
-                </footer>
             </div>
         </div>
 
-
-    </div>
+    <footer class="footer">
+      <div class="container col-md-12 no-padding-lr">
+        <div class="col-md-12 cta-footer"><p class="text-center">Want to make your own referral program? Visit <a href="{{ env('APP_URL') }}" class="footer-link-home">perxi.com.</a></p></div>
+        <div class="col-md-12 terms-company"><p class="text-center"><a href="{{ env('APP_URL') }}" class="terms-link">Terms and Conditions</a></p></div>
+      </div>
+    </footer>
 
     <!-- Scripts -->
 
