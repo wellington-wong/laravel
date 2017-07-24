@@ -56,9 +56,9 @@ class UserController extends Controller
         $param = [];
         if (count($request->all())) {
             $param = $referrals->getParams();
-            $referrals = $request->user()->filterSortReferralSubmissions()->paginate(15);
+            $referrals = $request->user()->filterSortReferralSubmissions(null, $id)->paginate(15);
         } else {
-            $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->paginate(15);
+            $referrals = $request->user()->userReferrals($id)->orderBy('created_at', 'desc')->paginate(15);
         }
 
     	$user = User::find($id);

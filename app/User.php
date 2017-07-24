@@ -4,6 +4,7 @@ namespace App;
 
 use App\Role;
 use App\RoleUser;
+use App\Referral;
 use App\Traits\ReferralTrait;
 use Illuminate\Support\Facades\DB;
 
@@ -168,6 +169,11 @@ class User extends Authenticatable
     public function referrals() {
         $request = request();
         return $this->hasMany( Referral::class, 'referrer_id', 'id' )->where('company_id', $request->_company->id);
+    }
+
+    public function userReferrals($user_id) {
+        $request = request();
+        return Referral::where('referrer_id',  $user_id )->where('company_id', $request->_company->id);
     }
 
     public function referred_companies() {
