@@ -20845,6 +20845,14 @@ $(function () {
 		}
 	}
 
+	$('.accept-terms').change(function () {
+		if ($(this).prop('checked')) {
+			$('.btn-register').removeClass('disabled');
+		} else {
+			$('.btn-register').addClass('disabled');
+		}
+	});
+
 	// END COMMON
 
 	// SIDEBAR
