@@ -95,10 +95,33 @@ class ProgramOptionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function notificationEmails ( Request $request )
-    {
-        $notificationSettings = [];
+    { 
+        $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->get()->keyBy('type')->toArray();
         return view('program-options.notification-emails')
-        ->with(compact('notificationSettings'));
+        ->with(compact('emailTemplate'));
+    }
+
+    /**
+     * Save notification emails status
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postNotificationEmails ( Request $request )
+     {
+        $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $request->get('type'))->first();
+        $request->merge(['user_id' => auth()->user()->id]);
+        $request->merge(['company_id' => $request->_company->id]);
+        $request->merge(['email_html' => isset($emailTemplate) ? $emailTemplate->email_html : '']);
+
+        if (isset($emailTemplate)) {
+            $emailTemplate->update([
+                'status' => $request->get('status')
+            ]);
+        } else {
+            EmailTemplate::create($request->all());
+            return;
+        }
     }
 
     /**
@@ -107,11 +130,11 @@ class ProgramOptionsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function notificationEmail ( Request $request )
+    public function notificationEmail ( Request $request, $id )
     {
-        $notificationSettings = [];
+        $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $id)->first();
         return view('program-options.notification-email')
-        ->with(compact('notificationSettings'));
+        ->with(compact('emailTemplate'));
     }
 
     /**
@@ -120,7 +143,7 @@ class ProgramOptionsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postNotificationEmails( Request $request )
+    public function postNotificationEmail( Request $request )
     {
         $rules = [
             //'email_html'=>'required'
@@ -136,7 +159,7 @@ class ProgramOptionsController extends Controller
         $request->merge(['user_id' => auth()->user()->id]);
         $request->merge(['company_id' => $request->_company->id]);
         
-        if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->first()) {
+        if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $request->get('type'))->first()) {
             $emailTemplate->update([
                 'email_html' => $request->input('email_html') ? : ''
             ]);

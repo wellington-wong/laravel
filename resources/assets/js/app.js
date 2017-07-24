@@ -918,6 +918,18 @@ $(function (){
 		$('#email_html').html('');
 	    renderHTML();
 	});
+
+	$('.table-notification-emails .switch input[type="checkbox"]').change(function (){
+
+		var data = {
+			type: $(this).data('value'),
+			status: $(this).prop('checked') ? 0 : 1
+		};
+
+		ajaxHelper("/program-options/notification-emails", data, "POST", processCheckbox);
+	});
+	function processCheckbox(data){}
+
 // END EMAIL TEMPLATE FORM
 
 

@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class EmailTemplate extends Model
 {
 
-    const NEW_MEMBER			= 1;
+    const NEW_MEMBER		= 1;
     const REFERRAL_RECEIVED	= 2;
     const REFERRAL_VERIFIED		= 3;
-    const REFERRAL_SENT			= 4;
+    const REFERRAL_SENT		= 4;
     const REFERRAL_DECLINED	= 5;
 
     const ADMIN_NEW_MEMBER	= 6;
-    const ADMIN_NEW_REFERRAL	= 5;
+    const ADMIN_NEW_REFERRAL	= 7;
 
     static $status = [
         self::NEW_MEMBER => 'New Member Welcome Email',
@@ -29,14 +29,13 @@ class EmailTemplate extends Model
 
     protected $table = 'email_templates';
 
-    protected $fillable = ['user_id', 'company_id', 'email_html'];
+    protected $fillable = ['user_id', 'company_id', 'email_html', 'status', 'type'];
 
     public function owner() {
     	return $this->hasOne(User::class);
     }
 
     public function prepareEmail($referral) {
-    	return dd($referral);
     }
 
 }
