@@ -7,7 +7,7 @@
     <div class="container-fluid company-registration-wrapper">
 
         <div class="row">
-	        <div class="col-md-5 col-md-offset-1 custom-company-registration no-padding-lr">
+	        <div class="col-md-5 col-md-offset-1 custom-company-registration no-padding-l">
 	        	<div class="row">
                   <div class="col-md-6"><img class="img-responsive" src="/{{ isset($_company->logo) ? $_company->logo : 'images/company-placeholder.png' }}" /></div>
   	        	
@@ -21,7 +21,7 @@
 	        	</div>
 	        </div>
 	        <div class="company-register-form-wrapper col-md-5">
-              <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+              <form class="form-horizontal" role="form" method="POST" action="{{ route('company-register') }}">
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
