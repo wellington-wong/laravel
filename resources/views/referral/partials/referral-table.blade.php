@@ -26,8 +26,9 @@
                         <tr @if(1==$canSendCheck || count($r->check) == 1) class="canSendCheck" @endif>
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">{{ $r->id }}</a></td>@endif
-                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', isset($r->referrer->id) ? $r->referrer->id : 0) }}">{{ isset($r->referrer->name) ? $r->referrer->name : '' }}</a></td>@endif
+                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', isset($r->referrer->id) ? $r->referrer->id : 0) }}">{{ isset($r->referrer->display_name) ? $r->referrer->display_name : '' }}</a></td>@endif
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', isset($r->referred->id) ? $r->referred->id : 0) }}">{{ isset($r->referred->display_name) ? $r->referred->display_name : '' }}</a></td>
+
                             @else <td>{{ $r->referred->display_name }}</td>
                             @endif
                             <td class="referral-status" data-id="{{ $r->id }}">
