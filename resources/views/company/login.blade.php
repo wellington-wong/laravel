@@ -54,7 +54,7 @@
 			            </div>
 			            <div class="col-md-12">
 			                <span>DON'T HAVE AND ACCOUNT?</span>
-			                <a href="{{ route('password.request') }}">CREATE ONE</a>
+			                <a href="{{ route('register') }}">CREATE ONE</a>
 			            </div>
 			        </div>
 

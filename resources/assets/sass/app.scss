@@ -1770,7 +1770,7 @@ table.table {
 				margin: 0 auto;
 			}
 		}
-		.company-login-form-wrapper {
+		.company-login-form-wrapper, .company-register-form-wrapper {
 			border: 4px solid $custom-company-color2;
 			padding: 38px;
 			border-radius: 10px;
@@ -1784,11 +1784,28 @@ table.table {
 			a {
 				color: $custom-company-color;
 			}
-			.btn-login {
+			.btn-login, .btn-register {
 				background: $custom-company-color;
 				border: 0;
 				padding-top: 18px;
 				padding-bottom: 18px;
+			}
+		}
+		.company-registration-wrapper {
+			.custom-company-registration {
+				font-family: domine;
+				.cta-company-registration, .custom-company-text {
+					margin-top: 20px;
+				}
+			}
+			.company-register-form-wrapper {
+				.form-group {
+					margin-left: 0;
+					margin-right: 0;
+				}
+			}
+			.accept-terms {
+				height: auto;
 			}
 		}
 	}

@@ -2,13 +2,15 @@
 
 namespace App\Traits;
 
+use App\Referral;
+
 trait ReferralTrait {
 
     /**
      * Sort Referrals
      * @return
      */
-    public function filterSortReferralSubmissions($defaultSort = 'created_at') {
+    public function filterSortReferralSubmissions($defaultSort = 'created_at', $user_id = null) {
 
         $request = request();
 
@@ -24,10 +26,14 @@ trait ReferralTrait {
         $datarangeTo = isset($daterange[1]) && (bool)strtotime($daterange[1]) ? $daterange[1] : null;
 
         // Change query when sorting and filtering.
-        $referrals = $this->referrals();
+        if (isset($user_id)) {
+            $referrals = Referral::where('referrer_id',  $user_id )->where('company_id', $request->_company->id);
+        } else {
+            $referrals = $this->referrals();
+        }
 
-        if ((auth()->user()->hasRole('member'))) {
-            $referrals->where('referrer_id', auth()->user()->id);
+        if ((auth()->user()->hasRole('member')) || $user_id) {
+            $referrals->where('referrer_id', isset($user_id) ? $user_id : auth()->user()->id);
         }
 
         if (isset($status)) {

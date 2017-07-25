@@ -21,7 +21,7 @@
         <label>HTML Code</label>
         <span id="renderHtml" class="btn btn-link" >Render HTML</span>
         <span id="defaultHtml" class="btn btn-link" >Change to Example HTML (over-writes but doesn't save current HTML)</span>
-        {{ Form::open(['route' => 'program-options-post-notification-emails', 'id' => 'create-email-template']) }}
+        {{ Form::open() }}
         <div class="referrer-data placeholder-name">
             <label>Available referrer data:</label>
             <ul class="list-inline">
@@ -41,8 +41,9 @@
             </ul>
         </div>
         <div class="form-group">
-            <textarea class="form-control" name="email_html" id="email_html">{{ isset($_company->emailTemplate()->first()->email_html) ? str_replace('{{' , '&#123; &#123;', $_company->emailTemplate()->first()->email_html) : '' }}</textarea>
+            <textarea class="form-control" name="email_html" id="email_html">{{ isset($emailTemplate->email_html) ? str_replace('{{' , '&#123; &#123;', $emailTemplate->email_html) : '' }}</textarea>
         </div>
+        {{ Form::hidden('type', isset($emailTemplate->type) ? $emailTemplate->type : $emailTemplateType) }}
         <div class="form-group btn-group pull-right">
             <button class="btn btn-danger btn-reset" type="reset">Reset</button>
             <button class="btn btn-primary">Save</button>
