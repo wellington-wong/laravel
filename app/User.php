@@ -78,7 +78,7 @@ class User extends Authenticatable
      *
      * @param mixed $role
      */
-    public function attachRole( $role, Company $company = null )
+    public function attachRole( Role $role, Company $company = null )
     {
         if(is_object($role)) {
             $role = $role->getKey();
@@ -93,8 +93,7 @@ class User extends Authenticatable
         } else {
             $company_id = $company->id;
         }
-
-        //$this->roles()->attach($role);
+        
         $this->roles()->attach($role, ['company_id'=>$company_id ]);
     }
 
@@ -179,111 +178,8 @@ class User extends Authenticatable
     public function referred_companies() {
         return $this->belongsToMany(Company::class, 'user_referred');
     }
-
-    /*
-     * adds a default phone number to a user from a request
-     */
-    public function addDefaultPhone() {
-
-        $request = request();
-        if ( null == $request->input('phone')) {
-            return null;
-        } else {
-            $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
-            $request->merge(['number'=>Phone::sanitize($request->input('phone'))]);
-            $request->merge(['country'=>'']);
-            $request->merge(['country_code'=>'']);
-        }
-        $input = [];
-        $phone = new Phone();
-        foreach ($phone->getFillable() as $c) {
-            if ( isset($request->$c) ) {
-                $input[] = $c;
-            }
-        }
-        $phone = $this->phone()->create(
-            $request->only($input)
-        );
-        $this->phone()->updateExistingPivot($phone->id, ['default'=>1]);
-        return $phone;
-    }
-
-
-    /*
-     * update default phone number to a user from a request
-     */
-    public function updateDefaultPhone() {
-
-        $request = request();
-        if ( null == $request->input('phone')) {
-            return null;
-        } else {
-            $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
-            $request->merge(['number'=>Phone::sanitize($request->input('phone'))]);
-            $request->merge(['country'=>'']);
-            $request->merge(['country_code'=>'']);
-        }
-        $input = [];
-        $phone = new Phone();
-        foreach ($phone->getFillable() as $c) {
-            if ( isset($request->$c) ) {
-                $input[] = $c;
-            }
-        }
-        $phone = $this->phones()->create(
-            $request->only($input)
-        );
-        $this->phone()->updateExistingPivot($this->phones()->first()->id, ['default'=>1]);
-        return $phone;
-    }
-
-
-    public function addDefaultAddress() {
-
-        $request = request();
-        if ( null == $request->input('address')) {
-            return null;
-        }
-        $input = [];
-        $address = new Address();
-        foreach ($address->getFillable() as $c) {
-            if ( isset($request->$c) ) {
-                $input[] = $c;
-            }
-        }
-        $address = $this->address()->create(
-            $request->only($input)
-        );
-        $this->address()->updateExistingPivot($address->id, ['default'=>1]);
-        return $address;
-    }
-
-
-    /*
-     * update default address to a user from a request
-     */
-    public function updateDefaultAddress() {
-
-        $request = request();
-        if ( null == $request->input('address')) {
-            return null;
-        }
-
-        $input = [];
-        $address = new Address();
-        foreach ($address->getFillable() as $c) {
-            $input[] = $c;
-        }
-        //THIS REMOVES LOB VERIFICATION INFO FOR THE OLD ADDRESS
-        $address = $this->address()->first()->update(
-            array_merge($request->only($input), ['lob_verified'=>'0', 'lob_response'=>null])
-            //['lob_verified'=>'0', 'lob_response'=>null] + $request->only($input)
-        );
-        $this->address()->updateExistingPivot($this->address()->first()->id, ['default'=>1]);
-        return $address;
-    }
-
-
+    
+    
     public static function getMembers() {
 
         // Get users with member and empty roles.
