@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Referral;
+use Carbon\Carbon;
 
 trait ReferralTrait {
 
