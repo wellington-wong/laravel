@@ -50,6 +50,11 @@ trait ReferralTrait {
                 $query->where(\DB::raw('lower(first_name)'), 'LIKE', '%' . $q . '%');
                 $query->orWhere(\DB::raw('lower(last_name)'), 'LIKE', '%' . $q . '%');
                 $query->orWhere(\DB::raw('lower(name)'), 'LIKE', '%' . $q . '%');
+            })
+            ->whereHas('referrer', function ($query) use ($q) {
+                $query->where(\DB::raw('lower(first_name)'), 'LIKE', '%' . $q . '%');
+                $query->orWhere(\DB::raw('lower(last_name)'), 'LIKE', '%' . $q . '%');
+                $query->orWhere(\DB::raw('lower(name)'), 'LIKE', '%' . $q . '%');
             });
         }
 
