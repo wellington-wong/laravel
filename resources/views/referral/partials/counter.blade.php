@@ -1,6 +1,6 @@
 
         <div class="row referral-counter">
-            <div class="col-md-4 referral-hub">
+            <div class="col-md-6 referral-hub">
                 <div class="pending-approval">
                     <div class="rh-count">
                         <span><a href="{{ route('referrals') }}" >
@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 referral-hub">
+            <div class="col-md-6 referral-hub">
                 <div class="pending-reward">
                     <div class="rh-count">
                         <span><a href="{{ route('referrals') }}" >
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 referral-hub">
+            <!--<div class="col-md-4 referral-hub">
                 <div class="member-message">
                     <div class="rh-count">
                         <span><a href="{{ route('messages') }}">
@@ -38,5 +38,5 @@
                         <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
