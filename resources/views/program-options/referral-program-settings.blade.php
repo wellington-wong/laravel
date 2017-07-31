@@ -40,11 +40,11 @@
         <div class="row">
           <div class="col-md-6 no-padding-l foreground-color">
             <label>Foreground Color</label>
-            <div><input type="text" name="foreground_color" value="" class="form-control" placeholder="Color Code" ></div>
+            <div><input type="text" name="foreground_color" value="{{ old('foreground_color') ? : '#333333' }}" class="form-control" placeholder="Color Code" ></div>
           </div>
           <div class="col-md-6 no-padding-r background-color">
             <label>Background Color</label>
-            <div><input type="text" name="background_color" value="" class="form-control" placeholder="Color Code" ></div>
+            <div><input type="text" name="background_color" value="{{ old('foreground_color') ? : '#ffffff' }}" class="form-control" placeholder="Color Code" ></div>
           </div>
         </div>
 
