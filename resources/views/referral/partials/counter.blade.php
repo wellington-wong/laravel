@@ -3,7 +3,7 @@
             <div class="col-md-6 referral-hub">
                 <div class="pending-approval">
                     <div class="rh-count">
-                        <span><a href="{{ route('referrals') }}" >
+                        <span><a href="{{ route('referrals', ['status' => 1]) }}" >
                             {{ isset($pendingReferrals['approval']) ? count($pendingReferrals['approval']) : 0 }}
                         </a></span>
                     </div><hr />
@@ -16,7 +16,7 @@
             <div class="col-md-6 referral-hub">
                 <div class="pending-reward">
                     <div class="rh-count">
-                        <span><a href="{{ route('referrals') }}" >
+                        <span><a href="{{ route('referrals', ['status' => 2]) }}" >
                             {{ isset($pendingReferrals['reward']) ? count($pendingReferrals['reward']) : 0 }}
                         </a></span>
                     </div><hr />
