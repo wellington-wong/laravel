@@ -75,11 +75,16 @@
 
     <!-- Scripts -->
 
-    <script src="{{ mix('/js/manifest.js') }}"></script>
+
+    <script src="https://app.{{ env('DOMAIN') }}/js/manifest.js"></script>
+    <script src="https://app.{{ env('DOMAIN') }}/js/vendor.js"></script>
+    <script src="https://app.{{ env('DOMAIN') }}/js/app.js"></script>
+    <script src="https://app.{{ env('DOMAIN') }}/js/all.js"></script>
+    {{--<script src="{{ mix('/js/manifest.js') }}"></script>
     <script src="{{ mix('/js/vendor.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ mix('/js/all.js') }}"></script>
-    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+    <script src="{{ asset('js/app.js') }}"></script>--}}
 
     @yield('js')
 
