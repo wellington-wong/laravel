@@ -16,8 +16,10 @@
     <title>@yield('pageTitle', '') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/all.css') }}" rel="stylesheet">--}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
     <!-- Scripts -->
@@ -79,7 +81,6 @@
     <script src="https://app.{{ env('DOMAIN') }}/js/manifest.js"></script>
     <script src="https://app.{{ env('DOMAIN') }}/js/vendor.js"></script>
     <script src="https://app.{{ env('DOMAIN') }}/js/app.js"></script>
-    <script src="https://app.{{ env('DOMAIN') }}/js/all.js"></script>
     {{--<script src="{{ mix('/js/manifest.js') }}"></script>
     <script src="{{ mix('/js/vendor.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
