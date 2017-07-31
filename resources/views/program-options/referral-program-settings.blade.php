@@ -38,6 +38,17 @@
         <div>&nbsp;</div>
 
         <div class="row">
+          <div class="col-md-6 no-padding-l foreground-color">
+            <label>Foreground Color</label>
+            <div><input type="text" name="foreground_color" value="" class="form-control" placeholder="Color Code" ></div>
+          </div>
+          <div class="col-md-6 no-padding-r background-color">
+            <label>Background Color</label>
+            <div><input type="text" name="background_color" value="" class="form-control" placeholder="Color Code" ></div>
+          </div>
+        </div>
+
+        <div class="row">
         @include('layouts.page-header', ['header' => 'Subdomain Login Text', 'col' => 12])
         </div>
         <div class="row">

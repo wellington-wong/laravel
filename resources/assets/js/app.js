@@ -12,6 +12,7 @@ import 'jquery-steps/build/jquery.steps.min.js';
 import 'formBuilder/dist/form-builder.min.js';
 import 'formBuilder/dist/form-render.min.js';
 import 'jquery-validation/dist/jquery.validate.min.js';
+import 'spectrum-colorpicker/spectrum.js';
 
 // TinyMCE
 import 'tinymce/tinymce.min.js';
@@ -940,5 +941,8 @@ $(function (){
 
 // END EMAIL TEMPLATE FORM
 
+// SPECTRUM COLOR PICKER
+	$('input[name="foreground_color"], input[name="background_color"]').spectrum();
+// END SPECTRUM COLOR PICKER
 
 });
