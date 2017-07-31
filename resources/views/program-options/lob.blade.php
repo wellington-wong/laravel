@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Referral Program Setings')
+@section('pageTitle', 'Referral Program Settings')
 
 @section('content')
     <div class="container-fluid referral-program-settings-wrapper">
