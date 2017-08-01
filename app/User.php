@@ -167,12 +167,28 @@ class User extends Authenticatable
 
     public function referrals() {
         $request = request();
-        return $this->hasMany( Referral::class, 'referrer_id', 'id' )->where('company_id', $request->_company->id);
+        return $this->hasMany( Referral::class, 'referrer_id', 'id' )
+            ->where('company_id', $request->_company->id);
     }
 
     public function userReferrals($user_id) {
         $request = request();
-        return Referral::where('referrer_id',  $user_id )->where('company_id', $request->_company->id);
+        return Referral::where('referrer_id',  $user_id )
+            ->where('company_id', $request->_company->id);
+    }
+
+    public function referred() {
+        $request = request();
+        return $this->hasMany( Referral::class, 'user_id', 'id' )
+            ->where('company_id', $request->_company->id);
+    }
+
+    public function allReferrals() {
+        return $this->hasMany( Referral::class, 'referrer_id', 'id' );
+    }
+
+    public function allReferred() {
+        return $this->hasMany( Referral::class, 'user_id', 'id' );
     }
 
     public function referred_companies() {
