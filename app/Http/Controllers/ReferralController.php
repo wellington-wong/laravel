@@ -104,7 +104,7 @@ class ReferralController extends Controller
             $param = $referrals->getParams();
             $referrals = $request->_company->filterSortReferralSubmissions()->paginate(15);
         } else {
-            $referrals = $request->_company->referrals()->orderBy('user_id')->paginate(15);
+            $referrals = $request->_company->referrals()->orderBy('status', 'asc')->paginate(15);
         }
 
         $route = $request->route()->action['as'];
@@ -157,9 +157,9 @@ class ReferralController extends Controller
             }
         } else {
             if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin'])) {
-                $referrals = $request->_company->referrals()->orderBy('created_at', 'desc')->paginate(15);
+                $referrals = $request->_company->referrals()->orderBy('status', 'asc')->paginate(15);
             } else {
-                $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->paginate(15);
+                $referrals = $request->user()->referrals()->orderBy('status', 'asc')->paginate(15);
             }
         }
 
