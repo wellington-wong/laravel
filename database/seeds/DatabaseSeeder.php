@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
 use App\Permission;
+use App\Company;
 
 class DatabaseSeeder extends Seeder
 {
@@ -73,6 +74,7 @@ class DatabaseSeeder extends Seeder
             array('exults.referral.member@gmail.com', 'Member', 'Exults', 'member'),
         );
         $password = 'E*x%u~lts321!';
+        $company = Company::find(2);
         // Create users for each role
         foreach ($users as $user) {
             if (!$userObj = User::where('email', $user[0])->first()) {
@@ -87,7 +89,7 @@ class DatabaseSeeder extends Seeder
 
                 // Assign role to each user created
                 if (isset($role[$user[3]])) {
-                    $userObj->attachRole($role[$user[3]], 2);
+                    $userObj->attachRole($role[$user[3]], $company);
                 }
             }
         }
