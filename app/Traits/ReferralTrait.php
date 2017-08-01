@@ -76,5 +76,47 @@ trait ReferralTrait {
         return $referrals;
     }
 
+    /**
+     * Prepare referrals for excel export
+     * @return
+     */
+    public function referralsExport( Request $request ) {
+
+        if (count($request->all())) {
+            $param = $referrals->getParams();
+            if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin'])) {
+                $referrals = $request->_company->filterSortReferralSubmissions()->paginate(15);
+            } else {
+                $referrals = $request->user()->filterSortReferralSubmissions()->paginate(15);
+            }
+        } else {
+            if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin'])) {
+                $referrals = $request->_company->referrals()->orderBy('created_at', 'desc')->paginate(15);
+            } else {
+                $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->paginate(15);
+            }
+        }
+
+        $referralArray = [];
+        foreach ($referrals as $referral) {
+            $currentReferral = [
+                'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
+                'REFERRAL ID' => $referral->id,
+                'SUBMITTED BY' => auth()->user()->name,
+                'NAME' => $referral->referred->first_name . ' ' . $referral->referred->last_name,
+                'EMAIL' => $referral->referred->email,
+                'STATUS' => \App\Referral::$status[$referral->status]
+            ];
+            $referralArray[] = $currentReferral;
+        }
+
+        \Excel::create('Referrals', function($excel) use ($referralArray) {
+            $excel->sheet('Members', function($sheet) use ($referralArray) {
+                $sheet->fromArray($referralArray);
+            });
+        })->export('xls');
+        return;
+    }
+
 
 }
