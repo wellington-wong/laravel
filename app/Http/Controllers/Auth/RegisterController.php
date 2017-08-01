@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\NewMember;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm( Request $request )
     {
+                return $this->showRegistrationSimple();
         if ($request->_company->subdomain != 'app') {
             return view('company.register');
         } else {
@@ -72,6 +74,8 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request)));
 
         $this->guard()->login($user);
+
+        $user->notify(new NewMember());
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
