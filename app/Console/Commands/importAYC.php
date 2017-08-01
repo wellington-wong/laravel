@@ -44,7 +44,7 @@ class importAYC extends Command
      */
     public static $stati = [
         'Reward Sent' => Referral::STATUS_REWARD_SENT ,
-        'Claimed' => Referral::STATUS_REWARD_SENT ,
+        'Claimed' => Referral::STATUS_SUBMITTED ,
         'Denied' => Referral::STATUS_DENIED ,
         'New' => Referral::STATUS_SUBMITTED ,
         'Verified' => Referral::STATUS_APPROVED ,
@@ -127,10 +127,16 @@ class importAYC extends Command
 
         foreach ( $ayc_referrals as $au ) {
 
-            if ( !User::where('email', $au->email)->exists() && $au->deleted != 1 && '' != $au->first_name ) {
+            $email = $au->email;
+            if ('' == $email) {
+                $email = $au->first_name . "." . $au->last_name . '@' . config('app.domain');
+                $email = strtolower($email);
+            }
+
+            if ( !User::where('email', $email)->exists() && $au->deleted != 1 && '' != $au->first_name ) {
 
                 $u = new User();
-                $u->email = $au->email;
+                $u->email = $email;
                 $u->first_name = $au->first_name;
                 $u->last_name = $au->last_name;
                 $u->created_at = $au->created_at;
@@ -165,6 +171,11 @@ class importAYC extends Command
                 $role = Role::where('name', $role)->first();
                 $u->attachRole($role, $c);
 
+            } else {
+                $u = User::where('email', $email)->first();
+            }
+
+            if ( $au->deleted != 1  && '' != $au->first_name ) {
                 $ref = new Referral();
                 $ref->referrer_id   = $userIdByRewardsId[$au->user_id];
                 $ref->company_id    = $c->id;
@@ -173,8 +184,8 @@ class importAYC extends Command
                 $ref->created_at    = $au->created_at;
                 $ref->updated_at    = $au->updated_at;
                 $ref->save();
-
             }
+
 
             //dd($au);
         }
