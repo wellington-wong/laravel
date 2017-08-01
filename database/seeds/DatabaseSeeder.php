@@ -86,11 +86,10 @@ class DatabaseSeeder extends Seeder
                 $userObj->password = Hash::make($password);
                 //$user->subdomain = 1;
                 $userObj->save();
-
-                // Assign role to each user created
-                if (isset($role[$user[3]])) {
-                    $userObj->attachRole($role[$user[3]], $company);
-                }
+            }
+            // Assign role to each user created
+            if (isset($role[$user[3]])) {
+                $userObj->attachRole($role[$user[3]], $company);
             }
         }
 
