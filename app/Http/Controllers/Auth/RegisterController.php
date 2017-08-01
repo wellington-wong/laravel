@@ -76,6 +76,7 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         $user->notify(new NewMember());
+        $user->notify(new NewMemberAdmin());
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
