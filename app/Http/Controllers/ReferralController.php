@@ -176,10 +176,18 @@ class ReferralController extends Controller
     public function referralsExport( Request $request ) {
 
         if (count($request->all())) {
-            $referrals = new Referral();
-            $referrals = $request->user()->filterSortReferralSubmissions()->paginate(0);
+            $param = $referrals->getParams();
+            if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin'])) {
+                $referrals = $request->_company->filterSortReferralSubmissions()->paginate(15);
+            } else {
+                $referrals = $request->user()->filterSortReferralSubmissions()->paginate(15);
+            }
         } else {
-            $referrals = $request->user()->referrals()->get();
+            if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin'])) {
+                $referrals = $request->_company->referrals()->orderBy('created_at', 'desc')->paginate(15);
+            } else {
+                $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->paginate(15);
+            }
         }
 
         $referralArray = [];
