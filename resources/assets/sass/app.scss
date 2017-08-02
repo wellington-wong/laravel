@@ -912,6 +912,13 @@ table.table {
 	}
 	.table-referral-wrapper {
 		.table-referral {
+			thead {
+				th.referral-status .dropdown-menu {
+					top: 34px;
+					right: 44px;
+					left: auto;
+				}
+			}
 			tbody {
 				tr {				
 					td.referral-status {
