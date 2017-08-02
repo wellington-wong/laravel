@@ -16,10 +16,17 @@
     <title>@yield('pageTitle', '') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+
+    <link href="https://app.{{ env('DOMAIN') }}{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="https://app.{{ env('DOMAIN') }}{{ mix('css/all.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -87,11 +94,16 @@
 
     <!-- Scripts -->
 
-    <script src="{{ mix('/js/manifest.js') }}"></script>
+    {{--<script src="{{ mix('/js/manifest.js') }}"></script>
     <script src="{{ mix('/js/vendor.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ mix('/js/all.js') }}"></script>
-    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+    <script src="{{ asset('js/app.js') }}"></script>--}}
+    
+    <script src="https://app.{{ env('DOMAIN') }}{{ mix('/js/manifest.js') }}"></script>
+    <script src="https://app.{{ env('DOMAIN') }}{{ mix('/js/vendor.js') }}"></script>
+    <script src="https://app.{{ env('DOMAIN') }}{{ mix('/js/app.js') }}"></script>
+    <script src="https://app.{{ env('DOMAIN') }}{{ mix('/js/all.js') }}"></script>
 
     @yield('js')
 
