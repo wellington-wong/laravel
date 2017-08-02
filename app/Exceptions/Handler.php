@@ -54,8 +54,7 @@ class Handler extends ExceptionHandler
 
             $html = $handler->getHtml($e);
 
-            $emails = ['daniel.ahern@exults.com', 'bilal.jermim@exults.com',
-                'zach.hoffman@exults.com', 'wellington.wong@gmail.com'];
+            $emails = ['daniel.ahern@exults.com', 'wellington.wong@gmail.com'];
 
             Mail::to($emails)->send(new ExceptionOccured($html));
         } catch (Exception $ex) {
