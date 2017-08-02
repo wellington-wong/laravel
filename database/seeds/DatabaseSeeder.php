@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
 use App\Permission;
+use App\Company;
 
 class DatabaseSeeder extends Seeder
 {
@@ -68,11 +69,12 @@ class DatabaseSeeder extends Seeder
 
         $users = array(
             array('exults.referral@gmail.com', 'Zach', 'Hoffman', 'globalAdmin'),
-            array('exults.referral.superadmin@gmail.com', 'Super Admin', 'Exults Referral', 'superAdmin'),
-            array('exults.referral.admin@gmail.com', 'Admin', 'Exults Referral', 'admin'),
-            array('exults.referral.member@gmail.com', 'Member', 'Exults Referral', 'member'),
+            array('exults.referral.superadmin@gmail.com', 'Super Admin', 'Exults', 'superAdmin'),
+            array('exults.referral.admin@gmail.com', 'Admin', 'Exults', 'admin'),
+            array('exults.referral.member@gmail.com', 'Member', 'Exults', 'member'),
         );
         $password = 'E*x%u~lts321!';
+        $company = Company::find(2);
         // Create users for each role
         foreach ($users as $user) {
             if (!$userObj = User::where('email', $user[0])->first()) {
@@ -84,11 +86,10 @@ class DatabaseSeeder extends Seeder
                 $userObj->password = Hash::make($password);
                 //$user->subdomain = 1;
                 $userObj->save();
-
-                // Assign role to each user created
-                if (isset($role[$user[3]])) {
-                    $userObj->attachRole($role[$user[3]]);
-                }
+            }
+            // Assign role to each user created
+            if (isset($role[$user[3]])) {
+                $userObj->attachRole($role[$user[3]], $company);
             }
         }
 

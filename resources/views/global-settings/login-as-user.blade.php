@@ -38,6 +38,8 @@
                                 <th>ID</th>
                                 <th>Email</th>
                                 <th>Name</th>
+                                <th></th>
+                                <th></th>
                                 <th>Level</th>
                                 <th>Action</th>
                             </tr>
@@ -47,7 +49,9 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->display_name }}</td>
+                                    <td>{{ $user->allReferrals()->count() }}</td>
+                                    <td>{{ $user->allReferred()->count() }}</td>
                                     <td>{{ isset($user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name) ? $user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name : '' }}</td>
                                     <td><a href="{{ route('login-as-user-id', [$user->id])}}" class="btn btn-primary">Login</a></td>
                                 </tr>
