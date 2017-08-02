@@ -661,6 +661,7 @@ $(function (){
 	var day = currentDate.getDate();
 	var month = currentDate.getMonth() + 1;
 	var year = currentDate.getFullYear();
+	var dateSet = $('input[name="daterange"]').val();
 	
 	var dateRange = [];
 	if ($('input[name="daterange"]').val()) {
@@ -675,6 +676,9 @@ $(function (){
 	}).on('apply.daterangepicker', function(ev, picker) {
       window.location.href = "/referrals?daterange=" + picker.startDate.format('MM/DD/YYYY') + "|" + picker.endDate.format('MM/DD/YYYY') + $(this).data('query');
   	});
+	if (!dateSet) {
+		$('input[name="daterange"]').val('All referrals')
+	}
 
 // END JQUERY DATERANGEPICKER
 
