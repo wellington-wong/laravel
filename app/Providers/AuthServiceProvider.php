@@ -95,5 +95,9 @@ class AuthServiceProvider extends ServiceProvider
             //return Auth::user()->can('send-check');
         });
 
+        Gate::define('see-company-referrals', function () {
+            return auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']);
+        });
+
     }
 }
