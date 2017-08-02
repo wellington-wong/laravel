@@ -19,7 +19,7 @@ trait ReferralTrait {
         $column = $request->has('column') ? $request->get('column') : null;
         $sort = $request->has('sort') ? $request->get('sort') : null;
         $status = $request->has('status') ? $request->get('status') : null;
-        $q = strtolower($request->has('q') ? $request->get('q') : null);
+        $q = $request->has('q') ? strtolower($request->get('q')) : null;
 
         // Get date range
         $daterange = explode('|', $request->get('daterange'));
