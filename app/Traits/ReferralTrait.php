@@ -60,10 +60,12 @@ trait ReferralTrait {
 
         switch ($column) {
             case ('referred'):
+                $referrals->select('referrals.*');
                 $referrals->join('users', 'users.id', 'referrals.user_id');
                 $referrals->orderBy('users.first_name', $sort);
                 break;
             case ('referrer_id'):
+                $referrals->select('referrals.*');
                 $referrals->join('users', 'users.id', 'referrals.referrer_id');
                 $referrals->orderBy('users.first_name', $sort);
                 break;
