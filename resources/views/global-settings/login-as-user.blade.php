@@ -27,7 +27,7 @@
 
             <h4>{{ $c->company_name }} (id: {{ $c->id }})</h4>
 
-            <?php $users = $c->membersByRole(['member', 'admin', 'superAdmin'])->distinct('user_id')->get(); ?>
+            <?php $users = $c->membersByRole(['member', 'admin', 'superAdmin'])->distinct('user_id')->paginate(15, ['*'], 'company_' . $c->id); ?>
 
                 <div class="row">
                     <div class="col-md-12 table-login-as-wrapper table-wrapper">
@@ -44,6 +44,7 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
+                            <tr class="tr-spacer"><td colspan=5></td></tr>
                             @foreach ($users as $user)
                                 @if ($user->id != auth()->user()->id)
                                 <tr>
@@ -55,10 +56,12 @@
                                     <td>{{ isset($user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name) ? $user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name : '' }}</td>
                                     <td><a href="{{ route('login-as-user-id', [$user->id])}}" class="btn btn-primary">Login</a></td>
                                 </tr>
+                                <tr class="tr-spacer"><td colspan=5></td></tr>
                                 @endif
                             @endforeach
                             @if (!count($users))<tr><td colspan="5">No users found.</td></tr>@endif
                         </table>
+                        <div class="col-md-12 pagination-wrapper">{{ $users->appends(app('request')->query())->links() }}</div>
 
                     </div>
                 </div>
