@@ -5,7 +5,6 @@ namespace App\Http;
 use App\Http\Middleware\Domain;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\Messages;
-use App\Http\Middleware\AddHeaders;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -41,8 +40,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             Domain::class,
             CheckRole::class,
-            Messages::class,
-            AddHeaders::class
+            Messages::class
         ],
 
         'api' => [
