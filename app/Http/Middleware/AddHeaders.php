@@ -19,6 +19,7 @@ class AddHeaders
         $response = $next($request);
 
         $response->headers->set('Cache-Control', 'max-age=604800, public');
+        $response->headers->set('Expires', gmdate("D, d M Y H:i:s", time() + 604800) . " GMT");
 
         return $response;
     }
