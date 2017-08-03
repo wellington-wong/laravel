@@ -137,7 +137,7 @@ class ReferralController extends Controller
                 $sortClass = '-desc';
                 break;
             case ('asc'):
-                $sort[$column] = '';
+                $sort[$column] = 'desc';
                 $sortClass = '-asc';
                 break;
         }
