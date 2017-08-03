@@ -17,7 +17,6 @@
     <link href="https://app.{{ env('DOMAIN') }}{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="https://app.{{ env('DOMAIN') }}{{ mix('css/all.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
