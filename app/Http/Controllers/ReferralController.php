@@ -179,15 +179,15 @@ class ReferralController extends Controller
         if (count($request->all())) {
             $param = $referrals->getParams();
             if (Gate::allows('see-company-referrals')) {
-                $referrals = $request->_company->filterSortReferralSubmissions()->paginate(15);
+                $referrals = $request->_company->filterSortReferralSubmissions()->get();
             } else {
-                $referrals = $request->user()->filterSortReferralSubmissions()->paginate(15);
+                $referrals = $request->user()->filterSortReferralSubmissions()->get();
             }
         } else {
             if (Gate::allows('see-company-referrals')) {
-                $referrals = $request->_company->referrals()->orderBy('created_at', 'desc')->paginate(15);
+                $referrals = $request->_company->referrals()->orderBy('created_at', 'desc')->get();
             } else {
-                $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->paginate(15);
+                $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->get();
             }
         }
 
@@ -196,8 +196,8 @@ class ReferralController extends Controller
             $currentReferral = [
                 'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
                 'REFERRAL ID' => $referral->id,
-                'SUBMITTED BY' => auth()->user()->name,
-                'NAME' => $referral->referred->first_name . ' ' . $referral->referred->last_name,
+                'SUBMITTED BY' => isset($referral->referrer->name) ? $referral->referrer->name : $referral->referrer->first_name . ' ' . $referral->referrer->last_name,
+                'NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
                 'EMAIL' => $referral->referred->email,
                 'STATUS' => \App\Referral::$status[$referral->status]
             ];
