@@ -26,12 +26,14 @@
                         <th>Email</th>
                     </tr>
                     </thead>
+                    <tr class="tr-spacer"><td colspan=5></td></tr>
                     @foreach ($admins as $member)
                         <tr>
                             <td>{{ $member->id }}</td>
                             <td><a href="{{ route('view-user', $member->id) }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</a></td>
                             <td>{{ $member->email }}</td>
                         </tr>
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
                     @if (!count($members))<tr><td colspan="5">No members found.</td></tr>@endif
                 </table>
@@ -61,6 +63,7 @@
                             <th>Referrals</th>
                         </tr>
                     </thead> 
+                    <tr class="tr-spacer"><td colspan=5></td></tr>
                     @foreach ($members as $member)
                         <tr>
                             <td>{{ $member->id }}</td>
@@ -68,6 +71,7 @@
                             <td>{{ $member->email }}</td>
                             <td>{{ $member->referrals()->where('company_id', $_company->id)->count() }}</td>
                         </tr>
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
                     @if (!count($members))<tr><td colspan="5">No members found.</td></tr>@endif
                 </table>
