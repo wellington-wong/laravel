@@ -185,9 +185,9 @@ class ReferralController extends Controller
             }
         } else {
             if (Gate::allows('see-company-referrals')) {
-                $referrals = $request->_company->referrals()->orderBy('created_at', 'desc')->get();
+                $referrals = $request->_company->referrals()->orderBy('status', 'desc')->get();
             } else {
-                $referrals = $request->user()->referrals()->orderBy('created_at', 'desc')->get();
+                $referrals = $request->user()->referrals()->orderBy('status', 'desc')->get();
             }
         }
 
