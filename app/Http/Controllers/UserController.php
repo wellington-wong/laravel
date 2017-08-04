@@ -34,8 +34,8 @@ class UserController extends Controller
 
         // Configure sort class
         $column = $request->get('column');
-        $sortc = array_fill_keys(['created_at', 'id', 'user_id', 'referred', 'status'], null);
-        $sort = array_fill_keys(['created_at', 'id', 'user_id', 'referred', 'status'], 'desc');
+        $sortc = array_fill_keys(['created_at', 'id', 'referrer_id', 'referred', 'status'], null);
+        $sort = array_fill_keys(['created_at', 'id', 'referrer_id', 'referred', 'status'], 'desc');
 
         // Configure sort links
         $sort[$column] = 'desc';
