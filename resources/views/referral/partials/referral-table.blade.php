@@ -85,6 +85,7 @@
                     @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
                 </table>
                 <div class="col-md-12 pagination-wrapper">{{ $referrals->appends(app('request')->query())->links() }}</div>
+                <div class="small text-center">Showing {{ $referrals->firstItem() }} - {{ $referrals->lastItem() }} of <strong>{{ $referrals->total() }}</strong></div>
             </div>
         </div>
         @include('layouts.modal')
