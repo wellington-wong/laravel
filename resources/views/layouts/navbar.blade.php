@@ -16,7 +16,7 @@
                                 Hi {{ Auth::user()->name }} 
                                 <span class="nav-separator">|</span> <a href="#" class="navbar-settings no-padding" data-toggle="dropdown" data-hover="dropdown">Settings <i class="fa fa-angle-down" aria-hidden="true"></i></a> 
                                 <ul class="dropdown-menu">
-                                  <li><a href="{{ route('program-options') }}">Program Options</a></li>
+                                  @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<li><a href="{{ route('program-options') }}">Program Options</a></li>@endif
                                   <li><a href="{{ route('manage-account') }}">Manage Account</a></li>
                                   <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
                                 </ul>
