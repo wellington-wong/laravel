@@ -16,7 +16,7 @@
 
         <div class="row">     
 
-            @if (1)       
+             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))
             <div class="col-md-12 no-padding-lr">   
                 {{ Form::open(['route' => ['update-user', $user->id], 'enctype' => 'multipart/form-data', 'id' => 'update-user-form', 'class' => 'update-form']) }}
                 <div class="row">           
