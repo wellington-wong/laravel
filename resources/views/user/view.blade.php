@@ -14,7 +14,66 @@
 
         <div class="clearfix"></div>
 
-        <div class="row">            
+        <div class="row">     
+
+            @if (1)       
+            <div class="col-md-12 no-padding-lr">   
+                {{ Form::open(['route' => ['update-user', $user->id], 'enctype' => 'multipart/form-data', 'id' => 'update-user-form', 'class' => 'update-form']) }}
+                <div class="row">           
+                    <div class="form-group col-md-6">
+                        <label>First Name</label>
+                        <input class="form-control" name="first_name" value="{{ $user->first_name }}">
+                    </div>        
+                    <div class="form-group col-md-6">
+                        <label>Last Name</label>
+                        <input class="form-control" name="last_name" value="{{ $user->last_name }}">
+                    </div>    
+                </div>    
+
+                <div class="row">           
+                    <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <input class="form-control" readonly value="{{ $user->email }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Phone</label>
+                        <input class="form-control" name="phone" value="{{ isset($user->phones()->first()->phone) ? $user->phones()->first()->phone : '' }}">
+                    </div>
+                </div>
+
+                <div class="row">      
+                    <div class="form-group col-md-6">
+                        <label>Address</label>
+                        <input class="form-control" name="address" value="{{ isset($user->addresses()->first()->address) ? $user->addresses()->first()->address : '' }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Line 2</label>
+                        <input class="form-control" name="address2" value="{{ isset($user->addresses()->first()->address2) ? $user->addresses()->first()->address2 : '' }}">
+                    </div>
+                </div>    
+
+                <div class="row">      
+                    <div class="form-group col-md-4">
+                        <label>City</label>
+                        <input class="form-control" name="city" value="{{ isset($user->addresses()->first()->city) ? $user->addresses()->first()->city : '' }}">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>State</label>
+                        <input class="form-control" name="state" value="{{ isset($user->addresses()->first()->state) ? strtoupper($user->addresses()->first()->state) : '' }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Zip</label>
+                        <input class="form-control" name="zip" value="{{ isset($user->addresses()->first()->zip) ? strtoupper($user->addresses()->first()->zip) : '' }}">
+                    </div>
+                </div>    
+
+                <div class="form-group col-md-12 text-right no-padding-lr">
+                    {{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100 submit-profile']) }}
+                </div>
+                {{ Form::close() }}
+            </div>
+            @else
+     
             <div class="col-md-12 no-padding-lr">   
 
                 <div class="row">           
@@ -66,6 +125,8 @@
                 </div>    
 
             </div>
+
+            @endif
 
         </div>
    

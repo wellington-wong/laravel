@@ -86,6 +86,7 @@ Route::get('/testsavecheck', 'TestController@testSaveCheck');
 
 // User
 Route::get('/user/view/{id}', 'UserController@getView')->name('view-user');
+Route::post('/user/update/{id}', 'UserController@update')->name('update-user');
 Route::get('/user/create', 'UserController@create')->name('create-user');
 Route::post('/user/create', 'UserController@postCreate')->name('post-create-user');
 
