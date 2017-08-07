@@ -177,6 +177,7 @@ class ReferralController extends Controller
     public function referralsExport( Request $request ) {
 
         if (count($request->all())) {
+            $referrals = new Referral();
             $param = $referrals->getParams();
             if (Gate::allows('see-company-referrals')) {
                 $referrals = $request->_company->filterSortReferralSubmissions()->get();
