@@ -27,24 +27,14 @@
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
                       <label for="first_name">FIRST NAME</label>
                       <div>
-                          <input id="first-name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-                          @if ($errors->has('first_name'))
-                              <span class="help-block">
-                                  <strong>{{ $errors->first('first_name') }}</strong>
-                              </span>
-                          @endif
+                          <input id="first-name" type="text" class="form-control" name="first_name" value="{{ old('name') }}" required autofocus>
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
                       <label for="last_name">LAST NAME</label>
                       <div>
-                          <input id="last-name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-                          @if ($errors->has('last_name'))
-                              <span class="help-block">
-                                  <strong>{{ $errors->first('last_name') }}</strong>
-                              </span>
-                          @endif
+                          <input id="last-name" type="text" class="form-control" name="last_name" value="{{ old('name') }}" required autofocus>
                       </div>
                   </div>
 
@@ -52,7 +42,7 @@
                       <label for="phone" class="control-label">PHONE</label>
                       <div>
                         <input data-format="(ddd) ddd-dddd" name="phone" class="bfh-phone form-control" type="text"> 
-                        <input name="phone_placeholder" class="phone-placeholder form-control" style="display: none;" type="text">
+                        <input name="phone_placeholder" value="{{ old('phone') }}" class="phone-placeholder form-control" style="display: none;" type="text">
                       </div>
                   </div>
 
@@ -70,27 +60,27 @@
 
                   <div class="form-address">
                       <div class="form-group col-md-12">
-                        <label for="email" class="control-label">ADDRESS LINE 1</label>
-                        <input class="form-control" name="address" type="text">
+                        <label for="address" class="control-label">ADDRESS LINE 1</label>
+                        <input class="form-control" name="address" type="text" value="{{ old('address') }}">
                       </div>
 
                       <div class="form-group col-md-12">
-                        <label for="email" class="control-label">ADDRESS LINE 2</label>
-                          <input class="form-control" name="address2" type="text">
+                        <label for="address2" class="control-label">ADDRESS LINE 2</label>
+                          <input class="form-control" name="address2" type="text" value="{{ old('address2') }}">
                       </div>
 
                       <div class="form-group col-md-4">
                         <label for="city" class="control-label">CITY</label>
-                          <input class="form-control" name="city" type="text">
+                          <input class="form-control" name="city" type="text" value="{{ old('city') }}">
                       </div>
 
                       <div class="form-group col-md-2 no-padding-lr">
                         <label for="state" class="control-label">STATE</label>
-                        <select class="form-control" name="state"><option value="" selected="selected">State</option><option value="al">AL</option><option value="ak">AK</option><option value="az">AZ</option><option value="ar">AR</option><option value="ca">CA</option><option value="co">CO</option><option value="ct">CT</option><option value="de">DE</option><option value="fl">FL</option><option value="ga">GA</option><option value="hi">HI</option><option value="id">ID</option><option value="il">IL</option><option value="in">IN</option><option value="ia">IA</option><option value="ks">KS</option><option value="ky">KY</option><option value="la">LA</option><option value="me">ME</option><option value="md">MD</option><option value="ma">MA</option><option value="mi">MI</option><option value="mn">MN</option><option value="ms">MS</option><option value="mo">MO</option><option value="mt">MT</option><option value="ne">NE</option><option value="nv">NV</option><option value="nh">NH</option><option value="nj">NJ</option><option value="nm">NM</option><option value="ny">NY</option><option value="nc">NC</option><option value="nd">ND</option><option value="oh">OH</option><option value="ok">OK</option><option value="or">OR</option><option value="pa">PA</option><option value="ri">RI</option><option value="sc">SC</option><option value="sd">SD</option><option value="tn">TN</option><option value="tx">TX</option><option value="ut">UT</option><option value="vt">VT</option><option value="va">VA</option><option value="wa">WA</option><option value="wv">WV</option><option value="wi">WI</option><option value="wy">WY</option></select></div>
+                        <select class="form-control company-register-state" data-value="{{ old('state') }}" name="state"><option value="al">AL</option><option value="ak">AK</option><option value="az">AZ</option><option value="ar">AR</option><option value="ca">CA</option><option value="co">CO</option><option value="ct">CT</option><option value="de">DE</option><option value="fl">FL</option><option value="ga">GA</option><option value="hi">HI</option><option value="id">ID</option><option value="il">IL</option><option value="in">IN</option><option value="ia">IA</option><option value="ks">KS</option><option value="ky">KY</option><option value="la">LA</option><option value="me">ME</option><option value="md">MD</option><option value="ma">MA</option><option value="mi">MI</option><option value="mn">MN</option><option value="ms">MS</option><option value="mo">MO</option><option value="mt">MT</option><option value="ne">NE</option><option value="nv">NV</option><option value="nh">NH</option><option value="nj">NJ</option><option value="nm">NM</option><option value="ny">NY</option><option value="nc">NC</option><option value="nd">ND</option><option value="oh">OH</option><option value="ok">OK</option><option value="or">OR</option><option value="pa">PA</option><option value="ri">RI</option><option value="sc">SC</option><option value="sd">SD</option><option value="tn">TN</option><option value="tx">TX</option><option value="ut">UT</option><option value="vt">VT</option><option value="va">VA</option><option value="wa">WA</option><option value="wv">WV</option><option value="wi">WI</option><option value="wy">WY</option></select></div>
 
                       <div class="form-group col-md-6">
                           <label for="zip" class="control-label">ZIP CODE</label>
-                          <input class="form-control" name="zip" type="text">
+                          <input class="form-control" name="zip" type="text" value="{{ old('zip') }}">
                       </div>
                   </div>                  
 
