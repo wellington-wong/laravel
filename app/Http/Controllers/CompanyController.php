@@ -109,15 +109,18 @@ class CompanyController extends Controller
         }
 
         $rules = [
-            'address'=>'required|max:100',
-            'address2'=>'max:25',
-            'city'=>'required',
-            'state'=>'required|max:2',
-            'zip'=>'required|digits:5',
             'company_name'=>'required',
             'email'=>'nullable|email',
             'website'=>'nullable|url'
         ];
+
+        $request->merge([
+            'address' => $request->get('address') ?: '',
+            'address2' => $request->get('address2') ?: '',
+            'city' => $request->get('city') ?: '',
+            'state' => $request->get('state') ?: '',
+            'zip' => $request->get('zip') ?: '',
+        ]);        
 
         $messages = [
             'website.url' => 'Please use complete url starting with "http://" or "https://"',
@@ -141,7 +144,7 @@ class CompanyController extends Controller
         $company->updateDefaultAddress($request);
         $company->updateDefaultPhone($request);
 
-        return back();
+        return back()->with('success', ['Company profile successfully saved.']);
 
     }
 
