@@ -24,7 +24,12 @@
                 </div>
             {{ Form::close() }}
         @else
-            This company has no referral forms, click <a href="{{ route('program-options-referral-program-settings') }}">here</a> to create one.
+            @role(['member'])
+                The {{ $_company->company_name }} referral form is not yet available.                
+            @endrole
+            @role(['admin', 'superAdmin', 'globalAdmin'])
+                The {{ $_company->company_name }} referral form is not yet available, click <a href="{{ route('program-options-referral-program-settings') }}">here</a> to create one.
+            @endrole
         @endif
 
         <div class="old-input hidden">            

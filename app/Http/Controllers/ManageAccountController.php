@@ -42,13 +42,17 @@ class ManageAccountController extends Controller
         $rules = [
             'name'=>'required',
             'email'=>'required|email',
-            'address'=>'max:100',
-            'address2'=>'max:25',
-            'city'=>'required',
-            'state'=>'required|alpha|max:2',
-            'zip'=>'required|digits:5',
+            'phone'=>'required|phone:US',
             //'profile_blob' => 'required',
         ];
+
+        $request->merge([
+            'address' => $request->get('address') ?: '',
+            'address2' => $request->get('address2') ?: '',
+            'city' => $request->get('city') ?: '',
+            'state' => $request->get('state') ?: '',
+            'zip' => $request->get('zip') ?: '',
+        ]);
 
         $messages = [
             'profile_blob.required' => 'The profile image field is required.',
@@ -79,7 +83,7 @@ class ManageAccountController extends Controller
         
         auth()->user()->update( $request->all() );
 
-        return back();
+        return back()->with('success', ['Account successfully updated']);
     }
 
     /**

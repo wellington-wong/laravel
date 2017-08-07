@@ -124,4 +124,39 @@ class UserController extends Controller
 
         return redirect(route('view-user', $user->id));
     }
+
+    public function update ( Request $request, $id ){        
+
+        $rules = [
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'phone'=>'required|phone:US',
+            //'profile_blob' => 'required',
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+        $user = User::find($id);
+
+        if ( !$user->phone->isEmpty() ) {
+            $user->updateDefaultPhone($request);
+        } else {
+            $user->addDefaultPhone($request);
+        }
+
+        if ( !$user->address->isEmpty() ) {
+            $user->updateDefaultAddress($request);
+        } else {
+            $user->addDefaultAddress($request);
+        }
+        
+        $user->update( $request->all() );
+
+        return back()->with('success', ['Account successfully updated']);
+    }
 }
