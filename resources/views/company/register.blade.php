@@ -21,7 +21,7 @@
 	        	</div>
 	        </div>
 	        <div class="company-register-form-wrapper col-md-5">
-              <form class="form-horizontal" role="form" method="POST" action="{{ route('company-register') }}">
+              <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
@@ -89,7 +89,7 @@
                         <select class="form-control" name="state"><option value="" selected="selected">State</option><option value="al">AL</option><option value="ak">AK</option><option value="az">AZ</option><option value="ar">AR</option><option value="ca">CA</option><option value="co">CO</option><option value="ct">CT</option><option value="de">DE</option><option value="fl">FL</option><option value="ga">GA</option><option value="hi">HI</option><option value="id">ID</option><option value="il">IL</option><option value="in">IN</option><option value="ia">IA</option><option value="ks">KS</option><option value="ky">KY</option><option value="la">LA</option><option value="me">ME</option><option value="md">MD</option><option value="ma">MA</option><option value="mi">MI</option><option value="mn">MN</option><option value="ms">MS</option><option value="mo">MO</option><option value="mt">MT</option><option value="ne">NE</option><option value="nv">NV</option><option value="nh">NH</option><option value="nj">NJ</option><option value="nm">NM</option><option value="ny">NY</option><option value="nc">NC</option><option value="nd">ND</option><option value="oh">OH</option><option value="ok">OK</option><option value="or">OR</option><option value="pa">PA</option><option value="ri">RI</option><option value="sc">SC</option><option value="sd">SD</option><option value="tn">TN</option><option value="tx">TX</option><option value="ut">UT</option><option value="vt">VT</option><option value="va">VA</option><option value="wa">WA</option><option value="wv">WV</option><option value="wi">WI</option><option value="wy">WY</option></select></div>
 
                       <div class="form-group col-md-6">
-                          <label for="state" class="control-label">ZIP CODE</label>
+                          <label for="zip" class="control-label">ZIP CODE</label>
                           <input class="form-control" name="zip" type="text">
                       </div>
                   </div>                  
@@ -97,6 +97,16 @@
                   <div class="form-group col-md-12">
                     <label for="how-did-you-hear" class="control-label">HOW DID YOU HEAR ABOUT US?</label>
                     <input class="form-control" id="how-did-you-hear" name="how_did_you_hear" type="text">
+                  </div>   
+
+                  <div class="form-group col-md-12">
+                    <label for="password" class="control-label">PASSWORD</label>
+                    <input class="form-control" id="password" name="password" type="password">
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label for="password_confirmation" class="control-label">CONFIRM PASSWORD</label>
+                    <input class="form-control" id="password-confirmation" name="password_confirmation" type="password">
                   </div>
 
                   <div class="form-group col-md-12">

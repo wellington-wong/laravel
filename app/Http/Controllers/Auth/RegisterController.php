@@ -13,6 +13,7 @@ use Illuminate\Auth\Events\Registered;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NewMember;
+use App\Notifications\NewMemberAdmin;
 
 class RegisterController extends Controller
 {
