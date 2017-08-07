@@ -11,7 +11,7 @@ trait ReferralTrait {
      * Sort Referrals
      * @return
      */
-    public function filterSortReferralSubmissions($defaultSort = 'created_at', $user_id = null) {
+    public function filterSortReferralSubmissions($defaultSort = 'status', $user_id = null) {
 
         $request = request();
 
@@ -76,7 +76,7 @@ trait ReferralTrait {
                 $referrals->orderBy($column, $sort);
                 break;
             default:
-                $referrals->orderBy($defaultSort, 'desc');
+                $referrals->orderBy($defaultSort, 'asc');
                 break;
         }
 
