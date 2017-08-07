@@ -93,6 +93,11 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
+        //ADD PHONE
+        $phone = $user->addDefaultPhone($request);
+        //ADD ADDRESS
+        $address = $user->addDefaultAddress($request);
+
         $user->notify(new NewMember());
         $user->notify(new NewMemberAdmin());
 
