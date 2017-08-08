@@ -16,6 +16,7 @@
                             <th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['created_at'], 'column' => 'created_at']) }}">Date <i class="fa fa-sort{{ $sortc['created_at']?:'' }}" aria-hidden="true"></i></a></th>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['id'], 'column' => 'id']) }}">Referral ID <i class="fa fa-sort{{ $sortc['id'] }}" aria-hidden="true"></i></a></th>@endif                                                                                
                             @if (auth()->user()->hasRole('member'))<th></th>@endif
+                            <th></th>
                         </tr>
                     </thead> 
                     <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>
@@ -48,6 +49,7 @@
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">{{ $r->id }}</a></td>@endif                                                       
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">view details</a></td>@endif
+                            <td><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">Manage</a></td>
                         </tr>
 
                         @if ( 1 == $canSendCheck )
