@@ -293,11 +293,6 @@ class ReferralController extends Controller
             }
         }
 
-        /*\Mail::send('email-templates.customer', array('user' => $user, 'address' => $address, 'phone' => $phone), function ($message) use ($user) {
-            $message->from('admin@' . env('APP_URL'), 'Laravel');
-            $message->to($user->email);
-        });*/
-
         //$user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request, $referralValues));
         $user->notify(new NewReferral(Referral::find($user->referral_id), $request, $referralValues));
         $user->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));

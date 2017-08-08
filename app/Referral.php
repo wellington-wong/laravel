@@ -80,15 +80,6 @@ class Referral extends Model
                 break;
         }
 
-        /*
-        if ($referral->status > 1) {
-            $email = $referral->first()->referred->email;
-            \Mail::send('email-templates.notify-referred', array('user' => auth()->user(), 'referral' => $referral,'note' => $referral->note, 'referral_message' => $referral_message, 'referred' => $referral->referred), function ($message) use ($email) {
-                $message->from('admin@' . env('APP_URL'), 'Laravel');
-                $message->to($email);
-            });
-        }*/
-
         return $referral;
     }
 
