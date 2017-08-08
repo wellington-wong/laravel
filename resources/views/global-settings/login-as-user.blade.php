@@ -54,7 +54,7 @@
                                     <td>{{ $user->allReferrals()->count() }}</td>
                                     <td>{{ $user->allReferred()->count() }}</td>
                                     <td>{{ isset($user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name) ? $user->roles($c)->orderBy('role_id', 'DESC')->first()->display_name : '' }}</td>
-                                    <td><a href="{{ route('login-as-user-id', [$user->id])}}" class="btn btn-primary">Login</a></td>
+                                    <td><a href="https://{{ $c->subdomain }}.{{ env('DOMAIN') }}{{ URL::route('login-as-user-id', [$user->id], false)}}" class="btn btn-primary">Login</a></td>
                                 </tr>
                                 <tr class="tr-spacer"><td colspan=5></td></tr>
                                 @endif
