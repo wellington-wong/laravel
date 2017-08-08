@@ -293,7 +293,6 @@ class ReferralController extends Controller
             }
         }
 
-        //$user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request, $referralValues));
         $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
         $user->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
 

@@ -84,7 +84,7 @@ class ReferralReceived extends Notification
             }    
 
             return (new MailMessage)
-                ->markdown('email-templates.referral-notify-user', ['referral' => $this->referral, 'email_template' => $emailHtml]);
+                ->markdown('email-templates.referral-received', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
             return (new MailMessage)
                 ->line('You have been referred by ' . auth()->user()->getName());
