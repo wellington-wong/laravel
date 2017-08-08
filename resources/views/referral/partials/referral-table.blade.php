@@ -3,10 +3,8 @@
                 <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                     <thead>
                         <tr>
-                            <th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['created_at'], 'column' => 'created_at']) }}">Submitted <i class="fa fa-sort{{ $sortc['created_at']?:'' }}" aria-hidden="true"></i></a></th>
-                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['id'], 'column' => 'id']) }}">Referral ID <i class="fa fa-sort{{ $sortc['id'] }}" aria-hidden="true"></i></a></th>@endif
-                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['referrer_id'], 'column' => 'referrer_id']) }}">Submitted By <i class="fa fa-sort{{ $sortc['referrer_id'] }}" aria-hidden="true"></i></a></th>@endif
                             <th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['referred'], 'column' => 'referred']) }}">Person Referred <i class="fa fa-sort{{ $sortc['referred'] }}" aria-hidden="true"></i></a></th>
+                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['referrer_id'], 'column' => 'referrer_id']) }}">Member <i class="fa fa-sort{{ $sortc['referrer_id'] }}" aria-hidden="true"></i></a></th>@endif
                             <th class="referral-status filter-by">
                                 <a data-toggle="dropdown" href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['status'], 'column' => 'status']) }}">Status <i class="fa fa-sort{{ $sortc['status'] }}" aria-hidden="true"></i></a>                                      
                                 <ul class="dropdown-menu">
@@ -15,6 +13,8 @@
                                     @endforeach
                                 </ul>
                             </th>
+                            <th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['created_at'], 'column' => 'created_at']) }}">Date <i class="fa fa-sort{{ $sortc['created_at']?:'' }}" aria-hidden="true"></i></a></th>
+                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['id'], 'column' => 'id']) }}">Referral ID <i class="fa fa-sort{{ $sortc['id'] }}" aria-hidden="true"></i></a></th>@endif                                                                                
                             @if (auth()->user()->hasRole('member'))<th></th>@endif
                         </tr>
                     </thead> 
@@ -31,13 +31,9 @@
                         @endif
 
                         <tr @if(1==$canSendCheck || count($r->check) == 1) class="canSendCheck" @endif>
-                            <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
-                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">{{ $r->id }}</a></td>@endif
-                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', isset($r->referrer->id) ? $r->referrer->id : 0) }}">{{ isset($r->referrer->display_name) ? $r->referrer->display_name : '' }}</a></td>@endif
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', isset($r->referred->id) ? $r->referred->id : 0) }}">{{ isset($r->referred->display_name) ? $r->referred->display_name : '' }}</a></td>
-
-                            @else <td>{{ $r->referred->display_name }}</td>
-                            @endif
+                            @else <td>{{ $r->referred->display_name }}</td>@endif
+                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('view-user', isset($r->referrer->id) ? $r->referrer->id : 0) }}">{{ isset($r->referrer->display_name) ? $r->referrer->display_name : '' }}</a></td>@endif     
                             <td class="referral-status" data-id="{{ $r->id }}">
                                 <div class="form-control current-referral-status" data-toggle="dropdown" data-status="{{ $r->status }}">{{ \App\Referral::$status[$r->status] }}</div>
                                 @if (auth()->user()->can(['change_referral_statuses']) && !isset($viewOnly))
@@ -48,8 +44,9 @@
                                 </ul>
                                 <i class="fa {{ isset($r->status) ? ($r->status == 3 ? 'fa-lock' : 'fa-angle-down' ) : '' }}" aria-hidden="true"></i>
                                 @endif
-
                             </td>
+                            <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
+                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">{{ $r->id }}</a></td>@endif                                                       
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">view details</a></td>@endif
                         </tr>
 
