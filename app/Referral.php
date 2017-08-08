@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\DB;
 use Carbon\Carbon;
+use App\Notifications\ReferralVerified;
+use App\Notifications\ReferralSent;
+use App\Notifications\ReferralDeclined;
 
 class Referral extends Model
 {
@@ -63,6 +66,18 @@ class Referral extends Model
             $referral_message = 'Your referral has been approved.';
         } else if ($referral->status == self::STATUS_REWARD_SENT) {
             $referral_message = 'Your reward has been sent.';
+        }
+
+        switch ($request->get('status')) {
+            case (2):
+                $referral->referrer->notify(new ReferralVerified($referral));
+                break;
+            case (3):
+                $referral->referrer->notify(new ReferralSent($referral));
+                break;
+            case (4):
+                $referral->referrer->notify(new ReferralDeclined($referral));
+                break;
         }
 
         /*
