@@ -42,7 +42,7 @@ class ReferralReceived extends Notification
      */
     public function toMail($notifiable)
     {
-        if ($emailHtml = $this->request->_company->emailTemplate()->first()) {
+        if (($emailHtml = $this->request->_company->emailTemplate()->first()->email_html) != '') {
 
             $regex = '#{{(.*?)}}#';
             $code = preg_match_all($regex, $emailHtml, $matches);
@@ -80,11 +80,11 @@ class ReferralReceived extends Notification
 
             // Replace placeholder with real user data
             foreach ($replacementVars as $key => $replacementVar) {
-                $emailHtml->email_html = str_replace('{{ ' . $key . ' }}', $replacementVars[$key], $emailHtml->email_html);
+                $emailHtml->email_html = str_replace('{{ ' . $key . ' }}', $replacementVars[$key], $emailHtml);
             }    
 
             return (new MailMessage)
-                ->markdown('email-templates.referral-notify-user', ['referral' => $this->referral, 'email_template' => $emailHtml->email_html]);
+                ->markdown('email-templates.referral-notify-user', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
             return (new MailMessage)
                 ->line('You have been referred by ' . auth()->user()->getName());

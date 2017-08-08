@@ -18,7 +18,7 @@ use Cmgmyr\Messenger\Models\Thread;
 use App\Thread as ThreadByCompany;
 use Carbon\Carbon;
 use App\Notifications\MessageReceived;
-use App\Notifications\NewReferral;
+use App\Notifications\ReferralReceived;
 use App\Notifications\NewReferralAdmin;
 
 class ReferralController extends Controller
@@ -294,7 +294,7 @@ class ReferralController extends Controller
         }
 
         //$user->notify(new ReferralNotifyUser(Referral::find($user->referral_id), $request, $referralValues));
-        $user->notify(new NewReferral(Referral::find($user->referral_id), $request, $referralValues));
+        $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
         $user->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
 
         return redirect(route('referrals'));
