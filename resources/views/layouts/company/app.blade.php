@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}" class="custom-company-html">
 @include('layouts.head')
-<body class="company-custom-body">
+<body class="company-custom-body"{!! isset($_company->background_color) ? ' style="background: ' . $_company->background_color . '"' : '' !!}>
         <div class="container-fluid">
             <div class="row">
 
@@ -9,7 +9,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading top-navbar">
 
-                            <nav class="navbar navbar-default navbar-static-top">
+                            <nav class="navbar navbar-default navbar-static-top"{!! isset($_company->foreground_color) ? ' style="background: ' . $_company->foreground_color . '"' : '' !!}>
                                 <div class="container-fluid col-md-10 col-md-offset-1">
                                     <div class="col-sm-9 company-name no-padding-lr">
                                         <h4><strong>{{ $_company->company_name }} Referral Program</strong></h4>
@@ -25,7 +25,7 @@
                             </nav>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="panel-body"{!! isset($_company->background_color) ? ' style="background: ' . $_company->background_color . '"' : '' !!}>
                             @if (\Session::has('success'))
                                 <div class="alert alert-success">
                                     <ul>
@@ -51,10 +51,10 @@
             </div>
         </div>
 
-    <footer class="footer">
+    <footer class="footer"{!! isset($_company->foreground_color) ? ' style="background: ' . $_company->foreground_color . '"' : '' !!}>
       <div class="container col-md-12 no-padding-lr">
         <div class="col-md-12 cta-footer"><p class="text-center">Want to make your own referral program? Visit <a href="{{ env('APP_URL') }}" class="footer-link-home">perxi.com.</a></p></div>
-        <div class="col-md-12 terms-company"><p class="text-center"><a href="{{ env('APP_URL') }}" class="terms-link">Terms and Conditions</a></p></div>
+        <div class="col-md-12 terms-company"{!! isset($_company->footer_color) ? ' style="background: ' . $_company->footer_color . '"' : '' !!}><p class="text-center"><a href="{{ env('APP_URL') }}" class="terms-link">Terms and Conditions</a></p></div>
       </div>
     </footer>
 

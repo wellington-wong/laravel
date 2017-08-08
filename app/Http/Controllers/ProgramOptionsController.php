@@ -64,6 +64,9 @@ class ProgramOptionsController extends Controller
     {
         $company = Company::find($request->get('company_id'));
         $company->subdomain_login_text = $request->input('subdomain_login_text');
+        $company->foreground_color = $request->input('foreground_color');
+        $company->background_color = $request->input('background_color');
+        $company->footer_color = $request->input('footer_color');
         $company->save();
 
         if (!$companyReferralForm = ReferralForms::where('company_id', $request->get('company_id'))->first()) {

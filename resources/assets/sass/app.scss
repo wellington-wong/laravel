@@ -1733,7 +1733,7 @@ table.table {
 }
 /*** User View End ***/
 
-/*** Custom Company Login ***/
+/*** Custom Company Landing Page ***/
 .custom-company-html {
 	position: relative;
 	min-height: 100%;
@@ -1743,6 +1743,11 @@ table.table {
 	background: transparent;
 	margin-bottom: 100px;
 	.company-custom {
+		.panel-body {
+			.container-fluid {
+				margin-top: 20px;
+			}
+		}
 		> .panel.panel-default {
 			border-color: transparent;
 			border: 0;
@@ -1753,6 +1758,8 @@ table.table {
 			padding: 0;
 			.navbar.navbar-static-top {
 				background: $custom-company-bg;
+				margin-bottom: 0;
+				border: none;
 				&, a {
 					color: #fff;
 					font-weight: normal;

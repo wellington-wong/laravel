@@ -481,7 +481,10 @@ $(function (){
 				company_id: formGenerator.data('company-id'),
 				raw_form_json: formBuilderData,
 				form_name: ($('input[name="form_name"]').val() != '') ? $('input[name="form_name"]').val() : 'Referral form',
-				subdomain_login_text: tinyMCE.activeEditor.getContent()
+				subdomain_login_text: tinyMCE.activeEditor.getContent(),
+				foreground_color: $('input[name="foreground_color"]').val(),
+				background_color: $('input[name="background_color"]').val(),
+				footer_color: $('input[name="footer_color"]').val(),
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
     	}
@@ -955,7 +958,10 @@ $(function (){
 // END EMAIL TEMPLATE FORM
 
 // SPECTRUM COLOR PICKER
-	$('input[name="foreground_color"], input[name="background_color"]').spectrum();
+	$('.render-spectrum').spectrum({
+		showInput: true,
+		preferredFormat: "hex"
+	});
 // END SPECTRUM COLOR PICKER
 
 });

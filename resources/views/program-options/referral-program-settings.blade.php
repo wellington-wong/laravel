@@ -38,20 +38,28 @@
         <div>&nbsp;</div>
 
         <div class="row">
-          <div class="col-md-6 no-padding-l foreground-color">
-            <label>Foreground Color</label>
-            <div><input type="text" name="foreground_color" value="{{ old('foreground_color') ? : '#333333' }}" class="form-control" placeholder="Color Code" ></div>
-          </div>
-          <div class="col-md-6 no-padding-r background-color">
-            <label>Background Color</label>
-            <div><input type="text" name="background_color" value="{{ old('foreground_color') ? : '#ffffff' }}" class="form-control" placeholder="Color Code" ></div>
-          </div>
+        @include('layouts.page-header', ['header' => 'Custom Company Landing Page', 'col' => 12])
         </div>
 
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Subdomain Login Text', 'col' => 12])
+          <div class="col-md-4 no-padding-l foreground-color">
+            <label>Foreground Color</label>
+            <div><input type="text" name="foreground_color" value="{{ isset($_company->foreground_color) ? $_company->foreground_color : '#333333' }}" class="form-control render-spectrum"></div>
+          </div>
+          <div class="col-md-4 no-padding-r background-color">
+            <label>Background Color</label>
+            <div><input type="text" name="background_color" value="{{ isset($_company->background_color) ? $_company->background_color : '#ffffff' }}" class="form-control render-spectrum"></div>
+          </div>
+          <div class="col-md-4 no-padding-r background-color">
+            <label>Footer Color</label>
+            <div><input type="text" name="footer_color" value="{{ isset($_company->footer_color) ? $_company->footer_color : '#1bbc9b' }}" class="form-control render-spectrum"></div>
+          </div>
         </div>
+
+        <div>&nbsp;</div>
+        
         <div class="row">
+          <label>Subdomain Login Text</label>
           <textarea class="subdomain-login tinymce" name="subdomain_login_text">{{ isset($_company->subdomain_login_text) ? $_company->subdomain_login_text : '' }}</textarea>
           <div class="form-actions btn-group custom-btn">
             <button class="clear-all-trigger btn btn-danger">Clear</button>
