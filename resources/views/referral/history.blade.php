@@ -34,6 +34,7 @@
                             <th><a href="{{ route('referral-history', [(isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['status'], 'column' => 'status']) }}">Status <i class="fa fa-sort{{ $sortc['status'] }}" aria-hidden="true"></i></a></th>
                         </tr>
                     </thead> 
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                     @foreach($referrals as $r)
                         <tr>
                             <td>{{ $r->referred->created_at->format('m/d/y') }}</td>
@@ -42,6 +43,7 @@
                             <td><a href="{{ route('referral-history-details', [$r->id]) }}">{{ $r->referred->display_name }}</a></td>
                             <td class="referral-status" data-id="{{ $r->id }}">{{ \App\Referral::$status[$r->status] }}</td>
                         </tr>
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
                     @if (!count($referrals))<tr><td colspan="5">No referrals found.</td></tr>@endif
                 </table>

@@ -22,12 +22,14 @@
                             <th>Value</th>
                         </tr>
                     </thead> 
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                     @foreach($referralValues as $key => $r)
                         <tr>
                             <td>{{ $r->id }}</td>
                             <td>{{ $r->name }}</td>
                             <td>{{ $r->value }}</td>
                         </tr>
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
                     @if (!count($referralValues))<tr><td colspan="5">No referral value/s found.</td></tr>@endif
                 </table>
