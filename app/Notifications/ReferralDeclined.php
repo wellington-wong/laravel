@@ -16,9 +16,9 @@ class ReferralDeclined extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $referral )
     {
-        //
+        $this->referral = $referral;
     }
 
     /**

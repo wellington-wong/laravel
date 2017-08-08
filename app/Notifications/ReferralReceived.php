@@ -16,7 +16,7 @@ class ReferralReceived extends Notification
      *
      * @return void
      */
-    public function __construct($referral, $request, $referralValues)
+    public function __construct( $referral, $request, $referralValues )
     {
         $this->referral = $referral;
         $this->referralValues = $referralValues;
