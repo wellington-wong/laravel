@@ -20345,6 +20345,7 @@ $(function () {
 
 	$('.referral-status .dropdown-menu li a').on('click', function () {
 		var _this = $(this);
+		var referralProcessing = true;
 
 		// Save current selected status for dynamic adjustments of referral tally.
 		var currentStatus = $(this).closest('.referral-status').find('.form-control').text();
@@ -20384,6 +20385,7 @@ $(function () {
 						rewardCnt.text(parseInt(rewardCnt.text()) - 1);
 					}
 			}
+			referralProcessing = false;
 		}
 
 		// Prepare admin note
@@ -20401,10 +20403,12 @@ $(function () {
 				tinymceHelper(options, false);
 			});
 			$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function () {
-				tinymceHelper(null, true);
-				data.note = $('.referrals.modal-textarea').val();
-				ajaxHelper("/referral/update", data, "POST", statusCallback);
-				referrals_modal.modal('hide');
+				if (referralProcessing) {
+					tinymceHelper(null, true);
+					data.note = $('.referrals.modal-textarea').val();
+					ajaxHelper("/referral/update", data, "POST", statusCallback);
+					referrals_modal.modal('hide');
+				}
 			});
 			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function () {
 				referrals_modal.modal('hide');
@@ -20414,16 +20418,21 @@ $(function () {
 			referrals_modal.find('.modal-body').html('Please take note that the referral status cannot be changed after being set as "Reward Sent"');
 			referrals_modal.modal('show');
 			$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function () {
-				tinymceHelper(null, true);
-				_this.closest('.referral-status').find('.fa').removeClass('fa-angle-down').addClass('fa-lock');
-				ajaxHelper("/referral/update", data, "POST", statusCallback);
-				referrals_modal.modal('hide');
+				if (referralProcessing) {
+					tinymceHelper(null, true);
+					_this.closest('.referral-status').find('.fa').removeClass('fa-angle-down').addClass('fa-lock');
+					ajaxHelper("/referral/update", data, "POST", statusCallback);
+					referrals_modal.modal('hide');
+				}
 			});
 			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function () {
 				referrals_modal.modal('hide');
 			});
+			//_this.closest('.referral-status').find('.dropdown-menu').remove();
 		} else {
-			ajaxHelper("/referral/update", data, "POST", statusCallback);
+			if (referralProcessing) {
+				ajaxHelper("/referral/update", data, "POST", statusCallback);
+			}
 		}
 	});
 	$('.current-referral-status').each(function () {
