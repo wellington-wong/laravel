@@ -8,17 +8,20 @@
                             <th>Details</th>
                         </tr>
                     </thead> 
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                         <tr>
                             <td>{{ isset($referral->created_at) ? $referral->created_at->format('m/d/y') : '' }}</td>
                             <td>{{ $referral->id }}</em></td>
                             <td>You referred <em>"{{ $referral->referred->display_name }}"</em></td>
                         </tr>
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                         @foreach ($referral->revisionHistory as $history)
                         <tr>
                             <td>{{ $history->created_at->format('m/d/y') }}</td>
                             <td>{{ $history->revisionable_id }}</td>
                             <td>The referral status for <em>"{{ $referral->referred->display_name }}"</em> was changed to {{ \App\Referral::$status[$referral->status] }}</td>
                         </tr>
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
                         @endforeach
                 </table>
             </div>

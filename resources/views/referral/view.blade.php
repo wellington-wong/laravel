@@ -7,6 +7,13 @@
     <div class="container-fluid referrals-history with-referral-counter">
         
         <div class="row">
+            @include('layouts.page-header', ['header' => 'Referral History', 'col' => 3])
+        </div>
+
+        <div class="clearfix"></div>
+        @include('referral.partials.history-details')
+        
+        <div class="row">
             @include('layouts.page-header', ['header' => 'Referral View', 'col' => 3])
         </div>
 
@@ -37,7 +44,6 @@
             </div>
         </div>
 
-        @include('referral.partials.history-details')
     </div>
 
 @endsection
