@@ -14,7 +14,7 @@
         @include('referral.partials.history-details')
         
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Referral View', 'col' => 3])
+            @include('layouts.page-header', ['header' => 'Referral Details', 'col' => 3])
         </div>
 
         <div class="clearfix"></div>
