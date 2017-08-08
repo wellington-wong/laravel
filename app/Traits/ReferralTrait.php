@@ -77,6 +77,7 @@ trait ReferralTrait {
                 break;
             default:
                 $referrals->orderBy($defaultSort, 'asc');
+                $referrals->orderBy('created_at', 'desc');
                 break;
         }
 

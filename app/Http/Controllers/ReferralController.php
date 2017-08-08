@@ -160,9 +160,9 @@ class ReferralController extends Controller
             }
         } else {
             if (Gate::allows('see-company-referrals')) {
-                $referrals = $request->_company->referrals()->orderBy('status', 'asc')->paginate(15);
+                $referrals = $request->_company->referrals()->orderBy('status', 'asc')->orderBy('created_at', 'desc')->paginate(15);
             } else {
-                $referrals = $request->user()->referrals()->orderBy('status', 'asc')->paginate(15);
+                $referrals = $request->user()->referrals()->orderBy('status', 'asc')->orderBy('created_at', 'desc')->paginate(15);
             }
         }
 
@@ -188,9 +188,9 @@ class ReferralController extends Controller
             }
         } else {
             if (Gate::allows('see-company-referrals')) {
-                $referrals = $request->_company->referrals()->orderBy('status', 'asc')->get();
+                $referrals = $request->_company->referrals()->orderBy('status', 'asc')->orderBy('created_at', 'desc')->get();
             } else {
-                $referrals = $request->user()->referrals()->orderBy('status', 'asc')->get();
+                $referrals = $request->user()->referrals()->orderBy('status', 'asc')->orderBy('created_at', 'desc')->get();
             }
         }
 
