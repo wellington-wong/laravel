@@ -35,7 +35,7 @@ class EmailTemplate extends Model
     	return $this->hasOne(User::class);
     }
 
-    public static function prepareEmail( $request, $referral, $emailHtml, $referralValues ) {
+    public static function prepareEmail( $request, $referral, $emailHtml ) {
 
         $regex = '#{{(.*?)}}#';
         $code = preg_match_all($regex, $emailHtml, $matches);
@@ -94,6 +94,7 @@ class EmailTemplate extends Model
 
 
         $emailHtml = str_replace('{{ perxi_home }}', 'https://' . $request->_company->subdomain . '.' . env('DOMAIN'), $emailHtml);
+        $emailHtml = str_replace('{{ referral_note }}', (isset($referral->note) ? $referral->note : ''), $emailHtml);
 
         return $emailHtml;
 

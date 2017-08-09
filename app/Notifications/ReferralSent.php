@@ -18,9 +18,10 @@ class ReferralSent extends Notification
      *
      * @return void
      */
-    public function __construct( $referral )
+    public function __construct( $referral, $request )
     {
         $this->referral = $referral;
+        $this->request = $request;
     }
 
     /**
@@ -31,7 +32,7 @@ class ReferralSent extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -47,11 +48,23 @@ class ReferralSent extends Notification
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
 
-        return (new MailMessage)
-            ->from($from, $fromName)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 4)->first()) {
+
+            // Prepare custom email
+            $emailHtml = $emailHtml->email_html;
+            $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml );
+
+            return (new MailMessage)
+                ->from($from, $fromName)
+                ->markdown('email-templates.referral-sent', ['referral' => $this->referral, 'email_template' => $emailHtml]);
+        } else {
+            return (new MailMessage)
+                ->from($from, $fromName)
+                ->line('Your reward for referring ' . $this->referral->referred->getName() . ' has been sent.')
+                ->action('Go to referrals', url('/referrals'))
+                ->line('Thank you for using our application!');
+        }
+
     }
 
     /**
