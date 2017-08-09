@@ -46,7 +46,7 @@ class ReferralReceived extends Notification
     {
         if (($emailHtml = $this->request->_company->emailTemplates()->where('type', 1)->first()->email_html) != '') {
             // Prepare custom email
-            $emailHtml = EmailTemplate::prepareEmail($this->referral, $emailHtml, $this->referralValues);
+            $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml, $this->referralValues );
             return (new MailMessage)
                 ->markdown('email-templates.referral-received', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {

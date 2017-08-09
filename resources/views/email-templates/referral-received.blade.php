@@ -20,7 +20,7 @@
 	                     <tr>
 	                        <td class="content-cell" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 35px;">
 	                           <h1 style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #2F3133; font-size: 19px; font-weight: bold; margin-top: 0; text-align: left;">Hello!</h1>
-	                           <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">You have been referred.</p>
+	                           <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">You have been referred by { { referrer_name }}.</p>
 	                           <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Name: { { referred_name }}</p>
 	                           <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Email: { { referred_email }}</p>
 	                           <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Phone: { { referred_phone }}</p>
@@ -34,7 +34,7 @@
 	                                             <table border="0" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
 	                                                <tr>
 	                                                   <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
-	                                                      <a href="{ { perxi_home }}" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #FFF; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097D1; border-top: 10px solid #3097D1; border-right: 18px solid #3097D1; border-bottom: 10px solid #3097D1; border-left: 18px solid #3097D1;">Join the club and refer others!</a>
+	                                                      <a href="https://{{ $_company->subdomain }}.{{ env('DOMAIN') }}" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #FFF; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097D1; border-top: 10px solid #3097D1; border-right: 18px solid #3097D1; border-bottom: 10px solid #3097D1; border-left: 18px solid #3097D1;">Join the club and refer others!</a>
 	                                                   </td>
 	                                                </tr>
 	                                             </table>
@@ -50,8 +50,8 @@
 	                           <table class="subcopy" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-top: 1px solid #EDEFF2; margin-top: 25px; padding-top: 25px;">
 	                              <tr>
 	                                 <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
-	                                    <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; line-height: 1.5em; margin-top: 0; text-align: left; font-size: 12px;">If you’re having trouble clicking the "Join the club and refere others!" button, copy and paste the URL below
-	                                       into your web browser: <a href="{ { perxi_home }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;"></a><a href="{{ env('APP_URL') }}/referrals" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;">Perxi</a>
+	                                    <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; line-height: 1.5em; margin-top: 0; text-align: left; font-size: 12px;">If you’re having trouble clicking the "Join the club and refer others!" button, copy and paste the URL below
+	                                       into your web browser: <a href="https://{{ $_company->subdomain }}.{{ env('DOMAIN') }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;"></a><a href="{{ env('APP_URL') }}/referrals" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;">https://{{ $_company->subdomain }}.{{ env('DOMAIN') }}</a>
 	                                    </p>
 	                                 </td>
 	                              </tr>

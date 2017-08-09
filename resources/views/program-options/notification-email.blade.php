@@ -9,7 +9,7 @@
         @include('layouts.page-header', ['header' => 'Notification Emails', 'col' => 12])
         </div>
     </div>
-    
+
     <div class="clearfix"></div>
 
     <div class="row">    	
@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
             <textarea class="form-control" name="email_html" id="email_html">
-                @if (!isset($emailTemplate->email_html)) 
+                @if (!empty($emailTemplate->email_html)) 
                     {{ str_replace('{{' , '&#123; &#123;', $emailTemplate->email_html) }}
                 @else
                     @include('email-templates.referral-received', ['email_template' => null])

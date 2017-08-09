@@ -35,7 +35,7 @@ class EmailTemplate extends Model
     	return $this->hasOne(User::class);
     }
 
-    public static function prepareEmail( $referral, $emailHtml, $referralValues ) {
+    public static function prepareEmail( $request, $referral, $emailHtml, $referralValues ) {
 
         $regex = '#{{(.*?)}}#';
         $code = preg_match_all($regex, $emailHtml, $matches);
@@ -65,8 +65,9 @@ class EmailTemplate extends Model
         }
 
         // Get referred vars for referral
-        foreach ($referralValues as $referralValue) {
-            foreach ($matches[1] as $match) {
+        foreach ($matches[1] as $match) {
+            if (stristr($match, 'referred')) {
+                $varName = str_replace('referred_', '', trim($match));
                 switch (trim($match)) {
                     case ('referred_name'):
                         $replacementVars[trim($match)] = $referral->referred->getName() ?: null;
@@ -83,13 +84,16 @@ class EmailTemplate extends Model
                     default:
                         $replacementVars[trim($match)] = $referral->referred->$varName;
                 }       
-            }
+            }       
         }
 
         // Replace placeholder with real user data
         foreach ($replacementVars as $key => $replacementVar) {
             $emailHtml = str_replace('{{ ' . $key . ' }}', $replacementVars[$key], $emailHtml);
         }
+
+
+        $emailHtml = str_replace('{{ perxi_home }}', 'https://' . $request->_company->subdomain . '.' . env('DOMAIN'), $emailHtml);
 
         return $emailHtml;
 
