@@ -46,7 +46,7 @@
                 @if (!empty($emailTemplate->email_html)) 
                     {{ str_replace('{{' , '&#123; &#123;', $emailTemplate->email_html) }}
                 @else
-                    @include('email-templates.referral-received', ['email_template' => null])
+                    @include('email-templates.' . $emailBlade[$emailTemplateType], ['email_template' => null])
                 @endif               
             </textarea>            
         </div>

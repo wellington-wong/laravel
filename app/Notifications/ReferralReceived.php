@@ -49,8 +49,10 @@ class ReferralReceived extends Notification
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
 
-        if (($emailHtml = $this->request->_company->emailTemplates()->where('type', 1)->first()->email_html) != '') {
+        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 2)->first()) {
+
             // Prepare custom email
+            $emailHtml = $emailHtml->email_html;
             $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml, $this->referralValues );
 
             return (new MailMessage)

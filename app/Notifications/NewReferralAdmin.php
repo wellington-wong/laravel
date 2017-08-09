@@ -49,11 +49,23 @@ class NewReferralAdmin extends Notification
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
 
-        return (new MailMessage)
-            ->from($from, $fromName)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 7)->first()) {
+
+            // Prepare custom email
+            $emailHtml = $emailHtml->email_html;
+            $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml, $this->referralValues );
+
+            return (new MailMessage)
+                ->from($from, $fromName)
+                ->markdown('email-templates.new-referral-admin', ['referral' => $this->referral, 'email_template' => $emailHtml]);
+        } else {
+            return (new MailMessage)
+                ->from($from, $fromName)
+                ->line('A new referral has been submitted by ' . $this->referral->referrer->getName())
+                ->action('Go to referrals', url('/referrals'))
+                ->line('Thank you for using our application!');
+        }
+
     }
 
     /**

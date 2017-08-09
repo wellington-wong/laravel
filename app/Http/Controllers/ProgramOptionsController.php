@@ -138,8 +138,33 @@ class ProgramOptionsController extends Controller
         $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $id)->first();
         $emailTemplateType = $id;
 
+        $emailBlade[] = [];
+        switch ($id){
+            case (1):
+                $emailBlade[$id] = 'new-member';
+                break;
+            case (2):
+                $emailBlade[$id] = 'referral-received';
+                break;
+            case (3):
+                $emailBlade[$id] = 'referral-verified';
+                break;
+            case (4):
+                $emailBlade[$id] = 'referral-sent';
+                break;
+            case (5):
+                $emailBlade[$id] = 'referral-declined';
+                break;
+            case (6):
+                $emailBlade[$id] = 'new-member';
+                break;
+            case (7):
+                $emailBlade[$id] = 'new-referral-admin';
+                break;
+        }
+
         return view('program-options.notification-email')
-        ->with(compact('emailTemplate', 'emailTemplateType'));
+        ->with(compact('emailTemplate', 'emailTemplateType', 'emailBlade'));
     }
 
     /**
