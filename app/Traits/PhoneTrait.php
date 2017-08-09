@@ -13,7 +13,7 @@ trait PhoneTrait {
     public function addDefaultPhone() {
 
         $request = request();
-        if ( null == $request->input('phone')) {
+        if ( null === $request->input('phone')) {
             return null;
         } else {
             $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
@@ -42,7 +42,7 @@ trait PhoneTrait {
     public function updateDefaultPhone() {
 
         $request = request();
-        if ( null == $request->input('phone')) {
+        if ( null === $request->input('phone')) {
             return null;
         } else {
             $request->merge(['phone'=>Phone::sanitize($request->input('phone'))]);
