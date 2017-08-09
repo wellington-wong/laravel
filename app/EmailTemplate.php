@@ -100,7 +100,7 @@ class EmailTemplate extends Model
 
     }
 
-    public static function prepareEmailUser( $request, $user ) {
+    public static function prepareEmailUser( $request, $user, $emailHtml ) {
 
         $regex = '#{{(.*?)}}#';
         $code = preg_match_all($regex, $emailHtml, $matches);

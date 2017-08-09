@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
+use App\EmailTemplate;
+
 class NewMemberAdmin extends Notification
 {
     use Queueable;
@@ -16,9 +18,10 @@ class NewMemberAdmin extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $request, $user )
     {
-        //
+        $this->request = $request;
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +32,7 @@ class NewMemberAdmin extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -40,10 +43,38 @@ class NewMemberAdmin extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
+
+        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 6)->first()) {
+
+            // Prepare custom email
+            $emailHtml = $emailHtml->email_html;
+            $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $emailHtml );
+
+            return (new MailMessage)
+                ->from($from, $fromName)
+                ->markdown('email-templates.new-member-admin', ['user' => $this->user]);
+        } else {
+            return (new MailMessage)
+                ->from($from, $fromName)
+                ->line($this->user->getName() .' has registered.')
+                ->action('Go to user', route('view-user', $this->user->id))
+                ->line('Thank you for using our application!');
+        }
+    }
+
+    /**
+     * Get the database representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {
+        return $this->user->toArray();
     }
 
     /**

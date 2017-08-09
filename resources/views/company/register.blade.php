@@ -41,7 +41,7 @@
                   <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
                       <label for="phone" class="control-label">PHONE</label>
                       <div>
-                        <input data-format="(ddd) ddd-dddd" name="phone" class="bfh-phone form-control" type="text"> 
+                        <input data-format="(ddd) ddd-dddd" name="phone" value="{{ old('phone') }}" class="bfh-phone form-control" type="text"> 
                         <input name="phone_placeholder" value="{{ old('phone') }}" class="phone-placeholder form-control" style="display: none;" type="text">
                       </div>
                   </div>
