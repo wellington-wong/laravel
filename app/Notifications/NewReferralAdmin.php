@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
+use App\EmailTemplate;
+
 class NewReferralAdmin extends Notification
 {
     use Queueable;
@@ -16,9 +18,11 @@ class NewReferralAdmin extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $referral, $request, $referralValues )
     {
-        //
+        $this->referral = $referral;
+        $this->referralValues = $referralValues;
+        $this->request = $request;
     }
 
     /**
@@ -29,7 +33,7 @@ class NewReferralAdmin extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -44,6 +48,17 @@ class NewReferralAdmin extends Notification
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
+    }
+
+    /**
+     * Get the database representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {
+        return $this->referral->toArray();
     }
 
     /**

@@ -44,14 +44,24 @@ class ReferralReceived extends Notification
      */
     public function toMail($notifiable)
     {
+
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
+
         if (($emailHtml = $this->request->_company->emailTemplates()->where('type', 1)->first()->email_html) != '') {
             // Prepare custom email
             $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml, $this->referralValues );
+
             return (new MailMessage)
+                ->from($from, $fromName)
                 ->markdown('email-templates.referral-received', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
             return (new MailMessage)
-                ->line('You have been referred by ' . auth()->user()->getName());
+                ->from($from, $fromName)
+                ->line('You have been referred by ' . $this->referral->referrer->getName())
+                ->action('Go to referrals', url('/referrals'))
+                ->line('Thank you for using our application!');
         }
     }
 
