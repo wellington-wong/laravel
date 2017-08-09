@@ -294,7 +294,9 @@ class ReferralController extends Controller
         }
 
         $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
-        $user->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
+        foreach ($request->_company->admins()->get() as $admin) {
+            $admin->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
+        }
 
         return redirect(route('referrals'));
     }
