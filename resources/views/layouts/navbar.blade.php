@@ -13,7 +13,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown pull-left navbar-settings-wrapper">
-                                Hi {{ Auth::user()->name }} 
+                                Hi {{ Auth::user()->displayName }} 
                                 <span class="nav-separator">|</span> <a href="#" class="navbar-settings no-padding" data-toggle="dropdown" data-hover="dropdown">Settings <i class="fa fa-angle-down" aria-hidden="true"></i></a> 
                                 <ul class="dropdown-menu">
                                   @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<li><a href="{{ route('program-options') }}">Program Options</a></li>@endif
@@ -27,12 +27,12 @@
                                              document.getElementById('logout-form').submit();">                                    
                                 </a> 
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                @endif
+            </ul>
+        </div>
+    </div>
+</nav>

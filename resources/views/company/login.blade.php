@@ -53,7 +53,7 @@
 			                </div>-->
 			            </div>
 			            <div class="col-md-12">
-			                <span>DON'T HAVE AND ACCOUNT?</span>
+			                <span>DON'T HAVE AN ACCOUNT?</span>
 			                <a href="{{ route('register') }}">CREATE ONE</a>
 			            </div>
 			        </div>
