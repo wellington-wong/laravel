@@ -92,8 +92,10 @@ class CompanyController extends Controller
         $hosts = explode('.', $request->getHost());
         $shareUrl = (isset($_company->subdomain) ? $_company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
 
+        $address = $_company->address()->first();
+
         return view('company.company')
-            ->with(compact('_company', 'shareUrl', 'user'));
+            ->with(compact('_company', 'shareUrl', 'user', 'address'));
 
     }
 

@@ -50,11 +50,14 @@
                     To send checks as rewards, click on <a href="{{ route('program-options-lob') }}">bank account</a> in the menu and configure Lob.
                 </div>
             @elseif ( null != $_company->lob )
-                @if ( $_company->lob->numberBankAccounts() > 0 && $_company->lob->banksVerified() == false )
+                <?php
+                    $num_banks = $_company->lob->numberBankAccounts();
+                ?>
+                @if ( $num_banks > 0 && $num_banks == false )
                     <div class="alert alert-warning text-center" >
                     To send checks as rewards, go to lob.com and <b>verify</b> your bank account.
                     </div>
-                @elseif ( $_company->lob->numberBankAccounts() == 0 )
+                @elseif ( $num_banks == 0 )
                     <div class="alert alert-warning text-center" >
                     To send checks as rewards, click on <a href="{{ route('program-options-lob') }}">bank account</a> in the menu and configure Lob.
                     </div>
