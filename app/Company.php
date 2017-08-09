@@ -77,8 +77,8 @@ class Company extends Model
         return $this->hasMany( ReferralForms::class );
     }
 
-    public function emailTemplate() {
-        return $this->hasOne( EmailTemplate::class );
+    public function emailTemplates() {
+        return $this->hasMany( EmailTemplate::class );
     }
 
     public function lob() {

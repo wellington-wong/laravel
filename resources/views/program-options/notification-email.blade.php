@@ -3,12 +3,13 @@
 @section('pageTitle', 'Notification Emails')
 
 @section('content')
+    @include('email-templates.referral-received', ['email_template' => ''])
     <div class="container-fluid notification-wrapper">    
         <div class="row">
         @include('layouts.page-header', ['header' => 'Notification Emails', 'col' => 12])
         </div>
     </div>
-
+    
     <div class="clearfix"></div>
 
     <div class="row">    	
@@ -41,7 +42,13 @@
             </ul>
         </div>
         <div class="form-group">
-            <textarea class="form-control" name="email_html" id="email_html">{{ isset($emailTemplate->email_html) ? str_replace('{{' , '&#123; &#123;', $emailTemplate->email_html) : '' }}</textarea>
+            <textarea class="form-control" name="email_html" id="email_html">
+                @if (!isset($emailTemplate->email_html)) 
+                    {{ str_replace('{{' , '&#123; &#123;', $emailTemplate->email_html) }}
+                @else
+                    @include('email-templates.referral-received', ['email_template' => null])
+                @endif               
+            </textarea>            
         </div>
         {{ Form::hidden('type', isset($emailTemplate->type) ? $emailTemplate->type : $emailTemplateType) }}
         <div class="form-group btn-group pull-right">

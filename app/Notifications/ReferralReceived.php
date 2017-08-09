@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
+use App\EmailTemplate;
+
 class ReferralReceived extends Notification
 {
     use Queueable;
@@ -42,47 +44,9 @@ class ReferralReceived extends Notification
      */
     public function toMail($notifiable)
     {
-        if (($emailHtml = $this->request->_company->emailTemplate()->first()->email_html) != '') {
-
-            $regex = '#{{(.*?)}}#';
-            $code = preg_match_all($regex, $emailHtml, $matches);
-
-            // Get referred vars for referral
-            $replacementVars = [];
-            foreach ($matches[1] as $match) {
-                if (stristr($match, 'referrer')) {
-                    $varName = str_replace('referrer_', '', trim($match));
-                    if (trim($match) == 'referrer_phone') {
-                        $replacementVars[trim($match)] = isset($this->referral->referrer->phone[0]->phone) ? $this->referral->referrer->phone[0]->phone : null;
-                    } else if (trim($match) == 'referrer_address') {
-                        $replacementVars[trim($match)] = isset($this->referral->referrer->address[0]->address) ? $this->referral->referrer->address[0]->address : null;
-                    } else {
-                        $replacementVars[trim($match)] = $this->referral->referrer->$varName;
-                    }
-                }                
-            }
-
-            // Get referrer vars for referral
-            foreach ($this->referralValues as $referralValue) {
-                foreach ($matches[1] as $match) {
-                    if (stristr($match, 'referred')) {
-                        $varName = str_replace('referred_', '', trim($match));
-                        if (trim($match) == 'referred_phone') {
-                            $replacementVars[trim($match)] = isset($this->referral->referred->phone[0]->phone) ? $this->referral->referred->phone[0]->phone : null;
-                        } else if (trim($match) == 'referred_address') {
-                            $replacementVars[trim($match)] = isset($this->referral->referred->address[0]->address) ? $this->referral->referred->address[0]->address : null;
-                        } else {
-                            $replacementVars[trim($match)] = $this->referral->referred->$varName;
-                        }
-                    }                
-                }
-            }
-
-            // Replace placeholder with real user data
-            foreach ($replacementVars as $key => $replacementVar) {
-                $emailHtml->email_html = str_replace('{{ ' . $key . ' }}', $replacementVars[$key], $emailHtml);
-            }    
-
+        if (($emailHtml = $this->request->_company->emailTemplates()->where('type', 1)->first()->email_html) != '') {
+            // Prepare custom email
+            $emailHtml = EmailTemplate::prepareEmail($this->referral, $emailHtml, $this->referralValues);
             return (new MailMessage)
                 ->markdown('email-templates.referral-received', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {

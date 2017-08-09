@@ -35,7 +35,64 @@ class EmailTemplate extends Model
     	return $this->hasOne(User::class);
     }
 
-    public function prepareEmail($referral) {
+    public static function prepareEmail( $referral, $emailHtml, $referralValues ) {
+
+        $regex = '#{{(.*?)}}#';
+        $code = preg_match_all($regex, $emailHtml, $matches);
+
+        // Get referred vars for referral
+        $replacementVars = [];
+        foreach ($matches[1] as $match) {
+            if (stristr($match, 'referrer')) {
+                $varName = str_replace('referrer_', '', trim($match));
+                switch (trim($match)) {
+                    case ('referrer_name'):
+                        $replacementVars[trim($match)] = $referral->referrer->getName() ?: null;
+                        break;
+                    case ('referrer_email'):
+                        $replacementVars[trim($match)] = isset($referral->referrer->email) ? $referral->referrer->email : null;
+                        break;
+                    case ('referrer_phone'):
+                        $replacementVars[trim($match)] = isset($referral->referrer->phone[0]->phone) ? $referral->referrer->phone[0]->phone : null;
+                        break;
+                    case ('referrer_address'):
+                        $replacementVars[trim($match)] = isset($referral->referrer->address[0]->address) ? $referral->referrer->address[0]->address : null;
+                        break;
+                    default:
+                        $replacementVars[trim($match)] = $referral->referrer->$varName;
+                }
+            }                
+        }
+
+        // Get referred vars for referral
+        foreach ($referralValues as $referralValue) {
+            foreach ($matches[1] as $match) {
+                switch (trim($match)) {
+                    case ('referred_name'):
+                        $replacementVars[trim($match)] = $referral->referred->getName() ?: null;
+                        break;
+                    case ('referred_email'):
+                        $replacementVars[trim($match)] = isset($referral->referred->email) ? $referral->referred->email : null;
+                        break;
+                    case ('referred_phone'):
+                        $replacementVars[trim($match)] = isset($referral->referred->phone[0]->phone) ? $referral->referred->phone[0]->phone : null;
+                        break;
+                    case ('referred_address'):
+                        $replacementVars[trim($match)] = isset($referral->referred->address[0]->address) ? $referral->referred->address[0]->address : null;
+                        break;
+                    default:
+                        $replacementVars[trim($match)] = $referral->referred->$varName;
+                }       
+            }
+        }
+
+        // Replace placeholder with real user data
+        foreach ($replacementVars as $key => $replacementVar) {
+            $emailHtml = str_replace('{{ ' . $key . ' }}', $replacementVars[$key], $emailHtml);
+        }
+
+        return $emailHtml;
+
     }
 
 }
