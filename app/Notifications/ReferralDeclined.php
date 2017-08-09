@@ -61,7 +61,7 @@ class ReferralDeclined extends Notification
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->line('Your referral for ' . $this->referral->referred->getName() . ' has been declined.')
-                ->line('Note: ' . $this->referral->note)
+                ->line('Note: ' . strip_tags($this->referral->note))
                 ->action('Go to referrals', url('/referrals'))
                 ->line('Thank you for using our application!');
         }
