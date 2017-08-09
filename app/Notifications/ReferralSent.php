@@ -42,10 +42,27 @@ class ReferralSent extends Notification
      */
     public function toMail($notifiable)
     {
+
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->from($from, $fromName)
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
+            ->line('Thank you for using our application!');
+    }
+
+    /**
+     * Get the database representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {
+        return $this->referral->toArray();
     }
 
     /**
