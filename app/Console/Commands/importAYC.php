@@ -74,6 +74,7 @@ class importAYC extends Command
                 $u->email = $au->email;
                 $u->first_name = $au->firstname;
                 $u->last_name = $au->lastname;
+                $u->name = $au->firstname . " " . $au->lastname;
                 $u->created_at = $au->created_at;
                 $u->updated_at = $au->updated_at;
                 $u->save();
@@ -139,6 +140,7 @@ class importAYC extends Command
                 $u->email = $email;
                 $u->first_name = $au->first_name;
                 $u->last_name = $au->last_name;
+                $u->name = $au->firstname . " " . $au->lastname;
                 $u->created_at = $au->created_at;
                 $u->updated_at = $au->updated_at;
                 $u->save();
