@@ -12,7 +12,7 @@
 </div>
 
 <div class="form-group col-md-2">
-	@include('forms.states', ['state' => isset($address->state) ? $address->state : null])
+	@include('forms.states', ['state' => isset($address->state) ? $address->state : 'fl'])
 </div>
 
 <div class="form-group col-md-6">

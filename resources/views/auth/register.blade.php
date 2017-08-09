@@ -248,7 +248,7 @@
                                                         <label>State</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        @include('forms.states')                                                        
+                                                        @include('forms.states', ['state' => 'fl'])                                                        
                                                     </div>
                                                 </div>
 
