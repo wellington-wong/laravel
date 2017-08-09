@@ -46,8 +46,4 @@
     {{ Form::text('zip', isset($address->zip) ? $address->zip : null, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
 </div>
 
-<div class="form-group col-md-4">
-    <label>Country</label>
-    @include('forms.countries', [])
-</div>
 @endif 
