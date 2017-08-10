@@ -1,3 +1,4 @@
+@section('pageTitle', 'Reset Password')
 @include('auth.document-top')
         <!-- Start Header -->
         <header>
