@@ -278,7 +278,7 @@ $(function (){
 	    }, {
 	      label: 'Phone',
 	      attrs: {
-	        type: 'number',
+	        type: 'text',
 	      },
 		  placeholder: "Enter your Friend's phone number",
 	      icon: '<i class="fa fa-phone"></i>'
@@ -367,7 +367,7 @@ $(function (){
 			placeholder: "Enter your Friend's phone number",
 			name: "phone",
 			required: true,
-			type: "number"
+			type: "text"
 		}]
 		var defaultFieldsComplete = defaultFieldsBasic.slice(0);
 		$.each(addressSetArr, function (){

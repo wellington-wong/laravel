@@ -49,7 +49,7 @@
             @if( isset($form->raw_form_json) )
              $('#fb-render').formRender({ formData: <? echo json_encode($form->raw_form_json); ?> });
             @else
-             $('#fb-render').formRender({ formData: [{"type":"text","required":true,"label":"First Name","placeholder":"Enter your Friend's first name","className":"form-control","name":"first_name","subtype":"text"},{"type":"text","required":true,"label":"Last Name","placeholder":"Enter your Friend's last name","className":"form-control","name":"last_name","subtype":"text"},{"type":"text","subtype":"email","required":true,"label":"Email","placeholder":"Enter your Friend's email","className":"form-control","name":"email"},{"type":"number","required":true,"label":"Phone","placeholder":"Enter your Friend's phone number","className":"form-control","name":"phone"}] });
+             $('#fb-render').formRender({ formData: [{"type":"text","required":true,"label":"First Name","placeholder":"Enter your Friend's first name","className":"form-control","name":"first_name","subtype":"text"},{"type":"text","required":true,"label":"Last Name","placeholder":"Enter your Friend's last name","className":"form-control","name":"last_name","subtype":"text"},{"type":"text","subtype":"email","required":true,"label":"Email","placeholder":"Enter your Friend's email","className":"form-control","name":"email"},{"type":"text","required":true,"label":"Phone","placeholder":"Enter your Friend's phone number","className":"form-control","name":"phone"}] });
             @endif
 
              // Place old value to appropriate input field
