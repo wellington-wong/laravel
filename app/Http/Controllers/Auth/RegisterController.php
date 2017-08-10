@@ -76,6 +76,7 @@ class RegisterController extends Controller
             'last_name'=>'required',
             'phone'=>'required|phone:US',
             'email'=>'unique:users|required|email',
+            'password' => 'required|min:6|confirmed',
             //'profile_blob' => 'required',
         ];
 
