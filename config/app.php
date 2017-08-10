@@ -138,6 +138,8 @@ return [
 
     'providers' => [
 
+
+
         Laravel\Socialite\SocialiteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
@@ -145,8 +147,8 @@ return [
 
         Propaganistas\LaravelPhone\LaravelPhoneServiceProvider::class,
         Propaganistas\LaravelIntl\IntlServiceProvider::class,
-
-        //Exults\CustomForms\CustomFormsServiceProvider::class,
+        
+        Exults\Logs\LogsServiceProvider::class,
 
         /*
          * Laravel Framework Service Providers...
@@ -210,6 +212,8 @@ return [
     */
 
     'aliases' => [
+
+        'UserLogs'  => Exults\Logs\LogsServiceProvider::class,
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 

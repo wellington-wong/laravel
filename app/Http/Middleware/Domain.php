@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Company;
 use Closure;
+use Exults\Logs\UserLog;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 
@@ -61,6 +62,15 @@ class Domain
         config(['company_id' => $company_id]);
         View::share('_company', $company);
 
+        /* user logs */
+        UserLog::log();
+
         return $next($request);
     }
+
+    public function terminate()
+    {
+        UserLog::logEnd();
+    }
+
 }
