@@ -80,7 +80,7 @@
 
                       <div class="form-group col-md-6">
                           <label for="zip" class="control-label">ZIP CODE</label>
-                          <input class="form-control" name="zip" type="text" value="{{ old('zip') }}">
+                          <input class="form-control" name="zip" maxlength="5" type="text" value="{{ old('zip') }}">
                       </div>
                   </div>                  
 

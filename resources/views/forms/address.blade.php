@@ -16,7 +16,7 @@
 </div>
 
 <div class="form-group col-md-6">
-    {{ Form::text('zip', isset($address->zip) ? $address->zip : null, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
+    {{ Form::text('zip', isset($address->zip) ? $address->zip : null, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : ''), 'maxlength' => 5]) }}
 </div>
 @else 
 <!-- Company Profile -->
