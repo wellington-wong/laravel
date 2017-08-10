@@ -86,7 +86,7 @@
 
                   <div class="form-group col-md-12">
                     <label for="how-did-you-hear" class="control-label">HOW DID YOU HEAR ABOUT US?</label>
-                    <input class="form-control" id="how-did-you-hear" name="how_did_you_hear" type="text">
+                    <input class="form-control" id="how-did-you-hear" name="how_did_you_hear" value="{{ old('how_did_you_hear') }}" type="text">
                   </div>   
 
                   <div class="form-group col-md-12">

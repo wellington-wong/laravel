@@ -110,16 +110,16 @@ class EmailTemplate extends Model
         foreach ($matches[1] as $match) {
             switch (trim($match)) {
                 case ('name'):
-                    $replacementVars[trim($match)] = $referral->referrer->getName() ?: null;
+                    $replacementVars[trim($match)] = $user->getName() ?: null;
                     break;
                 case ('email'):
-                    $replacementVars[trim($match)] = isset($referral->referrer->email) ? $referral->referrer->email : null;
+                    $replacementVars[trim($match)] = isset($user->email) ? $user->email : null;
                     break;
                 case ('phone'):
-                    $replacementVars[trim($match)] = isset($referral->referrer->phone[0]->phone) ? $referral->referrer->phone[0]->phone : null;
+                    $replacementVars[trim($match)] = isset($user->phones()->first()->phone) ? $user->phones()->first()->phone : '';
                     break;
                 case ('address'):
-                    $replacementVars[trim($match)] = isset($referral->referrer->address[0]->address) ? $referral->referrer->address[0]->address : null;
+                    $replacementVars[trim($match)] = isset($user->addresses()->first()->address) ? $user->addresses()->first()->address : '';
                     break;
             }          
         }

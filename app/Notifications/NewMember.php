@@ -56,7 +56,7 @@ class NewMember extends Notification
 
             return (new MailMessage)
                 ->from($from, $fromName)
-                ->markdown('email-templates.new-member', ['user' => $this->user]);
+                ->markdown('email-templates.new-member', ['user' => $this->user, 'email_template' => $emailHtml]);
         } else {
             return (new MailMessage)
                 ->from($from, $fromName)
