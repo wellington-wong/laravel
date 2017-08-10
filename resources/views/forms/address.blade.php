@@ -36,12 +36,12 @@
     {{ Form::text('city', isset($address->city) ? $address->city : null, ['placeholder' => 'City', 'class' => 'form-control' . ($errors->has('city') ? ' has-error' : '')]) }}
 </div>
 
-<div class="form-group col-md-2">
+<div class="form-group col-md-4">
 	<label>States</label>
 	@include('forms.states', ['state' => !empty($address->state) ? $address->state : 'fl'])
 </div>
 
-<div class="form-group col-md-2 company-zip">
+<div class="form-group col-md-4 company-zip">
 	<label>Zip Code</label>
     {{ Form::text('zip', isset($address->zip) ? $address->zip : null, ['placeholder' => 'Zip Code', 'class' => 'form-control' . ($errors->has('zip') ? ' has-error' : '')]) }}
 </div>
