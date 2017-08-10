@@ -131,6 +131,7 @@ class EmailTemplate extends Model
 
 
         $emailHtml = str_replace('{{ perxi_home }}', 'https://' . $request->_company->subdomain . '.' . env('DOMAIN'), $emailHtml);
+        $emailHtml = str_replace('{{ user_id }}', $user->id, $emailHtml);
        
         return $emailHtml;
 

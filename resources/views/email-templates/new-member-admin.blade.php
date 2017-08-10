@@ -35,7 +35,7 @@
 	                                             <table border="0" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
 	                                                <tr>
 	                                                   <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
-	                                                      <a href="{ { route('view-user', $user->id) }}" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #FFF; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097D1; border-top: 10px solid #3097D1; border-right: 18px solid #3097D1; border-bottom: 10px solid #3097D1; border-left: 18px solid #3097D1;">Go To User</a>
+	                                                      <a href="{ { perxi_home }}/user/view/{ { user_id }}" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #FFF; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097D1; border-top: 10px solid #3097D1; border-right: 18px solid #3097D1; border-bottom: 10px solid #3097D1; border-left: 18px solid #3097D1;">Go To User</a>
 	                                                   </td>
 	                                                </tr>
 	                                             </table>
@@ -52,7 +52,7 @@
 	                              <tr>
 	                                 <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
 	                                    <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; line-height: 1.5em; margin-top: 0; text-align: left; font-size: 12px;">If you’re having trouble clicking the "Go To User" button, copy and paste the URL below
-	                                       into your web browser: <a href="{ { route('view-user', $user->id) }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;"></a><a href="{ { route('view-user', $user->id) }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;">{ { route('view-user', $user->id) }}</a>
+	                                       into your web browser: <a href="{ { perxi_home }}/user/view/{ { user_id }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;"></a><a href="{ { perxi_home }}/user/view/{ { user_id }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #3869D4;">{ { perxi_home }}/user/view/{ { user_id }}</a>
 	                                    </p>
 	                                 </td>
 	                              </tr>
