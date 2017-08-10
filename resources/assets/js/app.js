@@ -138,29 +138,13 @@ $(function (){
 		};
 		function statusCallback(callbackData){
          	_this.closest('td').find('.form-control').text(_this.text());
+   			
+         	// Update referral counter
    			var approvalCnt = $('.pending-approval .rh-count span a');
    			var rewardCnt = $('.pending-reward .rh-count span a');
-         	switch (_this.text()) {
-         		case ('Submitted'):
-         			approvalCnt.text(parseInt(approvalCnt.text()) + 1);
-         			if (currentStatus == "Approved") {
-         				rewardCnt.text(parseInt(rewardCnt.text()) - 1);
-         			}
-         			break;
-         		case ('Approved'):
-         			rewardCnt.text(parseInt(rewardCnt.text()) + 1);
-         			if (currentStatus == "Submitted") {
-         				approvalCnt.text(parseInt(approvalCnt.text()) - 1);
-         			}
-         			break;
-         		default:         			
-         			if (currentStatus == "Submitted") {
-         				approvalCnt.text(parseInt(approvalCnt.text()) - 1);
-         			}
-         			if (currentStatus == "Approved") {
-         				rewardCnt.text(parseInt(rewardCnt.text()) - 1);
-         			}
-         	}
+   			approvalCnt.text(callbackData.approval.length);
+   			rewardCnt.text(callbackData.reward.length);
+
          	referralProcessing = false;
 		}
 
