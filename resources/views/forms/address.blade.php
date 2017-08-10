@@ -38,7 +38,7 @@
 
 <div class="form-group col-md-2">
 	<label>States</label>
-	@include('forms.states', ['state' => isset($address->state) ? $address->state : 'fl'])
+	@include('forms.states', ['state' => !empty($address->state) ? $address->state : 'fl'])
 </div>
 
 <div class="form-group col-md-2 company-zip">
