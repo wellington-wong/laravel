@@ -58,11 +58,14 @@ class NewMemberAdmin extends Notification
                 ->from($from, $fromName)
                 ->markdown('email-templates.new-member-admin', ['user' => $this->user, 'email_template' => $emailHtml]);
         } else {
-            return (new MailMessage)
+
+              $newMemberHtml = str_replace('{ {', '{{', view('email-templates.new-member')->render());
+              $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $newMemberHtml );
+              
+              return (new MailMessage)
                 ->from($from, $fromName)
-                ->line($this->user->getName() .' has registered.')
-                ->action('Go to user', route('view-user', $this->user->id))
-                ->line('Thank you for using our application!');
+                ->markdown('email-templates.new-member-admin', ['user' => $this->user, 'email_template' => $emailHtml]);
+        
         }
     }
 

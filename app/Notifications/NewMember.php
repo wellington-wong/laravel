@@ -43,7 +43,6 @@ class NewMember extends Notification
      */
     public function toMail($notifiable)
     {
-
         // Custom 'from' email
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
@@ -58,11 +57,14 @@ class NewMember extends Notification
                 ->from($from, $fromName)
                 ->markdown('email-templates.new-member', ['user' => $this->user, 'email_template' => $emailHtml]);
         } else {
-            return (new MailMessage)
+
+              $newMemberHtml = str_replace('{ {', '{{', view('email-templates.new-member')->render());
+              $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $newMemberHtml );
+              
+              return (new MailMessage)
                 ->from($from, $fromName)
-                ->line('Your registration was successful.')
-                ->action('Go to user', route('view-user', $this->user->id))
-                ->line('Thank you for using our application!');
+                ->markdown('email-templates.new-member', ['user' => $this->user, 'email_template' => $emailHtml]);
+        
         }
     }
 
