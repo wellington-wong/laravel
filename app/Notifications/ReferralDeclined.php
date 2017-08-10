@@ -58,12 +58,15 @@ class ReferralDeclined extends Notification
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-declined', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
+
+            // Render default html if not yet set
+            $referralDeclinedHtml = str_replace('{ {', '{{', view('email-templates.referral-declined')->render());
+            $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $referralDeclinedHtml );
+
             return (new MailMessage)
                 ->from($from, $fromName)
-                ->line('Your referral for ' . $this->referral->referred->getName() . ' has been declined.')
-                ->line('Note: ' . strip_tags($this->referral->note))
-                ->action('Go to referrals', url('/referrals'))
-                ->line('Thank you for using our application!');
+                ->markdown('email-templates.referral-declined', ['referral' => $this->referral, 'email_template' => $emailHtml]);
+
         }
 
     }

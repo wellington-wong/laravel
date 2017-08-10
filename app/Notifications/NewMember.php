@@ -58,9 +58,10 @@ class NewMember extends Notification
                 ->markdown('email-templates.new-member', ['user' => $this->user, 'email_template' => $emailHtml]);
         } else {
 
+              // Render default html if not yet set
               $newMemberHtml = str_replace('{ {', '{{', view('email-templates.new-member')->render());
               $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $newMemberHtml );
-              
+
               return (new MailMessage)
                 ->from($from, $fromName)
                 ->markdown('email-templates.new-member', ['user' => $this->user, 'email_template' => $emailHtml]);

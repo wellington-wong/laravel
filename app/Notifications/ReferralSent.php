@@ -58,11 +58,15 @@ class ReferralSent extends Notification
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-sent', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
+
+            // Render default html if not yet set
+            $referralSentHtml = str_replace('{ {', '{{', view('email-templates.referral-sent')->render());
+            $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $referralSentHtml );
+            
             return (new MailMessage)
                 ->from($from, $fromName)
-                ->line('Your reward for referring ' . $this->referral->referred->getName() . ' has been sent.')
-                ->action('Go to referrals', url('/referrals'))
-                ->line('Thank you for using our application!');
+                ->markdown('email-templates.referral-sent', ['referral' => $this->referral, 'email_template' => $emailHtml]);
+        
         }
 
     }

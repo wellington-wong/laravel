@@ -58,11 +58,15 @@ class ReferralVerified extends Notification
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-verified', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
+
+            // Render default html if not yet set
+            $referralVerifiedHtml = str_replace('{ {', '{{', view('email-templates.referral-verified')->render());
+            $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $referralVerifiedHtml );
+            
             return (new MailMessage)
                 ->from($from, $fromName)
-                ->line('Your referral for ' . $this->referral->referred->getName() . ' has been verified.')
-                ->action('Go to referrals', url('/referrals'))
-                ->line('Thank you for using our application!');
+                ->markdown('email-templates.referral-verified', ['referral' => $this->referral, 'email_template' => $emailHtml]);
+
         }
 
     }
