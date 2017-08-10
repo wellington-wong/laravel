@@ -145,12 +145,6 @@
                                                         {{ Form::text('company_zip', old('company_zip'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
-                                                <div class="form-group col-md-6">
-                                                    <div class="col-md-12">
-                                                        <label>Country</label>
-                                                        {{ Form::text('company_country', old('company_country'), array('class' => 'form-control')) }}
-                                                    </div>
-                                                </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </section>

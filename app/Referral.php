@@ -80,7 +80,7 @@ class Referral extends Model
                 break;
         }
 
-        return $referral;
+        return $this->getReferralTally();//$referral;
     }
 
     /**

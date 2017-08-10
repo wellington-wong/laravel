@@ -41,7 +41,7 @@ class HomeController extends Controller
         $user = auth()->user();
         $_company = $request->_company;
         $hosts = explode('.', $request->getHost());
-        $shareUrl = (isset($_company->subdomain) ? $_company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
+        $shareUrl = 'https://' . (isset($_company->subdomain) ? $_company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
 
         // Get referral pending approval and reward
         $pendingReferrals = new Referral();

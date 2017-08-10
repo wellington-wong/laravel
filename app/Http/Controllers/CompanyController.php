@@ -90,7 +90,7 @@ class CompanyController extends Controller
         $_company = Company::find($id);
         $user = auth()->user();
         $hosts = explode('.', $request->getHost());
-        $shareUrl = (isset($_company->subdomain) ? $_company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
+        $shareUrl = 'https://' . (isset($_company->subdomain) ? $_company->subdomain : '') . '.' . $hosts[1] . '.' . $hosts[2];
 
         $address = $_company->address()->first();
 

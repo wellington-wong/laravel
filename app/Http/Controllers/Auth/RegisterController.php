@@ -75,6 +75,7 @@ class RegisterController extends Controller
             'first_name'=>'required',
             'last_name'=>'required',
             'phone'=>'required|phone:US',
+            'email'=>'unique:users|required|email',
             //'profile_blob' => 'required',
         ];
 
@@ -98,8 +99,11 @@ class RegisterController extends Controller
         //ADD ADDRESS
         $address = $user->addDefaultAddress($request);
 
-        $user->notify(new NewMember());
-        $user->notify(new NewMemberAdmin());
+        // Notify user and admin
+        $user->notify(new NewMember( $request, $user ));
+        foreach ($request->_company->admins()->get() as $admin) {
+            $admin->notify(new NewMemberAdmin( $request, $user ));
+        }
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());

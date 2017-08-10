@@ -156,7 +156,7 @@ class ProgramOptionsController extends Controller
                 $emailBlade[$id] = 'referral-declined';
                 break;
             case (6):
-                $emailBlade[$id] = 'new-member';
+                $emailBlade[$id] = 'new-member-admin';
                 break;
             case (7):
                 $emailBlade[$id] = 'new-referral-admin';

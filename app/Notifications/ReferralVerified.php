@@ -48,7 +48,7 @@ class ReferralVerified extends Notification
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
 
-        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 3)->first()) {
+        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 3)->where('email_html', '<>', '')->first()) {
 
             // Prepare custom email
             $emailHtml = $emailHtml->email_html;
@@ -58,11 +58,15 @@ class ReferralVerified extends Notification
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-verified', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
+
+            // Render default html if not yet set
+            $referralVerifiedHtml = str_replace('{ {', '{{', view('email-templates.referral-verified')->render());
+            $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $referralVerifiedHtml );
+            
             return (new MailMessage)
                 ->from($from, $fromName)
-                ->line('Your referral for ' . $this->referral->referred->getName() . ' has been verified.')
-                ->action('Go to referrals', url('/referrals'))
-                ->line('Thank you for using our application!');
+                ->markdown('email-templates.referral-verified', ['referral' => $this->referral, 'email_template' => $emailHtml]);
+
         }
 
     }

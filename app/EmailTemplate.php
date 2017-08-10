@@ -100,4 +100,41 @@ class EmailTemplate extends Model
 
     }
 
+    public static function prepareEmailUser( $request, $user, $emailHtml ) {
+
+        $regex = '#{{(.*?)}}#';
+        $code = preg_match_all($regex, $emailHtml, $matches);
+
+        // Get referred vars for referral
+        $replacementVars = [];
+        foreach ($matches[1] as $match) {
+            switch (trim($match)) {
+                case ('name'):
+                    $replacementVars[trim($match)] = $user->getName() ?: null;
+                    break;
+                case ('email'):
+                    $replacementVars[trim($match)] = isset($user->email) ? $user->email : null;
+                    break;
+                case ('phone'):
+                    $replacementVars[trim($match)] = isset($user->phones()->first()->phone) ? $user->phones()->first()->phone : '';
+                    break;
+                case ('address'):
+                    $replacementVars[trim($match)] = isset($user->addresses()->first()->address) ? $user->addresses()->first()->address : '';
+                    break;
+            }          
+        }
+
+        // Replace placeholder with real user data
+        foreach ($replacementVars as $key => $replacementVar) {
+            $emailHtml = str_replace('{{ ' . $key . ' }}', $replacementVars[$key], $emailHtml);
+        }
+
+
+        $emailHtml = str_replace('{{ perxi_home }}', 'https://' . $request->_company->subdomain . '.' . env('DOMAIN'), $emailHtml);
+        $emailHtml = str_replace('{{ user_id }}', $user->id, $emailHtml);
+       
+        return $emailHtml;
+
+    }
+
 }

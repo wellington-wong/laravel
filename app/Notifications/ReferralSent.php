@@ -48,7 +48,7 @@ class ReferralSent extends Notification
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
 
-        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 4)->first()) {
+        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 4)->where('email_html', '<>', '')->first()) {
 
             // Prepare custom email
             $emailHtml = $emailHtml->email_html;
@@ -58,11 +58,15 @@ class ReferralSent extends Notification
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-sent', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
+
+            // Render default html if not yet set
+            $referralSentHtml = str_replace('{ {', '{{', view('email-templates.referral-sent')->render());
+            $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $referralSentHtml );
+            
             return (new MailMessage)
                 ->from($from, $fromName)
-                ->line('Your reward for referring ' . $this->referral->referred->getName() . ' has been sent.')
-                ->action('Go to referrals', url('/referrals'))
-                ->line('Thank you for using our application!');
+                ->markdown('email-templates.referral-sent', ['referral' => $this->referral, 'email_template' => $emailHtml]);
+        
         }
 
     }
