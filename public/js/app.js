@@ -20346,6 +20346,7 @@ $(function () {
 	$('.referral-status .dropdown-menu li a').on('click', function () {
 		var _this = $(this);
 		var referralProcessing = true;
+		var removeStatuDropdown = false;
 
 		// Save current selected status for dynamic adjustments of referral tally.
 		var currentStatus = $(this).closest('.referral-status').find('.form-control').text();
@@ -20370,6 +20371,10 @@ $(function () {
 			rewardCnt.text(callbackData.reward.length);
 
 			referralProcessing = false;
+			if (removeStatuDropdown) {
+				_this.closest('.referral-status').find('.fa').removeClass('fa-angle-down').addClass('fa-lock');
+				_this.closest('.referral-status').find('.dropdown-menu').remove();
+			}
 		}
 
 		// Prepare admin note
@@ -20404,7 +20409,6 @@ $(function () {
 			$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function () {
 				if (referralProcessing) {
 					tinymceHelper(null, true);
-					_this.closest('.referral-status').find('.fa').removeClass('fa-angle-down').addClass('fa-lock');
 					ajaxHelper("/referral/update", data, "POST", statusCallback);
 					referrals_modal.modal('hide');
 				}
@@ -20412,7 +20416,7 @@ $(function () {
 			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function () {
 				referrals_modal.modal('hide');
 			});
-			//_this.closest('.referral-status').find('.dropdown-menu').remove();
+			removeStatuDropdown = true;
 		} else {
 			if (referralProcessing) {
 				ajaxHelper("/referral/update", data, "POST", statusCallback);
