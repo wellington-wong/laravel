@@ -48,7 +48,7 @@ class NewMemberAdmin extends Notification
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
 
-        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 6)->first()) {
+        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 6)->where('email_html', '<>', '')->first()) {
 
             // Prepare custom email
             $emailHtml = $emailHtml->email_html;
