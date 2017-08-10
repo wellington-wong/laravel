@@ -12,8 +12,7 @@
                 </div>
             </div>
         </div>
-        
-        @if( isset($form->raw_form_json) )
+
             {{ Form::open() }}
                 <div id="fb-render" >
                 </div>
@@ -23,6 +22,7 @@
                     </div>
                 </div>
             {{ Form::close() }}
+        {{--@if( isset($form->raw_form_json) )
         @else
             @role(['member'])
                 The {{ $_company->company_name }} referral form is not yet available.                
@@ -30,7 +30,7 @@
             @role(['admin', 'superAdmin', 'globalAdmin'])
                 The {{ $_company->company_name }} referral form is not yet available, click <a href="{{ route('program-options-referral-program-settings') }}">here</a> to create one.
             @endrole
-        @endif
+        @endif--}}
 
         <div class="old-input hidden">            
             @foreach (session()->getOldInput() as $key => $val)
@@ -44,10 +44,13 @@
 @endsection
 
 @section('js')
-    @if( isset($form->raw_form_json) )
     <script type="text/javascript">
         $(document).ready( function() {
+            @if( isset($form->raw_form_json) )
              $('#fb-render').formRender({ formData: <? echo json_encode($form->raw_form_json); ?> });
+            @else
+             $('#fb-render').formRender({ formData: [{"type":"text","required":true,"label":"First Name","placeholder":"Enter your Friend's first name","className":"form-control","name":"first_name","subtype":"text"},{"type":"text","required":true,"label":"Last Name","placeholder":"Enter your Friend's last name","className":"form-control","name":"last_name","subtype":"text"},{"type":"text","subtype":"email","required":true,"label":"Email","placeholder":"Enter your Friend's email","className":"form-control","name":"email"},{"type":"number","required":true,"label":"Phone","placeholder":"Enter your Friend's phone number","className":"form-control","name":"phone"}] });
+            @endif
 
              // Place old value to appropriate input field
              $('.old-input > div').each(function(){
@@ -58,5 +61,4 @@
              $('#fb-render > div').addClass('col-md-6');
         });
     </script>
-    @endif
 @endsection
