@@ -26,7 +26,7 @@
                 {{ Form::text('subdomain', old('subdomain'), ['placeholder' => 'Subdomain', 'class' => 'form-control' . ($errors->has('subdomain') ? ' has-error' : '')]) }}
             </div>
 
-            @include('forms.address', ['company_address' => true])
+            @include('forms.address', ['company_address' => true, 'address_placeholder' => 'Address'])
 
             @include('forms.phone', ['phone_label'=>'Referral\'s Phone Number', 'placeholder' => 'Company Phone Number'])
 
