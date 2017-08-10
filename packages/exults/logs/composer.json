@@ -1,0 +1,12 @@
+{
+    "name": "exults/logs",
+    "description": "Logs every request for every user",
+    "authors": [
+        {
+            "name": "Daniel Ahern",
+            "email": "daniel.ahern@exults.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

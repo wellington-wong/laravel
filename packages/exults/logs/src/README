@@ -1,0 +1,27 @@
+You can override table names in config/userlogs.php
+
+//IF LOGGING IN FROM A USER WITH PERMISSIONS TO LOGIN TO ANY ACCOUNT
+//THIS IS THE Session::get('variable') THAT WILL GET THE ORIGINAL USER
+'orig_user' => 'currentUserId',
+
+in your config/app.php providers array:
+Exults\Logs\LogsServiceProvider::class,
+
+in aliases array:
+'UserLogs'  => Exults\Logs\LogsServiceProvider::class,
+
+in autoload psr-4 in composer.json:
+"Exults\\Logs\\": "packages/exults/logs/src/"
+
+put in BeforeMiddleware:
+UserLogs::log();
+
+To log the time each request takes, put this in your middleware:
+    public function terminate()
+    {
+        UserLog::logEnd();
+    }
+
+
+
+
