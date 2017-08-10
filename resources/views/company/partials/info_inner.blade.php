@@ -14,5 +14,5 @@
 </div>
 <div class="program-url">
     <h5>Program URL</h5>
-    <span><a href="https://{{ $shareUrl }}">{{ $shareUrl }}</a></span>
+    <span><a href="{{ $shareUrl }}">{{ $shareUrl }}</a></span>
 </div>
