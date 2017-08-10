@@ -59,11 +59,11 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label>State</label>
-                        @include('forms.states', ['state' => isset($user->addresses()->first()->state) ? $user->addresses()->first()->state : null])                        
+                        @include('forms.states', ['state' => isset($user->addresses()->first()->state) ? $user->addresses()->first()->state : 'fl'])                        
                     </div>
                     <div class="form-group col-md-6">
                         <label>Zip</label>
-                        <input class="form-control" name="zip" value="{{ isset($user->addresses()->first()->zip) ? strtoupper($user->addresses()->first()->zip) : '' }}">
+                        <input class="form-control" name="zip" maxlength="5" value="{{ isset($user->addresses()->first()->zip) ? strtoupper($user->addresses()->first()->zip) : '' }}">
                     </div>
                 </div>    
 
