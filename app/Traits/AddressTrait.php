@@ -10,7 +10,7 @@ trait AddressTrait {
     public function addDefaultAddress() {
 
         $request = request();
-        if ( null == $request->input('address')) {
+        if ( null === $request->input('address')) {
             return null;
         }
         $input = [];
@@ -33,7 +33,7 @@ trait AddressTrait {
     public function updateDefaultAddress() {
 
         $request = request();
-        if ( null == $request->input('address')) {
+        if ( null === $request->input('address')) {
             return null;
         }
 
