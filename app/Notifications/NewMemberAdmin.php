@@ -60,7 +60,7 @@ class NewMemberAdmin extends Notification
         } else {
 
               // Render default html if not yet set
-              $newMemberHtml = str_replace('{ {', '{{', view('email-templates.new-member')->render());
+              $newMemberHtml = str_replace('{ {', '{{', view('email-templates.new-member-admin')->render());
               $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $newMemberHtml );
               
               return (new MailMessage)
