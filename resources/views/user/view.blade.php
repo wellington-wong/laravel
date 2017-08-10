@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label>State</label>
-                        <input class="form-control" name="state" value="{{ isset($user->addresses()->first()->state) ? strtoupper($user->addresses()->first()->state) : '' }}">
+                        @include('forms.states', ['state' => isset($user->addresses()->first()->state) ? $user->addresses()->first()->state : null])                        
                     </div>
                     <div class="form-group col-md-6">
                         <label>Zip</label>
