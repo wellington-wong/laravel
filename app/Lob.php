@@ -116,9 +116,15 @@ class Lob extends Model
 
 
 
-    public function createAddress(User $u, Address $a ) {
+    public function createAddress($u, Address $a ) {
+        $this->startLob();
+        if ( $u instanceof Company ) {
+            $name = 'company_name';
+        } elseif ( $u instanceof User ) {
+            $name = 'name';
+        }
         $lob_address = $this->lob->addresses()->create(array(
-            'name'              => $u->name,
+            'name'              => $u->$name,
             'address_line1'     => $a->address,
             'address_line2'     => $a->address2,
             'address_city'      => $a->city,
@@ -131,17 +137,20 @@ class Lob extends Model
         return $lob_address;
     }
 
-    public function verifyAddress(User $u, Address $a ) {
+    public function verifyAddress($u, Address $a ) {
+        $this->startLob();
         $primary_line = $a->address;
         if ( !is_null($a->address2) ) {
             $primary_line = $a->address . ' ' . $a->address2;
         }
+        
         $lob_return = $this->lob->usVerifications()->verify(array(
             'primary_line'     => $primary_line,
             'city'      => $a->city,
             'state'     => isset(static::$states[$a->state]) ? static::$states[$a->state] : $a->state,
             'zip_code'  => $a->zip,
         ));
+
         $a->lob_verified =  ( 'deliverable' == $lob_return['deliverability'] ) ? 1 : 0;
         $a->lob_response = json_encode($lob_return);
         $a->save();
@@ -198,6 +207,7 @@ class Lob extends Model
         } else {
             $ba = $request->_company->address->first();
         }
+
 
         $business_address = [
             'name'              => $request->_company->company_name,

@@ -372,6 +372,37 @@ class ReferralController extends Controller
         if ( 0 == $request->_company->address()->count() ) {
             return redirect()->back()->withErrors('Your company needs an address to mail a check.');
         }
+        if ( $ba = $request->_company->address->first() ) {
+            $fields = ['address', 'city', 'state', 'zip'];
+            foreach( $fields as $f ) {
+                if ('' == $ba->$f ) {
+                    $address_error = "Your company address needs a $f.";
+                }
+            }
+            if ( isset($address_error) ) {
+                return redirect()->back()->withErrors($address_error)->withInput();
+            }
+        }
+
+        //CHECK IF COMPANY ADDRESS IS VERIFIED
+        if ( null == $request->_company->address->first()->lob_adr_id ) {
+            //IF THERE'S NO lob_adr_id, CHECK IF VERIFIED
+            if ( 0 == $request->_company->address->first()->lob_verified ) {
+                $request->_company->lob->verifyAddress( $request->_company, $request->_company->address->first() );
+            }
+
+            //CHECK AGAIN
+            if ( 0 == $request->_company->address->first()->lob_verified ) {
+                //RETURN ERROR
+                return redirect()->back()->withErrors("The company address cannot be verified.");
+
+                //IF VERIFIED, CREATE LOB ADDRESS
+            } elseif ( 1 == $request->_company->address->first()->lob_verified ) {
+                if ( null == $request->_company->address->first()->lob_adr_id ) {
+                    $request->_company->lob->createAddress( $request->_company, $request->_company->address->first() );
+                }
+            }
+        }
 
         //CHECK IF THERE IS A LOB ID TIED TO THIS COMPANY
         if ( 0 == $request->_company->lob()->count() ) {
@@ -390,6 +421,8 @@ class ReferralController extends Controller
         }
 
         $referral = $request->_company->referrals()->findOrFail($referral_id);
+
+
 
         //CHECK IF USER HAS AN ADDRESS
         if ( 0 == $referral->referrer->address()->count() ) {
@@ -421,9 +454,7 @@ class ReferralController extends Controller
                 }
             }
         }
-
-        //dd( $request->_company->lob->sendCheck() );
-        //dd( $request->input('amount') );
+        
 
         $request->_company->lob->sendCheck( $request, $referral, $amount, $memo );
 
