@@ -20348,6 +20348,9 @@ $(function () {
 		var referralProcessing = true;
 		var removeStatuDropdown = false;
 
+		// Add spinner to referral status
+		_this.closest('.referral-status').find('.fa').removeClass('fa-angle-down').addClass('fa-spinner fa-pulse fa-fw');
+
 		// Save current selected status for dynamic adjustments of referral tally.
 		var currentStatus = $(this).closest('.referral-status').find('.form-control').text();
 
@@ -20372,8 +20375,10 @@ $(function () {
 
 			referralProcessing = false;
 			if (removeStatuDropdown) {
-				_this.closest('.referral-status').find('.fa').removeClass('fa-angle-down').addClass('fa-lock');
+				_this.closest('.referral-status').find('.fa').removeClass('fa-angle-down fa-spinner fa-pulse fa-fw').addClass('fa-lock');
 				_this.closest('.referral-status').find('.dropdown-menu').remove();
+			} else {
+				_this.closest('.referral-status').find('.fa').removeClass('fa-spinner fa-pulse fa-fw').addClass('fa-angle-down');
 			}
 		}
 
