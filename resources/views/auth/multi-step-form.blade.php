@@ -179,7 +179,7 @@
                                                         <label>How will you send the reward?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('send_reward', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check'], old('send_reward'), array('class' => 'form-control')) }}
+                                                        {{ Form::select('send_reward', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], old('send_reward'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
