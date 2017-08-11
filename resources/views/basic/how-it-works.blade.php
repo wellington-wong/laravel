@@ -2,6 +2,13 @@
 @include('auth.document-top')
         <!-- Start Header -->
         <header>
+            <div class="row header-right">
+                <div class="col-xs-12 col-md-12 pull-right">
+                    <ul class="nav navbar-nav navbar-right navbar-top-right">
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                    </ul>
+                </div>
+            </div>
         @include('auth.header')
         </header>
         <!-- End Header -->
