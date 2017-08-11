@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 use App\Notifications\ContactFormMessage;
 
 class BasicPageController extends Controller
@@ -53,11 +54,11 @@ class BasicPageController extends Controller
      */
     public function postContact(Request $request)
     {
-        $admins = $request->_company->admins;
-        $superAdmins = $request->_company->superAdmins;
-        $users = $admins->merge($superAdmins);
+        $admins = isset($request->_company->admins) ? $request->_company->admins : null;
+        $superAdmins = isset($request->_company->superAdmins) ? $request->_company->superAdmins : null;
+        $users = (isset($superAdmins) && isset($admins)) ? $admins->merge($superAdmins) : Role::where('name', 'globalAdmin')->first()->users()->get();
 
-        foreach ($users as $user){            
+        foreach ($users as $user){        
             $user->notify(new ContactFormMessage($request));
         }
 
