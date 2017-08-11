@@ -44,6 +44,7 @@ class UserLog extends Model {
 
         if ( ! in_array($path, $path_not)) {
             $u = new UserLog();
+            $u->ip = ip2long($_SERVER['REMOTE_ADDR']);
             $u->user_id = !is_null($orig_user) ? $orig_user : $u_id;
             $u->as_user = $u_id;
             $u->route = $path;
