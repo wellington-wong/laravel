@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Company;
+use App\ReferralForms;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -201,6 +203,7 @@ class RegisterController extends Controller
      */
     public function postRegistrationSimple( Request $request )
     {
+            dd($request);
             return;
     }
 
