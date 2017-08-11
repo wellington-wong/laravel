@@ -43,11 +43,17 @@ class ContactFormMessage extends Notification
      */
     public function toMail($notifiable)
     {
+
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : 'Admin';
+
         $name = $this->request->get('name');
         $email = $this->request->get('email');
         $message = $this->request->get('message');
 
         return (new MailMessage)
+                    ->from($from, $fromName)
                     ->line('A new message has been received from ' . $name . '.')
                     ->line('Email: ' . $email)
                     ->line('Message: ' . strip_tags($message));
