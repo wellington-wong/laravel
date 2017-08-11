@@ -15,7 +15,7 @@ class CreateUserLogsTables extends Migration
     {
         Schema::create(config('userlogs.user_logs_table'), function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('ip')->unsigned();
+            $table->bigInteger('ip')->unsigned();
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('as_user')->unsigned();
             $table->string('route', 2047);
