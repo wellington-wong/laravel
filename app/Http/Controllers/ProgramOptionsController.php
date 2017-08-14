@@ -100,7 +100,25 @@ class ProgramOptionsController extends Controller
      */
     public function postRewardSettings( Request $request )
     {
+
+        $rules = [
+            'title'=>'required',
+            'reward_kind'=>'required',
+            'reward_send'=>'required',
+            'reward_ratio'=>'required',
+            'leaderboard'=>'required'
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
         RewardSetting::create($request->all());
+
+        return back()->with('success', ['Reward settings successfully saved.']);
     }
 
     /**
