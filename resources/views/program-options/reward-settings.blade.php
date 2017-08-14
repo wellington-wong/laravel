@@ -19,15 +19,15 @@
       </div>
       <div class="col-md-12">
             <label>What kind of reward will you use?</label>
-            {{ Form::select('reward_kind', null, ['placeholder' => 'Reward Kind', 'value' => old('reward_kind'), 'class' => 'reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_kind', ['placeholder' => 'Reward Kind', 'value' => old('reward_kind'), 'class' => 'reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
       </div>
       <div class="col-md-12">
             <label>How will you send the reward?</label>
-            {{ Form::select('reward_send', null, ['placeholder' => 'Reward Send', 'value' => old('reward_send'), 'class' => 'reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_send', ['placeholder' => 'Reward Send', 'value' => old('reward_send'), 'class' => 'reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
       </div>
       <div class="col-md-12">
             <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
-            {{ Form::select('leaderboard', null, ['placeholder' => 'Leaderboard', 'value' => old('leaderboard'), 'class' => 'leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
+            {{ Form::select('leaderboard', ['placeholder' => 'Leaderboard', 'value' => old('leaderboard'), 'class' => 'leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
       </div>
       <div class="col-md-12">
             <label>Reward Ratio</label>
