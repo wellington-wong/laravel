@@ -16,7 +16,7 @@
       <div class="col-md-6">
             <label>Reward Title</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::text('reward_title', old('reward_title'), ['placeholder' => 'Reward Title', 'class' => 'form-control reward-title' . ($errors->has('reward_title') ? ' has-error' : '')]) }}
+            {{ Form::text('title', old('title'), ['placeholder' => 'Reward Title', 'class' => 'form-control reward-title' . ($errors->has('title') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6">
@@ -42,11 +42,11 @@
             	<label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
             </div>            
             <div class="col-md-3 no-padding-lr">
-            {{ Form::radio('leaderboard', 'yes', ['id' => 'leaderboard-yes', 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
+            {{ Form::radio('leaderboard', '1', ['id' => 'leaderboard-yes', 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
             <label for="leaderboard-yes">Yes</label>
             </div>       
             <div class="col-md-3 no-padding-lr">
-            {{ Form::radio('leaderboard', 'no', ['id' => 'leaderboard-no', 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
+            {{ Form::radio('leaderboard', '0', ['id' => 'leaderboard-no', 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
             <label for="leaderboard-no">No</label>
             </div>
       </div>
@@ -54,7 +54,7 @@
       <div class="form-group col-md-12 text-right">
       	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100 submit-profile']) }}
       </div>
-      
+
       {{ Form::close() }}
     </div>
 @endsection

@@ -100,7 +100,7 @@ class ProgramOptionsController extends Controller
      */
     public function postRewardSettings( Request $request )
     {
-        RewardSetting::insert($request);
+        RewardSetting::create($request->all());
     }
 
     /**
