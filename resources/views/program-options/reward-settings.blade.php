@@ -37,13 +37,15 @@
             {{ Form::text('reward_ratio', null, ['placeholder' => 'Reward Ratio', 'value' => old('reward_ratio'), 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
             </div>
       </div>
-      <div class="col-md-12">
-            <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>            
+      <div class="col-md-12">          
             <div class="col-md-12 no-padding-lr">
+            	<label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
+            </div>            
+            <div class="col-md-3 no-padding-lr">
             {{ Form::radio('leaderboard', 'yes', ['id' => 'leaderboard-yes', 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
             <label for="leaderboard-yes">Yes</label>
             </div>       
-            <div class="col-md-12 no-padding-lr">
+            <div class="col-md-3 no-padding-lr">
             {{ Form::radio('leaderboard', 'no', ['id' => 'leaderboard-no', 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
             <label for="leaderboard-no">No</label>
             </div>
