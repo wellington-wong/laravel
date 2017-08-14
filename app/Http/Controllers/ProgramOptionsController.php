@@ -7,6 +7,7 @@ use App\LogEmail;
 use App\EmailTemplate;
 use App\ReferralForms;
 use App\Company;
+use App\RewardSetting;
 use Illuminate\Support\Facades\Validator;
 
 class ProgramOptionsController extends Controller
@@ -89,6 +90,17 @@ class ProgramOptionsController extends Controller
         $rewardSettings = [];
         return view('program-options.reward-settings')
         ->with(compact('rewardSettings'));
+    }
+
+    /**
+     * Display a listing of reward settings
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postRewardSettings( Request $request )
+    {
+        RewardSetting::insert($request);
     }
 
     /**

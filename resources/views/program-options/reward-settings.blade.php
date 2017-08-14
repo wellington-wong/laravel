@@ -50,6 +50,11 @@
             <label for="leaderboard-no">No</label>
             </div>
       </div>
+
+      <div class="form-group col-md-12 text-right">
+      	{{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100 submit-profile']) }}
+      </div>
+      
       {{ Form::close() }}
     </div>
 @endsection
