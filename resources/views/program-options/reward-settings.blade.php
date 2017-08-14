@@ -16,25 +16,25 @@
       <div class="col-md-6">
             <label>Reward Title</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::text('reward_title', null, ['placeholder' => 'Reward Title', 'value' => old('reward_title'), 'class' => 'form-control reward-title' . ($errors->has('reward_title') ? ' has-error' : '')]) }}
+            {{ Form::text('reward_title', old('reward_title'), ['placeholder' => 'Reward Title', 'class' => 'form-control reward-title' . ($errors->has('reward_title') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6">
             <label>What kind of reward will you use?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_kind', ['placeholder' => 'Reward Kind', 'value' => old('reward_kind'), 'class' => 'form-control reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_kind', ['placeholder' => 'Reward Kind'],  old('reward_kind'), ['class' => 'form-control reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6">
             <label>How will you send the reward?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_send', ['placeholder' => 'Reward Send', 'value' => old('reward_send'), 'class' => 'form-control reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_send', ['placeholder' => 'Reward Send'], old('reward_send'), ['class' => 'form-control reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6">
             <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>            
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('leaderboard', ['placeholder' => 'Leaderboard', 'value' => old('leaderboard'), 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
+            {{ Form::radio('leaderboard', '', ['placeholder' => 'Leaderboard', 'value' => old('leaderboard'), 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6">
