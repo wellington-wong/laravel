@@ -13,7 +13,7 @@
     <div class="clearfix"></div>
 
     <div class="row">    	
-      <div class="col-md-12 notificaiton-email-wrapper">
+      <div class="col-md-12 notification-email-wrapper">
         <div class="form-group">
             <label>Preview</label>
             <iframe id="renderer_iframe" class="form-control"></iframe>
