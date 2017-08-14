@@ -300,7 +300,7 @@
         <div class="register-bottom-wrapper">
             <div class="form-multistep-number"></div>
             <div class="upgrade-wrapper">
-                <h4>You've selected the Basic plan at $49.99 per month - <a href="#" class="upgrade-plan">Upgrade to Premium</a></h4>
+                <h4>You've selected the Basic plan at $999 per month - <a href="#" class="upgrade-plan">Upgrade to Custom</a></h4>
             </div>
         </div>
 
