@@ -20222,6 +20222,7 @@ module.exports = function(module) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_tablesaw_dist_stackonly_tablesaw_stackonly_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_tablesaw_dist_stackonly_tablesaw_stackonly_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_tablesaw_dist_tablesaw_init_js__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_tablesaw_dist_tablesaw_init_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_tablesaw_dist_tablesaw_init_js__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -20750,6 +20751,8 @@ $(function () {
 			$('.actions').addClass('col-md-12');
 		},
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
+			var _data;
+
 			//form.validate().settings.ignore = ":disabled,:hidden";
 			form.find('.actions').find('li').click(function () {
 				$('.form-multistep-number li.current').removeClass('current');
@@ -20759,10 +20762,25 @@ $(function () {
 			stepsContentHeight();
 
 			// Add processing before next step
+			var data;
 			switch (true) {
 				case newIndex == 1:
-					ajaxHelper("/ajax-validate", [], "POST", function (data) {
-						console.log(data);
+					var $userForm = $('#steps-uid-0-p-0');
+					var $errorMessages = $('.register-main .alert.alert-success');
+					console.log($userForm.find('input[name="password"]'));
+					data = (_data = {
+						first_name: $userForm.find('input[name="first_name"]').val(),
+						last_name: $userForm.find('input[name="last_name"]').val(),
+						phone: $userForm.find('input[name="phone"]').val(),
+						email: $userForm.find('input[name="email"]').val()
+					}, _defineProperty(_data, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data);
+					ajaxHelper("/ajax-validate", data, "POST", function (data) {
+						if (Object.keys(data).length) {
+							$.each(data, function (itm, val) {
+								$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
+								$errorMessages.removeClass('hidden');
+							});
+						}
 					});
 					break;
 				case newIndex == 2 && !setFormGen:

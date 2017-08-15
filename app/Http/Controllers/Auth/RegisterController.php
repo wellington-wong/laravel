@@ -212,14 +212,14 @@ class RegisterController extends Controller
      * @return
      */
     public function ajaxValidate( Request $request )
-    {return 'success';
+    {
+
         $rules = [
             'first_name'=>'required',
             'last_name'=>'required',
             'phone'=>'required|phone:US',
             'email'=>'unique:users|required|email',
             'password' => 'required|min:6|confirmed',
-            //'profile_blob' => 'required',
         ];
 
         //$request->merge([
@@ -229,10 +229,10 @@ class RegisterController extends Controller
         $validator = Validator::make($request->input(), $rules);
 
         if ( $validator->fails() ) {
-            //return redirect()->back()->withInput()
-                //->with(['errors'=>$validator->errors()]);
+            return $validator->errors();
         }
-            return 'success';
+           
+        return 'success';
     }
 
 }

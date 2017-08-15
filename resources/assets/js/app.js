@@ -545,10 +545,28 @@ $(function (){
 			stepsContentHeight();
 
 			// Add processing before next step
+			var data;
 			switch (true) {
 				case (newIndex == 1):
-					ajaxHelper("/ajax-validate", [], "POST", function (data){
-						console.log(data);
+					var $userForm = $('#steps-uid-0-p-0');
+					var $errorMessages = $('.register-main .alert.alert-success');
+					console.log($userForm.find('input[name="password"]'));
+					data = {
+						first_name: $userForm.find('input[name="first_name"]').val(),
+						last_name: $userForm.find('input[name="last_name"]').val(),
+						phone: $userForm.find('input[name="phone"]').val(),
+						email: $userForm.find('input[name="email"]').val(),
+						phone: $userForm.find('input[name="phone"]').val(),
+						password: $userForm.find('input[name="password"]').val(),
+						password_confirmation: $userForm.find('input[name="password_confirmation"]').val(),
+					}
+					ajaxHelper("/ajax-validate", data, "POST", function (data){
+						if (Object.keys(data).length) {
+							$.each(data, function (itm, val){
+								$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
+								$errorMessages.removeClass('hidden');
+							});
+						}
 					});
 					break;
 				case (newIndex == 2 && !setFormGen):

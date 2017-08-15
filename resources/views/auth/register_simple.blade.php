@@ -26,6 +26,7 @@
                     <div class="col-md-10 col-md-offset-1 main-content">
                         <div class="panel panel-default">
                             <div class="panel-body">
+                                <div class="alert alert-success hidden"><ul></ul></div>
                                 @if (isset($_company->subdomain) && $_company->subdomain != "app")
                                 <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                                     {{ csrf_field() }}
