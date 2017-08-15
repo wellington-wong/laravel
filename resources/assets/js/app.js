@@ -562,6 +562,7 @@ $(function (){
 					}
 					ajaxHelper("/ajax-validate", data, "POST", function (data){
 						if (Object.keys(data).length) {
+							$('.register-main .alert.alert-success ul li').remove();
 							$.each(data, function (itm, val){
 								$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
 								$errorMessages.removeClass('hidden');
