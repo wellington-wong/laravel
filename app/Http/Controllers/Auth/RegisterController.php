@@ -212,7 +212,7 @@ class RegisterController extends Controller
      * @return
      */
     public function ajaxValidate( Request $request )
-    {
+    {return 'success';
         $rules = [
             'first_name'=>'required',
             'last_name'=>'required',
@@ -229,8 +229,8 @@ class RegisterController extends Controller
         $validator = Validator::make($request->input(), $rules);
 
         if ( $validator->fails() ) {
-            return redirect()->back()->withInput()
-                ->with(['errors'=>$validator->errors()]);
+            //return redirect()->back()->withInput()
+                //->with(['errors'=>$validator->errors()]);
         }
             return 'success';
     }

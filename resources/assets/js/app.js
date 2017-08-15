@@ -547,7 +547,9 @@ $(function (){
 			// Add processing before next step
 			switch (true) {
 				case (newIndex == 1):
-					ajaxHelper("/ajax-validate", data, "POST", processCheckbox);
+					ajaxHelper("/ajax-validate", [], "POST", function (data){
+						console.log(data);
+					});
 					break;
 				case (newIndex == 2 && !setFormGen):
 			  		$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
