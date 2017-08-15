@@ -20733,7 +20733,7 @@ $(function () {
  	}
  });*/
 	var setFormGen = 0;
-	form.children("div").steps({
+	var multiStep = form.children("div").steps({
 		headerTag: "h3",
 		bodyTag: "section",
 		transitionEffect: "slideLeft",
@@ -20767,7 +20767,7 @@ $(function () {
 				case newIndex == 1:
 					var $userForm = $('#steps-uid-0-p-0');
 					var $errorMessages = $('.register-main .alert.alert-success');
-					console.log($userForm.find('input[name="password"]'));
+
 					data = (_data = {
 						first_name: $userForm.find('input[name="first_name"]').val(),
 						last_name: $userForm.find('input[name="last_name"]').val(),
@@ -20780,8 +20780,11 @@ $(function () {
 								$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
 								$errorMessages.removeClass('hidden');
 							});
+						} else {
+							multiStep.steps('next');
 						}
 					});
+					return false;
 					break;
 				case newIndex == 2 && !setFormGen:
 					$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
