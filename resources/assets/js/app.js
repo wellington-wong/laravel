@@ -543,15 +543,21 @@ $(function (){
 				stepsContentHeight();
 			});
 			stepsContentHeight();
-			if (newIndex == 2 && !setFormGen) {
-		  		$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
-		  		setFormGen = 1;
-			}
 
-			if (newIndex == 4) {
-		  		$('#register-form-multistep section:not(.form-builder) input').each(function(){
-		  			$('.review-form').append('<div class="form-group"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
-		  		});
+			// Add processing before next step
+			switch (true) {
+				case (newIndex == 1):
+					
+					break;
+				case (newIndex == 2 && !setFormGen):
+			  		$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
+			  		setFormGen = 1;
+					break;
+				case (newIndex == 4):
+			  		$('#register-form-multistep section:not(.form-builder) input').each(function(){
+			  			$('.review-form').append('<div class="form-group"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
+			  		});
+					break;
 			}
 
 			form.closest('.register-main').find('.top-content').html(multiStepRegistration[newIndex]);
