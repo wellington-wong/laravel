@@ -207,4 +207,13 @@ class RegisterController extends Controller
             return;
     }
 
+    /**
+     * Validate registration details via Ajax
+     * @return
+     */
+    public function ajaxValidate( Request $request )
+    {
+            return;
+    }
+
 }

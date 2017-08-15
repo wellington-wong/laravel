@@ -26,6 +26,7 @@ Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCa
 
 Route::get('register_simple', 'Auth\RegisterController@showRegistrationSimple')->name('register_simple');
 Route::post('register_simple', 'Auth\RegisterController@postRegistrationSimple')->name('post_register_simple');
+Route::post('ajax-validate', 'Auth\RegisterController@ajaxValidate')->name('ajax_validate');
 
 //$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 //$this->post('register', 'Auth\RegisterController@register');
