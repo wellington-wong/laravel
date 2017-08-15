@@ -213,7 +213,26 @@ class RegisterController extends Controller
      */
     public function ajaxValidate( Request $request )
     {
-            return;
+        $rules = [
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'phone'=>'required|phone:US',
+            'email'=>'unique:users|required|email',
+            'password' => 'required|min:6|confirmed',
+            //'profile_blob' => 'required',
+        ];
+
+        //$request->merge([
+           // 'name' => $request->get('first_name') && $request->get('last_name') ? $request->get('first_name') . ' ' . $request->get('last_name') : '',
+       // ]);
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+            return 'success';
     }
 
 }
