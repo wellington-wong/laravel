@@ -219,7 +219,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 rewards-bottom">
-                                                        <span>Want to use a point system? <a href="#">Ask about a custom option</a></span>
+                                                        <span>Want to use a point system? <a href="#">Ask Us About A Custom Option</a></span>
                                                     </div>
                                                 </div>
 
