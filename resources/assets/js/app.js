@@ -561,13 +561,15 @@ $(function (){
 						password_confirmation: $userForm.find('input[name="password_confirmation"]').val(),
 					}
 					ajaxHelper("/ajax-validate", data, "POST", function (data){
-						if (Object.keys(data).length) {
+						
+						if (data != 'success') {
 							$('.register-main .alert.alert-success ul li').remove();
 							$.each(data, function (itm, val){
 								$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
 								$errorMessages.removeClass('hidden');
 							});
 						} else {
+							$errorMessages.addClass('hidden');
 							multiStep.steps('next')
 						}
 					});
