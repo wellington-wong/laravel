@@ -13,6 +13,7 @@
             </div>
         </div>
 
+        <div class="create-referral-wrapper">
             {{ Form::open() }}
                 <div id="fb-render" >
                 </div>
@@ -31,7 +32,8 @@
                 The {{ $_company->company_name }} referral form is not yet available, click <a href="{{ route('program-options-referral-program-settings') }}">here</a> to create one.
             @endrole
         @endif--}}
-
+        <div class="clearfix"></div>
+        </div>
         <div class="old-input hidden">            
             @foreach (session()->getOldInput() as $key => $val)
                 <div data-field-name="{{ $key }}" data-value="{{ $val }}"></div>
