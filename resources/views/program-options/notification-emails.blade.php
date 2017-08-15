@@ -27,7 +27,7 @@
                         </label>
                         <span class="status">{{ isset($emailTemplate[1]['status']) ? ($emailTemplate[1]['status'] ? 'Active' : 'Inactive') : 'Inactive' }}</span>
                     </td>
-                    <td>New Member Welcome Email</td>
+                    <td>{{ \App\EmailTemplate::$labels[1] }}</td>
                     <td><a href="{{ route('program-options-notification-email', 1) }}" class="btn btn-primary">view/edit</a></td>
                 </tr>
                 <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -39,7 +39,7 @@
                         </label>
                         <span class="status">{{ isset($emailTemplate[2]['status']) ? ($emailTemplate[2]['status'] ? 'Active' : 'Inactive') : 'Inactive' }}</span>
                     </td>
-                    <td>Referral Received Email</td>
+                    <td>{{ \App\EmailTemplate::$labels[2] }}</td>
                     <td><a href="{{ route('program-options-notification-email', 2) }}" class="btn btn-primary">view/edit</a></td>
                 </tr>
                 <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -51,7 +51,7 @@
                         </label>
                         <span class="status">{{ isset($emailTemplate[3]['status']) ? ($emailTemplate[3]['status'] ? 'Active' : 'Inactive') : 'Inactive' }}</span>
                     </td>
-                    <td>Referral Verified Notification Email</td>
+                    <td>{{ \App\EmailTemplate::$labels[3] }}</td>
                     <td><a href="{{ route('program-options-notification-email', 3) }}" class="btn btn-primary">view/edit</a></td>
                 </tr>
                 <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -63,7 +63,7 @@
                         </label>
                         <span class="status">{{ isset($emailTemplate[4]['status']) ? ($emailTemplate[4]['status'] ? 'Active' : 'Inactive') : 'Inactive' }}</span>
                     </td>
-                    <td>Referral Has Been Sent Email</td>
+                    <td>{{ \App\EmailTemplate::$labels[4] }}</td>
                     <td><a href="{{ route('program-options-notification-email', 4) }}" class="btn btn-primary">view/edit</a></td>
                 </tr>
                 <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -75,7 +75,7 @@
                         </label>
                         <span class="status">{{ isset($emailTemplate[5]['status']) ? ($emailTemplate[5]['status'] ? 'Active' : 'Inactive') : 'Inactive' }}</span>
                     </td>
-                    <td>Referral Has Been Declined Email</td>
+                    <td>{{ \App\EmailTemplate::$labels[5] }}</td>
                     <td><a href="{{ route('program-options-notification-email', 5) }}" class="btn btn-primary">view/edit</a></td>
                 </tr>
             </tbody>
@@ -98,7 +98,7 @@
                         </label>
                         <span class="status">{{ isset($emailTemplate[6]['status']) ? ($emailTemplate[6]['status'] ? 'Active' : 'Inactive') : 'Inactive' }}</span>
                     </td>
-                    <td>New Member Signup</td>
+                    <td>{{ \App\EmailTemplate::$labels[6] }}</td>
                     <td><a href="{{ route('program-options-notification-email', 6) }}" class="btn btn-primary">view/edit</a></td>
                 </tr>
                 <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -110,7 +110,7 @@
                         </label>
                         <span class="status">{{ isset($emailTemplate[7]['status']) ? ($emailTemplate[7]['status'] ? 'Active' : 'Inactive') : 'Inactive' }}</span>
                     </td>
-                    <td>New Referral</td>
+                    <td>{{ \App\EmailTemplate::$labels[7] }}</td>
                     <td><a href="{{ route('program-options-notification-email', 7) }}" class="btn btn-primary">view/edit</a></td>
                 </tr>
             </tbody>

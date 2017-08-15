@@ -129,6 +129,7 @@ class ProgramOptionsController extends Controller
      */
     public function notificationEmails ( Request $request )
     { 
+
         $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->get()->keyBy('type')->toArray();
         return view('program-options.notification-emails')
         ->with(compact('emailTemplate'));
