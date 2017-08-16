@@ -94,13 +94,9 @@
                                                     {{ Form::text('subdomain', old('subdomain'), array('class' => 'form-control')) }}
                                                     </div>                                                
                                                 </div>
-
-                                                <div class="form-group col-md-6">
-                                                    <div class="col-md-12">
-                                                        <label>Your Company's Phone Number</label>
-                                                        {{ Form::text('company_phone', old('company_phone'), array('class' => 'form-control')) }}
-                                                    </div>
-                                                </div>
+                                                    
+                                                @include('forms.phone-multistep', ['phone_label'=>"Your Company's Phone Number", 'class'=>'col-md-6', 'label_class'=>'col-md-12', 'phone_name' => 'company_phone'])
+                                                  
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
                                                         <label>Your Company's Contact Email</label>
