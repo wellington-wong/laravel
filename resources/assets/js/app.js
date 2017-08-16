@@ -553,7 +553,6 @@ $(function (){
 							last_name: $userForm.find('input[name="last_name"]').val(),
 							phone: $userForm.find('input[name="phone"]').val(),
 							email: $userForm.find('input[name="email"]').val(),
-							phone: $userForm.find('input[name="phone"]').val(),
 							password: $userForm.find('input[name="password"]').val(),
 							password_confirmation: $userForm.find('input[name="password_confirmation"]').val(),
 						}
@@ -562,13 +561,15 @@ $(function (){
 						var $companyForm = $('#steps-uid-0-p-1');	
 						data = {
 							type: 'company',
-							first_name: $companyForm.find('input[name="first_name"]').val(),
-							last_name: $companyForm.find('input[name="last_name"]').val(),
-							phone: $companyForm.find('input[name="phone"]').val(),
-							email: $companyForm.find('input[name="email"]').val(),
-							phone: $companyForm.find('input[name="phone"]').val(),
-							password: $companyForm.find('input[name="password"]').val(),
-							password_confirmation: $companyForm.find('input[name="password_confirmation"]').val(),
+							company_name: $companyForm.find('input[name="company_name"]').val(),
+							subdomain: $companyForm.find('input[name="subdomain"]').val(),
+							company_phone: $companyForm.find('input[name="company_phone"]').val(),
+							company_email: $companyForm.find('input[name="company_email"]').val(),
+							company_address_1: $companyForm.find('input[name="company_address_1"]').val(),
+							company_address_2: $companyForm.find('input[name="company_address_2"]').val(),
+							company_city: $companyForm.find('input[name="company_city"]').val(),
+							state: $companyForm.find('input[name="state"]').val(),
+							company_zip: $companyForm.find('input[name="company_zip"]').val(),
 						}
 						break;
 				}

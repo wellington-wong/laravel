@@ -20222,7 +20222,6 @@ module.exports = function(module) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_tablesaw_dist_stackonly_tablesaw_stackonly_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_tablesaw_dist_stackonly_tablesaw_stackonly_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_tablesaw_dist_tablesaw_init_js__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_tablesaw_dist_tablesaw_init_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_tablesaw_dist_tablesaw_init_js__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -20757,31 +20756,36 @@ $(function () {
 			$('#steps-uid-0 .actions').append('<ul><li class="multi-step-previous"><a href="javascript:void(0);">Back</a></li><li><a href="javascript:void(0);" class="multi-step-next">Next</a></li></ul>').find('ul').eq(0).addClass('hidden');
 			var data;
 			$('.multi-step-next').click(function () {
-				var _data, _data2;
-
 				var currentIndex = form.children("div").steps("getCurrentIndex");
 				var $errorMessages = $('.register-main .alert.alert-success');
 
 				switch (currentIndex) {
 					case 0:
 						var $userForm = $('#steps-uid-0-p-0');
-						data = (_data = {
+						data = {
 							type: 'user',
 							first_name: $userForm.find('input[name="first_name"]').val(),
 							last_name: $userForm.find('input[name="last_name"]').val(),
 							phone: $userForm.find('input[name="phone"]').val(),
-							email: $userForm.find('input[name="email"]').val()
-						}, _defineProperty(_data, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data);
+							email: $userForm.find('input[name="email"]').val(),
+							password: $userForm.find('input[name="password"]').val(),
+							password_confirmation: $userForm.find('input[name="password_confirmation"]').val()
+						};
 						break;
 					case 1:
 						var $companyForm = $('#steps-uid-0-p-1');
-						data = (_data2 = {
+						data = {
 							type: 'company',
-							first_name: $companyForm.find('input[name="first_name"]').val(),
-							last_name: $companyForm.find('input[name="last_name"]').val(),
-							phone: $companyForm.find('input[name="phone"]').val(),
-							email: $companyForm.find('input[name="email"]').val()
-						}, _defineProperty(_data2, 'phone', $companyForm.find('input[name="phone"]').val()), _defineProperty(_data2, 'password', $companyForm.find('input[name="password"]').val()), _defineProperty(_data2, 'password_confirmation', $companyForm.find('input[name="password_confirmation"]').val()), _data2);
+							company_name: $companyForm.find('input[name="company_name"]').val(),
+							subdomain: $companyForm.find('input[name="subdomain"]').val(),
+							company_phone: $companyForm.find('input[name="company_phone"]').val(),
+							company_email: $companyForm.find('input[name="company_email"]').val(),
+							company_address_1: $companyForm.find('input[name="company_address_1"]').val(),
+							company_address_2: $companyForm.find('input[name="company_address_2"]').val(),
+							company_city: $companyForm.find('input[name="company_city"]').val(),
+							state: $companyForm.find('input[name="state"]').val(),
+							company_zip: $companyForm.find('input[name="company_zip"]').val()
+						};
 						break;
 				}
 

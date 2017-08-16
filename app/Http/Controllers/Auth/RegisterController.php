@@ -231,13 +231,13 @@ class RegisterController extends Controller
                 $rules = [
                     'company_name'=>'required',
                     'subdomain'=>'required|unique:companies|not_in:app,www',
-                    'phone'=>'required|phone:LENIENT,AUTO,US',
+                    'company_phone'=>'required|phone:LENIENT,AUTO,US',
                     'email'=>'unique:companies|required|email',
-                    'address'=>'required|max:100',
-                    'address2'=>'max:25',
-                    'city'=>'required',
+                    'company_address_1'=>'required|max:100',
+                    'company_address_2'=>'max:25',
+                    'company_city'=>'required',
                     'state'=>'required|max:2',
-                    'zip'=>'required|digits:5',
+                    'company_zip'=>'required|digits:5',
                 ];
                 break;
         }
