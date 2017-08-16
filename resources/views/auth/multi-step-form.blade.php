@@ -124,7 +124,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-9">
+                                                <div class="form-group col-md-6">
                                                     <div class="col-md-12">
                                                         <label>City</label>
                                                         {{ Form::text('company_city', old('company_city'), array('class' => 'form-control')) }}
@@ -139,7 +139,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-3">
                                                     <div class="col-md-12">
                                                         <label>Zip</label>
                                                         {{ Form::text('company_zip', old('company_zip'), array('class' => 'form-control')) }}
