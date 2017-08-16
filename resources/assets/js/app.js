@@ -565,10 +565,11 @@ $(function (){
 							subdomain: $companyForm.find('input[name="subdomain"]').val(),
 							company_phone: $companyForm.find('input[name="company_phone"]').val(),
 							company_email: $companyForm.find('input[name="company_email"]').val(),
+							business_type: $companyForm.find('select[name="business_type"]').val(),
 							company_address_1: $companyForm.find('input[name="company_address_1"]').val(),
 							company_address_2: $companyForm.find('input[name="company_address_2"]').val(),
 							company_city: $companyForm.find('input[name="company_city"]').val(),
-							state: $companyForm.find('input[name="state"]').val(),
+							state: $companyForm.find('select[name="state"]').val(),
 							company_zip: $companyForm.find('input[name="company_zip"]').val(),
 						}
 						break;

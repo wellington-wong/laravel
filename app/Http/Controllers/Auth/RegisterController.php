@@ -232,7 +232,7 @@ class RegisterController extends Controller
                     'company_name'=>'required',
                     'subdomain'=>'required|unique:companies|not_in:app,www',
                     'company_phone'=>'required|phone:LENIENT,AUTO,US',
-                    'email'=>'unique:companies|required|email',
+                    'company_email'=>'required|unique:companies,email|email',
                     'business_type'=>'required',
                     'company_address_1'=>'required|max:100',
                     'company_address_2'=>'max:25',
