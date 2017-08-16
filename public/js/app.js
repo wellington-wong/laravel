@@ -20514,7 +20514,8 @@ $(function () {
 	}, {
 		label: 'Phone',
 		attrs: {
-			type: 'text'
+			type: 'text',
+			class: 'etst'
 		},
 		placeholder: "Enter your Friend's phone number",
 		icon: '<i class="fa fa-phone"></i>'
@@ -20596,7 +20597,7 @@ $(function () {
 		type: "text",
 		subtype: 'email'
 	}, {
-		className: "form-control",
+		className: "form-control phone-custom",
 		label: "Phone",
 		placeholder: "Enter your Friend's phone number",
 		name: "phone",
@@ -20751,44 +20752,51 @@ $(function () {
 				$(this).text($(this).text().replace('.', ''));
 			});
 			$('.actions').addClass('col-md-12');
+
+			// Add form validation
+			$('#steps-uid-0 .actions').append('<ul><li class="multi-step-previous"><a href="javascript:void(0);">Back</a></li><li><a href="javascript:void(0);" class="multi-step-next">Next</a></li></ul>').find('ul').eq(0).addClass('hidden');
+			var $errorMessages = $('.register-main .alert.alert-success');
+			var data;
+			$('.multi-step-next').click(function () {
+				var _data;
+
+				var $userForm = $('#steps-uid-0-p-0');
+				data = (_data = {
+					first_name: $userForm.find('input[name="first_name"]').val(),
+					last_name: $userForm.find('input[name="last_name"]').val(),
+					phone: $userForm.find('input[name="phone"]').val(),
+					email: $userForm.find('input[name="email"]').val()
+				}, _defineProperty(_data, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data);
+				ajaxHelper("/ajax-validate", data, "POST", function (data) {
+					if (data != 'success') {
+						$('.register-main .alert.alert-success ul li').remove();
+						$.each(data, function (itm, val) {
+							$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
+							$errorMessages.removeClass('hidden');
+						});
+					} else {
+						$errorMessages.addClass('hidden');
+						multiStep.steps('next');
+					}
+					stepsContentHeight();
+				});
+			});
+			$('.multi-step-previous').click(function () {
+				multiStep.steps('previous');
+			});
 		},
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			var _data;
-
 			//form.validate().settings.ignore = ":disabled,:hidden";
 			form.find('.actions').find('li').click(function () {
 				$('.form-multistep-number li.current').removeClass('current');
 				$('.form-multistep-number li').eq($('.steps').find('li.current').index()).addClass('current');
 				stepsContentHeight();
 			});
-			stepsContentHeight();
 
 			// Add processing before next step
-			var data;
 			switch (true) {
 				case newIndex == 1:
-					var $userForm = $('#steps-uid-0-p-0');
-					var $errorMessages = $('.register-main .alert.alert-success');
 
-					data = (_data = {
-						first_name: $userForm.find('input[name="first_name"]').val(),
-						last_name: $userForm.find('input[name="last_name"]').val(),
-						phone: $userForm.find('input[name="phone"]').val(),
-						email: $userForm.find('input[name="email"]').val()
-					}, _defineProperty(_data, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data);
-					ajaxHelper("/ajax-validate", data, "POST", function (data) {
-						if (data != 'success') {
-							$('.register-main .alert.alert-success ul li').remove();
-							$.each(data, function (itm, val) {
-								$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
-								$errorMessages.removeClass('hidden');
-							});
-						} else {
-							$errorMessages.addClass('hidden');
-							multiStep.steps('next');
-						}
-					});
-					return false;
 					break;
 				case newIndex == 2 && !setFormGen:
 					$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
@@ -20805,6 +20813,7 @@ $(function () {
 			return true; //form.valid();
 		},
 		onFinishing: function onFinishing(event, currentIndex) {
+			//steps-uid-0
 			//form.validate().settings.ignore = ":disabled";
 			return true; //form.valid();
 		},
