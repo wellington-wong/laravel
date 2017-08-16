@@ -505,7 +505,7 @@ $(function (){
 	var multiStepRegistration = [
 		'We need some basic information about you to get started.',
 		'Tell Us About Your Company',
-		'What information do you need to follow up with a referral?<span class="subtext">This is the information your referral club members will enter when submitting a referral.</span>',
+		'What information do you need to follow up with a referral? <span class="subtext">This is the information your referral club members will enter when submitting a referral.</span>',
 		'How will you reward your members for their qualifying referrals?',
 		'Please review the information you have entered.'
 	];
