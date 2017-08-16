@@ -237,7 +237,6 @@ class RegisterController extends Controller
                     'company_name'=>'required',
                     'subdomain'=>'required|unique:companies|not_in:app,www',
                     'phone'=>'required|phone:LENIENT,AUTO,US',
-                    'logo_blob' => 'required',
                 ];
                 break;
         }

@@ -82,10 +82,16 @@
                                         <section>
 
                                             <div class="form-group-wrapper">
-                                                <div class="form-group col-md-12">
-                                                    <label for="password-confirm" class="col-md-12 control-label">Your Company's Name</label>
+                                                <div class="form-group col-md-6">
+                                                    <label class="col-md-12 control-label">Your Company's Name</label>
                                                     <div class="col-md-12">                                                    
                                                     {{ Form::text('company_name', old('company_name'), array('class' => 'form-control')) }}
+                                                    </div>                                                
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="col-md-12 control-label">Your Company's Subdomain</label>
+                                                    <div class="col-md-12">                                                    
+                                                    {{ Form::text('subdomain', old('subdomain'), array('class' => 'form-control')) }}
                                                     </div>                                                
                                                 </div>
 
