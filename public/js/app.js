@@ -20755,12 +20755,12 @@ $(function () {
 
 			// Add form validation
 			$('#steps-uid-0 .actions').append('<ul><li class="multi-step-previous"><a href="javascript:void(0);">Back</a></li><li><a href="javascript:void(0);" class="multi-step-next">Next</a></li></ul>').find('ul').eq(0).addClass('hidden');
-			var $errorMessages = $('.register-main .alert.alert-success');
 			var data;
 			$('.multi-step-next').click(function () {
 				var _data, _data2;
 
 				var currentIndex = form.children("div").steps("getCurrentIndex");
+				var $errorMessages = $('.register-main .alert.alert-success');
 
 				switch (currentIndex) {
 					case 0:
@@ -20777,23 +20777,24 @@ $(function () {
 						var $companyForm = $('#steps-uid-0-p-1');
 						data = (_data2 = {
 							type: 'company',
-							first_name: $userForm.find('input[name="first_name"]').val(),
-							last_name: $userForm.find('input[name="last_name"]').val(),
-							phone: $userForm.find('input[name="phone"]').val(),
-							email: $userForm.find('input[name="email"]').val()
-						}, _defineProperty(_data2, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data2, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data2, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data2);
+							first_name: $companyForm.find('input[name="first_name"]').val(),
+							last_name: $companyForm.find('input[name="last_name"]').val(),
+							phone: $companyForm.find('input[name="phone"]').val(),
+							email: $companyForm.find('input[name="email"]').val()
+						}, _defineProperty(_data2, 'phone', $companyForm.find('input[name="phone"]').val()), _defineProperty(_data2, 'password', $companyForm.find('input[name="password"]').val()), _defineProperty(_data2, 'password_confirmation', $companyForm.find('input[name="password_confirmation"]').val()), _data2);
 						break;
 				}
 
+				// Post data for validation
 				ajaxHelper("/ajax-validate", data, "POST", function (data) {
+					$('.register-main .alert.alert-success ul li').remove();
 					if (data != 'success') {
-						$('.register-main .alert.alert-success ul li').remove();
+						$('.register-main .alert.alert-success').removeClass('hidden');
 						$.each(data, function (itm, val) {
 							$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
-							$errorMessages.removeClass('hidden');
 						});
 					} else {
-						$errorMessages.addClass('hidden');
+						$('.register-main .alert.alert-success').addClass('hidden');
 						multiStep.steps('next');
 					}
 					stepsContentHeight();
