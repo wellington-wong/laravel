@@ -548,12 +548,10 @@ $(function (){
 
 			// Add processing before next step
 			var data;
-			var ajaxProcessing = false;
 			switch (true) {
 				case (newIndex == 1):
 					var $userForm = $('#steps-uid-0-p-0');
-					var $errorMessages = $('.register-main .alert.alert-success');					
-					ajaxProcessing = true;
+					var $errorMessages = $('.register-main .alert.alert-success');				
 
 					data = {
 						first_name: $userForm.find('input[name="first_name"]').val(),
@@ -573,11 +571,8 @@ $(function (){
 							});
 						} else {
 							$errorMessages.addClass('hidden');
-							if (!ajaxProcessing) {
-								multiStep.steps('next')
-							}
+							multiStep.steps('next');
 						}
-						ajaxProcessing = false;
 					});
 					return false;
 					break;
