@@ -20758,7 +20758,7 @@ $(function () {
 			var $errorMessages = $('.register-main .alert.alert-success');
 			var data;
 			$('.multi-step-next').click(function () {
-				var _data;
+				var _data, _data2;
 
 				var currentIndex = form.children("div").steps("getCurrentIndex");
 
@@ -20772,6 +20772,16 @@ $(function () {
 							phone: $userForm.find('input[name="phone"]').val(),
 							email: $userForm.find('input[name="email"]').val()
 						}, _defineProperty(_data, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data);
+						break;
+					case 1:
+						var $companyForm = $('#steps-uid-0-p-1');
+						data = (_data2 = {
+							type: 'company',
+							first_name: $userForm.find('input[name="first_name"]').val(),
+							last_name: $userForm.find('input[name="last_name"]').val(),
+							phone: $userForm.find('input[name="phone"]').val(),
+							email: $userForm.find('input[name="email"]').val()
+						}, _defineProperty(_data2, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data2, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data2, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data2);
 						break;
 				}
 

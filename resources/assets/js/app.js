@@ -557,9 +557,22 @@ $(function (){
 							password: $userForm.find('input[name="password"]').val(),
 							password_confirmation: $userForm.find('input[name="password_confirmation"]').val(),
 						}
-						break; 
+						break;
+					case (1):
+						var $companyForm = $('#steps-uid-0-p-1');	
+						data = {
+							type: 'company',
+							first_name: $userForm.find('input[name="first_name"]').val(),
+							last_name: $userForm.find('input[name="last_name"]').val(),
+							phone: $userForm.find('input[name="phone"]').val(),
+							email: $userForm.find('input[name="email"]').val(),
+							phone: $userForm.find('input[name="phone"]').val(),
+							password: $userForm.find('input[name="password"]').val(),
+							password_confirmation: $userForm.find('input[name="password_confirmation"]').val(),
+						}
+						break;
 				}
-				
+
 				ajaxHelper("/ajax-validate", data, "POST", function (data){
 					if (data != 'success') {
 						$('.register-main .alert.alert-success ul li').remove();
