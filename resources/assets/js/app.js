@@ -544,6 +544,7 @@ $(function (){
 			$('.multi-step-next').click(function (){
 				var $userForm = $('#steps-uid-0-p-0');	
 				data = {
+					type: 'user',
 					first_name: $userForm.find('input[name="first_name"]').val(),
 					last_name: $userForm.find('input[name="last_name"]').val(),
 					phone: $userForm.find('input[name="phone"]').val(),

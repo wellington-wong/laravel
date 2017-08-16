@@ -215,13 +215,32 @@ class RegisterController extends Controller
     public function ajaxValidate( Request $request )
     {
 
-        $rules = [
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'phone'=>'required|phone:US',
-            'email'=>'unique:users|required|email',
-            'password' => 'required|min:6|confirmed',
-        ];
+        $type = $request->get('type');
+
+        switch ( $type ) {
+            case ('user'):
+                $rules = [
+                    'first_name'=>'required',
+                    'last_name'=>'required',
+                    'phone'=>'required|phone:US',
+                    'email'=>'unique:users|required|email',
+                    'password' => 'required|min:6|confirmed',
+                ];
+                break;
+            case ('company'):                
+                $rules = [
+                    'address'=>'required|max:100',
+                    'address2'=>'max:25',
+                    'city'=>'required',
+                    'state'=>'required|max:2',
+                    'zip'=>'required|digits:5',
+                    'company_name'=>'required',
+                    'subdomain'=>'required|unique:companies|not_in:app,www',
+                    'phone'=>'required|phone:LENIENT,AUTO,US',
+                    'logo_blob' => 'required',
+                ];
+                break;
+        }
 
         //$request->merge([
            // 'name' => $request->get('first_name') && $request->get('last_name') ? $request->get('first_name') . ' ' . $request->get('last_name') : '',
