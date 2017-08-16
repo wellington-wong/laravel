@@ -229,14 +229,15 @@ class RegisterController extends Controller
                 break;
             case ('company'):                
                 $rules = [
+                    'company_name'=>'required',
+                    'subdomain'=>'required|unique:companies|not_in:app,www',
+                    'phone'=>'required|phone:LENIENT,AUTO,US',
+                    'email'=>'unique:companies|required|email',
                     'address'=>'required|max:100',
                     'address2'=>'max:25',
                     'city'=>'required',
                     'state'=>'required|max:2',
                     'zip'=>'required|digits:5',
-                    'company_name'=>'required',
-                    'subdomain'=>'required|unique:companies|not_in:app,www',
-                    'phone'=>'required|phone:LENIENT,AUTO,US',
                 ];
                 break;
         }
