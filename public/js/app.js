@@ -20760,14 +20760,21 @@ $(function () {
 			$('.multi-step-next').click(function () {
 				var _data;
 
-				var $userForm = $('#steps-uid-0-p-0');
-				data = (_data = {
-					type: 'user',
-					first_name: $userForm.find('input[name="first_name"]').val(),
-					last_name: $userForm.find('input[name="last_name"]').val(),
-					phone: $userForm.find('input[name="phone"]').val(),
-					email: $userForm.find('input[name="email"]').val()
-				}, _defineProperty(_data, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data);
+				var currentIndex = form.children("div").steps("getCurrentIndex");
+
+				switch (currentIndex) {
+					case 0:
+						var $userForm = $('#steps-uid-0-p-0');
+						data = (_data = {
+							type: 'user',
+							first_name: $userForm.find('input[name="first_name"]').val(),
+							last_name: $userForm.find('input[name="last_name"]').val(),
+							phone: $userForm.find('input[name="phone"]').val(),
+							email: $userForm.find('input[name="email"]').val()
+						}, _defineProperty(_data, 'phone', $userForm.find('input[name="phone"]').val()), _defineProperty(_data, 'password', $userForm.find('input[name="password"]').val()), _defineProperty(_data, 'password_confirmation', $userForm.find('input[name="password_confirmation"]').val()), _data);
+						break;
+				}
+
 				ajaxHelper("/ajax-validate", data, "POST", function (data) {
 					if (data != 'success') {
 						$('.register-main .alert.alert-success ul li').remove();

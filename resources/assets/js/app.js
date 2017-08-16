@@ -542,17 +542,24 @@ $(function (){
 			var $errorMessages = $('.register-main .alert.alert-success');			
 			var data;
 			$('.multi-step-next').click(function (){
-				var $userForm = $('#steps-uid-0-p-0');	
-				data = {
-					type: 'user',
-					first_name: $userForm.find('input[name="first_name"]').val(),
-					last_name: $userForm.find('input[name="last_name"]').val(),
-					phone: $userForm.find('input[name="phone"]').val(),
-					email: $userForm.find('input[name="email"]').val(),
-					phone: $userForm.find('input[name="phone"]').val(),
-					password: $userForm.find('input[name="password"]').val(),
-					password_confirmation: $userForm.find('input[name="password_confirmation"]').val(),
+				var currentIndex = form.children("div").steps("getCurrentIndex");
+
+				switch (currentIndex) {
+					case (0):
+						var $userForm = $('#steps-uid-0-p-0');	
+						data = {
+							type: 'user',
+							first_name: $userForm.find('input[name="first_name"]').val(),
+							last_name: $userForm.find('input[name="last_name"]').val(),
+							phone: $userForm.find('input[name="phone"]').val(),
+							email: $userForm.find('input[name="email"]').val(),
+							phone: $userForm.find('input[name="phone"]').val(),
+							password: $userForm.find('input[name="password"]').val(),
+							password_confirmation: $userForm.find('input[name="password_confirmation"]').val(),
+						}
+						break; 
 				}
+				
 				ajaxHelper("/ajax-validate", data, "POST", function (data){
 					if (data != 'success') {
 						$('.register-main .alert.alert-success ul li').remove();
