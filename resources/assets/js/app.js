@@ -102,13 +102,15 @@ $(function (){
 	});
 
 	var phone_p = $('.phone-placeholder');
+	if (phone_p.length) {
 	processPhone(phone_p);
-	phone_p.on('focus', function (){
-		$(this).hide();
-		$('.bfh-phone').removeClass('hidden').focus().on('blur', function (){
-			processPhone(phone_p);
+		phone_p.on('focus', function (){
+			$(this).hide();
+			$('.bfh-phone').removeClass('hidden').focus().on('blur', function (){
+				processPhone(phone_p);
+			});
 		});
-	});
+	}
 	function processPhone(phone_p){
 		if ($('.bfh-phone').val() == '(' || !$('.bfh-phone').val()) {
 			phone_p.show();
