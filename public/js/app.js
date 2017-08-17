@@ -20682,6 +20682,13 @@ $(function () {
 				formBuilder.actions.setData(JSON.stringify(templateObj[$(this).val()]));
 			}
 		});
+
+		// Override form clearing in multi-step registration
+		$('.clear-all').after('<button type="button" class="btn btn-danger clear-all-trigger">Clear</button>').remove();
+		// Set basic fields on clearing form
+		$('.clear-all-trigger').on('click', function () {
+			formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));
+		});
 	});
 
 	// Update db with current form settings
@@ -20711,6 +20718,7 @@ $(function () {
 	$('.clear-all-trigger').on('click', function () {
 		formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));
 	});
+
 	/* var fbRender = document.getElementById('fb-rerender'),
    formData = formBuilder.actions.getData("json");
    var formRenderOpts = {
