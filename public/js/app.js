@@ -20855,6 +20855,8 @@ $(function () {
 			}
 
 			form.closest('.register-main').find('.top-content').html(multiStepRegistration[newIndex]);
+			stepsContentHeight();
+
 			return true; //form.valid();
 		},
 		onFinishing: function onFinishing(event, currentIndex) {

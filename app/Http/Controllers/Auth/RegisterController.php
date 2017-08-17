@@ -226,13 +226,23 @@ class RegisterController extends Controller
                 'leader_board'=>'required',
             ];
 
-            //dd($request->all());
-
             $validator = Validator::make($request->input(), $rules);
 
             if ( $validator->fails() ) {
                 return $validator->errors();
             }
+
+            $user = User::firstOrCreate([
+                'email'=>$request->input('email'),
+                'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
+                'first_name'=>$request->input('first_name'),
+                'last_name'=>$request->input('last_name')
+            ]);
+                
+            //ADD PHONE
+            $phone = $user->addDefaultPhone($request);
+            //ADD ADDRESS
+            $address = $user->addDefaultAddress($request);
 
             return 'success';
     }

@@ -615,7 +615,7 @@ $(function (){
 		},
 		onStepChanging: function (event, currentIndex, newIndex)
 		{
-			
+
 			// Highlight current step number
 			$('.form-multistep-number li.current').removeClass('current');
 			$('.form-multistep-number li').eq(newIndex).addClass('current');
@@ -634,6 +634,8 @@ $(function (){
 			}
 
 			form.closest('.register-main').find('.top-content').html(multiStepRegistration[newIndex]);
+			stepsContentHeight();
+			
 			return true;//form.valid();
 		},
 		onFinishing: function (event, currentIndex)
