@@ -527,6 +527,7 @@ $(function (){
 	var multiStep = form.children("div").steps({
 		headerTag: "h3",
 		bodyTag: "section",
+		//startIndex: 3,
 		transitionEffect: "slideLeft",
 		onInit: function ()
 		{
@@ -576,6 +577,16 @@ $(function (){
 							company_city: $companyForm.find('input[name="company_city"]').val(),
 							state: $companyForm.find('select[name="state"]').val(),
 							company_zip: $companyForm.find('input[name="company_zip"]').val(),
+						}
+						break;
+					case (3):
+						var $companyForm = $('#steps-uid-0-p-3');	
+						data = {
+							type: 'reward_info',
+							reward_title: $companyForm.find('input[name="reward_title"]').val(),
+							reward_kind: $companyForm.find('select[name="reward_kind"]').val(),
+							reward_send: $companyForm.find('select[name="reward_send"]').val(),
+							leader_board: $companyForm.find('select[name="leader_board"]').val(),
 						}
 						break;
 				}
