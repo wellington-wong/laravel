@@ -15,6 +15,7 @@ use Illuminate\Auth\Events\Registered;
 
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Notifications\NewMember;
 use App\Notifications\NewMemberAdmin;
 
@@ -236,9 +237,10 @@ class RegisterController extends Controller
                 'email'=>$request->input('email'),
                 'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
                 'first_name'=>$request->input('first_name'),
-                'last_name'=>$request->input('last_name')
+                'last_name'=>$request->input('last_name'),
+                'password'=> Hash::make($request->input('password'))
             ]);
-                
+
             //ADD PHONE
             $phone = $user->addDefaultPhone($request);
             //ADD ADDRESS
