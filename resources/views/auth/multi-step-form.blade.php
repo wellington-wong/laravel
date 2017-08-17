@@ -208,9 +208,9 @@
                                                     </div>
                                                     <div class="col-md-12 reward-ratio">
                                                         <div class="col-md-6 col-md-offset-3">
-                                                            <span>1</span>
+                                                            <input value="1" name="approved_referral_ratio">
                                                             <span class="reward-equals">=</span>
-                                                            <span>1</span>
+                                                            <input value="1" name="reward_referral_ratio">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 reward-ratio-desc">
