@@ -204,7 +204,7 @@ class RegisterController extends Controller
      */
     public function postRegistrationSimple( Request $request )
     {
-            dd($request);
+            dd($request->all());
             return;
     }
 

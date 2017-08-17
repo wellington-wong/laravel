@@ -20831,6 +20831,9 @@ $(function () {
 			$('.multi-step-previous').click(function () {
 				multiStep.steps('previous');
 			});
+			$('.multi-step-submit').click(function () {
+				$('#register-form-multistep').submit();
+			});
 		},
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
 			//form.validate().settings.ignore = ":disabled,:hidden";
