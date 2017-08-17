@@ -615,12 +615,10 @@ $(function (){
 		},
 		onStepChanging: function (event, currentIndex, newIndex)
 		{
-			//form.validate().settings.ignore = ":disabled,:hidden";
-			form.find('.actions').find('li').click(function (){
-				$('.form-multistep-number li.current').removeClass('current');
-				$('.form-multistep-number li').eq($('.steps').find('li.current').index()).addClass('current');
-				stepsContentHeight();
-			});
+			
+			// Highlight current step number
+			$('.form-multistep-number li.current').removeClass('current');
+			$('.form-multistep-number li').eq($('.steps').find('li.current').index()).addClass('current');
 
 			// Add processing before next step
 			switch (true) {
