@@ -20842,9 +20842,6 @@ $(function () {
 
 			// Add processing before next step
 			switch (true) {
-				case newIndex == 1:
-
-					break;
 				case newIndex == 2 && !setFormGen:
 					$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
 					setFormGen = 1;
