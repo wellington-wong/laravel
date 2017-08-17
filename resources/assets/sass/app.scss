@@ -1223,6 +1223,11 @@ table.table {
 		.form-control {
 			border: 0;
 		}
+		.form-actions {
+			.save-template {
+				display: none;
+			}
+		}
 	}
 	.form-generator-wrapper {
 		visibility: hidden;
