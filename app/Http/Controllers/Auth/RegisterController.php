@@ -251,10 +251,6 @@ class RegisterController extends Controller
                 break;
         }
 
-        //$request->merge([
-           // 'name' => $request->get('first_name') && $request->get('last_name') ? $request->get('first_name') . ' ' . $request->get('last_name') : '',
-        //]);
-
         $validator = Validator::make($request->input(), $rules);
 
         if ( $validator->fails() ) {
