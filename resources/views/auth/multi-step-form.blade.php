@@ -10,7 +10,7 @@
                                                     <label for="name" class="col-md-12 control-label">Your First Name</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="first-name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                                                        <input id="first-name" type="text" class="form-control" name="first_name" required autofocus>
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
@@ -24,7 +24,7 @@
                                                     <label for="name" class="col-md-12 control-label text-left">Your Last Name</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="last-name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                                                        <input id="last-name" type="text" class="form-control" name="last_name" required>
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
@@ -40,7 +40,7 @@
                                                     <label for="email" class="col-md-12 control-label">Your E-Mail</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                                        <input id="email" type="email" class="form-control" name="email" required>
 
                                                         @if ($errors->has('email'))
                                                             <span class="help-block">
@@ -85,13 +85,13 @@
                                                 <div class="form-group col-md-6">
                                                     <label class="col-md-12 control-label">Your Company's Name</label>
                                                     <div class="col-md-12">                                                    
-                                                    {{ Form::text('company_name', old('company_name'), array('class' => 'form-control')) }}
+                                                    {{ Form::text('company_name', '', array('class' => 'form-control')) }}
                                                     </div>                                                
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="col-md-12 control-label">Your Company's Subdomain</label>
                                                     <div class="col-md-12">                                                    
-                                                    {{ Form::text('subdomain', old('subdomain'), array('class' => 'form-control')) }}
+                                                    {{ Form::text('subdomain', '', array('class' => 'form-control')) }}
                                                     </div>                                                
                                                 </div>
                                                     
@@ -100,7 +100,7 @@
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
                                                         <label>Your Company's Contact Email</label>
-                                                        {{ Form::text('company_email', old('company_email'), array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_email', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -109,27 +109,27 @@
                                                         <label>Type of Business</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('business_type', ['' => 'Please Select One', 'small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], old('business_type'), array('class' => 'form-control')) }}
+                                                        {{ Form::select('business_type', ['' => 'Please Select One', 'small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
                                                         <label>Your Company's Address Line 1</label>
-                                                        {{ Form::text('company_address_1', old('company_address_1'), array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_address_1', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
                                                         <label>Line 2</label>
-                                                        {{ Form::text('company_address_2', old('company_address_2'), array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_address_2', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
                                                         <label>City</label>
-                                                        {{ Form::text('company_city', old('company_city'), array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_city', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
@@ -144,7 +144,7 @@
                                                 <div class="form-group col-md-3">
                                                     <div class="col-md-12">
                                                         <label>Zip</label>
-                                                        {{ Form::text('company_zip', old('company_zip'), array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_zip', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -166,7 +166,7 @@
                                                     <label for="name" class="col-md-12 control-label">Reward Title</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="reward-title" type="text" class="form-control" name="reward_title" value="{{ old('reward_title') }}" required autofocus>
+                                                        <input id="reward-title" type="text" class="form-control" name="reward_title" required>
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
@@ -181,7 +181,7 @@
                                                         <label>What kind of reward will you use?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('reward_kind', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], old('reward_kind'), array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_kind', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -190,7 +190,7 @@
                                                         <label>How will you send the reward?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('reward_send', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], old('reward_send'), array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_send', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -199,7 +199,7 @@
                                                         <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('leader_board', ['' => 'Please Select One', '1' => 'Yes', '0' => 'No'], old('leader_board'), array('class' => 'form-control')) }}
+                                                        {{ Form::select('leader_board', ['' => 'Please Select One', '1' => 'Yes', '0' => 'No'], '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-11 reward-ratio-wrapper">
