@@ -1233,6 +1233,11 @@ table.table {
 		visibility: hidden;
 		position: absolute;
 	}
+	.form-generator {
+		.frmb.ui-sortable {
+			padding: 15px;
+		}
+	}
 	#steps-uid-0-p-2 {
 		position: relative;
 		width: 100%;
