@@ -204,8 +204,37 @@ class RegisterController extends Controller
      */
     public function postRegistrationSimple( Request $request )
     {
-            dd($request->all());
-            return;
+            $rules = [
+                'first_name'=>'required',
+                'last_name'=>'required',
+                'phone'=>'required|phone:US',
+                'email'=>'unique:users|required|email',
+                'password' => 'required|min:6|confirmed',
+                'company_name'=>'required',
+                'subdomain'=>'required|unique:companies|not_in:app,www',
+                'company_phone'=>'required|phone:LENIENT,AUTO,US',
+                'company_email'=>'required|unique:companies,email|email',
+                'business_type'=>'required',
+                'company_address_1'=>'required|max:100',
+                'company_address_2'=>'max:25',
+                'company_city'=>'required',
+                'state'=>'required|max:2',
+                'company_zip'=>'required|digits:5',
+                'reward_title'=>'required',
+                'reward_kind'=>'required',
+                'reward_send'=>'required',
+                'leader_board'=>'required',
+            ];
+
+            //dd($request->all());
+
+            $validator = Validator::make($request->input(), $rules);
+
+            if ( $validator->fails() ) {
+                return $validator->errors();
+            }
+
+            return 'success';
     }
 
     /**
@@ -246,7 +275,7 @@ class RegisterController extends Controller
                     'reward_title'=>'required',
                     'reward_kind'=>'required',
                     'reward_send'=>'required',
-                    'leader_board'=>'required',                    
+                    'leader_board'=>'required',
                 ];
                 break;
         }
