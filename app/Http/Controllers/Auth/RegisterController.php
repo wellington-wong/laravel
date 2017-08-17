@@ -241,6 +241,14 @@ class RegisterController extends Controller
                     'company_zip'=>'required|digits:5',
                 ];
                 break;
+            case ('reward_info'):                
+                $rules = [
+                    'reward_title'=>'required',
+                    'reward_kind'=>'required',
+                    'reward_send'=>'required',
+                    'leader_board'=>'required',                    
+                ];
+                break;
         }
 
         //$request->merge([

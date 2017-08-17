@@ -170,7 +170,7 @@
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
-                                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                                                <strong>{{ $errors->first('reward_title') }}</strong>
                                                             </span>
                                                         @endif
                                                     </div>
@@ -181,7 +181,7 @@
                                                         <label>What kind of reward will you use?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('send_reward', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], old('send_reward'), array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_kind', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], old('reward_kind'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -190,7 +190,7 @@
                                                         <label>How will you send the reward?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('send_reward', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], old('send_reward'), array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_send', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], old('reward_send'), array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
