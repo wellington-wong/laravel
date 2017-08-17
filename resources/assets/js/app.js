@@ -618,7 +618,7 @@ $(function (){
 			
 			// Highlight current step number
 			$('.form-multistep-number li.current').removeClass('current');
-			$('.form-multistep-number li').eq($('.steps').find('li.current').index()).addClass('current');
+			$('.form-multistep-number li').eq(newIndex).addClass('current');
 
 			// Add processing before next step
 			switch (true) {
