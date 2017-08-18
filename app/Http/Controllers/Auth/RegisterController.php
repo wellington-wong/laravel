@@ -233,6 +233,7 @@ class RegisterController extends Controller
                 return $validator->errors();
             }
 
+            // Create User
             $user = User::firstOrCreate([
                 'email'=>$request->input('email'),
                 'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
@@ -240,11 +241,33 @@ class RegisterController extends Controller
                 'last_name'=>$request->input('last_name'),
                 'password'=> Hash::make($request->input('password'))
             ]);
-
             //ADD PHONE
             $phone = $user->addDefaultPhone($request);
             //ADD ADDRESS
             $address = $user->addDefaultAddress($request);
+
+            // Create Company            
+            $request->merge([
+                'owner_id'=>$user->id,
+                'address' =>$request->input('company_address_1'),
+                'address2' =>$request->input('company_address_2'),
+                'city' =>$request->input('company_city'),
+                'state' =>$request->input('state'),
+                'zip' =>$request->input('company_zip')
+            ]);
+            $company = $user->companies()
+                ->create( $request->only('owner_id', 'company_name', 'subdomain') );
+            $address = $company->address()->create(
+                $request->only('address', 'address2', 'city', 'state', 'zip')
+            );
+
+            $request->merge(['country'=>'']);
+            $request->merge(['country_code'=>'']);
+            $phone = $company->phone()->create(
+                $request->only('country', 'country_code', 'phone')
+            );
+            $company->addresses()->updateExistingPivot($address->id, ['default'=>1]);
+            $company->phones()->updateExistingPivot($phone->id, ['default'=>1]);
 
             return 'success';
     }
