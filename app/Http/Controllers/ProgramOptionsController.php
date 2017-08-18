@@ -116,6 +116,8 @@ class ProgramOptionsController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
+        $request->merge(['company_id' => $request->_company->id]);
+
         RewardSetting::create($request->all());
 
         return back()->with('success', ['Reward settings successfully saved.']);
