@@ -11,30 +11,30 @@
 
     <div class="clearfix"></div>
 
-    <div class="row">    	
+    <div class="row">
       {{ Form::open(['route'=>'program-options-reward-settings', 'enctype' => 'multipart/form-data', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
       <div class="col-md-6 form-group">
             <label>Reward Title</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::text('title', old('title'), ['placeholder' => 'Reward Title', 'class' => 'form-control reward-title' . ($errors->has('title') ? ' has-error' : '')]) }}
+            {{ Form::text('title', old('title') ?: $_company->rewardSettings()->first()->title, ['placeholder' => 'Reward Title', 'class' => 'form-control reward-title' . ($errors->has('title') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
             <label>What kind of reward will you use?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_kind', ['placeholder' => 'Reward Kind'],  old('reward_kind'), ['class' => 'form-control reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_kind', ['placeholder' => 'Reward Kind'],  $_company->rewardSettings()->first()->reward_kind, ['class' => 'form-control reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
             <label>How will you send the reward?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_send', ['placeholder' => 'Reward Send'], old('reward_send'), ['class' => 'form-control reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_send', ['placeholder' => 'Reward Send'], $_company->rewardSettings()->first()->reward_send, ['class' => 'form-control reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
             <label>Reward Ratio</label>            
             <div class="col-md-12 no-padding-lr">
-            {{ Form::text('reward_ratio', null, ['placeholder' => 'Reward Ratio', 'value' => old('reward_ratio'), 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
+            {{ Form::text('reward_ratio', $_company->rewardSettings()->first()->reward_ratio, ['placeholder' => 'Reward Ratio', 'value' => $_company->rewardSettings()->first()->reward_ratio, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-12 form-group">          
