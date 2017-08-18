@@ -271,8 +271,11 @@ class RegisterController extends Controller
             // Add phone to company
             $company->phones()->updateExistingPivot($phone->id, ['default'=>1]);
 
+
+            // Automatically login created user
             Auth::loginUsingId($user->id, true);
 
+            // Redirect to created company subdomain and show success message
             return redirect( 'https://' . $company->subdomain . '.' . config('app.domain') )
                 ->with('success', ['Congratulations! your company has been successfully registered.']);
     }
