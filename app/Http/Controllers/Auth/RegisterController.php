@@ -225,6 +225,8 @@ class RegisterController extends Controller
                 'reward_kind'=>'required',
                 'reward_send'=>'required',
                 'leader_board'=>'required',
+                'approved_referral_ratio'=>'required',
+                'reward_referral_ratio'=>'required',
             ];
 
             $validator = Validator::make($request->input(), $rules);
@@ -277,7 +279,7 @@ class RegisterController extends Controller
                 'reward_kind' => $request->input('reward_kind'),
                 'reward_send' => $request->input('reward_send'),
                 'leaderboard' => $request->input('leader_board'),
-                'reward_ratio' => 1
+                'reward_ratio' => json_encode([$request->input('approved_referral_ratio'), $request->input('reward_referral_ratio')])
             ]);
 
             // Automatically login created user
