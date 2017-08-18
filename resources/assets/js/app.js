@@ -618,7 +618,7 @@ $(function (){
 				});
 			});
 
-			$('.multi-step-previous').click(function (){ multiStep.steps('previous'); });
+			$('.multi-step-previous').click(function (){ multiStep.steps('previous');$('.multi-step-next').removeClass('hidden'); });
 			$('.multi-step-submit').click(function (){ $('#register-form-multistep').submit(); });
 		},
 		onStepChanging: function (event, currentIndex, newIndex)

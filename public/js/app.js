@@ -20837,7 +20837,7 @@ $(function () {
 			});
 
 			$('.multi-step-previous').click(function () {
-				multiStep.steps('previous');
+				multiStep.steps('previous');$('.multi-step-next').removeClass('hidden');
 			});
 			$('.multi-step-submit').click(function () {
 				$('#register-form-multistep').submit();
