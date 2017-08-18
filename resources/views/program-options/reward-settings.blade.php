@@ -28,7 +28,7 @@
       <div class="col-md-6 form-group">
             <label>How will you send the reward?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_send', \App\RewardSetting::$rewardKind, $_company->rewardSettings()->first()->reward_send, ['class' => 'form-control reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_send', \App\RewardSetting::$rewardKind, $_company->rewardSettings()->first()->reward_send, ['class' => 'form-control reward-send' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
@@ -41,14 +41,7 @@
             <div class="col-md-12 no-padding-lr">
             	<label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
             </div>            
-            <div class="col-md-3 no-padding-lr">
-            {{ Form::radio('leaderboard', '1', ['id' => 'leaderboard-yes', 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
-            <label for="leaderboard-yes">Yes</label>
-            </div>       
-            <div class="col-md-3 no-padding-lr">
-            {{ Form::radio('leaderboard', '0', ['id' => 'leaderboard-no', 'class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
-            <label for="leaderboard-no">No</label>
-            </div>
+            {{ Form::select('leaderboard', [1 => 'Yes', 0 => 'No'], $_company->rewardSettings()->first()->leaderboard, ['class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
       </div>
 
       <div class="form-group col-md-12 text-right form-group">
