@@ -111,7 +111,7 @@ class RegisterController extends Controller
         }
 
         return $this->registered($request, $user)
-                        ?: redirect(route('referral-create'));
+                        ?: redirect(route('referral-create'))->with('success', ['Your account has been created successfully, you can start referring by filling up the form below.']);
     }
 
     /**
