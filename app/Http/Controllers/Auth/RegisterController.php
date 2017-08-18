@@ -271,6 +271,14 @@ class RegisterController extends Controller
             // Add phone to company
             $company->phones()->updateExistingPivot($phone->id, ['default'=>1]);
 
+            RewardSetting::firstOrCreate([
+                'company_id' => $company->id,
+                'title' => $request->input('reward_title'),
+                'reward_kind' => $request->input('reward_kind'),
+                'reward_send' => $request->input('reward_send'),
+                'leaderboard' => $request->input('leader_board'),
+                'reward_ratio' => 1
+            ]);
 
             // Automatically login created user
             Auth::loginUsingId($user->id, true);
