@@ -266,7 +266,9 @@ class RegisterController extends Controller
             $phone = $company->phone()->create(
                 $request->only('country', 'country_code', 'phone')
             );
+            // Add address to company
             $company->addresses()->updateExistingPivot($address->id, ['default'=>1]);
+            // Add phone to company
             $company->phones()->updateExistingPivot($phone->id, ['default'=>1]);
 
             Auth::loginUsingId($user->id, true);
