@@ -542,8 +542,12 @@ $(function (){
 				$(this).text($(this).text().replace('.', ''));
 			});
 			$('.actions').addClass('col-md-12');
+
+			// Change reward ratio text
 			$('select[name="reward_kind"]').change(function (){
-				$('.reward-kind').text($(this).find('option:selected').text());
+				if ($(this).find('option:selected').val()) {
+					$('.reward-kind').text($(this).find('option:selected').text());
+				}
 			});
 			
 			// Add form validation
