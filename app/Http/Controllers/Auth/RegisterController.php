@@ -269,7 +269,10 @@ class RegisterController extends Controller
             $company->addresses()->updateExistingPivot($address->id, ['default'=>1]);
             $company->phones()->updateExistingPivot($phone->id, ['default'=>1]);
 
-            return 'success';
+            Auth::loginUsingId($user->id, true);
+
+            return redirect( 'https://' . $company->subdomain . '.' . config('app.domain') )
+                ->with('success', ['Congratulations! your company has been successfully registered.']);
     }
 
     /**
