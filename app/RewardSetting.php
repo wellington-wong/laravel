@@ -17,10 +17,10 @@ class RewardSetting extends Model
     const GIFTCHECK    = 7;
 
     static $rewardSend = [
-        self::MAIL => 'Submitted',
-        self::EMAIL => 'Approved',
-        self::CHECK => 'Reward Sent',
-        self::GIFTCARD => 'Denied'
+        self::MAIL => 'Mail',
+        self::EMAIL => 'Email',
+        self::CHECK => 'Check',
+        self::GIFTCARD => 'Gift Card'
     ];
 
     static $rewardKind = [
