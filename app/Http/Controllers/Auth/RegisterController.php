@@ -279,7 +279,7 @@ class RegisterController extends Controller
                 'reward_kind' => $request->input('reward_kind'),
                 'reward_send' => $request->input('reward_send'),
                 'leaderboard' => $request->input('leader_board'),
-                'reward_ratio' => json_encode([$request->input('approved_referral_ratio'), $request->input('reward_referral_ratio')])
+                'reward_ratio' => serialize([$request->input('approved_referral_ratio'), $request->input('reward_referral_ratio')])
             ]);
 
             // Automatically login created user

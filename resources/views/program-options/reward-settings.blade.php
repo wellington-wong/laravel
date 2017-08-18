@@ -34,7 +34,7 @@
       <div class="col-md-6 form-group">
             <label>Reward Ratio</label>            
             <div class="col-md-12 no-padding-lr">
-            {{ Form::text('reward_ratio', $_company->rewardSettings()->first()->reward_ratio, ['placeholder' => 'Reward Ratio', 'value' => $_company->rewardSettings()->first()->reward_ratio, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
+            {{ Form::text('reward_ratio', implode(':', unserialize($_company->rewardSettings()->first()->reward_ratio)), ['placeholder' => 'Reward Ratio', 'value' => $_company->rewardSettings()->first()->reward_ratio, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-12 form-group">          
