@@ -118,7 +118,9 @@ class ProgramOptionsController extends Controller
 
         $request->merge(['company_id' => $request->_company->id]);
 
-        RewardSetting::create($request->all());
+        $request->_company->rewardSettings()->update(
+            $request->only('title', 'reward_kind', 'reward_send', 'leaderboard', 'reward_ratio')
+        );
 
         return back()->with('success', ['Reward settings successfully saved.']);
     }
