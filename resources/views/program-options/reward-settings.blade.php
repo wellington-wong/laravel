@@ -28,7 +28,7 @@
       <div class="col-md-6 form-group">
             <label>How will you send the reward?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_send', ['placeholder' => 'Reward Send'], $_company->rewardSettings()->first()->reward_send, ['class' => 'form-control reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_send', [\App\RewardSetting::$rewardKind], $_company->rewardSettings()->first()->reward_send, ['class' => 'form-control reward-title' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
