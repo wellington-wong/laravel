@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cmgmyr\Messenger\Models\Thread;
 use App\Thread as ThreadByCompany;
 use App\EmailTemplate;
+use App\RewardSetting;
 use App\Traits\PhoneTrait;
 use App\Traits\AddressTrait;
 use App\Traits\ReferralTrait;
@@ -83,6 +84,10 @@ class Company extends Model
 
     public function lob() {
         return $this->hasOne( Lob::class );
+    }
+
+    public function rewardSettings() {
+        return $this->hasOne( RewardSetting::class );
     }
     
 
