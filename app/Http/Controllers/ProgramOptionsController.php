@@ -105,7 +105,8 @@ class ProgramOptionsController extends Controller
             'title'=>'required',
             'reward_kind'=>'required',
             'reward_send'=>'required',
-            'reward_ratio'=>'required',
+            'approved_referral_ratio'=>'required',
+            'reward_referral_ratio'=>'required',
             'leaderboard'=>'required'
         ];
 
@@ -116,7 +117,10 @@ class ProgramOptionsController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        $request->merge(['company_id' => $request->_company->id]);
+        $request->merge([
+            'company_id' => $request->_company->id,
+            'reward_ratio' => serialize([$request->input('approved_referral_ratio'), $request->input('reward_referral_ratio')]),            
+        ]);
 
         $request->_company->rewardSettings()->update(
             $request->only('title', 'reward_kind', 'reward_send', 'leaderboard', 'reward_ratio')

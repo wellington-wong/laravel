@@ -32,9 +32,17 @@
             </div>
       </div>
       <div class="col-md-6 form-group">
-            <label>Reward Ratio</label>            
-            <div class="col-md-12 no-padding-lr">
-            {{ Form::text('reward_ratio', implode(':', unserialize($_company->rewardSettings()->first()->reward_ratio)), ['placeholder' => 'Reward Ratio', 'value' => $_company->rewardSettings()->first()->reward_ratio, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
+            <label>Reward Ratio</label>       
+            <div class="reward-ratio-input">    
+              <div class="col-md-3 no-padding-lr">
+              {{ Form::number('approved_referral_ratio', unserialize($_company->rewardSettings()->first()->reward_ratio)[0], ['placeholder' => 'Reward Ratio', 'value' => $_company->rewardSettings()->first()->reward_ratio, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
+              </div>     
+              <div class="col-md-2 no-padding-lr text-center">
+                <span>:</span>
+              </div>
+              <div class="col-md-3 no-padding-lr">
+              {{ Form::number('reward_referral_ratio', unserialize($_company->rewardSettings()->first()->reward_ratio)[1], ['placeholder' => 'Reward Ratio', 'value' => $_company->rewardSettings()->first()->reward_ratio, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
+              </div>
             </div>
       </div>
       <div class="col-md-12 form-group">          
