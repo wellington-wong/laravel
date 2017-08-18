@@ -181,7 +181,7 @@
                                                         <label>What kind of reward will you use?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('reward_kind', \App\RewardSetting::$rewardSend, '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_kind', ['' => 'Please Select One'] + \App\RewardSetting::$rewardSend, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -190,7 +190,7 @@
                                                         <label>How will you send the reward?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('reward_send', \App\RewardSetting::$rewardKind, '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_send', ['' => 'Please Select One'] + \App\RewardSetting::$rewardKind, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
