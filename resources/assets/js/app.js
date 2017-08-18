@@ -627,14 +627,14 @@ $(function (){
 			// Add processing before next step
 			switch (true) {
 				case (newIndex == 2 && !setFormGen):
-			  		$('#register-form-multistep #steps-uid-0-p-2').html($('.form-generator'));
+			  		$('#register-form-multistep #steps-uid-0-p-2').append($('.form-generator'));
 			  		setFormGen = 1;
 					break;
 				case (newIndex == 4):
 			  		$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').each(function(){
 			  			$('.review-form').append('<div class="form-group"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
 			  		});
-			  		
+
 			  		// Hide next button and show submit button on last step of multi-step registration
 					$('.multi-step-next').addClass('hidden');
 					$('.multi-step-submit').removeClass('hidden');
