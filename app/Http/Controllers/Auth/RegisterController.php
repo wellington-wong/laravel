@@ -285,7 +285,7 @@ class RegisterController extends Controller
 
             // Redirect to created company subdomain and show success message
             return redirect( 'https://' . $company->subdomain . '.' . config('app.domain') )
-                ->with('success', ['Congratulations! your company has been successfully registered.']);
+                ->with('success', ['Congratulations! your company has been successfully created.']);
     }
 
     /**

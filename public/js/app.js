@@ -20813,10 +20813,6 @@ $(function () {
 							reward_send: $companyForm.find('select[name="reward_send"]').val(),
 							leader_board: $companyForm.find('select[name="leader_board"]').val()
 						};
-						$('.multi-step-next').addClass('hidden');
-						$('.multi-step-submit').removeClass('hidden');
-						break;
-					case 3:
 						break;
 				}
 
@@ -20859,6 +20855,10 @@ $(function () {
 					$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').each(function () {
 						$('.review-form').append('<div class="form-group"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
 					});
+
+					// Hide next button and show submit button on last step of multi-step registration
+					$('.multi-step-next').addClass('hidden');
+					$('.multi-step-submit').removeClass('hidden');
 					break;
 			}
 
