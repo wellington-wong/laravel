@@ -20760,6 +20760,9 @@ $(function () {
 				$(this).text($(this).text().replace('.', ''));
 			});
 			$('.actions').addClass('col-md-12');
+			$('select[name="reward_kind"]').change(function () {
+				$('.reward-kind').text($(this).find('option:selected').text());
+			});
 
 			// Add form validation
 			$('#steps-uid-0 .actions').append('<ul><li class="multi-step-previous"><a href="javascript:void(0);">Back</a></li><li><a href="javascript:void(0);" class="multi-step-next">Next</a></li><li class="multi-step-submit hidden"><a href="#finish">Submit</a></li></ul>').find('ul').eq(0).addClass('hidden');
@@ -20828,6 +20831,7 @@ $(function () {
 					stepsContentHeight();
 				});
 			});
+
 			$('.multi-step-previous').click(function () {
 				multiStep.steps('previous');
 			});

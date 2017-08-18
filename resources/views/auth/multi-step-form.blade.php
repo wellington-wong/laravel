@@ -181,7 +181,7 @@
                                                         <label>What kind of reward will you use?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('reward_kind', ['' => 'Please Select One', 'mail' => 'Mail', 'email' => 'Email', 'check' => 'Check', 'gift_card' => 'Gift Card'], '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_kind', ['' => 'Please Select One', 'cash' => '$100 Cash', 'gift_card' => '$100 Gift Card'], '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -218,7 +218,7 @@
                                                         <div class="col-md-6 col-md-offset-3">
                                                             <span>Approved Referral</span>
                                                             <span class="reward-equals-desc"></span>
-                                                            <span>$100 Gift Card</span>
+                                                            <span class="reward-kind">$100 Gift Card</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 rewards-bottom">
