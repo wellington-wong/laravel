@@ -54,7 +54,7 @@ class UserController extends Controller
 
         // Get query parameters
         $param = [];
-        if (count($request->all())) {
+        if (count($request->all()) > 1) {
             $param = $referrals->getParams();
             $referrals = $request->user()->filterSortReferralSubmissions(null, $id)->paginate(15);
         } else {
