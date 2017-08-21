@@ -9,7 +9,7 @@
 
         <div class="row">
         @include('layouts.page-header', ['header' => 'Admins', 'col' => 6])
-            <div class="text-right col-md-6 create-user-link">
+            <div class="text-right col-md-6 create-user-link no-padding-lr">
                 <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>
             </div>
         </div>
