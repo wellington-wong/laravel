@@ -536,7 +536,13 @@ class ReferralController extends Controller
     public function getView( Request $request, $id ) {
         
         $referral = Referral::find($id);
-        $referralValues = ReferralValues::where('referral_id', $id)->get();
+        $referralValues = ReferralValues::where('referral_id', $id)
+            ->where('name', '<>', '__log_id')
+            ->where('name', '<>', 'subdomain_id')
+            ->where('name', '<>', 'country')
+            ->where('name', '<>', 'country_code')
+            ->get();
+        //dd($referralValues);
 
         return view('referral.view')
         ->with(compact(['referralValues', 'referral']));
