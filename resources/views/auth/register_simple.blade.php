@@ -26,6 +26,24 @@
                     <div class="col-md-10 col-md-offset-1 main-content">
                         <div class="panel panel-default">
                             <div class="panel-body">
+                                @if (\Session::has('success'))
+                                    <div class="alert alert-success">
+                                        <ul>
+                                            @foreach (Session::get('success') as $msg)
+                                            <li>{!! $msg !!}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                @if( !$errors->isEmpty() )
+                                    <div class="alert alert-warning">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="alert alert-success hidden"><ul></ul></div>
                                 @if (isset($_company->subdomain) && $_company->subdomain != "app")
                                 <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
