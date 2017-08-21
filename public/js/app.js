@@ -20513,9 +20513,9 @@ $(function () {
 	}, {
 		label: 'Phone',
 		attrs: {
-			type: 'text',
-			class: 'etst'
+			type: 'text'
 		},
+		className: 'form-control phone-field',
 		placeholder: "Enter your Friend's phone number",
 		icon: '<i class="fa fa-phone"></i>'
 	}];
@@ -20856,6 +20856,9 @@ $(function () {
 						$('.review-form').append('<div class="form-group"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
 					});
 
+					// Get form generated json data
+					$('input[name="referral_form_json"]').val(formBuilder.actions.getData('json'));
+
 					// Hide next button and show submit button on last step of multi-step registration
 					$('.multi-step-next').addClass('hidden');
 					$('.multi-step-submit').removeClass('hidden');
@@ -20874,7 +20877,6 @@ $(function () {
 		},
 		onFinished: function onFinished(event, currentIndex) {
 			$('#register-form-multistep').submit();
-			console.log(event);
 		},
 		labels: {
 			previous: 'Back',
@@ -21056,7 +21058,6 @@ $(function () {
 	$('.logo-input').on('change', function () {
 		$('.processing').removeClass('hidden');
 		$('.company-logo img').css('opacity', .5);
-		console.log(this);
 		readImage(this, updateLogo);
 	}).closest('.company-logo').find('.ajax-logo').on('click', function () {
 		$('.logo-input').trigger('click');
