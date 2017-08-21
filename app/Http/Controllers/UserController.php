@@ -123,8 +123,16 @@ class UserController extends Controller
         //ADD ADDRESS
         $address = $user->addDefaultAddress($request);
 
+        if ($request->has('user_role') && auth()->user()->hasRole('globalAdmin')) {
 
-        return redirect(route('view-user', $user->id));
+        } else {
+            $member = Role::where('name', 'member')->first();
+            $user->attachRole($member);
+        }
+        // Attach role to user
+
+
+        return redirect(route('view-user', $user->id))->with('success', ['User ' . $user->name . ' has been successfully created.']);
     }
 
     public function update ( Request $request, $id ){        
@@ -144,6 +152,7 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
+
 
         if ( !$user->phone->isEmpty() ) {
             $user->updateDefaultPhone($request);
