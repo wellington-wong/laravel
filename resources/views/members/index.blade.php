@@ -10,7 +10,7 @@
         <div class="row">
         @include('layouts.page-header', ['header' => 'Admins', 'col' => 6])
             <div class="text-right col-md-6 create-user-link">
-                <a href="{{ route('create-user') }}"><i class="fa fa-user-secret"></i> Create New Admin</a>
+                <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>
             </div>
         </div>
 
@@ -45,9 +45,6 @@
 
         <div class="row">
             @include('layouts.page-header', ['header' => 'Members', 'col' => 6])
-            <div class="text-right col-md-6 create-user-link">
-                <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>
-            </div>
         </div>
 
         <div class="clearfix"></div>
