@@ -20,7 +20,17 @@ class Company extends Model
     
     protected $table = 'companies';
 
-    protected $fillable = ['company_name', 'subdomain', 'owner_id'];
+    protected $fillable = ['company_name', 'subdomain', 'owner_id', 'email', 'type'];
+
+    const SMALL      = 1;
+    const MEDIUM       = 2;
+    const ENTERPRISE    = 3;
+
+    static $businessType = [
+        self::SMALL => 'Small',
+        self::MEDIUM => 'Medium',
+        self::ENTERPRISE => 'Enterprise',
+    ];
 
     public function owner() {
         return $this->hasOne(User::class);
