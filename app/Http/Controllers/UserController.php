@@ -7,6 +7,7 @@ use App\User;
 use App\Phone;
 use App\Address;
 use App\Referral;
+use App\Role;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -72,8 +73,9 @@ class UserController extends Controller
      * @return view
      */
     public function create( Request $request )
-    {
-        return view('user.create');
+    {   
+        $userRoles = Role::pluck('name', 'id')->toArray();
+        return view('user.create')->with(compact('userRoles'));
     }
 
     /**

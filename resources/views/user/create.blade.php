@@ -18,6 +18,14 @@
             <div class="col-md-12 no-padding-lr">
     	        {{ Form::open(['route'=>'post-create-user', 'enctype' => 'multipart/form-data', 'id' => 'create-user-form', 'class' => 'create-user-form']) }}
 
+
+                @role(['globalAdmin'])
+                <div class="form-group col-md-12">
+                    <label class="user-roles">Role</label>
+                    {{ Form::select('user_role', ['' => 'Select A Role'] + $userRoles, null, ['class' => 'form-control']) }}
+                </div>
+                @endrole
+
     	        <div class="form-group col-md-6">
     	        	{{ Form::text('first_name', null, ['placeholder' => 'First Name', 'class' => 'form-control' . ($errors->has('first_name') ? ' has-error' : '')]) }}
     	        </div>
