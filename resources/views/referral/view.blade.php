@@ -33,7 +33,7 @@
                     @foreach($referralValues as $key => $r)
                         <tr>
                             <td>{{ $r->id }}</td>
-                            <td>{{ $r->name }}</td>
+                            <td>{{ ucwords(str_replace('_', ' ', $r->name)) }}</td>
                             <td>{{ $r->value }}</td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
