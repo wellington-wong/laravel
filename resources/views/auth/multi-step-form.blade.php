@@ -109,7 +109,7 @@
                                                         <label>Type of Business</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('business_type', ['' => 'Please Select One', 'small' => 'Small', 'medium' => 'Medium', 'enterprise' => 'Enterprise'], '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('business_type', ['' => 'Please Select One'] + \App\Company::$businessType, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -155,7 +155,7 @@
                                         <!-- Step 3 -->
                                         <h3>Form Builder</h3>
                                         <section class="form-builder">
-                                            {{ Form::hidden('referral_form', '') }}
+                                            {{ Form::hidden('referral_form_json', '') }}
                                         </section>
                                         <!-- Step 3 End -->
 
@@ -182,7 +182,7 @@
                                                         <label>What kind of reward will you use?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('reward_kind', ['' => 'Please Select One'] + \App\RewardSetting::$rewardSend, '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_kind', ['' => 'Please Select One'] + \App\RewardSetting::$rewardKind, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
@@ -191,7 +191,7 @@
                                                         <label>How will you send the reward?</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('reward_send', ['' => 'Please Select One'] + \App\RewardSetting::$rewardKind, '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_send', ['' => 'Please Select One'] + \App\RewardSetting::$rewardSend, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 

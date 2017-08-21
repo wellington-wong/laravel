@@ -227,12 +227,13 @@ class RegisterController extends Controller
                 'leader_board'=>'required',
                 'approved_referral_ratio'=>'required',
                 'reward_referral_ratio'=>'required',
+                'referral_form_json'=>'required',
             ];
 
             $validator = Validator::make($request->input(), $rules);
 
             if ( $validator->fails() ) {
-                return $validator->errors();
+                return back()->with(['errors' => $validator->errors()]);
             }
 
             // Create User
@@ -255,10 +256,12 @@ class RegisterController extends Controller
                 'address2' =>$request->input('company_address_2'),
                 'city' =>$request->input('company_city'),
                 'state' =>$request->input('state'),
-                'zip' =>$request->input('company_zip')
+                'zip' =>$request->input('company_zip'),
+                'email' =>$request->input('company_email'),
+                'type' =>$request->input('business_type'),
             ]);
             $company = $user->companies()
-                ->create( $request->only('owner_id', 'company_name', 'subdomain') );
+                ->create( $request->only('owner_id', 'company_name', 'subdomain', 'type', 'email') );
             $address = $company->address()->create(
                 $request->only('address', 'address2', 'city', 'state', 'zip')
             );
@@ -273,6 +276,7 @@ class RegisterController extends Controller
             // Add phone to company
             $company->phones()->updateExistingPivot($phone->id, ['default'=>1]);
 
+            // Create reward setting
             RewardSetting::firstOrCreate([
                 'company_id' => $company->id,
                 'title' => $request->input('reward_title'),
@@ -280,6 +284,13 @@ class RegisterController extends Controller
                 'reward_send' => $request->input('reward_send'),
                 'leaderboard' => $request->input('leader_board'),
                 'reward_ratio' => serialize([$request->input('approved_referral_ratio'), $request->input('reward_referral_ratio')])
+            ]);
+
+            // Create generated referral form
+            ReferralForms::firstOrCreate([
+                'company_id' => $company->id,
+                'form_name' => $company->company_name . ' Referral Form',
+                'raw_form_json' => $request->input('referral_form_json')                
             ]);
 
             // Automatically login created user
@@ -333,12 +344,14 @@ class RegisterController extends Controller
                 break;
         }
 
-        $validator = Validator::make($request->input(), $rules);
+        if ($request->has('type')) {
+            $validator = Validator::make($request->input(), $rules);
 
-        if ( $validator->fails() ) {
-            return $validator->errors();
-        }
-           
+            if ( $validator->fails() ) {
+                return $validator->errors();
+            }               
+        } 
+
         return 'success';
     }
 
