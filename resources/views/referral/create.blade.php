@@ -59,6 +59,11 @@
                 $('input[name="' + $(this).data('field-name') + '"]').val($(this).data('value'));
              });
 
+             $('.phone-custom, .phone-field').each(function (){
+                $(this).data('format', '(ddd) ddd-dddd');
+                $(this).bfhphone($(this).data());
+             });
+
              // Make 2 columns for each row
              $('#fb-render > div').addClass('col-md-6');
         });
