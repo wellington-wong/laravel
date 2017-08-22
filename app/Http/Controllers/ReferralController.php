@@ -245,7 +245,7 @@ class ReferralController extends Controller
             'address2'=>'required:max:25',
             'city'=>'required',
             'state'=>'required|alpha|max:2',
-            'company_zip'=>'required|digits:5',
+            'zip'=>'required|digits:5',
         ];
         $validator = Validator::make($request->input(), $rules);
 
