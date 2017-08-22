@@ -23,6 +23,7 @@
                             <th>Message</th>
                         </tr>
                     </thead> 
+                    <tr class="tr-spacer"><td colspan=6></td></tr>
                     @foreach ($emailLogs as $emailLog)
                         <tr>
                             <td>{{ $emailLog->id }}</td>
@@ -32,6 +33,7 @@
                             <td>{{ $emailLog->subject }}</td>
                             <td>{{ strip_tags($emailLog->body) }}</td>
                         </tr>
+                    <tr class="tr-spacer"><td colspan=6></td></tr>
                     @endforeach
                     @if (!count($emailLogs))<tr><td colspan="6">No email found.</td></tr>@endif
                 </table>
