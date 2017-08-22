@@ -16,32 +16,32 @@
       <div class="col-md-6 form-group">
             <label>Reward Title</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::text('title', old('title') ?: $_company->rewardSettings()->first()->title, ['placeholder' => 'Reward Title', 'class' => 'form-control reward-title' . ($errors->has('title') ? ' has-error' : '')]) }}
+            {{ Form::text('title', old('title') ?: (isset($_company->rewardSettings()->first()->title) ? $_company->rewardSettings()->first()->title : ''), ['placeholder' => 'Reward Title', 'class' => 'form-control reward-title' . ($errors->has('title') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
             <label>What kind of reward will you use?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_kind', \App\RewardSetting::$rewardSend,  $_company->rewardSettings()->first()->reward_kind, ['class' => 'form-control reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_kind', \App\RewardSetting::$rewardSend,  isset($_company->rewardSettings()->first()->reward_kind) ? $_company->rewardSettings()->first()->reward_kind : null, ['class' => 'form-control reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
             <label>How will you send the reward?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_send', \App\RewardSetting::$rewardKind, $_company->rewardSettings()->first()->reward_send, ['class' => 'form-control reward-send' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_send', \App\RewardSetting::$rewardKind, isset($_company->rewardSettings()->first()->reward_send) ? $_company->rewardSettings()->first()->reward_send : null, ['class' => 'form-control reward-send' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
             <label>Reward Ratio</label>       
             <div class="reward-ratio-input">    
               <div class="col-md-3 no-padding-lr">
-              {{ Form::number('approved_referral_ratio', unserialize($_company->rewardSettings()->first()->reward_ratio)[0], ['placeholder' => 'Reward Ratio', 'value' => $_company->rewardSettings()->first()->reward_ratio, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
+              {{ Form::number('approved_referral_ratio', isset($_company->rewardSettings()->first()->reward_ratio) ? unserialize($_company->rewardSettings()->first()->reward_ratio)[0] : null, ['placeholder' => 'Reward Ratio', 'value' => isset($_company->rewardSettings()->first()->reward_ratio) ? $_company->rewardSettings()->first()->reward_ratio : null, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
               </div>     
               <div class="col-md-2 no-padding-lr text-center">
                 <span>:</span>
               </div>
               <div class="col-md-3 no-padding-lr">
-              {{ Form::number('reward_referral_ratio', unserialize($_company->rewardSettings()->first()->reward_ratio)[1], ['placeholder' => 'Reward Ratio', 'value' => $_company->rewardSettings()->first()->reward_ratio, 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
+              {{ Form::number('reward_referral_ratio', isset($_company->rewardSettings()->first()->reward_ratio) ? unserialize($_company->rewardSettings()->first()->reward_ratio)[1] : null, ['placeholder' => 'Reward Ratio', 'value' => isset($_company->rewardSettings()->first()->reward_ratio) ? $_company->rewardSettings()->first()->reward_ratio : null , 'class' => 'form-control reward-ratio' . ($errors->has('reward_ratio') ? ' has-error' : '')]) }}
               </div>
             </div>
       </div>
@@ -49,7 +49,7 @@
             <div class="col-md-12 no-padding-lr">
             	<label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
             </div>            
-            {{ Form::select('leaderboard', [1 => 'Yes', 0 => 'No'], $_company->rewardSettings()->first()->leaderboard, ['class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
+            {{ Form::select('leaderboard', [1 => 'Yes', 0 => 'No'], isset($_company->rewardSettings()->first()->leaderboard) ? $_company->rewardSettings()->first()->leaderboard : null, ['class' => 'form-control leaderboard' . ($errors->has('leaderboard') ? ' has-error' : '')]) }}
       </div>
 
       <div class="form-group col-md-12 text-right form-group">
