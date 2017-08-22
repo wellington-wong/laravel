@@ -45,6 +45,16 @@ class ReferralDeclined extends Notification
     public function toMail($notifiable)
     {
 
+        // Prepare email log
+        $emailLog = [
+            'user_id' => $this->referral->referrer->id, 
+            'recipient_id' => $notifiable->id, 
+            'company_id' =>$this->request->_company->id, 
+            'subject' => 'Referral Declined', 
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(), 
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        ];
+
         // Custom 'from' email
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
@@ -55,6 +65,10 @@ class ReferralDeclined extends Notification
             $emailHtml = $emailHtml->email_html;
             $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml );
 
+            // Insert email log
+            $emailLog['body'] = 'Your referral for ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been declined.';
+            LogEmail::insert($emailLog);
+
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-declined', ['referral' => $this->referral, 'email_template' => $emailHtml]);
@@ -63,6 +77,10 @@ class ReferralDeclined extends Notification
             // Render default html if not yet set
             $referralDeclinedHtml = str_replace('{ {', '{{', view('email-templates.referral-declined')->render());
             $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $referralDeclinedHtml );
+
+            // Insert email log
+            $emailLog['body'] = 'Your referral for ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been declined.';
+            LogEmail::insert($emailLog);
 
             return (new MailMessage)
                 ->from($from, $fromName)

@@ -46,6 +46,16 @@ class ReferralReceived extends Notification
     public function toMail($notifiable)
     {
 
+        // Prepare email log
+        $emailLog = [
+            'user_id' => $this->referral->referrer->id, 
+            'recipient_id' => $notifiable->id, 
+            'company_id' =>$this->request->_company->id, 
+            'subject' => 'Referral Received', 
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(), 
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        ];
+
         // Custom 'from' email
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
@@ -56,6 +66,10 @@ class ReferralReceived extends Notification
             $emailHtml = $emailHtml->email_html;
             $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml );
 
+            // Insert email log
+            $emailLog['body'] = 'Your referral for ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been received.';
+            LogEmail::insert($emailLog);
+
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-received', ['referral' => $this->referral, 'email_template' => $emailHtml]);
@@ -64,6 +78,10 @@ class ReferralReceived extends Notification
             // Render default html if not yet set
             $referralReceivedHtml = str_replace('{ {', '{{', view('email-templates.referral-received')->render());
             $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $referralReceivedHtml );
+
+            // Insert email log
+            $emailLog['body'] = 'Your referral for ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been received.';
+            LogEmail::insert($emailLog);
 
             return (new MailMessage)
                 ->from($from, $fromName)
