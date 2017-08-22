@@ -20665,7 +20665,7 @@ $(function () {
 		$('.frmb').show();
 
 		if (formBuilder.actions.getData && formBuilder.actions.getData('json') == '[]') {
-			formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));
+			formBuilder.actions.setData(JSON.stringify(defaultFieldsComplete));
 		}
 
 		// Lock name fields
@@ -20687,7 +20687,7 @@ $(function () {
 		$('.clear-all').after('<button type="button" class="btn btn-danger clear-all-trigger">Clear</button>').remove();
 		// Set basic fields on clearing form
 		$('.clear-all-trigger').on('click', function () {
-			formBuilder.actions.setData(JSON.stringify(defaultFieldsBasic));
+			formBuilder.actions.setData(JSON.stringify(defaultFieldsComplete));
 		});
 	});
 
