@@ -123,14 +123,13 @@ class UserController extends Controller
         //ADD ADDRESS
         $address = $user->addDefaultAddress($request);
 
-        if ($request->has('user_role') && auth()->user()->hasRole('globalAdmin')) {
-
-        } else {
-            $member = Role::where('name', 'member')->first();
-            $user->attachRole($member);
-        }
         // Attach role to user
-
+        if ($request->has('user_role') && auth()->user()->hasRole('globalAdmin')) {
+            $role = Role::find($request->get('user_role'));
+        } else {
+            $role = Role::where('name', 'member')->first();
+        }        
+        $user->attachRole($role);
 
         return redirect(route('view-user', $user->id))->with('success', ['User ' . $user->name . ' has been successfully created.']);
     }

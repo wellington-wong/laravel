@@ -22,7 +22,7 @@
                 @role(['globalAdmin'])
                 <div class="form-group col-md-12">
                     <label class="user-roles">Role</label>
-                    {{ Form::select('user_role', ['' => 'Select A Role'] + $userRoles, null, ['class' => 'form-control']) }}
+                    {{ Form::select('user_role', ['' => 'Select A Role'] + $userRoles, old('user_role') ?: null, ['class' => 'form-control']) }}
                 </div>
                 @endrole
 
