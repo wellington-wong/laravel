@@ -28,8 +28,8 @@
                         <tr>
                             <td>{{ $emailLog->id }}</td>
                             <td>{{ isset($emailLog->created_at) ? $emailLog->created_at->format('m/d/Y') : '' }} </td>
-                            <td>{{ $emailLog->sender->name }} </td>
-                            <td>{{ $emailLog->recipient->name }}</td>
+                            <td>{{ $emailLog->sender->email }} </td>
+                            <td>{{ $emailLog->recipient->email }}</td>
                             <td>{{ $emailLog->subject }}</td>
                             <td>{{ strip_tags($emailLog->body) }}</td>
                         </tr>
