@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $emailLog->id }}</td>
                             <td>{{ isset($emailLog->created_at) ? $emailLog->created_at->format('m/d/Y') : '' }} </td>
-                            <td>{{ $emailLog->sender->email }} </td>
+                            <td>@if ($emailLog->sender->email == $emailLog->recipient->email) {{ isset($_company->email) ? $_company->email : $_company->company_name }} @else {{ $emailLog->sender->email }} @endif</td>
                             <td>{{ $emailLog->recipient->email }}</td>
                             <td>{{ $emailLog->subject }}</td>
                             <td>{{ strip_tags($emailLog->body) }}</td>
