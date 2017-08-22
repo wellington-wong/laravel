@@ -17,7 +17,7 @@
             </div>
           	<div class="form-group col-md-6 no-padding-r">
           		<label>Templates:</label>
-      		    {{ Form::select('referral_template', ['' => 'Select Template', 'defaultFieldsBasic' => 'Basic', 'defaultFieldsComplete' => 'Complete'], '', ['class' => 'form-control']) }}
+      		    {{ Form::select('referral_template', ['' => 'Select Template', 'defaultFieldsComplete' => 'Basic', 'defaultFieldsComplete' => 'Complete'], '', ['class' => 'form-control']) }}
             </div>
         </div>
 
