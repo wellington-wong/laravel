@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
 use App\EmailTemplate;
+use App\LogEmail;
 
 class NewMemberAdmin extends Notification
 {
