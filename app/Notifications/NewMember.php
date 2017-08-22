@@ -45,6 +45,16 @@ class NewMember extends Notification
     public function toMail($notifiable)
     {
 
+        // Prepare email log
+        $emailLog = [
+            'user_id' => $this->user->id, 
+            'recipient_id' => $this->user->id, 
+            'company_id' =>$this->request->_company->id, 
+            'subject' => 'New Member', 
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(), 
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        ];
+
         // Custom 'from' email
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
@@ -56,15 +66,8 @@ class NewMember extends Notification
             $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $emailHtml );
 
             // Insert email log
-            LogEmail::insert([
-                'user_id' => $this->user->id, 
-                'recipient_id' => $this->user->id, 
-                'company_id' =>$this->request->_company->id, 
-                'subject' => 'New Member', 
-                'body' => 'You have successfully created an account.',
-                'created_at' => \Carbon\Carbon::now()->toDateTimeString(), 
-                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
-            ]);
+            $emailLog['body'] = 'You have successfully created an account.';
+            LogEmail::insert($emailLog);
 
             return (new MailMessage)
                 ->from($from, $fromName)
@@ -76,15 +79,8 @@ class NewMember extends Notification
               $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $newMemberHtml );
 
                 // Insert email log
-                LogEmail::insert([
-                    'user_id' => $this->user->id, 
-                    'recipient_id' => $this->user->id, 
-                    'company_id' =>$this->request->_company->id, 
-                    'subject' => 'New Member', 
-                    'body' => 'You have successfully created an account.',
-                    'created_at' => \Carbon\Carbon::now()->toDateTimeString(), 
-                    'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
-                ]);
+                $emailLog['body'] = 'You have successfully created an account.';
+                LogEmail::insert($emailLog);
 
               return (new MailMessage)
                 ->from($from, $fromName)
