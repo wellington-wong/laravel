@@ -53,6 +53,16 @@ class ContactFormMessage extends Notification
         $email = $this->request->get('email');
         $message = $this->request->get('message');
 
+        LogEmail::insert([
+            'user_id' => 0, 
+            'recipient_id' => 0, 
+            'company_id' => isset($this->request->_company->id) ? $this->request->_company->id : null, 
+            'subject' => 'A new message has been received from ' . $name, 
+            'body' => 'Email: ' . $email . ' <br />Message: ' . strip_tags($message), 
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(), 
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        ]);
+
         return (new MailMessage)
                     ->from($from, $fromName)
                     ->line('A new message has been received from ' . $name . '.')
