@@ -43,8 +43,7 @@ class CreatedUser extends Notification
         return (new MailMessage)
                     ->subject('Activate Your Perxi Account')
                     ->line('You\'re account for Perxi has been successfully created.')
-                    ->line('Please login using the link below to set a password.')
-                    ->line($this->token)
+                    ->line('Please login using the link below to set a new password.')
                     ->action('Notification Action', url('/password/reset/' . $this->token . '?set=1'))
                     ->line('Thank you for using our application!');
     }
