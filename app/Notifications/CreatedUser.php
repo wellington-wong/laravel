@@ -41,6 +41,7 @@ class CreatedUser extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('Activate Your Perxi Account')
                     ->line('You\'re account for Perxi has been successfully created.')
                     ->line('Please login using the link below.')
                     ->line($this->token)
