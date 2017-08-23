@@ -16,9 +16,9 @@ class CreatedUser extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -43,6 +43,7 @@ class CreatedUser extends Notification
         return (new MailMessage)
                     ->line('You\'re account for Perxi has been successfully created.')
                     ->line('Please login using the link below.')
+                    ->line($this->token)
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
