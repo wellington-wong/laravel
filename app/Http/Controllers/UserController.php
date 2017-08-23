@@ -9,6 +9,7 @@ use App\Address;
 use App\Referral;
 use App\Role;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -115,6 +116,7 @@ class UserController extends Controller
             'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
             'first_name'=>$request->input('first_name'),
             'last_name'=>$request->input('last_name'),
+            'password'=> Hash::make(str_random(8)),
             'profile_image'=>isset($profile_image) ? $profile_image : null
         ]);
 
