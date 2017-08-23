@@ -16,6 +16,7 @@ use Cmgmyr\Messenger\Traits\Messagable;
 use Carbon\Carbon;
 use App\Traits\PhoneTrait;
 use App\Traits\AddressTrait;
+use App\Notifications\CreatedUser;
 
 class User extends Authenticatable
 {
