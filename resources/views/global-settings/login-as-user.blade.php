@@ -25,7 +25,7 @@
 
         @foreach ( $companies as $c )
 
-            <h4>{{ $c->company_name }} (id: {{ $c->id }})</h4>
+            <div class="row"><h4>{{ $c->company_name }} (id: {{ $c->id }})</h4></div>
 
             <?php $users = $c->membersByRole(['member', 'admin', 'superAdmin'])->distinct('user_id')->paginate(15, ['*'], 'company_' . $c->id); ?>
 
