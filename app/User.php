@@ -238,4 +238,15 @@ class User extends Authenticatable
         return isset($this->name) ? $this->name : (isset($this->first_name) || isset($this->last_name) ? $this->first_name . ' ' . $this->last_name : '') ;
     }
 
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotificationCustom($token)
+    {
+        $this->notify(new CreatedUser($token));
+    }
+
 }
