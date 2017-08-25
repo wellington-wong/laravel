@@ -40,7 +40,12 @@ class CreatedUser extends Notification
      */
     public function toMail($notifiable)
     {
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
+
         return (new MailMessage)
+                    ->from($from, $fromName)
                     ->subject('Activate Your Perxi Account')
                     ->line('You\'re account for Perxi has been successfully created.')
                     ->line('Please login using the link below to set a new password.')
