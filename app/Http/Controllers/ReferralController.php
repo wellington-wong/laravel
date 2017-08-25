@@ -200,11 +200,10 @@ class ReferralController extends Controller
             $currentReferral = [
                 'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
                 'REFERRAL ID' => $referral->id,
-                'SUBMITTED BY' => isset($referral->referrer->name) ? $referral->referrer->name : $referral->referrer->first_name . ' ' . $referral->referrer->last_name,
-                'NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
-                'EMAIL' => $referral->referred->email,
                 'REFERRER NAME' => $referral->referrer->getName(),
                 'REFERRER ADDRESS' => isset($longAddress) ? ($longAddress->address . ' ' . $longAddress->address2 . ', ' . $longAddress->city . ', ' . $longAddress->state . ', ' . $longAddress->zip) : null,
+                'NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
+                'EMAIL' => $referral->referred->email,          
                 'STATUS' => \App\Referral::$status[$referral->status]
             ];
             $referralArray[] = $currentReferral;
