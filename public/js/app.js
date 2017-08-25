@@ -21008,7 +21008,7 @@ $(function () {
 		window.location.href = "/referrals?daterange=" + picker.startDate.format('MM/DD/YYYY') + "|" + picker.endDate.format('MM/DD/YYYY') + $(this).data('query');
 	});
 	if (!dateSet) {
-		$('input[name="daterange"]').val('All referrals');
+		$('input[name="daterange"]').val('All time');
 	}
 
 	// END JQUERY DATERANGEPICKER
