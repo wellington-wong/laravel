@@ -133,7 +133,7 @@ class UserController extends Controller
         }        
         $user->attachRole($role);
 
-        $user->sendPasswordResetNotificationCustom(app('auth.password.broker')->createToken(auth()->user()));
+        $user->sendPasswordResetNotificationCustom(app('auth.password.broker')->createToken($user));
 
         return redirect(route('view-user', $user->id))->with('success', ['User ' . $user->name . ' has been successfully created.']);
     }
