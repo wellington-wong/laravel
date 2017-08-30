@@ -24,6 +24,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                     </tr>
                     </thead>
                     <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -32,6 +33,7 @@
                             <td>{{ $member->id }}</td>
                             <td><a href="{{ route('view-user', $member->id) }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</a></td>
                             <td>{{ $member->email }}</td>
+                            <td>{{ implode(', ', $member->roles()->pluck('display_name')->toArray()) }}</td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
