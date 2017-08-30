@@ -62,6 +62,7 @@ Route::get('/referral/rewards', 'ReferralController@rewards')->name('referral-re
 Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
 Route::get('/referral/history/{id}', 'ReferralController@historyDetails')->name('referral-history-details');
 Route::get('/referral/export', 'ReferralController@referralsExport')->name('referrals-export');
+Route::get('/referrer/export', 'ReferralController@referrersExport')->name('referrers-export');
 Route::post('/referral/update', 'ReferralController@update')->name('referrals-update');
 Route::get('/referral/view/{id}', 'ReferralController@getView')->name('referral-view');
 Route::get('/referral/confirmation', 'ReferralController@confirmation')->name('referral-confirmation');

@@ -196,13 +196,61 @@ class ReferralController extends Controller
 
         $referralArray = [];
         foreach ($referrals as $referral) {
+            $referrer_address = $referral->referrer->address()->first();
+            $currentReferral = [
+                'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
+                'REFERRAL ID' => $referral->id,
+                'SUBMITTED BY' => isset($referral->referrer->name) ? $referral->referrer->name : $referral->referrer->first_name . ' ' . $referral->referrer->last_name,
+                'REFERRER STREET' => $referrer_address ? $referrer_address->address : null,
+                'REFERRER SUITE' => $referrer_address ? $referrer_address->address2 : null,
+                'REFERRER CITY' => $referrer_address ? $referrer_address->city : null,
+                'REFERRER STATE' => $referrer_address ? $referrer_address->state : null,
+                'REFERRER ZIP' => $referrer_address ? $referrer_address->zip : null,
+                'NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
+                'EMAIL' => $referral->referred->email,
+                'STATUS' => \App\Referral::$status[$referral->status]
+            ];
+            $referralArray[] = $currentReferral;
+        }
+
+        \Excel::create('Referrals', function($excel) use ($referralArray) {
+            $excel->sheet('Members', function($sheet) use ($referralArray) {
+                $sheet->fromArray($referralArray);
+            });
+        })->export('xls');
+        return;
+    }
+
+    public function referrersExport( Request $request ) {
+
+        if (count($request->all())) {
+            $referrals = new Referral();
+            $param = $referrals->getParams();
+            if (Gate::allows('see-company-referrals')) {
+                $referrals = $request->_company->filterSortReferralSubmissions()->get();
+            } else {
+                $referrals = $request->user()->filterSortReferralSubmissions()->get();
+            }
+        } else {
+            if (Gate::allows('see-company-referrals')) {
+                $referrals = $request->_company->referrals()->orderBy('status', 'asc')->orderBy('created_at', 'desc')->get();
+            } else {
+                $referrals = $request->user()->referrals()->orderBy('status', 'asc')->orderBy('created_at', 'desc')->get();
+            }
+        }
+        
+        
+
+        $referralArray = [];
+        foreach ($referrals as $referral) {
             $currentReferral = [
                 'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
                 'REFERRAL ID' => $referral->id,
                 'SUBMITTED BY' => isset($referral->referrer->name) ? $referral->referrer->name : $referral->referrer->first_name . ' ' . $referral->referrer->last_name,
                 'NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
                 'EMAIL' => $referral->referred->email,
-                'STATUS' => \App\Referral::$status[$referral->status]
+                'STATUS' => \App\Referral::$status[$referral->status] ,
+
             ];
             $referralArray[] = $currentReferral;
         }

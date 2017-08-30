@@ -8,7 +8,8 @@
         @include('referral.partials.counter')
 
         @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))
-        <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export</a></div>
+            {{--<div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export Referrers</a></div>--}}
+            <div class="col-md-12 text-right export-link"><a href="{{ route('referrals-export') . '?' . Request::getQueryString() }}">Export</a></div>
 
         <div class="row">
             @include('layouts.page-header', ['header' => 'Referrals', 'col' => 3])
