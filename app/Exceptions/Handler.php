@@ -48,6 +48,9 @@ class Handler extends ExceptionHandler
     public function sendEmail(Exception $exception)
     {
         try {
+            if ( $this->shouldntReport($exception) ) {
+                return;
+            }
             $e = FlattenException::create($exception);
 
             $handler = new SymfonyExceptionHandler();
