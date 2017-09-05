@@ -3,7 +3,7 @@
 @section('pageTitle', 'Home')
 
 @section('content')
-<div class="container-fluid with-referral-counter admin-dashboard">
+<div class="container-fluid with-referral-counter admin-dashboard admin-dashboard-home">
     @include('referral.partials.counter')
     <div class="row dashboard-top">
         <div class="col-md-8 dashboard-left-wrapper">
