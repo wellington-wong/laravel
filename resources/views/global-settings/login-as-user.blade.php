@@ -22,7 +22,8 @@
                         <div class="col-md-8 filter-item search pull-right">
                             <i class="fa fa-search" aria-hidden="true"></i>      
                             {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
-                                {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                                {{ Form::text('q-' . $c->id, old('q-' . $c->id), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                                {{ Form::hidden('cid', $c->id) }}            
                                 {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
                             {{ Form::close() }}
                         </div>

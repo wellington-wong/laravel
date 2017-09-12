@@ -74,14 +74,24 @@ class Company extends Model
 
     public function membersByRole( $role ) {
 
-        $q = app('request')->get('q');
+        $request = app('request');
+        $cid = $request->get('cid');
+        $q = $request->get('q-' . $cid);
 
         if( !is_array($role) ) { $role = [$role]; }
         $role_ids = Role::whereIn('name', $role)->pluck('id');
-        return $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' )
-            ->whereIn('role_id', $role_ids) ->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%')
-                    ->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q . '%')
-                    ->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q . '%');
+
+        $query = $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' )
+            ->whereIn('role_id', $role_ids);
+
+        if (isset($q)) {
+            $query->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%');
+            $query->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q . '%');
+            $query->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q . '%');            
+            $query->where('company_id', $cid);
+        }
+
+        return  $query;
     }
 
     public function threads() {
