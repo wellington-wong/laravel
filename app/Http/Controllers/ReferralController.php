@@ -283,6 +283,7 @@ class ReferralController extends Controller
         */
 
         $request->merge(['subdomain_id' => $request->_company->id]);
+        $request->merge(['address2' => ($request->input('address2') ?: '')]);
 
         $rules = [
             'first_name'=>'required',
@@ -290,7 +291,6 @@ class ReferralController extends Controller
             'email'=>'unique:users|required|email',
             'phone'=>'phone:US|required',
             'address'=>'required:max:100',
-            'address2'=>'required:max:25',
             'city'=>'required',
             'state'=>'required|alpha|max:2',
             'zip'=>'required|digits:5',
