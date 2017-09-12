@@ -84,7 +84,7 @@ class Company extends Model
         $query = $this->hasManyThrough( User::class, RoleUser::class , 'company_id', 'id' )
             ->whereIn('role_id', $role_ids);
 
-        if (isset($q)) {
+        if ($this->id == $cid) {
             $query->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%');
             $query->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q . '%');
             $query->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q . '%');            
