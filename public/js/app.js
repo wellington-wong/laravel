@@ -20527,7 +20527,7 @@ $(function () {
 		label: 'Address',
 		placeholder: 'Enter your Friend\'s address',
 		className: 'form-control address-group',
-		required: true,
+		required: false,
 		name: 'address'
 	}, {
 		type: 'text',
@@ -20541,21 +20541,21 @@ $(function () {
 		label: 'City',
 		placeholder: 'Enter your Friend\'s city',
 		className: 'form-control address-group',
-		required: true,
+		required: false,
 		name: 'city'
 	}, {
 		type: 'select',
 		label: 'State',
 		className: 'form-control address-group',
 		values: [{ value: 'al', label: 'AL' }, { value: 'ak', label: 'AK' }, { value: 'az', label: 'AZ' }, { value: 'ar', label: 'AR' }, { value: 'ca', label: 'CA' }, { value: 'co', label: 'CO' }, { value: 'ct', label: 'CT' }, { value: 'de', label: 'DE' }, { value: 'fl', label: 'FL', selected: true }, { value: 'ga', label: 'GA' }, { value: 'hi', label: 'HI' }, { value: 'id', label: 'ID' }, { value: 'il', label: 'IL' }, { value: 'in', label: 'IN' }, { value: 'ia', label: 'IA' }, { value: 'ks', label: 'KS' }, { value: 'ky', label: 'KY' }, { value: 'la', label: 'LA' }, { value: 'me', label: 'ME' }, { value: 'md', label: 'MD' }, { value: 'ma', label: 'MA' }, { value: 'mi', label: 'MI' }, { value: 'mn', label: 'MN' }, { value: 'ms', label: 'MS' }, { value: 'mo', label: 'MO' }, { value: 'mt', label: 'MT' }, { value: 'ne', label: 'NE' }, { value: 'nv', label: 'NV' }, { value: 'nh', label: 'NH' }, { value: 'nj', label: 'NJ' }, { value: 'nm', label: 'NM' }, { value: 'ny', label: 'NY' }, { value: 'nc', label: 'NC' }, { value: 'nd', label: 'ND' }, { value: 'oh', label: 'OH' }, { value: 'ok', label: 'OK' }, { value: 'or', label: 'OR' }, { value: 'pa', label: 'PA' }, { value: 'ri', label: 'RI' }, { value: 'sc', label: 'SC' }, { value: 'sd', label: 'SD' }, { value: 'tn', label: 'TN' }, { value: 'tx', label: 'TX' }, { value: 'ut', label: 'UT' }, { value: 'vt', label: 'VT' }, { value: 'va', label: 'VA' }, { value: 'wa', label: 'WA' }, { value: 'wv', label: 'WV' }, { value: 'wi', label: 'WI' }, { value: 'wy', label: 'WY' }],
-		required: true,
+		required: false,
 		name: 'state'
 	}, {
 		type: 'text',
 		label: 'Zip',
 		placeholder: 'Enter your Friend\'s zip',
 		className: 'form-control address-group',
-		required: true,
+		required: false,
 		name: 'zip'
 	}];
 	var addressSet = {
