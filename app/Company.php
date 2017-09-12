@@ -84,9 +84,11 @@ class Company extends Model
             ->whereIn('role_id', $role_ids);
 
         if (isset($q)) {
-            $query->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%');
-            $query->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q . '%');
-            $query->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q . '%'); 
+            $query->where(function ($query) use ($q) {
+                $query->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%');
+                $query->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q . '%');
+                $query->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q . '%'); 
+            });
         }
 
         return  $query;
