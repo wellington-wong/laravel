@@ -23,7 +23,6 @@
                             <i class="fa fa-search" aria-hidden="true"></i>      
                             {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
                                 {{ Form::text('q-' . $c->id, old('q-' . $c->id), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
-                                {{ Form::hidden('cid', $c->id) }}
                                 {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
                             {{ Form::close() }}
                         </div>
@@ -63,7 +62,7 @@
                                 <tr class="tr-spacer"><td colspan=5></td></tr>
                                 @endif
                             @endforeach
-                            @if (!count($users))<tr><td colspan="5">No users found.</td></tr>@endif
+                            @if (!count($users))<tr><td colspan="7">No users found.</td></tr>@endif
                         </table>
                         <div class="col-md-12 pagination-wrapper">{{ $users->appends(app('request')->query())->links() }}</div>
 
