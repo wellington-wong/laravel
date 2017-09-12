@@ -88,7 +88,7 @@ class Company extends Model
             $query->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q . '%');
             $query->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q . '%');
             $query->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q . '%');            
-            $query->where('company_id', $cid);
+            $query->where('role_user.company_id', $cid);
         }
 
         return  $query;
