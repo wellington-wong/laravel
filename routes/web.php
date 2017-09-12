@@ -107,7 +107,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/global-settings/login-super-admin', ['uses' => 'GlobalSettingsController@loginSuperAdmin', 'middleware' => ['permission:login_super_admin_all_accounts']])->name('login-super-admin');
 	Route::get('/global-settings/login-as-user', ['uses' => 'GlobalSettingsController@loginAsUser', 'middleware' => ['permission:login_as_user']])->name('login-as-user');
 	Route::get('/global-settings/login-as-user/{id}', ['uses' => 'GlobalSettingsController@loginAsUserId', 'middleware' => ['permission:login_as_user']])->name('login-as-user-id');
-	Route::get('/global-settings/login-as-user/{id}', ['uses' => 'GlobalSettingsController@loginAsUserId', 'middleware' => ['permission:login_as_user']])->name('login-as-user-id');
+	Route::get('/global-settings/login-as-user/search', ['uses' => 'GlobalSettingsController@loginAsUserSearch', 'middleware' => ['permission:login_as_user']])->name('login-as-user-search');
 
 	// Export
 	Route::get('/export/{id}', 'ExportController@referral')->name('export');
