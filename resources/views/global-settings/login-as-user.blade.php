@@ -9,25 +9,26 @@
 
         <div class="row">
             @include('layouts.page-header', ['header' => 'Login as User', 'col' => 3])
-
-            <div class="col-md-9 page-filters no-padding-lr">
-                <div class="row">
-                    <div class="col-md-4 filter-item search pull-right">
-                        <i class="fa fa-search" aria-hidden="true"></i>      
-                        {{ Form::open([route('login-as-user'), 'method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
-                            {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
-                            {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
-                        {{ Form::close() }}
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="clearfix"></div>
 
         @foreach ( $companies as $c )
 
-            <div class="row"><h4>{{ $c->company_name }} (id: {{ $c->id }})</h4></div>
+            <div class="row">
+                <h4 class="col-md-6 no-padding-lr">{{ $c->company_name }} (id: {{ $c->id }})</h4>
+                <div class="col-md-6 page-filters no-padding-lr">
+                    <div class="row">
+                        <div class="col-md-8 filter-item search pull-right">
+                            <i class="fa fa-search" aria-hidden="true"></i>      
+                            {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
+                                {{ Form::text('q', old('q'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                                {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
+                            {{ Form::close() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <?php $users = $c->membersByRole(['member', 'admin', 'superAdmin'])->distinct('user_id')->paginate(15, ['*'], 'company_' . $c->id); ?>
 
