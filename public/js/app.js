@@ -20534,7 +20534,7 @@ $(function () {
 		label: 'Line 2',
 		placeholder: 'Enter your Friend\'s address line 2',
 		className: 'form-control address-group',
-		required: true,
+		required: false,
 		name: 'address2'
 	}, {
 		type: 'text',
@@ -20551,7 +20551,7 @@ $(function () {
 		required: true,
 		name: 'state'
 	}, {
-		type: 'number',
+		type: 'text',
 		label: 'Zip',
 		placeholder: 'Enter your Friend\'s zip',
 		className: 'form-control address-group',
