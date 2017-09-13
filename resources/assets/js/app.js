@@ -259,6 +259,12 @@ $(function (){
     		$('#member-id').val(ui.item.id);
     	}
     });
+
+    // Delete button
+	$('.delete-user').click(function (){
+		$('#incentful-modal').modal('show');
+	});
+
 // END - GET MEMBERS
 
 // ADJUST HEIGHT
