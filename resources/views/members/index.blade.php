@@ -48,7 +48,7 @@
                             @role(['superAdmin', 'globalAdmin'])
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-primary">Change Role</button>
+                                    <button class="btn btn-primary change-role" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</button>
                                     <button class="btn btn-danger delete-user" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</button>
                                 </div>
                             </td>
@@ -100,7 +100,7 @@
                             @role(['superAdmin', 'globalAdmin']) 
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-primary">Change Role</button>
+                                    <button class="btn btn-primary change-role" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</button>
                                     <button class="btn btn-danger delete-user" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</button>
                                 </div>
                             </td>
@@ -118,6 +118,15 @@
         </div>
 
         @include('layouts.modal')
+        <div class="member-roles">
+            <div class="clearfix">&nbsp;</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Roles:</label>
+                    {{ Form::select('member-roles', $allRoles, null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+        </div>
 
     </div>
 

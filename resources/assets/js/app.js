@@ -260,6 +260,28 @@ $(function (){
     	}
     });
 
+    // Change role button
+	var $membersModal = $('.members-wrapper #incentful-modal');
+	var url;
+	$('.change-role').click(function (){
+   		$membersModal.find('.modal-title').text('Change User Role');
+   		$membersModal.find('.modal-body').text($(this).data('name') + '\'s current role is "' + $(this).data('role-name') + '".');
+   		$('.member-roles').find('select[name="member-roles"] option[value="' + $(this).data('role-id') + '"]').attr('selected', true);
+   		$membersModal.find('.modal-body').append($('.member-roles').html());
+   		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Apply');
+   		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('Cancel');
+		$membersModal.modal('show');
+		url = $(this).data('url');
+	});
+	$membersModal.find('.btn.submit').on('click', function (){
+		ajaxHelper(url, [], "POST", function (data){
+	    	location.reload();
+		});
+	});
+	$membersModal.find('.btn.cancel').on('click', function (){
+		$membersModal.modal('hide');
+	});
+
     // Delete button
 	var $membersModal = $('.members-wrapper #incentful-modal');
 	var url;

@@ -52,9 +52,10 @@ class MembersController extends Controller
             }
         }
         
+        $allRoles = Role::pluck('name', 'id');
 
         return view('members.index')
-        ->with(compact('members', 'admins'));
+        ->with(compact('members', 'admins', 'allRoles'));
     }
 
 
