@@ -75,7 +75,14 @@ class MembersController extends Controller
      */
     public function changeRole(Request $request, $id)
     {
-        return 'change role';
+
+        if ($request->input('role_id') && $request->input('role_id_new')) {
+            $changeUserRole = User::find($id);
+            $changeUserRole->detachRole(Role::find($request->input('role_id')));
+            return $changeUserRole->attachRole(Role::find($request->input('role_id_new')));
+        } 
+
+        return;
     }
 
     /**

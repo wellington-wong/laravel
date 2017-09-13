@@ -264,14 +264,14 @@ $(function (){
 	var $membersModal = $('.members-wrapper #incentful-modal');
 	var url;
 	$('.change-role').click(function (){
+		var role_id = $(this).data('role-id');
    		$membersModal.find('.modal-title').text('Change User Role');
    		$membersModal.find('.modal-body').text($(this).data('name') + '\'s current role is "' + $(this).data('role-name') + '".');
    		$('.member-roles').find('select[name="member-roles"] option[value="' + $(this).data('role-id') + '"]').attr('selected', true);
    		$membersModal.find('.modal-body').append($('.member-roles').html());
    		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Apply').on('click', function (){
-			ajaxHelper(url, [], "POST", function (data){
-		    	//location.reload();
-		    	console.log(data);
+			ajaxHelper(url, {role_id: role_id, role_id_new: $('.modal-body').find('select[name="member-roles"]').val()}, "POST", function (data){
+		    	location.reload();
 			});
 		});;
    		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('Cancel').on('click', function (){
