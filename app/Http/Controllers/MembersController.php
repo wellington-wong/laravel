@@ -22,6 +22,7 @@ class MembersController extends Controller
 	{
 
         $members = collect(new User);
+        $admins = collect(new User);
         if ( 'app' != $request->current_subdomain ) {
             $members = $request->_company->members()->paginate(15);
             $admins = $request->_company->membersByRole(['admin', 'superadmin'])
