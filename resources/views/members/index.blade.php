@@ -16,6 +16,18 @@
 
         <div class="clearfix"></div>
 
+        <div class="row page-filters">
+            <div class="row">
+                <div class="col-md-8 filter-item search pull-right">
+                    <i class="fa fa-search" aria-hidden="true"></i>      
+                    {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
+                        {{ Form::text('q-', old('q-'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                        {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
+                    {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12 table-members-wrapper table-wrapper">
                 <table class="table table-members tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
