@@ -28,7 +28,7 @@ class MembersController extends Controller
         $q_members = $request->input('q-members');
 
         if ( 'app' != $request->current_subdomain ) {
-            if (isset($q_admins)) {
+            if (isset($q_members)) {
                 $members = $request->_company->members()->where(function ($q){
 
                 })->paginate(15);
@@ -36,8 +36,11 @@ class MembersController extends Controller
                 $members = $request->_company->members()->paginate(15);
             }
 
-            $admins = $request->_company->membersByRole(['admin', 'superadmin'])
-                ->paginate(15);
+            if (isset($q_admins)) {
+            } else {
+                $admins = $request->_company->membersByRole(['admin', 'superadmin'])
+                    ->paginate(15);
+            }
         }
         //dd($admins);
 
