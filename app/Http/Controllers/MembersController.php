@@ -33,6 +33,7 @@ class MembersController extends Controller
                     $q->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q_members . '%');
                     $q->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q_members . '%');
                     $q->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q_members . '%'); 
+                    $q->orWhere(\DB::raw('lower(users.email)'), 'LIKE', '%' . $q_members . '%'); 
                 })->paginate(15);
             } else {
                 $members = $request->_company->members()->paginate(15);
@@ -43,6 +44,7 @@ class MembersController extends Controller
                     $q->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q_admins . '%');
                     $q->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q_admins . '%');
                     $q->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q_admins . '%'); 
+                    $q->orWhere(\DB::raw('lower(users.email)'), 'LIKE', '%' . $q_admins . '%'); 
                 })->paginate(15);
             } else {
                 $admins = $request->_company->membersByRole(['admin', 'superadmin'])
