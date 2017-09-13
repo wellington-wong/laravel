@@ -18,7 +18,7 @@
             <div class="col-md-4 filter-item search pull-right">
                 <i class="fa fa-search" aria-hidden="true"></i>      
                 {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
-                    {{ Form::text('q-', old('q-'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                    {{ Form::text('q-admins', old('q-admins'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
                     {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
                 {{ Form::close() }}
             </div>
@@ -61,7 +61,7 @@
             <div class="col-md-4 filter-item search pull-right">
                 <i class="fa fa-search" aria-hidden="true"></i>      
                 {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
-                    {{ Form::text('q-', old('q-'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                    {{ Form::text('q-members', old('q-members'), ['placeholder' => 'Search', 'class' => 'form-control text']) }}            
                     {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
                 {{ Form::close() }}
             </div>
