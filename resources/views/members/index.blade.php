@@ -8,25 +8,23 @@
 
 
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Admins', 'col' => 6])
-            <div class="text-right col-md-6 create-user-link no-padding-lr">
+            <div class="text-right pull-right col-md-6 create-user-link no-padding-lr">
                 <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>
+            </div>
+        </div>
+        <div class="row page-filters">
+        @include('layouts.page-header', ['header' => 'Admins', 'col' => 6])
+
+            <div class="col-md-4 filter-item search pull-right">
+                <i class="fa fa-search" aria-hidden="true"></i>      
+                {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
+                    {{ Form::text('q-', old('q-'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                    {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
+                {{ Form::close() }}
             </div>
         </div>
 
         <div class="clearfix"></div>
-
-        <div class="row page-filters">
-            <div class="row">
-                <div class="col-md-8 filter-item search pull-right">
-                    <i class="fa fa-search" aria-hidden="true"></i>      
-                    {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
-                        {{ Form::text('q-', old('q-'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
-                        {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
-                    {{ Form::close() }}
-                </div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-12 table-members-wrapper table-wrapper">
@@ -57,8 +55,16 @@
 
 
 
-        <div class="row">
+        <div class="row page-filters">
             @include('layouts.page-header', ['header' => 'Members', 'col' => 6])
+        
+            <div class="col-md-4 filter-item search pull-right">
+                <i class="fa fa-search" aria-hidden="true"></i>      
+                {{ Form::open(['method' => 'GET', 'id' => 'reward-settings-form', 'class' => 'reward-settings-form']) }}
+                    {{ Form::text('q-', old('q-'), ['placeholder' => 'Search', 'class' => 'form-control text', 'data-query' => (isset($param->q) ? $param->q : '')]) }}            
+                    {{ Form::submit('Search', ['placeholder' => 'Search', 'class' => 'btn btn-search login-users']) }}
+                {{ Form::close() }}
+            </div>
         </div>
 
         <div class="clearfix"></div>
