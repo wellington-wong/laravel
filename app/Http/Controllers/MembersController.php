@@ -29,14 +29,21 @@ class MembersController extends Controller
 
         if ( 'app' != $request->current_subdomain ) {
             if (isset($q_members)) {
-                $members = $request->_company->members()->where(function ($q){
-
+                $members = $request->_company->members()->where(function ($q) use ($q_members) {
+                    $q->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q_members . '%');
+                    $q->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q_members . '%');
+                    $q->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q_members . '%'); 
                 })->paginate(15);
             } else {
                 $members = $request->_company->members()->paginate(15);
             }
 
             if (isset($q_admins)) {
+                $members = $request->_company->members()->where(function ($q) use ($q_admins) {
+                    $q->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q_admins . '%');
+                    $q->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q_admins . '%');
+                    $q->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q_admins . '%'); 
+                })->paginate(15);
             } else {
                 $admins = $request->_company->membersByRole(['admin', 'superadmin'])
                     ->paginate(15);
