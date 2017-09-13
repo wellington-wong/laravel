@@ -35,6 +35,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -44,6 +45,12 @@
                             <td><a href="{{ route('view-user', $member->id) }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</a></td>
                             <td>{{ $member->email }}</td>
                             <td>{{ implode(', ', $member->roles()->pluck('display_name')->toArray()) }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-primary">Change Role</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
@@ -78,6 +85,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Referrals</th>
+                            <th>Actions</th>
                         </tr>
                     </thead> 
                     <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -87,6 +95,12 @@
                             <td><a href="{{ route('view-user', $member->id) }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</a></td>
                             <td>{{ $member->email }}</td>
                             <td>{{ $member->referrals()->where('company_id', $_company->id)->count() }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-primary">Change Role</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
@@ -99,6 +113,7 @@
             </div>
         </div>
 
+        @include('layouts.modal')
 
     </div>
 
