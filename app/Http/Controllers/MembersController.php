@@ -39,7 +39,7 @@ class MembersController extends Controller
             }
 
             if (isset($q_admins)) {
-                $admins = $request->_company->members()->where(function ($q) use ($q_admins) {
+                $admins = $request->_company->membersByRole(['admin', 'superadmin'])->where(function ($q) use ($q_admins) {
                     $q->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q_admins . '%');
                     $q->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q_admins . '%');
                     $q->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q_admins . '%'); 
@@ -49,7 +49,7 @@ class MembersController extends Controller
                     ->paginate(15);
             }
         }
-        //dd($admins);
+        
 
         return view('members.index')
         ->with(compact('members', 'admins'));
