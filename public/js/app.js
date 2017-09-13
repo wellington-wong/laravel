@@ -20486,8 +20486,23 @@ $(function () {
 	});
 
 	// Delete button
+	var $membersModal = $('.members-wrapper #incentful-modal');
+	var url;
 	$('.delete-user').click(function () {
-		$('#incentful-modal').modal('show');
+		$membersModal.find('.modal-title').text('Delete User Confirmation');
+		$membersModal.find('.modal-body').text('Are you sure you want to delete user ' + $(this).data('name') + '?');
+		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Yes');
+		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('No');
+		$membersModal.modal('show');
+		url = $(this).data('url');
+	});
+	$membersModal.find('.btn.submit').on('click', function () {
+		ajaxHelper(url, [], "POST", function (data) {
+			location.reload();
+		});
+	});
+	$membersModal.find('.btn.cancel').on('click', function () {
+		$membersModal.modal('hide');
 	});
 
 	// END - GET MEMBERS
@@ -20507,6 +20522,7 @@ $(function () {
 	// JQUERY FORMBUILDER
 
 	// Setup custom fields
+
 	var fields = [{
 		label: 'Email',
 		attrs: {

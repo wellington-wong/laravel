@@ -48,7 +48,7 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-primary">Change Role</button>
-                                    <button class="btn btn-danger delete-user" data-id="{{ $member->id }}">Delete</button>
+                                    <button class="btn btn-danger delete-user" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -98,7 +98,7 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-primary">Change Role</button>
-                                    <button class="btn btn-danger delete-user" data-id="{{ $member->id }}">Delete</button>
+                                    <button class="btn btn-danger delete-user" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</button>
                                 </div>
                             </td>
                         </tr>

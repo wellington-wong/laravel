@@ -63,8 +63,13 @@ class MembersController extends Controller
         return view('members.create');
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request, $id)
     {
-        return 'delete';
+        // Delete user, user's phone and address
+        $deleteUser = User::find($id);
+        $deleteUser->phones()->delete();
+        $deleteUser->addresses()->delete();
+        $deleteUser->delete();
+        return;
     }
 }
