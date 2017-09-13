@@ -134,6 +134,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/members', 'MembersController@getIndex')->name('members');
 	//Route::get('/members/{id}', 'MembersController@members')->name('member');
 	Route::get('/member/create', 'MembersController@create')->name('members-create');
+	Route::get('/member/delete/{id}', 'MembersController@delete')->name('members-delete');
 
 	// Notification Routes
 	Route::get('/notification/{nid}', 'NotificationsController@getNotification')->name('notification');

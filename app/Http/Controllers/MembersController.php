@@ -62,4 +62,9 @@ class MembersController extends Controller
     {
         return view('members.create');
     }
+
+    public function delete(Request $request)
+    {
+        return 'delete';
+    }
 }
