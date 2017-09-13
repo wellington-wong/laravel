@@ -39,7 +39,7 @@ class MembersController extends Controller
             }
 
             if (isset($q_admins)) {
-                $members = $request->_company->members()->where(function ($q) use ($q_admins) {
+                $admins = $request->_company->members()->where(function ($q) use ($q_admins) {
                     $q->where(\DB::raw('lower(users.first_name)'), 'LIKE', '%' . $q_admins . '%');
                     $q->orWhere(\DB::raw('lower(users.last_name)'), 'LIKE', '%' . $q_admins . '%');
                     $q->orWhere(\DB::raw('lower(users.name)'), 'LIKE', '%' . $q_admins . '%'); 

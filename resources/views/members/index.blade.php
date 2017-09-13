@@ -47,7 +47,7 @@
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
-                    @if (!count($admins))<tr><td colspan="5">No members found.</td></tr>@endif
+                    @if (!count($admins))<tr><td colspan="5">No admins found.</td></tr>@endif
                 </table>
                 <div class="col-md-12 pagination-wrapper">{{ count($admins) ? $admins->links() : '' }}</div>
             </div>
