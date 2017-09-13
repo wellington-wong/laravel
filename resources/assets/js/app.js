@@ -268,18 +268,17 @@ $(function (){
    		$membersModal.find('.modal-body').text($(this).data('name') + '\'s current role is "' + $(this).data('role-name') + '".');
    		$('.member-roles').find('select[name="member-roles"] option[value="' + $(this).data('role-id') + '"]').attr('selected', true);
    		$membersModal.find('.modal-body').append($('.member-roles').html());
-   		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Apply');
-   		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('Cancel');
+   		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Apply').on('click', function (){
+			ajaxHelper(url, [], "POST", function (data){
+		    	//location.reload();
+		    	console.log(data);
+			});
+		});;
+   		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('Cancel').on('click', function (){
+			$membersModal.modal('hide');
+		});
 		$membersModal.modal('show');
 		url = $(this).data('url');
-	});
-	$membersModal.find('.btn.submit').on('click', function (){
-		ajaxHelper(url, [], "POST", function (data){
-	    	location.reload();
-		});
-	});
-	$membersModal.find('.btn.cancel').on('click', function (){
-		$membersModal.modal('hide');
 	});
 
     // Delete button
@@ -288,18 +287,16 @@ $(function (){
 	$('.delete-user').click(function (){
    		$membersModal.find('.modal-title').text('Delete User Confirmation');
    		$membersModal.find('.modal-body').text('Are you sure you want to delete user ' + $(this).data('name') + '?');
-   		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Yes');
-   		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('No');
+   		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Yes').on('click', function (){
+			ajaxHelper(url, [], "POST", function (data){
+		    	location.reload();
+			});
+		});
+   		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('No').on('click', function (){
+			$membersModal.modal('hide');
+		});
 		$membersModal.modal('show');
 		url = $(this).data('url');
-	});
-	$membersModal.find('.btn.submit').on('click', function (){
-		ajaxHelper(url, [], "POST", function (data){
-	    	location.reload();
-		});
-	});
-	$membersModal.find('.btn.cancel').on('click', function (){
-		$membersModal.modal('hide');
 	});
 
 // END - GET MEMBERS

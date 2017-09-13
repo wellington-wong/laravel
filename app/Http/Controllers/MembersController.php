@@ -58,12 +58,31 @@ class MembersController extends Controller
         ->with(compact('members', 'admins', 'allRoles'));
     }
 
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return
+     */
     public function create(Request $request)
     {
         return view('members.create');
     }
 
+    /**
+     * Change user role
+     *
+     * @return
+     */
+    public function changeRole(Request $request, $id)
+    {
+        return 'change role';
+    }
+
+    /**
+     * Delete user
+     *
+     * @return
+     */
     public function delete(Request $request, $id)
     {
         // Delete user, user's phone and address
