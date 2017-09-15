@@ -21,6 +21,8 @@ use App\Notifications\MessageReceived;
 use App\Notifications\ReferralReceived;
 use App\Notifications\NewReferralAdmin;
 
+use Illuminate\Support\Facades\DB;
+
 class ReferralController extends Controller
 {
 
@@ -66,6 +68,29 @@ class ReferralController extends Controller
                 ->with('subdomain_id', $request->subdomain_id);
         }
     }
+
+
+    public function leaderboardHtml()
+    {
+
+        //DB::connection()->enableQueryLog();
+        //updated_at IN OLD APP WAS reward_sent_date
+        $users = User::select('users.id', 'referrals.updated_at', 'first_name', 'last_name',
+            DB::raw('count(referrals.id)  as total_refs'))
+            ->leftJoin('referrals', 'referrals.user_id', '=', 'users.id')
+            ->where('referrals.status', Referral::STATUS_REWARD_SENT)
+            ->where('referrals.updated_at', '>', date('Y-m-d', strtotime( date('Y') . '-01-01' )))
+            ->where('referrals.company_id', config('company_id') )
+            ->groupBy( 'users.id' )
+            ->orderBy('total_refs', 'desc')
+            ->having( 'total_refs', '>', 0 )
+            ->limit(10)->get();
+        //dd(config('company_id'));
+        //dd(DB::getQueryLog());
+        //dd($users);
+        return view('referral.leaderboardHtml')->with('users', $users);
+    }
+
 
 
     public function companyReferrals( Request $request ) {

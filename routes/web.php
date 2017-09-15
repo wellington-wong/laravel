@@ -36,6 +36,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@home')->name('find-home');
 
+Route::get('/leaderboardHtml', 'ReferralController@leaderboardHtml');
+
 // Company Routes
 Route::get('/company/referrals', 'ReferralController@companyReferrals')->name('company-referrals');
 
