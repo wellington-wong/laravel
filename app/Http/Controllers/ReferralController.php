@@ -29,6 +29,8 @@ class ReferralController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except'=>['leaderboardHtml']]);
+        //$this->middleware('auth');
+        $this->middleware('cors', ['only'=>['leaderboardHtml']]);
     }
 
     public function create( Request $request, $id = null )
@@ -88,6 +90,9 @@ class ReferralController extends Controller
         //dd(config('company_id'));
         //dd(DB::getQueryLog());
         //dd($users);
+
+
+
         return view('referral.leaderboardHtml')->with('users', $users);
     }
 

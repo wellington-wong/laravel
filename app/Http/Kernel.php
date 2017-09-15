@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CORS;
 use App\Http\Middleware\Domain;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\Messages;
@@ -21,7 +22,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-
+        CORS::class
     ];
 
     /**
@@ -42,6 +43,8 @@ class Kernel extends HttpKernel
             CheckRole::class,
             Messages::class
         ],
+
+        'cors' => [ CORS::class ],
 
         'api' => [
             'throttle:60,1',
