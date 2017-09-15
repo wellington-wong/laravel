@@ -28,7 +28,7 @@ class ReferralController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except'=>['leaderboardHtml']]);
     }
 
     public function create( Request $request, $id = null )
