@@ -21262,6 +21262,28 @@ $(function () {
 		preferredFormat: "hex"
 	});
 	// END SPECTRUM COLOR PICKER
+
+	// X-EDITABLE
+	$('#username').editable({
+		type: 'text',
+		url: '/post',
+		pk: 1,
+		title: 'Enter username',
+		ajaxOptions: {
+			type: 'put'
+		}
+	});
+
+	//ajax emulation
+	$.mockjax({
+		url: '/post',
+		responseTime: 200,
+		response: function response(settings) {
+			console.log(settings);
+		}
+	});
+
+	// END X-EDITABLE
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
