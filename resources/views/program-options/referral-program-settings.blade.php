@@ -66,12 +66,12 @@
         <div>&nbsp;</div>
         
         <div class="row">
-            <label>Subdomain Terms and Condition Text</label>
-            {{ Form::text('tos_text', isset($companyReferralForm->tos_text) ? $companyReferralForm->tos_text : '', ['placeholder' => 'Text', 'class' => 'form-control']) }}
+            <label>Terms and Condition Text</label>
+            {{ Form::text('tos_text', isset($_company->tos_text) ? $_company->tos_text : '', ['placeholder' => 'Text', 'class' => 'form-control']) }}
         </div>
         <div class="row">
-            <label>Subdomain Terms and Condition Link</label>
-            {{ Form::text('tos_link', isset($companyReferralForm->tos_link) ? $companyReferralForm->tos_link : '', ['placeholder' => 'Link', 'class' => 'form-control']) }}
+            <label>Terms and Condition Link</label>
+            {{ Form::text('tos_link', isset($_company->tos_link) ? $_company->tos_link : '', ['placeholder' => 'Link', 'class' => 'form-control']) }}
        
         </div>
 

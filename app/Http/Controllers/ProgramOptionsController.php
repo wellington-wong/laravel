@@ -68,6 +68,8 @@ class ProgramOptionsController extends Controller
         $company->foreground_color = $request->input('foreground_color');
         $company->background_color = $request->input('background_color');
         $company->footer_color = $request->input('footer_color');
+        $company->tos_text = $request->input('tos_text');
+        $company->tos_link = $request->input('tos_link');
         $company->save();
 
         if (!$companyReferralForm = ReferralForms::where('company_id', $request->get('company_id'))->first()) {

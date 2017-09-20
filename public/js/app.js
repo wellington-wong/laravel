@@ -20759,7 +20759,9 @@ $(function () {
 				subdomain_login_text: tinyMCE.activeEditor.getContent(),
 				foreground_color: $('input[name="foreground_color"]').val(),
 				background_color: $('input[name="background_color"]').val(),
-				footer_color: $('input[name="footer_color"]').val()
+				footer_color: $('input[name="footer_color"]').val(),
+				tos_text: $('input[name="tos_text"]').val(),
+				tos_link: $('input[name="tos_link"]').val()
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
 		}
