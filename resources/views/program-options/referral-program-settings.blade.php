@@ -60,8 +60,19 @@
         
         <div class="row">
           <label>Subdomain Login Text</label>
-          <textarea class="subdomain-login tinymce" name="subdomain_login_text">{{ isset($_company->subdomain_login_text) ? $_company->subdomain_login_text : '' }}</textarea>
-          
+          <textarea class="subdomain-login tinymce" name="subdomain_login_text">{{ isset($_company->subdomain_login_text) ? $_company->subdomain_login_text : '' }}</textarea>          
+        </div>
+
+        <div>&nbsp;</div>
+        
+        <div class="row">
+            <label>Subdomain Terms and Condition Text</label>
+            {{ Form::text('tos_text', isset($companyReferralForm->tos_text) ? $companyReferralForm->tos_text : '', ['placeholder' => 'Text', 'class' => 'form-control']) }}
+        </div>
+        <div class="row">
+            <label>Subdomain Terms and Condition Link</label>
+            {{ Form::text('tos_link', isset($companyReferralForm->tos_link) ? $companyReferralForm->tos_link : '', ['placeholder' => 'Link', 'class' => 'form-control']) }}
+       
         </div>
 
         <div>&nbsp;</div>
