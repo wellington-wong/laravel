@@ -25,6 +25,7 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "bootstrap-formhelpers": "git+https://github.com/winmarkltd/BootstrapFormHelpers.git"
+    "bootstrap-formhelpers": "git+https://github.com/winmarkltd/BootstrapFormHelpers.git",
+    "x-editable": "^1.5.1"
   }
 }
