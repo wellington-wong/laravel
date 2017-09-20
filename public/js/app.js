@@ -20744,7 +20744,7 @@ $(function () {
 
 	// Update db with current form settings
 	function formBuilderCallback(data) {
-		location.reload();
+		window.location.href = location.href + "?success=1";
 	}
 	$('.submit-custom-form').on('click', function () {
 		var formBuilderData = formBuilder.actions.getData('json');

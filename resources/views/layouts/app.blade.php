@@ -17,8 +17,16 @@
                         <div class="panel-heading top-navbar">
                             @include('layouts.navbar')
                         </div>
-
                         <div class="panel-body">
+                            @if (isset($success))
+                                <div class="alert alert-success">
+                                    <ul>
+                                        @foreach ($success as $msg)
+                                        <li>{!! $msg !!}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             @if (\Session::has('success'))
                                 <div class="alert alert-success">
                                     <ul>

@@ -51,8 +51,10 @@ class ProgramOptionsController extends Controller
     public function referralProgramSettings( Request $request )
     {
         $companyReferralForm = ReferralForms::where('company_id', $request->_company->id)->first();
+        $success = $request->input('success') ? ['Referral Program Settings saved.'] : null;
         return view('program-options.referral-program-settings')
-        ->with(compact('companyReferralForm'));
+        ->with(compact('companyReferralForm'))
+        ->with('success', $success);
     }
 
     /**
