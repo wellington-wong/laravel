@@ -20752,6 +20752,13 @@ $(function () {
 		if (formBuilderData != "[]") {
 			$(this).addClass('disabled');
 			$(this).button('loading');
+			// Check if url is valid
+			if ($('input[name="tos_link"]').val() && !ValidURL($('input[name="tos_link"]').val()) && $('input[name="tos_link"]').val() != "http://") {
+				alert('Please enter a valid url starting with http:// or https://');
+				$(this).removeClass('disabled');
+				$(this).button('reset');
+				return;
+			}
 			var data = {
 				company_id: formGenerator.data('company-id'),
 				raw_form_json: formBuilderData,
@@ -20761,7 +20768,7 @@ $(function () {
 				background_color: $('input[name="background_color"]').val(),
 				footer_color: $('input[name="footer_color"]').val(),
 				tos_text: $('input[name="tos_text"]').val(),
-				tos_link: $('input[name="tos_link"]').val()
+				tos_link: $('input[name="tos_link"]').val() == "http://" ? "" : $('input[name="tos_link"]').val()
 			};
 			ajaxHelper("/program-options/referral-program-settings", data, "POST", formBuilderCallback);
 		}
@@ -21012,6 +21019,11 @@ $(function () {
 		}
 	});
 
+	//	Add js url validation
+	function ValidURL(str) {
+		return (/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(str)
+		);
+	}
 	// END COMMON
 
 	// SIDEBAR

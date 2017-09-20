@@ -71,7 +71,7 @@
         </div>
         <div class="row">
             <label>Terms and Condition Link</label>
-            {{ Form::text('tos_link', isset($_company->tos_link) ? $_company->tos_link : '', ['placeholder' => 'Link', 'class' => 'form-control']) }}
+            {{ Form::url('tos_link', isset($_company->tos_link) ? $_company->tos_link : 'http://', ['placeholder' => 'Link', 'class' => 'form-control']) }}
        
         </div>
 
