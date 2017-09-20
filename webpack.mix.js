@@ -11,8 +11,8 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.scripts(['node_modules/bootstrap-formhelpers/dist/js/bootstrap-formhelpers.js'],
-       'public/js/all.js' )
+mix.scripts(['node_modules/bootstrap-formhelpers/dist/js/bootstrap-formhelpers.js', 'node_modules/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js'],
+       'public/js/all.js')
     .js('resources/assets/js/app.js', 'public/js')
     .extract(['jquery'])
     .sass('resources/assets/sass/app.scss', 'public/css')
