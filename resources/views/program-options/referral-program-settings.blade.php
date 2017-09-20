@@ -61,10 +61,16 @@
         <div class="row">
           <label>Subdomain Login Text</label>
           <textarea class="subdomain-login tinymce" name="subdomain_login_text">{{ isset($_company->subdomain_login_text) ? $_company->subdomain_login_text : '' }}</textarea>
-          <div class="form-actions btn-group custom-btn">
-            <button class="clear-all-trigger btn btn-danger">Clear</button>
-            <button class="submit-custom-form btn btn-primary">Save</button>
-          </div>
+          
+        </div>
+
+        <div>&nbsp;</div>
+        
+        <div class="row">
+            <div class="form-actions btn-group custom-btn">
+                <button class="clear-all-trigger btn btn-danger">Clear</button>
+                <button class="submit-custom-form btn btn-primary">Save</button>
+            </div>
         </div>
     </div>
 
