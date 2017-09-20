@@ -315,8 +315,8 @@ class ReferralController extends Controller
         // Create dummy email when referrer doesn't know referred
         $email = '';
         if (!$request->input('email')) {
-            $email = str_replace(' ', '', $request->input('first_name') . '.' . $request->input('last_name'));
-            $email = preg_replace("/[^a-zA-Z0-9]+/", "", $email) . '.' . str_random(8) . '@unim.com';
+            $email = str_replace(' ', '', $request->input('first_name') . '.' . $request->input('last_name')) . '.' . str_random(8);
+            $email = preg_replace("/[^a-zA-Z0-9.]+/", "", $email) . '@unim.com';
         } else {            
             $email = $request->input('email');
         }
