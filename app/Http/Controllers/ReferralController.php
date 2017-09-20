@@ -313,15 +313,17 @@ class ReferralController extends Controller
         */
 
         // Create dummy email when referrer doesn't know referred
-        $concatFirstLast = '';
+        $email = '';
         if (!$request->input('email')) {
-            $concatFirstLast = str_replace(' ', '', $request->input('first_name').$request->input('last_name'));
-            $concatFirstLast = preg_replace("/[^a-zA-Z0-9]+/", "", $concatFirstLast) . '@unim.com';
+            $email = str_replace(' ', '', $request->input('first_name') . '.' . $request->input('last_name'));
+            $email = preg_replace("/[^a-zA-Z0-9]+/", "", $email) . '.' . str_random(8) . '@unim.com';
+        } else {            
+            $email = $request->input('email');
         }
 
         $request->merge(['subdomain_id' => $request->_company->id]);
         $request->merge(['address2' => ($request->input('address2') ?: '')]);
-        $request->merge(['email' => ($request->input('email') ?: $concatFirstLast)]);
+        $request->merge(['email' => $email]);
 
         $rules = [
             'first_name'=>'required',
