@@ -110,6 +110,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/global-settings/login-as-user', ['uses' => 'GlobalSettingsController@loginAsUser', 'middleware' => ['permission:login_as_user']])->name('login-as-user');
 	Route::get('/global-settings/login-as-user/{id}', ['uses' => 'GlobalSettingsController@loginAsUserId', 'middleware' => ['permission:login_as_user']])->name('login-as-user-id');
 	Route::get('/global-settings/user-role-change', ['uses' => 'GlobalSettingsController@userRoleChange', 'middleware' => ['permission:login_as_user']])->name('user-role-change');
+	Route::get('/global-settings/basic-page-content', ['uses' => 'GlobalSettingsController@basicPageContent', 'middleware' => ['permission:edit_basic_pages']])->name('edit-basic-pages');
 	
 	// Export
 	Route::get('/export/{id}', 'ExportController@referral')->name('export');

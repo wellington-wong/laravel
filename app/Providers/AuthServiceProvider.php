@@ -99,5 +99,9 @@ class AuthServiceProvider extends ServiceProvider
             return auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']);
         });
 
+        Gate::define('edit-basic-pages', function () {
+            return Auth::user()->can('edit_basic_pages');
+        });
+
     }
 }
