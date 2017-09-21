@@ -1,4 +1,4 @@
-        <footer>
+        <footer class="app-footer">
             <div class="container hidden">
                 <div class="row">
                     <div class="col-md-2 footer-list">

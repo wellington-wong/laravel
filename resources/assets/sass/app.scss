@@ -355,8 +355,8 @@ main {
 		color: $bg-color;
 	}
 	.main-content {
-		margin-top: 50px;
-		margin-bottom: 50px;
+		margin-top: 100px;
+		margin-bottom: 200px;
 	}	
 }
 .register-content {
@@ -397,6 +397,12 @@ footer {
  		background: $bg-color2;
  		color: $bg-color;
  	}
+}
+.app-footer {
+	background: #f0f0f0;
+	> .container {
+		visibility: hidden;
+	}
 }
 /*** Guest Footer End ***/
 
