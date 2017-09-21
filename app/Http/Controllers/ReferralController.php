@@ -79,9 +79,9 @@ class ReferralController extends Controller
         //updated_at IN OLD APP WAS reward_sent_date
         $users = User::select('users.id', 'referrals.updated_at', 'first_name', 'last_name',
             DB::raw('count(referrals.id)  as total_refs'))
-            ->leftJoin('referrals', 'referrals.user_id', '=', 'users.id')
+            ->leftJoin('referrals', 'referrals.referrer_id', '=', 'users.id')
             ->where('referrals.status', Referral::STATUS_REWARD_SENT)
-            ->where('referrals.updated_at', '>', date('Y-m-d', strtotime( date('Y') . '-01-01' )))
+            ->where('referrals.created_at', '>', date('Y-m-d', strtotime( date('Y') . '-01-01' )))
             ->where('referrals.company_id', config('company_id') )
             ->groupBy( 'users.id' )
             ->orderBy('total_refs', 'desc')
