@@ -20532,16 +20532,18 @@ $(function () {
 			// Verify that the new passwords match.
 			var newPass = $('input[name=user_new_password]');
 			var newPassConf = $('input[name=user_new_password_confirmation]');
-			if (newPass.val().length < 6 || newPassConf.val().length < 6) {
-				alert('Please enter at least six(6) characters for the password.');
-				return;
-			} else if (newPassConf.val() != newPassConf.val()) {
+			if (!newPass.val() && !newPassConf.val()) {
+				alert('Please enter a new password');
+			} else if (newPass.val() != newPassConf.val()) {
 				alert('The new passwords did not match');
+			} else if (newPass.val().length < 6 || newPassConf.val().length < 6) {
+				alert('Please enter at least six(6) characters for the password.');
 			} else {
 				ajaxHelper(url, { user_new_password: newPass.val(), user_new_password_confirmation: newPassConf.val() }, "POST", function (data) {
 					location.reload();
 				});
 			}
+			return;
 		});
 		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('Cancel').on('click', function () {
 			$membersModal.modal('hide');
