@@ -1,5 +1,5 @@
         <footer>
-            <div class="container">
+            <div class="container hidden">
                 <div class="row">
                     <div class="col-md-2 footer-list">
                         <h4>Headline 3</h4>
@@ -46,7 +46,7 @@
             </div>    
             <div class="row">
                 <div class="bottom-content text-center">
-                    <span>Copyright Stuffs</span>
+                    <span>Copyright &copy; {{ date('Y') }} Perxi</span>
                 </div>
             </div> 
         </footer>
