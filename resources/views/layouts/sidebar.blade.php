@@ -134,7 +134,8 @@
                                         @can('add-delete-admin')<li class="hidden {{ Request::is('global-settings/add-delete-admin') ? 'active' : '' }}"><a href="{{ route('add-delete-admin') }}">Add/Delete Admin</a></li>@endcan
                                         @can('define-user-roles')<li class="hidden {{ Request::is('global-settings/define-user-roles') ? 'active' : '' }}"><a href="{{ route('define-user-roles') }}">Define User Roles</a></li>@endcan
                                         @can('login-super-admin-all-accounts')<li class="hidden {{ Request::is('global-settings/login-super-admin') ? 'active' : '' }}"><a href="{{ route('login-super-admin') }}">Login as Super Admin</a></li>@endcan
-                                        @can('login-as-user') @if (!Session::get('currentUserId'))<li class="{{ Request::is('global-settings/login-as-user') ? 'active' : '' }}"><a href="{{ route('login-as-user') }}">Login as User</a></li>@endif @endcan                                        
+                                        @can('login-as-user') @if (!Session::get('currentUserId'))<li class="{{ Request::is('global-settings/login-as-user') ? 'active' : '' }}"><a href="{{ route('login-as-user') }}">Login as User</a></li>@endif @endcan 
+                                        @can('edit-basic-pages')<li class="{{ Request::is('global-settings/basic-page-content') ? 'active' : '' }}"><a href="{{ route('edit-basic-pages') }}">Edit Basic Pages</a></li>@endcan                                       
                                         @if (Session::get('currentUserId')) 
                                             <li class="{{ Request::is('login-as-origin') ? 'active' : '' }}"><a href="{{ route('login-as-origin') }}">Login as original</a></li>      
                                         @endif 
