@@ -15,15 +15,24 @@
 
         <div class="row">
             <div class="col-md-12 table-referral-wrapper table-wrapper">
+                <label>Auth Pages</label>
                 <ul>
-                  <li><a href="{{ route('company-referrals') }}">How</a></li>
-                   <li><a href="{{ route('get-company', $_company->id ) }}">Company Profile</a></li>
-                  <li><a href="{{ route('members') }}">Users</a></li>
-                  <li><a href="{{ route('program-options-referral-program-settings') }}">Referral Program Settings</a></li>
-                  <li><a href="{{ route('program-options-reward-settings') }}">Reward Settings</a></li>
-                  <li><a href="{{ route('program-options-notification-emails') }}">Notifications Emails</a></li>
-                 <li><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
-                  <li><a href="{{ route('program-options-lob') }}">Bank Account</a></li>
+                  <li><a href="">Rewards</a></li>
+                  <li><a href="">How This Works</a></li>
+                  <li><a href="">How to Get More Referrals</a></li>
+                  <li><a href="">Need help?</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 table-referral-wrapper table-wrapper">
+                <label>Guest Pages</label>
+                <ul>
+                  <li><a href="">How it Works</a></li>
+                  <li><a href="">Features</a></li>
+                  <li><a href="">About Us</a></li>
+                  <li><a href="">Pricing</a></li>
                 </ul>
             </div>
         </div>
