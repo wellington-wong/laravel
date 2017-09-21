@@ -53,8 +53,8 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><a href="javascript:void(0)" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</a></li>
-                                  <li><a href="javascript:void(0)" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</a></li>
+                                  <li><a href="javascript:void(0)" class="change-role" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</a></li>
+                                  <li><a href="javascript:void(0)" class="delete-user" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</a></li>
                                 </ul>
                               </div>
                                 <!--<div class="btn-users">
@@ -115,9 +115,9 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><a href="javascript:void(0)" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</a></li>
-                                  <li><a href="javascript:void(0)">Change Password</a></li>
-                                  <li><a href="javascript:void(0)" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</a></li>
+                                  <li><a href="javascript:void(0)" class="change-role" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</a></li>
+                                  <li><a href="javascript:void(0)" class="change-password" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-password', $member->id) }}">Change Password</a></li>
+                                  <li><a href="javascript:void(0)" class="delete-user" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</a></li>
                                 </ul>
                               </div>
 

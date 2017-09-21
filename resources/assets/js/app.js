@@ -260,7 +260,7 @@ $(function (){
     	}
     });
 
-    // Change role button
+    // Change role
 	var $membersModal = $('.members-wrapper #incentful-modal');
 	var url;
 	$('.change-role').click(function (){
@@ -281,7 +281,7 @@ $(function (){
 		url = $(this).data('url');
 	});
 
-    // Delete button
+    // Delete user
 	var $membersModal = $('.members-wrapper #incentful-modal');
 	var url;
 	$('.delete-user').click(function (){
@@ -298,6 +298,8 @@ $(function (){
 		$membersModal.modal('show');
 		url = $(this).data('url');
 	});
+
+	// Change password
 
 // END - GET MEMBERS
 
