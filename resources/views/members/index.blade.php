@@ -46,11 +46,21 @@
                             <td>{{ $member->email }}</td>
                             <td>{{ implode(', ', $member->roles()->pluck('display_name')->toArray()) }}</td>
                             @role(['superAdmin', 'globalAdmin'])
-                            <td>
-                                <div class="btn-group">
+                            <td>                     
+                              <div class="dropdown users-action">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Actions
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a href="javascript:void(0)" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</a></li>
+                                  <li><a href="javascript:void(0)" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</a></li>
+                                </ul>
+                              </div>
+                                <!--<div class="btn-users">
                                     <button class="btn btn-primary change-role" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</button>
                                     <button class="btn btn-danger delete-user" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</button>
-                                </div>
+                                </div>-->
                             </td>
                             @endrole
                         </tr>
@@ -87,7 +97,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Referrals</th>
-                            @role(['superAdmin', 'globalAdmin'])<th>Actions</th>@endrole
+                            @role(['superAdmin', 'globalAdmin'])<th></th>@endrole
                         </tr>
                     </thead> 
                     <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -98,11 +108,24 @@
                             <td>{{ $member->email }}</td>
                             <td>{{ $member->referrals()->where('company_id', $_company->id)->count() }}</td>                                   
                             @role(['superAdmin', 'globalAdmin']) 
-                            <td>
-                                <div class="btn-group">
+                            <td>                                
+                              <div class="dropdown users-action">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Actions
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a href="javascript:void(0)" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</a></li>
+                                  <li><a href="javascript:void(0)">Change Password</a></li>
+                                  <li><a href="javascript:void(0)" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</a></li>
+                                </ul>
+                              </div>
+
+                                <!--<div class="btn-group btn-users">
                                     <button class="btn btn-primary change-role" data-role-id="{{ isset($member->roles()->first()->id) ? $member->roles()->first()->id : 0 }}" data-role-name="{{ isset($member->roles()->first()->name) ? $member->roles()->first()->name : null }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-role', $member->id) }}">Change Role</button>
                                     <button class="btn btn-danger delete-user" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-delete', $member->id) }}">Delete</button>
-                                </div>
+                                    <button class="btn btn-primary change-password" data-id="{{ $member->id }}" data-name="{{ $member->getName() }}" data-url="{{ route('members-change-password', $member->id) }}">Change Password</button>
+                                </div>-->
                             </td>
                             @endrole
                         </tr>
