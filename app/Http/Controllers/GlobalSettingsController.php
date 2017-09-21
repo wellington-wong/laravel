@@ -118,4 +118,15 @@ class GlobalSettingsController extends Controller
         Session::forget( 'currentUserId' );
         return redirect(route('home'))->with('success', ['Successfully logged in back as ' . auth()->user()->getName()]);
     }
+
+    /**
+     * Show edit basic pages
+     *
+     * @return view
+     */
+    public function editBasicPages(Request $request) 
+    {   
+    
+        return view('global-settings.edit-basic-pages');
+    }
 }
