@@ -226,7 +226,7 @@ class ReferralController extends Controller
 
         $referralArray = [];  
         foreach ($referrals as $referral) {
-            $referrer_address = $referral->referrer->address()->first();
+            $referrer_address = isset($referral->referrer->address()->first()) ? $referral->referrer->address()->first() : null;
             $currentReferral = [
                 'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
                 'REFERRAL ID' => $referral->id,
