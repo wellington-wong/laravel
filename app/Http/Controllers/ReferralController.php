@@ -316,7 +316,7 @@ class ReferralController extends Controller
         $email = '';
         if (!$request->input('email')) {
             $email = str_replace(' ', '', $request->input('first_name') . '.' . $request->input('last_name')) . '.' . str_random(8);
-            $email = preg_replace("/[^a-zA-Z0-9.]+/", "", $email) . '@unim.com';
+            $email = preg_replace("/[^a-zA-Z0-9.]+/", "", $email) . '@perxi.com';
         } else {            
             $email = $request->input('email');
         }
