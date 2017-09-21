@@ -11,8 +11,10 @@ class BasicPages extends Model
 
     protected $fillable = ['company_id', 'route_name', 'title', 'content'];
 
-    const SMALL      = 1;
-    const MEDIUM       = 2;
-    const ENTERPRISE    = 3;
+    const REWARDS = 1;
+    const HOW_THIS_WORKS = 2;
+    const HOW_TO_GET_MORE_REFERRALS = 3;
+
     
+
 }
