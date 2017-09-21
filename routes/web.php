@@ -60,7 +60,7 @@ Route::post('/referral/create/{id}', 'ReferralController@postCreate')->name('pos
 Route::get('/referral/create', 'ReferralController@findForm')->name('referral-create');
 Route::post('/referral/create', 'ReferralController@postCreate')->name('post-referral-create');
 Route::get('/referral/check-duplicate', 'ReferralController@checkDuplicate')->name('check-duplicate');
-Route::get('/referral/rewards', 'ReferralController@rewards')->name('referral-rewards');
+Route::get('/referral/rewards', ['uses' => 'ReferralController@rewards', 'middleware' => ['role:member|admin|superAdmin|globalAdmin']])->name('referral-rewards');
 Route::get('/referral/history', 'ReferralController@history')->name('referral-history');
 Route::get('/referral/history/{id}', 'ReferralController@historyDetails')->name('referral-history-details');
 Route::get('/referral/export', 'ReferralController@referralsExport')->name('referrals-export');
@@ -76,8 +76,8 @@ Route::get('/about-us', 'BasicPageController@aboutUs')->name('about-us');
 Route::get('/pricing', 'BasicPageController@pricing')->name('pricing');
 Route::get('/contact', 'BasicPageController@contact')->name('contact');
 Route::post('/contact', 'BasicPageController@postContact')->name('contact');
-Route::get('/how-this-works', 'BasicPageController@howThisWorks')->name('how-this-works');
-Route::get('/how-to-get-more-referrals', 'BasicPageController@howToGetMoreReferrals')->name('how-to-get-more-referrals');
+Route::get('/how-this-works', ['uses' => 'BasicPageController@howThisWorks', 'middleware' => ['role:member|admin|superAdmin|globalAdmin']])->name('how-this-works');
+Route::get('/how-to-get-more-referrals', ['uses' => 'BasicPageController@howToGetMoreReferrals', 'middleware' => ['role:member|admin|superAdmin|globalAdmin']])->name('how-to-get-more-referrals');
 
 // Manage Account
 Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-account');
