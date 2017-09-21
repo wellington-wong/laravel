@@ -314,7 +314,6 @@ $(function (){
 				alert('The new passwords did not match');
 			} else {
 				ajaxHelper(url, {user_new_password: newPass.val(), user_new_password_confirmation: newPassConf.val()}, "POST", function (data){
-					//console.log(data);
 			    	location.reload();
 				});
 			}
@@ -1145,15 +1144,6 @@ $(function (){
 	        type: 'put'
 	    }        
 	});
-
-	//ajax emulation
-	$.mockjax({
-	    url: '/post',
-	    responseTime: 200,
-	    response: function(settings) {
-	        console.log(settings);
-	    }
-	}); 
 
 // END X-EDITABLE
 

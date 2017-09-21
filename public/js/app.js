@@ -20539,7 +20539,6 @@ $(function () {
 				alert('The new passwords did not match');
 			} else {
 				ajaxHelper(url, { user_new_password: newPass.val(), user_new_password_confirmation: newPassConf.val() }, "POST", function (data) {
-					//console.log(data);
 					location.reload();
 				});
 			}
@@ -21298,15 +21297,6 @@ $(function () {
 		title: 'Enter username',
 		ajaxOptions: {
 			type: 'put'
-		}
-	});
-
-	//ajax emulation
-	$.mockjax({
-		url: '/post',
-		responseTime: 200,
-		response: function response(settings) {
-			console.log(settings);
 		}
 	});
 

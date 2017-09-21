@@ -94,6 +94,7 @@ class MembersController extends Controller
     public function changePassword(Request $request, $id)
     {
         // Delete user, user's phone and address
+        if ($request->get('user_new_password') != $request->get('user_new_password_confirmation')) { return 'Password Mismatch'; }
         $user = User::find($id);
         $user->password = Hash::make($request->get('user_new_password'));
         $user->save();
