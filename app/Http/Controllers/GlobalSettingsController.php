@@ -120,6 +120,17 @@ class GlobalSettingsController extends Controller
     }
 
     /**
+     * Show edit pages
+     *
+     * @return view
+     */
+    public function editPages(Request $request) 
+    {   
+    
+        return view('global-settings.edit-pages');
+    }
+
+    /**
      * Show edit basic pages
      *
      * @return view
@@ -128,5 +139,16 @@ class GlobalSettingsController extends Controller
     {   
     
         return view('global-settings.edit-basic-pages');
+    }
+
+    /**
+     * Show edit member pages
+     *
+     * @return view
+     */
+    public function editMemberPages(Request $request) 
+    {   
+    
+        return view('global-settings.edit-member-pages');
     }
 }
