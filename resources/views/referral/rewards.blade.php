@@ -8,12 +8,13 @@
         @include('layouts.page-header', ['header' => 'Rewards', 'col' => 12])
         </div>
         <div class="row">
-            <div class="col-md-12 no-padding-lr">
-                <p>Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei. Cum modo inani ex, eu vidit ipsum sadipscing mei. Mel te reque ornatus oportere, ius maiorum mediocrem iudicabit ne. Iriure dolorum complectitur usu cu, primis deseruisse et duo.</p>
-                <p>Pro adhuc aliquip numquam et. Id vim meis vidisse luptatum, vix case fastidii no. Ponderum cotidieque appellantur usu ex, legimus reprehendunt nam ex, at bonorum fabulas definitionem mei. Nec solet fabulas ocurreret te, scripta similique moderatius nec et. In regione detracto qui, et postea nemore labores per. Ad tation ubique sensibus sea, eum laudem eruditi fierent id, quaestio assentior elaboraret eam id. Veri vivendo appetere sea no.</p>
-                <p>Labitur complectitur vel ea. Vis falli oportere ei, assentior consectetuer vel ei. Id sea dictas meliore. Ut eam fabulas periculis. Populo pericula vel ea, nulla doctus deleniti vis ea, sea ut partiendo patrioque iracundia.</p>
-                <p>Vide definitiones ex eam. Pro mazim propriae ex, et sea purto omittantur, pri in stet eligendi mandamus. Te cum eirmod debitis persecuti. Usu odio quando luptatum in. Alienum quaerendum neglegentur an per, odio vide exerci eu ius, fabellas petentium vix et. Vel eu quod essent, no eos aeque sapientem facilisis.</p>
-                <p>Cu rationibus sadipscing eam, ut ius vero aperiam, quo ne nostro labitur consulatu. Cu vim assum ignota similique, eius comprehensam mei ea. Ut decore aeterno aperiri usu, at usu illud persecuti, solet nonumes adversarium ex vel. Cum eu voluptaria persequeris, in mei quem fabulas, est luptatum adipiscing cu. Mel at dolorum admodum, ea malorum omnesque disputando mei, mel eruditi voluptua ne.</p>
+            <div class="col-md-12 no-padding-lr">            
+                Rewards
+                As a Cool Cash Rewards Club member, you are offered an assortment of membership perks. Following your account creation, you will need to verify that your referral’s AC installation has successfully been completed with All Year Cooling and then you will receive a $100 Cash Gift Card. You can refer your friends, family and coworkers to All Year Cooling and receive the $100 Gift Card every time. There is no limit to the number of referrals you complete.
+                In addition to the referral gift card, each Cool Cash Rewards member is eligible to win monthly raffles, giveaways and other exclusive offers. All Year Cooling offers prizes for everyone. Our raffles and giveaways can range from tickets like Marlins games to Disney on Ice. 
+                Membership of the Year Award
+                All Year Cooling is appreciative of every customer and referral that is brought our way! To make the Cool Cash Rewards Club even cooler, we are honoring our top selling member every year. No referrals go unnoticed at All Year Cooling. As we receive your referrals, we’ll post our top members on the Leader Board where you can see where you stand in the race for the final award. For the Cool Cash Rewards member that refers the most AC installations, All Year Cooling will grant you the Member of the Year Award! 
+                Clear your calendars because the recipient of the Member of the Year Award is hopping aboard one of the fun vessels of Carnival Cruise Lines on a 7-night Cruise for two!
             </div>
         </div>
     </div>

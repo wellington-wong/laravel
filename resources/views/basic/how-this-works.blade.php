@@ -9,7 +9,26 @@
         </div>
         <div class="row">
             <div class="col-md-12 no-padding-lr">
-                  <strong>Create your program</strong>
+
+                  Our referral program is simple. Once you you’ve created your free account you can refer as many people as you want and get rewarded for it! 
+                  Step 1. 
+                  Register Online or by Phone
+                  Click here to register online or simply call us at (888) 576-5692 and we’ll get your account started.
+                  Step 2. 
+                  Spread the Word
+                  Spread the word to friends, family or colleagues! You can log and track your referral with our Cool Cash Club referral program online or by phone. With our rewards club, there aren’t any limits to how many referrals you send our way. The more referrals you have, the more you can earn!
+                  Step 3. 
+                  Receive Awards
+                  After your referral’s All Year Cooling AC installation is completed, change your Referral Status to “Installation Completed”. Once you’ve recorded it as complete, we will verify the installation and then all you have to do is wait for your $100 cash gift card in the mail.
+
+                  Club Member Benefits
+                  $100 cash gift card for each referral with a verified, completed All Year Cooling installation.
+                  Monthly raffles and giveaways
+                  Get a chance to be featured in our print ads.
+                  Access to all our Referral Tools to generate more referrals.
+
+            
+                  <!--<strong>Create your program</strong>
                     <p>All you need is a name and a credit card. We handle the rest! </p>
 
                   <strong>Send your customers to a unique subdomain so they can start submitting referrals.</strong>
@@ -29,7 +48,7 @@
                     <li>Easy to use interface for customers to submit and keep track of referrals and reward status.</li>
                     <li>Custom email templates so your customers stay updated.</li>
                     <li>Option for a leader board to provide further incentives for your customers.</li>
-                  </ul>
+                  </ul>-->
             </div>
         </div>
     </div>
