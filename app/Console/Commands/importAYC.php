@@ -123,18 +123,20 @@ class importAYC extends Command
             $userIdByRewardsId[$au->id] = $u->id;
 
         }
+        //exit;
 
         $ayc_referrals = DB::table('rewards_referrals')->get();
 
         foreach ( $ayc_referrals as $au ) {
 
             $email = $au->email;
-            if ('' == $email) {
+            if ('' == $email || User::where('email', $email)->exists() ) {
                 $email = $au->first_name . "." . $au->last_name . '@' . config('app.domain');
                 $email = strtolower($email);
             }
 
-            if ( !User::where('email', $email)->exists() && $au->deleted != 1 && '' != $au->first_name ) {
+            if ( ( !User::where('email', $email)->where('first_name', $au->first_name)->exists() )
+                && $au->deleted != 1 && '' != $au->first_name ) {
 
                 $u = new User();
                 $u->email = $email;
