@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use Illuminate\Support\Facades\Hash;
 
 class MembersController extends Controller
 {
@@ -81,6 +82,21 @@ class MembersController extends Controller
             $changeUserRole->detachRole(Role::find($request->input('role_id')));
             return $changeUserRole->attachRole(Role::find($request->input('role_id_new')));
         } 
+
+        return;
+    }
+
+    /**
+     * Change user password
+     *
+     * @return
+     */
+    public function changePassword(Request $request, $id)
+    {
+        // Delete user, user's phone and address
+        $user = User::find($id);
+        $user->password = Hash::make($request->get('user_new_password'));
+        $user->save();
 
         return;
     }

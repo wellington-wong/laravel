@@ -20530,17 +20530,17 @@ $(function () {
 		$membersModal.find('.modal-body').append('<div><span>Re-enter new password: </span></div><input type="password" class="form-control" name="user_new_password_confirmation">');
 		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Change Password').on('click', function () {
 			// Verify that the new passwords match.
-			if ($('input[name=user_new_password]').val().length < 6 || $('input[name=user_new_password_confirmation]').val() < 6) {
-				alert($('input[name=user_new_password]').val().length);
-				alert($('input[name=user_new_password_confirmation]').val().length);
+			var newPass = $('input[name=user_new_password]');
+			var newPassConf = $('input[name=user_new_password_confirmation]');
+			if (newPass.val().length < 6 || newPassConf.val().length < 6) {
 				alert('Please enter at least six(6) characters for the password.');
 				return;
-			} else if ($('input[name=user_new_password]').val() != $('input[name=user_new_password_confirmation]').val()) {
+			} else if (newPassConf.val() != newPassConf.val()) {
 				alert('The new passwords did not match');
 			} else {
-				ajaxHelper(url, [], "POST", function (data) {
-					console.log(data);
-					//location.reload();
+				ajaxHelper(url, { user_new_password: newPass.val(), user_new_password_confirmation: newPassConf.val() }, "POST", function (data) {
+					//console.log(data);
+					location.reload();
 				});
 			}
 		});
