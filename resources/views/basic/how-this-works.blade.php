@@ -10,24 +10,31 @@
         <div class="row">
             <div class="col-md-12 no-padding-lr">
 
-                  Our referral program is simple. Once you you’ve created your free account you can refer as many people as you want and get rewarded for it! 
-                  Step 1. 
-                  Register Online or by Phone
-                  Click here to register online or simply call us at (888) 576-5692 and we’ll get your account started.
-                  Step 2. 
-                  Spread the Word
-                  Spread the word to friends, family or colleagues! You can log and track your referral with our Cool Cash Club referral program online or by phone. With our rewards club, there aren’t any limits to how many referrals you send our way. The more referrals you have, the more you can earn!
-                  Step 3. 
-                  Receive Awards
-                  After your referral’s All Year Cooling AC installation is completed, change your Referral Status to “Installation Completed”. Once you’ve recorded it as complete, we will verify the installation and then all you have to do is wait for your $100 cash gift card in the mail.
+                  <p>Our referral program is simple. Once you you’ve created your free account you can refer as many people as you want and get rewarded for it!</p>
+                  
+                  <p><strong>Step 1.</strong></p>
+                  <p><strong><em>Register Online or by Phone</em></strong></p>
+                  <p>Click here to register online or simply call us at (888) 576-5692 and we’ll get your account started.</p>
+                  
+                  <p><strong>Step 2.</strong></p>
+                  <p><strong><em>Spread the Word</em></strong></p>
+                  <p>Spread the word to friends, family or colleagues! You can log and track your referral with our Cool Cash Club referral program online or by phone. With our rewards club, there aren’t any limits to how many referrals you send our way. The more referrals you have, the more you can earn!</p>
+                  
+                  <p><strong>Step 3.</strong></p>
+                  <p><strong><em>Receive Awards</em></strong></p>
+                  <p>After your referral’s All Year Cooling AC installation is completed, change your Referral Status to “Installation Completed”. Once you’ve recorded it as complete, we will verify the installation and then all you have to do is wait for your $100 cash gift card in the mail.</p>
 
-                  Club Member Benefits
-                  $100 cash gift card for each referral with a verified, completed All Year Cooling installation.
-                  Monthly raffles and giveaways
-                  Get a chance to be featured in our print ads.
-                  Access to all our Referral Tools to generate more referrals.
+                  <p>&nbsp;</p>
 
-            
+                  <p><strong>Club Member Benefits</strong></p>
+                  <ul>
+                    <li>$100 cash gift card for each referral with a verified, completed All Year Cooling installation.</li>
+                    <li>Monthly raffles and giveaways</li>
+                    <li>Get a chance to be featured in our print ads.</li>
+                    <li>Access to all our Referral Tools to generate more referrals.</li>
+                  </ul>
+
+
                   <!--<strong>Create your program</strong>
                     <p>All you need is a name and a credit card. We handle the rest! </p>
 
