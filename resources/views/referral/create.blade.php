@@ -23,16 +23,21 @@
                     </div>
                 </div>
             {{ Form::close() }}
-        {{--@if( isset($form->raw_form_json) )
-        @else
-            @role(['member'])
-                The {{ $_company->company_name }} referral form is not yet available.                
-            @endrole
-            @role(['admin', 'superAdmin', 'globalAdmin'])
-                The {{ $_company->company_name }} referral form is not yet available, click <a href="{{ route('program-options-referral-program-settings') }}">here</a> to create one.
-            @endrole
-        @endif--}}
-        <div class="clearfix"></div>
+            {{--@if( isset($form->raw_form_json) )
+            @else
+                @role(['member'])
+                    The {{ $_company->company_name }} referral form is not yet available.                
+                @endrole
+                @role(['admin', 'superAdmin', 'globalAdmin'])
+                    The {{ $_company->company_name }} referral form is not yet available, click <a href="{{ route('program-options-referral-program-settings') }}">here</a> to create one.
+                @endrole
+            @endif--}}
+            <div class="clearfix"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <small>If you do not know your referral's email address please enter firstname.lastname@unim.com to create a unique email.</small>
+            </div>
         </div>
         <div class="old-input hidden">            
             @foreach (session()->getOldInput() as $key => $val)
