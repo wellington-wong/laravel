@@ -282,8 +282,6 @@ $(function (){
 	});
 
     // Delete user
-	var $membersModal = $('.members-wrapper #incentful-modal');
-	var url;
 	$('.delete-user').click(function (){
    		$membersModal.find('.modal-title').text('Delete User Confirmation');
    		$membersModal.find('.modal-body').text('Are you sure you want to delete user ' + $(this).data('name') + '?');
@@ -300,6 +298,33 @@ $(function (){
 	});
 
 	// Change password
+	$('.change-password').click(function (){
+   		$membersModal.find('.modal-title').text('Change Password Confirmation');
+   		$membersModal.find('.modal-body').html('<div><span>Enter new password for ' + $(this).data('name') + ':</span></div><div><input type="password" class="form-control" name="user_new_password"></div>');
+   		$membersModal.find('.modal-body').append('<div>&nbsp;</div>');
+   		$membersModal.find('.modal-body').append('<div><span>Re-enter new password: </span></div><input type="password" class="form-control" name="user_new_password_confirmation">');
+   		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Change Password').on('click', function (){
+   			// Verify that the new passwords match.
+			if ($('input[name=user_new_password]').val().length < 6 || $('input[name=user_new_password_confirmation]').val() < 6) {
+				alert($('input[name=user_new_password]').val().length);
+				alert($('input[name=user_new_password_confirmation]').val().length);
+				alert('Please enter at least six(6) characters for the password.');
+				return;
+			} else if ($('input[name=user_new_password]').val() != $('input[name=user_new_password_confirmation]').val()) {
+				alert('The new passwords did not match');
+			} else {
+				ajaxHelper(url, [], "POST", function (data){
+					console.log(data);
+			    	//location.reload();
+				});
+			}
+		});
+   		$membersModal.find('.modal-footer').find('.cancel').addClass('btn-danger').text('Cancel').on('click', function (){
+			$membersModal.modal('hide');
+		});
+		$membersModal.modal('show');
+		url = $(this).data('url');
+	});
 
 // END - GET MEMBERS
 
