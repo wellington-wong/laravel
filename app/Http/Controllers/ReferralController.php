@@ -6,6 +6,7 @@ use App\ReferralForms;
 use App\ReferralValues;
 use App\User;
 use App\Phone;
+use App\BasicPages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
@@ -557,10 +558,10 @@ class ReferralController extends Controller
      **/
     public function rewards( Request $request ) {
 
-        $referrals = $request->user()->referrals()->paginate(15);
+        $page = BasicPages::where('route_name', 'referral-rewards')->first();
 
         return view('referral.rewards')
-            ->with(compact('referrals'));
+            ->with(compact('page'));
     }
 
     /**

@@ -3,5 +3,7 @@
 @section('pageTitle', isset($page->title) ? $page->title : null)
 
 @section('content')
-    {!!  isset($page->content) ? $page->content : 'Content unavailable.' !!}
+    <div class="row">
+        {!!  isset($page->content) ? $page->content : 'Content unavailable.' !!}
+    </div>
 @endsection
