@@ -15,7 +15,9 @@ class BasicPageController extends Controller
      */
     public function howItWorks(Request $request)
     {
-		return View('basic.how-it-works');
+        $page = BasicPages::where('route_name', 'how-it-works')->where('company_id', 0)->first();
+        return View('basic.how-it-works')
+            ->with(compact('page'));
     }
 
     /**
@@ -33,7 +35,9 @@ class BasicPageController extends Controller
      */
     public function aboutUs(Request $request)
     {
-		return View('basic.about-us');
+        $page = BasicPages::where('route_name', 'about-us')->where('company_id', 0)->first();
+        return View('basic.about-us')
+            ->with(compact('page'));
     }
 
     /**
@@ -51,7 +55,9 @@ class BasicPageController extends Controller
      */
     public function contact(Request $request)
     {
-		return View('basic.contact');
+        $page = BasicPages::where('route_name', 'contact')->where('company_id', 0)->first();
+        return View('basic.contact')
+            ->with(compact('page'));
     }
 
     /**

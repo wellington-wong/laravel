@@ -18,16 +18,13 @@
                 <div class="row">
                     <div class="col-md-12 main-content">
                         <div class="panel panel-default">
-							
-                            <div class="panel-header">
-									<h3>Contact Us</h3>
-                            </div>
 								@if(session()->has('success'))
 									<div class="alert alert-success">
 									{{ session()->get('success') }}
 									</div>
 								@endif
-                            <div class="panel-body">                            	
+                            <div class="panel-body">                    
+                    			{!!  isset($page->content) ? $page->content : null !!}        	
                             	{!! Form::open(array('route' => 'contact', 'class' => 'form', 'id' => 'contact-form')) !!}
 								<div class="form-group">
 								    {!! Form::label('Your Name') !!}

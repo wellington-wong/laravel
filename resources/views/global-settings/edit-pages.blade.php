@@ -15,10 +15,10 @@
             <div class="col-md-12 table-referral-wrapper table-wrapper">
                 <label>Auth Pages</label>
                 <ul>
-                  <li><a href="{{ route('edit-basic-page', 'referral-rewards') }}">Rewards</a></li>
-                  <li><a href="{{ route('edit-basic-page', 'how-this-works') }}">How This Works</a></li>
-                  <li><a href="{{ route('edit-basic-page', 'how-to-get-more-referrals') }}">How to Get More Referrals</a></li>
-                  <li><a href="{{ route('edit-basic-page', 'help') }}">Need Help?</a></li>
+                  <li><a href="{{ route('edit-member-page', 'referral-rewards') }}">Rewards</a></li>
+                  <li><a href="{{ route('edit-member-page', 'how-this-works') }}">How This Works</a></li>
+                  <li><a href="{{ route('edit-member-page', 'how-to-get-more-referrals') }}">How to Get More Referrals</a></li>
+                  <li><a href="{{ route('edit-member-page', 'help') }}">Need Help?</a></li>
                 </ul>
             </div>
         </div>
@@ -28,10 +28,11 @@
             <div class="col-md-12 table-referral-wrapper table-wrapper">
                 <label>Guest Pages</label>
                 <ul>
-                  <li><a href="{{ route('edit-member-page', 'how-it-works') }}">How it Works</a></li>
-                  <li><a href="{{ route('edit-member-page', 'features') }}">Features</a></li>
-                  <li><a href="{{ route('edit-member-page', 'about-us') }}">About Us</a></li>
-                  <li><a href="{{ route('edit-member-page', 'pricing') }}">Pricing</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'how-it-works') }}">How it Works</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'features') }}">Features</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'about-us') }}">About Us</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'pricing') }}">Pricing</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'contact') }}">Contact Us</a></li>
                 </ul>
             </div>
         </div>

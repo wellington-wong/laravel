@@ -172,7 +172,7 @@ class GlobalSettingsController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        $request->merge(['company_id' => $request->_company->id]);
+        $request->merge(['company_id' => 0]);
         $request->merge(['route_name' => $route]);
 
         if ( $page = BasicPages::where('route_name', $route)->first() ?: null ) {
@@ -220,7 +220,7 @@ class GlobalSettingsController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        $request->merge(['company_id' => 0]);
+        $request->merge(['company_id' => $request->_company->id]);
         $request->merge(['route_name' => $route]);
 
         if ( $page = BasicPages::where('route_name', $route)->first() ?: null ) {
