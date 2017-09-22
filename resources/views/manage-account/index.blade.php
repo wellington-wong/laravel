@@ -17,7 +17,7 @@
             <div class="col-md-12 no-padding-lr">
     	        {{ Form::open(['route'=>'post-account-update', 'enctype' => 'multipart/form-data', 'id' => 'update-user-form', 'class' => 'update-form']) }}
 
-    	        <div class="col-md-6">
+    	        <div class="form-group col-md-6">
     	        	{{ Form::text('name', auth()->user()->name, ['placeholder' => 'Name', 'class' => 'form-control' . ($errors->has('name') ? ' has-error' : '')]) }}
     	        </div>
 
