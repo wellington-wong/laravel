@@ -5,6 +5,7 @@ use App\User;
 use App\Role;
 use App\Permission;
 use App\Company;
+use App\RoleUser;
 
 class DatabaseSeeder extends Seeder
 {
@@ -89,10 +90,10 @@ class DatabaseSeeder extends Seeder
                 $userObj->save();
             }
             // Assign role to each user created
-            if (isset($role[$user[3]])) {
+            if (isset($role[$user[3]]) && !RoleUser::where('user_id', $userObj->id)->where('company_id', $company->id)->where('role_id', $role[$user[3]]->id)->first()) {
                 $userObj->attachRole($role[$user[3]], $company);
             }
         }
-
+ 
     }
 }
