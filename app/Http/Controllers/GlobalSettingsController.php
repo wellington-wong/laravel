@@ -149,11 +149,34 @@ class GlobalSettingsController extends Controller
     }
 
     /**
+     * Post edit basic pages
+     *
+     * @return view
+     */
+    public function postEditBasicPages( Request $request, $route ) 
+    {   
+        
+        return view('global-settings.edit-basic-pages')
+            ->with(compact('route'));
+    }
+
+    /**
      * Show edit member pages
      *
      * @return view
      */
     public function editMemberPages(Request $request) 
+    {   
+    
+        return view('global-settings.edit-member-pages');
+    }
+
+    /**
+     * Post edit member pages
+     *
+     * @return view
+     */
+    public function postEditMemberPages(Request $request) 
     {   
     
         return view('global-settings.edit-member-pages');

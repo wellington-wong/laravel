@@ -112,7 +112,9 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/global-settings/user-role-change', ['uses' => 'GlobalSettingsController@userRoleChange', 'middleware' => ['permission:login_as_user']])->name('user-role-change');
 	Route::get('/global-settings/edit-pages/', ['uses' => 'GlobalSettingsController@editPages', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('edit-pages');
 	Route::get('/global-settings/edit-member-pages/{id}', ['uses' => 'GlobalSettingsController@editMemberPages', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('edit-member-pages');
+	Route::post('/global-settings/edit-member-pages/{id}', ['uses' => 'GlobalSettingsController@postEditMemberPages', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('post-edit-member-pages');
 	Route::get('/global-settings/edit-basic-pages/{id}', ['uses' => 'GlobalSettingsController@editBasicPages', 'middleware' => ['role:globalAdmin']])->name('edit-basic-pages');
+	Route::post('/global-settings/edit-basic-pages/{id}', ['uses' => 'GlobalSettingsController@postEditBasicPages', 'middleware' => ['role:globalAdmin']])->name('post-edit-basic-pages');
 	
 	// Export
 	Route::get('/export/{id}', 'ExportController@referral')->name('export');

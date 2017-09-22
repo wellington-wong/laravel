@@ -23,7 +23,7 @@
         <div class="row">
             <div class="form-group">
             {{ Form::label('content', 'Content') }}
-            {{ Form::textarea('content', old('content'), ['class' => 'form-control tinymce']) }}
+            {{ Form::textarea('content', (isset(\App\BasicPages::$pageTypes[$route]) ? \App\BasicPages::$pageTypes[$route] : old('content')), ['class' => 'form-control tinymce']) }}
             </div>
         </div>
           {{ Form::close() }}
