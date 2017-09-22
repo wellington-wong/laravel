@@ -8,6 +8,7 @@ use App\User;
 use App\BasicPages;
 use Auth;
 use Session;
+use Illuminate\Support\Facades\Validator;
 
 class GlobalSettingsController extends Controller
 {
@@ -144,8 +145,11 @@ class GlobalSettingsController extends Controller
     public function editBasicPage( Request $request, $route ) 
     {   
         
+        $basicPage = BasicPages::where('route_name', $route)->first();
+        $loremIpsum = 'Lorem ipsum dolor sit amet, quo quidam tacimates et, cum primis neglegentur reprehendunt et. At zril graecis lucilius pri. Ne meliore euripidis scripserit sit, eum labitur facilis deseruisse ne, eam id volutpat interpretaris. Eam ut habeo soluta indoctum. Id nec quot nostro postulant, cu sed vidit mazim, ea repudiandae vituperatoribus mel. Eius aeque ea ius.';
+
         return view('global-settings.edit-basic-pages')
-            ->with(compact('route'));
+            ->with(compact('basicPage', 'route', 'loremIpsum'));
     }
 
     /**
@@ -155,6 +159,19 @@ class GlobalSettingsController extends Controller
      */
     public function postEditBasicPage( Request $request, $route ) 
     {   
+
+        $rules = [
+            'title'=>'required',
+            'content'=>'required',
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
         $request->merge(['company_id' => $request->_company->id]);
         $request->merge(['route_name' => $route]);
 
@@ -164,8 +181,6 @@ class GlobalSettingsController extends Controller
             $page = new BasicPages();
             $page->create($request->all());      
         }
-
-
         
         return back()->with('success', ['Page successfully saved']);
     }
@@ -175,10 +190,14 @@ class GlobalSettingsController extends Controller
      *
      * @return view
      */
-    public function editMemberPage(Request $request) 
+    public function editMemberPage(Request $request, $route) 
     {   
-    
-        return view('global-settings.edit-member-pages');
+        
+        $basicPage = BasicPages::where('route_name', $route)->first();
+        $loremIpsum = 'Lorem ipsum dolor sit amet, quo quidam tacimates et, cum primis neglegentur reprehendunt et. At zril graecis lucilius pri. Ne meliore euripidis scripserit sit, eum labitur facilis deseruisse ne, eam id volutpat interpretaris. Eam ut habeo soluta indoctum. Id nec quot nostro postulant, cu sed vidit mazim, ea repudiandae vituperatoribus mel. Eius aeque ea ius.';
+
+        return view('global-settings.edit-member-pages')
+            ->with(compact('basicPage', 'route', 'loremIpsum'));
     }
 
     /**
@@ -186,9 +205,31 @@ class GlobalSettingsController extends Controller
      *
      * @return view
      */
-    public function postEditMemberPage(Request $request) 
+    public function postEditMemberPage(Request $request, $route) 
     {   
-    
-        return view('global-settings.edit-member-pages');
+
+        $rules = [
+            'title'=>'required',
+            'content'=>'required',
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+        $request->merge(['company_id' => 0]);
+        $request->merge(['route_name' => $route]);
+
+        if ( $page = BasicPages::where('route_name', $route)->first() ?: null ) {
+            $page->update($request->all());            
+        } else {
+            $page = new BasicPages();
+            $page->create($request->all());      
+        }
+        
+        return back()->with('success', ['Page successfully saved']);
     }
 }

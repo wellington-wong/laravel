@@ -23,17 +23,19 @@
             </div>
         </div>
 
+        @role(['globalAdmin'])
         <div class="row">
             <div class="col-md-12 table-referral-wrapper table-wrapper">
                 <label>Guest Pages</label>
                 <ul>
-                  <li><a href="{{ route('how-it-works', ['edit' => 'how-it-works']) }}">How it Works</a></li>
-                  <li><a href="{{ route('features', ['edit' => 'features']) }}">Features</a></li>
-                  <li><a href="{{ route('about-us', ['edit' => 'about-us']) }}">About Us</a></li>
-                  <li><a href="{{ route('pricing', ['edit' => 'pricing']) }}">Pricing</a></li>
+                  <li><a href="{{ route('edit-member-page', ['edit' => 'how-it-works']) }}">How it Works</a></li>
+                  <li><a href="{{ route('edit-member-page', ['edit' => 'features']) }}">Features</a></li>
+                  <li><a href="{{ route('edit-member-page', ['edit' => 'about-us']) }}">About Us</a></li>
+                  <li><a href="{{ route('edit-member-page', ['edit' => 'pricing']) }}">Pricing</a></li>
                 </ul>
             </div>
         </div>
+        @endrole
 
     </div>
 @endsection
