@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\BasicPages;
 use App\Notifications\ContactFormMessage;
 
 class BasicPageController extends Controller
@@ -70,7 +71,9 @@ class BasicPageController extends Controller
      */
     public function howThisWorks(Request $request)
     {
-        return View('basic.how-this-works');
+        $page = BasicPages::where('route_name', 'how-this-works')->where('company_id', $request->_company->id)->first();
+        return View('basic.how-this-works')
+            ->with(compact('page'));
     }
 
     /**
