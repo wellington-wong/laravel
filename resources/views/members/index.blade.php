@@ -141,7 +141,7 @@
         </div>
 
         @include('layouts.modal')
-        <div class="member-roles">
+        <div class="member-roles hidden">
             <div class="clearfix">&nbsp;</div>
             <div class="row">
                 <div class="col-md-12">
