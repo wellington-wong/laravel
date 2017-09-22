@@ -1,4 +1,4 @@
-@section('pageTitle', 'About Us')
+@section('pageTitle', isset($page->title) ? $page->title : null)
 @include('auth.document-top')
         <!-- Start Header -->
         <header>

@@ -23,7 +23,9 @@ class BasicPageController extends Controller
      */
     public function features(Request $request)
     {
-		return View('basic.features');
+        $page = BasicPages::where('route_name', 'features')->where('company_id', 0)->first();
+        return View('basic.features')
+            ->with(compact('page'));
     }
 
     /**
@@ -39,7 +41,9 @@ class BasicPageController extends Controller
      */
     public function pricing(Request $request)
     {
-		return View('basic.pricing');
+        $page = BasicPages::where('route_name', 'pricing')->where('company_id', 0)->first();
+        return View('basic.pricing')
+            ->with(compact('page'));
     }
 
     /**
