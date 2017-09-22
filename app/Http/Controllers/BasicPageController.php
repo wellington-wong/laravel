@@ -81,6 +81,9 @@ class BasicPageController extends Controller
      */
     public function howToGetMoreReferrals(Request $request)
     {
-        return View('basic.how-to-get-more-referrals');
+        $page = BasicPages::where('route_name', 'how-to-get-more-referrals')->where('company_id', $request->_company->id)->first();
+
+        return View('basic.how-to-get-more-referrals')
+            ->with(compact('page'));
     }
 }
