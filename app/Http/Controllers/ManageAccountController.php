@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Phone;
 use App\Address;
+use App\BasicPages;
 use Illuminate\Support\Facades\Validator;
 
 class ManageAccountController extends Controller
@@ -93,6 +94,9 @@ class ManageAccountController extends Controller
      */
     public function help( Request $request )
     {
-        return view('manage-account.help');
+        $page = BasicPages::where('route_name', 'help')->first();
+
+        return view('manage-account.help')
+            ->with(compact('page'));
     }
 }
