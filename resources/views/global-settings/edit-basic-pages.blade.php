@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Login as user')
+@section('pageTitle', 'Edit Basic Page')
 
 @section('content')
 
     <div class="container-fluid members-wrapper">        
 
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Edit Basic Pages', 'col' => 3])
+            @include('layouts.page-header', ['header' => 'Edit Basic Page', 'col' => 3])
         </div>
 
         <div class="clearfix"></div>

@@ -141,7 +141,7 @@ class GlobalSettingsController extends Controller
      *
      * @return view
      */
-    public function editBasicPages( Request $request, $route ) 
+    public function editBasicPage( Request $request, $route ) 
     {   
         
         return view('global-settings.edit-basic-pages')
@@ -153,7 +153,7 @@ class GlobalSettingsController extends Controller
      *
      * @return view
      */
-    public function postEditBasicPages( Request $request, $route ) 
+    public function postEditBasicPage( Request $request, $route ) 
     {   
         
         return view('global-settings.edit-basic-pages')
@@ -165,7 +165,7 @@ class GlobalSettingsController extends Controller
      *
      * @return view
      */
-    public function editMemberPages(Request $request) 
+    public function editMemberPage(Request $request) 
     {   
     
         return view('global-settings.edit-member-pages');
@@ -176,7 +176,7 @@ class GlobalSettingsController extends Controller
      *
      * @return view
      */
-    public function postEditMemberPages(Request $request) 
+    public function postEditMemberPage(Request $request) 
     {   
     
         return view('global-settings.edit-member-pages');
