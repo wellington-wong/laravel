@@ -11,26 +11,28 @@ class BasicPages extends Model
 
     protected $fillable = ['company_id', 'route_name', 'title', 'content'];
 
-    const REWARDS = 1;
-    const HOW_THIS_WORKS = 2;
-    const HOW_TO_GET_MORE_REFERRALS = 3;
+    const REWARDS = 'referral-rewards';
+    const HOW_THIS_WORKS = 'how-this-works';
+    const HOW_TO_GET_MORE_REFERRALS = 'how-to-get-more-referrals';
+    const NEED_HELP = 'help';
 
-    const HOW_IT_WORKS = 4;
-    const FEATURES = 5;
-    const ABOUT_US = 6;
-    const PRICING = 7;
-    const CONTACT_US = 8;
+    const HOW_IT_WORKS = 'how-it-works';
+    const FEATURES = 'features';
+    const ABOUT_US = 'about-us';
+    const PRICING = 'pricing';
+    const CONTACT_US = 'contact';
 
     static $pageTypes = [
-        self::REWARDS => 'referral-rewards',
-        self::HOW_THIS_WORKS => 'how-this-works',
-        self::HOW_TO_GET_MORE_REFERRALS => 'how-to-get-more-referrals',
-        
-        self::HOW_IT_WORKS => 'how-it-works',
-        self::FEATURES => 'features',
-        self::ABOUT_US => 'about-us',
-        self::PRICING => 'pricing',
-        self::CONTACT_US => 'contact',
+        self::REWARDS => 'Rewards',
+        self::HOW_THIS_WORKS => 'How This Works',
+        self::HOW_TO_GET_MORE_REFERRALS => 'How to Get More Referrals',
+        self::NEED_HELP => 'Need Help?',
+
+        self::HOW_IT_WORKS => 'How it Works',
+        self::FEATURES => 'Features',
+        self::ABOUT_US => 'About Us',
+        self::PRICING => 'Pricing',
+        self::CONTACT_US => 'Contact Us',
     ];
 
 
