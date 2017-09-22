@@ -52,7 +52,7 @@
         </div>
 
     <footer class="footer"{!! isset($_company->foreground_color) ? ' style="background: ' . $_company->foreground_color . '"' : '' !!}>
-      <div class="container col-md-12 no-padding-lr">
+      <div class="container company-footer col-md-12 no-padding-lr">
         <div class="col-md-12 cta-footer"><p class="text-center">Want to make your own referral program? Visit <a href="{{ route('register') }}" class="footer-link-home">perxi.com.</a></p></div>
         <div class="col-md-12 terms-company"{!! isset($_company->footer_color) ? ' style="background: ' . $_company->footer_color . '"' : '' !!}><p class="text-center"><a href="{{ isset($_company->tos_link) ? $_company->tos_link : route('login') }}" class="terms-link">{{ isset($_company->tos_text) ? $_company->tos_text : 'Terms and Conditions' }}</a></p></div>
       </div>
