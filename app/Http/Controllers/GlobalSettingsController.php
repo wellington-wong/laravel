@@ -155,9 +155,19 @@ class GlobalSettingsController extends Controller
      */
     public function postEditBasicPage( Request $request, $route ) 
     {   
+        $request->merge(['company_id' => $request->_company->id]);
+        $request->merge(['route_name' => $route]);
+
+        if ( $page = BasicPages::where('route_name', $route)->first() ?: null ) {
+            $page->update($request->all());            
+        } else {
+            $page = new BasicPages();
+            $page->create($request->all());      
+        }
+
+
         
-        return view('global-settings.edit-basic-pages')
-            ->with(compact('route'));
+        return back()->with('success', ['Page successfully saved']);
     }
 
     /**
