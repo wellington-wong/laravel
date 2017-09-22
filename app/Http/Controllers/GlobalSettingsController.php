@@ -141,10 +141,11 @@ class GlobalSettingsController extends Controller
      *
      * @return view
      */
-    public function editBasicPages(Request $request) 
+    public function editBasicPages( Request $request, $route ) 
     {   
-    
-        return view('global-settings.edit-basic-pages');
+        
+        return view('global-settings.edit-basic-pages')
+            ->with(compact('route'));
     }
 
     /**

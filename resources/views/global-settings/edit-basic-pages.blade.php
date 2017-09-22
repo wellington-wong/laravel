@@ -17,7 +17,7 @@
         <div class="row">
             <div class="form-group">
             {{ Form::label('title', 'Title') }}
-            {{ Form::text('title', old('title'), ['placeholder' => 'Title', 'class' => 'form-control']) }}
+            {{ Form::text('title', (isset(\App\BasicPages::$pageTypes[$route]) ? \App\BasicPages::$pageTypes[$route] : old('title')), ['placeholder' => 'Title', 'class' => 'form-control']) }}
             </div>
         </div>
         <div class="row">

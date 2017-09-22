@@ -9,6 +9,7 @@
         <div class="row">
             @include('layouts.page-header', ['header' => 'Edit Basic Pages', 'col' => 3])
         </div>
+        
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 table-referral-wrapper table-wrapper">
