@@ -4,7 +4,6 @@
 
 @section('content')
 
-
     <div class="container-fluid members-wrapper">        
 
         <div class="row">
@@ -12,15 +11,15 @@
         </div>
 
         <div class="clearfix"></div>
-
+{{ \App\BasicPages::$pageTypes[1] }}
         <div class="row">
             <div class="col-md-12 table-referral-wrapper table-wrapper">
                 <label>Auth Pages</label>
                 <ul>
-                  <li><a href="{{ route('referral-rewards', ['edit' => 1]) }}">Rewards</a></li>
-                  <li><a href="{{ route('how-this-works', ['edit' => 1]) }}">How This Works</a></li>
-                  <li><a href="{{ route('how-to-get-more-referrals', ['edit' => 1]) }}">How to Get More Referrals</a></li>
-                  <li><a href="{{ route('help', ['edit' => 1]) }}">Need Help?</a></li>
+                  <li><a href="{{ route('edit-basic-pages', ['edit' => 1]) }}">Rewards</a></li>
+                  <li><a href="{{ route('edit-basic-pages', ['edit' => 1]) }}">How This Works</a></li>
+                  <li><a href="{{ route('edit-basic-pages', ['edit' => 1]) }}">How to Get More Referrals</a></li>
+                  <li><a href="{{ route('edit-basic-pages', ['edit' => 1]) }}">Need Help?</a></li>
                 </ul>
             </div>
         </div>
@@ -36,7 +35,6 @@
                 </ul>
             </div>
         </div>
-
 
     </div>
 @endsection

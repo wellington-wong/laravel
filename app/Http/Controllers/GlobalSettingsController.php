@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use Illuminate\Http\Request;
 use App\User;
+use App\BasicPages;
 use Auth;
 use Session;
 
@@ -126,8 +127,13 @@ class GlobalSettingsController extends Controller
      */
     public function editPages(Request $request) 
     {   
+        // Get constants
+        $pageTypes = new \ReflectionClass(new BasicPages());
+        $pageTypes = $pageTypes->getConstants();
+        $pageTypes = array_splice($pageTypes, 0, count($pageTypes) -2);
     
-        return view('global-settings.edit-pages');
+        return view('global-settings.edit-pages')
+            ->with(compact('pageTypes'));
     }
 
     /**

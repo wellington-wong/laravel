@@ -21,10 +21,16 @@ class BasicPages extends Model
     const PRICING = 7;
     const CONTACT_US = 8;
 
-    static $pageType = [
+    static $pageTypes = [
         self::REWARDS => 'referral-rewards',
         self::HOW_THIS_WORKS => 'how-this-works',
         self::HOW_TO_GET_MORE_REFERRALS => 'how-to-get-more-referrals',
+        
+        self::HOW_IT_WORKS => 'how-it-works',
+        self::FEATURES => 'features',
+        self::ABOUT_US => 'about-us',
+        self::PRICING => 'pricing',
+        self::CONTACT_US => 'contact',
     ];
 
 
