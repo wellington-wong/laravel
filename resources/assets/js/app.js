@@ -269,6 +269,8 @@ $(function (){
    		$membersModal.find('.modal-body').text($(this).data('name') + '\'s current role is "' + $(this).data('role-name') + '".');
    		$('.member-roles').find('select[name="member-roles"] option[value="' + $(this).data('role-id') + '"]').attr('selected', true);
    		$membersModal.find('.modal-body').append($('.member-roles').html());
+   		$membersModal.find('.modal-footer').find('.submit').unbind();
+   		$membersModal.find('.modal-footer').find('.cancel').unbind();
    		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Apply').on('click', function (){
 			ajaxHelper(url, {role_id: role_id, role_id_new: $('.modal-body').find('select[name="member-roles"]').val()}, "POST", function (data){
 		    	location.reload();
@@ -285,6 +287,8 @@ $(function (){
 	$('.delete-user').click(function (){
    		$membersModal.find('.modal-title').text('Delete User Confirmation');
    		$membersModal.find('.modal-body').text('Are you sure you want to delete user ' + $(this).data('name') + '?');
+   		$membersModal.find('.modal-footer').find('.submit').unbind();
+   		$membersModal.find('.modal-footer').find('.cancel').unbind();
    		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Yes').on('click', function (){
 			ajaxHelper(url, [], "POST", function (data){
 		    	location.reload();
@@ -303,6 +307,8 @@ $(function (){
    		$membersModal.find('.modal-body').html('<div><span>Enter new password for ' + $(this).data('name') + ':</span></div><div><input type="password" class="form-control" name="user_new_password"></div>');
    		$membersModal.find('.modal-body').append('<div>&nbsp;</div>');
    		$membersModal.find('.modal-body').append('<div><span>Re-enter new password: </span></div><input type="password" class="form-control" name="user_new_password_confirmation">');
+   		$membersModal.find('.modal-footer').find('.submit').unbind();
+   		$membersModal.find('.modal-footer').find('.cancel').unbind();
    		$membersModal.find('.modal-footer').find('.submit').addClass('btn-primary').text('Change Password').on('click', function (){
    			// Verify that the new passwords match.
    			var newPass = $('input[name=user_new_password]');
