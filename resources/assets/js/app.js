@@ -171,7 +171,8 @@ $(function (){
 				var options = {
 					selector: '.modal-textarea',
 					menubar: false,
-					statusbar: false
+					statusbar: false,
+			plugins: 'link'
 				}
 				tinymceHelper(options, false);
 			});
@@ -784,7 +785,7 @@ $(function (){
 		selector: '.tinymce',
 		menubar: false,
 		statusbar: false,
-		plugins: 'link',
+		plugins: 'link'
      }
 	tinymceHelper(options, false);
 	function tinymceHelper(options, save) {
@@ -944,7 +945,8 @@ $(function (){
 	var options = {
 		selector: 'textarea[name="message"]',
 		menubar: false,
-		statusbar: false
+		statusbar: false,
+		plugins: 'link'
 	}
 	tinymceHelper(options, false);
 // END MESSAGES
@@ -1112,7 +1114,8 @@ $(function (){
 		var options = {
 			selector: '#email_html',
 			menubar: false,
-			statusbar: false
+			statusbar: false,
+			plugins: 'link'
 		}
 		//tinymceHelper(options, false);
         //tinyMCE.activeEditor.setContent('33333333');
