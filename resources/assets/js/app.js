@@ -16,6 +16,7 @@ import 'spectrum-colorpicker/spectrum.js';
 
 // TinyMCE
 import 'tinymce/tinymce.min.js';
+import 'tinymce/plugins/link/index.js';
 
 // Date Range picker
 import 'daterangepicker/daterangepicker.js';
@@ -782,8 +783,9 @@ $(function (){
 	var options = {
 		selector: '.tinymce',
 		menubar: false,
-		statusbar: false
-	}
+		statusbar: false,
+		plugins: 'link',
+     }
 	tinymceHelper(options, false);
 	function tinymceHelper(options, save) {
 		if (save) {
