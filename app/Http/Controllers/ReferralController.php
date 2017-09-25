@@ -227,18 +227,18 @@ class ReferralController extends Controller
 
         $referralArray = [];  
         foreach ($referrals as $referral) {
-            $referrer_address = $referral->referrer->address()->first() ?: null;
+            $referrer_address = isset($referral->referrer) ? $referral->referrer->address()->first() ?: null : null;
             $currentReferral = [
                 'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
                 'REFERRAL ID' => $referral->id,
-                'SUBMITTED BY' => isset($referral->referrer->name) ? $referral->referrer->name : $referral->referrer->first_name . ' ' . $referral->referrer->last_name,
+                'SUBMITTED BY' => isset($referral->referrer) ? $referral->referrer->getName() : null,
                 'REFERRER STREET' => $referrer_address ? $referrer_address->address : null,
                 'REFERRER SUITE' => $referrer_address ? $referrer_address->address2 : null,
                 'REFERRER CITY' => $referrer_address ? $referrer_address->city : null,
                 'REFERRER STATE' => $referrer_address ? $referrer_address->state : null,
                 'REFERRER ZIP' => $referrer_address ? $referrer_address->zip : null,
-                'NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
-                'EMAIL' => $referral->referred->email,          
+                'REFERRED NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
+                'REFERRED EMAIL' => $referral->referred->email,          
                 'STATUS' => \App\Referral::$status[$referral->status]
             ];
             $referralArray[] = $currentReferral;
