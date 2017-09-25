@@ -142,6 +142,8 @@ class RegisterController extends Controller
         $data = $request->all();
         $user = User::create([
             'name' => $data['name'],
+            'first_name' => isset($data['first_name']) ? $data['first_name'] : null,
+            'last_name' => isset($data['last_name']) ? $data['last_name'] : null,
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'how_did_you_hear_about_us' => $data['how_did_you_hear'],
