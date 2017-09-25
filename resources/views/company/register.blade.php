@@ -20,17 +20,17 @@
               <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                   {{ csrf_field() }}
 
-                  <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
+                  <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }} col-md-6">
                       <label for="first_name">FIRST NAME *</label>
                       <div>
-                          <input id="first-name" type="text" class="form-control" name="first_name" value="{{ old('name') }}" required autofocus>
+                          <input id="first-name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
                       </div>
                   </div>
 
-                  <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
+                  <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }} col-md-6">
                       <label for="last_name">LAST NAME *</label>
                       <div>
-                          <input id="last-name" type="text" class="form-control" name="last_name" value="{{ old('name') }}" required autofocus>
+                          <input id="last-name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
                       </div>
                   </div>
 
