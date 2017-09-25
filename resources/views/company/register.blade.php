@@ -21,21 +21,21 @@
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
-                      <label for="first_name">FIRST NAME</label>
+                      <label for="first_name">FIRST NAME *</label>
                       <div>
                           <input id="first-name" type="text" class="form-control" name="first_name" value="{{ old('name') }}" required autofocus>
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
-                      <label for="last_name">LAST NAME</label>
+                      <label for="last_name">LAST NAME *</label>
                       <div>
                           <input id="last-name" type="text" class="form-control" name="last_name" value="{{ old('name') }}" required autofocus>
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
-                      <label for="phone" class="control-label">PHONE</label>
+                      <label for="phone" class="control-label">PHONE *</label>
                       <div>
                         <input data-format="(ddd) ddd-dddd" name="phone" value="{{ old('phone') }}" class="bfh-phone form-control" type="text"> 
                         <input name="phone_placeholder" value="{{ old('phone') }}" class="phone-placeholder form-control" style="display: none;" type="text">
@@ -43,7 +43,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
-                      <label for="email" class="control-label">EMAIL</label>
+                      <label for="email" class="control-label">EMAIL *</label>
                       <div>
                           <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                           @if ($errors->has('email'))
@@ -86,12 +86,12 @@
                   </div>   
 
                   <div class="form-group col-md-12">
-                    <label for="password" class="control-label">PASSWORD</label>
+                    <label for="password" class="control-label">PASSWORD *</label>
                     <input class="form-control" id="password" name="password" type="password">
                   </div>
 
                   <div class="form-group col-md-12">
-                    <label for="password_confirmation" class="control-label">CONFIRM PASSWORD</label>
+                    <label for="password_confirmation" class="control-label">CONFIRM PASSWORD *</label>
                     <input class="form-control" id="password-confirmation" name="password_confirmation" type="password">
                   </div>
 
