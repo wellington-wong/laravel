@@ -173,7 +173,7 @@ $(function (){
 					selector: '.modal-textarea',
 					menubar: false,
 					statusbar: false,
-			plugins: 'link'
+			plugins: 'link image'
 				}
 				tinymceHelper(options, false);
 			});
@@ -947,7 +947,7 @@ $(function (){
 		selector: 'textarea[name="message"]',
 		menubar: false,
 		statusbar: false,
-		plugins: 'link'
+		plugins: 'link image'
 	}
 	tinymceHelper(options, false);
 // END MESSAGES
@@ -1116,7 +1116,7 @@ $(function (){
 			selector: '#email_html',
 			menubar: false,
 			statusbar: false,
-			plugins: 'link'
+			plugins: 'link image'
 		}
 		//tinymceHelper(options, false);
         //tinyMCE.activeEditor.setContent('33333333');
