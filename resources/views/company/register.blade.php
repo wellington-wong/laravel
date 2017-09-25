@@ -102,7 +102,7 @@
                   <div class="form-group col-md-12">
                     <label>
                       <input type="checkbox" name="accept_terms" class="accept-terms">
-                      <span>ACCEPT</span> <a href="{{ env('APP_URL') }}" class="terms-link">TERMS AND CONDITIONS</a>
+                      <span>ACCEPT</span> <a href="{{ isset($_company->tos_link) ? $_company->tos_link : route('login') }}" class="terms-link">{{ isset($_company->tos_text) ? $_company->tos_text : 'Terms and Conditions' }}</a>
                     </label>
                   </div>
 
