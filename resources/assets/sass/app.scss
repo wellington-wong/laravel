@@ -1922,7 +1922,14 @@ tr.check td {
 /*** Referral Table End ***/
 
 /*** Notification Email ***/
-.email-recipient {
-	font-weight: normal;
+.email-recipient-wrapper {
+	label {
+		font-weight: normal;
+		input[type="checkbox"] {
+			display: inline-block;
+			vertical-align: middle;
+			margin-bottom: 7px;
+		}
+	}
 }
 /*** Notification Email End ***/
