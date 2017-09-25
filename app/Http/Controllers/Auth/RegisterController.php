@@ -144,6 +144,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'how_did_you_hear_about_us' => $data['how_did_you_hear'],
         ]);
         if ( !is_null($request->subdomain_id) ) {
             $user->referred_companies()->attach($request->subdomain_id);
