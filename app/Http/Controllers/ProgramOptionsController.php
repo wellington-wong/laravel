@@ -243,6 +243,19 @@ class ProgramOptionsController extends Controller
             return back()->with('success', ['Email template successfully created.']);
         }
 
+        if ($request->has('recipients')) {
+            foreach ($request->get('recipients') as $recipient) {
+                $emailTemplateRecipients = EmailTemplateRecipients::where('recipient')->get();
+                if ($emailTemplateRecipients = EmailTemplateRecipients::where('recipient')->first()) {
+
+                } else {
+
+                }
+            }
+        }
+
+        return;
+
     }
 
     /**
