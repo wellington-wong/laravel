@@ -181,8 +181,8 @@ class ProgramOptionsController extends Controller
     {
         $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $id)->first();
         $emailTemplateType = $id;
-        $recipients = $emailTemplate->recipients->where('recipient_id', '<>', null)->keyBy('recipient_id')->toArray();
-        $customRecipients = $emailTemplate->recipients()->where('recipient_id', null)->pluck('recipient')->toArray();
+        $recipients = EmailTemplateRecipients::where('recipient_id', '<>', null)->where('company_id', $request->_company->id)->get()->keyBy('recipient_id')->toArray();
+        $customRecipients = EmailTemplateRecipients::where('recipient_id',  null)->where('company_id', $request->_company->id)->pluck('recipient')->toArray();
 
         $emailBlade[] = [];
         switch ($id){
@@ -223,7 +223,7 @@ class ProgramOptionsController extends Controller
     {
 
         $rules = [
-            'recipients' => $request->get('type') > 5 ? 'required' : '',
+            //'recipients' => $request->get('type') > 5 ? 'required' : '',
         ];
 
         // Add array validation for comma-separated emails
@@ -233,7 +233,7 @@ class ProgramOptionsController extends Controller
         }
 
         $messages = [
-            'custom_recipient.*.email' => 'A custom recipient contains an invalid email.',
+            //'custom_recipient.*.email' => 'A custom recipient contains an invalid email.',
         ];
 
         $validator = Validator::make($request->input(), $rules, $messages);

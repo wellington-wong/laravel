@@ -62,6 +62,7 @@
                 @endif               
             </textarea>            
         </div>
+
         @if (isset($emailTemplate->type) && ($emailTemplate->type == 6 || $emailTemplate->type == 7))
         <div class="form-group email-recipient-wrapper">
             <div class="recipients-label">{{ Form::label('recipients', 'Recipients') }}</div>
