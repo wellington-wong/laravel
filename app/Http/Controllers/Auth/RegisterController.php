@@ -105,11 +105,15 @@ class RegisterController extends Controller
         //ADD ADDRESS
         $address = $user->addDefaultAddress($request);
 
-        // Notify user and admin
+        // Notify new user and admin
         $user->notify(new NewMember( $request, $user ));
-        foreach ($request->_company->admins()->get() as $admin) {
-            $admin->notify(new NewMemberAdmin( $request, $user ));
-        }
+        $userClone = clone($user);
+
+        // Notify new admin
+        $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+            ->where('email_template', 6)
+            ->pluck('recipient')->toArray();
+        $userClone->notify(new NewMemberAdmin( $request, $user ));
 
         return $this->registered($request, $user)
                         ?: redirect(route('referral-create'))->with('success', ['Your account has been created successfully, you can start referring by filling up the form below.']);
