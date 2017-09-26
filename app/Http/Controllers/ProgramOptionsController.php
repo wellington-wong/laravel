@@ -229,10 +229,20 @@ class ProgramOptionsController extends Controller
             return redirect()->back()->withInput()
                 ->with(['errors'=>$validator->errors()]);
         }
+         
+        // Save admin email recipients
+        if ($request->has('recipients')) {
+            foreach ($request->get('recipients') as $recipient) {
+                if (!$emailTemplateRecipients = EmailTemplateRecipients::where('recipient')->first()) {
+                    $recipientEntry = ['company_id' => $request->_company->id, 'email_template' => $request->get('type'), 'recipient' => $recipient];
+                    EmailTemplateRecipients::create($recipientEntry);
+                }
+            }
+        }
 
+        // Save email template
         $request->merge(['user_id' => auth()->user()->id]);
-        $request->merge(['company_id' => $request->_company->id]);
-        
+        $request->merge(['company_id' => $request->_company->id]);       
         if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $request->get('type'))->first()) {
             $emailTemplate->update([
                 'email_html' => $request->input('email_html') ? : ''
@@ -242,19 +252,6 @@ class ProgramOptionsController extends Controller
             EmailTemplate::create($request->all());
             return back()->with('success', ['Email template successfully created.']);
         }
-
-        if ($request->has('recipients')) {
-            foreach ($request->get('recipients') as $recipient) {
-                $emailTemplateRecipients = EmailTemplateRecipients::where('recipient')->get();
-                if ($emailTemplateRecipients = EmailTemplateRecipients::where('recipient')->first()) {
-
-                } else {
-
-                }
-            }
-        }
-
-        return;
 
     }
 

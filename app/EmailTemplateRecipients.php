@@ -9,6 +9,6 @@ class EmailTemplateRecipients extends Model
 
     protected $table = 'email_template_recipients';
 
-    protected $fillable = [];
+    protected $fillable = ['company_id', 'email_template', 'recipient'];
 
 }
