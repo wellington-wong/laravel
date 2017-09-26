@@ -62,7 +62,6 @@
                 @endif               
             </textarea>            
         </div>
-        
         @if (isset($emailTemplate->type) && ($emailTemplate->type == 6 || $emailTemplate->type == 7))
         <div class="form-group email-recipient-wrapper">
             <div class="recipients-label">{{ Form::label('recipients', 'Recipients') }}</div>
@@ -72,6 +71,7 @@
             @foreach ($_company->admins()->get() as $admin) 
             <label title="" class="recipient-label">{{ Form::checkbox('recipients[]', $admin->email, true, ['class' => 'recipient-checkbox']) }} {{ $admin->email }}</label>
             @endforeach
+            {{ Form::text('custom_recipients', isset($emailTemplate->custom_recipients) ? $emailTemplate->custom_recipients : old('custom_recipients'), ['class' => 'form-control']) }}
         </div>
         @endif
 
