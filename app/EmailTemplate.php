@@ -137,4 +137,8 @@ class EmailTemplate extends Model
 
     }
 
+    public function recipients (){
+        return $this->hasMany( EmailTemplateRecipients::class, 'email_template' );
+    }
+
 }
