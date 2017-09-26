@@ -233,11 +233,14 @@ class ProgramOptionsController extends Controller
         // Save admin email recipients
         if ($request->has('recipients')) {
             foreach ($request->get('recipients') as $recipient) {
-                if (!$emailTemplateRecipients = EmailTemplateRecipients::where('recipient')->first()) {
+                if (!EmailTemplateRecipients::where('recipient', $recipient)->first()) {
                     $recipientEntry = ['company_id' => $request->_company->id, 'email_template' => $request->get('type'), 'recipient' => $recipient];
                     EmailTemplateRecipients::create($recipientEntry);
                 }
+
             }
+            $emailTemplateRecipients = EmailTemplateRecipients::where('company_id', $request->_company->id)->where('email_template', $request->get('type'))->pluck('recipient');
+            //dd($emailTemplateRecipients);
         }
 
         // Save email template
