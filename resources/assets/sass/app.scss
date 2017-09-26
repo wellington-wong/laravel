@@ -1923,7 +1923,7 @@ tr.check td {
 
 /*** Notification Email ***/
 .email-recipient-wrapper {
-	label {
+	label.recipient-label {
 		font-weight: normal;
 		input[type="checkbox"] {
 			display: inline-block;

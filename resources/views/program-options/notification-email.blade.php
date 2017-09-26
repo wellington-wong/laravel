@@ -62,6 +62,17 @@
                 @endif               
             </textarea>            
         </div>
+
+        <div class="form-group email-recipient-wrapper">
+            <div class="recipients-label">{{ Form::label('recipients', 'Recipients') }}</div>
+            @foreach ($_company->superadmins()->get() as $admin) 
+            <label title="" class="recipient-label">{{ Form::checkbox('recipients[]', $admin->email, true, ['class' => 'recipient-checkbox']) }} {{ $admin->email }}</label>
+            @endforeach
+            @foreach ($_company->admins()->get() as $admin) 
+            <label title="" class="recipient-label">{{ Form::checkbox('recipients[]', $admin->email, true, ['class' => 'recipient-checkbox']) }} {{ $admin->email }}</label>
+            @endforeach
+        </div>
+
         {{ Form::hidden('type', isset($emailTemplate->type) ? $emailTemplate->type : $emailTemplateType) }}
         <div class="form-group btn-group pull-right">
             <button class="btn btn-danger btn-reset" type="reset">Reset</button>
