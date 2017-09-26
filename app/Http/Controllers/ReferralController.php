@@ -21,6 +21,7 @@ use Carbon\Carbon;
 use App\Notifications\MessageReceived;
 use App\Notifications\ReferralReceived;
 use App\Notifications\NewReferralAdmin;
+use App\EmailTemplateRecipients;
 
 use Illuminate\Support\Facades\DB;
 
@@ -382,9 +383,16 @@ class ReferralController extends Controller
             }
         }
 
+        // Notify user that referral has been received
         $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
-        foreach ($request->_company->admins()->get() as $admin) {
-            $admin->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
+        $userClone = clone($user);
+
+        // Notify admins of the new referral
+        $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+            ->where('email_template', 6)
+            ->pluck('recipient')->toArray();
+        if (isset($userClone->email)) {            
+            $userClone->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
         }
 
         return redirect(route('referrals'));
