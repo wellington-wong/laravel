@@ -181,7 +181,8 @@ class ProgramOptionsController extends Controller
     {
         $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $id)->first();
         $emailTemplateType = $id;
-        $recipients = $emailTemplate->recipients->keyBy('recipient_id')->toArray();
+        $recipients = $emailTemplate->recipients->where('recipient_id', '<>', null)->keyBy('recipient_id')->toArray();
+        $customRecipients = $emailTemplate->recipients()->where('recipient_id', null)->pluck('recipient')->toArray();
 
         $emailBlade[] = [];
         switch ($id){
@@ -209,7 +210,7 @@ class ProgramOptionsController extends Controller
         }
 
         return view('program-options.notification-email')
-        ->with(compact('emailTemplate', 'emailTemplateType', 'emailBlade', 'recipients'));
+        ->with(compact('emailTemplate', 'emailTemplateType', 'emailBlade', 'recipients', 'customRecipients'));
     }
 
     /**
