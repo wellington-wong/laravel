@@ -227,7 +227,7 @@ class ProgramOptionsController extends Controller
 
         // Add array validation for comma-separated emails
         if ($request->has('custom_recipients')) {    
-            $request->merge(['custom_recipient' => explode(',', $request->get('custom_recipients'))]);
+            $request->merge(['custom_recipient' => explode(',', str_replace(' ', '', $request->get('custom_recipients')))]);
             $rules['custom_recipient.*'] = 'email';
         }
 
@@ -246,7 +246,10 @@ class ProgramOptionsController extends Controller
         if ($request->has('recipients')) {
             $recipients = $request->get('recipients');
             foreach ($recipients as $key => $recipient) {
-                if (!EmailTemplateRecipients::where('recipient', $recipient)->first()) {
+                if (!EmailTemplateRecipients::where('recipient', $recipient)
+                    ->where('email_template', $request->get('type'))
+                    ->where('company_id', $request->_company->id)
+                    ->get()->first()) {
                     $recipientData = ['company_id' => $request->_company->id, 'email_template' => $request->get('type'), 'recipient_id' => $key, 'recipient' => $recipient];
                     EmailTemplateRecipients::create($recipientData);
                 }
@@ -264,8 +267,8 @@ class ProgramOptionsController extends Controller
             }
         }
 
+        // Compare request recipients to recipients in db and delete.
         if ($request->has('recipients') || $request->has('custom_recipients')) {
-            // Compare request recipients to recipients in db and delete.
             $emailTemplateRecipients = EmailTemplateRecipients::where('company_id', $request->_company->id)
                 ->where('email_template', $request->get('type'))
                 ->pluck('recipient')->toArray();
