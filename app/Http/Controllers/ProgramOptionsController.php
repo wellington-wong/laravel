@@ -232,7 +232,7 @@ class ProgramOptionsController extends Controller
         }
 
         $messages = [
-            'custom_recipient.*.email' => 'The custom recipients field is invalid.',
+            'custom_recipient.*.email' => 'A custom recipient contains an invalid email.',
         ];
 
         $validator = Validator::make($request->input(), $rules, $messages);
@@ -245,19 +245,33 @@ class ProgramOptionsController extends Controller
         // Save admin email recipients
         if ($request->has('recipients')) {
             $recipients = $request->get('recipients');
-            foreach ($recipients as $recipient) {
+            foreach ($recipients as $key => $recipient) {
+                if (!EmailTemplateRecipients::where('recipient', $recipient)->first()) {
+                    $recipientData = ['company_id' => $request->_company->id, 'email_template' => $request->get('type'), 'recipient_id' => $key, 'recipient' => $recipient];
+                    EmailTemplateRecipients::create($recipientData);
+                }
+            }
+        }
+
+        // Save custom recipients
+        if ($request->has('custom_recipients')) {
+            $customRecipients = $request->get('custom_recipient');
+            foreach ($customRecipients as $recipient) {
                 if (!EmailTemplateRecipients::where('recipient', $recipient)->first()) {
                     $recipientData = ['company_id' => $request->_company->id, 'email_template' => $request->get('type'), 'recipient' => $recipient];
                     EmailTemplateRecipients::create($recipientData);
                 }
-
             }
+        }
 
+        if ($request->has('recipients') || $request->has('custom_recipients')) {
             // Compare request recipients to recipients in db and delete.
             $emailTemplateRecipients = EmailTemplateRecipients::where('company_id', $request->_company->id)
                 ->where('email_template', $request->get('type'))
                 ->pluck('recipient')->toArray();
-            $recipientDiff = array_diff($emailTemplateRecipients, $recipients);
+            $recipients = $request->has('recipients') ? $request->get('recipients') : [];
+            $customRecipients = $request->has('custom_recipient') ? $request->get('custom_recipient') : [];
+            $recipientDiff = array_diff($emailTemplateRecipients, $recipients, $customRecipients);
             foreach ($recipientDiff as $delRecipient) {
                 EmailTemplateRecipients::where('recipient', $delRecipient)
                     ->where('company_id', $request->_company->id)
