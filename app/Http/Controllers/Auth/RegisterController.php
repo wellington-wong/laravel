@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\NewMember;
 use App\Notifications\NewMemberAdmin;
+use App\EmailTemplateRecipients;
 
 class RegisterController extends Controller
 {
