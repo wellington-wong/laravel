@@ -181,6 +181,7 @@ class ProgramOptionsController extends Controller
     {
         $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $id)->first();
         $emailTemplateType = $id;
+        $recipients = $emailTemplate->recipients->keyBy('recipient')->toArray();
 
         $emailBlade[] = [];
         switch ($id){
@@ -208,7 +209,7 @@ class ProgramOptionsController extends Controller
         }
 
         return view('program-options.notification-email')
-        ->with(compact('emailTemplate', 'emailTemplateType', 'emailBlade'));
+        ->with(compact('emailTemplate', 'emailTemplateType', 'emailBlade', 'recipients'));
     }
 
     /**
@@ -219,12 +220,22 @@ class ProgramOptionsController extends Controller
      */
     public function postNotificationEmail( Request $request )
     {
+
         $rules = [
-            //'email_html'=>'required'
-            'recipients' => $request->get('type') > 5 ? 'required' : ''
+            'recipients' => $request->get('type') > 5 ? 'required' : '',
         ];
 
-        $validator = Validator::make($request->input(), $rules);
+        // Add array validation for comma-separated emails
+        if ($request->has('custom_recipients')) {    
+            $request->merge(['custom_recipient' => explode(',', $request->get('custom_recipients'))]);
+            $rules['custom_recipient.*'] = 'email';
+        }
+
+        $messages = [
+            'custom_recipient.*.email' => 'The custom recipients field is invalid.',
+        ];
+
+        $validator = Validator::make($request->input(), $rules, $messages);
 
         if ( $validator->fails() ) {
             return redirect()->back()->withInput()
