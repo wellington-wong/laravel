@@ -221,6 +221,7 @@ class ProgramOptionsController extends Controller
     {
         $rules = [
             //'email_html'=>'required'
+            'recipients' => $request->get('type') > 5 ? 'required' : ''
         ];
 
         $validator = Validator::make($request->input(), $rules);
@@ -232,15 +233,26 @@ class ProgramOptionsController extends Controller
          
         // Save admin email recipients
         if ($request->has('recipients')) {
-            foreach ($request->get('recipients') as $recipient) {
+            $recipients = $request->get('recipients');
+            foreach ($recipients as $recipient) {
                 if (!EmailTemplateRecipients::where('recipient', $recipient)->first()) {
-                    $recipientEntry = ['company_id' => $request->_company->id, 'email_template' => $request->get('type'), 'recipient' => $recipient];
-                    EmailTemplateRecipients::create($recipientEntry);
+                    $recipientData = ['company_id' => $request->_company->id, 'email_template' => $request->get('type'), 'recipient' => $recipient];
+                    EmailTemplateRecipients::create($recipientData);
                 }
 
             }
-            $emailTemplateRecipients = EmailTemplateRecipients::where('company_id', $request->_company->id)->where('email_template', $request->get('type'))->pluck('recipient');
-            //dd($emailTemplateRecipients);
+
+            // Compare request recipients to recipients in db and delete.
+            $emailTemplateRecipients = EmailTemplateRecipients::where('company_id', $request->_company->id)
+                ->where('email_template', $request->get('type'))
+                ->pluck('recipient')->toArray();
+            $recipientDiff = array_diff($emailTemplateRecipients, $recipients);
+            foreach ($recipientDiff as $delRecipient) {
+                EmailTemplateRecipients::where('recipient', $delRecipient)
+                    ->where('company_id', $request->_company->id)
+                    ->where('email_template', $request->get('type'))
+                    ->delete();
+            }
         }
 
         // Save email template
