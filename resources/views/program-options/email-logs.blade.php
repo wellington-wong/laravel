@@ -26,12 +26,12 @@
                     <tr class="tr-spacer"><td colspan=6></td></tr>
                     @foreach ($emailLogs as $emailLog)
                         <tr>
-                            <td>{{ $emailLog->id }}</td>
+                            <td>{{ isset($emailLog->id) ? $emailLog->id : null }}</td>
                             <td>{{ isset($emailLog->created_at) ? $emailLog->created_at->format('m/d/Y') : '' }} </td>
-                            <td>@if ($emailLog->sender->email == $emailLog->recipient->email) {{ isset($_company->email) ? $_company->email : $_company->company_name }} @else {{ $emailLog->sender->email }} @endif</td>
-                            <td>{{ $emailLog->recipient->email }}</td>
-                            <td>{{ $emailLog->subject }}</td>
-                            <td>{{ strip_tags($emailLog->body) }}</td>
+                            <td>@if (isset($emailLog->sender) && isset($emailLog->recipient)) {{ isset($_company->email) ? $_company->email : isset($_company->company_name) ? $_company->company_name : 'none' }} @else {{ isset($emailLog->sender->email) ? $emailLog->sender->email : null }} @endif</td>
+                            <td>{{ isset($emailLog->recipient->email) ? $emailLog->recipient->email : null }}</td>
+                            <td>{{ isset($emailLog->subject) ? $emailLog->subject : null }}</td>
+                            <td>{{ isset($emailLog->body) ? strip_tags($emailLog->body) : null }}</td>
                         </tr>
                     <tr class="tr-spacer"><td colspan=6></td></tr>
                     @endforeach
