@@ -113,7 +113,9 @@ class RegisterController extends Controller
         $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
             ->where('email_template', 6)
             ->pluck('recipient')->toArray();
-        $userClone->notify(new NewMemberAdmin( $request, $user ));
+        if (isset($userClone->email)) {
+            $userClone->notify(new NewMemberAdmin( $request, $user ));
+        }
 
         return $this->registered($request, $user)
                         ?: redirect(route('referral-create'))->with('success', ['Your account has been created successfully, you can start referring by filling up the form below.']);
