@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LogEmail;
 use App\EmailTemplate;
+use App\EmailTemplateRecipients;
 use App\ReferralForms;
 use App\Company;
 use App\RewardSetting;
