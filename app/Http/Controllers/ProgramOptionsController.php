@@ -181,7 +181,7 @@ class ProgramOptionsController extends Controller
     {
         $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $id)->first();
         $emailTemplateType = $id;
-        $recipients = $emailTemplate->recipients->keyBy('recipient')->toArray();
+        $recipients = $emailTemplate->recipients->keyBy('recipient_id')->toArray();
 
         $emailBlade[] = [];
         switch ($id){
