@@ -71,7 +71,9 @@
             @foreach ($_company->admins()->get() as $admin) 
             <label title="" class="recipient-label">{{ Form::checkbox('recipients[]', $admin->email, true, ['class' => 'recipient-checkbox']) }} {{ $admin->email }}</label>
             @endforeach
+            <div class="recipients-label">{{ Form::label('custom-recipients', 'Custom Recipients') }}</div>
             {{ Form::text('custom_recipients', isset($emailTemplate->custom_recipients) ? $emailTemplate->custom_recipients : old('custom_recipients'), ['class' => 'form-control']) }}
+            <small>* Comma separated</small>
         </div>
         @endif
 
