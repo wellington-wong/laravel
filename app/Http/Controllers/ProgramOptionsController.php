@@ -92,7 +92,7 @@ class ProgramOptionsController extends Controller
      */
     public function rewardSettings( Request $request )
     {
-        $rewardSettings = [];
+        $rewardSettings = $request->_company->rewardSettings()->first();
         return view('program-options.reward-settings')
         ->with(compact('rewardSettings'));
     }
@@ -132,7 +132,8 @@ class ProgramOptionsController extends Controller
                 $request->only('title', 'reward_kind', 'reward_send', 'leaderboard', 'reward_ratio')
             );
         } else {
-            RewardSetting::create($request->only('title', 'reward_kind', 'reward_send', 'leaderboard', 'reward_ratio'));
+            $request->merge(['company_id' => $request->_company->id]);
+            RewardSetting::create($request->only('company_id', 'title', 'reward_kind', 'reward_send', 'leaderboard', 'reward_ratio'));
 
         }
 
