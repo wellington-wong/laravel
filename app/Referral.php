@@ -68,25 +68,24 @@ class Referral extends Model
             $referral_message = 'Your reward has been sent.';
         }
 
-        // Check if email template is activated before sending notification
-        $emailTemplates = $request->_company->emailTemplates->keyBy('type');
-
-        switch ($request->get('status')) {
-            case (2):
-                if (isset($emailTemplates[3])) {
-                    (isset($referral->referrer) && $emailTemplates[3]->status) ? $referral->referrer->notify(new ReferralVerified( $referral, $request )) : null;
-                }
-                break;
-            case (3):
-                if (isset($emailTemplates[4])) {
-                    (isset($referral->referrer) && $emailTemplates[4]->status) ? $referral->referrer->notify(new ReferralSent( $referral, $request )) : null;
-                }
-                break;
-            case (4):
-                if (isset($emailTemplates[5])) {
-                    (isset($referral->referrer) && $emailTemplates[5]->status) ? $referral->referrer->notify(new ReferralDeclined( $referral, $request )) : null;
-                }
-                break;
+        if (isset($referral->referrer)) {
+            switch ($request->get('status')) {
+                case (2):
+                    if ($request->_company->emailTemplateStatus(3)) {
+                         $referral->referrer->notify(new ReferralVerified( $referral, $request ));
+                    }
+                    break;
+                case (3):
+                    if ($request->_company->emailTemplateStatus(4)) {
+                        $referral->referrer->notify(new ReferralSent( $referral, $request ));
+                    }
+                    break;
+                case (4):
+                    if ($request->_company->emailTemplateStatus(5)) {
+                        $referral->referrer->notify(new ReferralDeclined( $referral, $request ));
+                    }
+                    break;
+            }
         }
 
         return $this->getReferralTally();//$referral;
