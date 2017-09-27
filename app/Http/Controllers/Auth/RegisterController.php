@@ -106,15 +106,19 @@ class RegisterController extends Controller
         $address = $user->addDefaultAddress($request);
 
         // Notify new user and admin
-        $user->notify(new NewMember( $request, $user ));
-        $userClone = clone($user);
+        if ($request->_company->emailTemplateStatus(2)) {
+            $user->notify(new NewMember( $request, $user ));
+        }
 
         // Notify new admin
-        $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
-            ->where('email_template', 6)
-            ->pluck('recipient')->toArray();
-        if (isset($userClone->email)) {
-            $userClone->notify(new NewMemberAdmin( $request, $user ));
+        if ($request->_company->emailTemplateStatus(6)) {
+            $userClone = clone($user);
+            $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+                ->where('email_template', 6)
+                ->pluck('recipient')->toArray();
+            if (isset($userClone->email)) {
+                $userClone->notify(new NewMemberAdmin( $request, $user ));
+            }
         }
 
         return $this->registered($request, $user)

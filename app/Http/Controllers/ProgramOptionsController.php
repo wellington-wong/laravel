@@ -187,8 +187,14 @@ class ProgramOptionsController extends Controller
     {
         $emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $id)->first();
         $emailTemplateType = $id;
-        $recipients = EmailTemplateRecipients::where('recipient_id', '<>', null)->where('company_id', $request->_company->id)->get()->keyBy('recipient_id')->toArray();
-        $customRecipients = EmailTemplateRecipients::where('recipient_id',  null)->where('company_id', $request->_company->id)->pluck('recipient')->toArray();
+        $recipients = EmailTemplateRecipients::where('recipient_id', '<>', null)
+            ->where('company_id', $request->_company->id)
+            ->where('email_template', $id)
+            ->get()->keyBy('recipient_id')->toArray();
+        $customRecipients = EmailTemplateRecipients::where('recipient_id',  null)
+            ->where('company_id', $request->_company->id)
+            ->where('email_template', $id)
+            ->pluck('recipient')->toArray();
 
         $emailBlade[] = [];
         switch ($id){

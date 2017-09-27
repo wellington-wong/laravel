@@ -384,15 +384,19 @@ class ReferralController extends Controller
         }
 
         // Notify user that referral has been received
-        $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
-        $userClone = clone($user);
+        if ($request->_company->emailTemplateStatus(2)) {
+            $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
+        }
 
         // Notify admins of the new referral
-        $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
-            ->where('email_template', 6)
-            ->pluck('recipient')->toArray();
-        if (isset($userClone->email)) {            
-            $userClone->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
+        if ($request->_company->emailTemplateStatus(7)) {
+            $userClone = clone($user);
+            $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+                ->where('email_template', 7)
+                ->pluck('recipient')->toArray();
+            if (isset($userClone->email)) {            
+                $userClone->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
+            }
         }
 
         return redirect(route('referrals'));
