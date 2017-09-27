@@ -107,7 +107,7 @@ class Company extends Model
     }
 
     public function emailTemplateStatus( $type ) {
-        return $this->hasMany( EmailTemplate::class )->where('type', $type)->first()->status;
+        return $this->hasMany( EmailTemplate::class )->where('type', $type)->first() ? $this->hasMany( EmailTemplate::class )->where('type', $type)->first()->status : null;
     }
 
     public function lob() {
