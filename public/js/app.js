@@ -20214,11 +20214,11 @@ module.exports = function(module) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery_validation_dist_jquery_validate_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery_validation_dist_jquery_validate_min_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_spectrum_colorpicker_spectrum_js__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_spectrum_colorpicker_spectrum_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_spectrum_colorpicker_spectrum_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_tinymce_tinymce_min_js__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_tinymce_tinymce_min_js__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_tinymce_tinymce_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_tinymce_tinymce_min_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_tinymce_plugins_image_index_js__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_tinymce_plugins_image_index_js__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_tinymce_plugins_image_index_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_tinymce_plugins_image_index_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_tinymce_plugins_link_index_js__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_tinymce_plugins_link_index_js__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_tinymce_plugins_link_index_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_tinymce_plugins_link_index_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_daterangepicker_daterangepicker_js__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_daterangepicker_daterangepicker_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_daterangepicker_daterangepicker_js__);
@@ -20260,7 +20260,7 @@ __webpack_require__(155);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(177));
+Vue.component('example', __webpack_require__(181));
 
 var app = new Vue({
 	el: '#app'
@@ -22221,7 +22221,7 @@ __webpack_require__(156);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = __webpack_require__(180);
+window.Vue = __webpack_require__(184);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -51790,6 +51790,2060 @@ exports.clearImmediate = clearImmediate;
 /* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// Exports the "image" plugin for usage with module loaders
+// Usage:
+//   CommonJS:
+//     require('tinymce/plugins/image')
+//   ES2015:
+//     import 'tinymce/plugins/image'
+__webpack_require__(177);
+
+/***/ }),
+/* 177 */
+/***/ (function(module, exports) {
+
+(function () {
+
+var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
+
+// Used when there is no 'main' module.
+// The name is probably (hopefully) unique so minification removes for releases.
+var register_3795 = function (id) {
+  var module = dem(id);
+  var fragments = id.split('.');
+  var target = Function('return this;')();
+  for (var i = 0; i < fragments.length - 1; ++i) {
+    if (target[fragments[i]] === undefined)
+      target[fragments[i]] = {};
+    target = target[fragments[i]];
+  }
+  target[fragments[fragments.length - 1]] = module;
+};
+
+var instantiate = function (id) {
+  var actual = defs[id];
+  var dependencies = actual.deps;
+  var definition = actual.defn;
+  var len = dependencies.length;
+  var instances = new Array(len);
+  for (var i = 0; i < len; ++i)
+    instances[i] = dem(dependencies[i]);
+  var defResult = definition.apply(null, instances);
+  if (defResult === undefined)
+     throw 'module [' + id + '] returned undefined';
+  actual.instance = defResult;
+};
+
+var def = function (id, dependencies, definition) {
+  if (typeof id !== 'string')
+    throw 'module id must be a string';
+  else if (dependencies === undefined)
+    throw 'no dependencies for ' + id;
+  else if (definition === undefined)
+    throw 'no definition function for ' + id;
+  defs[id] = {
+    deps: dependencies,
+    defn: definition,
+    instance: undefined
+  };
+};
+
+var dem = function (id) {
+  var actual = defs[id];
+  if (actual === undefined)
+    throw 'module [' + id + '] was undefined';
+  else if (actual.instance === undefined)
+    instantiate(id);
+  return actual.instance;
+};
+
+var req = function (ids, callback) {
+  var len = ids.length;
+  var instances = new Array(len);
+  for (var i = 0; i < len; ++i)
+    instances.push(dem(ids[i]));
+  callback.apply(null, callback);
+};
+
+var ephox = {};
+
+ephox.bolt = {
+  module: {
+    api: {
+      define: def,
+      require: req,
+      demand: dem
+    }
+  }
+};
+
+var define = def;
+var require = req;
+var demand = dem;
+// this helps with minificiation when using a lot of global references
+var defineGlobal = function (id, ref) {
+  define(id, [], function () { return ref; });
+};
+/*jsc
+["tinymce.plugins.image.Plugin","tinymce.core.Env","tinymce.core.PluginManager","tinymce.core.util.JSON","tinymce.core.util.Tools","tinymce.core.util.XHR","global!tinymce.util.Tools.resolve"]
+jsc*/
+defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.Env',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.Env');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.PluginManager',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.PluginManager');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.util.JSON',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.util.JSON');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.util.Tools',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.util.Tools');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.util.XHR',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.util.XHR');
+  }
+);
+
+/**
+ * Plugin.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+/**
+ * This class contains all core logic for the image plugin.
+ *
+ * @class tinymce.image.Plugin
+ * @private
+ */
+define(
+  'tinymce.plugins.image.Plugin',
+  [
+    'tinymce.core.Env',
+    'tinymce.core.PluginManager',
+    'tinymce.core.util.JSON',
+    'tinymce.core.util.Tools',
+    'tinymce.core.util.XHR'
+  ],
+  function (Env, PluginManager, JSON, Tools, XHR) {
+    PluginManager.add('image', function (editor) {
+      function getImageSize(url, callback) {
+        var img = document.createElement('img');
+
+        function done(width, height) {
+          if (img.parentNode) {
+            img.parentNode.removeChild(img);
+          }
+
+          callback({ width: width, height: height });
+        }
+
+        img.onload = function () {
+          done(Math.max(img.width, img.clientWidth), Math.max(img.height, img.clientHeight));
+        };
+
+        img.onerror = function () {
+          done();
+        };
+
+        var style = img.style;
+        style.visibility = 'hidden';
+        style.position = 'fixed';
+        style.bottom = style.left = 0;
+        style.width = style.height = 'auto';
+
+        document.body.appendChild(img);
+        img.src = url;
+      }
+
+      function buildListItems(inputList, itemCallback, startItems) {
+        function appendItems(values, output) {
+          output = output || [];
+
+          Tools.each(values, function (item) {
+            var menuItem = { text: item.text || item.title };
+
+            if (item.menu) {
+              menuItem.menu = appendItems(item.menu);
+            } else {
+              menuItem.value = item.value;
+              itemCallback(menuItem);
+            }
+
+            output.push(menuItem);
+          });
+
+          return output;
+        }
+
+        return appendItems(inputList, startItems || []);
+      }
+
+      function createImageList(callback) {
+        return function () {
+          var imageList = editor.settings.image_list;
+
+          if (typeof imageList == "string") {
+            XHR.send({
+              url: imageList,
+              success: function (text) {
+                callback(JSON.parse(text));
+              }
+            });
+          } else if (typeof imageList == "function") {
+            imageList(callback);
+          } else {
+            callback(imageList);
+          }
+        };
+      }
+
+      function showDialog(imageList) {
+        var win, data = {}, dom = editor.dom, imgElm, figureElm;
+        var width, height, imageListCtrl, classListCtrl, imageDimensions = editor.settings.image_dimensions !== false;
+
+        function recalcSize() {
+          var widthCtrl, heightCtrl, newWidth, newHeight;
+
+          widthCtrl = win.find('#width')[0];
+          heightCtrl = win.find('#height')[0];
+
+          if (!widthCtrl || !heightCtrl) {
+            return;
+          }
+
+          newWidth = widthCtrl.value();
+          newHeight = heightCtrl.value();
+
+          if (win.find('#constrain')[0].checked() && width && height && newWidth && newHeight) {
+            if (width != newWidth) {
+              newHeight = Math.round((newWidth / width) * newHeight);
+
+              if (!isNaN(newHeight)) {
+                heightCtrl.value(newHeight);
+              }
+            } else {
+              newWidth = Math.round((newHeight / height) * newWidth);
+
+              if (!isNaN(newWidth)) {
+                widthCtrl.value(newWidth);
+              }
+            }
+          }
+
+          width = newWidth;
+          height = newHeight;
+        }
+
+        function onSubmitForm() {
+          var figureElm, oldImg;
+
+          function waitLoad(imgElm) {
+            function selectImage() {
+              imgElm.onload = imgElm.onerror = null;
+
+              if (editor.selection) {
+                editor.selection.select(imgElm);
+                editor.nodeChanged();
+              }
+            }
+
+            imgElm.onload = function () {
+              if (!data.width && !data.height && imageDimensions) {
+                dom.setAttribs(imgElm, {
+                  width: imgElm.clientWidth,
+                  height: imgElm.clientHeight
+                });
+              }
+
+              selectImage();
+            };
+
+            imgElm.onerror = selectImage;
+          }
+
+          updateStyle();
+          recalcSize();
+
+          data = Tools.extend(data, win.toJSON());
+
+          if (!data.alt) {
+            data.alt = '';
+          }
+
+          if (!data.title) {
+            data.title = '';
+          }
+
+          if (data.width === '') {
+            data.width = null;
+          }
+
+          if (data.height === '') {
+            data.height = null;
+          }
+
+          if (!data.style) {
+            data.style = null;
+          }
+
+          // Setup new data excluding style properties
+          /*eslint dot-notation: 0*/
+          data = {
+            src: data.src,
+            alt: data.alt,
+            title: data.title,
+            width: data.width,
+            height: data.height,
+            style: data.style,
+            caption: data.caption,
+            "class": data["class"]
+          };
+
+          editor.undoManager.transact(function () {
+            if (!data.src) {
+              if (imgElm) {
+                dom.remove(imgElm);
+                editor.focus();
+                editor.nodeChanged();
+              }
+
+              return;
+            }
+
+            if (data.title === "") {
+              data.title = null;
+            }
+
+            if (!imgElm) {
+              data.id = '__mcenew';
+              editor.focus();
+              editor.selection.setContent(dom.createHTML('img', data));
+              imgElm = dom.get('__mcenew');
+              dom.setAttrib(imgElm, 'id', null);
+            } else {
+              dom.setAttribs(imgElm, data);
+            }
+
+            editor.editorUpload.uploadImagesAuto();
+
+            if (data.caption === false) {
+              if (dom.is(imgElm.parentNode, 'figure.image')) {
+                figureElm = imgElm.parentNode;
+                dom.insertAfter(imgElm, figureElm);
+                dom.remove(figureElm);
+              }
+            }
+
+            function isTextBlock(node) {
+              return editor.schema.getTextBlockElements()[node.nodeName];
+            }
+
+            if (data.caption === true) {
+              if (!dom.is(imgElm.parentNode, 'figure.image')) {
+                oldImg = imgElm;
+                imgElm = imgElm.cloneNode(true);
+                figureElm = dom.create('figure', { 'class': 'image' });
+                figureElm.appendChild(imgElm);
+                figureElm.appendChild(dom.create('figcaption', { contentEditable: true }, 'Caption'));
+                figureElm.contentEditable = false;
+
+                var textBlock = dom.getParent(oldImg, isTextBlock);
+                if (textBlock) {
+                  dom.split(textBlock, oldImg, figureElm);
+                } else {
+                  dom.replace(figureElm, oldImg);
+                }
+
+                editor.selection.select(figureElm);
+              }
+
+              return;
+            }
+
+            waitLoad(imgElm);
+          });
+        }
+
+        function removePixelSuffix(value) {
+          if (value) {
+            value = value.replace(/px$/, '');
+          }
+
+          return value;
+        }
+
+        function srcChange(e) {
+          var srcURL, prependURL, absoluteURLPattern, meta = e.meta || {};
+
+          if (imageListCtrl) {
+            imageListCtrl.value(editor.convertURL(this.value(), 'src'));
+          }
+
+          Tools.each(meta, function (value, key) {
+            win.find('#' + key).value(value);
+          });
+
+          if (!meta.width && !meta.height) {
+            srcURL = editor.convertURL(this.value(), 'src');
+
+            // Pattern test the src url and make sure we haven't already prepended the url
+            prependURL = editor.settings.image_prepend_url;
+            absoluteURLPattern = new RegExp('^(?:[a-z]+:)?//', 'i');
+            if (prependURL && !absoluteURLPattern.test(srcURL) && srcURL.substring(0, prependURL.length) !== prependURL) {
+              srcURL = prependURL + srcURL;
+            }
+
+            this.value(srcURL);
+
+            getImageSize(editor.documentBaseURI.toAbsolute(this.value()), function (data) {
+              if (data.width && data.height && imageDimensions) {
+                width = data.width;
+                height = data.height;
+
+                win.find('#width').value(width);
+                win.find('#height').value(height);
+              }
+            });
+          }
+        }
+
+        function onBeforeCall(e) {
+          e.meta = win.toJSON();
+        }
+
+        imgElm = editor.selection.getNode();
+        figureElm = dom.getParent(imgElm, 'figure.image');
+        if (figureElm) {
+          imgElm = dom.select('img', figureElm)[0];
+        }
+
+        if (imgElm &&
+          (imgElm.nodeName != 'IMG' ||
+            imgElm.getAttribute('data-mce-object') ||
+            imgElm.getAttribute('data-mce-placeholder'))) {
+          imgElm = null;
+        }
+
+        if (imgElm) {
+          width = dom.getAttrib(imgElm, 'width');
+          height = dom.getAttrib(imgElm, 'height');
+
+          data = {
+            src: dom.getAttrib(imgElm, 'src'),
+            alt: dom.getAttrib(imgElm, 'alt'),
+            title: dom.getAttrib(imgElm, 'title'),
+            "class": dom.getAttrib(imgElm, 'class'),
+            width: width,
+            height: height,
+            caption: !!figureElm
+          };
+        }
+
+        if (imageList) {
+          imageListCtrl = {
+            type: 'listbox',
+            label: 'Image list',
+            values: buildListItems(
+              imageList,
+              function (item) {
+                item.value = editor.convertURL(item.value || item.url, 'src');
+              },
+              [{ text: 'None', value: '' }]
+            ),
+            value: data.src && editor.convertURL(data.src, 'src'),
+            onselect: function (e) {
+              var altCtrl = win.find('#alt');
+
+              if (!altCtrl.value() || (e.lastControl && altCtrl.value() == e.lastControl.text())) {
+                altCtrl.value(e.control.text());
+              }
+
+              win.find('#src').value(e.control.value()).fire('change');
+            },
+            onPostRender: function () {
+              /*eslint consistent-this: 0*/
+              imageListCtrl = this;
+            }
+          };
+        }
+
+        if (editor.settings.image_class_list) {
+          classListCtrl = {
+            name: 'class',
+            type: 'listbox',
+            label: 'Class',
+            values: buildListItems(
+              editor.settings.image_class_list,
+              function (item) {
+                if (item.value) {
+                  item.textStyle = function () {
+                    return editor.formatter.getCssText({ inline: 'img', classes: [item.value] });
+                  };
+                }
+              }
+            )
+          };
+        }
+
+        // General settings shared between simple and advanced dialogs
+        var generalFormItems = [
+          {
+            name: 'src',
+            type: 'filepicker',
+            filetype: 'image',
+            label: 'Source',
+            autofocus: true,
+            onchange: srcChange,
+            onbeforecall: onBeforeCall
+          },
+          imageListCtrl
+        ];
+
+        if (editor.settings.image_description !== false) {
+          generalFormItems.push({ name: 'alt', type: 'textbox', label: 'Image description' });
+        }
+
+        if (editor.settings.image_title) {
+          generalFormItems.push({ name: 'title', type: 'textbox', label: 'Image Title' });
+        }
+
+        if (imageDimensions) {
+          generalFormItems.push({
+            type: 'container',
+            label: 'Dimensions',
+            layout: 'flex',
+            direction: 'row',
+            align: 'center',
+            spacing: 5,
+            items: [
+              { name: 'width', type: 'textbox', maxLength: 5, size: 3, onchange: recalcSize, ariaLabel: 'Width' },
+              { type: 'label', text: 'x' },
+              { name: 'height', type: 'textbox', maxLength: 5, size: 3, onchange: recalcSize, ariaLabel: 'Height' },
+              { name: 'constrain', type: 'checkbox', checked: true, text: 'Constrain proportions' }
+            ]
+          });
+        }
+
+        generalFormItems.push(classListCtrl);
+
+        if (editor.settings.image_caption && Env.ceFalse) {
+          generalFormItems.push({ name: 'caption', type: 'checkbox', label: 'Caption' });
+        }
+
+        function mergeMargins(css) {
+          if (css.margin) {
+
+            var splitMargin = css.margin.split(" ");
+
+            switch (splitMargin.length) {
+              case 1: //margin: toprightbottomleft;
+                css['margin-top'] = css['margin-top'] || splitMargin[0];
+                css['margin-right'] = css['margin-right'] || splitMargin[0];
+                css['margin-bottom'] = css['margin-bottom'] || splitMargin[0];
+                css['margin-left'] = css['margin-left'] || splitMargin[0];
+                break;
+              case 2: //margin: topbottom rightleft;
+                css['margin-top'] = css['margin-top'] || splitMargin[0];
+                css['margin-right'] = css['margin-right'] || splitMargin[1];
+                css['margin-bottom'] = css['margin-bottom'] || splitMargin[0];
+                css['margin-left'] = css['margin-left'] || splitMargin[1];
+                break;
+              case 3: //margin: top rightleft bottom;
+                css['margin-top'] = css['margin-top'] || splitMargin[0];
+                css['margin-right'] = css['margin-right'] || splitMargin[1];
+                css['margin-bottom'] = css['margin-bottom'] || splitMargin[2];
+                css['margin-left'] = css['margin-left'] || splitMargin[1];
+                break;
+              case 4: //margin: top right bottom left;
+                css['margin-top'] = css['margin-top'] || splitMargin[0];
+                css['margin-right'] = css['margin-right'] || splitMargin[1];
+                css['margin-bottom'] = css['margin-bottom'] || splitMargin[2];
+                css['margin-left'] = css['margin-left'] || splitMargin[3];
+            }
+            delete css.margin;
+          }
+          return css;
+        }
+
+        function updateStyle() {
+          function addPixelSuffix(value) {
+            if (value.length > 0 && /^[0-9]+$/.test(value)) {
+              value += 'px';
+            }
+
+            return value;
+          }
+
+          if (!editor.settings.image_advtab) {
+            return;
+          }
+
+          var data = win.toJSON(),
+            css = dom.parseStyle(data.style);
+
+          css = mergeMargins(css);
+
+          if (data.vspace) {
+            css['margin-top'] = css['margin-bottom'] = addPixelSuffix(data.vspace);
+          }
+          if (data.hspace) {
+            css['margin-left'] = css['margin-right'] = addPixelSuffix(data.hspace);
+          }
+          if (data.border) {
+            css['border-width'] = addPixelSuffix(data.border);
+          }
+
+          win.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
+        }
+
+        function updateVSpaceHSpaceBorder() {
+          if (!editor.settings.image_advtab) {
+            return;
+          }
+
+          var data = win.toJSON(),
+            css = dom.parseStyle(data.style);
+
+          win.find('#vspace').value("");
+          win.find('#hspace').value("");
+
+          css = mergeMargins(css);
+
+          //Move opposite equal margins to vspace/hspace field
+          if ((css['margin-top'] && css['margin-bottom']) || (css['margin-right'] && css['margin-left'])) {
+            if (css['margin-top'] === css['margin-bottom']) {
+              win.find('#vspace').value(removePixelSuffix(css['margin-top']));
+            } else {
+              win.find('#vspace').value('');
+            }
+            if (css['margin-right'] === css['margin-left']) {
+              win.find('#hspace').value(removePixelSuffix(css['margin-right']));
+            } else {
+              win.find('#hspace').value('');
+            }
+          }
+
+          //Move border-width
+          if (css['border-width']) {
+            win.find('#border').value(removePixelSuffix(css['border-width']));
+          }
+
+          win.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
+
+        }
+
+        if (editor.settings.image_advtab) {
+          // Parse styles from img
+          if (imgElm) {
+            if (imgElm.style.marginLeft && imgElm.style.marginRight && imgElm.style.marginLeft === imgElm.style.marginRight) {
+              data.hspace = removePixelSuffix(imgElm.style.marginLeft);
+            }
+            if (imgElm.style.marginTop && imgElm.style.marginBottom && imgElm.style.marginTop === imgElm.style.marginBottom) {
+              data.vspace = removePixelSuffix(imgElm.style.marginTop);
+            }
+            if (imgElm.style.borderWidth) {
+              data.border = removePixelSuffix(imgElm.style.borderWidth);
+            }
+
+            data.style = editor.dom.serializeStyle(editor.dom.parseStyle(editor.dom.getAttrib(imgElm, 'style')));
+          }
+
+          // Advanced dialog shows general+advanced tabs
+          win = editor.windowManager.open({
+            title: 'Insert/edit image',
+            data: data,
+            bodyType: 'tabpanel',
+            body: [
+              {
+                title: 'General',
+                type: 'form',
+                items: generalFormItems
+              },
+
+              {
+                title: 'Advanced',
+                type: 'form',
+                pack: 'start',
+                items: [
+                  {
+                    label: 'Style',
+                    name: 'style',
+                    type: 'textbox',
+                    onchange: updateVSpaceHSpaceBorder
+                  },
+                  {
+                    type: 'form',
+                    layout: 'grid',
+                    packV: 'start',
+                    columns: 2,
+                    padding: 0,
+                    alignH: ['left', 'right'],
+                    defaults: {
+                      type: 'textbox',
+                      maxWidth: 50,
+                      onchange: updateStyle
+                    },
+                    items: [
+                      { label: 'Vertical space', name: 'vspace' },
+                      { label: 'Horizontal space', name: 'hspace' },
+                      { label: 'Border', name: 'border' }
+                    ]
+                  }
+                ]
+              }
+            ],
+            onSubmit: onSubmitForm
+          });
+        } else {
+          // Simple default dialog
+          win = editor.windowManager.open({
+            title: 'Insert/edit image',
+            data: data,
+            body: generalFormItems,
+            onSubmit: onSubmitForm
+          });
+        }
+      }
+
+      editor.on('preInit', function () {
+        function hasImageClass(node) {
+          var className = node.attr('class');
+          return className && /\bimage\b/.test(className);
+        }
+
+        function toggleContentEditableState(state) {
+          return function (nodes) {
+            var i = nodes.length, node;
+
+            function toggleContentEditable(node) {
+              node.attr('contenteditable', state ? 'true' : null);
+            }
+
+            while (i--) {
+              node = nodes[i];
+
+              if (hasImageClass(node)) {
+                node.attr('contenteditable', state ? 'false' : null);
+                Tools.each(node.getAll('figcaption'), toggleContentEditable);
+              }
+            }
+          };
+        }
+
+        editor.parser.addNodeFilter('figure', toggleContentEditableState(true));
+        editor.serializer.addNodeFilter('figure', toggleContentEditableState(false));
+      });
+
+      editor.addButton('image', {
+        icon: 'image',
+        tooltip: 'Insert/edit image',
+        onclick: createImageList(showDialog),
+        stateSelector: 'img:not([data-mce-object],[data-mce-placeholder]),figure.image'
+      });
+
+      editor.addMenuItem('image', {
+        icon: 'image',
+        text: 'Image',
+        onclick: createImageList(showDialog),
+        context: 'insert',
+        prependToContext: true
+      });
+
+      editor.addCommand('mceImage', createImageList(showDialog));
+    });
+
+    return function () { };
+  }
+);
+dem('tinymce.plugins.image.Plugin')();
+})();
+
+
+/***/ }),
+/* 178 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Exports the "link" plugin for usage with module loaders
+// Usage:
+//   CommonJS:
+//     require('tinymce/plugins/link')
+//   ES2015:
+//     import 'tinymce/plugins/link'
+__webpack_require__(179);
+
+/***/ }),
+/* 179 */
+/***/ (function(module, exports) {
+
+(function () {
+
+var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
+
+// Used when there is no 'main' module.
+// The name is probably (hopefully) unique so minification removes for releases.
+var register_3795 = function (id) {
+  var module = dem(id);
+  var fragments = id.split('.');
+  var target = Function('return this;')();
+  for (var i = 0; i < fragments.length - 1; ++i) {
+    if (target[fragments[i]] === undefined)
+      target[fragments[i]] = {};
+    target = target[fragments[i]];
+  }
+  target[fragments[fragments.length - 1]] = module;
+};
+
+var instantiate = function (id) {
+  var actual = defs[id];
+  var dependencies = actual.deps;
+  var definition = actual.defn;
+  var len = dependencies.length;
+  var instances = new Array(len);
+  for (var i = 0; i < len; ++i)
+    instances[i] = dem(dependencies[i]);
+  var defResult = definition.apply(null, instances);
+  if (defResult === undefined)
+     throw 'module [' + id + '] returned undefined';
+  actual.instance = defResult;
+};
+
+var def = function (id, dependencies, definition) {
+  if (typeof id !== 'string')
+    throw 'module id must be a string';
+  else if (dependencies === undefined)
+    throw 'no dependencies for ' + id;
+  else if (definition === undefined)
+    throw 'no definition function for ' + id;
+  defs[id] = {
+    deps: dependencies,
+    defn: definition,
+    instance: undefined
+  };
+};
+
+var dem = function (id) {
+  var actual = defs[id];
+  if (actual === undefined)
+    throw 'module [' + id + '] was undefined';
+  else if (actual.instance === undefined)
+    instantiate(id);
+  return actual.instance;
+};
+
+var req = function (ids, callback) {
+  var len = ids.length;
+  var instances = new Array(len);
+  for (var i = 0; i < len; ++i)
+    instances.push(dem(ids[i]));
+  callback.apply(null, callback);
+};
+
+var ephox = {};
+
+ephox.bolt = {
+  module: {
+    api: {
+      define: def,
+      require: req,
+      demand: dem
+    }
+  }
+};
+
+var define = def;
+var require = req;
+var demand = dem;
+// this helps with minificiation when using a lot of global references
+var defineGlobal = function (id, ref) {
+  define(id, [], function () { return ref; });
+};
+/*jsc
+["tinymce.plugins.link.Plugin","tinymce.core.PluginManager","tinymce.plugins.link.core.Actions","tinymce.plugins.link.ui.Controls","global!tinymce.util.Tools.resolve","tinymce.core.util.VK","tinymce.plugins.link.ui.Dialog","tinymce.plugins.link.core.OpenUrl","tinymce.plugins.link.core.Utils","tinymce.plugins.link.core.Settings","tinymce.core.util.Delay","tinymce.core.util.Tools","tinymce.core.util.XHR","global!RegExp","tinymce.core.dom.DOMUtils","tinymce.core.Env"]
+jsc*/
+defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.PluginManager',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.PluginManager');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.util.VK',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.util.VK');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.util.Delay',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.util.Delay');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.util.Tools',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.util.Tools');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.util.XHR',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.util.XHR');
+  }
+);
+
+define(
+  'tinymce.plugins.link.core.Settings',
+  [
+
+  ],
+  function () {
+    var assumeExternalTargets = function (editorSettings) {
+      return typeof editorSettings.link_assume_external_targets === 'boolean' ? editorSettings.link_assume_external_targets : false;
+    };
+
+    var hasContextToolbar = function (editorSettings) {
+      return typeof editorSettings.link_context_toolbar === 'boolean' ? editorSettings.link_context_toolbar : false;
+    };
+
+    var getLinkList = function (editorSettings) {
+      return editorSettings.link_list;
+    };
+
+    var hasDefaultLinkTarget = function (editorSettings) {
+      return typeof editorSettings.default_link_target === 'string';
+    };
+
+    var getDefaultLinkTarget = function (editorSettings) {
+      return editorSettings.default_link_target;
+    };
+
+    var getTargetList = function (editorSettings) {
+      return editorSettings.target_list;
+    };
+
+    var setTargetList = function (editor, list) {
+      editor.settings.target_list = list;
+    };
+
+    var shouldShowTargetList = function (editorSettings) {
+      return getTargetList(editorSettings) !== false;
+    };
+
+    var getRelList = function (editorSettings) {
+      return editorSettings.rel_list;
+    };
+
+    var hasRelList = function (editorSettings) {
+      return getRelList(editorSettings) !== undefined;
+    };
+
+    var getLinkClassList = function (editorSettings) {
+      return editorSettings.link_class_list;
+    };
+
+    var hasLinkClassList = function (editorSettings) {
+      return getLinkClassList(editorSettings) !== undefined;
+    };
+
+    var shouldShowLinkTitle = function (editorSettings) {
+      return editorSettings.link_title !== false;
+    };
+
+    var allowUnsafeLinkTarget = function (editorSettings) {
+      return typeof editorSettings.allow_unsafe_link_target === 'boolean' ? editorSettings.allow_unsafe_link_target : false;
+    };
+
+    return {
+      assumeExternalTargets: assumeExternalTargets,
+      hasContextToolbar: hasContextToolbar,
+      getLinkList: getLinkList,
+      hasDefaultLinkTarget: hasDefaultLinkTarget,
+      getDefaultLinkTarget: getDefaultLinkTarget,
+      getTargetList: getTargetList,
+      setTargetList: setTargetList,
+      shouldShowTargetList: shouldShowTargetList,
+      getRelList: getRelList,
+      hasRelList: hasRelList,
+      getLinkClassList: getLinkClassList,
+      hasLinkClassList: hasLinkClassList,
+      shouldShowLinkTitle: shouldShowLinkTitle,
+      allowUnsafeLinkTarget: allowUnsafeLinkTarget
+    };
+  }
+);
+
+defineGlobal("global!RegExp", RegExp);
+/**
+ * Utils.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.plugins.link.core.Utils',
+  [
+    'tinymce.core.util.Tools',
+    'tinymce.plugins.link.core.Settings',
+    'global!RegExp'
+  ],
+  function (Tools, Settings, RegExp) {
+
+    var toggleTargetRules = function (rel, isUnsafe) {
+      var rules = ['noopener'];
+      var newRel = rel ? rel.split(/\s+/) : [];
+
+      var toString = function (rel) {
+        return Tools.trim(rel.sort().join(' '));
+      };
+
+      var addTargetRules = function (rel) {
+        rel = removeTargetRules(rel);
+        return rel.length ? rel.concat(rules) : rules;
+      };
+
+      var removeTargetRules = function (rel) {
+        return rel.filter(function (val) {
+          return Tools.inArray(rules, val) === -1;
+        });
+      };
+
+      newRel = isUnsafe ? addTargetRules(newRel) : removeTargetRules(newRel);
+      return newRel.length ? toString(newRel) : null;
+    };
+
+
+    var trimCaretContainers = function (text) {
+      return text.replace(/\uFEFF/g, '');
+    };
+
+
+    var getAnchorElement = function (editor, selectedElm) {
+      selectedElm = selectedElm || editor.selection.getStart();
+      if (isImageFigure(selectedElm)) {
+        // for an image conained in a figure we look for a link inside the selected element
+        return editor.dom.select('a[href]', selectedElm)[0];
+      } else {
+        return editor.dom.getParent(selectedElm, 'a[href]');
+      }
+    };
+
+
+    var getAnchorText = function (selection, anchorElm) {
+      var text = anchorElm ? (anchorElm.innerText || anchorElm.textContent) : selection.getContent({ format: 'text' });
+      return trimCaretContainers(text);
+    };
+
+
+    var isLink = function (elm) {
+      return elm && elm.nodeName === 'A' && elm.href;
+    };
+
+    var hasLinks = function (elements) {
+      return Tools.grep(elements, isLink).length > 0;
+    };
+
+
+    var isOnlyTextSelected = function (html) {
+      // Partial html and not a fully selected anchor element
+      if (/</.test(html) && (!/^<a [^>]+>[^<]+<\/a>$/.test(html) || html.indexOf('href=') == -1)) {
+        return false;
+      }
+
+      return true;
+    };
+
+
+    var isImageFigure = function (node) {
+      return node && node.nodeName === 'FIGURE' && /\bimage\b/i.test(node.className);
+    };
+
+
+    var link = function (editor, attachState) {
+      return function (data) {
+        editor.undoManager.transact(function () {
+          var selectedElm = editor.selection.getNode();
+          var anchorElm = getAnchorElement(editor, selectedElm);
+
+          var linkAttrs = {
+            href: data.href,
+            target: data.target ? data.target : null,
+            rel: data.rel ? data.rel : null,
+            "class": data["class"] ? data["class"] : null,
+            title: data.title ? data.title : null
+          };
+
+          if (!Settings.hasRelList(editor.settings) && Settings.allowUnsafeLinkTarget(editor.settings) === false) {
+            linkAttrs.rel = toggleTargetRules(linkAttrs.rel, linkAttrs.target == '_blank');
+          }
+
+          if (data.href === attachState.href) {
+            attachState.attach();
+            attachState = {};
+          }
+
+          if (anchorElm) {
+            editor.focus();
+
+            if (data.hasOwnProperty('text')) {
+              if ("innerText" in anchorElm) {
+                anchorElm.innerText = data.text;
+              } else {
+                anchorElm.textContent = data.text;
+              }
+            }
+
+            editor.dom.setAttribs(anchorElm, linkAttrs);
+
+            editor.selection.select(anchorElm);
+            editor.undoManager.add();
+          } else {
+            if (isImageFigure(selectedElm)) {
+              linkImageFigure(editor, selectedElm, linkAttrs);
+            } else if (data.hasOwnProperty('text')) {
+              editor.insertContent(editor.dom.createHTML('a', linkAttrs, editor.dom.encode(data.text)));
+            } else {
+              editor.execCommand('mceInsertLink', false, linkAttrs);
+            }
+          }
+        });
+      };
+    };
+
+
+    var unlink = function (editor) {
+      return function () {
+        editor.undoManager.transact(function () {
+          var node = editor.selection.getNode();
+          if (isImageFigure(node)) {
+            unlinkImageFigure(editor, node);
+          } else {
+            editor.execCommand('unlink');
+          }
+        });
+      };
+    };
+
+
+    var unlinkImageFigure = function (editor, fig) {
+      var a, img;
+      img = editor.dom.select('img', fig)[0];
+      if (img) {
+        a = editor.dom.getParents(img, 'a[href]', fig)[0];
+        if (a) {
+          a.parentNode.insertBefore(img, a);
+          editor.dom.remove(a);
+        }
+      }
+    };
+
+
+    var linkImageFigure = function (editor, fig, attrs) {
+      var a, img;
+      img = editor.dom.select('img', fig)[0];
+      if (img) {
+        a = editor.dom.create('a', attrs);
+        img.parentNode.insertBefore(a, img);
+        a.appendChild(img);
+      }
+    };
+
+    return {
+      link: link,
+      unlink: unlink,
+      isLink: isLink,
+      hasLinks: hasLinks,
+      isOnlyTextSelected: isOnlyTextSelected,
+      getAnchorElement: getAnchorElement,
+      getAnchorText: getAnchorText,
+      toggleTargetRules: toggleTargetRules
+    };
+  }
+);
+/**
+ * Dialog.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.plugins.link.ui.Dialog',
+  [
+    'tinymce.core.util.Delay',
+    'tinymce.core.util.Tools',
+    'tinymce.core.util.XHR',
+    'tinymce.plugins.link.core.Utils',
+    'tinymce.plugins.link.core.Settings'
+  ],
+  function (Delay, Tools, XHR, Utils, Settings) {
+    var attachState = {};
+
+    var createLinkList = function (editor, callback) {
+      var linkList = Settings.getLinkList(editor.settings);
+
+      if (typeof linkList == "string") {
+        XHR.send({
+          url: linkList,
+          success: function (text) {
+            callback(editor, JSON.parse(text));
+          }
+        });
+      } else if (typeof linkList == "function") {
+        linkList(function (list) {
+          callback(editor, list);
+        });
+      } else {
+        callback(editor, linkList);
+      }
+    };
+
+    var buildListItems = function (inputList, itemCallback, startItems) {
+      var appendItems = function (values, output) {
+        output = output || [];
+
+        Tools.each(values, function (item) {
+          var menuItem = { text: item.text || item.title };
+
+          if (item.menu) {
+            menuItem.menu = appendItems(item.menu);
+          } else {
+            menuItem.value = item.value;
+
+            if (itemCallback) {
+              itemCallback(menuItem);
+            }
+          }
+
+          output.push(menuItem);
+        });
+
+        return output;
+      };
+
+      return appendItems(inputList, startItems || []);
+    };
+
+    // Delay confirm since onSubmit will move focus
+    var delayedConfirm = function (editor, message, callback) {
+      var rng = editor.selection.getRng();
+
+      Delay.setEditorTimeout(editor, function () {
+        editor.windowManager.confirm(message, function (state) {
+          editor.selection.setRng(rng);
+          callback(state);
+        });
+      });
+    };
+
+    var showDialog = function (editor, linkList) {
+      var data = {}, selection = editor.selection, dom = editor.dom, anchorElm, initialText;
+      var win, onlyText, textListCtrl, linkListCtrl, relListCtrl, targetListCtrl, classListCtrl, linkTitleCtrl, value;
+
+      var linkListChangeHandler = function (e) {
+        var textCtrl = win.find('#text');
+
+        if (!textCtrl.value() || (e.lastControl && textCtrl.value() == e.lastControl.text())) {
+          textCtrl.value(e.control.text());
+        }
+
+        win.find('#href').value(e.control.value());
+      };
+
+      var buildAnchorListControl = function (url) {
+        var anchorList = [];
+
+        Tools.each(editor.dom.select('a:not([href])'), function (anchor) {
+          var id = anchor.name || anchor.id;
+
+          if (id) {
+            anchorList.push({
+              text: id,
+              value: '#' + id,
+              selected: url.indexOf('#' + id) != -1
+            });
+          }
+        });
+
+        if (anchorList.length) {
+          anchorList.unshift({ text: 'None', value: '' });
+
+          return {
+            name: 'anchor',
+            type: 'listbox',
+            label: 'Anchors',
+            values: anchorList,
+            onselect: linkListChangeHandler
+          };
+        }
+      };
+
+      var updateText = function () {
+        if (!initialText && onlyText && !data.text) {
+          this.parent().parent().find('#text')[0].value(this.value());
+        }
+      };
+
+      var urlChange = function (e) {
+        var meta = e.meta || {};
+
+        if (linkListCtrl) {
+          linkListCtrl.value(editor.convertURL(this.value(), 'href'));
+        }
+
+        Tools.each(e.meta, function (value, key) {
+          var inp = win.find('#' + key);
+
+          if (key === 'text') {
+            if (initialText.length === 0) {
+              inp.value(value);
+              data.text = value;
+            }
+          } else {
+            inp.value(value);
+          }
+        });
+
+        if (meta.attach) {
+          attachState = {
+            href: this.value(),
+            attach: meta.attach
+          };
+        }
+
+        if (!meta.text) {
+          updateText.call(this);
+        }
+      };
+
+      var onBeforeCall = function (e) {
+        e.meta = win.toJSON();
+      };
+
+      onlyText = Utils.isOnlyTextSelected(selection.getContent());
+      anchorElm = Utils.getAnchorElement(editor);
+
+      data.text = initialText = Utils.getAnchorText(editor.selection, anchorElm);
+      data.href = anchorElm ? dom.getAttrib(anchorElm, 'href') : '';
+
+      if (anchorElm) {
+        data.target = dom.getAttrib(anchorElm, 'target');
+      } else if (Settings.hasDefaultLinkTarget(editor.settings)) {
+        data.target = Settings.getDefaultLinkTarget(editor.settings);
+      }
+
+      if ((value = dom.getAttrib(anchorElm, 'rel'))) {
+        data.rel = value;
+      }
+
+      if ((value = dom.getAttrib(anchorElm, 'class'))) {
+        data['class'] = value;
+      }
+
+      if ((value = dom.getAttrib(anchorElm, 'title'))) {
+        data.title = value;
+      }
+
+      if (onlyText) {
+        textListCtrl = {
+          name: 'text',
+          type: 'textbox',
+          size: 40,
+          label: 'Text to display',
+          onchange: function () {
+            data.text = this.value();
+          }
+        };
+      }
+
+      if (linkList) {
+        linkListCtrl = {
+          type: 'listbox',
+          label: 'Link list',
+          values: buildListItems(
+            linkList,
+            function (item) {
+              item.value = editor.convertURL(item.value || item.url, 'href');
+            },
+            [{ text: 'None', value: '' }]
+          ),
+          onselect: linkListChangeHandler,
+          value: editor.convertURL(data.href, 'href'),
+          onPostRender: function () {
+            /*eslint consistent-this:0*/
+            linkListCtrl = this;
+          }
+        };
+      }
+
+      if (Settings.shouldShowTargetList(editor.settings)) {
+        if (Settings.getTargetList(editor.settings) === undefined) {
+          Settings.setTargetList(editor, [
+            { text: 'None', value: '' },
+            { text: 'New window', value: '_blank' }
+          ]);
+        }
+
+        targetListCtrl = {
+          name: 'target',
+          type: 'listbox',
+          label: 'Target',
+          values: buildListItems(Settings.getTargetList(editor.settings))
+        };
+      }
+
+      if (Settings.hasRelList(editor.settings)) {
+        relListCtrl = {
+          name: 'rel',
+          type: 'listbox',
+          label: 'Rel',
+          values: buildListItems(
+            Settings.getRelList(editor.settings),
+            function (item) {
+              if (Settings.allowUnsafeLinkTarget(editor.settings) === false) {
+                item.value = Utils.toggleTargetRules(item.value, data.target === '_blank');
+              }
+            }
+          )
+        };
+      }
+
+      if (Settings.hasLinkClassList(editor.settings)) {
+        classListCtrl = {
+          name: 'class',
+          type: 'listbox',
+          label: 'Class',
+          values: buildListItems(
+            Settings.getLinkClassList(editor.settings),
+            function (item) {
+              if (item.value) {
+                item.textStyle = function () {
+                  return editor.formatter.getCssText({ inline: 'a', classes: [item.value] });
+                };
+              }
+            }
+          )
+        };
+      }
+
+      if (Settings.shouldShowLinkTitle(editor.settings)) {
+        linkTitleCtrl = {
+          name: 'title',
+          type: 'textbox',
+          label: 'Title',
+          value: data.title
+        };
+      }
+
+      win = editor.windowManager.open({
+        title: 'Insert link',
+        data: data,
+        body: [
+          {
+            name: 'href',
+            type: 'filepicker',
+            filetype: 'file',
+            size: 40,
+            autofocus: true,
+            label: 'Url',
+            onchange: urlChange,
+            onkeyup: updateText,
+            onbeforecall: onBeforeCall
+          },
+          textListCtrl,
+          linkTitleCtrl,
+          buildAnchorListControl(data.href),
+          linkListCtrl,
+          relListCtrl,
+          targetListCtrl,
+          classListCtrl
+        ],
+        onSubmit: function (e) {
+          var assumeExternalTargets = Settings.assumeExternalTargets(editor.settings);
+          var insertLink = Utils.link(editor, attachState);
+          var removeLink = Utils.unlink(editor);
+
+          var resultData = Tools.extend({}, data, e.data);
+          /*eslint dot-notation: 0*/
+          var href = resultData.href;
+
+          if (!href) {
+            removeLink();
+            return;
+          }
+
+          if (!onlyText || resultData.text === initialText) {
+            delete resultData.text;
+          }
+
+          // Is email and not //user@domain.com
+          if (href.indexOf('@') > 0 && href.indexOf('//') == -1 && href.indexOf('mailto:') == -1) {
+            delayedConfirm(
+              editor,
+              'The URL you entered seems to be an email address. Do you want to add the required mailto: prefix?',
+              function (state) {
+                if (state) {
+                  resultData.href = 'mailto:' + href;
+                }
+                insertLink(resultData);
+              }
+            );
+            return;
+          }
+
+          // Is not protocol prefixed
+          if ((assumeExternalTargets === true && !/^\w+:/i.test(href)) ||
+            (assumeExternalTargets === false && /^\s*www[\.|\d\.]/i.test(href))) {
+            delayedConfirm(
+              editor,
+              'The URL you entered seems to be an external link. Do you want to add the required http:// prefix?',
+              function (state) {
+                if (state) {
+                  resultData.href = 'http://' + href;
+                }
+                insertLink(resultData);
+              }
+            );
+            return;
+          }
+
+          insertLink(resultData);
+        }
+      });
+    };
+
+    var open = function (editor) {
+      createLinkList(editor, showDialog);
+    };
+
+    return {
+      open: open
+    };
+  }
+);
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.dom.DOMUtils',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.dom.DOMUtils');
+  }
+);
+
+/**
+ * ResolveGlobal.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.core.Env',
+  [
+    'global!tinymce.util.Tools.resolve'
+  ],
+  function (resolve) {
+    return resolve('tinymce.Env');
+  }
+);
+
+/**
+ * OpenUrl.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.plugins.link.core.OpenUrl',
+  [
+    'tinymce.core.dom.DOMUtils',
+    'tinymce.core.Env'
+  ],
+  function (DOMUtils, Env) {
+    var appendClickRemove = function (link, evt) {
+      document.body.appendChild(link);
+      link.dispatchEvent(evt);
+      document.body.removeChild(link);
+    };
+
+    var open = function (url) {
+      // Chrome and Webkit has implemented noopener and works correctly with/without popup blocker
+      // Firefox has it implemented noopener but when the popup blocker is activated it doesn't work
+      // Edge has only implemented noreferrer and it seems to remove opener as well
+      // Older IE versions pre IE 11 falls back to a window.open approach
+      if (!Env.ie || Env.ie > 10) {
+        var link = document.createElement('a');
+        link.target = '_blank';
+        link.href = url;
+        link.rel = 'noreferrer noopener';
+
+        var evt = document.createEvent('MouseEvents');
+        evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+
+        appendClickRemove(link, evt);
+      } else {
+        var win = window.open('', '_blank');
+        if (win) {
+          win.opener = null;
+          var doc = win.document;
+          doc.open();
+          doc.write('<meta http-equiv="refresh" content="0; url=' + DOMUtils.DOM.encode(url) + '">');
+          doc.close();
+        }
+      }
+    };
+
+    return {
+      open: open
+    };
+  }
+);
+/**
+ * Actions.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.plugins.link.core.Actions',
+  [
+    'tinymce.core.util.VK',
+    'tinymce.plugins.link.ui.Dialog',
+    'tinymce.plugins.link.core.OpenUrl',
+    'tinymce.plugins.link.core.Utils',
+    'tinymce.plugins.link.core.Settings'
+  ],
+  function (VK, Dialog, OpenUrl, Utils, Settings) {
+    var getLink = function (editor, elm) {
+      return editor.dom.getParent(elm, 'a[href]');
+    };
+
+    var getSelectedLink = function (editor) {
+      return getLink(editor, editor.selection.getStart());
+    };
+
+    var getHref = function (elm) {
+      // Returns the real href value not the resolved a.href value
+      var href = elm.getAttribute('data-mce-href');
+      return href ? href : elm.getAttribute('href');
+    };
+
+    var isContextMenuVisible = function (editor) {
+      var contextmenu = editor.plugins.contextmenu;
+      return contextmenu ? contextmenu.isContextMenuVisible() : false;
+    };
+
+    var hasOnlyAltModifier = function (e) {
+      return e.altKey === true && e.shiftKey === false && e.ctrlKey === false && e.metaKey === false;
+    };
+
+    var gotoLink = function (editor, a) {
+      if (a) {
+        var href = getHref(a);
+        if (/^#/.test(href)) {
+          var targetEl = editor.$(href);
+          if (targetEl.length) {
+            editor.selection.scrollIntoView(targetEl[0], true);
+          }
+        } else {
+          OpenUrl.open(a.href);
+        }
+      }
+    };
+
+    var openDialog = function (editor) {
+      return function () {
+        Dialog.open(editor);
+      };
+    };
+
+    var gotoSelectedLink = function (editor) {
+      return function () {
+        gotoLink(editor, getSelectedLink(editor));
+      };
+    };
+
+    var leftClickedOnAHref = function (editor) {
+      return function (elm) {
+        var sel, rng, node;
+        if (Settings.hasContextToolbar(editor.settings) && !isContextMenuVisible(editor) && Utils.isLink(elm)) {
+          sel = editor.selection;
+          rng = sel.getRng();
+          node = rng.startContainer;
+          // ignore cursor positions at the beginning/end (to make context toolbar less noisy)
+          if (node.nodeType == 3 && sel.isCollapsed() && rng.startOffset > 0 && rng.startOffset < node.data.length) {
+            return true;
+          }
+        }
+        return false;
+      };
+    };
+
+    var setupGotoLinks = function (editor) {
+      editor.on('click', function (e) {
+        var link = getLink(editor, e.target);
+        if (link && VK.metaKeyPressed(e)) {
+          e.preventDefault();
+          gotoLink(editor, link);
+        }
+      });
+
+      editor.on('keydown', function (e) {
+        var link = getSelectedLink(editor);
+        if (link && e.keyCode === 13 && hasOnlyAltModifier(e)) {
+          e.preventDefault();
+          gotoLink(editor, link);
+        }
+      });
+    };
+
+    var toggleActiveState = function (editor) {
+      return function () {
+        var self = this;
+        editor.on('nodechange', function (e) {
+          self.active(!editor.readonly && !!Utils.getAnchorElement(editor, e.element));
+        });
+      };
+    };
+
+    var toggleViewLinkState = function (editor) {
+      return function () {
+        var self = this;
+
+        var toggleVisibility = function (e) {
+          if (Utils.hasLinks(e.parents)) {
+            self.show();
+          } else {
+            self.hide();
+          }
+        };
+
+        if (!Utils.hasLinks(editor.dom.getParents(editor.selection.getStart()))) {
+          self.hide();
+        }
+
+        editor.on('nodechange', toggleVisibility);
+
+        self.on('remove', function () {
+          editor.off('nodechange', toggleVisibility);
+        });
+      };
+    };
+
+    return {
+      openDialog: openDialog,
+      gotoSelectedLink: gotoSelectedLink,
+      leftClickedOnAHref: leftClickedOnAHref,
+      setupGotoLinks: setupGotoLinks,
+      toggleActiveState: toggleActiveState,
+      toggleViewLinkState: toggleViewLinkState
+    };
+  }
+);
+/**
+ * Controls.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.plugins.link.ui.Controls',
+  [
+    'tinymce.plugins.link.core.Actions',
+    'tinymce.plugins.link.core.Utils'
+  ],
+  function (Actions, Utils) {
+
+    var setupButtons = function (editor) {
+      editor.addButton('link', {
+        icon: 'link',
+        tooltip: 'Insert/edit link',
+        shortcut: 'Meta+K',
+        onclick: Actions.openDialog(editor),
+        onpostrender: Actions.toggleActiveState(editor)
+      });
+
+      editor.addButton('unlink', {
+        icon: 'unlink',
+        tooltip: 'Remove link',
+        onclick: Utils.unlink(editor),
+        onpostrender: Actions.toggleActiveState(editor)
+      });
+
+      if (editor.addContextToolbar) {
+        editor.addButton('openlink', {
+          icon: 'newtab',
+          tooltip: 'Open link',
+          onclick: Actions.gotoSelectedLink(editor)
+        });
+      }
+    };
+
+    var setupMenuItems = function (editor) {
+      editor.addMenuItem('openlink', {
+        text: 'Open link',
+        icon: 'newtab',
+        onclick: Actions.gotoSelectedLink(editor),
+        onPostRender: Actions.toggleViewLinkState(editor),
+        prependToContext: true
+      });
+
+      editor.addMenuItem('link', {
+        icon: 'link',
+        text: 'Link',
+        shortcut: 'Meta+K',
+        onclick: Actions.openDialog(editor),
+        stateSelector: 'a[href]',
+        context: 'insert',
+        prependToContext: true
+      });
+    };
+
+    var setupContextToolbars = function (editor) {
+      if (editor.addContextToolbar) {
+        editor.addContextToolbar(
+          Actions.leftClickedOnAHref(editor),
+          'openlink | link unlink'
+        );
+      }
+    };
+
+    return {
+      setupButtons: setupButtons,
+      setupMenuItems: setupMenuItems,
+      setupContextToolbars: setupContextToolbars
+    };
+  }
+);
+/**
+ * Plugin.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define(
+  'tinymce.plugins.link.Plugin',
+  [
+    'tinymce.core.PluginManager',
+    'tinymce.plugins.link.core.Actions',
+    'tinymce.plugins.link.ui.Controls'
+  ],
+  function (PluginManager, Actions, Controls) {
+    PluginManager.add('link', function (editor) {
+      Controls.setupButtons(editor);
+      Controls.setupMenuItems(editor);
+      Controls.setupContextToolbars(editor);
+      Actions.setupGotoLinks(editor);
+      editor.addShortcut('Meta+K', '', Actions.openDialog(editor));
+      editor.addCommand('mceLink', Actions.openDialog(editor));
+    });
+
+    return function () { };
+  }
+);
+dem('tinymce.plugins.link.Plugin')();
+})();
+
+
+/***/ }),
+/* 180 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(setImmediate) {// 4.6.4 (2017-06-13)
 !function(){var a={},b=function(b){for(var c=a[b],e=c.deps,f=c.defn,g=e.length,h=new Array(g),i=0;i<g;++i)h[i]=d(e[i]);var j=f.apply(null,h);if(void 0===j)throw"module ["+b+"] returned undefined";c.instance=j},c=function(b,c,d){if("string"!=typeof b)throw"module id must be a string";if(void 0===c)throw"no dependencies for "+b;if(void 0===d)throw"no definition function for "+b;a[b]={deps:c,defn:d,instance:void 0}},d=function(c){var d=a[c];if(void 0===d)throw"module ["+c+"] was undefined";return void 0===d.instance&&b(c),d.instance},e=function(a,b){for(var c=a.length,e=new Array(c),f=0;f<c;++f)e.push(d(a[f]));b.apply(null,b)},f={};f.bolt={module:{api:{define:c,require:e,demand:d}}};var g=c,h=function(a,b){g(a,[],function(){return b})};g("3",[],function(){"use strict";function a(a,b,c){var d,e,g,h,i,k;return d=b.x,e=b.y,g=a.w,h=a.h,i=b.w,k=b.h,c=(c||"").split(""),"b"===c[0]&&(e+=k),"r"===c[1]&&(d+=i),"c"===c[0]&&(e+=j(k/2)),"c"===c[1]&&(d+=j(i/2)),"b"===c[3]&&(e-=h),"r"===c[4]&&(d-=g),"c"===c[3]&&(e-=j(h/2)),"c"===c[4]&&(d-=j(g/2)),f(d,e,g,h)}function b(b,c,d,e){var f,g;for(g=0;g<e.length;g++)if(f=a(b,c,e[g]),f.x>=d.x&&f.x+f.w<=d.w+d.x&&f.y>=d.y&&f.y+f.h<=d.h+d.y)return e[g];return null}function c(a,b,c){return f(a.x-b,a.y-c,a.w+2*b,a.h+2*c)}function d(a,b){var c,d,e,g;return c=i(a.x,b.x),d=i(a.y,b.y),e=h(a.x+a.w,b.x+b.w),g=h(a.y+a.h,b.y+b.h),e-c<0||g-d<0?null:f(c,d,e-c,g-d)}function e(a,b,c){var d,e,g,h,j,k,l,m,n,o;return j=a.x,k=a.y,l=a.x+a.w,m=a.y+a.h,n=b.x+b.w,o=b.y+b.h,d=i(0,b.x-j),e=i(0,b.y-k),g=i(0,l-n),h=i(0,m-o),j+=d,k+=e,c&&(l+=d,m+=e,j-=g,k-=h),l-=g,m-=h,f(j,k,l-j,m-k)}function f(a,b,c,d){return{x:a,y:b,w:c,h:d}}function g(a){return f(a.left,a.top,a.width,a.height)}var h=Math.min,i=Math.max,j=Math.round;return{inflate:c,relativePosition:a,findBestRelativePosition:b,intersect:d,clamp:e,create:f,fromClientRect:g}}),g("4",[],function(){function a(a,b){return function(){a.apply(b,arguments)}}function b(b){if("object"!=typeof this)throw new TypeError("Promises must be constructed via new");if("function"!=typeof b)throw new TypeError("not a function");this._state=null,this._value=null,this._deferreds=[],h(b,a(d,this),a(e,this))}function c(a){var b=this;return null===this._state?void this._deferreds.push(a):void i(function(){var c=b._state?a.onFulfilled:a.onRejected;if(null===c)return void(b._state?a.resolve:a.reject)(b._value);var d;try{d=c(b._value)}catch(b){return void a.reject(b)}a.resolve(d)})}function d(b){try{if(b===this)throw new TypeError("A promise cannot be resolved with itself.");if(b&&("object"==typeof b||"function"==typeof b)){var c=b.then;if("function"==typeof c)return void h(a(c,b),a(d,this),a(e,this))}this._state=!0,this._value=b,f.call(this)}catch(a){e.call(this,a)}}function e(a){this._state=!1,this._value=a,f.call(this)}function f(){for(var a=0,b=this._deferreds.length;a<b;a++)c.call(this,this._deferreds[a]);this._deferreds=null}function g(a,b,c,d){this.onFulfilled="function"==typeof a?a:null,this.onRejected="function"==typeof b?b:null,this.resolve=c,this.reject=d}function h(a,b,c){var d=!1;try{a(function(a){d||(d=!0,b(a))},function(a){d||(d=!0,c(a))})}catch(a){if(d)return;d=!0,c(a)}}if(window.Promise)return window.Promise;var i=b.immediateFn||"function"==typeof setImmediate&&setImmediate||function(a){setTimeout(a,1)},j=Array.isArray||function(a){return"[object Array]"===Object.prototype.toString.call(a)};return b.prototype["catch"]=function(a){return this.then(null,a)},b.prototype.then=function(a,d){var e=this;return new b(function(b,f){c.call(e,new g(a,d,b,f))})},b.all=function(){var a=Array.prototype.slice.call(1===arguments.length&&j(arguments[0])?arguments[0]:arguments);return new b(function(b,c){function d(f,g){try{if(g&&("object"==typeof g||"function"==typeof g)){var h=g.then;if("function"==typeof h)return void h.call(g,function(a){d(f,a)},c)}a[f]=g,0===--e&&b(a)}catch(a){c(a)}}if(0===a.length)return b([]);for(var e=a.length,f=0;f<a.length;f++)d(f,a[f])})},b.resolve=function(a){return a&&"object"==typeof a&&a.constructor===b?a:new b(function(b){b(a)})},b.reject=function(a){return new b(function(b,c){c(a)})},b.race=function(a){return new b(function(b,c){for(var d=0,e=a.length;d<e;d++)a[d].then(b,c)})},b}),g("5",["4"],function(a){function b(a,b){function c(a){window.setTimeout(a,0)}var d,e=window.requestAnimationFrame,f=["ms","moz","webkit"];for(d=0;d<f.length&&!e;d++)e=window[f[d]+"RequestAnimationFrame"];e||(e=c),e(a,b)}function c(a,b){return"number"!=typeof b&&(b=0),setTimeout(a,b)}function d(a,b){return"number"!=typeof b&&(b=1),setInterval(a,b)}function e(a){return clearTimeout(a)}function f(a){return clearInterval(a)}function g(a,b){var d,e;return e=function(){var e=arguments;clearTimeout(d),d=c(function(){a.apply(this,e)},b)},e.stop=function(){clearTimeout(d)},e}var h;return{requestAnimationFrame:function(c,d){return h?void h.then(c):void(h=new a(function(a){d||(d=document.body),b(a,d)}).then(c))},setTimeout:c,setInterval:d,setEditorTimeout:function(a,b,d){return c(function(){a.removed||b()},d)},setEditorInterval:function(a,b,c){var e;return e=d(function(){a.removed?clearInterval(e):b()},c)},debounce:g,throttle:g,clearInterval:f,clearTimeout:e}}),g("6",[],function(){function a(a){return"matchMedia"in window&&matchMedia(a).matches}var b,c,d,e,f,g,h,i,j,k,l,m,n,o=navigator,p=o.userAgent;b=window.opera&&window.opera.buildNumber,j=/Android/.test(p),c=/WebKit/.test(p),d=!c&&!b&&/MSIE/gi.test(p)&&/Explorer/gi.test(o.appName),d=d&&/MSIE (\w+)\./.exec(p)[1],e=p.indexOf("Trident/")!=-1&&(p.indexOf("rv:")!=-1||o.appName.indexOf("Netscape")!=-1)&&11,f=p.indexOf("Edge/")!=-1&&!d&&!e&&12,d=d||e||f,g=!c&&!e&&/Gecko/.test(p),h=p.indexOf("Mac")!=-1,i=/(iPad|iPhone)/.test(p),k="FormData"in window&&"FileReader"in window&&"URL"in window&&!!URL.createObjectURL,l=a("only screen and (max-device-width: 480px)")&&(j||i),m=a("only screen and (min-width: 800px)")&&(j||i),n=p.indexOf("Windows Phone")!=-1,f&&(c=!1);var q=!i||k||p.match(/AppleWebKit\/(\d*)/)[1]>=534;return{opera:b,webkit:c,ie:d,gecko:g,mac:h,iOS:i,android:j,contentEditable:q,transparentSrc:"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",caretAfter:8!=d,range:window.getSelection&&"Range"in window,documentMode:d&&!f?document.documentMode||7:10,fileApi:k,ceFalse:d===!1||d>8,canHaveCSP:d===!1||d>11,desktop:!l&&!m,windowsPhone:n}}),g("7",["5","6"],function(a,b){"use strict";function c(a,b,c,d){a.addEventListener?a.addEventListener(b,c,d||!1):a.attachEvent&&a.attachEvent("on"+b,c)}function d(a,b,c,d){a.removeEventListener?a.removeEventListener(b,c,d||!1):a.detachEvent&&a.detachEvent("on"+b,c)}function e(a,b){var c,d=b;return c=a.path,c&&c.length>0&&(d=c[0]),a.deepPath&&(c=a.deepPath(),c&&c.length>0&&(d=c[0])),d}function f(a,c){var d,f,g=c||{};for(d in a)k[d]||(g[d]=a[d]);if(g.target||(g.target=g.srcElement||document),b.experimentalShadowDom&&(g.target=e(a,g.target)),a&&j.test(a.type)&&a.pageX===f&&a.clientX!==f){var h=g.target.ownerDocument||document,i=h.documentElement,o=h.body;g.pageX=a.clientX+(i&&i.scrollLeft||o&&o.scrollLeft||0)-(i&&i.clientLeft||o&&o.clientLeft||0),g.pageY=a.clientY+(i&&i.scrollTop||o&&o.scrollTop||0)-(i&&i.clientTop||o&&o.clientTop||0)}return g.preventDefault=function(){g.isDefaultPrevented=n,a&&(a.preventDefault?a.preventDefault():a.returnValue=!1)},g.stopPropagation=function(){g.isPropagationStopped=n,a&&(a.stopPropagation?a.stopPropagation():a.cancelBubble=!0)},g.stopImmediatePropagation=function(){g.isImmediatePropagationStopped=n,g.stopPropagation()},l(g)===!1&&(g.isDefaultPrevented=m,g.isPropagationStopped=m,g.isImmediatePropagationStopped=m),"undefined"==typeof g.metaKey&&(g.metaKey=!1),g}function g(e,f,g){function h(){return"complete"===l.readyState||"interactive"===l.readyState&&l.body}function i(){g.domLoaded||(g.domLoaded=!0,f(m))}function j(){h()&&(d(l,"readystatechange",j),i())}function k(){try{l.documentElement.doScroll("left")}catch(b){return void a.setTimeout(k)}i()}var l=e.document,m={type:"ready"};return g.domLoaded?void f(m):(!l.addEventListener||b.ie&&b.ie<11?(c(l,"readystatechange",j),l.documentElement.doScroll&&e.self===e.top&&k()):h()?i():c(e,"DOMContentLoaded",i),void c(e,"load",i))}function h(){function a(a,b){var c,d,e,f,g=m[b];if(c=g&&g[a.type])for(d=0,e=c.length;d<e;d++)if(f=c[d],f&&f.func.call(f.scope,a)===!1&&a.preventDefault(),a.isImmediatePropagationStopped())return}var b,e,h,j,k,l=this,m={};e=i+(+new Date).toString(32),j="onmouseenter"in document.documentElement,h="onfocusin"in document.documentElement,k={mouseenter:"mouseover",mouseleave:"mouseout"},b=1,l.domLoaded=!1,l.events=m,l.bind=function(d,i,n,o){function p(b){a(f(b||x.event),q)}var q,r,s,t,u,v,w,x=window;if(d&&3!==d.nodeType&&8!==d.nodeType){for(d[e]?q=d[e]:(q=b++,d[e]=q,m[q]={}),o=o||d,i=i.split(" "),s=i.length;s--;)t=i[s],v=p,u=w=!1,"DOMContentLoaded"===t&&(t="ready"),l.domLoaded&&"ready"===t&&"complete"==d.readyState?n.call(o,f({type:t})):(j||(u=k[t],u&&(v=function(b){var c,d;if(c=b.currentTarget,d=b.relatedTarget,d&&c.contains)d=c.contains(d);else for(;d&&d!==c;)d=d.parentNode;d||(b=f(b||x.event),b.type="mouseout"===b.type?"mouseleave":"mouseenter",b.target=c,a(b,q))})),h||"focusin"!==t&&"focusout"!==t||(w=!0,u="focusin"===t?"focus":"blur",v=function(b){b=f(b||x.event),b.type="focus"===b.type?"focusin":"focusout",a(b,q)}),r=m[q][t],r?"ready"===t&&l.domLoaded?n({type:t}):r.push({func:n,scope:o}):(m[q][t]=r=[{func:n,scope:o}],r.fakeName=u,r.capture=w,r.nativeHandler=v,"ready"===t?g(d,v,l):c(d,u||t,v,w)));return d=r=0,n}},l.unbind=function(a,b,c){var f,g,h,i,j,k;if(!a||3===a.nodeType||8===a.nodeType)return l;if(f=a[e]){if(k=m[f],b){for(b=b.split(" "),h=b.length;h--;)if(j=b[h],g=k[j]){if(c)for(i=g.length;i--;)if(g[i].func===c){var n=g.nativeHandler,o=g.fakeName,p=g.capture;g=g.slice(0,i).concat(g.slice(i+1)),g.nativeHandler=n,g.fakeName=o,g.capture=p,k[j]=g}c&&0!==g.length||(delete k[j],d(a,g.fakeName||j,g.nativeHandler,g.capture))}}else{for(j in k)g=k[j],d(a,g.fakeName||j,g.nativeHandler,g.capture);k={}}for(j in k)return l;delete m[f];try{delete a[e]}catch(b){a[e]=null}}return l},l.fire=function(b,c,d){var g;if(!b||3===b.nodeType||8===b.nodeType)return l;d=f(null,d),d.type=c,d.target=b;do g=b[e],g&&a(d,g),b=b.parentNode||b.ownerDocument||b.defaultView||b.parentWindow;while(b&&!d.isPropagationStopped());return l},l.clean=function(a){var b,c,d=l.unbind;if(!a||3===a.nodeType||8===a.nodeType)return l;if(a[e]&&d(a),a.getElementsByTagName||(a=a.document),a&&a.getElementsByTagName)for(d(a),c=a.getElementsByTagName("*"),b=c.length;b--;)a=c[b],a[e]&&d(a);return l},l.destroy=function(){m={}},l.cancel=function(a){return a&&(a.preventDefault(),a.stopImmediatePropagation()),!1}}var i="mce-data-",j=/^(?:mouse|contextmenu)|click/,k={keyLocation:1,layerX:1,layerY:1,returnValue:1,webkitMovementX:1,webkitMovementY:1,keyIdentifier:1},l=function(a){return a.isDefaultPrevented===n||a.isDefaultPrevented===m},m=function(){return!1},n=function(){return!0};return h.Event=new h,h.Event.bind(window,"ready",function(){}),h}),g("8",[],function(){function a(a,b,c,d){var e,f,g,h,i,k,m,n,o,p;if((b?b.ownerDocument||b:N)!==F&&E(b),b=b||F,c=c||[],!a||"string"!=typeof a)return c;if(1!==(h=b.nodeType)&&9!==h)return[];if(H&&!d){if(e=qa.exec(a))if(g=e[1]){if(9===h){if(f=b.getElementById(g),!f||!f.parentNode)return c;if(f.id===g)return c.push(f),c}else if(b.ownerDocument&&(f=b.ownerDocument.getElementById(g))&&L(b,f)&&f.id===g)return c.push(f),c}else{if(e[2])return $.apply(c,b.getElementsByTagName(a)),c;if((g=e[3])&&u.getElementsByClassName)return $.apply(c,b.getElementsByClassName(g)),c}if(u.qsa&&(!I||!I.test(a))){if(n=m=M,o=b,p=9===h&&a,1===h&&"object"!==b.nodeName.toLowerCase()){for(k=y(a),(m=b.getAttribute("id"))?n=m.replace(sa,"\\$&"):b.setAttribute("id",n),n="[id='"+n+"'] ",i=k.length;i--;)k[i]=n+l(k[i]);o=ra.test(a)&&j(b.parentNode)||b,p=k.join(",")}if(p)try{return $.apply(c,o.querySelectorAll(p)),c}catch(a){}finally{m||b.removeAttribute("id")}}}return A(a.replace(ga,"$1"),b,c,d)}function b(){function a(c,d){return b.push(c+" ")>v.cacheLength&&delete a[b.shift()],a[c+" "]=d}var b=[];return a}function c(a){return a[M]=!0,a}function d(a){var b=F.createElement("div");try{return!!a(b)}catch(a){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function e(a,b){for(var c=a.split("|"),d=a.length;d--;)v.attrHandle[c[d]]=b}function f(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||V)-(~a.sourceIndex||V);if(d)return d;if(c)for(;c=c.nextSibling;)if(c===b)return-1;return a?1:-1}function g(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function h(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function i(a){return c(function(b){return b=+b,c(function(c,d){for(var e,f=a([],c.length,b),g=f.length;g--;)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function j(a){return a&&typeof a.getElementsByTagName!==U&&a}function k(){}function l(a){for(var b=0,c=a.length,d="";b<c;b++)d+=a[b].value;return d}function m(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=P++;return b.first?function(b,c,f){for(;b=b[d];)if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[O,f];if(g){for(;b=b[d];)if((1===b.nodeType||e)&&a(b,c,g))return!0}else for(;b=b[d];)if(1===b.nodeType||e){if(i=b[M]||(b[M]={}),(h=i[d])&&h[0]===O&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function n(a){return a.length>1?function(b,c,d){for(var e=a.length;e--;)if(!a[e](b,c,d))return!1;return!0}:a[0]}function o(b,c,d){for(var e=0,f=c.length;e<f;e++)a(b,c[e],d);return d}function p(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;h<i;h++)(f=a[h])&&(c&&!c(f,d,e)||(g.push(f),j&&b.push(h)));return g}function q(a,b,d,e,f,g){return e&&!e[M]&&(e=q(e)),f&&!f[M]&&(f=q(f,g)),c(function(c,g,h,i){var j,k,l,m=[],n=[],q=g.length,r=c||o(b||"*",h.nodeType?[h]:h,[]),s=!a||!c&&b?r:p(r,m,a,h,i),t=d?f||(c?a:q||e)?[]:g:s;if(d&&d(s,t,h,i),e)for(j=p(t,n),e(j,[],h,i),k=j.length;k--;)(l=j[k])&&(t[n[k]]=!(s[n[k]]=l));if(c){if(f||a){if(f){for(j=[],k=t.length;k--;)(l=t[k])&&j.push(s[k]=l);f(null,t=[],j,i)}for(k=t.length;k--;)(l=t[k])&&(j=f?aa.call(c,l):m[k])>-1&&(c[j]=!(g[j]=l))}}else t=p(t===g?t.splice(q,t.length):t),f?f(null,g,t,i):$.apply(g,t)})}function r(a){for(var b,c,d,e=a.length,f=v.relative[a[0].type],g=f||v.relative[" "],h=f?1:0,i=m(function(a){return a===b},g,!0),j=m(function(a){return aa.call(b,a)>-1},g,!0),k=[function(a,c,d){return!f&&(d||c!==B)||((b=c).nodeType?i(a,c,d):j(a,c,d))}];h<e;h++)if(c=v.relative[a[h].type])k=[m(n(k),c)];else{if(c=v.filter[a[h].type].apply(null,a[h].matches),c[M]){for(d=++h;d<e&&!v.relative[a[d].type];d++);return q(h>1&&n(k),h>1&&l(a.slice(0,h-1).concat({value:" "===a[h-2].type?"*":""})).replace(ga,"$1"),c,h<d&&r(a.slice(h,d)),d<e&&r(a=a.slice(d)),d<e&&l(a))}k.push(c)}return n(k)}function s(b,d){var e=d.length>0,f=b.length>0,g=function(c,g,h,i,j){var k,l,m,n=0,o="0",q=c&&[],r=[],s=B,t=c||f&&v.find.TAG("*",j),u=O+=null==s?1:Math.random()||.1,w=t.length;for(j&&(B=g!==F&&g);o!==w&&null!=(k=t[o]);o++){if(f&&k){for(l=0;m=b[l++];)if(m(k,g,h)){i.push(k);break}j&&(O=u)}e&&((k=!m&&k)&&n--,c&&q.push(k))}if(n+=o,e&&o!==n){for(l=0;m=d[l++];)m(q,r,g,h);if(c){if(n>0)for(;o--;)q[o]||r[o]||(r[o]=Y.call(i));r=p(r)}$.apply(i,r),j&&!c&&r.length>0&&n+d.length>1&&a.uniqueSort(i)}return j&&(O=u,B=s),q};return e?c(g):g}var t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M="sizzle"+-new Date,N=window.document,O=0,P=0,Q=b(),R=b(),S=b(),T=function(a,b){return a===b&&(D=!0),0},U="undefined",V=1<<31,W={}.hasOwnProperty,X=[],Y=X.pop,Z=X.push,$=X.push,_=X.slice,aa=X.indexOf||function(a){for(var b=0,c=this.length;b<c;b++)if(this[b]===a)return b;return-1},ba="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",ca="[\\x20\\t\\r\\n\\f]",da="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",ea="\\["+ca+"*("+da+")(?:"+ca+"*([*^$|!~]?=)"+ca+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+da+"))|)"+ca+"*\\]",fa=":("+da+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+ea+")*)|.*)\\)|)",ga=new RegExp("^"+ca+"+|((?:^|[^\\\\])(?:\\\\.)*)"+ca+"+$","g"),ha=new RegExp("^"+ca+"*,"+ca+"*"),ia=new RegExp("^"+ca+"*([>+~]|"+ca+")"+ca+"*"),ja=new RegExp("="+ca+"*([^\\]'\"]*?)"+ca+"*\\]","g"),ka=new RegExp(fa),la=new RegExp("^"+da+"$"),ma={ID:new RegExp("^#("+da+")"),CLASS:new RegExp("^\\.("+da+")"),TAG:new RegExp("^("+da+"|[*])"),ATTR:new RegExp("^"+ea),PSEUDO:new RegExp("^"+fa),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+ca+"*(even|odd|(([+-]|)(\\d*)n|)"+ca+"*(?:([+-]|)"+ca+"*(\\d+)|))"+ca+"*\\)|)","i"),bool:new RegExp("^(?:"+ba+")$","i"),needsContext:new RegExp("^"+ca+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+ca+"*((?:-\\d)?\\d*)"+ca+"*\\)|)(?=[^-]|$)","i")},na=/^(?:input|select|textarea|button)$/i,oa=/^h\d$/i,pa=/^[^{]+\{\s*\[native \w/,qa=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,ra=/[+~]/,sa=/'|\\/g,ta=new RegExp("\\\\([\\da-f]{1,6}"+ca+"?|("+ca+")|.)","ig"),ua=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:d<0?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)};try{$.apply(X=_.call(N.childNodes),N.childNodes),X[N.childNodes.length].nodeType}catch(a){$={apply:X.length?function(a,b){Z.apply(a,_.call(b))}:function(a,b){for(var c=a.length,d=0;a[c++]=b[d++];);a.length=c-1}}}u=a.support={},x=a.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return!!b&&"HTML"!==b.nodeName},E=a.setDocument=function(a){function b(a){try{return a.top}catch(a){}return null}var c,e=a?a.ownerDocument||a:N,g=e.defaultView;return e!==F&&9===e.nodeType&&e.documentElement?(F=e,G=e.documentElement,H=!x(e),g&&g!==b(g)&&(g.addEventListener?g.addEventListener("unload",function(){E()},!1):g.attachEvent&&g.attachEvent("onunload",function(){E()})),u.attributes=d(function(a){return a.className="i",!a.getAttribute("className")}),u.getElementsByTagName=d(function(a){return a.appendChild(e.createComment("")),!a.getElementsByTagName("*").length}),u.getElementsByClassName=pa.test(e.getElementsByClassName),u.getById=d(function(a){return G.appendChild(a).id=M,!e.getElementsByName||!e.getElementsByName(M).length}),u.getById?(v.find.ID=function(a,b){if(typeof b.getElementById!==U&&H){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},v.filter.ID=function(a){var b=a.replace(ta,ua);return function(a){return a.getAttribute("id")===b}}):(delete v.find.ID,v.filter.ID=function(a){var b=a.replace(ta,ua);return function(a){var c=typeof a.getAttributeNode!==U&&a.getAttributeNode("id");return c&&c.value===b}}),v.find.TAG=u.getElementsByTagName?function(a,b){if(typeof b.getElementsByTagName!==U)return b.getElementsByTagName(a)}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){for(;c=f[e++];)1===c.nodeType&&d.push(c);return d}return f},v.find.CLASS=u.getElementsByClassName&&function(a,b){if(H)return b.getElementsByClassName(a)},J=[],I=[],(u.qsa=pa.test(e.querySelectorAll))&&(d(function(a){a.innerHTML="<select msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&I.push("[*^$]="+ca+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||I.push("\\["+ca+"*(?:value|"+ba+")"),a.querySelectorAll(":checked").length||I.push(":checked")}),d(function(a){var b=e.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&I.push("name"+ca+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||I.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),I.push(",.*:")})),(u.matchesSelector=pa.test(K=G.matches||G.webkitMatchesSelector||G.mozMatchesSelector||G.oMatchesSelector||G.msMatchesSelector))&&d(function(a){u.disconnectedMatch=K.call(a,"div"),K.call(a,"[s!='']:x"),J.push("!=",fa)}),I=I.length&&new RegExp(I.join("|")),J=J.length&&new RegExp(J.join("|")),c=pa.test(G.compareDocumentPosition),L=c||pa.test(G.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)for(;b=b.parentNode;)if(b===a)return!0;return!1},T=c?function(a,b){if(a===b)return D=!0,0;var c=!a.compareDocumentPosition-!b.compareDocumentPosition;return c?c:(c=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&c||!u.sortDetached&&b.compareDocumentPosition(a)===c?a===e||a.ownerDocument===N&&L(N,a)?-1:b===e||b.ownerDocument===N&&L(N,b)?1:C?aa.call(C,a)-aa.call(C,b):0:4&c?-1:1)}:function(a,b){if(a===b)return D=!0,0;var c,d=0,g=a.parentNode,h=b.parentNode,i=[a],j=[b];if(!g||!h)return a===e?-1:b===e?1:g?-1:h?1:C?aa.call(C,a)-aa.call(C,b):0;if(g===h)return f(a,b);for(c=a;c=c.parentNode;)i.unshift(c);for(c=b;c=c.parentNode;)j.unshift(c);for(;i[d]===j[d];)d++;return d?f(i[d],j[d]):i[d]===N?-1:j[d]===N?1:0},e):F},a.matches=function(b,c){return a(b,null,null,c)},a.matchesSelector=function(b,c){if((b.ownerDocument||b)!==F&&E(b),c=c.replace(ja,"='$1']"),u.matchesSelector&&H&&(!J||!J.test(c))&&(!I||!I.test(c)))try{var d=K.call(b,c);if(d||u.disconnectedMatch||b.document&&11!==b.document.nodeType)return d}catch(a){}return a(c,F,null,[b]).length>0},a.contains=function(a,b){return(a.ownerDocument||a)!==F&&E(a),L(a,b)},a.attr=function(a,b){(a.ownerDocument||a)!==F&&E(a);var c=v.attrHandle[b.toLowerCase()],d=c&&W.call(v.attrHandle,b.toLowerCase())?c(a,b,!H):void 0;return void 0!==d?d:u.attributes||!H?a.getAttribute(b):(d=a.getAttributeNode(b))&&d.specified?d.value:null},a.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},a.uniqueSort=function(a){var b,c=[],d=0,e=0;if(D=!u.detectDuplicates,C=!u.sortStable&&a.slice(0),a.sort(T),D){for(;b=a[e++];)b===a[e]&&(d=c.push(e));for(;d--;)a.splice(c[d],1)}return C=null,a},w=a.getText=function(a){var b,c="",d=0,e=a.nodeType;if(e){if(1===e||9===e||11===e){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=w(a)}else if(3===e||4===e)return a.nodeValue}else for(;b=a[d++];)c+=w(b);return c},v=a.selectors={cacheLength:50,createPseudo:c,match:ma,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ta,ua),a[3]=(a[3]||a[4]||a[5]||"").replace(ta,ua),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(b){return b[1]=b[1].toLowerCase(),"nth"===b[1].slice(0,3)?(b[3]||a.error(b[0]),b[4]=+(b[4]?b[5]+(b[6]||1):2*("even"===b[3]||"odd"===b[3])),b[5]=+(b[7]+b[8]||"odd"===b[3])):b[3]&&a.error(b[0]),b},PSEUDO:function(a){var b,c=!a[6]&&a[2];return ma.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&ka.test(c)&&(b=y(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ta,ua).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=Q[a+" "];return b||(b=new RegExp("(^|"+ca+")"+a+"("+ca+"|$)"))&&Q(a,function(a){return b.test("string"==typeof a.className&&a.className||typeof a.getAttribute!==U&&a.getAttribute("class")||"")})},ATTR:function(b,c,d){return function(e){var f=a.attr(e,b);return null==f?"!="===c:!c||(f+="","="===c?f===d:"!="===c?f!==d:"^="===c?d&&0===f.indexOf(d):"*="===c?d&&f.indexOf(d)>-1:"$="===c?d&&f.slice(-d.length)===d:"~="===c?(" "+f+" ").indexOf(d)>-1:"|="===c&&(f===d||f.slice(0,d.length+1)===d+"-"))}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){for(;p;){for(l=b;l=l[p];)if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){for(k=q[M]||(q[M]={}),j=k[a]||[],n=j[0]===O&&j[1],m=j[0]===O&&j[2],l=n&&q.childNodes[n];l=++n&&l&&l[p]||(m=n=0)||o.pop();)if(1===l.nodeType&&++m&&l===b){k[a]=[O,n,m];break}}else if(s&&(j=(b[M]||(b[M]={}))[a])&&j[0]===O)m=j[1];else for(;(l=++n&&l&&l[p]||(m=n=0)||o.pop())&&((h?l.nodeName.toLowerCase()!==r:1!==l.nodeType)||!++m||(s&&((l[M]||(l[M]={}))[a]=[O,m]),l!==b)););return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(b,d){var e,f=v.pseudos[b]||v.setFilters[b.toLowerCase()]||a.error("unsupported pseudo: "+b);return f[M]?f(d):f.length>1?(e=[b,b,"",d],v.setFilters.hasOwnProperty(b.toLowerCase())?c(function(a,b){for(var c,e=f(a,d),g=e.length;g--;)c=aa.call(a,e[g]),a[c]=!(b[c]=e[g])}):function(a){return f(a,0,e)}):f}},pseudos:{not:c(function(a){var b=[],d=[],e=z(a.replace(ga,"$1"));return e[M]?c(function(a,b,c,d){for(var f,g=e(a,null,d,[]),h=a.length;h--;)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,c,f){return b[0]=a,e(b,null,f,d),!d.pop()}}),has:c(function(b){return function(c){return a(b,c).length>0}}),contains:c(function(a){return a=a.replace(ta,ua),function(b){return(b.textContent||b.innerText||w(b)).indexOf(a)>-1}}),lang:c(function(b){return la.test(b||"")||a.error("unsupported lang: "+b),b=b.replace(ta,ua).toLowerCase(),function(a){var c;do if(c=H?a.lang:a.getAttribute("xml:lang")||a.getAttribute("lang"))return c=c.toLowerCase(),c===b||0===c.indexOf(b+"-");while((a=a.parentNode)&&1===a.nodeType);return!1}}),target:function(a){var b=window.location&&window.location.hash;return b&&b.slice(1)===a.id},root:function(a){return a===G},focus:function(a){return a===F.activeElement&&(!F.hasFocus||F.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!v.pseudos.empty(a)},header:function(a){return oa.test(a.nodeName)},input:function(a){return na.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:i(function(){return[0]}),last:i(function(a,b){return[b-1]}),eq:i(function(a,b,c){return[c<0?c+b:c]}),even:i(function(a,b){for(var c=0;c<b;c+=2)a.push(c);return a}),odd:i(function(a,b){for(var c=1;c<b;c+=2)a.push(c);return a}),lt:i(function(a,b,c){for(var d=c<0?c+b:c;--d>=0;)a.push(d);return a}),gt:i(function(a,b,c){for(var d=c<0?c+b:c;++d<b;)a.push(d);return a})}},v.pseudos.nth=v.pseudos.eq;for(t in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})v.pseudos[t]=g(t);for(t in{submit:!0,reset:!0})v.pseudos[t]=h(t);return k.prototype=v.filters=v.pseudos,v.setFilters=new k,y=a.tokenize=function(b,c){var d,e,f,g,h,i,j,k=R[b+" "];if(k)return c?0:k.slice(0);for(h=b,i=[],j=v.preFilter;h;){d&&!(e=ha.exec(h))||(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),d=!1,(e=ia.exec(h))&&(d=e.shift(),f.push({value:d,type:e[0].replace(ga," ")}),h=h.slice(d.length));for(g in v.filter)!(e=ma[g].exec(h))||j[g]&&!(e=j[g](e))||(d=e.shift(),f.push({value:d,type:g,matches:e}),h=h.slice(d.length));if(!d)break}return c?h.length:h?a.error(b):R(b,i).slice(0)},z=a.compile=function(a,b){var c,d=[],e=[],f=S[a+" "];if(!f){for(b||(b=y(a)),c=b.length;c--;)f=r(b[c]),f[M]?d.push(f):e.push(f);f=S(a,s(e,d)),f.selector=a}return f},A=a.select=function(a,b,c,d){var e,f,g,h,i,k="function"==typeof a&&a,m=!d&&y(a=k.selector||a);if(c=c||[],1===m.length){if(f=m[0]=m[0].slice(0),f.length>2&&"ID"===(g=f[0]).type&&u.getById&&9===b.nodeType&&H&&v.relative[f[1].type]){if(b=(v.find.ID(g.matches[0].replace(ta,ua),b)||[])[0],!b)return c;k&&(b=b.parentNode),a=a.slice(f.shift().value.length)}for(e=ma.needsContext.test(a)?0:f.length;e--&&(g=f[e],!v.relative[h=g.type]);)if((i=v.find[h])&&(d=i(g.matches[0].replace(ta,ua),ra.test(f[0].type)&&j(b.parentNode)||b))){if(f.splice(e,1),a=d.length&&l(f),!a)return $.apply(c,d),c;break}}return(k||z(a,m))(d,b,!H,c,ra.test(a)&&j(b.parentNode)||b),c},u.sortStable=M.split("").sort(T).join("")===M,u.detectDuplicates=!!D,E(),u.sortDetached=d(function(a){return 1&a.compareDocumentPosition(F.createElement("div"))}),d(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||e("type|href|height|width",function(a,b,c){if(!c)return a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),u.attributes&&d(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||e("value",function(a,b,c){if(!c&&"input"===a.nodeName.toLowerCase())return a.defaultValue}),d(function(a){return null==a.getAttribute("disabled")})||e(ba,function(a,b,c){var d;if(!c)return a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),a}),g("1g",[],function(){function a(a){var b,c,d=a;if(!j(a))for(d=[],b=0,c=a.length;b<c;b++)d[b]=a[b];return d}function b(a,b,c){var d,e;if(!a)return 0;if(c=c||a,void 0!==a.length){for(d=0,e=a.length;d<e;d++)if(b.call(c,a[d],d,a)===!1)return 0}else for(d in a)if(a.hasOwnProperty(d)&&b.call(c,a[d],d,a)===!1)return 0;return 1}function c(a,c){var d=[];return b(a,function(b,e){d.push(c(b,e,a))}),d}function d(a,c){var d=[];return b(a,function(b,e){c&&!c(b,e,a)||d.push(b)}),d}function e(a,b){var c,d;if(a)for(c=0,d=a.length;c<d;c++)if(a[c]===b)return c;return-1}function f(a,b,c,d){var e=0;for(arguments.length<3&&(c=a[0]);e<a.length;e++)c=b.call(d,c,a[e],e);return c}function g(a,b,c){var d,e;for(d=0,e=a.length;d<e;d++)if(b.call(c,a[d],d,a))return d;return-1}function h(a,b,c){var d=g(a,b,c);if(d!==-1)return a[d]}function i(a){return a[a.length-1]}var j=Array.isArray||function(a){return"[object Array]"===Object.prototype.toString.call(a)};return{isArray:j,toArray:a,each:b,map:c,filter:d,indexOf:e,reduce:f,findIndex:g,find:h,last:i}}),g("9",["6","1g"],function(a,b){function c(a){return null===a||void 0===a?"":(""+a).replace(n,"")}function d(a,c){return c?!("array"!=c||!b.isArray(a))||typeof a==c:void 0!==a}function e(a,b,c){var d;for(a=a||[],b=b||",","string"==typeof a&&(a=a.split(b)),c=c||{},d=a.length;d--;)c[a[d]]={};return c}function f(a,b){return Object.prototype.hasOwnProperty.call(a,b)}function g(a,b,c){var d,e,f,g,h,i=this,j=0;if(a=/^((static) )?([\w.]+)(:([\w.]+))?/.exec(a),f=a[3].match(/(^|\.)(\w+)$/i)[2],e=i.createNS(a[3].replace(/\.\w+$/,""),c),!e[f]){if("static"==a[2])return e[f]=b,void(this.onCreate&&this.onCreate(a[2],a[3],e[f]));b[f]||(b[f]=function(){},j=1),e[f]=b[f],i.extend(e[f].prototype,b),a[5]&&(d=i.resolve(a[5]).prototype,g=a[5].match(/\.(\w+)$/i)[1],h=e[f],j?e[f]=function(){return d[g].apply(this,arguments)}:e[f]=function(){return this.parent=d[g],h.apply(this,arguments)},e[f].prototype[f]=e[f],i.each(d,function(a,b){e[f].prototype[b]=d[b]}),i.each(b,function(a,b){d[b]?e[f].prototype[b]=function(){return this.parent=d[b],a.apply(this,arguments)}:b!=f&&(e[f].prototype[b]=a)})),i.each(b["static"],function(a,b){e[f][b]=a})}}function h(a,b){var c,d,e,f,g=arguments;for(c=1,d=g.length;c<d;c++){b=g[c];for(e in b)b.hasOwnProperty(e)&&(f=b[e],void 0!==f&&(a[e]=f))}return a}function i(a,c,d,e){e=e||this,a&&(d&&(a=a[d]),b.each(a,function(a,b){return c.call(e,a,b,d)!==!1&&void i(a,c,d,e)}))}function j(a,b){var c,d;for(b=b||window,a=a.split("."),c=0;c<a.length;c++)d=a[c],b[d]||(b[d]={}),b=b[d];return b}function k(a,b){var c,d;for(b=b||window,a=a.split("."),c=0,d=a.length;c<d&&(b=b[a[c]],b);c++);return b}function l(a,e){return!a||d(a,"array")?a:b.map(a.split(e||","),c)}function m(b){var c=a.cacheSuffix;return c&&(b+=(b.indexOf("?")===-1?"?":"&")+c),b}var n=/^\s*|\s*$/g;return{trim:c,isArray:b.isArray,is:d,toArray:b.toArray,makeMap:e,each:b.each,map:b.map,
 grep:b.filter,inArray:b.indexOf,hasOwn:f,extend:h,create:g,walk:i,createNS:j,resolve:k,explode:l,_addCacheSuffix:m}}),g("a",["7","8","9","6"],function(a,b,c,d){function e(a){return"undefined"!=typeof a}function f(a){return"string"==typeof a}function g(a){return a&&a==a.window}function h(a,b){var c,d,e;for(b=b||w,e=b.createElement("div"),c=b.createDocumentFragment(),e.innerHTML=a;d=e.firstChild;)c.appendChild(d);return c}function i(a,b,c,d){var e;if(f(b))b=h(b,q(a[0]));else if(b.length&&!b.nodeType){if(b=l.makeArray(b),d)for(e=b.length-1;e>=0;e--)i(a,b[e],c,d);else for(e=0;e<b.length;e++)i(a,b[e],c,d);return a}if(b.nodeType)for(e=a.length;e--;)c.call(a[e],b);return a}function j(a,b){return a&&b&&(" "+a.className+" ").indexOf(" "+b+" ")!==-1}function k(a,b,c){var d,e;return b=l(b)[0],a.each(function(){var a=this;c&&d==a.parentNode?e.appendChild(a):(d=a.parentNode,e=b.cloneNode(!1),a.parentNode.insertBefore(e,a),e.appendChild(a))}),a}function l(a,b){return new l.fn.init(a,b)}function m(a,b){var c;if(b.indexOf)return b.indexOf(a);for(c=b.length;c--;)if(b[c]===a)return c;return-1}function n(a){return null===a||a===v?"":(""+a).replace(I,"")}function o(a,b){var c,d,e,f,g;if(a)if(c=a.length,c===f){for(d in a)if(a.hasOwnProperty(d)&&(g=a[d],b.call(g,d,g)===!1))break}else for(e=0;e<c&&(g=a[e],b.call(g,e,g)!==!1);e++);return a}function p(a,b){var c=[];return o(a,function(a,d){b(d,a)&&c.push(d)}),c}function q(a){return a?9==a.nodeType?a:a.ownerDocument:w}function r(a,b,c){var d=[],e=a[b];for("string"!=typeof c&&c instanceof l&&(c=c[0]);e&&9!==e.nodeType;){if(void 0!==c){if(e===c)break;if("string"==typeof c&&l(e).is(c))break}1===e.nodeType&&d.push(e),e=e[b]}return d}function s(a,b,c,d){var e=[];for(d instanceof l&&(d=d[0]);a;a=a[b])if(!c||a.nodeType===c){if(void 0!==d){if(a===d)break;if("string"==typeof d&&l(a).is(d))break}e.push(a)}return e}function t(a,b,c){for(a=a[b];a;a=a[b])if(a.nodeType==c)return a;return null}function u(a,b,c){o(c,function(c,d){a[c]=a[c]||{},a[c][b]=d})}var v,w=document,x=Array.prototype.push,y=Array.prototype.slice,z=/^(?:[^#<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,A=a.Event,B=c.makeMap("children,contents,next,prev"),C=c.makeMap("fillOpacity fontWeight lineHeight opacity orphans widows zIndex zoom"," "),D=c.makeMap("checked compact declare defer disabled ismap multiple nohref noshade nowrap readonly selected"," "),E={"for":"htmlFor","class":"className",readonly:"readOnly"},F={"float":"cssFloat"},G={},H={},I=/^\s*|\s*$/g;return l.fn=l.prototype={constructor:l,selector:"",context:null,length:0,init:function(a,b){var c,d,e=this;if(!a)return e;if(a.nodeType)return e.context=e[0]=a,e.length=1,e;if(b&&b.nodeType)e.context=b;else{if(b)return l(a).attr(b);e.context=b=document}if(f(a)){if(e.selector=a,c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c)return l(b).find(a);if(c[1])for(d=h(a,q(b)).firstChild;d;)x.call(e,d),d=d.nextSibling;else{if(d=q(b).getElementById(c[2]),!d)return e;if(d.id!==c[2])return e.find(a);e.length=1,e[0]=d}}else this.add(a,!1);return e},toArray:function(){return c.toArray(this)},add:function(a,b){var c,d,e=this;if(f(a))return e.add(l(a));if(b!==!1)for(c=l.unique(e.toArray().concat(l.makeArray(a))),e.length=c.length,d=0;d<c.length;d++)e[d]=c[d];else x.apply(e,l.makeArray(a));return e},attr:function(a,b){var c,d=this;if("object"==typeof a)o(a,function(a,b){d.attr(a,b)});else{if(!e(b)){if(d[0]&&1===d[0].nodeType){if(c=G[a],c&&c.get)return c.get(d[0],a);if(D[a])return d.prop(a)?a:v;b=d[0].getAttribute(a,2),null===b&&(b=v)}return b}this.each(function(){var c;if(1===this.nodeType){if(c=G[a],c&&c.set)return void c.set(this,b);null===b?this.removeAttribute(a,2):this.setAttribute(a,b,2)}})}return d},removeAttr:function(a){return this.attr(a,null)},prop:function(a,b){var c=this;if(a=E[a]||a,"object"==typeof a)o(a,function(a,b){c.prop(a,b)});else{if(!e(b))return c[0]&&c[0].nodeType&&a in c[0]?c[0][a]:b;this.each(function(){1==this.nodeType&&(this[a]=b)})}return c},css:function(a,b){function c(a){return a.replace(/-(\D)/g,function(a,b){return b.toUpperCase()})}function d(a){return a.replace(/[A-Z]/g,function(a){return"-"+a})}var f,g,h=this;if("object"==typeof a)o(a,function(a,b){h.css(a,b)});else if(e(b))a=c(a),"number"!=typeof b||C[a]||(b+="px"),h.each(function(){var c=this.style;if(g=H[a],g&&g.set)return void g.set(this,b);try{this.style[F[a]||a]=b}catch(a){}null!==b&&""!==b||(c.removeProperty?c.removeProperty(d(a)):c.removeAttribute(a))});else{if(f=h[0],g=H[a],g&&g.get)return g.get(f);if(f.ownerDocument.defaultView)try{return f.ownerDocument.defaultView.getComputedStyle(f,null).getPropertyValue(d(a))}catch(a){return v}else if(f.currentStyle)return f.currentStyle[c(a)]}return h},remove:function(){for(var a,b=this,c=this.length;c--;)a=b[c],A.clean(a),a.parentNode&&a.parentNode.removeChild(a);return this},empty:function(){for(var a,b=this,c=this.length;c--;)for(a=b[c];a.firstChild;)a.removeChild(a.firstChild);return this},html:function(a){var b,c=this;if(e(a)){b=c.length;try{for(;b--;)c[b].innerHTML=a}catch(d){l(c[b]).empty().append(a)}return c}return c[0]?c[0].innerHTML:""},text:function(a){var b,c=this;if(e(a)){for(b=c.length;b--;)"innerText"in c[b]?c[b].innerText=a:c[0].textContent=a;return c}return c[0]?c[0].innerText||c[0].textContent:""},append:function(){return i(this,arguments,function(a){(1===this.nodeType||this.host&&1===this.host.nodeType)&&this.appendChild(a)})},prepend:function(){return i(this,arguments,function(a){(1===this.nodeType||this.host&&1===this.host.nodeType)&&this.insertBefore(a,this.firstChild)},!0)},before:function(){var a=this;return a[0]&&a[0].parentNode?i(a,arguments,function(a){this.parentNode.insertBefore(a,this)}):a},after:function(){var a=this;return a[0]&&a[0].parentNode?i(a,arguments,function(a){this.parentNode.insertBefore(a,this.nextSibling)},!0):a},appendTo:function(a){return l(a).append(this),this},prependTo:function(a){return l(a).prepend(this),this},replaceWith:function(a){return this.before(a).remove()},wrap:function(a){return k(this,a)},wrapAll:function(a){return k(this,a,!0)},wrapInner:function(a){return this.each(function(){l(this).contents().wrapAll(a)}),this},unwrap:function(){return this.parent().each(function(){l(this).replaceWith(this.childNodes)})},clone:function(){var a=[];return this.each(function(){a.push(this.cloneNode(!0))}),l(a)},addClass:function(a){return this.toggleClass(a,!0)},removeClass:function(a){return this.toggleClass(a,!1)},toggleClass:function(a,b){var c=this;return"string"!=typeof a?c:(a.indexOf(" ")!==-1?o(a.split(" "),function(){c.toggleClass(this,b)}):c.each(function(c,d){var e,f;f=j(d,a),f!==b&&(e=d.className,f?d.className=n((" "+e+" ").replace(" "+a+" "," ")):d.className+=e?" "+a:a)}),c)},hasClass:function(a){return j(this[0],a)},each:function(a){return o(this,a)},on:function(a,b){return this.each(function(){A.bind(this,a,b)})},off:function(a,b){return this.each(function(){A.unbind(this,a,b)})},trigger:function(a){return this.each(function(){"object"==typeof a?A.fire(this,a.type,a):A.fire(this,a)})},show:function(){return this.css("display","")},hide:function(){return this.css("display","none")},slice:function(){return new l(y.apply(this,arguments))},eq:function(a){return a===-1?this.slice(a):this.slice(a,+a+1)},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},find:function(a){var b,c,d=[];for(b=0,c=this.length;b<c;b++)l.find(a,this[b],d);return l(d)},filter:function(a){return l("function"==typeof a?p(this.toArray(),function(b,c){return a(c,b)}):l.filter(a,this.toArray()))},closest:function(a){var b=[];return a instanceof l&&(a=a[0]),this.each(function(c,d){for(;d;){if("string"==typeof a&&l(d).is(a)){b.push(d);break}if(d==a){b.push(d);break}d=d.parentNode}}),l(b)},offset:function(a){var b,c,d,e,f=0,g=0;return a?this.css(a):(b=this[0],b&&(c=b.ownerDocument,d=c.documentElement,b.getBoundingClientRect&&(e=b.getBoundingClientRect(),f=e.left+(d.scrollLeft||c.body.scrollLeft)-d.clientLeft,g=e.top+(d.scrollTop||c.body.scrollTop)-d.clientTop)),{left:f,top:g})},push:x,sort:[].sort,splice:[].splice},c.extend(l,{extend:c.extend,makeArray:function(a){return g(a)||a.nodeType?[a]:c.toArray(a)},inArray:m,isArray:c.isArray,each:o,trim:n,grep:p,find:b,expr:b.selectors,unique:b.uniqueSort,text:b.getText,contains:b.contains,filter:function(a,b,c){var d=b.length;for(c&&(a=":not("+a+")");d--;)1!=b[d].nodeType&&b.splice(d,1);return b=1===b.length?l.find.matchesSelector(b[0],a)?[b[0]]:[]:l.find.matches(a,b)}}),o({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return r(a,"parentNode")},next:function(a){return t(a,"nextSibling",1)},prev:function(a){return t(a,"previousSibling",1)},children:function(a){return s(a.firstChild,"nextSibling",1)},contents:function(a){return c.toArray(("iframe"===a.nodeName?a.contentDocument||a.contentWindow.document:a).childNodes)}},function(a,b){l.fn[a]=function(c){var d=this,e=[];return d.each(function(){var a=b.call(e,this,c,e);a&&(l.isArray(a)?e.push.apply(e,a):e.push(a))}),this.length>1&&(B[a]||(e=l.unique(e)),0===a.indexOf("parents")&&(e=e.reverse())),e=l(e),c?e.filter(c):e}}),o({parentsUntil:function(a,b){return r(a,"parentNode",b)},nextUntil:function(a,b){return s(a,"nextSibling",1,b).slice(1)},prevUntil:function(a,b){return s(a,"previousSibling",1,b).slice(1)}},function(a,b){l.fn[a]=function(c,d){var e=this,f=[];return e.each(function(){var a=b.call(f,this,c,f);a&&(l.isArray(a)?f.push.apply(f,a):f.push(a))}),this.length>1&&(f=l.unique(f),0!==a.indexOf("parents")&&"prevUntil"!==a||(f=f.reverse())),f=l(f),d?f.filter(d):f}}),l.fn.is=function(a){return!!a&&this.filter(a).length>0},l.fn.init.prototype=l.fn,l.overrideDefaults=function(a){function b(d,e){return c=c||a(),0===arguments.length&&(d=c.element),e||(e=c.context),new b.fn.init(d,e)}var c;return l.extend(b,this),b},d.ie&&d.ie<8&&(u(G,"get",{maxlength:function(a){var b=a.maxLength;return 2147483647===b?v:b},size:function(a){var b=a.size;return 20===b?v:b},"class":function(a){return a.className},style:function(a){var b=a.style.cssText;return 0===b.length?v:b}}),u(G,"set",{"class":function(a,b){a.className=b},style:function(a,b){a.style.cssText=b}})),d.ie&&d.ie<9&&(F["float"]="styleFloat",u(H,"set",{opacity:function(a,b){var c=a.style;null===b||""===b?c.removeAttribute("filter"):(c.zoom=1,c.filter="alpha(opacity="+100*b+")")}})),l.attrHooks=G,l.cssHooks=H,l}),g("b",[],function(){return function(a,b){function c(a,b,c,d){function e(a){return a=parseInt(a,10).toString(16),a.length>1?a:"0"+a}return"#"+e(b)+e(c)+e(d)}var d,e,f,g,h=/rgb\s*\(\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)\s*\)/gi,i=/(?:url(?:(?:\(\s*\"([^\"]+)\"\s*\))|(?:\(\s*\'([^\']+)\'\s*\))|(?:\(\s*([^)\s]+)\s*\))))|(?:\'([^\']+)\')|(?:\"([^\"]+)\")/gi,j=/\s*([^:]+):\s*([^;]+);?/g,k=/\s+$/,l={},m="\ufeff";for(a=a||{},b&&(f=b.getValidStyles(),g=b.getInvalidStyles()),e=("\\\" \\' \\; \\: ; : "+m).split(" "),d=0;d<e.length;d++)l[e[d]]=m+d,l[m+d]=e[d];return{toHex:function(a){return a.replace(h,c)},parse:function(b){function e(a,b,c){var e,f,g,h;if(e=w[a+"-top"+b],e&&(f=w[a+"-right"+b],f&&(g=w[a+"-bottom"+b],g&&(h=w[a+"-left"+b])))){var i=[e,f,g,h];for(d=i.length-1;d--&&i[d]===i[d+1];);d>-1&&c||(w[a+b]=d==-1?i[0]:i.join(" "),delete w[a+"-top"+b],delete w[a+"-right"+b],delete w[a+"-bottom"+b],delete w[a+"-left"+b])}}function f(a){var b,c=w[a];if(c){for(c=c.split(" "),b=c.length;b--;)if(c[b]!==c[0])return!1;return w[a]=c[0],!0}}function g(a,b,c,d){f(b)&&f(c)&&f(d)&&(w[a]=w[b]+" "+w[c]+" "+w[d],delete w[b],delete w[c],delete w[d])}function n(a){return v=!0,l[a]}function o(a,b){return v&&(a=a.replace(/\uFEFF[0-9]/g,function(a){return l[a]})),b||(a=a.replace(/\\([\'\";:])/g,"$1")),a}function p(a){return String.fromCharCode(parseInt(a.slice(1),16))}function q(a){return a.replace(/\\[0-9a-f]+/gi,p)}function r(b,c,d,e,f,g){if(f=f||g)return f=o(f),"'"+f.replace(/\'/g,"\\'")+"'";if(c=o(c||d||e),!a.allow_script_urls){var h=c.replace(/[\s\r\n]+/g,"");if(/(java|vb)script:/i.test(h))return"";if(!a.allow_svg_data_urls&&/^data:image\/svg/i.test(h))return""}return x&&(c=x.call(y,c,"style")),"url('"+c.replace(/\'/g,"\\'")+"')"}var s,t,u,v,w={},x=a.url_converter,y=a.url_converter_scope||this;if(b){for(b=b.replace(/[\u0000-\u001F]/g,""),b=b.replace(/\\[\"\';:\uFEFF]/g,n).replace(/\"[^\"]+\"|\'[^\']+\'/g,function(a){return a.replace(/[;:]/g,n)});s=j.exec(b);)if(j.lastIndex=s.index+s[0].length,t=s[1].replace(k,"").toLowerCase(),u=s[2].replace(k,""),t&&u){if(t=q(t),u=q(u),t.indexOf(m)!==-1||t.indexOf('"')!==-1)continue;if(!a.allow_script_urls&&("behavior"==t||/expression\s*\(|\/\*|\*\//.test(u)))continue;"font-weight"===t&&"700"===u?u="bold":"color"!==t&&"background-color"!==t||(u=u.toLowerCase()),u=u.replace(h,c),u=u.replace(i,r),w[t]=v?o(u,!0):u}e("border","",!0),e("border","-width"),e("border","-color"),e("border","-style"),e("padding",""),e("margin",""),g("border","border-width","border-style","border-color"),"medium none"===w.border&&delete w.border,"none"===w["border-image"]&&delete w["border-image"]}return w},serialize:function(a,b){function c(b){var c,d,e,g;if(c=f[b])for(d=0,e=c.length;d<e;d++)b=c[d],g=a[b],g&&(i+=(i.length>0?" ":"")+b+": "+g+";")}function d(a,b){var c;return c=g["*"],(!c||!c[a])&&(c=g[b],!c||!c[a])}var e,h,i="";if(b&&f)c("*"),c(b);else for(e in a)h=a[e],!h||g&&!d(e,b)||(i+=(i.length>0?" ":"")+e+": "+h+";");return i}}}}),g("c",[],function(){return function(a,b){function c(a,c,d,e){var f,g;if(a){if(!e&&a[c])return a[c];if(a!=b){if(f=a[d])return f;for(g=a.parentNode;g&&g!=b;g=g.parentNode)if(f=g[d])return f}}}function d(a,c,d,e){var f,g,h;if(a){if(f=a[d],b&&f===b)return;if(f){if(!e)for(h=f[c];h;h=h[c])if(!h[c])return h;return f}if(g=a.parentNode,g&&g!==b)return g}}var e=a;this.current=function(){return e},this.next=function(a){return e=c(e,"firstChild","nextSibling",a)},this.prev=function(a){return e=c(e,"lastChild","previousSibling",a)},this.prev2=function(a){return e=d(e,"lastChild","previousSibling",a)}}}),g("d",["9"],function(a){function b(a){var b;return b=document.createElement("div"),b.innerHTML=a,b.textContent||b.innerText||a}function c(a,b){var c,d,f,g={};if(a){for(a=a.split(","),b=b||10,c=0;c<a.length;c+=2)d=String.fromCharCode(parseInt(a[c],b)),e[d]||(f="&"+a[c+1]+";",g[d]=f,g[f]=d);return g}}var d,e,f,g=a.makeMap,h=/[&<>\"\u0060\u007E-\uD7FF\uE000-\uFFEF]|[\uD800-\uDBFF][\uDC00-\uDFFF]/g,i=/[<>&\u007E-\uD7FF\uE000-\uFFEF]|[\uD800-\uDBFF][\uDC00-\uDFFF]/g,j=/[<>&\"\']/g,k=/&#([a-z0-9]+);?|&([a-z0-9]+);/gi,l={128:"\u20ac",130:"\u201a",131:"\u0192",132:"\u201e",133:"\u2026",134:"\u2020",135:"\u2021",136:"\u02c6",137:"\u2030",138:"\u0160",139:"\u2039",140:"\u0152",142:"\u017d",145:"\u2018",146:"\u2019",147:"\u201c",148:"\u201d",149:"\u2022",150:"\u2013",151:"\u2014",152:"\u02dc",153:"\u2122",154:"\u0161",155:"\u203a",156:"\u0153",158:"\u017e",159:"\u0178"};e={'"':"&quot;","'":"&#39;","<":"&lt;",">":"&gt;","&":"&amp;","`":"&#96;"},f={"&lt;":"<","&gt;":">","&amp;":"&","&quot;":'"',"&apos;":"'"},d=c("50,nbsp,51,iexcl,52,cent,53,pound,54,curren,55,yen,56,brvbar,57,sect,58,uml,59,copy,5a,ordf,5b,laquo,5c,not,5d,shy,5e,reg,5f,macr,5g,deg,5h,plusmn,5i,sup2,5j,sup3,5k,acute,5l,micro,5m,para,5n,middot,5o,cedil,5p,sup1,5q,ordm,5r,raquo,5s,frac14,5t,frac12,5u,frac34,5v,iquest,60,Agrave,61,Aacute,62,Acirc,63,Atilde,64,Auml,65,Aring,66,AElig,67,Ccedil,68,Egrave,69,Eacute,6a,Ecirc,6b,Euml,6c,Igrave,6d,Iacute,6e,Icirc,6f,Iuml,6g,ETH,6h,Ntilde,6i,Ograve,6j,Oacute,6k,Ocirc,6l,Otilde,6m,Ouml,6n,times,6o,Oslash,6p,Ugrave,6q,Uacute,6r,Ucirc,6s,Uuml,6t,Yacute,6u,THORN,6v,szlig,70,agrave,71,aacute,72,acirc,73,atilde,74,auml,75,aring,76,aelig,77,ccedil,78,egrave,79,eacute,7a,ecirc,7b,euml,7c,igrave,7d,iacute,7e,icirc,7f,iuml,7g,eth,7h,ntilde,7i,ograve,7j,oacute,7k,ocirc,7l,otilde,7m,ouml,7n,divide,7o,oslash,7p,ugrave,7q,uacute,7r,ucirc,7s,uuml,7t,yacute,7u,thorn,7v,yuml,ci,fnof,sh,Alpha,si,Beta,sj,Gamma,sk,Delta,sl,Epsilon,sm,Zeta,sn,Eta,so,Theta,sp,Iota,sq,Kappa,sr,Lambda,ss,Mu,st,Nu,su,Xi,sv,Omicron,t0,Pi,t1,Rho,t3,Sigma,t4,Tau,t5,Upsilon,t6,Phi,t7,Chi,t8,Psi,t9,Omega,th,alpha,ti,beta,tj,gamma,tk,delta,tl,epsilon,tm,zeta,tn,eta,to,theta,tp,iota,tq,kappa,tr,lambda,ts,mu,tt,nu,tu,xi,tv,omicron,u0,pi,u1,rho,u2,sigmaf,u3,sigma,u4,tau,u5,upsilon,u6,phi,u7,chi,u8,psi,u9,omega,uh,thetasym,ui,upsih,um,piv,812,bull,816,hellip,81i,prime,81j,Prime,81u,oline,824,frasl,88o,weierp,88h,image,88s,real,892,trade,89l,alefsym,8cg,larr,8ch,uarr,8ci,rarr,8cj,darr,8ck,harr,8dl,crarr,8eg,lArr,8eh,uArr,8ei,rArr,8ej,dArr,8ek,hArr,8g0,forall,8g2,part,8g3,exist,8g5,empty,8g7,nabla,8g8,isin,8g9,notin,8gb,ni,8gf,prod,8gh,sum,8gi,minus,8gn,lowast,8gq,radic,8gt,prop,8gu,infin,8h0,ang,8h7,and,8h8,or,8h9,cap,8ha,cup,8hb,int,8hk,there4,8hs,sim,8i5,cong,8i8,asymp,8j0,ne,8j1,equiv,8j4,le,8j5,ge,8k2,sub,8k3,sup,8k4,nsub,8k6,sube,8k7,supe,8kl,oplus,8kn,otimes,8l5,perp,8m5,sdot,8o8,lceil,8o9,rceil,8oa,lfloor,8ob,rfloor,8p9,lang,8pa,rang,9ea,loz,9j0,spades,9j3,clubs,9j5,hearts,9j6,diams,ai,OElig,aj,oelig,b0,Scaron,b1,scaron,bo,Yuml,m6,circ,ms,tilde,802,ensp,803,emsp,809,thinsp,80c,zwnj,80d,zwj,80e,lrm,80f,rlm,80j,ndash,80k,mdash,80o,lsquo,80p,rsquo,80q,sbquo,80s,ldquo,80t,rdquo,80u,bdquo,810,dagger,811,Dagger,81g,permil,81p,lsaquo,81q,rsaquo,85c,euro",32);var m={encodeRaw:function(a,b){return a.replace(b?h:i,function(a){return e[a]||a})},encodeAllRaw:function(a){return(""+a).replace(j,function(a){return e[a]||a})},encodeNumeric:function(a,b){return a.replace(b?h:i,function(a){return a.length>1?"&#"+(1024*(a.charCodeAt(0)-55296)+(a.charCodeAt(1)-56320)+65536)+";":e[a]||"&#"+a.charCodeAt(0)+";"})},encodeNamed:function(a,b,c){return c=c||d,a.replace(b?h:i,function(a){return e[a]||c[a]||a})},getEncodeFunc:function(a,b){function f(a,c){return a.replace(c?h:i,function(a){return void 0!==e[a]?e[a]:void 0!==b[a]?b[a]:a.length>1?"&#"+(1024*(a.charCodeAt(0)-55296)+(a.charCodeAt(1)-56320)+65536)+";":"&#"+a.charCodeAt(0)+";"})}function j(a,c){return m.encodeNamed(a,c,b)}return b=c(b)||d,a=g(a.replace(/\+/g,",")),a.named&&a.numeric?f:a.named?b?j:m.encodeNamed:a.numeric?m.encodeNumeric:m.encodeRaw},decode:function(a){return a.replace(k,function(a,c){return c?(c="x"===c.charAt(0).toLowerCase()?parseInt(c.substr(1),16):parseInt(c,10),c>65535?(c-=65536,String.fromCharCode(55296+(c>>10),56320+(1023&c))):l[c]||String.fromCharCode(c)):f[a]||d[a]||b(a)})}};return m}),g("1h",["9"],function(a){function b(c){function d(){return J.createDocumentFragment()}function e(a,b){x(N,a,b)}function f(a,b){x(O,a,b)}function g(a){e(a.parentNode,U(a))}function h(a){e(a.parentNode,U(a)+1)}function i(a){f(a.parentNode,U(a))}function j(a){f(a.parentNode,U(a)+1)}function k(a){a?(I[R]=I[Q],I[S]=I[P]):(I[Q]=I[R],I[P]=I[S]),I.collapsed=N}function l(a){g(a),j(a)}function m(a){e(a,0),f(a,1===a.nodeType?a.childNodes.length:a.nodeValue.length)}function n(a,b){var c=I[Q],d=I[P],e=I[R],f=I[S],g=b.startContainer,h=b.startOffset,i=b.endContainer,j=b.endOffset;return 0===a?w(c,d,g,h):1===a?w(e,f,g,h):2===a?w(e,f,i,j):3===a?w(c,d,i,j):void 0}function o(){y(M)}function p(){return y(K)}function q(){return y(L)}function r(a){var b,d,e=this[Q],f=this[P];3!==e.nodeType&&4!==e.nodeType||!e.nodeValue?(e.childNodes.length>0&&(d=e.childNodes[f]),d?e.insertBefore(a,d):3==e.nodeType?c.insertAfter(a,e):e.appendChild(a)):f?f>=e.nodeValue.length?c.insertAfter(a,e):(b=e.splitText(f),e.parentNode.insertBefore(a,b)):e.parentNode.insertBefore(a,e)}function s(a){var b=I.extractContents();I.insertNode(a),a.appendChild(b),I.selectNode(a)}function t(){return T(new b(c),{startContainer:I[Q],startOffset:I[P],endContainer:I[R],endOffset:I[S],collapsed:I.collapsed,commonAncestorContainer:I.commonAncestorContainer})}function u(a,b){var c;if(3==a.nodeType)return a;if(b<0)return a;for(c=a.firstChild;c&&b>0;)--b,c=c.nextSibling;return c?c:a}function v(){return I[Q]==I[R]&&I[P]==I[S]}function w(a,b,d,e){var f,g,h,i,j,k;if(a==d)return b==e?0:b<e?-1:1;for(f=d;f&&f.parentNode!=a;)f=f.parentNode;if(f){for(g=0,h=a.firstChild;h!=f&&g<b;)g++,h=h.nextSibling;return b<=g?-1:1}for(f=a;f&&f.parentNode!=d;)f=f.parentNode;if(f){for(g=0,h=d.firstChild;h!=f&&g<e;)g++,h=h.nextSibling;return g<e?-1:1}for(i=c.findCommonAncestor(a,d),j=a;j&&j.parentNode!=i;)j=j.parentNode;for(j||(j=i),k=d;k&&k.parentNode!=i;)k=k.parentNode;if(k||(k=i),j==k)return 0;for(h=i.firstChild;h;){if(h==j)return-1;if(h==k)return 1;h=h.nextSibling}}function x(a,b,d){var e,f;for(a?(I[Q]=b,I[P]=d):(I[R]=b,I[S]=d),e=I[R];e.parentNode;)e=e.parentNode;for(f=I[Q];f.parentNode;)f=f.parentNode;f==e?w(I[Q],I[P],I[R],I[S])>0&&I.collapse(a):I.collapse(a),I.collapsed=v(),I.commonAncestorContainer=c.findCommonAncestor(I[Q],I[R])}function y(a){var b,c,d,e,f,g,h,i=0,j=0;if(I[Q]==I[R])return z(a);for(b=I[R],c=b.parentNode;c;b=c,c=c.parentNode){if(c==I[Q])return A(b,a);++i}for(b=I[Q],c=b.parentNode;c;b=c,c=c.parentNode){if(c==I[R])return B(b,a);++j}for(d=j-i,e=I[Q];d>0;)e=e.parentNode,d--;for(f=I[R];d<0;)f=f.parentNode,d++;for(g=e.parentNode,h=f.parentNode;g!=h;g=g.parentNode,h=h.parentNode)e=g,f=h;return C(e,f,a)}function z(a){var b,c,e,f,g,h,i,j,k;if(a!=M&&(b=d()),I[P]==I[S])return b;if(3==I[Q].nodeType){if(c=I[Q].nodeValue,e=c.substring(I[P],I[S]),a!=L&&(f=I[Q],j=I[P],k=I[S]-I[P],0===j&&k>=f.nodeValue.length-1?f.parentNode.removeChild(f):f.deleteData(j,k),I.collapse(N)),a==M)return;return e.length>0&&b.appendChild(J.createTextNode(e)),b}for(f=u(I[Q],I[P]),g=I[S]-I[P];f&&g>0;)h=f.nextSibling,i=G(f,a),b&&b.appendChild(i),--g,f=h;return a!=L&&I.collapse(N),b}function A(a,b){var c,e,f,g,h,i;if(b!=M&&(c=d()),e=D(a,b),c&&c.appendChild(e),f=U(a),g=f-I[P],g<=0)return b!=L&&(I.setEndBefore(a),I.collapse(O)),c;for(e=a.previousSibling;g>0;)h=e.previousSibling,i=G(e,b),c&&c.insertBefore(i,c.firstChild),--g,e=h;return b!=L&&(I.setEndBefore(a),I.collapse(O)),c}function B(a,b){var c,e,f,g,h,i;for(b!=M&&(c=d()),f=E(a,b),c&&c.appendChild(f),e=U(a),++e,g=I[S]-e,f=a.nextSibling;f&&g>0;)h=f.nextSibling,i=G(f,b),c&&c.appendChild(i),--g,f=h;return b!=L&&(I.setStartAfter(a),I.collapse(N)),c}function C(a,b,c){var e,f,g,h,i,j,k;for(c!=M&&(f=d()),e=E(a,c),f&&f.appendChild(e),g=U(a),h=U(b),++g,i=h-g,j=a.nextSibling;i>0;)k=j.nextSibling,e=G(j,c),f&&f.appendChild(e),j=k,--i;return e=D(b,c),f&&f.appendChild(e),c!=L&&(I.setStartAfter(a),I.collapse(N)),f}function D(a,b){var c,d,e,f,g,h=u(I[R],I[S]-1),i=h!=I[R];if(h==a)return F(h,i,O,b);for(c=h.parentNode,d=F(c,O,O,b);c;){for(;h;)e=h.previousSibling,f=F(h,i,O,b),b!=M&&d.insertBefore(f,d.firstChild),i=N,h=e;if(c==a)return d;h=c.previousSibling,c=c.parentNode,g=F(c,O,O,b),b!=M&&g.appendChild(d),d=g}}function E(a,b){var c,d,e,f,g,h=u(I[Q],I[P]),i=h!=I[Q];if(h==a)return F(h,i,N,b);for(c=h.parentNode,d=F(c,O,N,b);c;){for(;h;)e=h.nextSibling,f=F(h,i,N,b),b!=M&&d.appendChild(f),i=N,h=e;if(c==a)return d;h=c.nextSibling,c=c.parentNode,g=F(c,O,N,b),b!=M&&g.appendChild(d),d=g}}function F(a,b,d,e){var f,g,h,i,j;if(b)return G(a,e);if(3==a.nodeType){if(f=a.nodeValue,d?(i=I[P],g=f.substring(i),h=f.substring(0,i)):(i=I[S],g=f.substring(0,i),h=f.substring(i)),e!=L&&(a.nodeValue=h),e==M)return;return j=c.clone(a,O),j.nodeValue=g,j}if(e!=M)return c.clone(a,O)}function G(a,b){return b!=M?b==L?c.clone(a,N):a:void a.parentNode.removeChild(a)}function H(){return c.create("body",null,q()).outerText}var I=this,J=c.doc,K=0,L=1,M=2,N=!0,O=!1,P="startOffset",Q="startContainer",R="endContainer",S="endOffset",T=a.extend,U=c.nodeIndex;return T(I,{startContainer:J,startOffset:0,endContainer:J,endOffset:0,collapsed:N,commonAncestorContainer:J,START_TO_START:0,START_TO_END:1,END_TO_END:2,END_TO_START:3,setStart:e,setEnd:f,setStartBefore:g,setStartAfter:h,setEndBefore:i,setEndAfter:j,collapse:k,selectNode:l,selectNodeContents:m,compareBoundaryPoints:n,deleteContents:o,extractContents:p,cloneContents:q,insertNode:r,surroundContents:s,cloneRange:t,toStringIE:H}),I}return b.prototype.toString=function(){return this.toStringIE()},b}),h("3y",Array),h("3z",Error),g("1m",["3y","3z"],function(a,b){var c=function(){},d=function(a,b){return function(){return a(b.apply(null,arguments))}},e=function(a){return function(){return a}},f=function(a){return a},g=function(a,b){return a===b},h=function(b){for(var c=new a(arguments.length-1),d=1;d<arguments.length;d++)c[d-1]=arguments[d];return function(){for(var d=new a(arguments.length),e=0;e<d.length;e++)d[e]=arguments[e];var f=c.concat(d);return b.apply(null,f)}},i=function(a){return function(){return!a.apply(null,arguments)}},j=function(a){return function(){throw new b(a)}},k=function(a){return a()},l=function(a){a()},m=e(!1),n=e(!0);return{noop:c,compose:d,constant:e,identity:f,tripleEquals:g,curry:h,not:i,die:j,apply:k,call:l,never:m,always:n}}),h("5s",Object),g("4z",["1m","5s"],function(a,b){var c=a.never,d=a.always,e=function(){return f},f=function(){var f=function(a){return a.isNone()},g=function(a){return a()},h=function(a){return a},i=function(){},j={fold:function(a,b){return a()},is:c,isSome:c,isNone:d,getOr:h,getOrThunk:g,getOrDie:function(a){throw new Error(a||"error: getOrDie called on none.")},or:h,orThunk:g,map:e,ap:e,each:i,bind:e,flatten:e,exists:c,forall:d,filter:e,equals:f,equals_:f,toArray:function(){return[]},toString:a.constant("none()")};return b.freeze&&b.freeze(j),j}(),g=function(a){var b=function(){return a},h=function(){return k},i=function(b){return g(b(a))},j=function(b){return b(a)},k={fold:function(b,c){return c(a)},is:function(b){return a===b},isSome:d,isNone:c,getOr:b,getOrThunk:b,getOrDie:b,or:h,orThunk:h,map:i,ap:function(b){return b.fold(e,function(b){return g(b(a))})},each:function(b){b(a)},bind:j,flatten:b,exists:j,forall:j,filter:function(b){return b(a)?k:f},equals:function(b){return b.is(a)},equals_:function(b,d){return b.fold(c,function(b){return d(a,b)})},toArray:function(){return[a]},toString:function(){return"some("+a+")"}};return k},h=function(a){return null===a||void 0===a?f:g(a)};return{some:g,none:e,from:h}}),h("50",String),g("3x",["4z","3y","3z","50"],function(a,b,c,d){var e=function(){var a=b.prototype.indexOf,c=function(b,c){return a.call(b,c)},d=function(a,b){return u(a,b)};return void 0===a?d:c}(),f=function(b,c){var d=e(b,c);return d===-1?a.none():a.some(d)},g=function(a,b){return e(a,b)>-1},h=function(a,b){return t(a,b).isSome()},i=function(a,b){for(var c=[],d=0;d<a;d++)c.push(b(d));return c},j=function(a,b){for(var c=[],d=0;d<a.length;d+=b){var e=a.slice(d,d+b);c.push(e)}return c},k=function(a,c){for(var d=a.length,e=new b(d),f=0;f<d;f++){var g=a[f];e[f]=c(g,f,a)}return e},l=function(a,b){for(var c=0,d=a.length;c<d;c++){var e=a[c];b(e,c,a)}},m=function(a,b){for(var c=a.length-1;c>=0;c--){var d=a[c];b(d,c,a)}},n=function(a,b){for(var c=[],d=[],e=0,f=a.length;e<f;e++){var g=a[e],h=b(g,e,a)?c:d;h.push(g)}return{pass:c,fail:d}},o=function(a,b){for(var c=[],d=0,e=a.length;d<e;d++){var f=a[d];b(f,d,a)&&c.push(f)}return c},p=function(a,b){if(0===a.length)return[];for(var c=b(a[0]),d=[],e=[],f=0,g=a.length;f<g;f++){var h=a[f],i=b(h);i!==c&&(d.push(e),e=[]),c=i,e.push(h)}return 0!==e.length&&d.push(e),d},q=function(a,b,c){return m(a,function(a){c=b(c,a)}),c},r=function(a,b,c){return l(a,function(a){c=b(c,a)}),c},s=function(b,c){for(var d=0,e=b.length;d<e;d++){var f=b[d];if(c(f,d,b))return a.some(f)}return a.none()},t=function(b,c){for(var d=0,e=b.length;d<e;d++){var f=b[d];if(c(f,d,b))return a.some(d)}return a.none()},u=function(a,b){for(var c=0,d=a.length;c<d;++c)if(a[c]===b)return c;return-1},v=b.prototype.push,w=function(a){for(var d=[],e=0,f=a.length;e<f;++e){if(!b.prototype.isPrototypeOf(a[e]))throw new c("Arr.flatten item "+e+" was not an array, input: "+a);v.apply(d,a[e])}return d},x=function(a,b){var c=k(a,b);return w(c)},y=function(a,b){for(var c=0,d=a.length;c<d;++c){var e=a[c];if(b(e,c,a)!==!0)return!1}return!0},z=function(a,b){return a.length===b.length&&y(a,function(a,c){return a===b[c]})},A=b.prototype.slice,B=function(a){var b=A.call(a,0);return b.reverse(),b},C=function(a,b){return o(a,function(a){return!g(b,a)})},D=function(a,b){for(var c={},e=0,f=a.length;e<f;e++){var g=a[e];c[d(g)]=b(g,e)}return c},E=function(a){return[a]},F=function(a,b){var c=A.call(a,0);return c.sort(b),c};return{map:k,each:l,eachr:m,partition:n,filter:o,groupBy:p,indexOf:f,foldr:q,foldl:r,find:s,findIndex:t,flatten:w,bind:x,forall:y,exists:h,contains:g,equal:z,reverse:B,chunk:j,difference:C,mapToObject:D,pure:E,sort:F,range:i}}),h("5t",setTimeout),g("51",["3x","4z","5t"],function(a,b,c){var d=function(e){var f=b.none(),g=[],h=function(a){return d(function(b){i(function(c){b(a(c))})})},i=function(a){k()?m(a):g.push(a)},j=function(a){f=b.some(a),l(g),g=[]},k=function(){return f.isSome()},l=function(b){a.each(b,m)},m=function(a){f.each(function(b){c(function(){a(b)},0)})};return e(j),{get:i,map:h,isReady:k}},e=function(a){return d(function(b){b(a)})};return{nu:d,pure:e}}),g("52",["3y","5t"],function(a,b){var c=function(c){return function(){var d=a.prototype.slice.call(arguments),e=this;b(function(){c.apply(e,d)},0)}};return{bounce:c}}),g("40",["51","52"],function(a,b){var c=function(d){var e=function(a){d(b.bounce(a))},f=function(a){return c(function(b){e(function(c){var d=a(c);b(d)})})},g=function(a){return c(function(b){e(function(c){a(c).get(b)})})},h=function(a){return c(function(b){e(function(c){a.get(b)})})},i=function(){return a.nu(e)};return{map:f,bind:g,anonBind:h,toLazy:i,get:e}},d=function(a){return c(function(b){b(a)})};return{nu:c,pure:d}}),g("53",["3x"],function(a){var b=function(b,c){return c(function(c){var d=[],e=0,f=function(a){return function(f){d[a]=f,e++,e>=b.length&&c(d)}};0===b.length?c([]):a.each(b,function(a,b){a.get(f(b))})})};return{par:b}}),g("41",["3x","40","53"],function(a,b,c){var d=function(a){return c.par(a,b.nu)},e=function(b,c){var e=a.map(b,c);return d(e)},f=function(a,b){return function(c){return b(c).bind(a)}};return{par:d,mapM:e,compose:f}}),g("42",["1m","4z"],function(a,b){var c=function(d){var e=function(a){return d===a},f=function(a){return c(d)},g=function(a){return c(d)},h=function(a){return c(a(d))},i=function(a){a(d)},j=function(a){return a(d)},k=function(a,b){return b(d)},l=function(a){return a(d)},m=function(a){return a(d)},n=function(){return b.some(d)};return{is:e,isValue:a.constant(!0),isError:a.constant(!1),getOr:a.constant(d),getOrThunk:a.constant(d),getOrDie:a.constant(d),or:f,orThunk:g,fold:k,map:h,each:i,bind:j,exists:l,forall:m,toOption:n}},d=function(c){var e=function(a){return a()},f=function(){return a.die(c)()},g=function(a){return a},h=function(a){return a()},i=function(a){return d(c)},j=function(a){return d(c)},k=function(a,b){return a(c)};return{is:a.constant(!1),isValue:a.constant(!1),isError:a.constant(!0),getOr:a.identity,getOrThunk:e,getOrDie:f,or:g,orThunk:h,fold:k,map:i,each:a.noop,bind:j,exists:a.constant(!1),forall:a.constant(!0),toOption:b.none}};return{value:c,error:d}}),g("1i",["3x","1m","40","41","42","5","9"],function(a,b,c,d,e,f,g){"use strict";return function(h,i){function j(a){h.getElementsByTagName("head")[0].appendChild(a)}function k(a,b,c){function d(){for(var a=t.passed,b=a.length;b--;)a[b]();t.status=2,t.passed=[],t.failed=[]}function e(){for(var a=t.failed,b=a.length;b--;)a[b]();t.status=3,t.passed=[],t.failed=[]}function i(){var a=navigator.userAgent.match(/WebKit\/(\d*)/);return!!(a&&a[1]<536)}function k(a,b){a()||((new Date).getTime()-s<l?f.setTimeout(b):e())}function o(){k(function(){for(var a,b,c=h.styleSheets,e=c.length;e--;)if(a=c[e],b=a.ownerNode?a.ownerNode:a.owningElement,b&&b.id===q.id)return d(),!0},o)}function p(){k(function(){try{var a=r.sheet.cssRules;return d(),!!a}catch(a){}},p)}var q,r,s,t;if(a=g._addCacheSuffix(a),n[a]?t=n[a]:(t={passed:[],failed:[]},n[a]=t),b&&t.passed.push(b),c&&t.failed.push(c),1!=t.status){if(2==t.status)return void d();if(3==t.status)return void e();if(t.status=1,q=h.createElement("link"),q.rel="stylesheet",q.type="text/css",q.id="u"+m++,q.async=!1,q.defer=!1,s=(new Date).getTime(),"onload"in q&&!i())q.onload=o,q.onerror=e;else{if(navigator.userAgent.indexOf("Firefox")>0)return r=h.createElement("style"),
@@ -51809,14 +53863,14 @@ this._super(),this.getEl().style.height="",this.getEl("body").style.height="",th
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(175).setImmediate))
 
 /***/ }),
-/* 177 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(178)(
+var Component = __webpack_require__(182)(
   /* script */
   __webpack_require__(154),
   /* template */
-  __webpack_require__(179),
+  __webpack_require__(183),
   /* scopeId */
   null,
   /* cssModules */
@@ -51843,7 +53897,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 178 */
+/* 182 */
 /***/ (function(module, exports) {
 
 module.exports = function normalizeComponent (
@@ -51896,7 +53950,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 179 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51925,7 +53979,7 @@ if (false) {
 }
 
 /***/ }),
-/* 180 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61624,2097 +63678,12 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(8)))
 
 /***/ }),
-/* 181 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(134);
 module.exports = __webpack_require__(135);
 
 
-/***/ }),
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Exports the "link" plugin for usage with module loaders
-// Usage:
-//   CommonJS:
-//     require('tinymce/plugins/link')
-//   ES2015:
-//     import 'tinymce/plugins/link'
-__webpack_require__(214);
-
-/***/ }),
-/* 214 */
-/***/ (function(module, exports) {
-
-(function () {
-
-var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
-// Used when there is no 'main' module.
-// The name is probably (hopefully) unique so minification removes for releases.
-var register_3795 = function (id) {
-  var module = dem(id);
-  var fragments = id.split('.');
-  var target = Function('return this;')();
-  for (var i = 0; i < fragments.length - 1; ++i) {
-    if (target[fragments[i]] === undefined)
-      target[fragments[i]] = {};
-    target = target[fragments[i]];
-  }
-  target[fragments[fragments.length - 1]] = module;
-};
-
-var instantiate = function (id) {
-  var actual = defs[id];
-  var dependencies = actual.deps;
-  var definition = actual.defn;
-  var len = dependencies.length;
-  var instances = new Array(len);
-  for (var i = 0; i < len; ++i)
-    instances[i] = dem(dependencies[i]);
-  var defResult = definition.apply(null, instances);
-  if (defResult === undefined)
-     throw 'module [' + id + '] returned undefined';
-  actual.instance = defResult;
-};
-
-var def = function (id, dependencies, definition) {
-  if (typeof id !== 'string')
-    throw 'module id must be a string';
-  else if (dependencies === undefined)
-    throw 'no dependencies for ' + id;
-  else if (definition === undefined)
-    throw 'no definition function for ' + id;
-  defs[id] = {
-    deps: dependencies,
-    defn: definition,
-    instance: undefined
-  };
-};
-
-var dem = function (id) {
-  var actual = defs[id];
-  if (actual === undefined)
-    throw 'module [' + id + '] was undefined';
-  else if (actual.instance === undefined)
-    instantiate(id);
-  return actual.instance;
-};
-
-var req = function (ids, callback) {
-  var len = ids.length;
-  var instances = new Array(len);
-  for (var i = 0; i < len; ++i)
-    instances.push(dem(ids[i]));
-  callback.apply(null, callback);
-};
-
-var ephox = {};
-
-ephox.bolt = {
-  module: {
-    api: {
-      define: def,
-      require: req,
-      demand: dem
-    }
-  }
-};
-
-var define = def;
-var require = req;
-var demand = dem;
-// this helps with minificiation when using a lot of global references
-var defineGlobal = function (id, ref) {
-  define(id, [], function () { return ref; });
-};
-/*jsc
-["tinymce.plugins.link.Plugin","tinymce.core.PluginManager","tinymce.plugins.link.core.Actions","tinymce.plugins.link.ui.Controls","global!tinymce.util.Tools.resolve","tinymce.core.util.VK","tinymce.plugins.link.ui.Dialog","tinymce.plugins.link.core.OpenUrl","tinymce.plugins.link.core.Utils","tinymce.plugins.link.core.Settings","tinymce.core.util.Delay","tinymce.core.util.Tools","tinymce.core.util.XHR","global!RegExp","tinymce.core.dom.DOMUtils","tinymce.core.Env"]
-jsc*/
-defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.PluginManager',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.PluginManager');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.util.VK',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.VK');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.util.Delay',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.Delay');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.util.Tools',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.Tools');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.util.XHR',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.XHR');
-  }
-);
-
-define(
-  'tinymce.plugins.link.core.Settings',
-  [
-
-  ],
-  function () {
-    var assumeExternalTargets = function (editorSettings) {
-      return typeof editorSettings.link_assume_external_targets === 'boolean' ? editorSettings.link_assume_external_targets : false;
-    };
-
-    var hasContextToolbar = function (editorSettings) {
-      return typeof editorSettings.link_context_toolbar === 'boolean' ? editorSettings.link_context_toolbar : false;
-    };
-
-    var getLinkList = function (editorSettings) {
-      return editorSettings.link_list;
-    };
-
-    var hasDefaultLinkTarget = function (editorSettings) {
-      return typeof editorSettings.default_link_target === 'string';
-    };
-
-    var getDefaultLinkTarget = function (editorSettings) {
-      return editorSettings.default_link_target;
-    };
-
-    var getTargetList = function (editorSettings) {
-      return editorSettings.target_list;
-    };
-
-    var setTargetList = function (editor, list) {
-      editor.settings.target_list = list;
-    };
-
-    var shouldShowTargetList = function (editorSettings) {
-      return getTargetList(editorSettings) !== false;
-    };
-
-    var getRelList = function (editorSettings) {
-      return editorSettings.rel_list;
-    };
-
-    var hasRelList = function (editorSettings) {
-      return getRelList(editorSettings) !== undefined;
-    };
-
-    var getLinkClassList = function (editorSettings) {
-      return editorSettings.link_class_list;
-    };
-
-    var hasLinkClassList = function (editorSettings) {
-      return getLinkClassList(editorSettings) !== undefined;
-    };
-
-    var shouldShowLinkTitle = function (editorSettings) {
-      return editorSettings.link_title !== false;
-    };
-
-    var allowUnsafeLinkTarget = function (editorSettings) {
-      return typeof editorSettings.allow_unsafe_link_target === 'boolean' ? editorSettings.allow_unsafe_link_target : false;
-    };
-
-    return {
-      assumeExternalTargets: assumeExternalTargets,
-      hasContextToolbar: hasContextToolbar,
-      getLinkList: getLinkList,
-      hasDefaultLinkTarget: hasDefaultLinkTarget,
-      getDefaultLinkTarget: getDefaultLinkTarget,
-      getTargetList: getTargetList,
-      setTargetList: setTargetList,
-      shouldShowTargetList: shouldShowTargetList,
-      getRelList: getRelList,
-      hasRelList: hasRelList,
-      getLinkClassList: getLinkClassList,
-      hasLinkClassList: hasLinkClassList,
-      shouldShowLinkTitle: shouldShowLinkTitle,
-      allowUnsafeLinkTarget: allowUnsafeLinkTarget
-    };
-  }
-);
-
-defineGlobal("global!RegExp", RegExp);
-/**
- * Utils.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.plugins.link.core.Utils',
-  [
-    'tinymce.core.util.Tools',
-    'tinymce.plugins.link.core.Settings',
-    'global!RegExp'
-  ],
-  function (Tools, Settings, RegExp) {
-
-    var toggleTargetRules = function (rel, isUnsafe) {
-      var rules = ['noopener'];
-      var newRel = rel ? rel.split(/\s+/) : [];
-
-      var toString = function (rel) {
-        return Tools.trim(rel.sort().join(' '));
-      };
-
-      var addTargetRules = function (rel) {
-        rel = removeTargetRules(rel);
-        return rel.length ? rel.concat(rules) : rules;
-      };
-
-      var removeTargetRules = function (rel) {
-        return rel.filter(function (val) {
-          return Tools.inArray(rules, val) === -1;
-        });
-      };
-
-      newRel = isUnsafe ? addTargetRules(newRel) : removeTargetRules(newRel);
-      return newRel.length ? toString(newRel) : null;
-    };
-
-
-    var trimCaretContainers = function (text) {
-      return text.replace(/\uFEFF/g, '');
-    };
-
-
-    var getAnchorElement = function (editor, selectedElm) {
-      selectedElm = selectedElm || editor.selection.getStart();
-      if (isImageFigure(selectedElm)) {
-        // for an image conained in a figure we look for a link inside the selected element
-        return editor.dom.select('a[href]', selectedElm)[0];
-      } else {
-        return editor.dom.getParent(selectedElm, 'a[href]');
-      }
-    };
-
-
-    var getAnchorText = function (selection, anchorElm) {
-      var text = anchorElm ? (anchorElm.innerText || anchorElm.textContent) : selection.getContent({ format: 'text' });
-      return trimCaretContainers(text);
-    };
-
-
-    var isLink = function (elm) {
-      return elm && elm.nodeName === 'A' && elm.href;
-    };
-
-    var hasLinks = function (elements) {
-      return Tools.grep(elements, isLink).length > 0;
-    };
-
-
-    var isOnlyTextSelected = function (html) {
-      // Partial html and not a fully selected anchor element
-      if (/</.test(html) && (!/^<a [^>]+>[^<]+<\/a>$/.test(html) || html.indexOf('href=') == -1)) {
-        return false;
-      }
-
-      return true;
-    };
-
-
-    var isImageFigure = function (node) {
-      return node && node.nodeName === 'FIGURE' && /\bimage\b/i.test(node.className);
-    };
-
-
-    var link = function (editor, attachState) {
-      return function (data) {
-        editor.undoManager.transact(function () {
-          var selectedElm = editor.selection.getNode();
-          var anchorElm = getAnchorElement(editor, selectedElm);
-
-          var linkAttrs = {
-            href: data.href,
-            target: data.target ? data.target : null,
-            rel: data.rel ? data.rel : null,
-            "class": data["class"] ? data["class"] : null,
-            title: data.title ? data.title : null
-          };
-
-          if (!Settings.hasRelList(editor.settings) && Settings.allowUnsafeLinkTarget(editor.settings) === false) {
-            linkAttrs.rel = toggleTargetRules(linkAttrs.rel, linkAttrs.target == '_blank');
-          }
-
-          if (data.href === attachState.href) {
-            attachState.attach();
-            attachState = {};
-          }
-
-          if (anchorElm) {
-            editor.focus();
-
-            if (data.hasOwnProperty('text')) {
-              if ("innerText" in anchorElm) {
-                anchorElm.innerText = data.text;
-              } else {
-                anchorElm.textContent = data.text;
-              }
-            }
-
-            editor.dom.setAttribs(anchorElm, linkAttrs);
-
-            editor.selection.select(anchorElm);
-            editor.undoManager.add();
-          } else {
-            if (isImageFigure(selectedElm)) {
-              linkImageFigure(editor, selectedElm, linkAttrs);
-            } else if (data.hasOwnProperty('text')) {
-              editor.insertContent(editor.dom.createHTML('a', linkAttrs, editor.dom.encode(data.text)));
-            } else {
-              editor.execCommand('mceInsertLink', false, linkAttrs);
-            }
-          }
-        });
-      };
-    };
-
-
-    var unlink = function (editor) {
-      return function () {
-        editor.undoManager.transact(function () {
-          var node = editor.selection.getNode();
-          if (isImageFigure(node)) {
-            unlinkImageFigure(editor, node);
-          } else {
-            editor.execCommand('unlink');
-          }
-        });
-      };
-    };
-
-
-    var unlinkImageFigure = function (editor, fig) {
-      var a, img;
-      img = editor.dom.select('img', fig)[0];
-      if (img) {
-        a = editor.dom.getParents(img, 'a[href]', fig)[0];
-        if (a) {
-          a.parentNode.insertBefore(img, a);
-          editor.dom.remove(a);
-        }
-      }
-    };
-
-
-    var linkImageFigure = function (editor, fig, attrs) {
-      var a, img;
-      img = editor.dom.select('img', fig)[0];
-      if (img) {
-        a = editor.dom.create('a', attrs);
-        img.parentNode.insertBefore(a, img);
-        a.appendChild(img);
-      }
-    };
-
-    return {
-      link: link,
-      unlink: unlink,
-      isLink: isLink,
-      hasLinks: hasLinks,
-      isOnlyTextSelected: isOnlyTextSelected,
-      getAnchorElement: getAnchorElement,
-      getAnchorText: getAnchorText,
-      toggleTargetRules: toggleTargetRules
-    };
-  }
-);
-/**
- * Dialog.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.plugins.link.ui.Dialog',
-  [
-    'tinymce.core.util.Delay',
-    'tinymce.core.util.Tools',
-    'tinymce.core.util.XHR',
-    'tinymce.plugins.link.core.Utils',
-    'tinymce.plugins.link.core.Settings'
-  ],
-  function (Delay, Tools, XHR, Utils, Settings) {
-    var attachState = {};
-
-    var createLinkList = function (editor, callback) {
-      var linkList = Settings.getLinkList(editor.settings);
-
-      if (typeof linkList == "string") {
-        XHR.send({
-          url: linkList,
-          success: function (text) {
-            callback(editor, JSON.parse(text));
-          }
-        });
-      } else if (typeof linkList == "function") {
-        linkList(function (list) {
-          callback(editor, list);
-        });
-      } else {
-        callback(editor, linkList);
-      }
-    };
-
-    var buildListItems = function (inputList, itemCallback, startItems) {
-      var appendItems = function (values, output) {
-        output = output || [];
-
-        Tools.each(values, function (item) {
-          var menuItem = { text: item.text || item.title };
-
-          if (item.menu) {
-            menuItem.menu = appendItems(item.menu);
-          } else {
-            menuItem.value = item.value;
-
-            if (itemCallback) {
-              itemCallback(menuItem);
-            }
-          }
-
-          output.push(menuItem);
-        });
-
-        return output;
-      };
-
-      return appendItems(inputList, startItems || []);
-    };
-
-    // Delay confirm since onSubmit will move focus
-    var delayedConfirm = function (editor, message, callback) {
-      var rng = editor.selection.getRng();
-
-      Delay.setEditorTimeout(editor, function () {
-        editor.windowManager.confirm(message, function (state) {
-          editor.selection.setRng(rng);
-          callback(state);
-        });
-      });
-    };
-
-    var showDialog = function (editor, linkList) {
-      var data = {}, selection = editor.selection, dom = editor.dom, anchorElm, initialText;
-      var win, onlyText, textListCtrl, linkListCtrl, relListCtrl, targetListCtrl, classListCtrl, linkTitleCtrl, value;
-
-      var linkListChangeHandler = function (e) {
-        var textCtrl = win.find('#text');
-
-        if (!textCtrl.value() || (e.lastControl && textCtrl.value() == e.lastControl.text())) {
-          textCtrl.value(e.control.text());
-        }
-
-        win.find('#href').value(e.control.value());
-      };
-
-      var buildAnchorListControl = function (url) {
-        var anchorList = [];
-
-        Tools.each(editor.dom.select('a:not([href])'), function (anchor) {
-          var id = anchor.name || anchor.id;
-
-          if (id) {
-            anchorList.push({
-              text: id,
-              value: '#' + id,
-              selected: url.indexOf('#' + id) != -1
-            });
-          }
-        });
-
-        if (anchorList.length) {
-          anchorList.unshift({ text: 'None', value: '' });
-
-          return {
-            name: 'anchor',
-            type: 'listbox',
-            label: 'Anchors',
-            values: anchorList,
-            onselect: linkListChangeHandler
-          };
-        }
-      };
-
-      var updateText = function () {
-        if (!initialText && onlyText && !data.text) {
-          this.parent().parent().find('#text')[0].value(this.value());
-        }
-      };
-
-      var urlChange = function (e) {
-        var meta = e.meta || {};
-
-        if (linkListCtrl) {
-          linkListCtrl.value(editor.convertURL(this.value(), 'href'));
-        }
-
-        Tools.each(e.meta, function (value, key) {
-          var inp = win.find('#' + key);
-
-          if (key === 'text') {
-            if (initialText.length === 0) {
-              inp.value(value);
-              data.text = value;
-            }
-          } else {
-            inp.value(value);
-          }
-        });
-
-        if (meta.attach) {
-          attachState = {
-            href: this.value(),
-            attach: meta.attach
-          };
-        }
-
-        if (!meta.text) {
-          updateText.call(this);
-        }
-      };
-
-      var onBeforeCall = function (e) {
-        e.meta = win.toJSON();
-      };
-
-      onlyText = Utils.isOnlyTextSelected(selection.getContent());
-      anchorElm = Utils.getAnchorElement(editor);
-
-      data.text = initialText = Utils.getAnchorText(editor.selection, anchorElm);
-      data.href = anchorElm ? dom.getAttrib(anchorElm, 'href') : '';
-
-      if (anchorElm) {
-        data.target = dom.getAttrib(anchorElm, 'target');
-      } else if (Settings.hasDefaultLinkTarget(editor.settings)) {
-        data.target = Settings.getDefaultLinkTarget(editor.settings);
-      }
-
-      if ((value = dom.getAttrib(anchorElm, 'rel'))) {
-        data.rel = value;
-      }
-
-      if ((value = dom.getAttrib(anchorElm, 'class'))) {
-        data['class'] = value;
-      }
-
-      if ((value = dom.getAttrib(anchorElm, 'title'))) {
-        data.title = value;
-      }
-
-      if (onlyText) {
-        textListCtrl = {
-          name: 'text',
-          type: 'textbox',
-          size: 40,
-          label: 'Text to display',
-          onchange: function () {
-            data.text = this.value();
-          }
-        };
-      }
-
-      if (linkList) {
-        linkListCtrl = {
-          type: 'listbox',
-          label: 'Link list',
-          values: buildListItems(
-            linkList,
-            function (item) {
-              item.value = editor.convertURL(item.value || item.url, 'href');
-            },
-            [{ text: 'None', value: '' }]
-          ),
-          onselect: linkListChangeHandler,
-          value: editor.convertURL(data.href, 'href'),
-          onPostRender: function () {
-            /*eslint consistent-this:0*/
-            linkListCtrl = this;
-          }
-        };
-      }
-
-      if (Settings.shouldShowTargetList(editor.settings)) {
-        if (Settings.getTargetList(editor.settings) === undefined) {
-          Settings.setTargetList(editor, [
-            { text: 'None', value: '' },
-            { text: 'New window', value: '_blank' }
-          ]);
-        }
-
-        targetListCtrl = {
-          name: 'target',
-          type: 'listbox',
-          label: 'Target',
-          values: buildListItems(Settings.getTargetList(editor.settings))
-        };
-      }
-
-      if (Settings.hasRelList(editor.settings)) {
-        relListCtrl = {
-          name: 'rel',
-          type: 'listbox',
-          label: 'Rel',
-          values: buildListItems(
-            Settings.getRelList(editor.settings),
-            function (item) {
-              if (Settings.allowUnsafeLinkTarget(editor.settings) === false) {
-                item.value = Utils.toggleTargetRules(item.value, data.target === '_blank');
-              }
-            }
-          )
-        };
-      }
-
-      if (Settings.hasLinkClassList(editor.settings)) {
-        classListCtrl = {
-          name: 'class',
-          type: 'listbox',
-          label: 'Class',
-          values: buildListItems(
-            Settings.getLinkClassList(editor.settings),
-            function (item) {
-              if (item.value) {
-                item.textStyle = function () {
-                  return editor.formatter.getCssText({ inline: 'a', classes: [item.value] });
-                };
-              }
-            }
-          )
-        };
-      }
-
-      if (Settings.shouldShowLinkTitle(editor.settings)) {
-        linkTitleCtrl = {
-          name: 'title',
-          type: 'textbox',
-          label: 'Title',
-          value: data.title
-        };
-      }
-
-      win = editor.windowManager.open({
-        title: 'Insert link',
-        data: data,
-        body: [
-          {
-            name: 'href',
-            type: 'filepicker',
-            filetype: 'file',
-            size: 40,
-            autofocus: true,
-            label: 'Url',
-            onchange: urlChange,
-            onkeyup: updateText,
-            onbeforecall: onBeforeCall
-          },
-          textListCtrl,
-          linkTitleCtrl,
-          buildAnchorListControl(data.href),
-          linkListCtrl,
-          relListCtrl,
-          targetListCtrl,
-          classListCtrl
-        ],
-        onSubmit: function (e) {
-          var assumeExternalTargets = Settings.assumeExternalTargets(editor.settings);
-          var insertLink = Utils.link(editor, attachState);
-          var removeLink = Utils.unlink(editor);
-
-          var resultData = Tools.extend({}, data, e.data);
-          /*eslint dot-notation: 0*/
-          var href = resultData.href;
-
-          if (!href) {
-            removeLink();
-            return;
-          }
-
-          if (!onlyText || resultData.text === initialText) {
-            delete resultData.text;
-          }
-
-          // Is email and not //user@domain.com
-          if (href.indexOf('@') > 0 && href.indexOf('//') == -1 && href.indexOf('mailto:') == -1) {
-            delayedConfirm(
-              editor,
-              'The URL you entered seems to be an email address. Do you want to add the required mailto: prefix?',
-              function (state) {
-                if (state) {
-                  resultData.href = 'mailto:' + href;
-                }
-                insertLink(resultData);
-              }
-            );
-            return;
-          }
-
-          // Is not protocol prefixed
-          if ((assumeExternalTargets === true && !/^\w+:/i.test(href)) ||
-            (assumeExternalTargets === false && /^\s*www[\.|\d\.]/i.test(href))) {
-            delayedConfirm(
-              editor,
-              'The URL you entered seems to be an external link. Do you want to add the required http:// prefix?',
-              function (state) {
-                if (state) {
-                  resultData.href = 'http://' + href;
-                }
-                insertLink(resultData);
-              }
-            );
-            return;
-          }
-
-          insertLink(resultData);
-        }
-      });
-    };
-
-    var open = function (editor) {
-      createLinkList(editor, showDialog);
-    };
-
-    return {
-      open: open
-    };
-  }
-);
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.dom.DOMUtils',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.dom.DOMUtils');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.Env',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.Env');
-  }
-);
-
-/**
- * OpenUrl.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.plugins.link.core.OpenUrl',
-  [
-    'tinymce.core.dom.DOMUtils',
-    'tinymce.core.Env'
-  ],
-  function (DOMUtils, Env) {
-    var appendClickRemove = function (link, evt) {
-      document.body.appendChild(link);
-      link.dispatchEvent(evt);
-      document.body.removeChild(link);
-    };
-
-    var open = function (url) {
-      // Chrome and Webkit has implemented noopener and works correctly with/without popup blocker
-      // Firefox has it implemented noopener but when the popup blocker is activated it doesn't work
-      // Edge has only implemented noreferrer and it seems to remove opener as well
-      // Older IE versions pre IE 11 falls back to a window.open approach
-      if (!Env.ie || Env.ie > 10) {
-        var link = document.createElement('a');
-        link.target = '_blank';
-        link.href = url;
-        link.rel = 'noreferrer noopener';
-
-        var evt = document.createEvent('MouseEvents');
-        evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-
-        appendClickRemove(link, evt);
-      } else {
-        var win = window.open('', '_blank');
-        if (win) {
-          win.opener = null;
-          var doc = win.document;
-          doc.open();
-          doc.write('<meta http-equiv="refresh" content="0; url=' + DOMUtils.DOM.encode(url) + '">');
-          doc.close();
-        }
-      }
-    };
-
-    return {
-      open: open
-    };
-  }
-);
-/**
- * Actions.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.plugins.link.core.Actions',
-  [
-    'tinymce.core.util.VK',
-    'tinymce.plugins.link.ui.Dialog',
-    'tinymce.plugins.link.core.OpenUrl',
-    'tinymce.plugins.link.core.Utils',
-    'tinymce.plugins.link.core.Settings'
-  ],
-  function (VK, Dialog, OpenUrl, Utils, Settings) {
-    var getLink = function (editor, elm) {
-      return editor.dom.getParent(elm, 'a[href]');
-    };
-
-    var getSelectedLink = function (editor) {
-      return getLink(editor, editor.selection.getStart());
-    };
-
-    var getHref = function (elm) {
-      // Returns the real href value not the resolved a.href value
-      var href = elm.getAttribute('data-mce-href');
-      return href ? href : elm.getAttribute('href');
-    };
-
-    var isContextMenuVisible = function (editor) {
-      var contextmenu = editor.plugins.contextmenu;
-      return contextmenu ? contextmenu.isContextMenuVisible() : false;
-    };
-
-    var hasOnlyAltModifier = function (e) {
-      return e.altKey === true && e.shiftKey === false && e.ctrlKey === false && e.metaKey === false;
-    };
-
-    var gotoLink = function (editor, a) {
-      if (a) {
-        var href = getHref(a);
-        if (/^#/.test(href)) {
-          var targetEl = editor.$(href);
-          if (targetEl.length) {
-            editor.selection.scrollIntoView(targetEl[0], true);
-          }
-        } else {
-          OpenUrl.open(a.href);
-        }
-      }
-    };
-
-    var openDialog = function (editor) {
-      return function () {
-        Dialog.open(editor);
-      };
-    };
-
-    var gotoSelectedLink = function (editor) {
-      return function () {
-        gotoLink(editor, getSelectedLink(editor));
-      };
-    };
-
-    var leftClickedOnAHref = function (editor) {
-      return function (elm) {
-        var sel, rng, node;
-        if (Settings.hasContextToolbar(editor.settings) && !isContextMenuVisible(editor) && Utils.isLink(elm)) {
-          sel = editor.selection;
-          rng = sel.getRng();
-          node = rng.startContainer;
-          // ignore cursor positions at the beginning/end (to make context toolbar less noisy)
-          if (node.nodeType == 3 && sel.isCollapsed() && rng.startOffset > 0 && rng.startOffset < node.data.length) {
-            return true;
-          }
-        }
-        return false;
-      };
-    };
-
-    var setupGotoLinks = function (editor) {
-      editor.on('click', function (e) {
-        var link = getLink(editor, e.target);
-        if (link && VK.metaKeyPressed(e)) {
-          e.preventDefault();
-          gotoLink(editor, link);
-        }
-      });
-
-      editor.on('keydown', function (e) {
-        var link = getSelectedLink(editor);
-        if (link && e.keyCode === 13 && hasOnlyAltModifier(e)) {
-          e.preventDefault();
-          gotoLink(editor, link);
-        }
-      });
-    };
-
-    var toggleActiveState = function (editor) {
-      return function () {
-        var self = this;
-        editor.on('nodechange', function (e) {
-          self.active(!editor.readonly && !!Utils.getAnchorElement(editor, e.element));
-        });
-      };
-    };
-
-    var toggleViewLinkState = function (editor) {
-      return function () {
-        var self = this;
-
-        var toggleVisibility = function (e) {
-          if (Utils.hasLinks(e.parents)) {
-            self.show();
-          } else {
-            self.hide();
-          }
-        };
-
-        if (!Utils.hasLinks(editor.dom.getParents(editor.selection.getStart()))) {
-          self.hide();
-        }
-
-        editor.on('nodechange', toggleVisibility);
-
-        self.on('remove', function () {
-          editor.off('nodechange', toggleVisibility);
-        });
-      };
-    };
-
-    return {
-      openDialog: openDialog,
-      gotoSelectedLink: gotoSelectedLink,
-      leftClickedOnAHref: leftClickedOnAHref,
-      setupGotoLinks: setupGotoLinks,
-      toggleActiveState: toggleActiveState,
-      toggleViewLinkState: toggleViewLinkState
-    };
-  }
-);
-/**
- * Controls.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.plugins.link.ui.Controls',
-  [
-    'tinymce.plugins.link.core.Actions',
-    'tinymce.plugins.link.core.Utils'
-  ],
-  function (Actions, Utils) {
-
-    var setupButtons = function (editor) {
-      editor.addButton('link', {
-        icon: 'link',
-        tooltip: 'Insert/edit link',
-        shortcut: 'Meta+K',
-        onclick: Actions.openDialog(editor),
-        onpostrender: Actions.toggleActiveState(editor)
-      });
-
-      editor.addButton('unlink', {
-        icon: 'unlink',
-        tooltip: 'Remove link',
-        onclick: Utils.unlink(editor),
-        onpostrender: Actions.toggleActiveState(editor)
-      });
-
-      if (editor.addContextToolbar) {
-        editor.addButton('openlink', {
-          icon: 'newtab',
-          tooltip: 'Open link',
-          onclick: Actions.gotoSelectedLink(editor)
-        });
-      }
-    };
-
-    var setupMenuItems = function (editor) {
-      editor.addMenuItem('openlink', {
-        text: 'Open link',
-        icon: 'newtab',
-        onclick: Actions.gotoSelectedLink(editor),
-        onPostRender: Actions.toggleViewLinkState(editor),
-        prependToContext: true
-      });
-
-      editor.addMenuItem('link', {
-        icon: 'link',
-        text: 'Link',
-        shortcut: 'Meta+K',
-        onclick: Actions.openDialog(editor),
-        stateSelector: 'a[href]',
-        context: 'insert',
-        prependToContext: true
-      });
-    };
-
-    var setupContextToolbars = function (editor) {
-      if (editor.addContextToolbar) {
-        editor.addContextToolbar(
-          Actions.leftClickedOnAHref(editor),
-          'openlink | link unlink'
-        );
-      }
-    };
-
-    return {
-      setupButtons: setupButtons,
-      setupMenuItems: setupMenuItems,
-      setupContextToolbars: setupContextToolbars
-    };
-  }
-);
-/**
- * Plugin.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.plugins.link.Plugin',
-  [
-    'tinymce.core.PluginManager',
-    'tinymce.plugins.link.core.Actions',
-    'tinymce.plugins.link.ui.Controls'
-  ],
-  function (PluginManager, Actions, Controls) {
-    PluginManager.add('link', function (editor) {
-      Controls.setupButtons(editor);
-      Controls.setupMenuItems(editor);
-      Controls.setupContextToolbars(editor);
-      Actions.setupGotoLinks(editor);
-      editor.addShortcut('Meta+K', '', Actions.openDialog(editor));
-      editor.addCommand('mceLink', Actions.openDialog(editor));
-    });
-
-    return function () { };
-  }
-);
-dem('tinymce.plugins.link.Plugin')();
-})();
-
-
-/***/ }),
-/* 215 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Exports the "image" plugin for usage with module loaders
-// Usage:
-//   CommonJS:
-//     require('tinymce/plugins/image')
-//   ES2015:
-//     import 'tinymce/plugins/image'
-__webpack_require__(216);
-
-/***/ }),
-/* 216 */
-/***/ (function(module, exports) {
-
-(function () {
-
-var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
-// Used when there is no 'main' module.
-// The name is probably (hopefully) unique so minification removes for releases.
-var register_3795 = function (id) {
-  var module = dem(id);
-  var fragments = id.split('.');
-  var target = Function('return this;')();
-  for (var i = 0; i < fragments.length - 1; ++i) {
-    if (target[fragments[i]] === undefined)
-      target[fragments[i]] = {};
-    target = target[fragments[i]];
-  }
-  target[fragments[fragments.length - 1]] = module;
-};
-
-var instantiate = function (id) {
-  var actual = defs[id];
-  var dependencies = actual.deps;
-  var definition = actual.defn;
-  var len = dependencies.length;
-  var instances = new Array(len);
-  for (var i = 0; i < len; ++i)
-    instances[i] = dem(dependencies[i]);
-  var defResult = definition.apply(null, instances);
-  if (defResult === undefined)
-     throw 'module [' + id + '] returned undefined';
-  actual.instance = defResult;
-};
-
-var def = function (id, dependencies, definition) {
-  if (typeof id !== 'string')
-    throw 'module id must be a string';
-  else if (dependencies === undefined)
-    throw 'no dependencies for ' + id;
-  else if (definition === undefined)
-    throw 'no definition function for ' + id;
-  defs[id] = {
-    deps: dependencies,
-    defn: definition,
-    instance: undefined
-  };
-};
-
-var dem = function (id) {
-  var actual = defs[id];
-  if (actual === undefined)
-    throw 'module [' + id + '] was undefined';
-  else if (actual.instance === undefined)
-    instantiate(id);
-  return actual.instance;
-};
-
-var req = function (ids, callback) {
-  var len = ids.length;
-  var instances = new Array(len);
-  for (var i = 0; i < len; ++i)
-    instances.push(dem(ids[i]));
-  callback.apply(null, callback);
-};
-
-var ephox = {};
-
-ephox.bolt = {
-  module: {
-    api: {
-      define: def,
-      require: req,
-      demand: dem
-    }
-  }
-};
-
-var define = def;
-var require = req;
-var demand = dem;
-// this helps with minificiation when using a lot of global references
-var defineGlobal = function (id, ref) {
-  define(id, [], function () { return ref; });
-};
-/*jsc
-["tinymce.plugins.image.Plugin","tinymce.core.Env","tinymce.core.PluginManager","tinymce.core.util.JSON","tinymce.core.util.Tools","tinymce.core.util.XHR","global!tinymce.util.Tools.resolve"]
-jsc*/
-defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.Env',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.Env');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.PluginManager',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.PluginManager');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.util.JSON',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.JSON');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.util.Tools',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.Tools');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.util.XHR',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.XHR');
-  }
-);
-
-/**
- * Plugin.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-/**
- * This class contains all core logic for the image plugin.
- *
- * @class tinymce.image.Plugin
- * @private
- */
-define(
-  'tinymce.plugins.image.Plugin',
-  [
-    'tinymce.core.Env',
-    'tinymce.core.PluginManager',
-    'tinymce.core.util.JSON',
-    'tinymce.core.util.Tools',
-    'tinymce.core.util.XHR'
-  ],
-  function (Env, PluginManager, JSON, Tools, XHR) {
-    PluginManager.add('image', function (editor) {
-      function getImageSize(url, callback) {
-        var img = document.createElement('img');
-
-        function done(width, height) {
-          if (img.parentNode) {
-            img.parentNode.removeChild(img);
-          }
-
-          callback({ width: width, height: height });
-        }
-
-        img.onload = function () {
-          done(Math.max(img.width, img.clientWidth), Math.max(img.height, img.clientHeight));
-        };
-
-        img.onerror = function () {
-          done();
-        };
-
-        var style = img.style;
-        style.visibility = 'hidden';
-        style.position = 'fixed';
-        style.bottom = style.left = 0;
-        style.width = style.height = 'auto';
-
-        document.body.appendChild(img);
-        img.src = url;
-      }
-
-      function buildListItems(inputList, itemCallback, startItems) {
-        function appendItems(values, output) {
-          output = output || [];
-
-          Tools.each(values, function (item) {
-            var menuItem = { text: item.text || item.title };
-
-            if (item.menu) {
-              menuItem.menu = appendItems(item.menu);
-            } else {
-              menuItem.value = item.value;
-              itemCallback(menuItem);
-            }
-
-            output.push(menuItem);
-          });
-
-          return output;
-        }
-
-        return appendItems(inputList, startItems || []);
-      }
-
-      function createImageList(callback) {
-        return function () {
-          var imageList = editor.settings.image_list;
-
-          if (typeof imageList == "string") {
-            XHR.send({
-              url: imageList,
-              success: function (text) {
-                callback(JSON.parse(text));
-              }
-            });
-          } else if (typeof imageList == "function") {
-            imageList(callback);
-          } else {
-            callback(imageList);
-          }
-        };
-      }
-
-      function showDialog(imageList) {
-        var win, data = {}, dom = editor.dom, imgElm, figureElm;
-        var width, height, imageListCtrl, classListCtrl, imageDimensions = editor.settings.image_dimensions !== false;
-
-        function recalcSize() {
-          var widthCtrl, heightCtrl, newWidth, newHeight;
-
-          widthCtrl = win.find('#width')[0];
-          heightCtrl = win.find('#height')[0];
-
-          if (!widthCtrl || !heightCtrl) {
-            return;
-          }
-
-          newWidth = widthCtrl.value();
-          newHeight = heightCtrl.value();
-
-          if (win.find('#constrain')[0].checked() && width && height && newWidth && newHeight) {
-            if (width != newWidth) {
-              newHeight = Math.round((newWidth / width) * newHeight);
-
-              if (!isNaN(newHeight)) {
-                heightCtrl.value(newHeight);
-              }
-            } else {
-              newWidth = Math.round((newHeight / height) * newWidth);
-
-              if (!isNaN(newWidth)) {
-                widthCtrl.value(newWidth);
-              }
-            }
-          }
-
-          width = newWidth;
-          height = newHeight;
-        }
-
-        function onSubmitForm() {
-          var figureElm, oldImg;
-
-          function waitLoad(imgElm) {
-            function selectImage() {
-              imgElm.onload = imgElm.onerror = null;
-
-              if (editor.selection) {
-                editor.selection.select(imgElm);
-                editor.nodeChanged();
-              }
-            }
-
-            imgElm.onload = function () {
-              if (!data.width && !data.height && imageDimensions) {
-                dom.setAttribs(imgElm, {
-                  width: imgElm.clientWidth,
-                  height: imgElm.clientHeight
-                });
-              }
-
-              selectImage();
-            };
-
-            imgElm.onerror = selectImage;
-          }
-
-          updateStyle();
-          recalcSize();
-
-          data = Tools.extend(data, win.toJSON());
-
-          if (!data.alt) {
-            data.alt = '';
-          }
-
-          if (!data.title) {
-            data.title = '';
-          }
-
-          if (data.width === '') {
-            data.width = null;
-          }
-
-          if (data.height === '') {
-            data.height = null;
-          }
-
-          if (!data.style) {
-            data.style = null;
-          }
-
-          // Setup new data excluding style properties
-          /*eslint dot-notation: 0*/
-          data = {
-            src: data.src,
-            alt: data.alt,
-            title: data.title,
-            width: data.width,
-            height: data.height,
-            style: data.style,
-            caption: data.caption,
-            "class": data["class"]
-          };
-
-          editor.undoManager.transact(function () {
-            if (!data.src) {
-              if (imgElm) {
-                dom.remove(imgElm);
-                editor.focus();
-                editor.nodeChanged();
-              }
-
-              return;
-            }
-
-            if (data.title === "") {
-              data.title = null;
-            }
-
-            if (!imgElm) {
-              data.id = '__mcenew';
-              editor.focus();
-              editor.selection.setContent(dom.createHTML('img', data));
-              imgElm = dom.get('__mcenew');
-              dom.setAttrib(imgElm, 'id', null);
-            } else {
-              dom.setAttribs(imgElm, data);
-            }
-
-            editor.editorUpload.uploadImagesAuto();
-
-            if (data.caption === false) {
-              if (dom.is(imgElm.parentNode, 'figure.image')) {
-                figureElm = imgElm.parentNode;
-                dom.insertAfter(imgElm, figureElm);
-                dom.remove(figureElm);
-              }
-            }
-
-            function isTextBlock(node) {
-              return editor.schema.getTextBlockElements()[node.nodeName];
-            }
-
-            if (data.caption === true) {
-              if (!dom.is(imgElm.parentNode, 'figure.image')) {
-                oldImg = imgElm;
-                imgElm = imgElm.cloneNode(true);
-                figureElm = dom.create('figure', { 'class': 'image' });
-                figureElm.appendChild(imgElm);
-                figureElm.appendChild(dom.create('figcaption', { contentEditable: true }, 'Caption'));
-                figureElm.contentEditable = false;
-
-                var textBlock = dom.getParent(oldImg, isTextBlock);
-                if (textBlock) {
-                  dom.split(textBlock, oldImg, figureElm);
-                } else {
-                  dom.replace(figureElm, oldImg);
-                }
-
-                editor.selection.select(figureElm);
-              }
-
-              return;
-            }
-
-            waitLoad(imgElm);
-          });
-        }
-
-        function removePixelSuffix(value) {
-          if (value) {
-            value = value.replace(/px$/, '');
-          }
-
-          return value;
-        }
-
-        function srcChange(e) {
-          var srcURL, prependURL, absoluteURLPattern, meta = e.meta || {};
-
-          if (imageListCtrl) {
-            imageListCtrl.value(editor.convertURL(this.value(), 'src'));
-          }
-
-          Tools.each(meta, function (value, key) {
-            win.find('#' + key).value(value);
-          });
-
-          if (!meta.width && !meta.height) {
-            srcURL = editor.convertURL(this.value(), 'src');
-
-            // Pattern test the src url and make sure we haven't already prepended the url
-            prependURL = editor.settings.image_prepend_url;
-            absoluteURLPattern = new RegExp('^(?:[a-z]+:)?//', 'i');
-            if (prependURL && !absoluteURLPattern.test(srcURL) && srcURL.substring(0, prependURL.length) !== prependURL) {
-              srcURL = prependURL + srcURL;
-            }
-
-            this.value(srcURL);
-
-            getImageSize(editor.documentBaseURI.toAbsolute(this.value()), function (data) {
-              if (data.width && data.height && imageDimensions) {
-                width = data.width;
-                height = data.height;
-
-                win.find('#width').value(width);
-                win.find('#height').value(height);
-              }
-            });
-          }
-        }
-
-        function onBeforeCall(e) {
-          e.meta = win.toJSON();
-        }
-
-        imgElm = editor.selection.getNode();
-        figureElm = dom.getParent(imgElm, 'figure.image');
-        if (figureElm) {
-          imgElm = dom.select('img', figureElm)[0];
-        }
-
-        if (imgElm &&
-          (imgElm.nodeName != 'IMG' ||
-            imgElm.getAttribute('data-mce-object') ||
-            imgElm.getAttribute('data-mce-placeholder'))) {
-          imgElm = null;
-        }
-
-        if (imgElm) {
-          width = dom.getAttrib(imgElm, 'width');
-          height = dom.getAttrib(imgElm, 'height');
-
-          data = {
-            src: dom.getAttrib(imgElm, 'src'),
-            alt: dom.getAttrib(imgElm, 'alt'),
-            title: dom.getAttrib(imgElm, 'title'),
-            "class": dom.getAttrib(imgElm, 'class'),
-            width: width,
-            height: height,
-            caption: !!figureElm
-          };
-        }
-
-        if (imageList) {
-          imageListCtrl = {
-            type: 'listbox',
-            label: 'Image list',
-            values: buildListItems(
-              imageList,
-              function (item) {
-                item.value = editor.convertURL(item.value || item.url, 'src');
-              },
-              [{ text: 'None', value: '' }]
-            ),
-            value: data.src && editor.convertURL(data.src, 'src'),
-            onselect: function (e) {
-              var altCtrl = win.find('#alt');
-
-              if (!altCtrl.value() || (e.lastControl && altCtrl.value() == e.lastControl.text())) {
-                altCtrl.value(e.control.text());
-              }
-
-              win.find('#src').value(e.control.value()).fire('change');
-            },
-            onPostRender: function () {
-              /*eslint consistent-this: 0*/
-              imageListCtrl = this;
-            }
-          };
-        }
-
-        if (editor.settings.image_class_list) {
-          classListCtrl = {
-            name: 'class',
-            type: 'listbox',
-            label: 'Class',
-            values: buildListItems(
-              editor.settings.image_class_list,
-              function (item) {
-                if (item.value) {
-                  item.textStyle = function () {
-                    return editor.formatter.getCssText({ inline: 'img', classes: [item.value] });
-                  };
-                }
-              }
-            )
-          };
-        }
-
-        // General settings shared between simple and advanced dialogs
-        var generalFormItems = [
-          {
-            name: 'src',
-            type: 'filepicker',
-            filetype: 'image',
-            label: 'Source',
-            autofocus: true,
-            onchange: srcChange,
-            onbeforecall: onBeforeCall
-          },
-          imageListCtrl
-        ];
-
-        if (editor.settings.image_description !== false) {
-          generalFormItems.push({ name: 'alt', type: 'textbox', label: 'Image description' });
-        }
-
-        if (editor.settings.image_title) {
-          generalFormItems.push({ name: 'title', type: 'textbox', label: 'Image Title' });
-        }
-
-        if (imageDimensions) {
-          generalFormItems.push({
-            type: 'container',
-            label: 'Dimensions',
-            layout: 'flex',
-            direction: 'row',
-            align: 'center',
-            spacing: 5,
-            items: [
-              { name: 'width', type: 'textbox', maxLength: 5, size: 3, onchange: recalcSize, ariaLabel: 'Width' },
-              { type: 'label', text: 'x' },
-              { name: 'height', type: 'textbox', maxLength: 5, size: 3, onchange: recalcSize, ariaLabel: 'Height' },
-              { name: 'constrain', type: 'checkbox', checked: true, text: 'Constrain proportions' }
-            ]
-          });
-        }
-
-        generalFormItems.push(classListCtrl);
-
-        if (editor.settings.image_caption && Env.ceFalse) {
-          generalFormItems.push({ name: 'caption', type: 'checkbox', label: 'Caption' });
-        }
-
-        function mergeMargins(css) {
-          if (css.margin) {
-
-            var splitMargin = css.margin.split(" ");
-
-            switch (splitMargin.length) {
-              case 1: //margin: toprightbottomleft;
-                css['margin-top'] = css['margin-top'] || splitMargin[0];
-                css['margin-right'] = css['margin-right'] || splitMargin[0];
-                css['margin-bottom'] = css['margin-bottom'] || splitMargin[0];
-                css['margin-left'] = css['margin-left'] || splitMargin[0];
-                break;
-              case 2: //margin: topbottom rightleft;
-                css['margin-top'] = css['margin-top'] || splitMargin[0];
-                css['margin-right'] = css['margin-right'] || splitMargin[1];
-                css['margin-bottom'] = css['margin-bottom'] || splitMargin[0];
-                css['margin-left'] = css['margin-left'] || splitMargin[1];
-                break;
-              case 3: //margin: top rightleft bottom;
-                css['margin-top'] = css['margin-top'] || splitMargin[0];
-                css['margin-right'] = css['margin-right'] || splitMargin[1];
-                css['margin-bottom'] = css['margin-bottom'] || splitMargin[2];
-                css['margin-left'] = css['margin-left'] || splitMargin[1];
-                break;
-              case 4: //margin: top right bottom left;
-                css['margin-top'] = css['margin-top'] || splitMargin[0];
-                css['margin-right'] = css['margin-right'] || splitMargin[1];
-                css['margin-bottom'] = css['margin-bottom'] || splitMargin[2];
-                css['margin-left'] = css['margin-left'] || splitMargin[3];
-            }
-            delete css.margin;
-          }
-          return css;
-        }
-
-        function updateStyle() {
-          function addPixelSuffix(value) {
-            if (value.length > 0 && /^[0-9]+$/.test(value)) {
-              value += 'px';
-            }
-
-            return value;
-          }
-
-          if (!editor.settings.image_advtab) {
-            return;
-          }
-
-          var data = win.toJSON(),
-            css = dom.parseStyle(data.style);
-
-          css = mergeMargins(css);
-
-          if (data.vspace) {
-            css['margin-top'] = css['margin-bottom'] = addPixelSuffix(data.vspace);
-          }
-          if (data.hspace) {
-            css['margin-left'] = css['margin-right'] = addPixelSuffix(data.hspace);
-          }
-          if (data.border) {
-            css['border-width'] = addPixelSuffix(data.border);
-          }
-
-          win.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
-        }
-
-        function updateVSpaceHSpaceBorder() {
-          if (!editor.settings.image_advtab) {
-            return;
-          }
-
-          var data = win.toJSON(),
-            css = dom.parseStyle(data.style);
-
-          win.find('#vspace').value("");
-          win.find('#hspace').value("");
-
-          css = mergeMargins(css);
-
-          //Move opposite equal margins to vspace/hspace field
-          if ((css['margin-top'] && css['margin-bottom']) || (css['margin-right'] && css['margin-left'])) {
-            if (css['margin-top'] === css['margin-bottom']) {
-              win.find('#vspace').value(removePixelSuffix(css['margin-top']));
-            } else {
-              win.find('#vspace').value('');
-            }
-            if (css['margin-right'] === css['margin-left']) {
-              win.find('#hspace').value(removePixelSuffix(css['margin-right']));
-            } else {
-              win.find('#hspace').value('');
-            }
-          }
-
-          //Move border-width
-          if (css['border-width']) {
-            win.find('#border').value(removePixelSuffix(css['border-width']));
-          }
-
-          win.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
-
-        }
-
-        if (editor.settings.image_advtab) {
-          // Parse styles from img
-          if (imgElm) {
-            if (imgElm.style.marginLeft && imgElm.style.marginRight && imgElm.style.marginLeft === imgElm.style.marginRight) {
-              data.hspace = removePixelSuffix(imgElm.style.marginLeft);
-            }
-            if (imgElm.style.marginTop && imgElm.style.marginBottom && imgElm.style.marginTop === imgElm.style.marginBottom) {
-              data.vspace = removePixelSuffix(imgElm.style.marginTop);
-            }
-            if (imgElm.style.borderWidth) {
-              data.border = removePixelSuffix(imgElm.style.borderWidth);
-            }
-
-            data.style = editor.dom.serializeStyle(editor.dom.parseStyle(editor.dom.getAttrib(imgElm, 'style')));
-          }
-
-          // Advanced dialog shows general+advanced tabs
-          win = editor.windowManager.open({
-            title: 'Insert/edit image',
-            data: data,
-            bodyType: 'tabpanel',
-            body: [
-              {
-                title: 'General',
-                type: 'form',
-                items: generalFormItems
-              },
-
-              {
-                title: 'Advanced',
-                type: 'form',
-                pack: 'start',
-                items: [
-                  {
-                    label: 'Style',
-                    name: 'style',
-                    type: 'textbox',
-                    onchange: updateVSpaceHSpaceBorder
-                  },
-                  {
-                    type: 'form',
-                    layout: 'grid',
-                    packV: 'start',
-                    columns: 2,
-                    padding: 0,
-                    alignH: ['left', 'right'],
-                    defaults: {
-                      type: 'textbox',
-                      maxWidth: 50,
-                      onchange: updateStyle
-                    },
-                    items: [
-                      { label: 'Vertical space', name: 'vspace' },
-                      { label: 'Horizontal space', name: 'hspace' },
-                      { label: 'Border', name: 'border' }
-                    ]
-                  }
-                ]
-              }
-            ],
-            onSubmit: onSubmitForm
-          });
-        } else {
-          // Simple default dialog
-          win = editor.windowManager.open({
-            title: 'Insert/edit image',
-            data: data,
-            body: generalFormItems,
-            onSubmit: onSubmitForm
-          });
-        }
-      }
-
-      editor.on('preInit', function () {
-        function hasImageClass(node) {
-          var className = node.attr('class');
-          return className && /\bimage\b/.test(className);
-        }
-
-        function toggleContentEditableState(state) {
-          return function (nodes) {
-            var i = nodes.length, node;
-
-            function toggleContentEditable(node) {
-              node.attr('contenteditable', state ? 'true' : null);
-            }
-
-            while (i--) {
-              node = nodes[i];
-
-              if (hasImageClass(node)) {
-                node.attr('contenteditable', state ? 'false' : null);
-                Tools.each(node.getAll('figcaption'), toggleContentEditable);
-              }
-            }
-          };
-        }
-
-        editor.parser.addNodeFilter('figure', toggleContentEditableState(true));
-        editor.serializer.addNodeFilter('figure', toggleContentEditableState(false));
-      });
-
-      editor.addButton('image', {
-        icon: 'image',
-        tooltip: 'Insert/edit image',
-        onclick: createImageList(showDialog),
-        stateSelector: 'img:not([data-mce-object],[data-mce-placeholder]),figure.image'
-      });
-
-      editor.addMenuItem('image', {
-        icon: 'image',
-        text: 'Image',
-        onclick: createImageList(showDialog),
-        context: 'insert',
-        prependToContext: true
-      });
-
-      editor.addCommand('mceImage', createImageList(showDialog));
-    });
-
-    return function () { };
-  }
-);
-dem('tinymce.plugins.image.Plugin')();
-})();
-
-
 /***/ })
-],[181]);
+],[185]);
