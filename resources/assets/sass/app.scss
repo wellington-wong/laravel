@@ -662,12 +662,12 @@ table.table {
 		padding-right: 5px;
 		margin-bottom: 10px;
 		.btn-search {
-			background: url('/images/search-glyph.png') no-repeat 0 -1px;    
+			background: url('/images/search-btn1.png') no-repeat 0 -1px;    
 			border: 0;
 		    padding: 0;
 		    text-indent: -99999em;
 		    width: 31px;
-		    height: 24px;
+		    height: 28px;
 		    top: 0;
 		    right: 6px;
 		    position: absolute;
@@ -691,7 +691,7 @@ table.table {
 	}
 	input.text, div.text {
 		border: 2px solid $bg-color3;
-		height: 30px;
+		height: 28px;
 		padding: 0 15px 0 25px;
 		font-size: 13px;
 		box-shadow: none;
@@ -882,9 +882,9 @@ table.table {
 				margin-bottom: 10px;
 				input.text, div.text {
 					border: 2px solid $bg-color3;
-					height: 24px;
+					height: 28px;
 					padding: 0 15px 0 25px;
-					font-size: 11px;
+					font-size: 13px;
 					box-shadow: none;
 				}
 				div.text {
