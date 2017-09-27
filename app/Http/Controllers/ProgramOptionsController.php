@@ -127,9 +127,14 @@ class ProgramOptionsController extends Controller
             'reward_ratio' => serialize([$request->input('approved_referral_ratio'), $request->input('reward_referral_ratio')]),            
         ]);
 
-        $request->_company->rewardSettings()->update(
-            $request->only('title', 'reward_kind', 'reward_send', 'leaderboard', 'reward_ratio')
-        );
+        if ($request->_company->rewardSettings()->first()) {
+            $request->_company->rewardSettings()->update(
+                $request->only('title', 'reward_kind', 'reward_send', 'leaderboard', 'reward_ratio')
+            );
+        } else {
+            RewardSetting::create($request->only('title', 'reward_kind', 'reward_send', 'leaderboard', 'reward_ratio'));
+
+        }
 
         return back()->with('success', ['Reward settings successfully saved.']);
     }
