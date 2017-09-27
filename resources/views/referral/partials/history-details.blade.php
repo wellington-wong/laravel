@@ -12,7 +12,7 @@
                         <tr>
                             <td>{{ isset($referral->created_at) ? $referral->created_at->format('m/d/y') : '' }}</td>
                             <td>{{ $referral->id }}</em></td>
-                            <td>{{ $referral->referrer->display_name }} referred <em>"{{ $referral->referred->display_name }}"</em></td>
+                            <td>{{ isset($referral->referrer) ? $referral->referrer->display_name : null }} referred <em>"{{ isset($referral->referred) ? $referral->referred->display_name : null }}"</em></td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         @foreach ($referral->revisionHistory as $history)
