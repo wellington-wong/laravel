@@ -22,13 +22,13 @@
       <div class="col-md-6 form-group">
             <label>What kind of reward will you use?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_kind', \App\RewardSetting::$rewardSend,  isset($rewardSettings->reward_kind) ? $rewardSettings->reward_kind : null, ['class' => 'form-control reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_kind', \App\RewardSetting::$rewardKind,  isset($rewardSettings->reward_kind) ? $rewardSettings->reward_kind : null, ['class' => 'form-control reward-kind' . ($errors->has('reward_kind') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
             <label>How will you send the reward?</label>
             <div class="col-md-12 no-padding-lr">
-            {{ Form::select('reward_send', \App\RewardSetting::$rewardKind, isset($rewardSettings->reward_send) ? $rewardSettings->reward_send : null, ['class' => 'form-control reward-send' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
+            {{ Form::select('reward_send', \App\RewardSetting::$rewardSend, isset($rewardSettings->reward_send) ? $rewardSettings->reward_send : null, ['class' => 'form-control reward-send' . ($errors->has('reward_send') ? ' has-error' : '')]) }}
             </div>
       </div>
       <div class="col-md-6 form-group">
