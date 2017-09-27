@@ -70,13 +70,13 @@ class Referral extends Model
 
         switch ($request->get('status')) {
             case (2):
-                $referral->referrer->notify(new ReferralVerified( $referral, $request ));
+                isset($referral->referrer) ? $referral->referrer->notify(new ReferralVerified( $referral, $request )) : null;
                 break;
             case (3):
-                $referral->referrer->notify(new ReferralSent( $referral, $request ));
+                isset($referral->referrer) ? $referral->referrer->notify(new ReferralSent( $referral, $request )) : null;
                 break;
             case (4):
-                $referral->referrer->notify(new ReferralDeclined( $referral, $request ));
+                isset($referral->referrer) ? $referral->referrer->notify(new ReferralDeclined( $referral, $request )) : null;
                 break;
         }
 
