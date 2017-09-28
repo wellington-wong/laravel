@@ -7,7 +7,7 @@
                                         <section>
                                             <div class="form-group-wrapper">
                                                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }} col-md-6">
-                                                    <label for="name" class="col-md-12 control-label">Your First Name</label>
+                                                    <label for="name" class="col-md-12 control-label">Your First Name *</label>
 
                                                     <div class="col-md-12">
                                                         <input id="first-name" type="text" class="form-control" name="first_name" required autofocus>
@@ -21,7 +21,7 @@
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }} col-md-6">
-                                                    <label for="name" class="col-md-12 control-label text-left">Your Last Name</label>
+                                                    <label for="name" class="col-md-12 control-label text-left">Your Last Name *</label>
 
                                                     <div class="col-md-12">
                                                         <input id="last-name" type="text" class="form-control" name="last_name" required>
@@ -34,10 +34,10 @@
                                                     </div>
                                                 </div>
 
-                                                @include('forms.phone-multistep', ['phone_label'=>"Phone Number", 'class'=>'col-md-12'])
+                                                @include('forms.phone-multistep', ['phone_label'=>"Phone Number *", 'class'=>'col-md-12'])
 
                                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-12">
-                                                    <label for="email" class="col-md-12 control-label">Your E-Mail</label>
+                                                    <label for="email" class="col-md-12 control-label">Your E-Mail *</label>
 
                                                     <div class="col-md-12">
                                                         <input id="email" type="email" class="form-control" name="email" required>
@@ -51,7 +51,7 @@
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-12">
-                                                    <label for="password" class="col-md-12 control-label">Password</label>
+                                                    <label for="password" class="col-md-12 control-label">Password *</label>
 
                                                     <div class="col-md-12">
                                                         <input id="password" type="password" class="form-control" name="password" required>
@@ -65,7 +65,7 @@
                                                 </div>
 
                                                 <div class="form-group col-md-12">
-                                                    <label for="password-confirm" class="col-md-12 control-label">Confirm Password</label>
+                                                    <label for="password-confirm" class="col-md-12 control-label">Confirm Password *</label>
 
                                                     <div class="col-md-12">
                                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -83,30 +83,30 @@
 
                                             <div class="form-group-wrapper">
                                                 <div class="form-group col-md-6">
-                                                    <label class="col-md-12 control-label">Your Company's Name</label>
+                                                    <label class="col-md-12 control-label">Your Company's Name *</label>
                                                     <div class="col-md-12">                                                    
                                                     {{ Form::text('company_name', '', array('class' => 'form-control')) }}
                                                     </div>                                                
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label class="col-md-12 control-label">Your Company's Subdomain</label>
+                                                    <label class="col-md-12 control-label">Your Company's Subdomain *</label>
                                                     <div class="col-md-12">                                                    
                                                     {{ Form::text('subdomain', '', array('class' => 'form-control')) }}
                                                     </div>                                                
                                                 </div>
                                                     
-                                                @include('forms.phone-multistep', ['phone_label'=>"Your Company's Phone Number", 'class'=>'col-md-6', 'label_class'=>'col-md-12', 'phone_name' => 'company_phone'])
+                                                @include('forms.phone-multistep', ['phone_label'=>"Your Company's Phone Number *", 'class'=>'col-md-6', 'label_class'=>'col-md-12', 'phone_name' => 'company_phone'])
                                                   
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>Your Company's Contact Email</label>
+                                                        <label>Your Company's Contact Email *</label>
                                                         {{ Form::text('company_email', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-12">
                                                     <div class="col-md-12">
-                                                        <label>Type of Business</label>
+                                                        <label>Type of Business *</label>
                                                     </div>
                                                     <div class="col-md-12">
                                                         {{ Form::select('business_type', ['' => 'Please Select One'] + \App\Company::$businessType, '', array('class' => 'form-control')) }}
@@ -115,7 +115,7 @@
 
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>Your Company's Address Line 1</label>
+                                                        <label>Your Company's Address Line 1 *</label>
                                                         {{ Form::text('company_address_1', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
@@ -128,13 +128,13 @@
 
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>City</label>
+                                                        <label>City *</label>
                                                         {{ Form::text('company_city', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <div class="col-md-12">
-                                                        <label>State</label>
+                                                        <label>State *</label>
                                                     </div>
                                                     <div class="col-md-12">
                                                         @include('forms.states', ['state' => 'fl'])                                                        
@@ -143,7 +143,7 @@
 
                                                 <div class="form-group col-md-3">
                                                     <div class="col-md-12">
-                                                        <label>Zip</label>
+                                                        <label>Zip *</label>
                                                         {{ Form::text('company_zip', '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
@@ -164,7 +164,7 @@
                                         <section>
                                             <div class="form-group-wrapper">
                                                 <div class="form-group{{ $errors->has('reward_title') ? ' has-error' : '' }} col-md-12">
-                                                    <label for="name" class="col-md-12 control-label">Reward Title</label>
+                                                    <label for="name" class="col-md-12 control-label">Reward Title *</label>
 
                                                     <div class="col-md-12">
                                                         <input id="reward-title" type="text" class="form-control" name="reward_title" required>
@@ -179,7 +179,7 @@
 
                                                 <div class="form-group{{ $errors->has('send_reward') ? ' has-error' : '' }} col-md-12">
                                                     <div class="col-md-12">
-                                                        <label>What kind of reward will you use?</label>
+                                                        <label>What kind of reward will you use? *</label>
                                                     </div>
                                                     <div class="col-md-12">
                                                         {{ Form::select('reward_kind', ['' => 'Please Select One'] + \App\RewardSetting::$rewardKind, '', array('class' => 'form-control')) }}
@@ -188,7 +188,7 @@
 
                                                 <div class="form-group{{ $errors->has('send_reward') ? ' has-error' : '' }} col-md-12">
                                                     <div class="col-md-12">
-                                                        <label>How will you send the reward?</label>
+                                                        <label>How will you send the reward? *</label>
                                                     </div>
                                                     <div class="col-md-12">
                                                         {{ Form::select('reward_send', ['' => 'Please Select One'] + \App\RewardSetting::$rewardSend, '', array('class' => 'form-control')) }}
@@ -197,7 +197,7 @@
 
                                                 <div class="form-group{{ $errors->has('leader_board') ? ' has-error' : '' }} col-md-12">
                                                     <div class="col-md-12">
-                                                        <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a></label>
+                                                        <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a> *</label>
                                                     </div>
                                                     <div class="col-md-12">
                                                         {{ Form::select('leader_board', ['' => 'Please Select One', '1' => 'Yes', '0' => 'No'], '', array('class' => 'form-control')) }}
@@ -205,7 +205,7 @@
                                                 </div>
                                                 <div class="form-group col-md-11 reward-ratio-wrapper">
                                                     <div class="col-md-12">
-                                                        <h4 class="text-center"><strong>Your Reward Ratio</strong></h4>
+                                                        <h4 class="text-center"><strong>Your Reward Ratio *</strong></h4>
                                                     </div>
                                                     <div class="col-md-12 reward-ratio">
                                                         <div class="col-md-6 col-md-offset-3">
