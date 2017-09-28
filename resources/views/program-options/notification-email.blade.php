@@ -50,6 +50,7 @@
                 <li><a href="javascript:void(0);" data-var="referred_email">&#123; &#123; email }}</a></li>
                 <li><a href="javascript:void(0);" data-var="referred_phone">&#123; &#123; phone }}</a></li>
                 <li><a href="javascript:void(0);" data-var="referred_address">&#123; &#123; address }}</a></li>
+                <li><a href="javascript:void(0);" data-var="referred_address">&#123; &#123; password }}</a></li>
             </ul>
         </div>
         @endif
