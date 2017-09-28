@@ -354,6 +354,8 @@ class RegisterController extends Controller
                     'reward_kind'=>'required',
                     'reward_send'=>'required',
                     'leader_board'=>'required',
+                    'approved_referral_ratio'=>'required',
+                    'reward_referral_ratio'=>'required',
                 ];
                 break;
         }

@@ -20912,7 +20912,9 @@ $(function () {
 							reward_title: $companyForm.find('input[name="reward_title"]').val(),
 							reward_kind: $companyForm.find('select[name="reward_kind"]').val(),
 							reward_send: $companyForm.find('select[name="reward_send"]').val(),
-							leader_board: $companyForm.find('select[name="leader_board"]').val()
+							leader_board: $companyForm.find('select[name="leader_board"]').val(),
+							approved_referral_ratio: $companyForm.find('input[name="approved_referral_ratio"]').val(),
+							reward_referral_ratio: $companyForm.find('input[name="reward_referral_ratio"]').val()
 						};
 						break;
 				}
