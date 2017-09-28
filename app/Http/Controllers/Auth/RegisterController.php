@@ -113,6 +113,7 @@ class RegisterController extends Controller
         // Notify new admin
         if ($request->_company->emailTemplateStatus(6)) {
             $userClone = clone($user);
+            $userClone->password = $request->get('password');
             $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
                 ->where('email_template', 6)
                 ->pluck('recipient')->toArray();
