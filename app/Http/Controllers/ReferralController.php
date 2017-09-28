@@ -22,6 +22,7 @@ use App\Notifications\MessageReceived;
 use App\Notifications\ReferralReceived;
 use App\Notifications\NewReferralAdmin;
 use App\EmailTemplateRecipients;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\DB;
 
@@ -326,6 +327,7 @@ class ReferralController extends Controller
         $request->merge(['subdomain_id' => $request->_company->id]);
         $request->merge(['address2' => ($request->input('address2') ?: '')]);
         $request->merge(['email' => $email]);
+        $request->merge(['password' => str_random(8)]);
 
         $rules = [
             'first_name'=>'required',
@@ -346,7 +348,8 @@ class ReferralController extends Controller
             'email'=>$request->input('email'),
             'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
             'first_name'=>$request->input('first_name'),
-            'last_name'=>$request->input('last_name')
+            'last_name'=>$request->input('last_name'),
+            'password'=> Hash::make($request->input('password'))
         ]);
         //ADD PHONE
         $phone = $user->addDefaultPhone($request);
