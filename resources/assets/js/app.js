@@ -1207,9 +1207,9 @@ $(function (){
 	});
 
 	// Handle form submission
-	var form = document.getElementById('payment-form');
-	form.addEventListener('submit', function(event) {
-	  event.preventDefault();
+	//var form = document.getElementById('payment-form');
+	//form.addEventListener('submit', function(event) {
+	  //event.preventDefault();
 
 	  stripe.createToken(card).then(function(result) {
 		if (result.error) {
@@ -1221,7 +1221,7 @@ $(function (){
 		  console.log(result.token);
 		}
 	  });
-	});
+	//});
 
 // END STRIPE
 

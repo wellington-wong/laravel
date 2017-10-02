@@ -155,7 +155,17 @@
                                         <!-- Step 3 -->
                                         <h3>Billing Information</h3>
                                         <section class="billing-information">
-                                            Billing Information
+                                              <div class="form-row">
+                                                <label for="card-element">
+                                                  Credit or debit card
+                                                </label>
+                                                <div id="card-element">
+                                                  <!-- a Stripe Element will be inserted here. -->
+                                                </div>
+                                                <!-- Used to display form errors -->
+                                                <div id="card-errors" role="alert"></div>
+                                              </div>
+                                              {{ Form::button('Submit') }}
                                         </section>
                                         <!-- Step 3 End -->
 
