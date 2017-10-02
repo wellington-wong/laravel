@@ -358,6 +358,9 @@ class RegisterController extends Controller
                     'reward_referral_ratio'=>'required',
                 ];
                 break;
+            case ('stripe_process'):                
+                // Stripe validation here
+                break;
         }
 
         if ($request->has('type')) {
