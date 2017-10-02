@@ -20833,7 +20833,7 @@ $(function () {
 
 	// JQUERY STEPS
 	var form = $("#register-form-multistep");
-	var multiStepRegistration = ['We need some basic information about you to get started.', 'Tell Us About Your Company', 'What information do you need to follow up with a referral? <span class="subtext">This is the information your referral club members will enter when submitting a referral.</span>', 'How will you reward your members for their qualifying referrals?', 'Please review the information you have entered.'];
+	var multiStepRegistration = ['We need some basic information about you to get started.', 'Tell Us About Your Company', 'Billing Information', 'What information do you need to follow up with a referral? <span class="subtext">This is the information your referral club members will enter when submitting a referral.</span>', 'How will you reward your members for their qualifying referrals?', 'Please review the information you have entered.'];
 	form.closest('.register-main').find('.top-content').text(multiStepRegistration[0]);
 	/*form.validate({
  	errorPlacement: function errorPlacement(error, element) { element.after(error); },
@@ -20906,7 +20906,7 @@ $(function () {
 						};
 						break;
 					case 3:
-						var $companyForm = $('#steps-uid-0-p-3');
+						var $companyForm = $('#steps-uid-0-p-4');
 						data = {
 							type: 'reward_info',
 							reward_title: $companyForm.find('input[name="reward_title"]').val(),
@@ -20950,11 +20950,11 @@ $(function () {
 
 			// Add processing before next step
 			switch (true) {
-				case newIndex == 2 && !setFormGen:
-					$('#register-form-multistep #steps-uid-0-p-2').append($('.form-generator'));
+				case newIndex == 3 && !setFormGen:
+					$('#register-form-multistep #steps-uid-0-p-3').append($('.form-generator'));
 					setFormGen = 1;
 					break;
-				case newIndex == 4:
+				case newIndex == 5:
 					$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').each(function () {
 						$('.review-form').append('<div class="form-group"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
 					});

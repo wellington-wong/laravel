@@ -153,13 +153,20 @@
                                         <!-- Step 2 End -->
 
                                         <!-- Step 3 -->
-                                        <h3>Form Builder</h3>
-                                        <section class="form-builder">
-                                            {{ Form::hidden('referral_form_json', '') }}
+                                        <h3>Billing Information</h3>
+                                        <section class="billing-information">
+                                            Billing Information
                                         </section>
                                         <!-- Step 3 End -->
 
                                         <!-- Step 4 -->
+                                        <h3>Form Builder</h3>
+                                        <section class="form-builder">
+                                            {{ Form::hidden('referral_form_json', '') }}
+                                        </section>
+                                        <!-- Step 4 End -->
+
+                                        <!-- Step 5 -->
                                         <h3>Reward Info</h3>
                                         <section>
                                             <div class="form-group-wrapper">
@@ -230,14 +237,12 @@
                                                 <div class="clearfix"></div>
                                             </div>
                                         </section>
-                                        <!-- Step 4 End -->
-
-                                        <!-- Step 5 -->
-                                        <h3>Review</h3>
-                                        <section class="review-form">
-
-                                        </section>
                                         <!-- Step 5 End -->
+
+                                        <!-- Step 6 -->
+                                        <h3>Review</h3>
+                                        <section class="review-form"></section>
+                                        <!-- Step 6 End -->
 
                                     </div>
                                 </form>
