@@ -21006,15 +21006,24 @@ $(function () {
 		$('.wizard .content').css('min-height', $('.wizard .content section.current .form-group-wrapper').height() + 25);
 	}
 
-	// Billing
+	// Billing terms and condition
 	var $billingModal = $('#multi-step-modal #incentful-modal');
 	$billingModal.find('.btn.submit').on('click', function () {
+		$('input[name="cc_accept_terms"]').prop('checked', true);
 		$billingModal.modal('hide');
 	});
 	$billingModal.find('.btn.cancel').on('click', function () {
+		$('input[name="cc_accept_terms"]').prop('checked', false);
 		$billingModal.modal('hide');
 	});
 	$('#billing-terms').on('click', function () {
+		$billingModal.find('.modal-title').text('Billing Terms and Conditions');
+		$billingModal.find('.modal-body').html("\
+			Lorem ipsum dolor sit amet, ad est aliquid inermis, mei ei meis impedit. Has viris alterum principes no, eum ut viris reprimique. Pro harum iisque legimus ex, ne mea postea quidam omnium, nullam similique eloquentiam per an. Pri ex erat mollis, vix et phaedrum accommodare complectitur, ad probo utamur copiosae sit. Sed lorem lobortis principes ea, nam eu dicit congue deserunt, vel debet fastidii te.\
+			His no integre mentitum iracundia, vel appareat lucilius appellantur te. Eos natum aliquip cu. Utroque recusabo suscipiantur eam ad. Ea mei amet eripuit perfecto, quo ut legere noluisse. Ius quem aeque ut, harum comprehensam id qui. Has etiam graecis eu, omnium definiebas efficiantur duo te. Mazim accusam appellantur per eu, ius ne soleat facilis intellegam, at eius honestatis vis.\
+			His no esse ullum docendi, mel ad vocibus deterruisset. Quidam hendrerit vel no, decore oporteat per ea, his porro sensibus te. In natum necessitatibus sea. Ius ne eripuit labores sententiae. Eos in probatus repudiandae. Duo in paulo diceret, vis ei pertinax pericula reprehendunt.\
+			In eius solum posse has, fabulas labores cotidieque ne vix. Et tollit nominavi vis. Id sed quem dicam, tation saperet iudicabit an cum. Vim nonumy inimicus at. Ea his nonumy efficiantur, mei in erat possit gloriatur. Mea cu unum case dissentias. Vis noster integre cu, pri ut tota detracto, in primis iuvaret argumentum duo.\
+			");
 		$billingModal.modal('show');
 	});
 	// END JQUERY STEPS
