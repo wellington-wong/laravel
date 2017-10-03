@@ -691,7 +691,7 @@ $(function (){
 						
 						}
 						break;
-					case (3):
+					case (4):
 						var $companyForm = $('#steps-uid-0-p-4');	
 						data = {
 							type: 'reward_info',
