@@ -193,7 +193,7 @@
                                               <div class="form-group col-md-12">
                                                 <div class="col-md-12">
                                                     <label>
-                                                      <input type="checkbox" name="accept_terms" class="accept-terms">
+                                                      <input type="checkbox" name="cc_accept_terms" class="accept-terms">
                                                       <span>I have read and accept the <a href="javascript:void(0)">billing terms and conditions.</a></span>
                                                     </label>
                                                   </div>

@@ -687,8 +687,9 @@ $(function (){
 						break;
 					case (2):
 						var $ccForm = $('#steps-uid-0-p-2');	
-						data = {
-						
+						if (!$('input[name="cc_accept_terms"]').is(':checked')) {
+							alert('Please agree to the Billing Terms and Conditions by ticking the checkbox beside it.');
+							return;
 						}
 						break;
 					case (4):
