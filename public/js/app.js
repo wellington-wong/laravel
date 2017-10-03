@@ -20847,7 +20847,7 @@ $(function () {
 	var multiStep = form.children("div").steps({
 		headerTag: "h3",
 		bodyTag: "section",
-		//startIndex: 3,
+		//startIndex: 2,
 		transitionEffect: "slideLeft",
 		enableKeyNavigation: false,
 		onInit: function onInit() {
@@ -20905,6 +20905,10 @@ $(function () {
 							state: $companyForm.find('select[name="state"]').val(),
 							company_zip: $companyForm.find('input[name="company_zip"]').val()
 						};
+						break;
+					case 2:
+						var $ccForm = $('#steps-uid-0-p-2');
+						data = {};
 						break;
 					case 3:
 						var $companyForm = $('#steps-uid-0-p-4');

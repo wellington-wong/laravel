@@ -156,7 +156,7 @@
                                         <h3>Billing Information</h3>
                                         <section class="billing-information">
 
-                                            <div class="form-group col-md-12">
+                                            <!--<div class="form-group col-md-12">
                                                 <div class="col-md-12">
                                                     <label>Credit Card Number</label>
                                                     {{ Form::text('cc_num', '', array('class' => 'form-control')) }}
@@ -177,7 +177,18 @@
                                                     <label>Select Your Plan</label>
                                                     {{ Form::select('bus_plan', array('999' => 'Basic Plan - $999 a month'), 999, ['class' => 'form-control']) }}
                                                 </div>
-                                            </div>
+                                            </div>-->
+
+                                              <div class="form-group">
+                                                  <div class="form-row col-md-12">
+                                                    <label for="card-element">
+                                                      Credit Cart Number
+                                                    </label>
+                                                    <div id="card-element">
+                                                    </div>
+                                                    <div id="card-errors" role="alert"></div>
+                                                  </div>
+                                              </div>
 
                                               <div class="form-group col-md-12">
                                                 <div class="col-md-12">
@@ -187,15 +198,6 @@
                                                     </label>
                                                   </div>
                                               </div>
-
-                                              <!--<div class="form-row">
-                                                <label for="card-element">
-                                                  Credit or debit card
-                                                </label>
-                                                <div id="card-element">
-                                                </div>
-                                                <div id="card-errors" role="alert"></div>
-                                              </div>-->
                                         </section>
                                         <!-- Step 3 End -->
 
