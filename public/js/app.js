@@ -20925,23 +20925,27 @@ $(function () {
 				}
 
 				// Post data for validation
-				ajaxHelper("/ajax-validate", data, "POST", function (data) {
-					$('.register-main .alert.alert-success ul li').remove();
-					if (data != 'success') {
-						$('.register-main .alert.alert-success').removeClass('hidden');
-						$.each(data, function (itm, val) {
-							$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
-						});
-					} else {
-						$('.register-main .alert.alert-success').addClass('hidden');
-						multiStep.steps('next');
-					}
-					stepsContentHeight();
-				});
+				if (currentIndex != 3) {
+					ajaxHelper("/ajax-validate", data, "POST", function (data) {
+						$('.register-main .alert.alert-success ul li').remove();
+						if (data != 'success') {
+							$('.register-main .alert.alert-success').removeClass('hidden');
+							$.each(data, function (itm, val) {
+								$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
+							});
+						} else {
+							$('.register-main .alert.alert-success').addClass('hidden');
+							multiStep.steps('next');
+						}
+						stepsContentHeight();
+					});
+				} else {
+					multiStep.steps('next');
+				}
 			});
 
 			$('.multi-step-previous').click(function () {
-				multiStep.steps('previous');$('.multi-step-next').removeClass('hidden');
+				multiStep.steps('previous');$('.multi-step-next').removeClass('hidden');$('.register-main .alert.alert-success ul li').remove();
 			});
 			$('.multi-step-submit').click(function () {
 				$('#register-form-multistep').submit();
