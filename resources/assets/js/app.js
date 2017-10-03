@@ -627,6 +627,7 @@ $(function (){
 		bodyTag: "section",
 		//startIndex: 3,
 		transitionEffect: "slideLeft",
+		enableKeyNavigation: false,
 		onInit: function ()
 		{
 			$('#register-form-multistep').show();

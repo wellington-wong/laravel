@@ -20849,6 +20849,7 @@ $(function () {
 		bodyTag: "section",
 		//startIndex: 3,
 		transitionEffect: "slideLeft",
+		enableKeyNavigation: false,
 		onInit: function onInit() {
 			$('#register-form-multistep').show();
 			// Process label of multi step form
