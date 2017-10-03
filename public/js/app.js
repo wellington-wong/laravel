@@ -21005,6 +21005,18 @@ $(function () {
 	function stepsContentHeight() {
 		$('.wizard .content').css('min-height', $('.wizard .content section.current .form-group-wrapper').height() + 25);
 	}
+
+	// Billing
+	var $billingModal = $('#multi-step-modal #incentful-modal');
+	$billingModal.find('.btn.submit').on('click', function () {
+		$billingModal.modal('hide');
+	});
+	$billingModal.find('.btn.cancel').on('click', function () {
+		$billingModal.modal('hide');
+	});
+	$('#billing-terms').on('click', function () {
+		$billingModal.modal('show');
+	});
 	// END JQUERY STEPS
 
 	// COMMON

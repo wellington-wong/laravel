@@ -194,7 +194,7 @@
                                                 <div class="col-md-12">
                                                     <label>
                                                       <input type="checkbox" name="cc_accept_terms" class="accept-terms">
-                                                      <span>I have read and accept the <a href="javascript:void(0)">billing terms and conditions.</a></span>
+                                                      <span>I have read and accept the <a href="javascript:void(0)" id="billing-terms">billing terms and conditions.</a></span>
                                                     </label>
                                                   </div>
                                               </div>
@@ -293,4 +293,8 @@
                                         <div id="stage1" class="build-wrap"></div>
                                         <form class="render-wrap"></form>
                                     </div>
+                                </div>
+
+                                <div id="multi-step-modal">
+                                @include('layouts.modal')
                                 </div>
