@@ -205,6 +205,7 @@
                                                     </label>
                                                   </div>
                                               </div>
+                                            {{ Form::hidden('cc_stripe_token', '') }}
                                         </section>
                                         <!-- Step 3 End -->
 

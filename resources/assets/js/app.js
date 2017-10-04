@@ -687,20 +687,31 @@ $(function (){
 						break;
 					case (2):
 						var $ccForm = $('#steps-uid-0-p-2');	
-						console.log(card);
 						if (typeof card !== 'undefined' && card) {
 							if (card._empty) {
 								alert('Please enter your credit card number');
-								return false;
 							} else if (!card._complete && card._invalid) {
 								alert($('#card-errors').text());
-								return false;
 							}
-						} else if (!$('input[name="cc_accept_terms"]').is(':checked')) {
+						} 
+						if (!$('input[name="cc_accept_terms"]').is(':checked')) {
 							alert('Please agree to the Billing Terms and Conditions by ticking the checkbox beside it.');
-							return false;
 						}
 
+						  stripe.createToken(card).then(function(result) {
+							if (result.error) {
+							  // Inform the user if there was an error
+							  var errorElement = document.getElementById('card-errors');
+							  errorElement.textContent = result.error.message;
+							} else {
+							  // Send the token to your server
+							  $('input[name="cc_stripe_token"]').val(result.token.id);
+							  if ($('input[name="cc_accept_terms"]').is(':checked')) {
+							  	multiStep.steps('next');
+							  }
+							}
+						  });
+						  return false;
 						break;
 					case (4):
 						var $companyForm = $('#steps-uid-0-p-4');	
@@ -1211,6 +1222,7 @@ $(function (){
 	// Create a Stripe client
 	if ($('#card-element').length) {
 		var stripe = Stripe('pk_test_cqfUFHvXns7cAsJoSq0yJO9a');
+		var stripeToken;
 
 		// Create an instance of Elements
 		var elements = stripe.elements();
@@ -1254,16 +1266,6 @@ $(function (){
 		//form.addEventListener('submit', function(event) {
 		  //event.preventDefault();
 
-		  stripe.createToken(card).then(function(result) {
-			if (result.error) {
-			  // Inform the user if there was an error
-			  var errorElement = document.getElementById('card-errors');
-			  errorElement.textContent = result.error.message;
-			} else {
-			  // Send the token to your server
-			  console.log(result.token);
-			}
-		  });
 		//});
 }
 
