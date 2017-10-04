@@ -79,7 +79,7 @@ class StripeController extends Controller
         } catch(\Stripe\Error\Card $e) {
             return redirect()
                 ->route('index')
-                ->with('error', 'Your credit card was been declined. Please try again or contact us.');
+                ->with('error', 'Your credit card has been declined. Please try again or contact us.');
     }
  
         return $this->postStoreOrder($product_name);
