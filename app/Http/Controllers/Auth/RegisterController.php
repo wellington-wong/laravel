@@ -6,6 +6,7 @@ use App\User;
 use App\Company;
 use App\ReferralForms;
 use App\RewardSetting;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -340,7 +341,8 @@ class RegisterController extends Controller
                 $message[] = 'Your credit card has been declined.';
             }
 
-
+            // Make company creator a super admin
+            auth()->user()->attachRole(Role::find(3), $company);
 
             // Redirect to created company subdomain and show success message
             return redirect( 'https://' . $company->subdomain . '.' . config('app.domain') )
@@ -369,7 +371,7 @@ class RegisterController extends Controller
             case ('company'):                
                 $rules = [
                     'company_name'=>'required',
-                    'subdomain'=>'required|unique:companies|not_in:app,www',
+                    'subdomain'=>'required|unique:companies|not_in:app,www|alpha_num',
                     'company_phone'=>'required|phone:LENIENT,AUTO,US',
                     'company_email'=>'required|unique:companies,email|email',
                     'business_type'=>'required',
