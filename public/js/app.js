@@ -20908,10 +20908,20 @@ $(function () {
 						break;
 					case 2:
 						var $ccForm = $('#steps-uid-0-p-2');
-						if (!$('input[name="cc_accept_terms"]').is(':checked')) {
+						console.log(card);
+						if (typeof card !== 'undefined' && card) {
+							if (card._empty) {
+								alert('Please enter your credit card number');
+								return false;
+							} else if (!card._complete && card._invalid) {
+								alert($('#card-errors').text());
+								return false;
+							}
+						} else if (!$('input[name="cc_accept_terms"]').is(':checked')) {
 							alert('Please agree to the Billing Terms and Conditions by ticking the checkbox beside it.');
-							return;
+							return false;
 						}
+
 						break;
 					case 4:
 						var $companyForm = $('#steps-uid-0-p-4');

@@ -186,7 +186,7 @@
                                                     </label>
                                                     <div id="card-element">
                                                     </div>
-                                                    <div id="card-errors" role="alert"></div>
+                                                    <div id="card-errors" class="hidden" role="alert"></div>
                                                   </div>
                                               </div>
 
