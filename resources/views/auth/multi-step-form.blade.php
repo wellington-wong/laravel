@@ -179,8 +179,8 @@
                                                 </div>
                                             </div>-->
 
-                                              <div class="form-group">
-                                                  <div class="form-row col-md-12">
+                                              <div class="form-group col-md-12">
+                                                  <div class="col-md-12">
                                                     <label for="card-element">
                                                       Credit Cart Number
                                                     </label>
@@ -189,6 +189,13 @@
                                                     <div id="card-errors" class="hidden" role="alert"></div>
                                                   </div>
                                               </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <div class="col-md-12">
+                                                        <label>Select Your Plan</label>
+                                                        {{ Form::select('bus_plan', array('999' => 'Basic Plan - $999 a month'), 999, ['class' => 'form-control']) }}
+                                                    </div>
+                                                </div>
 
                                               <div class="form-group col-md-12">
                                                 <div class="col-md-12">
