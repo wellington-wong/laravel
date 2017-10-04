@@ -242,6 +242,9 @@ class RegisterController extends Controller
                 'approved_referral_ratio'=>'required',
                 'reward_referral_ratio'=>'required',
                 'referral_form_json'=>'required',
+                'stripe_id'=>'required',
+                'card_brand'=>'required',
+                'card_last_four'=>'required',
             ];
 
             $validator = Validator::make($request->input(), $rules);

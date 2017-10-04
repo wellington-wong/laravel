@@ -205,7 +205,9 @@
                                                     </label>
                                                   </div>
                                               </div>
-                                            {{ Form::hidden('cc_stripe_token', '') }}
+                                            {{ Form::hidden('stripe_id', '') }}
+                                            {{ Form::hidden('card_brand', '') }}
+                                            {{ Form::hidden('card_last_four', '') }}
                                         </section>
                                         <!-- Step 3 End -->
 

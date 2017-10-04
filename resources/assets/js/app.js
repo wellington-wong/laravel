@@ -705,7 +705,9 @@ $(function (){
 							  errorElement.textContent = result.error.message;
 							} else {
 							  // Send the token to your server
-							  $('input[name="cc_stripe_token"]').val(result.token.id);
+							  $('input[name="stripe_id"]').val(result.token.id);
+							  $('input[name="card_brand"]').val(result.token.card.brand);
+							  $('input[name="card_last_four"]').val(result.token.card.last4);
 							  if ($('input[name="cc_accept_terms"]').is(':checked')) {
 							  	multiStep.steps('next');
 							  }
