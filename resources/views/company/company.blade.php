@@ -74,7 +74,7 @@
                 <tbody>
                     <tr>
                         <td>Credit Card</td>
-                        <td>Mastercard Ending in 4466</td>
+                        <td>{{ isset(auth()->user()->card_brand) ? auth()->user()->card_brand : 'Credit card' }} ending in {{ isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : 'N/A' }}</td>
                         <td class="col-md-2"><button class="btn btn-primary">update card</button></td>
                     </tr>
                 </tbody>
