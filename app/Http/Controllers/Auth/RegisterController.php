@@ -259,7 +259,10 @@ class RegisterController extends Controller
                 'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
                 'first_name'=>$request->input('first_name'),
                 'last_name'=>$request->input('last_name'),
-                'password'=> Hash::make($request->input('password'))
+                'password'=> Hash::make($request->input('password')),
+                'stripe_id'=> $request->input('stripe_id'),
+                'card_brand'=> $request->input('card_brand'),
+                'card_last_four'=> $request->input('card_last_four')
             ]);
             //ADD PHONE
             $phone = $user->addDefaultPhone($request);
