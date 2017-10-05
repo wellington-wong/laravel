@@ -145,7 +145,7 @@ class GlobalSettingsController extends Controller
     public function editBasicPage( Request $request, $route ) 
     {   
         
-        $basicPage = BasicPages::where('route_name', $route)->where('company_id', 0)->first();
+        $basicPage = BasicPages::fetch($route, 0)->first();
         $loremIpsum = 'Lorem ipsum dolor sit amet, quo quidam tacimates et, cum primis neglegentur reprehendunt et. At zril graecis lucilius pri. Ne meliore euripidis scripserit sit, eum labitur facilis deseruisse ne, eam id volutpat interpretaris. Eam ut habeo soluta indoctum. Id nec quot nostro postulant, cu sed vidit mazim, ea repudiandae vituperatoribus mel. Eius aeque ea ius.';
 
         return view('global-settings.edit-basic-pages')
@@ -175,7 +175,7 @@ class GlobalSettingsController extends Controller
         $request->merge(['company_id' => 0]);
         $request->merge(['route_name' => $route]);
 
-        if ( $page = BasicPages::where('route_name', $route)->where('company_id', 0)->first() ?: null ) {
+        if ( $page = BasicPages::fetch($route, 0)->first() ?: null ) {
             $page->update($request->all());            
         } else {
             $page = new BasicPages();
@@ -193,7 +193,7 @@ class GlobalSettingsController extends Controller
     public function editMemberPage(Request $request, $route) 
     {   
         
-        $basicPage = BasicPages::where('route_name', $route)->where('company_id', $request->_company->id)->first();
+        $basicPage = BasicPages::fetch($route, $request->_company->id)->first();
         $loremIpsum = 'Lorem ipsum dolor sit amet, quo quidam tacimates et, cum primis neglegentur reprehendunt et. At zril graecis lucilius pri. Ne meliore euripidis scripserit sit, eum labitur facilis deseruisse ne, eam id volutpat interpretaris. Eam ut habeo soluta indoctum. Id nec quot nostro postulant, cu sed vidit mazim, ea repudiandae vituperatoribus mel. Eius aeque ea ius.';
 
         return view('global-settings.edit-member-pages')
@@ -223,7 +223,7 @@ class GlobalSettingsController extends Controller
         $request->merge(['company_id' => $request->_company->id]);
         $request->merge(['route_name' => $route]);
 
-        if ( $page = BasicPages::where('route_name', $route)->where('company_id', $request->_company->id)->first() ?: null ) {
+        if ( $page = BasicPages::fetch($route, $request->_company->id)->first() ?: null ) {
             $page->update($request->all());            
         } else {
             $page = new BasicPages();
