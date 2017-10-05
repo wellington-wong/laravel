@@ -20991,10 +20991,13 @@ $(function () {
 					break;
 				case newIndex == 5:
 					$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').each(function () {
+						if ($(this).prop('name') == 'stripe_id') {
+							return;
+						}
 						if ($(this).prop('nodeName') == "SELECT") {
-							$('.review-form').append('<div class="form-group col-md-6"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).find('option:selected').text() + '</div>');
+							$('.review-form').append('<div class="form-group col-md-6"><label class="' + $(this).prop('name') + '">' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).find('option:selected').text() + '</div>');
 						} else {
-							$('.review-form').append('<div class="form-group col-md-6"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
+							$('.review-form').append('<div class="form-group col-md-6"><label class="' + $(this).prop('name') + '">' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
 						}
 					});
 
