@@ -573,7 +573,7 @@ class ReferralController extends Controller
      **/
     public function rewards( Request $request ) {
 
-        $page = BasicPages::where('route_name', 'referral-rewards')->first();
+        $page = BasicPages::fetch('referral-rewards', $request->_company->id)->first();
 
         return view('referral.rewards')
             ->with(compact('page'));
