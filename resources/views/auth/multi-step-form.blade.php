@@ -206,8 +206,8 @@
                                                   </div>
                                               </div>
                                             {{ Form::hidden('stripe_id', '') }}
-                                            {{ Form::hidden('card_brand', '') }}
-                                            {{ Form::hidden('card_last_four', '') }}
+                                            <div class="form-group hidden"><label>Credit Card Brand</label>{{ Form::hidden('card_brand', '') }}</div>
+                                            <div class="form-group hidden"><label>Credit Card Last Four Digits</label>{{ Form::hidden('card_last_four', '') }}</div>
                                         </section>
                                         <!-- Step 3 End -->
 

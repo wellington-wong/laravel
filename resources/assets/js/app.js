@@ -767,13 +767,19 @@ $(function (){
 			  		setFormGen = 1;
 					break;
 				case (newIndex == 5):
-			  		$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').not('input[name="password_confirmation"]').each(function(){
-			  			var ignoreFields = ['stripe_id', 'cc_accept_terms']
-			  			if (!$.inArray($(this).prop('name'), ignoreFields) || !$(this).prop('name')) { return; }
+			  		$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').each(function(){
+			  			// Setup fields not included in the form review
+			  			var fieldName = $(this).prop('name');
+			  			var fieldVal = $(this).val();
+			  			var ignoreFields = ['password_confirmation', 'stripe_id', 'cc_accept_terms'];
+			  			if ($.inArray(fieldName, ignoreFields) !== -1 || !fieldName) { return; }
+			  			
+			  			// Replace password string with asterisk
+			  			if (fieldName == 'password') { fieldVal = fieldVal.replace(/./g, '*'); }
 			  			if ($(this).prop('nodeName') == "SELECT") {
 							$('.review-form').append('<div class="form-group col-md-6"><label class="' + $(this).prop('name') + '">' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).find('option:selected').text() + '</div>');
 			  			} else {
-			  				$('.review-form').append('<div class="form-group col-md-6"><label class="' + $(this).prop('name') + '">' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
+			  				$('.review-form').append('<div class="form-group col-md-6"><label class="' + $(this).prop('name') + '">' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + fieldVal + '</div>');
 			  			}
 			  		});
 
