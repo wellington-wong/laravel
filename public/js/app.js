@@ -20847,7 +20847,7 @@ $(function () {
 	var multiStep = form.children("div").steps({
 		headerTag: "h3",
 		bodyTag: "section",
-		//startIndex: 4,
+		//startIndex: 2,
 		transitionEffect: "slideLeft",
 		enableKeyNavigation: false,
 		onInit: function onInit() {
@@ -20919,6 +20919,7 @@ $(function () {
 							alert('Please agree to the Billing Terms and Conditions by ticking the checkbox beside it.');
 						}
 
+						// Create stripe token
 						stripe.createToken(card).then(function (result) {
 							if (result.error) {
 								// Inform the user if there was an error
@@ -21388,52 +21389,49 @@ $(function () {
 	// STRIPE
 	// Create a Stripe client
 	if ($('#card-element').length) {
-		var stripe = Stripe('pk_test_cqfUFHvXns7cAsJoSq0yJO9a');
-		var stripeToken;
+		var stripe;
+		var card;
+		$.get("/stripe_pk", function (data) {
+			stripe = Stripe(data);
+			var stripeToken;
 
-		// Create an instance of Elements
-		var elements = stripe.elements();
+			// Create an instance of Elements
+			var elements = stripe.elements();
 
-		// Custom styling can be passed to options when creating an Element.
-		var style = {
-			base: {
-				color: '#32325d',
-				lineHeight: '24px',
-				fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-				fontSmoothing: 'antialiased',
-				fontSize: '16px',
-				'::placeholder': {
-					color: '#aab7c4'
+			// Custom styling can be passed to options when creating an Element.
+			var style = {
+				base: {
+					color: '#32325d',
+					lineHeight: '24px',
+					fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+					fontSmoothing: 'antialiased',
+					fontSize: '16px',
+					'::placeholder': {
+						color: '#aab7c4'
+					}
+				},
+				invalid: {
+					color: '#fa755a',
+					iconColor: '#fa755a'
 				}
-			},
-			invalid: {
-				color: '#fa755a',
-				iconColor: '#fa755a'
-			}
-		};
+			};
 
-		// Create an instance of the card Element
-		var card = elements.create('card', { style: style });
+			// Create an instance of the card Element
+			card = elements.create('card', { style: style });
 
-		// Add an instance of the card Element into the `card-element` <div>
-		card.mount('#card-element');
+			// Add an instance of the card Element into the `card-element` <div>
+			card.mount('#card-element');
 
-		// Handle real-time validation errors from the card Element.
-		card.addEventListener('change', function (event) {
-			var displayError = document.getElementById('card-errors');
-			if (event.error) {
-				displayError.textContent = event.error.message;
-			} else {
-				displayError.textContent = '';
-			}
+			// Handle real-time validation errors from the card Element.
+			card.addEventListener('change', function (event) {
+				var displayError = document.getElementById('card-errors');
+				if (event.error) {
+					displayError.textContent = event.error.message;
+				} else {
+					displayError.textContent = '';
+				}
+			});
 		});
-
-		// Handle form submission
-		//var form = document.getElementById('payment-form');
-		//form.addEventListener('submit', function(event) {
-		//event.preventDefault();
-
-		//});
 	}
 
 	// END STRIPE
