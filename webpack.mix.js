@@ -28,4 +28,3 @@ mix.scripts([
 if (mix.config.inProduction) {
     mix.version();
 }
-mix.version();
