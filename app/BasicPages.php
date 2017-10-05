@@ -35,5 +35,8 @@ class BasicPages extends Model
         self::CONTACT_US => 'Contact Us',
     ];
 
+    public static function fetch ($route, $company_id) {
+        return BasicPages::where('route_name', $route)->where('company_id', $company_id);
+    }
 
 }
