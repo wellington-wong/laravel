@@ -308,3 +308,7 @@
                                 <div id="multi-step-modal">
                                 @include('layouts.modal')
                                 </div>
+                                <div class="hidden">
+                                    <div class="billing-terms-title">{{ isset($billingTerms->title) ? $billingTerms->title : 'null' }}</div>
+                                    <div class="billing-terms-content">{!! isset($billingTerms->content) ? $billingTerms->content : 'null' !!}</div>
+                                </div>

@@ -7,6 +7,7 @@ use App\Company;
 use App\ReferralForms;
 use App\RewardSetting;
 use App\Role;
+use App\BasicPages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -56,7 +57,8 @@ class RegisterController extends Controller
 
     public function showRegistrationSimple()
     {
-        return view('auth.register_simple');
+        $billingTerms = BasicPages::fetch('billing-terms', 0)->first();
+        return view('auth.register_simple')->with(compact('billingTerms'));
     }
 
     public function showRegistrationForm( Request $request )
