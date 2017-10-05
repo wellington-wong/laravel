@@ -20847,7 +20847,7 @@ $(function () {
 	var multiStep = form.children("div").steps({
 		headerTag: "h3",
 		bodyTag: "section",
-		//startIndex: 2,
+		//startIndex: 4,
 		transitionEffect: "slideLeft",
 		enableKeyNavigation: false,
 		onInit: function onInit() {
@@ -20991,7 +20991,11 @@ $(function () {
 					break;
 				case newIndex == 5:
 					$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').each(function () {
-						$('.review-form').append('<div class="form-group col-md-6"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
+						if ($(this).prop('nodeName') == "SELECT") {
+							$('.review-form').append('<div class="form-group col-md-6"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).find('option:selected').text() + '</div>');
+						} else {
+							$('.review-form').append('<div class="form-group col-md-6"><label>' + $(this).closest('.form-group').find('label').text() + '</label><div class="form-control">' + $(this).val() + '</div>');
+						}
 					});
 
 					// Get form generated json data
