@@ -20991,8 +20991,9 @@ $(function () {
 					setFormGen = 1;
 					break;
 				case newIndex == 5:
-					$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').each(function () {
-						if ($(this).prop('name') == 'stripe_id') {
+					$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').not('input[name="password_confirmation"]').each(function () {
+						var ignoreFields = ['stripe_id', 'cc_accept_terms'];
+						if (!$.inArray($(this).prop('name'), ignoreFields) || !$(this).prop('name')) {
 							return;
 						}
 						if ($(this).prop('nodeName') == "SELECT") {
