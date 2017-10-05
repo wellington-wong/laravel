@@ -33,6 +33,7 @@
                   <li><a href="{{ route('edit-basic-page', 'about-us') }}">About Us</a></li>
                   <li><a href="{{ route('edit-basic-page', 'pricing') }}">Pricing</a></li>
                   <li><a href="{{ route('edit-basic-page', 'contact') }}">Contact Us</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'billing-terms') }}">Billing Terms and Conditions</a></li>
                 </ul>
             </div>
         </div>
