@@ -16,8 +16,8 @@
 
                 <div class="col-md-12 form-group no-padding-lr">
                     <div class="form-control">
-                        @if (isset(auth()->user()->card_brand) && isset(auth()->user()->card_last_four))
-                        {{ isset(auth()->user()->card_brand) ? auth()->user()->card_brand : 'Credit card' }} ending in {{ isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : 'N/A' }}
+                        @if (isset($_company->card_brand) && isset($_company->card_last_four))
+                        {{ isset($_company->card_brand) ? $_company->card_brand : 'Credit card' }} ending in {{ isset($_company->card_last_four) ? $_company->card_last_four : 'N/A' }}
                         @else
                         No credit card saved for {{ ucwords($_company->company_name) }}.
                         @endif

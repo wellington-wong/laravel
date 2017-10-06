@@ -21470,11 +21470,9 @@ $(function () {
 			}
 		}
 
+		// Create stripe token before submitting
 		createStripeToke(stripe, card, function () {
 			validating = true;
-			alert($('input[name="stripe_id"]').val());
-			alert($('input[name="card_brand"]').val());
-			alert($('input[name="card_last_four"]').val());
 			if ($('input[name="stripe_id"]').val() && $('input[name="card_brand"]').val() && $('input[name="card_last_four"]').val()) {
 				validating = false;
 				_this.submit();
