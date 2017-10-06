@@ -74,7 +74,13 @@
                 <tbody>
                     <tr>
                         <td>Credit Card</td>
-                        <td>{{ isset(auth()->user()->card_brand) ? auth()->user()->card_brand : 'Credit card' }} ending in {{ isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : 'N/A' }}</td>
+                        <td>
+                            @if (isset($_company->card_brand) && isset($_company->card_last_four))
+                            {{ isset($_company->card_brand) ? $_company->card_brand : 'Credit card' }} ending in {{ isset($_company->card_last_four) ? $_company->card_last_four : 'N/A' }}
+                            @else
+                            No credit card saved.
+                            @endif
+                        </td>
                         <td class="col-md-2"><a href="{{ route('company-update-card') }}" class="btn btn-primary">update card</a></td>
                     </tr>
                 </tbody>
