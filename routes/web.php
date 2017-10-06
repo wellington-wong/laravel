@@ -49,6 +49,7 @@ Route::post('/company/update', 'CompanyController@postUpdate')->name('post-compa
 Route::post('/company/update-logo/{cid}', 'CompanyController@postUpdateLogo')->name('post-company-update-logo');
 Route::post('/company/register', 'Auth\CompanyController@register')->name('company-register');
 Route::get('/company/credit-card/update', 'CompanyController@updateCard')->name('company-update-card');
+Route::post('/company/credit-card/update', 'CompanyController@postUpdateCard')->name('company-update-card');
 
 // Referral Routes
 Route::get('/form/{id}', 'ReferralController@formJson')->name('form-json');

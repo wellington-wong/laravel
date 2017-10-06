@@ -21439,6 +21439,20 @@ $(function () {
 	}
 
 	// END STRIPE
+
+	// UPDATE CREDIT CARD
+	$('#update-credit-card-form').submit(function () {
+
+		if (typeof card !== 'undefined' && card) {
+			if (card._empty) {
+				alert('Please enter your credit card number');
+			} else if (!card._complete && card._invalid) {
+				alert($('#card-errors').text());
+			}
+		}
+		return false;
+	});
+	// END UPDATE CREDIT CARD
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 

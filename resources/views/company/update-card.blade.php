@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col-md-12 no-padding-lr company-profile-left">
-                {{ Form::open(['route'=>'post-company-update', 'id' => 'update-company-form', 'enctype' => 'multipart/form-data']) }}
+                {{ Form::open(['route'=>'company-update-card', 'id' => 'update-credit-card-form', 'enctype' => 'multipart/form-data']) }}
 
                 <div class="col-md-12 form-group">
                     <div class="form-control">
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="form-group col-md-12 text-right">
-                    {{ Form::submit('Update', ['class' => 'btn btn-primary button-responsive-100']) }}
+                    {{ Form::submit('Update', ['class' => 'btn btn-primary btn-update-card']) }}
                 </div>
 
                 {{ Form::close() }}
