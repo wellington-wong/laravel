@@ -11,7 +11,7 @@
         </div>
 
         <div class="clearfix"></div>
-        <div class="row">
+        <!--<div class="row">
             <div class="col-md-12 table-referral-wrapper table-wrapper">
                 <label>Auth Pages</label>
                 <ul>
@@ -21,12 +21,11 @@
                   <li><a href="{{ route('edit-member-page', 'help') }}">Need Help?</a></li>
                 </ul>
             </div>
-        </div>
+        </div>-->
 
         @role(['globalAdmin'])
         <div class="row">
             <div class="col-md-12 table-referral-wrapper table-wrapper">
-                <label>Guest Pages</label>
                 <ul>
                   <li><a href="{{ route('edit-basic-page', 'how-it-works') }}">How it Works</a></li>
                   <li><a href="{{ route('edit-basic-page', 'features') }}">Features</a></li>
