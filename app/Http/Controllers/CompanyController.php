@@ -173,6 +173,15 @@ class CompanyController extends Controller
      * @return
      */
     public function updateCard ( Request $request ) {
+        return view('company.update-card');
+    }
+
+    /**
+     * Update credit card
+     *
+     * @return
+     */
+    public function postUpdateCard ( Request $request ) {
 
     }
 
