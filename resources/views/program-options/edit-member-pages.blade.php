@@ -13,7 +13,6 @@
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 table-referral-wrapper table-wrapper">
-                <label>Auth Pages</label>
                 <ul>
                   <li><a href="{{ route('edit-member-page', 'referral-rewards') }}">Rewards</a></li>
                   <li><a href="{{ route('edit-member-page', 'how-this-works') }}">How This Works</a></li>
