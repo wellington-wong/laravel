@@ -167,4 +167,13 @@ class CompanyController extends Controller
         return back();
     }
 
+    /**
+     * Update credit card
+     *
+     * @return
+     */
+    public function updateCard ( Request $request ) {
+
+    }
+
 }
