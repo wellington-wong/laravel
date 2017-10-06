@@ -114,6 +114,7 @@
                                             <li class="{{ Request::is('program-options/notification-emails') ? 'active' : '' }}"><a href="{{ route('program-options-notification-emails') }}">Notification Emails</a></li>
                                             <li class="{{ Request::is('program-options/email-logs') ? 'active' : '' }}"><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
                                             <li class="{{ Request::is('program-options/lob') ? 'active' : '' }}"><a href="{{ route('program-options-lob') }}">Bank Account</a></li>
+                                            <li class="{{ Request::is('global-settings/edit-member-pages') ? 'active' : '' }}"><a href="{{ route('edit-member-pages') }}">Edit Member Pages</a></li>
                                         </ul>
                                     </li>
                                     @endrole

@@ -111,9 +111,9 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/global-settings/login-as-user/{id}', ['uses' => 'GlobalSettingsController@loginAsUserId', 'middleware' => ['permission:login_as_user']])->name('login-as-user-id');
 	Route::get('/global-settings/user-role-change', ['uses' => 'GlobalSettingsController@userRoleChange', 'middleware' => ['permission:login_as_user']])->name('user-role-change');
 	Route::get('/global-settings/edit-basic-pages/', ['uses' => 'GlobalSettingsController@editBasicPages', 'middleware' => ['role:globalAdmin']])->name('edit-basic-pages');
-	Route::get('/global-settings/edit-member-pages/', ['uses' => 'ProgramOptionsController@editMemberPages', 'middleware' => ['role:admin|superAdmin']])->name('edit-member-pages');
-	Route::get('/global-settings/edit-member-page/{id}', ['uses' => 'GlobalSettingsController@editMemberPage', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('edit-member-page');
-	Route::post('/global-settings/edit-member-page/{id}', ['uses' => 'GlobalSettingsController@postEditMemberPage', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('post-edit-member-page');
+	Route::get('/program-options/edit-member-pages/', ['uses' => 'ProgramOptionsController@editMemberPages', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('edit-member-pages');
+	Route::get('/global-settings/edit-member-page/{id}', ['uses' => 'ProgramOptionsController@editMemberPage', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('edit-member-page');
+	Route::post('/global-settings/edit-member-page/{id}', ['uses' => 'ProgramOptionsController@postEditMemberPage', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('post-edit-member-page');
 	Route::get('/global-settings/edit-basic-page/{id}', ['uses' => 'GlobalSettingsController@editBasicPage', 'middleware' => ['role:globalAdmin']])->name('edit-basic-page');
 	Route::post('/global-settings/edit-basic-page/{id}', ['uses' => 'GlobalSettingsController@postEditBasicPage', 'middleware' => ['role:globalAdmin']])->name('post-edit-basic-page');
 	

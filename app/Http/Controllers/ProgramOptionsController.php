@@ -9,6 +9,7 @@ use App\EmailTemplateRecipients;
 use App\ReferralForms;
 use App\Company;
 use App\RewardSetting;
+use App\BasicPages;
 use Illuminate\Support\Facades\Validator;
 
 class ProgramOptionsController extends Controller
@@ -357,6 +358,70 @@ class ProgramOptionsController extends Controller
         $l->save();
         return redirect()->route('program-options-lob');
 
+    }
+
+    /**
+     * Show edit pages
+     *
+     * @return view
+     */
+    public function editMemberPages(Request $request) 
+    {   
+        // Get constants
+        $pageTypes = new \ReflectionClass(new BasicPages());
+        $pageTypes = $pageTypes->getConstants();
+        $pageTypes = array_splice($pageTypes, 0, count($pageTypes) -2);
+    
+        return view('program-options.edit-member-pages')
+            ->with(compact('pageTypes'));
+    }
+
+    /**
+     * Show edit member pages
+     *
+     * @return view
+     */
+    public function editMemberPage(Request $request, $route) 
+    {   
+        
+        $basicPage = BasicPages::fetch($route, $request->_company->id)->first();
+        $loremIpsum = 'Lorem ipsum dolor sit amet, quo quidam tacimates et, cum primis neglegentur reprehendunt et. At zril graecis lucilius pri. Ne meliore euripidis scripserit sit, eum labitur facilis deseruisse ne, eam id volutpat interpretaris. Eam ut habeo soluta indoctum. Id nec quot nostro postulant, cu sed vidit mazim, ea repudiandae vituperatoribus mel. Eius aeque ea ius.';
+
+        return view('program-options.edit-member-page')
+            ->with(compact('basicPage', 'route', 'loremIpsum'));
+    }
+
+    /**
+     * Post edit member pages
+     *
+     * @return view
+     */
+    public function postEditMemberPage(Request $request, $route) 
+    {   
+
+        $rules = [
+            'title'=>'required',
+            'content'=>'required',
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+        $request->merge(['company_id' => $request->_company->id]);
+        $request->merge(['route_name' => $route]);
+
+        if ( $page = BasicPages::fetch($route, $request->_company->id)->first() ?: null ) {
+            $page->update($request->all());            
+        } else {
+            $page = new BasicPages();
+            $page->create($request->all());      
+        }
+        
+        return back()->with('success', ['Page successfully saved']);
     }
 
 

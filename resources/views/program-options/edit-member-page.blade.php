@@ -28,7 +28,7 @@
 
         <div class="row">
             <div class="btn-group pull-right">
-                    <a href="{{ route('edit-pages') }}" class="btn btn-danger">Back</a>
+                    <a href="{{ route('edit-member-pages') }}" class="btn btn-danger">Back</a>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </div>
