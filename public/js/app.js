@@ -21138,7 +21138,7 @@ $(function () {
 	}
 
 	// Create stripe token
-	function createStripeToke(stripe, card) {
+	function createStripeToke(stripe, card, callback) {
 		stripe.createToken(card).then(function (result) {
 			if (result.error) {
 				// Inform the user if there was an error
@@ -21149,7 +21149,7 @@ $(function () {
 				$('input[name="stripe_id"]').val(result.token.id);
 				$('input[name="card_brand"]').val(result.token.card.brand);
 				$('input[name="card_last_four"]').val(result.token.card.last4);
-				return true;
+				return callback();
 			}
 		});
 	}
@@ -21458,7 +21458,9 @@ $(function () {
 	// END STRIPE
 
 	// UPDATE CREDIT CARD
+	var validating;
 	$('#update-credit-card-form').submit(function () {
+		var _this = $(this);
 
 		if (typeof card !== 'undefined' && card) {
 			if (card._empty) {
@@ -21468,9 +21470,20 @@ $(function () {
 			}
 		}
 
-		createStripeToke(stripe, card);
+		createStripeToke(stripe, card, function () {
+			validating = true;
+			alert($('input[name="stripe_id"]').val());
+			alert($('input[name="card_brand"]').val());
+			alert($('input[name="card_last_four"]').val());
+			if ($('input[name="stripe_id"]').val() && $('input[name="card_brand"]').val() && $('input[name="card_last_four"]').val()) {
+				validating = false;
+				_this.submit();
+			}
+		});
 
-		return false;
+		if (typeof validating === 'undefined' || validating) {
+			return false;
+		}
 	});
 	// END UPDATE CREDIT CARD
 });

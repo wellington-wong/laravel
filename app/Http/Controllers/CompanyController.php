@@ -182,7 +182,7 @@ class CompanyController extends Controller
      * @return
      */
     public function postUpdateCard ( Request $request ) {
-
+        return;
     }
 
 }
