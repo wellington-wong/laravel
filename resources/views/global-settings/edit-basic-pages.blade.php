@@ -1,38 +1,42 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Edit Basic Page')
+@section('pageTitle', 'Edit Basic Pages')
 
 @section('content')
 
     <div class="container-fluid members-wrapper">        
 
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Edit Basic Page', 'col' => 3])
+            @include('layouts.page-header', ['header' => 'Edit Basic Pages', 'col' => 3])
         </div>
 
         <div class="clearfix"></div>
+        <!--<div class="row">
+            <div class="col-md-12 table-referral-wrapper table-wrapper">
+                <label>Auth Pages</label>
+                <ul>
+                  <li><a href="{{ route('edit-member-page', 'referral-rewards') }}">Rewards</a></li>
+                  <li><a href="{{ route('edit-member-page', 'how-this-works') }}">How This Works</a></li>
+                  <li><a href="{{ route('edit-member-page', 'how-to-get-more-referrals') }}">How to Get More Referrals</a></li>
+                  <li><a href="{{ route('edit-member-page', 'help') }}">Need Help?</a></li>
+                </ul>
+            </div>
+        </div>-->
 
-        {{ Form::open() }}
+        @role(['globalAdmin'])
         <div class="row">
-            <div class="form-group">
-            {{ Form::label('title', 'Title') }}
-            {{ Form::text('title', isset($basicPage->title) ? $basicPage->title : old('title') ?: (isset(\App\BasicPages::$pageTypes[$route]) ? \App\BasicPages::$pageTypes[$route] : null), ['placeholder' => 'Title', 'class' => 'form-control']) }}
+            <div class="col-md-12 table-referral-wrapper table-wrapper">
+                <ul>
+                  <li><a href="{{ route('edit-basic-page', 'how-it-works') }}">How it Works</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'features') }}">Features</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'about-us') }}">About Us</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'pricing') }}">Pricing</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'contact') }}">Contact Us</a></li>
+                  <li><a href="{{ route('edit-basic-page', 'billing-terms') }}">Billing Terms and Conditions</a></li>
+                </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group">
-            {{ Form::label('content', 'Content') }}
-            {{ Form::textarea('content', isset($basicPage->content) ? $basicPage->content : old('content') ?: $loremIpsum, ['class' => 'form-control tinymce']) }}
-            </div>
-        </div>
+        @endrole
 
-        <div class="row">
-            <div class="btn-group pull-right">
-                    <a href="{{ route('edit-pages') }}" class="btn btn-danger">Back</a>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-        </div>
-          {{ Form::close() }}
     </div>
 @endsection

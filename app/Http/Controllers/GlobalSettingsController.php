@@ -126,14 +126,14 @@ class GlobalSettingsController extends Controller
      *
      * @return view
      */
-    public function editPages(Request $request) 
+    public function editBasicPages(Request $request) 
     {   
         // Get constants
         $pageTypes = new \ReflectionClass(new BasicPages());
         $pageTypes = $pageTypes->getConstants();
         $pageTypes = array_splice($pageTypes, 0, count($pageTypes) -2);
     
-        return view('global-settings.edit-pages')
+        return view('global-settings.edit-basic-pages')
             ->with(compact('pageTypes'));
     }
 
@@ -148,7 +148,7 @@ class GlobalSettingsController extends Controller
         $basicPage = BasicPages::fetch($route, 0)->first();
         $loremIpsum = 'Lorem ipsum dolor sit amet, quo quidam tacimates et, cum primis neglegentur reprehendunt et. At zril graecis lucilius pri. Ne meliore euripidis scripserit sit, eum labitur facilis deseruisse ne, eam id volutpat interpretaris. Eam ut habeo soluta indoctum. Id nec quot nostro postulant, cu sed vidit mazim, ea repudiandae vituperatoribus mel. Eius aeque ea ius.';
 
-        return view('global-settings.edit-basic-pages')
+        return view('global-settings.edit-basic-page')
             ->with(compact('basicPage', 'route', 'loremIpsum'));
     }
 
