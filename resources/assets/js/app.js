@@ -907,6 +907,23 @@ $(function (){
 	function ValidURL(str) {	
 		return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test( str );
 	}
+
+	// Create stripe token
+	function createStripeToke(stripe, card){		
+		stripe.createToken(card).then(function(result) {
+			if (result.error) {
+				// Inform the user if there was an error
+				var errorElement = document.getElementById('card-errors');
+				errorElement.textContent = result.error.message;
+			} else {
+				// Send the token to your server
+				$('input[name="stripe_id"]').val(result.token.id);
+				$('input[name="card_brand"]').val(result.token.card.brand);
+				$('input[name="card_last_four"]').val(result.token.card.last4);
+				return true;
+			}
+		});
+	}
 // END COMMON
 
 // SIDEBAR
@@ -1280,7 +1297,7 @@ $(function (){
 
 // UPDATE CREDIT CARD
 	$('#update-credit-card-form').submit(function (){
-		
+
 		if (typeof card !== 'undefined' && card) {
 			if (card._empty) {
 				alert('Please enter your credit card number');
@@ -1288,6 +1305,9 @@ $(function (){
 				alert($('#card-errors').text());
 			}
 		} 
+
+		createStripeToke(stripe, card);
+
 		return false;
 	});
 // END UPDATE CREDIT CARD

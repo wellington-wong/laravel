@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <div class="container-fluid company-profile-wrapper">
+    <div class="container-fluid">
 
         <div class="row">
         @include('layouts.page-header', ['header' => ucwords($_company->company_name) . ' Credit Card', 'col' => 12])
         </div>
 
         <div class="row">
-            <div class="col-md-12 no-padding-lr company-profile-left">
+            <div class="col-md-12 no-padding-lr">
                 {{ Form::open(['route'=>'company-update-card', 'id' => 'update-credit-card-form', 'enctype' => 'multipart/form-data']) }}
 
                 <div class="col-md-12 form-group no-padding-lr">
@@ -33,6 +33,9 @@
                     <div id="card-errors" class="hidden" role="alert"></div>
                 </div>
 
+                {{ Form::hidden('stripe_id', '') }}
+                {{ Form::hidden('card_brand', '') }}
+                {{ Form::hidden('card_last_four', '') }}
                 <div class="form-group col-md-12 text-right">
                     {{ Form::submit('Update', ['class' => 'btn btn-primary btn-update-card']) }}
                 </div>
