@@ -183,6 +183,20 @@ class CompanyController extends Controller
      */
     public function postUpdateCard ( Request $request ) {
 
+
+        $rules = [
+            'stripe_id'=>'required',
+            'card_brand'=>'required',
+            'card_last_four'=>'required'
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
         // Save new credit card.
         $request->_company->stripe_id = $request->input('stripe_id');
         $request->_company->card_brand = $request->input('card_brand');
