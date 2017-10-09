@@ -403,7 +403,11 @@ footer {
  	}
 }
 .app-footer {
+	background: $bg-bottom-content;
 	> .container {}
+	a {
+	 color: $bg-color-footer-link;
+	}
 }
 /*** Guest Footer End ***/
 
