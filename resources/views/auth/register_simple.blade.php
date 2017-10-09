@@ -17,11 +17,11 @@
         <!-- Start Main -->
         <main class="register-main">
             <div class="row no-margin-lr">
-                <div class="text-center">
+                <div class="plan-info text-center">
                     <h4>You've selected the Basic plan at $999 per month - <a href="{{ route('contact') }}" class="upgrade-plan">Upgrade to Custom</a></h4>
                 </div>
                 <div class="top-content text-center">
-                    <h4>You've selected the Basic plan at $999 per month - <a href="{{ route('contact') }}" class="upgrade-plan">Upgrade to Custom</a></h4>
+                    <span>Fill out the form to register</span>
                 </div>
             </div>
             <div class="container">
