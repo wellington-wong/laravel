@@ -408,6 +408,19 @@ footer {
 	a {
 	 color: $footer-color-link;
 	}
+	.footer-list {
+		h4 {
+			font-weight: bold;
+		}
+		a {
+			color: $footer-list-link;
+		}
+		ul {
+			li {
+				padding: 0;
+			}
+		}
+	}
 }
 /*** Guest Footer End ***/
 
