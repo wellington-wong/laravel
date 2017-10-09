@@ -1,5 +1,5 @@
         <footer class="app-footer">
-            <div class="container hidden">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-2 footer-list">
                         <h4>Headline 3</h4>

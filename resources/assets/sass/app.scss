@@ -404,9 +404,7 @@ footer {
 }
 .app-footer {
 	background: #f0f0f0;
-	> .container {
-		visibility: hidden;
-	}
+	> .container {}
 }
 /*** Guest Footer End ***/
 
