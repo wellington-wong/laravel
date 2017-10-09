@@ -3,13 +3,13 @@
 
         <!-- Start Header -->
         <header>
-            <div class="row no-margin-lr header-right">
+            <!--<div class="row no-margin-lr header-right">
                 <div class="col-md-12">
                     <ul class="nav navbar-nav navbar-right navbar-top-right">
                         <li><a href="{{ route('login') }}">Login</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>-->
             @include('auth.header')
         </header>
         <!-- End Header -->

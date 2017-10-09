@@ -8,8 +8,12 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <figure class="logo col-xs-4 col-md-3"><a href="{{ route('login') }}" title="Referrals"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo.png' }}" alt=""></a></figure>
+                        <figure class="logo col-xs-4 col-md-3"><a href="{{ route('login') }}" title="Referrals"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo-main.png' }}" alt=""></a></figure>
                         <div class="col-xs-12 col-md-9 collapse navbar-collapse pull-right" id="app-navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right navbar-bottom-right">
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                            </ul>
                             <ul class="nav navbar-nav navbar-right navbar-bottom-right">
                                 <li><a href="{{ route('how-it-works') }}">How it Works</a></li>
                                 <li><a href="{{ route('features') }}">Features</a></li>
