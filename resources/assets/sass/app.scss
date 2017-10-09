@@ -1387,7 +1387,7 @@ table.table {
 	}
 
 	.form-multistep-number {
-		background: #fff;
+		background: $bg-form-multistep-number;
 		padding-top: 75px;
 		> .steps {
 			position: relative;
@@ -1533,7 +1533,7 @@ table.table {
 		}
 	}
 	.upgrade-wrapper {
-		background: #fff;
+		background: $bg-form-multistep-number;
 		padding: 0 0 50px 0;
 		text-align: center;
 		h4 {

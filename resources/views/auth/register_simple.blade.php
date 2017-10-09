@@ -17,8 +17,11 @@
         <!-- Start Main -->
         <main class="register-main">
             <div class="row no-margin-lr">
+                <div class="text-center">
+                    <h4>You've selected the Basic plan at $999 per month - <a href="{{ route('contact') }}" class="upgrade-plan">Upgrade to Custom</a></h4>
+                </div>
                 <div class="top-content text-center">
-                    <span>Fill out the form to register</span>
+                    <h4>You've selected the Basic plan at $999 per month - <a href="{{ route('contact') }}" class="upgrade-plan">Upgrade to Custom</a></h4>
                 </div>
             </div>
             <div class="container">
@@ -128,9 +131,6 @@
         <!-- Bottom Content -->
         <div class="register-bottom-wrapper">
             <div class="form-multistep-number"></div>
-            <div class="upgrade-wrapper">
-                <h4>You've selected the Basic plan at $999 per month - <a href="{{ route('contact') }}" class="upgrade-plan">Upgrade to Custom</a></h4>
-            </div>
         </div>
         <!-- End Bottom Content -->
 
