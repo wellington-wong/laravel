@@ -398,15 +398,15 @@ footer {
  	}
  	.bottom-content {
  		padding: 10px 0;
- 		background: $bg-color-footer;
- 		color: $bg-color-footer-text;
+ 		background: $footer-color;
+ 		color: $footer-color-text;
  	}
 }
 .app-footer {
-	background: $bg-bottom-content;
+	background: $bottom-content;
 	> .container {}
 	a {
-	 color: $bg-color-footer-link;
+	 color: $footer-color-link;
 	}
 }
 /*** Guest Footer End ***/
