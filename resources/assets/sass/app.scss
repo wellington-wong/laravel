@@ -55,7 +55,7 @@ body {
 
 /*** Auth Header ***/
 header {
-	background-color: $bg-color-perxi;
+	background-color: $bg-color-guest;
 	section {
 		padding: 10px 0;
 	}
@@ -398,8 +398,8 @@ footer {
  	}
  	.bottom-content {
  		padding: 10px 0;
- 		background: $bg-color2;
- 		color: $bg-color;
+ 		background: $bg-color-footer;
+ 		color: $bg-color-footer-text;
  	}
 }
 .app-footer {
