@@ -443,6 +443,11 @@ footer {
 			}
 		}
 	}
+	.logo-footer {
+		img {
+			height: 54px;
+		}
+	}
 }
 /*** Guest Footer End ***/
 
@@ -1454,10 +1459,10 @@ table.table {
 				padding: 0;
 				position: relative;
 				margin: 0 auto;
-				background: #b0aeaf;
+				background: #dddddd;
 				.number {
 					line-height: 50px;
-					color: #fff;
+					color: $bottom-content;
 					display: block;
 				}
 				.step-label {
@@ -1475,24 +1480,24 @@ table.table {
 				background: #279fdc;
 			}
 			.disabled a {
-				background: #b0aeaf;
+				background: #dddddd;
 				color: #aaa;
 				cursor: default;
 				&:hover, &:active {
-					background: #b0aeaf;
+					background: #dddddd;
 					color: #aaa;
 					cursor: default;
 				}
 			}
 			.current a {
-					background: #2ba8e8;
+					background: $footer-color;
 					color: #fff;
 					cursor: default;
-					border: 8px solid #269cda;
+					border: 6px solid #d7e350;
 					height: 60px;
 					width: 60px;
 					&:hover, &:active {
-						background: #2ba8e8;
+						background: $footer-color;
 						color: #fff;
 						cursor: default;
 					}
