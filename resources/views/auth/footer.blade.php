@@ -1,18 +1,18 @@
         <footer class="app-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2 footer-list">
+                    <div class="col-xs-4 col-md-2 footer-list">
                         <h4>Services</h4>
                         <ul>
-                            <li><a href="#">How it Works</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Log In</a></li>
+                            <li><a href="{{ route('how-it-works') }}">How it Works</a></li>
+                            <li><a href="{{ route('features') }}">Features</a></li>
+                            <li><a href="{{ route('about-us') }}">About Us</a></li>
+                            <li><a href="{{ route('pricing') }}">Pricing</a></li>
+                            <li><a href="javascript:void(0)">Blog</a></li>
+                            <li><a href="{{ route('login') }}">Log In</a></li>
                         </ul>
                     </div>  
-                    <div class="col-md-2 footer-list">
+                    <div class="col-xs-4 col-md-2 footer-list">
                         <h4>Contact</h4>
                         <ul>
                             <li><a href="#">(866) 808-9902</a></li>
