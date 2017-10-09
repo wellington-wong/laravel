@@ -46,7 +46,7 @@
             </div>    
             <div class="row">
                 <div class="bottom-content text-center">
-                    <span>Copyright &copy; {{ date('Y') }} Perxi</span>
+                    <span>All rights reserved &copy; {{ date('Y') }} Perxi.</span>
                 </div>
             </div> 
         </footer>
