@@ -81,11 +81,11 @@
                                                     </div>                                                
                                                 </div>
                                                     
-                                                @include('forms.phone-multistep', ['phone_label'=>"Your Company's Phone Number *", 'class'=>'col-md-6', 'label_class'=>'col-md-12', 'phone_name' => 'company_phone'])
+                                                @include('forms.phone-multistep', ['phone_label'=>"Your Company's Number *", 'class'=>'col-md-6', 'label_class'=>'col-md-12', 'phone_name' => 'company_phone'])
                                                   
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        {{ Form::text('company_email', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Contact Email *')) }}
+                                                        {{ Form::text('company_email', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Email *')) }}
                                                     </div>
                                                 </div>
 
