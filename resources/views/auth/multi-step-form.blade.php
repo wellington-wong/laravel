@@ -168,7 +168,7 @@
                                                 </div>
 
                                               <div class="form-group col-md-12">
-                                                <div class="col-md-12 accept-business-terms">
+                                                <div class="col-md-12 accept-billing-terms">
                                                     <label>
                                                       <input type="checkbox" name="cc_accept_terms" class="accept-terms">
                                                       <span>I have read and accept the <a href="javascript:void(0)" id="billing-terms">billing terms and conditions.</a></span>
@@ -193,10 +193,8 @@
                                         <section>
                                             <div class="form-group-wrapper">
                                                 <div class="form-group{{ $errors->has('reward_title') ? ' has-error' : '' }} col-md-12">
-                                                    <label for="name" class="col-md-12 control-label">Reward Title *</label>
-
                                                     <div class="col-md-12">
-                                                        <input id="reward-title" type="text" class="form-control" name="reward_title" required>
+                                                        <input id="reward-title" type="text" class="form-control" name="reward_title" placeholder="Reward Title *" required>
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
@@ -208,28 +206,22 @@
 
                                                 <div class="form-group{{ $errors->has('send_reward') ? ' has-error' : '' }} col-md-12">
                                                     <div class="col-md-12">
-                                                        <label>What kind of reward will you use? *</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        {{ Form::select('reward_kind', ['' => 'Please Select One'] + \App\RewardSetting::$rewardKind, '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_kind', ['' => 'What kind of reward will you use? *'] + \App\RewardSetting::$rewardKind, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('send_reward') ? ' has-error' : '' }} col-md-12">
                                                     <div class="col-md-12">
-                                                        <label>How will you send the reward? *</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        {{ Form::select('reward_send', ['' => 'Please Select One'] + \App\RewardSetting::$rewardSend, '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('reward_send', ['' => 'How will you send the reward? *'] + \App\RewardSetting::$rewardSend, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('leader_board') ? ' has-error' : '' }} col-md-12">
+                                                    <!--<div class="col-md-12">
+                                                        <label> <a href="#">What's this?</a> *</label>
+                                                    </div>-->
                                                     <div class="col-md-12">
-                                                        <label>Would you like to show a leaderboard on your site? <a href="#">What's this?</a> *</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        {{ Form::select('leader_board', ['' => 'Please Select One', '1' => 'Yes', '0' => 'No'], '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('leader_board', ['' => 'Would you like to show a leaderboard on your site?', '1' => 'Yes', '0' => 'No'], '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-11 reward-ratio-wrapper">
