@@ -34,9 +34,9 @@
                                                     </div>
                                                 </div>
 
-                                                @include('forms.phone-multistep', ['phone_label'=>"Phone Number *", 'class'=>'col-md-12'])
+                                                @include('forms.phone-multistep', ['phone_label'=>"Phone Number *", 'class'=>'col-md-6'])
 
-                                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-12">
+                                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
                                                     <label for="email" class="col-md-12 control-label">Your E-Mail *</label>
 
                                                     <div class="col-md-12">
@@ -50,7 +50,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-12">
+                                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-6">
                                                     <label for="password" class="col-md-12 control-label">Password *</label>
 
                                                     <div class="col-md-12">
@@ -64,14 +64,14 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-6">
                                                     <label for="password-confirm" class="col-md-12 control-label">Confirm Password *</label>
 
                                                     <div class="col-md-12">
                                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                                     </div>
-                                                    <label class="col-md-12 control-label password-note">*Password must be 8 characters and contain a number and a special character.</label>
-                                                </div>
+                                                 </div>   
+                                                 <label class="col-md-12 control-label password-note">*Password must be 8 characters and contain a number and a special character.</label>                                               
                                                 <div class="clearfix"></div>
                                             </div>
                                         </section>
