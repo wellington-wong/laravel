@@ -156,24 +156,19 @@
 
                                               <div class="form-group col-md-12">
                                                   <div class="col-md-12">
-                                                    <label for="card-element">
-                                                      Credit Card Number
-                                                    </label>
-                                                    <div id="card-element">
-                                                    </div>
+                                                    <div id="card-element"></div>
                                                     <div id="card-errors" class="hidden" role="alert"></div>
                                                   </div>
                                               </div>
 
                                                 <div class="form-group col-md-12">
                                                     <div class="col-md-12">
-                                                        <label>Select Your Plan</label>
-                                                        {{ Form::select('bus_plan', array('999' => 'Basic Plan - $999 a month'), 999, ['class' => 'form-control']) }}
+                                                        {{ Form::select('bus_plan', array('' => 'Select Your Package *', '999' => 'Basic Package - $999 a month'), null, ['class' => 'form-control']) }}
                                                     </div>
                                                 </div>
 
                                               <div class="form-group col-md-12">
-                                                <div class="col-md-12">
+                                                <div class="col-md-12 accept-business-terms">
                                                     <label>
                                                       <input type="checkbox" name="cc_accept_terms" class="accept-terms">
                                                       <span>I have read and accept the <a href="javascript:void(0)" id="billing-terms">billing terms and conditions.</a></span>

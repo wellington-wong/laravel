@@ -1417,6 +1417,7 @@ table.table {
 		border: 2px solid #f0f0f0;
 		padding: 60px 20px;
 		border-radius: 10px;
+		margin-top: 40px;
 	}
 }
 .register-bottom-wrapper {
@@ -2015,12 +2016,13 @@ tr.check td {
 /*** Stripe Start ***/
 .StripeElement {
   background-color: white;
-  padding: 8px 12px;
   border-radius: 4px;
   border: 1px solid transparent;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
+  border: 2px solid #ebebeb;
+	border-radius: 10px !important;
+	outline: none;
+	padding: 10px 25px;
+	height: auto;
 }
 
 .StripeElement--focus {
@@ -2033,5 +2035,10 @@ tr.check td {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+.accept-business-terms {
+	span {
+		color: $bottom-content;
+	}
 }
 /*** Stripe End ***/

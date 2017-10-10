@@ -625,7 +625,7 @@ $(function (){
 	var multiStep = form.children("div").steps({
 		headerTag: "h3",
 		bodyTag: "section",
-		//startIndex: 1,
+		//startIndex: 2,
 		transitionEffect: "slideLeft",
 		enableKeyNavigation: false,
 		onInit: function ()
@@ -696,6 +696,9 @@ $(function (){
 						} 
 						if (!$('input[name="cc_accept_terms"]').is(':checked')) {
 							alert('Please agree to the Billing Terms and Conditions by ticking the checkbox beside it.');
+						}
+						if (!$('select[name="bus_plan"]').val()){
+							alert('Please select a package.');
 						}
 
 						// Create stripe token
@@ -1291,7 +1294,7 @@ $(function (){
 				fontSmoothing: 'antialiased',
 				fontSize: '16px',
 				'::placeholder': {
-				  color: '#aab7c4'
+				  color: '#444854'
 				}
 			  },
 			  invalid: {
