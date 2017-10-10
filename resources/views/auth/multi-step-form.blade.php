@@ -71,7 +71,9 @@
                                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                                     </div>
                                                  </div>   
-                                                 <label class="col-md-12 control-label password-note">*Password must be 8 characters and contain a number and a special character.</label>                                               
+                                                 <div class="form-group col-md-12">
+                                                    <label class="col-md-12 control-label password-note">*Password must be 8 characters and contain a number and a special character.</label>                                               
+                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </section>
