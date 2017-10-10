@@ -758,16 +758,24 @@ $(function (){
 			$('.multi-step-submit').click(function (){ $('#register-form-multistep').submit(); });
 
 			// Show input placeholder for phone input
-			var phone_p = $('.phone-placeholder');
-			if (phone_p.length) {
-			processPhone(phone_p);
+			$('.phone-placeholder').each(function (){
+				var phone_p = $(this);
+				var bfhPhone = phone_p.prev();
+				processPhone(phone_p);
 				phone_p.on('focus', function (){
 					$(this).hide();
-					$('.bfh-phone').removeClass('hidden').focus().on('blur', function (){
-						processPhone(phone_p);
+					bfhPhone.removeClass('hidden').focus().on('blur', function (){						
+						if (bfhPhone.val() == '(' || !bfhPhone.val()) {
+							phone_p.show();
+							bfhPhone.addClass('hidden').focus();
+						} else {
+							phone_p.hide();
+							bfhPhone.removeClass('hidden');
+						}
 					});
 				});
-			}
+
+			});
 		},
 		onStepChanging: function (event, currentIndex, newIndex)
 		{
