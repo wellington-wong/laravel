@@ -20,11 +20,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 main-content login">
-                        <!--<div class="top-content text-center">
-                            <span>Login with your email address and password</span>
-                        </div>-->
                         <div class="panel panel-default">
                             <div class="panel-body">
+                                <div class="top-content login-text text-center">
+                                    <span>Login with your email address and password</span>
+                                </div>
                                 <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                                     {{ csrf_field() }}
 
