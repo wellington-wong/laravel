@@ -20979,7 +20979,10 @@ $(function () {
 
 			// Bind action buttons
 			$('.multi-step-previous').click(function () {
-				multiStep.steps('previous');$('.multi-step-next').removeClass('hidden');$('.register-main .alert.alert-success ul li').remove();
+				multiStep.steps('previous');
+				$('.multi-step-next').removeClass('hidden');
+				$('.register-main .alert.alert-success ul li').remove();
+				$('.register-main .alert.alert-success').addClass('hidden');
 			});
 			$('.multi-step-submit').click(function () {
 				$('#register-form-multistep').submit();
