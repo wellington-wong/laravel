@@ -441,10 +441,17 @@ footer {
 			li {
 				padding: 0;
 			}
+ 			.footer-social {
+ 				margin-right: 10px;
+ 				a {
+ 					font-size: 22px;
+ 				}
+ 			}
 		}
 	}
-	.logo-footer {
+	.footer-logo {
 		img {
+			margin-top: 5px;
 			height: 54px;
 		}
 	}
@@ -1215,6 +1222,7 @@ table.table {
 
 /*** Multistep form ***/
 .register-main {
+	background: #fff;
 	.main-content {
 		.panel-default {
 			border-color: transparent;
@@ -1276,7 +1284,9 @@ table.table {
 			background: none;
 		}
 		.form-control {
-			border: 0;
+			border: 2px solid #ebebeb;
+			border-radius: 5px !important;
+			outline: none;
 		}
 		.form-actions {
 			.save-template {
@@ -1382,6 +1392,14 @@ table.table {
 	}
 	#steps-uid-0-p-5 {
 		position: relative;
+	}
+	.plan-info {
+		color: $bottom-content;
+	}
+	.main-content {
+		border: 2px solid #f0f0f0;
+		padding: 20px;
+		border-radius: 10px;
 	}
 }
 .register-bottom-wrapper {

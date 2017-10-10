@@ -18,15 +18,15 @@
         <main class="register-main">
             <div class="row no-margin-lr">
                 <div class="plan-info text-center">
-                    <h4>You've selected the Basic plan at $999 per month - <a href="{{ route('contact') }}" class="upgrade-plan">Upgrade to Custom</a></h4>
-                </div>
-                <div class="top-content text-center">
-                    <span>Fill out the form to register</span>
+                    <h4>You've selected the <strong>Basic package</strong> at $999 per month - <a href="{{ route('contact') }}" class="upgrade-plan"><strong>Upgrade to Custom</strong></a></h4>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1 main-content">
+                        <div class="top-content text-center">
+                            <span>Fill out the form to register</span>
+                        </div>
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 @if (\Session::has('success'))

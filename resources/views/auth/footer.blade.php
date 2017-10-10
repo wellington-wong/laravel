@@ -29,11 +29,21 @@
                         </ul>
                     </div>-->  
                     <div class="col-md-2 footer-list col-md-offset-6">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <ul class="list-inline">
+                            <li class="footer-social list-inline">
+                                <a href="#" class="footer-fb fa-stack">
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="footer-social">
+                                <a href="#" class="footer-tw fa-stack">
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x" aria-hidden="true"></i>
+                                </a>
+                            </li>
                         </ul>
-                        <figure class="logo-footer col-xs-3 col-md-2"><a href="{{ route('login') }}" title="Referrals"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo-main.png' }}" alt=""></a></figure>
+                        <a href="{{ route('login') }}" title="Referrals" class="footer-logo"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo-main.png' }}" alt=""></a>
                     </div>
                 </div>
                 <div class="row">
