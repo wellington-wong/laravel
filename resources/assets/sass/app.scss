@@ -1281,6 +1281,20 @@ table.table {
 			border: 2px solid #ebebeb;
 			border-radius: 5px !important;
 			outline: none;
+			padding: 10px 25px;
+			height: auto;	
+			&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+			  color: $bottom-content;
+			}
+			&::-moz-placeholder { /* Firefox 19+ */
+			  color: $bottom-content;
+			}
+			&:-ms-input-placeholder { /* IE 10+ */
+			  color: $bottom-content;
+			}
+			&:-moz-placeholder { /* Firefox 18- */
+			  color: $bottom-content;
+			}
 		}
 		.form-actions {
 			.save-template {
