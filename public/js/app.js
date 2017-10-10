@@ -21054,6 +21054,9 @@ $(function () {
 
 			return true; //form.valid();
 		},
+		onStepChanged: function onStepChanged() {
+			stepsContentHeight();
+		},
 		onFinishing: function onFinishing(event, currentIndex) {
 			//steps-uid-0
 			//form.validate().settings.ignore = ":disabled";

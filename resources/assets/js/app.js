@@ -829,6 +829,9 @@ $(function (){
 
 			return true;//form.valid();
 		},
+		onStepChanged: function () {
+			stepsContentHeight();
+		},
 		onFinishing: function (event, currentIndex)
 		{
 			//steps-uid-0
