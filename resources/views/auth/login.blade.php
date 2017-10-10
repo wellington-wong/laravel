@@ -17,14 +17,12 @@
 
         <!-- Start Main -->
         <main>
-            <div class="row top-content-wrapper">
-                <div class="top-content text-center">
-                    <span>Login with your email address and password</span>
-                </div>
-            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 main-content login">
+                        <!--<div class="top-content text-center">
+                            <span>Login with your email address and password</span>
+                        </div>-->
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
