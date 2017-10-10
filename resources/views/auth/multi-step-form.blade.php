@@ -71,15 +71,13 @@
 
                                             <div class="form-group-wrapper">
                                                 <div class="form-group col-md-6">
-                                                    <label class="col-md-12 control-label">Your Company's Name *</label>
                                                     <div class="col-md-12">                                                    
-                                                    {{ Form::text('company_name', '', array('class' => 'form-control')) }}
+                                                    {{ Form::text('company_name', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Name *')) }}
                                                     </div>                                                
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label class="col-md-12 control-label">Your Company's Subdomain *</label>
                                                     <div class="col-md-12">                                                    
-                                                    {{ Form::text('subdomain', '', array('class' => 'form-control')) }}
+                                                    {{ Form::text('subdomain', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Subdomain *')) }}
                                                     </div>                                                
                                                 </div>
                                                     
@@ -87,52 +85,41 @@
                                                   
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>Your Company's Contact Email *</label>
-                                                        {{ Form::text('company_email', '', array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_email', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Contact Email *')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>Type of Business *</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        {{ Form::select('business_type', ['' => 'Please Select One'] + \App\Company::$businessType, '', array('class' => 'form-control')) }}
+                                                        {{ Form::select('business_type', ['' => 'Type of Business *'] + \App\Company::$businessType, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>Your Company's Address Line 1 *</label>
-                                                        {{ Form::text('company_address_1', '', array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_address_1', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Address *')) }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>Line 2</label>
-                                                        {{ Form::text('company_address_2', '', array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_address_2', '', array('class' => 'form-control', 'placeholder' => 'Line 2')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>City *</label>
-                                                        {{ Form::text('company_city', '', array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_city', '', array('class' => 'form-control', 'placeholder' => 'City *')) }}
                                                     </div>
                                                 </div>
-                                                <div class="form-group col-md-3">
+                                                <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>State *</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        @include('forms.states', ['state' => 'fl'])                                                        
+                                                        @include('forms.states', ['state' => 'fl', 'placeholder' => 'State *'])                                                        
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-3">
+                                                <div class="form-group col-md-6">
                                                     <div class="col-md-12">
-                                                        <label>Zip *</label>
-                                                        {{ Form::text('company_zip', '', array('class' => 'form-control')) }}
+                                                        {{ Form::text('company_zip', '', array('class' => 'form-control', 'placeholder' => 'Zip *')) }}
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
