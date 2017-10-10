@@ -753,8 +753,21 @@ $(function (){
 				}
 			});
 
+			// Bind action buttons
 			$('.multi-step-previous').click(function (){ multiStep.steps('previous');$('.multi-step-next').removeClass('hidden'); $('.register-main .alert.alert-success ul li').remove(); });
 			$('.multi-step-submit').click(function (){ $('#register-form-multistep').submit(); });
+
+			// Show input placeholder for phone input
+			var phone_p = $('.phone-placeholder');
+			if (phone_p.length) {
+			processPhone(phone_p);
+				phone_p.on('focus', function (){
+					$(this).hide();
+					$('.bfh-phone').removeClass('hidden').focus().on('blur', function (){
+						processPhone(phone_p);
+					});
+				});
+			}
 		},
 		onStepChanging: function (event, currentIndex, newIndex)
 		{
