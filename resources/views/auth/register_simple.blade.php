@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1 main-content">
                         <div class="top-content text-center">
-                            <span>Fill out the form to register</span>
+                            <span></span>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-body">
