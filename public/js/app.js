@@ -20871,7 +20871,7 @@ $(function () {
 			});
 
 			// Add form validation
-			$('#steps-uid-0 .actions').append('<ul><li class="multi-step-previous"><a href="javascript:void(0);">Back</a></li><li><a href="javascript:void(0);" class="multi-step-next">Next</a></li><li class="multi-step-submit hidden"><a href="#finish">Submit</a></li></ul>').find('ul').eq(0).addClass('hidden');
+			$('#steps-uid-0 .actions').append('<ul><li class="multi-step-previous"><a href="javascript:void(0);">BACK</a></li><li><a href="javascript:void(0);" class="multi-step-next">NEXT</a></li><li class="multi-step-submit hidden"><a href="#finish">SUBMIT</a></li></ul>').find('ul').eq(0).addClass('hidden');
 			var data;
 			$('.multi-step-next').click(function () {
 				var currentIndex = form.children("div").steps("getCurrentIndex");
@@ -21037,8 +21037,9 @@ $(function () {
 			$('#register-form-multistep').submit();
 		},
 		labels: {
-			previous: 'Back',
-			finish: 'Submit'
+			previous: 'BACK',
+			finish: 'SUBMIT',
+			next: 'NEXT'
 		}
 	});
 	stepsContentHeight();

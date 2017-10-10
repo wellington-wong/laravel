@@ -104,7 +104,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-6">
                                                     <div class="col-md-12">
                                                         <label>Type of Business *</label>
                                                     </div>

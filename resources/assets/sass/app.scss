@@ -1258,21 +1258,14 @@ table.table {
 			ul{ 
 				li {
 					a {
-						background: $bg-color2;
-						color: #464950;
-						margin-top: 50px;
+						background: $footer-color;
+						color: $bg-color-guest;
 						border: none;
 						border-radius: 0;
-						padding-left: 140px;				
-						padding-right: 140px;
-					}
-					&:first-child {
-						a {
-							background: #b0aeae;
-							padding-left: 50px;				
-							padding-right: 50px;
-							color: #fff;
-						}
+						padding-left: 50px;				
+						padding-right: 50px;
+						border-radius: 10px;
+						font-weight: bold;
 					}
 				}
 			}
