@@ -1498,7 +1498,7 @@ table.table {
 				padding: 0;
 				position: relative;
 				margin: 0 auto;
-				background: #dddddd;
+				background: $multi-step-pager-bg;
 				.number {
 					line-height: 50px;
 					color: $bottom-content;
@@ -1519,11 +1519,11 @@ table.table {
 				background: #279fdc;
 			}
 			.disabled a {
-				background: #dddddd;
+				background: $multi-step-pager-bg;
 				color: #aaa;
 				cursor: default;
 				&:hover, &:active {
-					background: #dddddd;
+					background: $multi-step-pager-bg;
 					color: #aaa;
 					cursor: default;
 				}
@@ -1548,10 +1548,10 @@ table.table {
 					}
 			}
 			.done a {
-				background: #9dc8e2;
+				background: $multi-step-pager-bg;
 				color: #fff;
 				&:hover, &:active {
-					background: #9dc8e2;
+					background: $multi-step-pager-bg;
 					color: #fff;
 				}
 			}
