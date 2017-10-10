@@ -7,10 +7,9 @@
                                         <section>
                                             <div class="form-group-wrapper">
                                                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }} col-md-6">
-                                                    <label for="name" class="col-md-12 control-label">Your First Name *</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="first-name" type="text" class="form-control" name="first_name" required autofocus>
+                                                        <input id="first-name" type="text" class="form-control" name="first_name" required autofocus placeholder="First Name *">
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
@@ -21,10 +20,9 @@
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }} col-md-6">
-                                                    <label for="name" class="col-md-12 control-label text-left">Your Last Name *</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="last-name" type="text" class="form-control" name="last_name" required>
+                                                        <input id="last-name" type="text" class="form-control" name="last_name" required placeholder="Last Name *">
 
                                                         @if ($errors->has('name'))
                                                             <span class="help-block">
@@ -37,10 +35,8 @@
                                                 @include('forms.phone-multistep', ['phone_label'=>"Phone Number *", 'class'=>'col-md-6'])
 
                                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
-                                                    <label for="email" class="col-md-12 control-label">Your E-Mail *</label>
-
                                                     <div class="col-md-12">
-                                                        <input id="email" type="email" class="form-control" name="email" required>
+                                                        <input id="email" type="email" class="form-control" name="email" required placeholder="Your E-Mail *">
 
                                                         @if ($errors->has('email'))
                                                             <span class="help-block">
@@ -51,10 +47,8 @@
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-6">
-                                                    <label for="password" class="col-md-12 control-label">Password *</label>
-
                                                     <div class="col-md-12">
-                                                        <input id="password" type="password" class="form-control" name="password" required>
+                                                        <input id="password" type="password" class="form-control" name="password" required placeholder="Password *">
 
                                                         @if ($errors->has('password'))
                                                             <span class="help-block">
@@ -65,10 +59,9 @@
                                                 </div>
 
                                                 <div class="form-group col-md-6">
-                                                    <label for="password-confirm" class="col-md-12 control-label">Confirm Password *</label>
 
                                                     <div class="col-md-12">
-                                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password *">
                                                     </div>
                                                  </div>   
                                                  <div class="form-group col-md-12">
