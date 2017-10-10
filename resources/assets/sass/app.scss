@@ -1269,6 +1269,11 @@ table.table {
 						font-size: 12px;
 					}
 				}
+				li:first-child {
+					a {
+						font-weight: normal;
+					}
+				}
 			}
 		}
 		.link-social {
