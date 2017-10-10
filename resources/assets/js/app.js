@@ -734,9 +734,11 @@ $(function (){
 				if (currentIndex != 3) {
 					ajaxHelper("/ajax-validate", data, "POST", function (data){
 						$('.register-main .alert.alert-success ul li').remove();
+						$('#register-form-multistep input, #register-form-multistep select').removeClass('errorAjaxValidate');
 						if (data != 'success') {
 							$('.register-main .alert.alert-success').removeClass('hidden');
 							$.each(data, function (itm, val){
+								$('input[name="' + itm + '"]').addClass('errorAjaxValidate');
 								$('.register-main .alert.alert-success ul').append('<li>' + val[0] + '</li>');
 							});
 						} else {

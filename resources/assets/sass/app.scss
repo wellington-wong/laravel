@@ -1293,6 +1293,9 @@ table.table {
 				display: none;
 			}
 		}
+		.errorAjaxValidate {
+			border: 2px solid #ff0000;
+		}
 	}
 	.form-generator-wrapper {
 		visibility: hidden;
