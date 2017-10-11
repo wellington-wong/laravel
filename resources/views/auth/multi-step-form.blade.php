@@ -10,11 +10,6 @@
                                                     <label class="hidden">First Name</label>
                                                     <div class="col-md-12">
                                                         <input id="first-name" type="text" class="form-control" name="first_name" required autofocus placeholder="First Name *">
-                                                        @if ($errors->has('name'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('first_name') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -22,11 +17,6 @@
                                                     <label class="hidden">Last Name</label>
                                                     <div class="col-md-12">
                                                         <input id="last-name" type="text" class="form-control" name="last_name" required placeholder="Last Name *">
-                                                        @if ($errors->has('name'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('last_name') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -36,11 +26,6 @@
                                                     <label class="hidden">Email</label>
                                                     <div class="col-md-12">
                                                         <input id="email" type="email" class="form-control" name="email" required placeholder="Your E-Mail *">
-                                                        @if ($errors->has('email'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('email') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -48,11 +33,6 @@
                                                     <label class="hidden">Password</label>
                                                     <div class="col-md-12">
                                                         <input id="password" type="password" class="form-control" name="password" required placeholder="Password *">
-                                                        @if ($errors->has('password'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('password') }}</strong>
-                                                            </span>
-                                                        @endif                                            
                                                     </div>
                                                 </div>
 
@@ -210,12 +190,6 @@
                                                     <label class="hidden">Reward Title</label>
                                                     <div class="col-md-12">
                                                         <input id="reward-title" type="text" class="form-control" name="reward_title" placeholder="Reward Title *" required>
-
-                                                        @if ($errors->has('name'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('reward_title') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
                                                 </div>
 
