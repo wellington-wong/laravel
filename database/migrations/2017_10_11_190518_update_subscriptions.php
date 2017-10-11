@@ -38,6 +38,9 @@ class UpdateSubscriptions extends Migration
             if(Schema::hasColumn('subscriptions', 'amount')) {
                 $table->dropColumn('amount');
             }
+            if(Schema::hasColumn('subscriptions', 'subscription_name')) {
+                $table->dropColumn('subscription_name');
+            }
         });
     }
 }
