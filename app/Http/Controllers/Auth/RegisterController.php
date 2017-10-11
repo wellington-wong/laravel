@@ -282,9 +282,12 @@ class RegisterController extends Controller
                 'zip' =>$request->input('company_zip'),
                 'email' =>$request->input('company_email'),
                 'type' =>$request->input('business_type'),
+                'stripe_id'=> $request->input('stripe_id'),
+                'card_brand'=> $request->input('card_brand'),
+                'card_last_four'=> $request->input('card_last_four')
             ]);
             $company = $user->companies()
-                ->create( $request->only('owner_id', 'company_name', 'subdomain', 'type', 'email') );
+                ->create( $request->only('owner_id', 'company_name', 'subdomain', 'type', 'email', 'stripe_id', 'card_brand', 'card_last_four') );
             $address = $company->address()->create(
                 $request->only('address', 'address2', 'city', 'state', 'zip')
             );
@@ -330,8 +333,11 @@ class RegisterController extends Controller
                     "source" => auth()->user()->stripe_id
                 ));
 
+                // Save customer id to the company creator and company
                 auth()->user()->stripe_id = $customer->id;
                 auth()->user()->save();
+                $company->stripe_id = $customer->id;
+                $company->save();
                 
                 $charge = \Stripe\Charge::create(array(
                     "amount" => 99900,

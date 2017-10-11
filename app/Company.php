@@ -20,7 +20,7 @@ class Company extends Model
     
     protected $table = 'companies';
 
-    protected $fillable = ['company_name', 'subdomain', 'owner_id', 'email', 'type'];
+    protected $fillable = ['company_name', 'subdomain', 'owner_id', 'email', 'type', 'stripe_id', 'card_brand', 'card_last_four'];
 
     const SMALL      = 1;
     const MEDIUM       = 2;
