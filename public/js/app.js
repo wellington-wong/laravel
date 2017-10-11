@@ -21023,8 +21023,8 @@ $(function () {
 					$('#register-form-multistep section:not(.form-builder) input, #register-form-multistep section:not(.form-builder) select').each(function () {
 						// Setup fields not included in the form review
 						var fieldName = $(this).prop('name');
-						var fieldVal = $(this).val();
-						var ignoreFields = ['password_confirmation', 'stripe_id', 'cc_accept_terms'];
+						var fieldVal = $(this).val() ? $(this).val() : '&nbsp';
+						var ignoreFields = ['password_confirmation', 'stripe_id', 'cc_accept_terms', 'phone_placeholder'];
 						if ($.inArray(fieldName, ignoreFields) !== -1 || !fieldName) {
 							return;
 						}

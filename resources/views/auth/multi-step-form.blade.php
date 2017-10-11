@@ -7,6 +7,7 @@
                                         <section>
                                             <div class="form-group-wrapper">
                                                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }} col-md-6">
+                                                    <label class="hidden">First Name</label>
                                                     <div class="col-md-12">
                                                         <input id="first-name" type="text" class="form-control" name="first_name" required autofocus placeholder="First Name *">
                                                         @if ($errors->has('name'))
@@ -18,6 +19,7 @@
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }} col-md-6">
+                                                    <label class="hidden">Last Name</label>
                                                     <div class="col-md-12">
                                                         <input id="last-name" type="text" class="form-control" name="last_name" required placeholder="Last Name *">
                                                         @if ($errors->has('name'))
@@ -31,6 +33,7 @@
                                                 @include('forms.phone-multistep', ['phone_label'=>"Phone Number *", 'class'=>'col-md-6'])
 
                                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
+                                                    <label class="hidden">Email</label>
                                                     <div class="col-md-12">
                                                         <input id="email" type="email" class="form-control" name="email" required placeholder="Your E-Mail *">
                                                         @if ($errors->has('email'))
@@ -42,6 +45,7 @@
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-6">
+                                                    <label class="hidden">Password</label>
                                                     <div class="col-md-12">
                                                         <input id="password" type="password" class="form-control" name="password" required placeholder="Password *">
                                                         @if ($errors->has('password'))
@@ -71,11 +75,13 @@
 
                                             <div class="form-group-wrapper">
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">Your Company's Name</label>
                                                     <div class="col-md-12">                                                    
                                                     {{ Form::text('company_name', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Name *')) }}
                                                     </div>                                                
                                                 </div>
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">Your Company's Subdomain</label>
                                                     <div class="col-md-12">                                                    
                                                     {{ Form::text('subdomain', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Subdomain *')) }}
                                                     </div>                                                
@@ -84,40 +90,47 @@
                                                 @include('forms.phone-multistep', ['phone_label'=>"Your Company's Number *", 'class'=>'col-md-6', 'label_class'=>'col-md-12', 'phone_name' => 'company_phone'])
                                                   
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">Your Company's Email</label>
                                                     <div class="col-md-12">
                                                         {{ Form::text('company_email', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Email *')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">Business Type</label>
                                                     <div class="col-md-12">
                                                         {{ Form::select('business_type', ['' => 'Type of Business *'] + \App\Company::$businessType, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">Your Company's Address</label>
                                                     <div class="col-md-12">
                                                         {{ Form::text('company_address_1', '', array('class' => 'form-control', 'placeholder' => 'Your Company\'s Address *')) }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">Your Company's Address Line 2</label>
                                                     <div class="col-md-12">
                                                         {{ Form::text('company_address_2', '', array('class' => 'form-control', 'placeholder' => 'Line 2')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">City</label>
                                                     <div class="col-md-12">
                                                         {{ Form::text('company_city', '', array('class' => 'form-control', 'placeholder' => 'City *')) }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">City</label>
                                                     <div class="col-md-12">
                                                         @include('forms.states', ['state' => 'fl', 'placeholder' => 'State *'])                                                        
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
+                                                    <label class="hidden">Zip</label>
                                                     <div class="col-md-12">
                                                         {{ Form::text('company_zip', '', array('class' => 'form-control', 'placeholder' => 'Zip *')) }}
                                                     </div>
@@ -162,6 +175,7 @@
                                               </div>
 
                                                 <div class="form-group col-md-12">
+                                                    <label class="hidden">Package Type</label>
                                                     <div class="col-md-12">
                                                         {{ Form::select('bus_plan', array('' => 'Select Your Package *', '999' => 'Basic Package - $999 a month'), null, ['class' => 'form-control']) }}
                                                     </div>
@@ -193,6 +207,7 @@
                                         <section>
                                             <div class="form-group-wrapper">
                                                 <div class="form-group{{ $errors->has('reward_title') ? ' has-error' : '' }} col-md-12">
+                                                    <label class="hidden">Reward Title</label>
                                                     <div class="col-md-12">
                                                         <input id="reward-title" type="text" class="form-control" name="reward_title" placeholder="Reward Title *" required>
 
@@ -205,18 +220,21 @@
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('send_reward') ? ' has-error' : '' }} col-md-12">
+                                                    <label class="hidden">Reward Kind</label>
                                                     <div class="col-md-12">
                                                         {{ Form::select('reward_kind', ['' => 'What kind of reward will you use? *'] + \App\RewardSetting::$rewardKind, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('send_reward') ? ' has-error' : '' }} col-md-12">
+                                                    <label class="hidden">How will you send the reward?</label>
                                                     <div class="col-md-12">
                                                         {{ Form::select('reward_send', ['' => 'How will you send the reward? *'] + \App\RewardSetting::$rewardSend, '', array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('leader_board') ? ' has-error' : '' }} col-md-12">
+                                                    <label class="hidden">Would you like to show a leaderboard</label>
                                                     <!--<div class="col-md-12">
                                                         <label> <a href="#">What's this?</a> *</label>
                                                     </div>-->
