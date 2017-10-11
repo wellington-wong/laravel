@@ -8,6 +8,7 @@ use App\ReferralForms;
 use App\RewardSetting;
 use App\Role;
 use App\BasicPages;
+use App\Subscriptions;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -319,6 +320,17 @@ class RegisterController extends Controller
                 'raw_form_json' => $request->input('referral_form_json')                
             ]);
 
+            // Create subscription
+            $subscription = Subscriptions::firstOrCreate([
+                'user_id' => $user->id, 
+                'company_id' => $company->id, 
+                'subscription_name' => 'Monthly 999', 
+                'stripe_id' => $request->input('stripe_id'),
+                'stripe_plan' => 'monthly999', 
+                'amount' => 999, 
+                'quantity' => 1,  
+            ]);
+
             // Automatically login created user
             Auth::loginUsingId($user->id, true);
 
@@ -329,15 +341,19 @@ class RegisterController extends Controller
                 // Charge credit card using stripe
                 \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
                 $customer = \Stripe\Customer::create(array(
-                    "description" => auth()->user()->email,
-                    "source" => auth()->user()->stripe_id
+                    "description" =>  auth()->user()->getName(),
+                    "email" => auth()->user()->email,
+                    "source" => auth()->user()->stripe_id,
+                    "plan" => 'monthly999'
                 ));
 
-                // Save customer id to the company creator and company
+                // Save customer id to the company creator, company and subscription
                 auth()->user()->stripe_id = $customer->id;
                 auth()->user()->save();
                 $company->stripe_id = $customer->id;
                 $company->save();
+                $subscription->stripe_id = $customer->id;
+                $subscription->save();
                 
                 $charge = \Stripe\Charge::create(array(
                     "amount" => 99900,
@@ -346,8 +362,8 @@ class RegisterController extends Controller
                     "description" => 'Basic Plan - $999 a month'
                 ));
                 $message[] = 'Your ' . (isset(auth()->user()->card_brand) ? auth()->user()->card_brand : null) . ' credit card ending in ' . (isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : null) . ' has been charged $999.';
-            } catch(\Stripe\Error\Card $e) {
-                $message[] = 'Your credit card has been declined.';
+            } catch(\Exception $e) {
+                $message[] = 'There was a problem processing your credit card.';
             }
 
             // Make company creator a super admin
