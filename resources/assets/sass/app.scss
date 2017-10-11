@@ -2,6 +2,7 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Domine);
 
 // Variables
 @import "variables";
@@ -1424,6 +1425,8 @@ table.table {
 	}
 	.top-content {
 		margin-bottom: 50px;
+		font-family: 'Domine';
+		font-size: 15px;
 	}
 }
 .register-bottom-wrapper {
