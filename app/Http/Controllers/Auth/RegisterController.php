@@ -319,19 +319,20 @@ class RegisterController extends Controller
             // Automatically login created user
             Auth::loginUsingId($user->id, true);
 
-            // Charge credit card using stripe
-            \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
-            $customer = \Stripe\Customer::create(array(
-                "description" => auth()->user()->email,
-                "source" => auth()->user()->stripe_id
-            ));
-
-            auth()->user()->stripe_id = $customer->id;
-            auth()->user()->save();
-
             $message[] = 'Congratulations! your company has been successfully created.';
 
             try {
+
+                // Charge credit card using stripe
+                \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
+                $customer = \Stripe\Customer::create(array(
+                    "description" => auth()->user()->email,
+                    "source" => auth()->user()->stripe_id
+                ));
+
+                auth()->user()->stripe_id = $customer->id;
+                auth()->user()->save();
+                
                 $charge = \Stripe\Charge::create(array(
                     "amount" => 99900,
                     "currency" => "usd",
