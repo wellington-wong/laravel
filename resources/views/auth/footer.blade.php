@@ -16,7 +16,7 @@
                         <h4>Contact</h4>
                         <ul>
                             <li><a href="#">(866) 808-9902</a></li>
-                            <li><a href="#">info@perxi.com</a></li>
+                            <li><a href="mailto:info@perxi.com">info@perxi.com</a></li>
                         </ul>
                     </div>         
                     <!--<div class="col-md-2 footer-list">
