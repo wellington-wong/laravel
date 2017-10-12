@@ -39,7 +39,24 @@ class RegisterTest extends DuskTestCase
     public function testRegisterStep2()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/register');
+            $browser->visit('/register')
+                ->clickLink('NEXT')
+                ->waitForText('Tell Us About Your Company');
+        });
+    }
+
+    /**
+     * A Dusk test for registration step 3.
+     *
+     * @return void
+     */
+    public function testRegisterStep3()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/register')
+                ->clickLink('NEXT')
+                ->clickLink('NEXT')
+                ->waitForText('Billing Information');
         });
     }
 }
