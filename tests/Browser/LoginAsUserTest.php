@@ -26,10 +26,10 @@ class LoginAsUserTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(RoleUser::where('role_id', 4)->inRandomOrder()->first()->user_id)
                 ->visit('/global-settings/login-as-user')
-                ->waitForText('Login as User')
                 ->assertSee('Login as User')
                 ->click('.table-login-as-wrapper td a')
-                ->waitForText('Login as original');
+                ->assertSee('Successfully logged in as')
+                ->assertSee('Login as original');
         });
     }
 }
