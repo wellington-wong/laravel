@@ -13,11 +13,11 @@ class RegisterTest extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testRegister()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->visit('/register')
+                    ->assertSee('Basic package');
         });
     }
 }
