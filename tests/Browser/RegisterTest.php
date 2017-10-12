@@ -59,4 +59,20 @@ class RegisterTest extends DuskTestCase
                 ->waitForText('Billing Information');
         });
     }
+
+    /**
+     * A Dusk test for registration step 4.
+     *
+     * @return void
+     */
+    public function testRegisterStep4()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/register')
+                ->clickLink('NEXT')
+                ->clickLink('NEXT')
+                ->clickLink('NEXT')
+                ->waitForText('What information do you need to follow up with a referral? This is the information your referral club members will enter when submitting a referral.');
+        });
+    }
 }
