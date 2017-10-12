@@ -111,4 +111,23 @@ class RegisterTest extends DuskTestCase
                 ->waitForText('Please review the information you have entered.');
         });
     }
+
+    /**
+     * A Dusk test for registration submit.
+     *
+     * @return void
+     */
+    public function testRegisterSubmit()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/register')
+                ->clickLink('NEXT')
+                ->clickLink('NEXT')
+                ->clickLink('NEXT')
+                ->clickLink('NEXT')
+                ->clickLink('NEXT')
+                ->waitForText('Please review the information you have entered.')
+                ->clickLink('SUBMIT');
+        });
+    }
 }
