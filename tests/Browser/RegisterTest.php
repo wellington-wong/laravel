@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class RegisterTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * A Dusk test for registration step 1.
      *
      * @return void
      */
@@ -28,6 +28,18 @@ class RegisterTest extends DuskTestCase
                     ->assertSee('Form Builder')
                     ->assertSee('Reward Info')
                     ->assertSee('Review');
+        });
+    }
+
+    /**
+     * A Dusk test for registration step 2.
+     *
+     * @return void
+     */
+    public function testRegisterStep2()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/register');
         });
     }
 }
