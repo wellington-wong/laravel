@@ -4,10 +4,10 @@
                     <div class="col-xs-4 col-md-2 footer-list">
                         <h4>Services</h4>
                         <ul>
-                            <li><a href="{{ route('how-it-works') }}">How it Works</a></li>
-                            <li><a href="{{ route('features') }}">Features</a></li>
-                            <li><a href="{{ route('about-us') }}">About Us</a></li>
-                            <li><a href="{{ route('pricing') }}">Pricing</a></li>
+                            <li><a href="https://www.perxi.com/how-it-works/">How it Works</a></li>
+                            <li><a href="https://www.perxi.com/features/">Features</a></li>
+                            <li><a href="https://www.perxi.com/about-us/">About Us</a></li>
+                            <li><a href="https://www.perxi.com/pricing/">Pricing</a></li>
                             <li><a href="javascript:void(0)">Blog</a></li>
                             <li><a href="{{ route('login') }}">Log In</a></li>
                         </ul>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="row">
                     <div class="middle-content">
-                        <span>Need a marketing solution for your business? Visit <a href="">exults.com</a>.</span>
+                        <span>Need a marketing solution for your business? Visit <a href="https://www.exults.com/">exults.com</a>.</span>
                     </div>
                 </div> 
             </div>    
