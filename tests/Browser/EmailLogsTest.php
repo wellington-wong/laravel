@@ -18,13 +18,21 @@ class EmailLogsTest extends DuskTestCase
      */
     public function testEmailLogs()
     {
+        // Get a valid user
+        $user = null;
+        while ($user == null) {
+            $user_id = RoleUser::where('role_id', '<>', 1)->where('role_id', '<>', 2)->inRandomOrder()->first()->user_id;
+            $company_id = RoleUser::where('role_id', '<>', 1)->where('role_id', '<>', 2)->inRandomOrder()->first()->company_id;
+            $user = User::find($user_id);
+        }
+
         // Visit random subdomain
-        $subdomain = Company::inRandomOrder()->first()->subdomain;
-        Browser::$baseUrl = 'https://'. $subdomain . '.' . env('DOMAIN');
-        
+        $company = Company::find($company_id);
+        Browser::$baseUrl = 'https://'. $company->subdomain . '.' . env('DOMAIN');
+
         // Perform browser test
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(RoleUser::where('role_id', '<>', 1)->inRandomOrder()->first()->user_id)
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user->id)
                 ->visit('/program-options/email-logs')
                 ->waitForText('Email Logs')
                 ->assertSee('Email Logs');
