@@ -25,8 +25,18 @@ class CompanyTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::inRandomOrder()->first()->id)
                 ->visit('/company/' . Company::inRandomOrder()->first()->id)
-                ->waitForText('Membership Role')
-                ->assertSee('Membership Role');
+                ->assertSee('Company Name')
+                ->assertSee('Company Number')
+                ->assertSee('Company Email')
+                ->assertSee('Company Website')
+                ->assertSee('Company Address Line 1')
+                ->assertSee('Address Line 2')
+                ->assertSee('City')
+                ->assertSee('States')
+                ->assertSee('Zip Code')
+                ->assertSee('Billing')
+                ->assertSee('Membership Role')
+                ->assertSee('Questions about your plan?');
         });
     }
 }
