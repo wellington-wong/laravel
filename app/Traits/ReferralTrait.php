@@ -42,7 +42,7 @@ trait ReferralTrait {
         }
 
         if (isset($datarangeFrom) && isset($datarangeTo)) {
-            $referrals->whereBetween('created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->addDay()->toDateTimeString()]);
+            $referrals->whereBetween('referrals.created_at', [Carbon::parse($datarangeFrom)->toDateTimeString(), Carbon::parse($datarangeTo)->addDay()->toDateTimeString()]);
         }
 
         if (isset($q)) {
