@@ -9,14 +9,15 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class UserViewTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * A Dusk test for user view.
      *
      * @return void
      */
-    public function testExample()
+    public function testUserView()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->loginAs($user->id)
+                    ->visit('/user/view')
                     ->assertSee('Laravel');
         });
     }
