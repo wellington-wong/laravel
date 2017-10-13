@@ -32,7 +32,7 @@ class EmailLogsTest extends DuskTestCase
             $user = User::find($user_id);     
         }
 
-        // Visit random subdomain
+        // Visit subdomain
         Browser::$baseUrl = 'https://'. $company->subdomain . '.' . env('DOMAIN');
 
         // Perform browser test
