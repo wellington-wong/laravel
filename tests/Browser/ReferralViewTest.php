@@ -9,15 +9,16 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class ReferralViewTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * A Dusk test for referral view.
      *
      * @return void
      */
-    public function testExample()
+    public function testReferralView()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->visit('/referral/view')
+                ->assertSee('Referral History')
+                ->assertSee('Referral Details');
         });
     }
 }
