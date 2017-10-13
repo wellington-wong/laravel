@@ -13,7 +13,7 @@ use App\RoleUser;
 class ReferralProgramSettingsTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * A Dusk test for referral program settings.
      *
      * @return void
      */

@@ -12,7 +12,7 @@ use App\Company;
 class MessagesTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * A Dusk test for messages.
      *
      * @return void
      */

@@ -12,7 +12,7 @@ use App\RoleUser;
 class MembersTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * A Dusk test members.
      *
      * @return void
      */
@@ -31,7 +31,7 @@ class MembersTest extends DuskTestCase
             $user_id = RoleUser::where('role_id', '<>', 1)->where('company_id', $company_id)->inRandomOrder()->first()->user_id;
             $user = User::find($user_id);     
         }
-        
+
         // Visit subdomain
         Browser::$baseUrl = 'https://'. $company->subdomain . '.' . env('DOMAIN');
 
