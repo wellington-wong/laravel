@@ -63,7 +63,7 @@ class ReferralsTest extends DuskTestCase
         });
     }
     /**
-     * A Dusk test admin referrals.
+     * A Dusk test member referrals.
      *
      * @return void
      */
