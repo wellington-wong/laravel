@@ -333,6 +333,7 @@ class ReferralController extends Controller
             'first_name'=>'required',
             'last_name'=>'required',
             'phone'=>'phone:US|required',
+            'email'=>'unique:users',
         ];
         $validator = Validator::make($request->input(), $rules);
 
