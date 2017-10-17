@@ -21519,32 +21519,30 @@ $(function () {
 	// END UPDATE CREDIT CARD
 
 	// STRIPE TEST
+	var validating;
 	$('#stripe-test-form').submit(function () {
+
 		if (typeof card !== 'undefined' && card) {
-			//if (card._empty) {
-			//alert('Please enter your credit card number');
-			//} else 
-			if (!card._complete && card._invalid) {
+			if (card._empty) {
+				alert('Please enter your credit card number');
+			} else if (!card._complete && card._invalid) {
 				alert($('#card-errors').text());
-				return false;
-			}
-			if (!$('input[name="amount"]').val()) {
-				alert('Please enter an amount.');
-				return false;
 			}
 		}
 
-		// Create stripe token
-		stripe.createToken(card).then(function (result) {
-			if (result.error) {
-				// Inform the user if there was an error
-				var errorElement = document.getElementById('card-errors');
-				errorElement.textContent = result.error.message;
-			} else {
-				// Send the token to your server
-				$('input[name="stripe_id"]').val(result.token.id);
+		// Create stripe token before submitting
+		var _this = $(this);
+		createStripeToke(stripe, card, function () {
+			validating = true;
+			if ($('input[name="stripe_id"]').val()) {
+				validating = false;
+				_this.submit();
 			}
 		});
+
+		if (typeof validating === 'undefined' || validating) {
+			return false;
+		}
 	});
 
 	// END STRIPE TEST
