@@ -15,7 +15,7 @@
 	        <div class="form-group">
 	            <div class="col-md-12">
 	              <div id="card-element"></div>
-	              <div id="card-errors hidden" role="alert"></div>
+	              <div id="card-errors" role="alert" style="visibility:hidden"></div>
 	            </div>
 	        </div>
 	        <div class="form-group col-md-12">

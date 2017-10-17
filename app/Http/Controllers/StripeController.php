@@ -73,7 +73,7 @@ class StripeController extends Controller
         try {
             $charge = \Stripe\Charge::create(array(
                 "amount" => $product_price,
-                "currency" => "brl",
+                "currency" => "usd",
                 "customer" => $customer->id,
                 "description" => $product_name
             ));
@@ -83,7 +83,7 @@ class StripeController extends Controller
                 ->with('error', 'Your credit card has been declined. Please try again or contact us.');
     }
  
-        return $this->postStoreOrder($product_name);
+        return;
     }
  
    /**
@@ -95,10 +95,10 @@ class StripeController extends Controller
     */
     public function createStripeCustomer($token)
     {
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
  
         $customer = \Stripe\Customer::create(array(
-            "description" => Auth::user()->email,
+            "description" => auth()->user()->email,
             "source" => $token
         ));
  
@@ -163,6 +163,21 @@ class StripeController extends Controller
             return redirect()->back()->withInput()
                 ->with(['errors'=>$validator->errors()]);
         }
+
+        try {
+
+            \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
+            $customer = \Stripe\Customer::create(array(
+                "description" => 'Test Stripe Charge description',
+                "email" => 'test@email.com',
+                "source" => $request->input('stripe_id'),
+            ));
+
+            $this->createStripeCharge(001, $request->input('amount'), 'Test Stripe Charge', $customer);
+         
+        } catch(\Exception $e) {
+            return back()->with('error', 'Your credit card has been declined. Please try again or contact us.');
+        }       
 
         return back()->with( 'success', ['Stripe successful charged ' . $request->input('amount') . '.']);
     }
