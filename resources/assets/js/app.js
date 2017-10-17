@@ -1389,4 +1389,12 @@ $(function (){
 
 // END STRIPE TEST
 
+// COMPANY
+	
+	$('.delete-company').on('click', function (){
+		console.log('delete company');
+	});
+
+// END COMPANY
+
 });
