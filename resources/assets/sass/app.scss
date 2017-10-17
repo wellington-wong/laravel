@@ -2031,10 +2031,20 @@ tr.check td {
   border-radius: 4px;
   border: 1px solid transparent;
   border: 2px solid #ebebeb;
-	border-radius: 10px !important;
-	outline: none;
-	padding: 10px 25px;
-	height: auto;
+  border-radius: 10px !important;
+  outline: none;
+  padding: 10px 25px;
+  height: auto;
+}
+
+#update-credit-card-form .StripeElement {
+  background-color: white;
+  border: 1px solid transparent;
+  border: 2px solid #ebebeb;
+  border-radius: 0 !important;
+  outline: none;
+  height: auto;
+  padding: 4px 12px;
 }
 
 .StripeElement--focus {
