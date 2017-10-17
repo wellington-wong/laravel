@@ -1362,16 +1362,17 @@ $(function (){
 // STRIPE TEST
 	$('#stripe-test-form').submit(function (){
 		if (typeof card !== 'undefined' && card) {
-			console.log(card);
-			if (card._empty) {
-				alert('Please enter your credit card number');
-			} else if (!card._complete && card._invalid) {
+			//if (card._empty) {
+				//alert('Please enter your credit card number');
+			//} else 
+			if (!card._complete && card._invalid) {
 				alert($('#card-errors').text());
+				return false;
 			} 
 			if (!$('input[name="amount"]').val()) {
 				alert('Please enter an amount.');
+				return false;
 			}
-			return false;
 		} 
 
 		// Create stripe token
