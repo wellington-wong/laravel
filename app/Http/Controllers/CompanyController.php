@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Company;
+use App\Stripe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Gate;
@@ -186,7 +187,6 @@ class CompanyController extends Controller
      */
     public function postUpdateCard ( Request $request ) {
 
-
         $rules = [
             'stripe_id'=>'required',
             'card_brand'=>'required',
@@ -201,6 +201,9 @@ class CompanyController extends Controller
             return redirect()->back()->withInput()
                 ->with(['errors'=>$validator->errors()]);
         }
+
+        // Create strip customer
+        $customer = Stripe::createCustomer();
 
         // Save new credit card.
         $request->_company->stripe_id = $request->input('stripe_id');
