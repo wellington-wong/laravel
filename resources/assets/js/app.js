@@ -1359,4 +1359,7 @@ $(function (){
 	});
 // END UPDATE CREDIT CARD
 
+// STRIPE TEST
+// END STRIPE TEST
+
 });

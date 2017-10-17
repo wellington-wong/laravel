@@ -26,7 +26,7 @@
 	        </div>
 	        {{ Form::hidden('stripe_id', '') }}
 	        <div class="form-group col-md-12 text-right">
-	        	{{ Form::submit('Submit', ['class' => 'btn btn-primary button-responsive-100 submit-charge']) }}
+	        	{{ Form::submit('Submit', ['class' => 'btn btn-primary button-responsive-100 submit-charge', 'disabled' => 'disabled']) }}
 	        </div>
 		{{ Form::close() }}
     </div>

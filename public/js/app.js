@@ -21517,6 +21517,9 @@ $(function () {
 		}
 	});
 	// END UPDATE CREDIT CARD
+
+	// STRIPE TEST
+	// END STRIPE TEST
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
