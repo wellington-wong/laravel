@@ -21521,6 +21521,7 @@ $(function () {
 	// STRIPE TEST
 	$('#stripe-test-form').submit(function () {
 		if (typeof card !== 'undefined' && card) {
+			console.log(card);
 			if (card._empty) {
 				alert('Please enter your credit card number');
 			} else if (!card._complete && card._invalid) {
