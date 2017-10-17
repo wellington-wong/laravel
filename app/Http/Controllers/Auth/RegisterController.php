@@ -347,7 +347,7 @@ class RegisterController extends Controller
                     "description" => $request->input('first_name') . ' ' . $request->input('last_name'),
                     "email" => $request->input('email'),
                     "source" => $request->input('stripe_id'),
-                    "plan" => 'monthly999'
+                    "plan" => $request->input('bus_plan')
                 ));
 
                 // Save customer id to the company creator, company and subscription
