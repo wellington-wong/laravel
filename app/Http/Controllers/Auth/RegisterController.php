@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Exceptions\Handler;
 use App\User;
 use App\Company;
 use App\ReferralForms;
@@ -11,6 +12,7 @@ use App\BasicPages;
 use App\Subscriptions;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -357,6 +359,11 @@ class RegisterController extends Controller
                 
                 $message[] = 'Your ' . (isset(auth()->user()->card_brand) ? auth()->user()->card_brand : null) . ' credit card ending in ' . (isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : null) . ' has been charged $999.';
             } catch(\Exception $e) {
+
+                Log::error($e);
+                $h = new Handler( Container::getInstance() );
+                $h->sendEmail($e);
+
                 $message[] = 'There was a problem processing your credit card.';
             }
 
