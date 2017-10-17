@@ -355,12 +355,6 @@ class RegisterController extends Controller
                 $subscription->stripe_id = $customer->id;
                 $subscription->save();
                 
-                /*$charge = \Stripe\Charge::create(array(
-                    "amount" => 99900,
-                    "currency" => "usd",
-                    "customer" => auth()->user()->stripe_id,
-                    "description" => 'Basic Plan - $999 a month'
-                ));*/
                 $message[] = 'Your ' . (isset(auth()->user()->card_brand) ? auth()->user()->card_brand : null) . ' credit card ending in ' . (isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : null) . ' has been charged $999.';
             } catch(\Exception $e) {
                 $message[] = 'There was a problem processing your credit card.';
