@@ -33,6 +33,22 @@
                     <div id="card-errors" class="hidden" role="alert"></div>
                 </div>
 
+                <div class="form-group col-md-12">
+                    <label class="hidden">Package Type</label>
+                    <div class="col-md-12">
+                        {{ Form::select('bus_plan', array('' => 'Select Your Package *', '999' => 'Basic Package - $999 a month'), null, ['class' => 'form-control']) }}
+                    </div>
+                </div>
+
+              <div class="form-group col-md-12">
+                <div class="col-md-12 accept-billing-terms">
+                    <label>
+                      <input type="checkbox" name="cc_accept_terms" class="accept-terms">
+                      <span>I have read and accept the <a href="javascript:void(0)" id="billing-terms">billing terms and conditions.</a></span>
+                    </label>
+                  </div>
+              </div>
+
                 {{ Form::hidden('stripe_id', '') }}
                 {{ Form::hidden('card_brand', '') }}
                 {{ Form::hidden('card_last_four', '') }}
