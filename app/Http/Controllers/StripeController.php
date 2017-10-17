@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Handler;
+use Illuminate\Container\Container;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class StripeController extends Controller
@@ -176,6 +179,11 @@ class StripeController extends Controller
             $this->createStripeCharge(001, $request->input('amount'), 'Test Stripe Charge', $customer);
          
         } catch(\Exception $e) {
+
+            Log::error($e);
+            $h = new Handler( Container::getInstance() );
+            $h->sendEmail($e);
+
             return back()->with('error', 'Your credit card has been declined. Please try again or contact us.');
         }       
 
