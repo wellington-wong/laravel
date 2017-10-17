@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Exceptions\Handler;
 use App\User;
 use App\Company;
 use App\ReferralForms;
@@ -364,8 +363,6 @@ class RegisterController extends Controller
                 ));*/
                 $message[] = 'Your ' . (isset(auth()->user()->card_brand) ? auth()->user()->card_brand : null) . ' credit card ending in ' . (isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : null) . ' has been charged $999.';
             } catch(\Exception $e) {
-                $h = new Handler();
-                $h->sendEmail($e);
                 $message[] = 'There was a problem processing your credit card.';
             }
 
