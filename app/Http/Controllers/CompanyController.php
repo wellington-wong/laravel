@@ -7,6 +7,9 @@ use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Gate;
+use App\Exceptions\Handler;
+use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
