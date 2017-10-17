@@ -134,4 +134,15 @@ class StripeController extends Controller
             ->route('index')
             ->with('msg', 'Thanks for your purchase!');
     }
+ 
+   /**
+    * Test stripe charge.
+    *
+    * @return
+    */
+    public function stripeTest( Request $request )
+    {
+ 
+        return view('stripe.test')->with(compact(''));
+    }
 }
