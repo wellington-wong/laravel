@@ -169,8 +169,9 @@ Route::group(['prefix' => 'messages'], function () {
     Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
 });
 
-// Get stripe public key
+// Stripe
 Route::get('/stripe_pk', function (){
 	return env('STRIPE_PK');
 })->name('stripe_pk');
 Route::get('/stripe-test', 'StripeController@stripeTest')->name('stripe-test');
+Route::post('/stripe-test', 'StripeController@postStripeTest')->name('post-stripe-test');
