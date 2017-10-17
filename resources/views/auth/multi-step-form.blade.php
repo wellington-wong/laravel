@@ -157,7 +157,7 @@
                                                 <div class="form-group col-md-12">
                                                     <label class="hidden">Package Type</label>
                                                     <div class="col-md-12">
-                                                        {{ Form::select('bus_plan', array('' => 'Select Your Package *', '999' => 'Basic Package - $999 a month'), null, ['class' => 'form-control']) }}
+                                                        {{ Form::select('bus_plan', array('' => 'Select Your Package *', 'monthly999' => 'Basic Package - $999 a month'), null, ['class' => 'form-control']) }}
                                                     </div>
                                                 </div>
 
