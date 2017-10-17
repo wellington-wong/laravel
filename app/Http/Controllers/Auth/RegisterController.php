@@ -354,6 +354,7 @@ class RegisterController extends Controller
                 auth()->user()->stripe_id = $customer->id;
                 auth()->user()->save();
                 $company->stripe_id = $customer->id;
+                $company->current = true;
                 $company->save();
                 $subscription->stripe_id = $customer->id;
                 $subscription->save();

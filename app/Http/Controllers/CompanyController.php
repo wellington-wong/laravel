@@ -209,6 +209,7 @@ class CompanyController extends Controller
         $request->_company->stripe_id = $customer->id;
         $request->_company->card_brand = $request->input('card_brand');
         $request->_company->card_last_four = $request->input('card_last_four');
+        $request->_company->current = true;
         $request->_company->save();
 
         return back()->with('success', [(isset($request->_company->card_brand) ? $request->_company->card_brand : 'Credit card' ) . ' ending in ' . (isset($request->_company->card_last_four) ? $request->_company->card_last_four : 'N/A') . ' successfully saved.']);
