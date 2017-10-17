@@ -18,12 +18,13 @@
 	              <div id="card-errors" role="alert"></div>
 	            </div>
 	        </div>
-	        <div class="form-group col-md-6">
-	            <label>Amount to charge *</label>
+	        <div class="form-group col-md-12">
+	            <label>Amount to charge ($) *</label>
 	            <div>
-	                {{ Form::text('amount', '', array('class' => 'form-control', 'placeholder' => 'Amount to charge *')) }}
+	                {{ Form::text('amount', '', array('class' => 'form-control', 'placeholder' => 'Amount to charge ($) *')) }}
 	            </div>
 	        </div>
+	        {{ Form::hidden('stripe_id', '') }}
 	        <div class="form-group col-md-12 text-right">
 	        	{{ Form::submit('Submit', ['class' => 'btn btn-primary button-responsive-100 submit-charge']) }}
 	        </div>

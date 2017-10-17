@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StripeController extends Controller
 {
@@ -141,8 +142,28 @@ class StripeController extends Controller
     * @return
     */
     public function stripeTest( Request $request )
-    {
- 
+    { 
         return view('stripe.test')->with(compact(''));
+    }
+ 
+   /**
+    * Post Test stripe charge.
+    *
+    * @return
+    */
+    public function postStripeTest( Request $request )
+    { 
+        $rules = [
+            'amount'=>'required|numeric',
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+        return back()->with( 'success', ['Stripe successful charged ' . $request->input('amount') . '.']);
     }
 }
