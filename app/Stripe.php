@@ -15,10 +15,10 @@ class Stripe extends Model
 
         // Create stripe customer
         return \Stripe\Customer::create(array(
-            "description" => $request->input('first_name') . ' ' . $request->input('last_name'),
+            "description" => $request->_company->name,
             "email" => $request->input('email'),
             "source" => $request->input('stripe_id'),
-            "plan" => 'monthly999'
+            "plan" => $request->input('bus_plan')
         ));
 
     }

@@ -206,7 +206,7 @@ class CompanyController extends Controller
         $customer = Stripe::createCustomer();
 
         // Save new credit card.
-        $request->_company->stripe_id = $request->input('stripe_id');
+        $request->_company->stripe_id = $customer->id;
         $request->_company->card_brand = $request->input('card_brand');
         $request->_company->card_last_four = $request->input('card_last_four');
         $request->_company->save();
