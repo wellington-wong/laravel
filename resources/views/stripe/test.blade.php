@@ -15,7 +15,7 @@
 	        <div class="form-group">
 	            <div class="col-md-12">
 	              <div id="card-element"></div>
-	              <div id="card-errors" role="alert"></div>
+	              <div id="card-errors hidden" role="alert"></div>
 	            </div>
 	        </div>
 	        <div class="form-group col-md-12">
@@ -26,7 +26,7 @@
 	        </div>
 	        {{ Form::hidden('stripe_id', '') }}
 	        <div class="form-group col-md-12 text-right">
-	        	{{ Form::submit('Submit', ['class' => 'btn btn-primary button-responsive-100 submit-charge', 'disabled' => 'disabled']) }}
+	        	{{ Form::submit('Submit', ['class' => 'btn btn-primary button-responsive-100 submit-charge']) }}
 	        </div>
 		{{ Form::close() }}
     </div>
