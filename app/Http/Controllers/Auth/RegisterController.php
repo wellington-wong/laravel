@@ -257,25 +257,6 @@ class RegisterController extends Controller
                 return back()->with(['errors' => $validator->errors()]);
             }
 
-
-            try {
-
-                // Charge credit card using stripe
-                \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
-                $customer = \Stripe\Customer::create(array(
-                    "description" => $request->input('first_name') . ' ' . $request->input('last_name'),
-                    "email" => $request->input('email'),
-                    "source" => $request->input('stripe_id'),
-                    "plan" => 'monthly999'
-                ));
-
-                
-                $message[] = 'Your ' . (isset(auth()->user()->card_brand) ? auth()->user()->card_brand : null) . ' credit card ending in ' . (isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : null) . ' has been charged $999.';
-            } catch(\Exception $e) {
-                $message[] = 'There was a problem processing your credit card.';
-                return false;
-            }
-
             // Create User
             $user = User::firstOrCreate([
                 'email'=>$request->input('email'),
@@ -354,14 +335,30 @@ class RegisterController extends Controller
             Auth::loginUsingId($user->id, true);
 
             $message[] = 'Congratulations! your company has been successfully created.';
+            
+            try {
 
-            // Save customer id to the company creator, company and subscription
-            auth()->user()->stripe_id = $customer->id;
-            auth()->user()->save();
-            $company->stripe_id = $customer->id;
-            $company->save();
-            $subscription->stripe_id = $customer->id;
-            $subscription->save();
+                // Charge credit card using stripe
+                \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
+                $customer = \Stripe\Customer::create(array(
+                    "description" => $request->input('first_name') . ' ' . $request->input('last_name'),
+                    "email" => $request->input('email'),
+                    "source" => $request->input('stripe_id'),
+                    "plan" => 'monthly999'
+                ));
+
+                // Save customer id to the company creator, company and subscription
+                auth()->user()->stripe_id = $customer->id;
+                auth()->user()->save();
+                $company->stripe_id = $customer->id;
+                $company->save();
+                $subscription->stripe_id = $customer->id;
+                $subscription->save();
+                
+                $message[] = 'Your ' . (isset(auth()->user()->card_brand) ? auth()->user()->card_brand : null) . ' credit card ending in ' . (isset(auth()->user()->card_last_four) ? auth()->user()->card_last_four : null) . ' has been charged $999.';
+            } catch(\Exception $e) {
+                $message[] = 'There was a problem processing your credit card.';
+            }
 
             // Make company creator a super admin
             auth()->user()->attachRole(Role::find(3), $company);
