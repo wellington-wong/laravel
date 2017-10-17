@@ -11,6 +11,7 @@ use App\Role;
 use App\BasicPages;
 use App\Subscriptions;
 use App\Http\Controllers\Controller;
+use Illuminate\Container\Container;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
