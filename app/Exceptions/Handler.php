@@ -38,9 +38,9 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
 
-        if ( ! in_array( config('app.env'), ['local', 'staging'] ) ) {
+        //if ( ! in_array( config('app.env'), ['local', 'staging'] ) ) {
             $this->sendEmail($exception); // sends an email
-        }
+        //}
 
         parent::report($exception);
     }
