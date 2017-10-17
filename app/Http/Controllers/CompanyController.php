@@ -190,7 +190,9 @@ class CompanyController extends Controller
         $rules = [
             'stripe_id'=>'required',
             'card_brand'=>'required',
-            'card_last_four'=>'required'
+            'card_last_four'=>'required',
+            'bus_plan'=>'required',
+            'cc_accept_terms'=>'required'
         ];
 
         $validator = Validator::make($request->input(), $rules);
