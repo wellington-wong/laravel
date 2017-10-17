@@ -8,7 +8,7 @@
         <div class="form-group col-md-12">
             <div class="col-md-12">
               <div id="card-element"></div>
-              <div id="card-errors" class="hidden" role="alert"></div>
+              <div id="card-errors" role="alert"></div>
             </div>
         </div>
 	{{ Form::close() }}
