@@ -203,7 +203,16 @@ class CompanyController extends Controller
         }
 
         // Create strip customer
-        $customer = Stripe::createCustomer();
+        try {
+            $customer = Stripe::createCustomer();         
+        } catch(\Exception $e) {
+
+            Log::error($e);
+            $h = new Handler( Container::getInstance() );
+            $h->sendEmail($e);
+
+            return back()->with('error', 'Your credit card has been declined. Please try again or contact us.');
+        }       
 
         // Save new credit card.
         $request->_company->stripe_id = $customer->id;
