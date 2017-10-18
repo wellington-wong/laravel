@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Company;
 use App\Stripe;
+use App\BasicPages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Gate;
@@ -177,7 +178,9 @@ class CompanyController extends Controller
      * @return
      */
     public function updateCard ( Request $request ) {
-        return view('company.update-card');
+
+        $billingTerms = BasicPages::fetch('billing-terms', 0)->first();
+        return view('company.update-card')->with(compact('billingTerms'));
     }
 
     /**

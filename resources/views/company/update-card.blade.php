@@ -41,7 +41,7 @@
               <div class="form-group col-md-12 no-padding-lr">
                 <label>
                   <input type="checkbox" name="cc_accept_terms" class="accept-terms">
-                  <span>I have read and accept the <a href="javascript:void(0)" id="billing-terms">billing terms and conditions.</a></span>
+                  <span>I have read and accept the <a href="javascript:void(0)" id="billing-terms-update">billing terms and conditions.</a></span>
                 </label>
               </div>
 
@@ -53,6 +53,12 @@
                 </div>
 
                 {{ Form::close() }}
+
+                <div class="update-cc-modal">@include('layouts.modal')</div>
+                <div class="hidden">
+                    <div class="billing-terms-title">{{ isset($billingTerms->title) ? $billingTerms->title : 'null' }}</div>
+                    <div class="billing-terms-content">{!! isset($billingTerms->content) ? $billingTerms->content : 'null' !!}</div>
+                </div>
             </div>
 
         </div>

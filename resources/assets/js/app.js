@@ -1357,6 +1357,22 @@ $(function (){
 			return false;
 		}
 	});
+
+	// Billing terms and condition
+	var $billingModalUpdate = $('.update-cc-modal #incentful-modal');
+	$billingModalUpdate.find('.btn.submit').on('click', function (){
+		$('input[name="cc_accept_terms"]').prop('checked', true);
+		$billingModalUpdate.modal('hide');
+	});
+	$billingModalUpdate.find('.btn.cancel').on('click', function (){
+		$('input[name="cc_accept_terms"]').prop('checked', false);
+		$billingModalUpdate.modal('hide');
+	});
+	$('#billing-terms-update').on('click', function () {
+   		$billingModalUpdate.find('.modal-title').text($('.billing-terms-title').text());
+   		$billingModalUpdate.find('.modal-body').html($('.billing-terms-content').html());
+		$billingModalUpdate.modal('show');
+	});
 // END UPDATE CREDIT CARD
 
 // STRIPE TEST
