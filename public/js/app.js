@@ -21546,6 +21546,18 @@ $(function () {
 	});
 
 	// END STRIPE TEST
+
+	// COMPANY
+
+	$('.delete-company').on('click', function () {
+		console.log('delete company');
+		var allCompanies_modal = $('.all-companies-modal #incentful-modal');
+		allCompanies_modal.find('.modal-title').text('Delete Company Confirmation');
+		allCompanies_modal.find('.modal-body').html('Are you sure you want to delete this company?');
+		allCompanies_modal.modal('show');
+	});
+
+	// END COMPANY
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
