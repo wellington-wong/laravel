@@ -50,6 +50,7 @@ Route::post('/company/update-logo/{cid}', 'CompanyController@postUpdateLogo')->n
 Route::post('/company/register', 'Auth\CompanyController@register')->name('company-register');
 Route::get('/company/credit-card/update', 'CompanyController@updateCard')->name('company-update-card');
 Route::post('/company/credit-card/update', 'CompanyController@postUpdateCard')->name('company-update-card');
+Route::post('/company/delete/{id}', 'CompanyController@postDeleteCompany')->name('company-delete');
 
 // Referral Routes
 Route::get('/form/{id}', 'ReferralController@formJson')->name('form-json');

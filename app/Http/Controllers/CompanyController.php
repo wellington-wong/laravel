@@ -215,4 +215,14 @@ class CompanyController extends Controller
         return back()->with('success', [(isset($request->_company->card_brand) ? $request->_company->card_brand : 'Credit card' ) . ' ending in ' . (isset($request->_company->card_last_four) ? $request->_company->card_last_four : 'N/A') . ' successfully saved.']);
     }
 
+    /**
+     * Delete company
+     *
+     * @return
+     */
+    public function postDeleteCompany ( Request $request ) {
+
+        return 'delete company';
+    }
+
 }
