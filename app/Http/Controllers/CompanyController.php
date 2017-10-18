@@ -205,7 +205,7 @@ class CompanyController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        // Create strip customer
+        // Create stripe customer
         try {
             $customer = Stripe::createCustomer();         
         } catch(\Exception $e) {
