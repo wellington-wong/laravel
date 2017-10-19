@@ -51,6 +51,7 @@ Route::post('/company/register', 'Auth\CompanyController@register')->name('compa
 Route::get('/company/credit-card/update', 'CompanyController@updateCard')->name('company-update-card');
 Route::post('/company/credit-card/update', 'CompanyController@postUpdateCard')->name('company-update-card');
 Route::post('/company/delete/{id}', ['uses' => 'CompanyController@postDeleteCompany', 'middleware' => ['role:globalAdmin']])->name('company-delete');
+Route::get('/company/delete/{id}', ['uses' => 'CompanyController@postDeleteCompany', 'middleware' => ['role:globalAdmin']])->name('company-delete');
 
 // Referral Routes
 Route::get('/form/{id}', 'ReferralController@formJson')->name('form-json');
