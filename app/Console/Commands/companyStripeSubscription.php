@@ -18,7 +18,7 @@ class companyStripeSubscription extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Check and update db with the current company stripe subscription';
 
     /**
      * Create a new command instance.
@@ -38,5 +38,6 @@ class companyStripeSubscription extends Command
     public function handle()
     {
         //
+        $this->info('companyStripeSubscription');
     }
 }
