@@ -28,6 +28,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
+                    @role(['superAdmin', 'globalAdmin'])<th>Actions</th>@endrole
                 </tr>
                 </thead>
                 <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -36,6 +37,20 @@
                         <td>{{ $c->id }}</td>
                         <td><a href="//{{ $c->subdomain }}.{{ config('app.domain') }}/referral/create">{{ $c->company_name }}</a> </td>
                         <td>{{ $c->email }}</td>
+                        @role(['superAdmin', 'globalAdmin'])
+                        <td>                     
+                          <div class="dropdown users-action">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="https://{{ $c->subdomain }}.{{ env('DOMAIN') }}{{ URL::route('get-company', $c->id, false) }}">Edit</a></li>
+                              <!--<li><a>Delete</a></li>-->
+                            </ul>
+                          </div>
+                        </td>
+                        @endrole
                     </tr>
                     <tr class="tr-spacer"><td colspan=5></td></tr>
                 @endforeach
