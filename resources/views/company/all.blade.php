@@ -16,6 +16,10 @@
         </div>
     @endforeach-->
 
+      <div class="row col-md-12">
+      @include('layouts.page-header', ['header' => 'All Companies', 'col' => 6])
+      </div>
+
     <div class="row col-md-12">
         <div class="table-members-wrapper table-wrapper">
             <table class="table table-members tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
@@ -24,7 +28,6 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <!-- @role(['superAdmin', 'globalAdmin'])<th>Actions</th>@endrole -->
                 </tr>
                 </thead>
                 <tr class="tr-spacer"><td colspan=5></td></tr>
@@ -33,20 +36,6 @@
                         <td>{{ $c->id }}</td>
                         <td><a href="//{{ $c->subdomain }}.{{ config('app.domain') }}/referral/create">{{ $c->company_name }}</a> </td>
                         <td>{{ $c->email }}</td>
-                        <!--@role(['superAdmin', 'globalAdmin'])
-                        <td>                     
-                          <div class="dropdown users-action">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                Actions
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                              <li><a>Edit</a></li>
-                              <li><a>Delete</a></li>
-                            </ul>
-                          </div>
-                        </td>
-                        @endrole-->
                     </tr>
                     <tr class="tr-spacer"><td colspan=5></td></tr>
                 @endforeach
