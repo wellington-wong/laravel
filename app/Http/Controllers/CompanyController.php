@@ -232,7 +232,10 @@ class CompanyController extends Controller
      *
      * @return
      */
-    public function postDeleteCompany ( Request $request ) {
+    public function postDeleteCompany ( Request $request, $id ) {
+
+        dd($id);
+        $deleteCompany = Company::find($id);
 
         return 'delete company';
     }
