@@ -21565,13 +21565,20 @@ $(function () {
 
 	// COMPANY
 
+	// Delete company
+	var allCompanies_modal = $('.all-companies-modal #incentful-modal');
 	$('.delete-company').on('click', function () {
 		console.log('delete company');
-		var allCompanies_modal = $('.all-companies-modal #incentful-modal');
 		allCompanies_modal.find('.modal-title').text('Delete Company Confirmation');
 		allCompanies_modal.find('.modal-body').html('Are you sure you want to delete this company?');
 		allCompanies_modal.modal('show');
 	});
+	allCompanies_modal.find('.btn.submit').on('click', function () {
+		ajaxHelper("/company/delete/", data, "POST", statusCallback);
+	}).text('Yes').addClass('btn-primary');
+	allCompanies_modal.find('.btn.cancel').on('click', function () {
+		allCompanies_modal.modal('hide');
+	}).text('No').addClass('btn-danger');
 
 	// END COMPANY
 });
