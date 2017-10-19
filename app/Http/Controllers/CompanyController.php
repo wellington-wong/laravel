@@ -235,12 +235,15 @@ class CompanyController extends Controller
      */
     public function postDeleteCompany ( Request $request, $id ) {
 
-        $deleteCompany = Company::find($id);
-        $deleteCompany->delete();
-        $deleteOwner = User::find($deleteCompany->owner_id);
-        $deleteOwner->delete();
+        // Delete company and user/owner.
+        if ($deleteCompany = Company::find($id)) {
+            $deleteCompany->delete();
+            if ($deleteOwner = User::find($deleteCompany->owner_id)) {
+                $deleteOwner->delete();
+            }
+        }
 
-        return back()->with('success', [$deleteCompany->name . ' has been successfully deleted.']);
+        return back()->with('success', [(isset($deleteCompany->company_name) ? $deleteCompany->company_name : 'The company') . ' has been successfully deleted.']);
     }
 
 }

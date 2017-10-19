@@ -46,7 +46,7 @@
                             </button>
                             <ul class="dropdown-menu">
                               <li><a href="https://{{ $c->subdomain }}.{{ env('DOMAIN') }}{{ URL::route('get-company', $c->id, false) }}">Edit</a></li>
-                              <li><a href="javascript:void(0)" class="delete-company" data-id="{{ $c->id }}">Delete</a></li>
+                              <li>{{ Form::open( ['route' => ['company-delete', $c->id], 'id' => 'delete-company-' . $c->id ] ) }}{{ Form::close() }}<a href="javascript:void(0)" class="delete-company" data-id="{{ $c->id }}">Delete</a></li>
                             </ul>
                           </div>
                         </td>

@@ -21567,22 +21567,19 @@ $(function () {
 
 	if ($('.all-companies').length) {
 		// Delete company
-		var allCompanies_modal = $('.all-companies-modal #incentful-modal');
+		var $allCompanies_modal = $('.all-companies-modal #incentful-modal');
 		var cid;
 		$('.delete-company').on('click', function () {
-			allCompanies_modal.find('.modal-title').text('Delete Company Confirmation');
-			allCompanies_modal.find('.modal-body').html('Are you sure you want to delete this company?');
-			allCompanies_modal.modal('show');
+			$allCompanies_modal.find('.modal-title').text('Delete Company Confirmation');
+			$allCompanies_modal.find('.modal-body').html('Are you sure you want to delete this company?');
+			$allCompanies_modal.modal('show');
 			cid = $(this).data('id');
 		});
-		allCompanies_modal.find('.btn.submit').on('click', function () {
-			ajaxHelper("/company/delete/" + cid, [], "POST", function (data) {
-				//console.log(data);
-				location.reload();
-			});
+		$allCompanies_modal.find('.btn.submit').on('click', function () {
+			$('#delete-company-' + cid).submit();
 		}).text('Yes').addClass('btn-primary');
-		allCompanies_modal.find('.btn.cancel').on('click', function () {
-			allCompanies_modal.modal('hide');
+		$allCompanies_modal.find('.btn.cancel').on('click', function () {
+			$allCompanies_modal.modal('hide');
 		}).text('No').addClass('btn-danger');
 	}
 
