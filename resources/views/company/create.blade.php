@@ -36,7 +36,7 @@
             </div>    
 
             <div class="form-group col-md-12 text-center">
-                <button type="submit" class="btn btn-primary button-responsive-100 submit-company">Submit Company</button>
+                <button type="submit" class="btn btn-primary button-responsive-100 submit-company">Create Company</button>
             </div>
 
             {{ Form::hidden('logo_blob', old('logo_blob'), ['class' => 'logo-blob']) }}
