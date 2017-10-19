@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Cmgmyr\Messenger\Models\Thread;
 use App\Thread as ThreadByCompany;
 use App\EmailTemplate;
@@ -17,6 +18,7 @@ class Company extends Model
     use PhoneTrait;
     use AddressTrait;
     use ReferralTrait;
+    use SoftDeletes;
     
     protected $table = 'companies';
 

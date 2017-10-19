@@ -47,7 +47,7 @@ class Domain
             //CHECKS IF ANY OF THESE STRINGS ARE IN THE URL
             $ok_routes = ['companies', 'company/create', 'login', 'register', 'logout', 'manage-account',
                 'global-settings/login-as-user', 'password/reset', 'password/email', 'auth/facebook',
-                'auth/google', 'how-it-works', 'features', 'about-us', 'pricing', 'contact', 'ajax-validate', 'stripe_pk'];
+                'auth/google', 'how-it-works', 'features', 'about-us', 'pricing', 'contact', 'ajax-validate', 'stripe_pk', 'company/delete'];
             if ( stripos_array( trim($request->getRequestUri(), '/') , $ok_routes ) === false ) {
                 return redirect()->route('all-companies');
             }

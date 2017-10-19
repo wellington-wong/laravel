@@ -20,7 +20,7 @@
       @include('layouts.page-header', ['header' => 'All Companies', 'col' => 6])
       </div>
 
-    <div class="row col-md-12">
+    <div class="row col-md-12 all-companies">
         <div class="table-members-wrapper table-wrapper">
             <table class="table table-members tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                 <thead>
@@ -46,7 +46,7 @@
                             </button>
                             <ul class="dropdown-menu">
                               <li><a href="https://{{ $c->subdomain }}.{{ env('DOMAIN') }}{{ URL::route('get-company', $c->id, false) }}">Edit</a></li>
-                              <!--<li><a>Delete</a></li>-->
+                              <li><a href="javascript:void(0)" class="delete-company" data-id="{{ $c->id }}">Delete</a></li>
                             </ul>
                           </div>
                         </td>

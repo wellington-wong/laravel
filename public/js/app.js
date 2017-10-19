@@ -21577,8 +21577,8 @@ $(function () {
 		});
 		allCompanies_modal.find('.btn.submit').on('click', function () {
 			ajaxHelper("/company/delete/" + cid, [], "POST", function (data) {
-				console.log(data);
-				//location.reload();
+				//console.log(data);
+				location.reload();
 			});
 		}).text('Yes').addClass('btn-primary');
 		allCompanies_modal.find('.btn.cancel').on('click', function () {

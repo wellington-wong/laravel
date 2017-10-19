@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Laravel\Cashier\Billable;
 use Cmgmyr\Messenger\Traits\Messagable;
@@ -21,12 +22,13 @@ use App\Notifications\CreatedUser;
 class User extends Authenticatable
 {
     use Notifiable;
-    use EntrustUserTrait;
+    use EntrustUserTrait { EntrustUserTrait::restore insteadof SoftDeletes; }
     use Billable;
     use Messagable;
     use PhoneTrait;
     use AddressTrait;
     use ReferralTrait;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

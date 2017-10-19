@@ -6,6 +6,7 @@ use App\Address;
 use App\Company;
 use App\Stripe;
 use App\BasicPages;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Gate;
@@ -234,10 +235,12 @@ class CompanyController extends Controller
      */
     public function postDeleteCompany ( Request $request, $id ) {
 
-        dd($id);
         $deleteCompany = Company::find($id);
+        $deleteCompany->delete();
+        $deleteOwner = User::find($deleteCompany->owner_id);
+        $deleteOwner->delete();
 
-        return 'delete company';
+        return back()->with('success', [$deleteCompany->name . ' has been successfully deleted.']);
     }
 
 }
