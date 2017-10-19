@@ -28,7 +28,7 @@ class CompanyController extends Controller
 
     public function allCompanies( Request $request ) {
 
-        $companies = Company::orderBy('company_name')->get();
+        $companies = Company::orderBy('company_name')->paginate(15);
 
         return view('company.all')
             ->with( compact('companies') );
