@@ -54,5 +54,23 @@ class Stripe extends Model
     {
         return Auth::user() && \App\User::where('id', Auth::user()->id)->whereNotNull('stripe_id')->first();
     }
-    
+ 
+   /**
+    * Get plan for a company
+    *
+    * $company_id
+    * @return boolean
+    */
+    public function hasCompanyPlan( $company_id )
+    {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
+ 
+        $plan = \Stripe\Plan::retrieve(array(
+            "description" => auth()->user()->email,
+            "source" => $token
+        ));
+ 
+        return $plan;
+    }
+
 }
