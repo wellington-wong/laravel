@@ -81,13 +81,15 @@ class Stripe extends Model
     {
         \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
  
-        $customers = \Stripe\Customer::all();
+        $customers = \Stripe\Customer::all([ 'limit' => 100 ]);
         $customersData = $customers->data;
         $lastCustomer = end($customers->data);
 
+        // Get all stripe customers
+        // use while to overcome the 100 customers per server request.
         while ( $customers->has_more && isset($lastCustomer) ) {
-            print $lastCustomer->id . '<br />';
             $customers = \Stripe\Customer::all([
+                'limit' => 100,
                 'starting_after' => $lastCustomer->id
             ]);
             $customersData = array_merge($customersData, $customers->data);
