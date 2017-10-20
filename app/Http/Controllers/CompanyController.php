@@ -7,6 +7,7 @@ use App\Company;
 use App\Stripe;
 use App\BasicPages;
 use App\User;
+use App\Subscriptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Gate;
@@ -224,6 +225,29 @@ class CompanyController extends Controller
         $request->_company->card_last_four = $request->input('card_last_four');
         $request->_company->current = true;
         $request->_company->save();
+
+        // Create or update subscription
+        if ($subscription = Subscriptions::where('user_id', $request->_company->owner_id)->where('company_id', $request->_company->id)->first()) {
+            $subscription->update([
+                'user_id' => $request->_company->owner_id, 
+                'company_id' => $request->_company->id, 
+                'subscription_name' => 'Monthly 999', 
+                'stripe_id' => $request->input('stripe_id'),
+                'stripe_plan' => $request->input('bus_plan'),
+                'amount' => 999, 
+                'quantity' => 1,  
+            ]);
+        } else {
+            Subscriptions::firstOrCreate([
+                'user_id' => $request->_company->owner_id, 
+                'company_id' => $request->_company->id, 
+                'subscription_name' => 'Monthly 999', 
+                'stripe_id' => $request->input('stripe_id'),
+                'stripe_plan' => $request->input('bus_plan'),
+                'amount' => 999, 
+                'quantity' => 1,  
+            ]);
+        }
 
         return back()->with('success', [(isset($request->_company->card_brand) ? $request->_company->card_brand : 'Credit card' ) . ' ending in ' . (isset($request->_company->card_last_four) ? $request->_company->card_last_four : 'N/A') . ' successfully saved.']);
     }
