@@ -81,7 +81,10 @@ class Stripe extends Model
     {
         \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
  
-        $customers = \Stripe\Customer::all( );
+        $customers = \Stripe\Customer::all([
+            'starting_after' => 'cus_Bb7PDJIAkcD0bO'
+        ]);
+        if ($customers->has_more) {}
 
         return $customers;
     }
