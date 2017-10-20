@@ -38,13 +38,17 @@ class companyStripeSubscription extends Command
      */
     public function handle()
     {
+
         // Get all stripe customers, and update companies current status
         $stripe = new Stripe();
         $customers = $stripe->getAllCustomers( );
         foreach ($customers as $customer) {
             if (isset($customer->id) && $company = Company::where('stripe_id', $customer->id)->first()) {
+                $company->current = isset($customer->subscriptions->data[0]->status);
+                $company->save();
             }
         }
-        $this->info('companyStripeSubscription');
+
+        $this->info('Company stripe subscriptions have been updated.');
     }
 }
