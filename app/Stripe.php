@@ -58,16 +58,15 @@ class Stripe extends Model
    /**
     * Get plan for a company
     *
-    * $company_id
+    * $token
     * @return boolean
     */
-    public function hasCompanyPlan( $company_id )
+    public function hasCompanyPlan( $token )
     {
         \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
  
         $plan = \Stripe\Plan::retrieve(array(
-            "description" => auth()->user()->email,
-            "source" => $token
+            "id" => $token,
         ));
  
         return $plan;
