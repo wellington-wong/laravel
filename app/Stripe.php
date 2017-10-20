@@ -81,12 +81,20 @@ class Stripe extends Model
     {
         \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
  
-        $customers = \Stripe\Customer::all([
-            'starting_after' => 'cus_Bb7PDJIAkcD0bO'
-        ]);
-        if ($customers->has_more) {}
+        $customers = \Stripe\Customer::all();
+        $customersData = $customers->data;
+        $lastCustomer = end($customers->data);
 
-        return $customers;
+        while ( $customers->has_more && isset($lastCustomer) ) {
+            print $lastCustomer->id . '<br />';
+            $customers = \Stripe\Customer::all([
+                'starting_after' => $lastCustomer->id
+            ]);
+            $customersData = array_merge($customersData, $customers->data);
+            $lastCustomer = end($customers->data);
+        }
+
+        return $customersData;
     }
 
 }
