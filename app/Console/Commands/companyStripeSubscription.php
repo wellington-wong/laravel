@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Stripe;
+use App\Company;
 
 class companyStripeSubscription extends Command
 {
@@ -46,9 +47,11 @@ class companyStripeSubscription extends Command
             if (isset($customer->id) && $company = Company::where('stripe_id', $customer->id)->first()) {
                 $company->current = isset($customer->subscriptions->data[0]->status);
                 $company->save();
+                $this->info($company->company_name . '\'s current status have been changed to ' . (isset($customer->subscriptions->data[0]->status) ? 'true' : 'false'));
             }
         }
 
-        $this->info('Company stripe subscriptions have been updated.');
+        $this->info('--------------------------------------------------');
+        $this->info('All company stripe subscriptions have been updated.');
     }
 }
