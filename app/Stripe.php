@@ -61,7 +61,7 @@ class Stripe extends Model
     * $token
     * @return boolean
     */
-    public function hasCompanyPlan( $token )
+    public function getCompanyPlan( $token )
     {
         \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
  
