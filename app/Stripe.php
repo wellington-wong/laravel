@@ -22,4 +22,37 @@ class Stripe extends Model
         ));
 
     }
+ 
+   /**
+    * Create a new Stripe customer for a given user.
+    *
+    * @var Stripe\Customer $customer
+    * @param string $token
+    * @return Stripe\Customer $customer
+    */
+    public function createStripeCustomer($token)
+    {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
+ 
+        $customer = \Stripe\Customer::create(array(
+            "description" => auth()->user()->email,
+            "source" => $token
+        ));
+ 
+        Auth::user()->stripe_id = $customer->id;
+        Auth::user()->save();
+ 
+        return $customer;
+    }
+ 
+   /**
+    * Check if the Stripe customer exists.
+    *
+    * @return boolean
+    */
+    public function isStripeCustomer()
+    {
+        return Auth::user() && \App\User::where('id', Auth::user()->id)->whereNotNull('stripe_id')->first();
+    }
+    
 }
