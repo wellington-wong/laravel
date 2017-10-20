@@ -71,5 +71,19 @@ class Stripe extends Model
  
         return $plan;
     }
+ 
+   /**
+    * Get stripe all customers
+    *
+    * @return boolean
+    */
+    public function getAllCustomers( )
+    {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
+ 
+        $customers = \Stripe\Customer::all( );
+
+        return $customers;
+    }
 
 }
