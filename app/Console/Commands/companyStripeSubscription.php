@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Stripe;
 use App\Company;
+use Carbon\Carbon;
 
 class companyStripeSubscription extends Command
 {
@@ -51,7 +52,7 @@ class companyStripeSubscription extends Command
             }
         }
 
+        $this->info('All company stripe subscriptions have been updated. ' . Carbon::now()->toDateTimeString());
         $this->info('--------------------------------------------------');
-        $this->info('All company stripe subscriptions have been updated.');
     }
 }

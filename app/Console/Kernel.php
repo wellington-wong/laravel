@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('companyStripeSubscription')->daily();
+        $schedule->command('companyStripeSubscription')->daily()->appendOutputTo(storage_path('logs/companyStripeSubscription.log'));
     }
 
     /**
