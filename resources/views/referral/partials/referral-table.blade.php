@@ -16,6 +16,7 @@
                             <th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['created_at'], 'column' => 'created_at']) }}">Date <i class="fa fa-sort{{ $sortc['created_at']?:'' }}" aria-hidden="true"></i></a></th>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['id'], 'column' => 'id']) }}">Referral ID <i class="fa fa-sort{{ $sortc['id'] }}" aria-hidden="true"></i></a></th>@endif                                                                                
                             @if (auth()->user()->hasRole('member'))<th></th>@endif
+                            <th></th>
 
                         </tr>
                     </thead> 
@@ -49,7 +50,7 @@
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">History</a></td>@endif
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">History</a></td>@endif
-
+                            @role(['globalAdmin'])<td><a href="javascript:void(0)" class="referral-delete-link"><i class="fa fa-trash fa-1x referral-delete-icon" aria-hidden="true"></i></a></td>@endrole
                         </tr>
 
                         @if ( 1 == $canSendCheck )
