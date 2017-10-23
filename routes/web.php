@@ -106,8 +106,6 @@ Route::get('/global-settings/login-as-origin', ['uses' => 'GlobalSettingsControl
 Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdmin']], function() {
 	Route::get('/global-settings/submit-referral-member', ['uses' => 'GlobalSettingsController@submitReferralMember', 'middleware' => ['permission:submit_member_referral']])->name('submit-referral-member');
 	Route::post('/global-settings/submit-referral-member', ['uses' => 'GlobalSettingsController@submitReferralMember', 'middleware' => ['permission:submit_member_referral']])->name('submit-referral-member');
-	Route::get('/global-settings/submit-referral-member-admin', ['uses' => 'GlobalSettingsController@submitReferralMemberAsAdmin', 'middleware' => ['role:globalAdmin']])->name('submit-referral-member');
-	Route::post('/global-settings/submit-referral-member-admin', ['uses' => 'GlobalSettingsController@submitReferralMemberAsAdmin', 'middleware' => ['role:globalAdmin']])->name('submit-referral-member');
 	Route::get('/global-settings/edit-member-information', ['uses' => 'GlobalSettingsController@editMemberInformation', 'middleware' => ['permission:edit_member_information']])->name('edit-member-information');
 	Route::get('/global-settings/export-member-information', ['uses' => 'GlobalSettingsController@exportMemberInformation', 'middleware' => ['permission:export_member_information']])->name('export-member-information');
 	Route::get('/global-settings/add-delete-admin', ['uses' => 'GlobalSettingsController@addDeleteAdmin', 'middleware' => ['permission:add_delete_admin']])->name('add-delete-admin');

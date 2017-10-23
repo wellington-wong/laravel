@@ -14,6 +14,10 @@
         </div>
 
         <div class="create-referral-wrapper">
+
+            @role(['admin', 'superAdmin', 'globalAdmin'])
+                {{ Form::select('member', [''], '', ['class' => 'form-control']) }}
+            @endrole
             {{ Form::open() }}
                 <div id="fb-render" >
                 </div>
