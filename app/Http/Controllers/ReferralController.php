@@ -680,7 +680,7 @@ class ReferralController extends Controller
 
         if ( $referral = Referral::find($id) ) {
             $referral->delete();
-            return back()->with( 'success',  [ 'Referral for ' .  $referral->referred->getName() . ' has been deleted.' ] );
+            return back()->with( 'success',  [ 'Referral for ' .  ($referral->referred->getName() ?: null) . ' has been deleted.' ] );
         } else {
             return back()->withErrors([ 'errors' => 'Referral not found.' ]);
         }

@@ -56,7 +56,7 @@
                         @if ( 1 == $canSendCheck )
                             <tr class="check" >
                                 <td></td><td></td>
-                                <td colspan="4" >
+                                <td colspan="@role('globalAdmin') 4 @endrole @role(['member', 'admin', 'superAdmin']) 3 @endrole" >
                                 <form method="POST" action="{{ route('post-send-check', ['referral_id'=>$r->id]) }}" >
                                     {{ csrf_field() }}
 
