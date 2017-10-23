@@ -1038,8 +1038,11 @@ table.table {
 							}
 						}
 					}
-					.referral-delete-icon {
-						font-size: 18px;
+					.referral-delete {
+						i {
+							font-size: 18px;
+							color: #ff0000;
+						}
 					}
 				}
 			}
