@@ -20442,6 +20442,22 @@ $(function () {
 			$(this).addClass('disabled');
 		}
 	});
+
+	// Delete Referrals 
+	var referrals_modal = $('.referrals-wrapper #incentful-modal');
+	$('.referral-delete a').click(function () {
+		var _this = $(this);
+		referrals_modal.find('.modal-title').text('Delete Referral Confirmation');
+		referrals_modal.find('.modal-body').html('Are you sure you want to delete the referral for ' + $(this).data('rname') + '?');
+		referrals_modal.modal('show');
+
+		$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function () {
+			dynaForm(_this.data('url'));
+		});
+		$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function () {
+			referrals_modal.modal('hide');
+		});
+	});
 	// END - REFERRALS
 
 	// NOTIFICATIONS
@@ -21186,6 +21202,26 @@ $(function () {
 			}
 		});
 	}
+
+	// Create form and submit
+	function dynaForm(url) {
+		if (window.Laravel.csrfToken) {
+			var newForm = $('<form>', {
+				'action': url,
+				'target': '_top',
+				'method': 'POST'
+			}).append($('<input>', {
+				'name': '_token',
+				'value': window.Laravel.csrfToken,
+				'type': 'hidden'
+			})).appendTo('body');
+			newForm.submit();
+		} else {
+			console.log('No CSRF token found');
+			return false;
+		}
+	}
+
 	// END COMMON
 
 	// SIDEBAR
