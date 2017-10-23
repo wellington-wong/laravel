@@ -21570,8 +21570,9 @@ $(function () {
 		var $allCompanies_modal = $('.all-companies-modal #incentful-modal');
 		var cid;
 		$('.delete-company').on('click', function () {
+			var cName = $(this).data('name');
 			$allCompanies_modal.find('.modal-title').text('Delete Company Confirmation');
-			$allCompanies_modal.find('.modal-body').html('Are you sure you want to delete this company?');
+			$allCompanies_modal.find('.modal-body').html('Are you sure you want to delete ' + cName + '?');
 			$allCompanies_modal.modal('show');
 			cid = $(this).data('id');
 		});
