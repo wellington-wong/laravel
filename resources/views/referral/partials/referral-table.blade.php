@@ -50,7 +50,7 @@
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">History</a></td>@endif
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">History</a></td>@endif
-                            @role(['globalAdmin'])<td class="referral-delete"><a href="javascript:void(0)" title="Delete"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></a></td>@endrole
+                            @role(['globalAdmin'])<td class="referral-delete"><a href="javascript:void(0)" title="Delete" data-url="{{ route('referral-delete', $r->id) }}"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></a></td>@endrole
                         </tr>
 
                         @if ( 1 == $canSendCheck )

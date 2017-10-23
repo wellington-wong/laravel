@@ -676,10 +676,15 @@ class ReferralController extends Controller
      * Delete referral
      * @return
      **/
-    public function delete( Request $request ) {
+    public function delete( Request $request, $id ) {
 
-        $referral = new Referral();
-        return $referral->deleteReferral();
+        if ( $referral = Referral::find($id) ) {
+            $referral->delete();
+            return back()->with( 'success',  [ 'Referral for ' .  $referral->referred->getName() . ' has been deleted.' ] );
+        } else {
+            return back()->withErrors([ 'errors' => 'Referral not found.' ]);
+        }
+        
     }
 
     /**

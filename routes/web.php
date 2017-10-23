@@ -72,7 +72,7 @@ Route::get('/referrer/export', 'ReferralController@referrersExport')->name('refe
 Route::post('/referral/update', 'ReferralController@update')->name('referrals-update');
 Route::get('/referral/view/{id}', 'ReferralController@getView')->name('referral-view');
 Route::get('/referral/confirmation', 'ReferralController@confirmation')->name('referral-confirmation');
-Route::post('/referral/delete', 'ReferralController@delete')->name('referral-delete');
+Route::post('/referral/delete/{id}', 'ReferralController@delete')->name('referral-delete');
 
 // Static Page Routes
 Route::get('/how-it-works', 'BasicPageController@howItWorks')->name('how-it-works');
