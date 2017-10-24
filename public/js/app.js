@@ -20458,7 +20458,7 @@ $(function () {
 			referrals_modal.modal('hide');
 		});
 	});
-	$('.referral-actions a.transfer').click(function () {
+	$('.referral-actions a.transfer, .transfer-btn').click(function () {
 		var _this = $(this);
 		referrals_modal.find('.modal-title').text('Transfer Referral To Another Member');
 		referrals_modal.find('.modal-body').html('<label>Please select a member to transfer this referral to:</label>');

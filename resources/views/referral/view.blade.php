@@ -45,8 +45,9 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 no-padding-lr">
-                <button class="btn btn-danger delete-btn pull-right" data-url="{{ route('referral-delete', $referral->id) }}" data-rname="{{ isset($referral->referred) ? $referral->referred->getName() : null }}">Delete</button>
+            <div class="pull-right">
+                <button class="btn btn-danger delete-btn" data-url="{{ route('referral-delete', $referral->id) }}" data-rname="{{ isset($referral->referred) ? $referral->referred->getName() : null }}">Delete</button>
+                <button class="btn btn-primary transfer-btn" data-url="{{ route('referral-transfer', $referral->id) }}" data-rname="{{ isset($referral->referred) ? $referral->referred->getName() : null }}">Transfer</button>
             </div>
         </div>
 
