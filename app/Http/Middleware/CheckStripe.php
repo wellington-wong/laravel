@@ -26,7 +26,7 @@ class CheckStripe
         if ( !auth()->guest() && $subdomain != 'app' && auth()->user()->hasRole('superAdmin') && !in_array( $request->route()->getName(), $routeUrls )) {
             $company = Company::where('subdomain', $subdomain)->first();
             if (!strlen($company->stripe_id) || !strlen($company->card_brand) || !strlen($company->card_last_four)) {
-               return redirect(route('company-update-card'))->withErrors(['error' => ['Please update your credit card to continue.']]);
+               return redirect(route('company-update-card'))->withErrors(['error' => ['Please update your credit card information to continue.']]);
             } 
         } 
 
