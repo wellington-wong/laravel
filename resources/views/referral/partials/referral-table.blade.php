@@ -16,7 +16,7 @@
                             <th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['created_at'], 'column' => 'created_at']) }}">Date <i class="fa fa-sort{{ $sortc['created_at']?:'' }}" aria-hidden="true"></i></a></th>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="{{ route($route, [isset($args) ? $args : '', (isset($param->column_sort) ? $param->column_sort : ''), 'sort' => $sort['id'], 'column' => 'id']) }}">Referral ID <i class="fa fa-sort{{ $sortc['id'] }}" aria-hidden="true"></i></a></th>@endif                                                                                
                             @if (auth()->user()->hasRole('member'))<th></th>@endif
-                            <th></th>
+                            @role(['globalAdmin'])<th></th>@endrole
 
                         </tr>
                     </thead> 
