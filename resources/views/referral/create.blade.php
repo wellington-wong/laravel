@@ -19,7 +19,7 @@
                 @role(['admin', 'superAdmin', 'globalAdmin'])
                 <div class="form-group col-md-12">
                     {{ Form::label('as_member', 'Submit as a member') }}                    
-                    {{ Form::select('as_member', ($_company->members()->pluck('name', 'id') ?: [] ), '', ['class' => 'form-control']) }}
+                    {{ Form::select('as_member', ($_company->members()->pluck('name', 'id') ? ['0' => 'Please select a member'] +  $_company->members()->pluck('name', 'id')->toArray() : [] ), '', ['class' => 'form-control']) }}
                 </div>
                 @endrole
                 <div id="fb-render" >

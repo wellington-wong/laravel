@@ -350,23 +350,24 @@ class ReferralController extends Controller
             'name'=>$request->input('first_name') . ' ' . $request->input('last_name'),
             'first_name'=>$request->input('first_name'),
             'last_name'=>$request->input('last_name'),
-            'password'=> Hash::make($request->input('password'))
+            'password'=> Hash::make($request->input('password')),
         ]);
         //ADD PHONE
         $phone = $user->addDefaultPhone($request);
         //ADD ADDRESS
         $address = $user->addDefaultAddress($request);
-
+        
         //ADD THAT USER TO A NEW REFERRAL
         $user->referral_id = $request->user()->referrals()->insertGetId([
-            'referrer_id'   => $request->user()->id,
+            'referrer_id'   => $request->get('as_member') ?: $request->user()->id,
             'company_id'    => $request->get('subdomain_id'),
             'user_id'       => $user->id,
             //'as_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,            
             //'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,  
             //'installation_complete' => $request->has('install_complete') ? $request->get('install_complete') : 0,
             'created_at' =>  \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now()
+            'updated_at' => \Carbon\Carbon::now(),            
+            'as_admin_id'=> $request->get('as_member') ? $request->user()->id : 0
         ]);
 
         if (isset($duplicate['email']) || isset($duplicate['phone'])) {
