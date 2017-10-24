@@ -706,4 +706,19 @@ class ReferralController extends Controller
         return $result;
     }
 
+    /**
+     * Transfer referral
+     * @return
+     **/
+    public function transfer( Request $request, $id ) {
+        return;
+        if ( $referral = Referral::find($id) ) {
+            $referral->delete();
+            return redirect( route( 'referrals' ) )->with( 'success',  [ 'Referral for ' .  ($referral->referred->getName() ?: null) . ' has been deleted.' ] );
+        } else {
+            return redirect( route( 'referrals' ) )->withErrors([ 'errors' => 'Referral not found.' ]);
+        }
+        
+    }
+
 }
