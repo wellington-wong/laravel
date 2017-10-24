@@ -677,12 +677,12 @@ class ReferralController extends Controller
      * @return
      **/
     public function delete( Request $request, $id ) {
-
+        
         if ( $referral = Referral::find($id) ) {
             $referral->delete();
-            return back()->with( 'success',  [ 'Referral for ' .  ($referral->referred->getName() ?: null) . ' has been deleted.' ] );
+            return redirect( route( 'referrals' ) )->with( 'success',  [ 'Referral for ' .  ($referral->referred->getName() ?: null) . ' has been deleted.' ] );
         } else {
-            return back()->withErrors([ 'errors' => 'Referral not found.' ]);
+            return redirect( route( 'referrals' ) )->withErrors([ 'errors' => 'Referral not found.' ]);
         }
         
     }

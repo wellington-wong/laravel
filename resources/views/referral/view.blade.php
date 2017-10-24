@@ -44,6 +44,13 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-12 no-padding-lr">
+                <button class="btn btn-danger delete-btn pull-right" data-url="{{ route('referral-delete', $referral->id) }}" data-rname="{{ isset($referral->referred) ? $referral->referred->getName() : null }}">Delete</button>
+            </div>
+        </div>
+
+        @include('layouts.modal')
     </div>
 
 @endsection

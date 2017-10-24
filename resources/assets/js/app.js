@@ -215,17 +215,17 @@ $(function (){
  	});
 
  	// Delete Referrals 
-    var referrals_modal = $('.referrals-wrapper #incentful-modal');
- 	$('.referral-delete a').click(function (){
+    var referrals_modal = $('.referrals-wrapper #incentful-modal, .referrals-history #incentful-modal');
+ 	$('.referral-delete a, .delete-btn').click(function (){
 		var _this = $(this);
    		referrals_modal.find('.modal-title').text('Delete Referral Confirmation');
    		referrals_modal.find('.modal-body').html('Are you sure you want to delete the referral for ' + $(this).data('rname') + '?');
 		referrals_modal.modal('show');
 
-		$('.referrals-wrapper #incentful-modal .btn.submit').on('click', function (){			
+		referrals_modal.find('.btn.submit').on('click', function (){
  			dynaForm(_this.data('url'));
 		});
-		$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function (){
+		referrals_modal.find('.btn.cancel').on('click', function (){
 			referrals_modal.modal('hide');
 		});
  	});
