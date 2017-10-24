@@ -1038,10 +1038,15 @@ table.table {
 							}
 						}
 					}
-					.referral-delete {
-						i {
-							font-size: 18px;
+					.referral-actions {
+						i.fa {
+							font-size: 15px;
+						}
+						i.fa-trash {
 							color: #ff0000;
+						}
+						i.fa-exchange {
+							color: $brand-primary;
 						}
 					}
 				}

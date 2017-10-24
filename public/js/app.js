@@ -20445,7 +20445,7 @@ $(function () {
 
 	// Delete Referrals 
 	var referrals_modal = $('.referrals-wrapper #incentful-modal, .referrals-history #incentful-modal');
-	$('.referral-delete a, .delete-btn').click(function () {
+	$('.referral-actions a.delete, .delete-btn').click(function () {
 		var _this = $(this);
 		referrals_modal.find('.modal-title').text('Delete Referral Confirmation');
 		referrals_modal.find('.modal-body').html('Are you sure you want to delete the referral for ' + $(this).data('rname') + '?');
@@ -20453,6 +20453,24 @@ $(function () {
 
 		referrals_modal.find('.btn.submit').on('click', function () {
 			dynaForm(_this.data('url'));
+		});
+		referrals_modal.find('.btn.cancel').on('click', function () {
+			referrals_modal.modal('hide');
+		});
+	});
+	$('.referral-actions a.transfer').click(function () {
+		var _this = $(this);
+		referrals_modal.find('.modal-title').text('Transfer Referral To Another Member');
+		referrals_modal.find('.modal-body').html('<label>Please select a member to transfer this referral to:</label>');
+		referrals_modal.find('.modal-body').append('<div class="form-group member-select">' + $('.members-select').html() + '</div>');
+		referrals_modal.modal('show');
+		referrals_modal.find('.btn.submit').on('click', function () {
+			var input = $('<input>', {
+				'name': 'as_member',
+				'value': $('.member-select select[name="as_member"]').val(),
+				'type': 'hidden'
+			});
+			dynaForm(_this.data('url'), input);
 		});
 		referrals_modal.find('.btn.cancel').on('click', function () {
 			referrals_modal.modal('hide');
@@ -21204,7 +21222,7 @@ $(function () {
 	}
 
 	// Create form and submit
-	function dynaForm(url) {
+	function dynaForm(url, input) {
 		if (window.Laravel.csrfToken) {
 			var newForm = $('<form>', {
 				'action': url,
@@ -21214,7 +21232,7 @@ $(function () {
 				'name': '_token',
 				'value': window.Laravel.csrfToken,
 				'type': 'hidden'
-			})).appendTo('body');
+			})).append(input).appendTo('body');
 			newForm.submit();
 		} else {
 			console.log('No CSRF token found');

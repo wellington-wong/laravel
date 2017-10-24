@@ -50,7 +50,10 @@
                             <td>{{ isset($r->created_at) ? $r->created_at->format('m/d/y') : '' }}</td>
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">History</a></td>@endif
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">History</a></td>@endif
-                            @role(['globalAdmin'])<td class="referral-delete"><a href="javascript:void(0)" title="Delete" data-url="{{ route('referral-delete', $r->id) }}" data-rname="{{ isset($r->referred) ? $r->referred->getName() : null }}"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></a></td>@endrole
+                            @role(['globalAdmin'])<td class="referral-actions">
+                                <a href="javascript:void(0)" class="transfer" title="Delete" data-url="{{ route('referral-transfer', $r->id) }}" data-rname="{{ isset($r->referred) ? $r->referred->getName() : null }}"><i class="fa fa-exchange fa-1x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a href="javascript:void(0)" class="delete" title="Transfer Referral" data-url="{{ route('referral-delete', $r->id) }}" data-rname="{{ isset($r->referred) ? $r->referred->getName() : null }}"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></a>
+                            </td>@endrole
                         </tr>
 
                         @if ( 1 == $canSendCheck )
@@ -88,5 +91,6 @@
                 @if (count($referrals))<div class="small text-center">Showing {{ $referrals->firstItem() }} - {{ $referrals->lastItem() }} of <strong>{{ $referrals->total() }}</strong></div>@endif
             </div>
         </div>
+        <div class="hidden members-select">{{ Form::select('as_member', ($_company->members()->pluck('name', 'id') ? ['0' => 'Please select a member'] +  $_company->members()->pluck('name', 'id')->toArray() : [] ), '', ['class' => 'form-control']) }}</div>
         @include('layouts.modal')
     </div>

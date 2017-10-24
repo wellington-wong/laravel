@@ -73,6 +73,7 @@ Route::post('/referral/update', 'ReferralController@update')->name('referrals-up
 Route::get('/referral/view/{id}', 'ReferralController@getView')->name('referral-view');
 Route::get('/referral/confirmation', 'ReferralController@confirmation')->name('referral-confirmation');
 Route::post('/referral/delete/{id}', ['uses' => 'ReferralController@delete', 'middleware' => ['role:globalAdmin']])->name('referral-delete');
+Route::post('/referral/transfer/{id}', ['uses' => 'ReferralController@transfer', 'middleware' => ['role:globalAdmin']])->name('referral-transfer');
 
 // Static Page Routes
 Route::get('/how-it-works', 'BasicPageController@howItWorks')->name('how-it-works');

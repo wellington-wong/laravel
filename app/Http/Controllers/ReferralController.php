@@ -681,9 +681,9 @@ class ReferralController extends Controller
         
         if ( $referral = Referral::find($id) ) {
             $referral->delete();
-            return redirect( route( 'referrals' ) )->with( 'success',  [ 'Referral for ' .  ($referral->referred->getName() ?: null) . ' has been deleted.' ] );
+            return redirect( route( 'referrals' ) )->with( 'success',  [ 'The referral for ' .  ($referral->referred->getName() ?: null) . ' has been deleted.' ] );
         } else {
-            return redirect( route( 'referrals' ) )->withErrors([ 'errors' => 'Referral not found.' ]);
+            return redirect( route( 'referrals' ) )->withErrors([ 'errors' => 'The referral was not found.' ]);
         }
         
     }
@@ -711,12 +711,13 @@ class ReferralController extends Controller
      * @return
      **/
     public function transfer( Request $request, $id ) {
-        return;
+
         if ( $referral = Referral::find($id) ) {
-            $referral->delete();
-            return redirect( route( 'referrals' ) )->with( 'success',  [ 'Referral for ' .  ($referral->referred->getName() ?: null) . ' has been deleted.' ] );
+            $referral->referrer_id = $request->get('as_member') ?: 0;
+            $referral->save();
+            return redirect( route( 'referrals' ) )->with( 'success',  [ 'The referral for ' .  ($referral->referred->getName() ?: null) . ' has been transferred.' ] );
         } else {
-            return redirect( route( 'referrals' ) )->withErrors([ 'errors' => 'Referral not found.' ]);
+            return redirect( route( 'referrals' ) )->withErrors([ 'errors' => 'There was a problem transferring this referral.' ]);
         }
         
     }
