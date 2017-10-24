@@ -15,10 +15,13 @@
 
         <div class="create-referral-wrapper">
 
-            @role(['admin', 'superAdmin', 'globalAdmin'])
-                {{ Form::select('member', [''], '', ['class' => 'form-control']) }}
-            @endrole
             {{ Form::open() }}
+                @role(['admin', 'superAdmin', 'globalAdmin'])
+                <div class="form-group col-md-12">
+                    {{ Form::label('as_member', 'Submit as a member') }}                    
+                    {{ Form::select('as_member', ($_company->members()->pluck('name', 'id') ?: [] ), '', ['class' => 'form-control']) }}
+                </div>
+                @endrole
                 <div id="fb-render" >
                 </div>
                 <div class="col-md-12">
