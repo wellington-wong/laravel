@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Referral;
 use App\Notifications\ReferralNotifyUser;
 use App\Notifications\ReferralNotifyAdmin;
+use App\Notifications\CompanyNotCurrentNotice;
 use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
@@ -394,15 +395,19 @@ class ReferralController extends Controller
             $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
         }
 
-        // Notify admins of the new referral
-        if ($request->_company->emailTemplateStatus(7)) {
-            $userClone = clone($user);
-            $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
-                ->where('email_template', 7)
-                ->pluck('recipient')->toArray();
-            if (isset($userClone->email)) {            
-                $userClone->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
+        if ( $request->_company->current ) {dd(2);
+            // Notify admins of the new referral
+            if ($request->_company->emailTemplateStatus(7)) {
+                $userClone = clone($user);
+                $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+                    ->where('email_template', 7)
+                    ->pluck('recipient')->toArray();
+                if (isset($userClone->email)) {            
+                    $userClone->notify(new NewReferralAdmin(Referral::find($user->referral_id), $request, $referralValues));
+                }
             }
+        } else {
+            $request->_company->companyOwner->notify(new CompanyNotCurrentNotice($request));
         }
 
         return redirect(route('referrals'));
