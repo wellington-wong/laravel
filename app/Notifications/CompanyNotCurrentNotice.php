@@ -49,8 +49,8 @@ class CompanyNotCurrentNotice extends Notification
                     ->from($from, $fromName)
                     ->subject('New referral for ' . (isset($this->request->_company->company_name) ? $this->request->_company->company_name : ''))
                     ->line('A referral has been submitted for ' . (isset($this->request->_company->company_name) ? $this->request->_company->company_name : ''))
-                    ->action('Go to referral', url('/'))
-                    ->line('Please update your credit card information to continue using Perxi.');
+                    ->action('Update Credit Card', url('/'))
+                    ->line('Please update your credit card information to view the referral details');
     }
 
     /**
