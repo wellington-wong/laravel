@@ -16,9 +16,9 @@ class CompanyNotCurrentNotice extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $request )
     {
-        //
+        $this->request = $request;
     }
 
     /**
@@ -40,8 +40,15 @@ class CompanyNotCurrentNotice extends Notification
      */
     public function toMail($notifiable)
     {
+
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
+
         return (new MailMessage)
-                    ->line('A referral has been submitted')
+                    ->from($from, $fromName)
+                    ->subject('New referral for ' . (isset($this->request->_company->company_name) ? $this->request->_company->company_name : ''))
+                    ->line('A referral has been submitted for ' . (isset($this->request->_company->company_name) ? $this->request->_company->company_name : ''))
                     ->action('Go to referral', url('/'))
                     ->line('Please update your credit card information to continue using Perxi.');
     }
