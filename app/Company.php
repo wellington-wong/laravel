@@ -119,6 +119,10 @@ class Company extends Model
     public function rewardSettings() {
         return $this->hasOne( RewardSetting::class );
     }
+
+    public function companyOwner() {
+        return $this->hasOne(User::class, 'id');
+    }
     
 
 }
