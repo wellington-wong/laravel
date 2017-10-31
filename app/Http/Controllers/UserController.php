@@ -10,6 +10,7 @@ use App\Referral;
 use App\Role;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\ReferrerAddsAddress;
 
 class UserController extends Controller
 {
@@ -155,7 +156,11 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
-
+        
+        // Notify admin if user inputs an address and has approved referrals
+        if ($request->has('address') && $request->has('city') && $request->has('zip') && !$user->address()->first() && $user->referrals()->where('status', 2)->first()) {
+            $user->notify(new ReferrerAddsAddress());
+        }
 
         if ( !$user->phone->isEmpty() ) {
             $user->updateDefaultPhone($request);
