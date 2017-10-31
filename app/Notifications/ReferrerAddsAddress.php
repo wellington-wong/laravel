@@ -41,8 +41,8 @@ class ReferrerAddsAddress extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('A referrer with approved referrals has added his/her address.')
+                    ->action('Go to referrer', url('/'))
                     ->line('Thank you for using our application!');
     }
 
