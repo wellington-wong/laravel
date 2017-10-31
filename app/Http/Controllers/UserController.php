@@ -156,10 +156,24 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
-        
+
+        // Get admins
+        $admins = $request->_company->admins()->pluck('email')->toArray();
+        $superAdmins = $request->_company->superAdmins()->pluck('email')->toArray();
+
         // Notify admin if user inputs an address and has approved referrals
-        if ($request->has('address') && $request->has('city') && $request->has('zip') && !$user->address()->first() && $user->referrals()->where('status', 2)->first()) {
-            $user->notify(new ReferrerAddsAddress());
+        try {
+            if ($request->has('address') && $request->has('city') && $request->has('zip') && !$user->address()->first() && $user->referrals()->where('status', 2)->first()) {            
+                $userClone = clone($user);
+                $userClone->email = array_merge($superAdmins, $admins);
+                if (isset($userClone->email)) {
+                    $userClone->notify(new ReferrerAddsAddress( $request, $user ));
+                }
+            }
+        } catch(\Exception $e) {
+            Log::error($e);
+            $h = new Handler( Container::getInstance() );
+            $h->sendEmail($e);
         }
 
         if ( !$user->phone->isEmpty() ) {

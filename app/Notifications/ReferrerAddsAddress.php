@@ -40,9 +40,15 @@ class ReferrerAddsAddress extends Notification
      */
     public function toMail($notifiable)
     {
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
+
         return (new MailMessage)
-                    ->line('A referrer with approved referrals has added his/her address.')
-                    ->action('Go to referrer', url('/'))
+                    ->from($from, $fromName)
+                    ->subject($notifiable->getDisplayNameAttribute() . ' has added an address')
+                    ->line($notifiable->getDisplayNameAttribute() . ' has approved referrals and has added an address.')
+                    ->action('Go to referrer', url(route('view-user', $notifiable->id)))
                     ->line('Thank you for using our application!');
     }
 
