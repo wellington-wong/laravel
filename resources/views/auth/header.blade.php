@@ -8,7 +8,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <figure class="logo col-xs-3 col-md-2"><a href="{{ route('login') }}" title="Referrals"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo-main.png' }}" alt=""></a></figure>
+                        <figure class="logo col-xs-3 col-md-2"><a href="https://www.perxi.com/ title="Referrals"><img src="{{ isset($_company->logo) ? $_company->logo : '/images/logo-main.png' }}" alt=""></a></figure>
                         <div class="col-xs-12 col-md-9 collapse navbar-collapse pull-right" id="app-navbar-collapse">
                             <ul class="nav navbar-nav navbar-right navbar-bottom-right pull-left">
                                 <li><a href="https://www.perxi.com/how-it-works/">How it Works</a></li>
