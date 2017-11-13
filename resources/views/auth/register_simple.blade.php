@@ -18,7 +18,7 @@
         <main class="register-main">
             <div class="row no-margin-lr">
                 <div class="plan-info text-center">
-                    <h4>You've selected the <strong>Basic package</strong> at $999 per month - <a href="{{ route('contact') }}" class="upgrade-plan"><strong>Upgrade to Custom</strong></a></h4>
+                    <h4>You've selected the <strong>Basic package</strong> at $999 per month - <a href="https://www.perxi.com/contact/" class="upgrade-plan"><strong>Upgrade to Custom</strong></a></h4>
                 </div>
             </div>
             <div class="container">
