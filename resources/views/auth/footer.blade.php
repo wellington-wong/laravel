@@ -31,13 +31,13 @@
                     <div class="col-md-2 footer-list col-md-offset-6">
                         <ul class="list-inline">
                             <li class="footer-social list-inline">
-                                <a href="#" class="footer-fb fa-stack">
+                                <a href="https://www.facebook.com/perxirewards/" class="footer-fb fa-stack" target="_BLANK">
                                     <i class="fa fa-circle-thin fa-stack-2x"></i>
                                     <i class="fa fa-facebook fa-stack-1x" aria-hidden="true"></i>
                                 </a>
                             </li>
                             <li class="footer-social">
-                                <a href="#" class="footer-tw fa-stack">
+                                <a href="https://twitter.com/PerxiRewards" class="footer-tw fa-stack" target="_BLANK">
                                     <i class="fa fa-circle-thin fa-stack-2x"></i>
                                     <i class="fa fa-twitter fa-stack-1x" aria-hidden="true"></i>
                                 </a>
