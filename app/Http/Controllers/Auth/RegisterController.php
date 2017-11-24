@@ -238,7 +238,7 @@ class RegisterController extends Controller
                 'company_phone'=>'required|phone:LENIENT,AUTO,US',
                 'company_email'=>'required|unique:companies,email|email',
                 'business_type'=>'required',
-                'company_address_1'=>'required|max:100',
+                'company_address_1'=>'required|max:100|unique:addresses,address',
                 'company_address_2'=>'max:25',
                 'company_city'=>'required',
                 'state'=>'required|max:2',
