@@ -46,6 +46,7 @@
                                 </div>
                             @endif
                             @yield('content')
+                            {{ \Session::forget('success') }}
                         </div>
                     </div>
                 </div>
