@@ -40,7 +40,7 @@ class CompanyController extends Controller
     public function postCreate(Request $request) {
 
         $rules = [
-            'address'=>'required|max:100',
+            'address'=>'required|unique:addresses|max:100',
             'address2'=>'max:25',
             'city'=>'required',
             'state'=>'required|max:2',
