@@ -335,7 +335,7 @@ class ReferralController extends Controller
             'last_name'=>'required',
             'phone'=>'phone:US|required',
             'email'=>'unique:users',
-            'address2'=>'unique:addresses',
+            'address'=>'unique:addresses',
         ];
         $validator = Validator::make($request->input(), $rules);
 
@@ -395,7 +395,7 @@ class ReferralController extends Controller
             $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
         }
 
-        if ( $request->_company->current ) {dd(2);
+        if ( $request->_company->current ) {
             // Notify admins of the new referral
             if ($request->_company->emailTemplateStatus(7)) {
                 $userClone = clone($user);
