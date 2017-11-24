@@ -409,7 +409,6 @@ class RegisterController extends Controller
                     'company_city'=>'required',
                     'state'=>'required|max:2',
                     'company_zip'=>'required|digits:5',
-                    'address'=>'unique:addresses',
                 ];
                 break;
             case ('reward_info'):                
