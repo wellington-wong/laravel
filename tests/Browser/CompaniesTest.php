@@ -17,7 +17,7 @@ class CompaniesTest extends DuskTestCase
     public function testCompanies()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(RoleUser::inRandomOrder()->first()->user_id)
+            $browser->loginAs(RoleUser::where('role_id', '>', 2)->inRandomOrder()->first()->user_id)
                     ->visit('/companies')
                     ->assertSee('Create Company');
         });
