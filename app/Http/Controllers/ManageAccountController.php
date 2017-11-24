@@ -44,6 +44,7 @@ class ManageAccountController extends Controller
             'name'=>'required',
             'email'=>'required|email',
             'phone'=>'required|phone:US',
+            'address'=>'required|unique:addresses|max:100',
             //'profile_blob' => 'required',
         ];
 
