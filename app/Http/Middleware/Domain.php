@@ -67,6 +67,12 @@ class Domain
         /* user logs */
         UserLog::log();
 
+        // Set metatags
+        if (isset($company->company_name)) {
+            MetaTag::set('title', $company->company_name);
+            MetaTag::set('description', 'Referrals program for ' . $company->company_name);
+        }
+
         return $next($request);
     }
 
