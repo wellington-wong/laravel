@@ -196,7 +196,8 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
-        Cmgmyr\Messenger\MessengerServiceProvider::class
+        Cmgmyr\Messenger\MessengerServiceProvider::class,
+        Torann\LaravelMetaTags\MetaTagsServiceProvider::class,
 
     ],
 
@@ -261,6 +262,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'MetaTag'   => Torann\LaravelMetaTags\Facades\MetaTag::class,
 
     ],
 
