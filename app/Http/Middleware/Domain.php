@@ -8,6 +8,8 @@ use Exults\Logs\UserLog;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 
+use MetaTag;
+
 function stripos_array($haystack, $needles){
     foreach($needles as $needle) {
         if(($res = stripos($haystack, $needle)) !== false) {
