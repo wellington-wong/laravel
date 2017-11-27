@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
+
+{!! MetaTag::twitterCard() !!}
+{!! MetaTag::openGraph() !!}
+
 @include('layouts.head')
 <body class="logged-in">
     <div id="app" class="fill">

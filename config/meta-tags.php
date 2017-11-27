@@ -9,7 +9,7 @@ return array(
      |
      */
 
-    'title' => 'My Site',
+    'title' => 'Perxi',
 
     /*
      |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return array(
      */
 
     'open_graph' => [
-        'site_name' => 'My Site',
+        'site_name' => 'Perxi',
         'type' => 'website'
     ],
 
@@ -54,8 +54,8 @@ return array(
 
     'twitter' => [
         'card' => 'summary',
-        'creator' => '@mysite',
-        'site' => '@mysite'
+        'creator' => '@perxi',
+        'site' => '@perxi'
     ],
 
     /*
