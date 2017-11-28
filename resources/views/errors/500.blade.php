@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Notification Emails')
+@section('pageTitle', 'Internal Server Error')
 
 @section('content')
 
