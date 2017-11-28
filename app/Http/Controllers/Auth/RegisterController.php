@@ -89,7 +89,7 @@ class RegisterController extends Controller
             'phone'=>'required|phone:US',
             'email'=>'unique:users|required|email',
             'password' => 'required|min:6|confirmed',
-            'address'=>'unique:addresses',
+            'address'=>'unique_with:addresses,address2,zip',
             //'profile_blob' => 'required',
         ];
 
@@ -406,7 +406,7 @@ class RegisterController extends Controller
                     'company_phone'=>'required|phone:LENIENT,AUTO,US',
                     'company_email'=>'required|unique:companies,email|email',
                     'business_type'=>'required',
-                    'company_address_1'=>'required|max:100|unique:addresses,address',
+                    'company_address_1'=>'required|max:100|unique_with:addresses,company_address_1=address,company_address_2=address2,company_zip=zip',
                     'company_address_2'=>'max:25',
                     'company_city'=>'required',
                     'state'=>'required|max:2',
