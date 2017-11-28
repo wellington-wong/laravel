@@ -40,7 +40,7 @@ class CompanyController extends Controller
     public function postCreate(Request $request) {
 
         $rules = [
-            'address'=>'required|unique:addresses|max:100',
+            'address'=>'required|unique_with:addresses,address2,zip|max:100',
             'address2'=>'max:25',
             'city'=>'required',
             'state'=>'required|max:2',
@@ -120,7 +120,8 @@ class CompanyController extends Controller
         $rules = [
             'company_name'=>'required',
             'email'=>'nullable|email',
-            'website'=>'nullable|url'
+            'website'=>'nullable|url',
+            'address'=>'unique_with:addresses,address2,zip',
         ];
 
         $request->merge([

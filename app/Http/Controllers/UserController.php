@@ -93,7 +93,7 @@ class UserController extends Controller
             'last_name'=>'required',
             'email'=>'unique:users|required|email',
             'phone'=>'required|phone:US',
-            'address'=>'unique:addresses|max:100',
+            'address'=>'unique_with:addresses,address2,zip|max:100',
             'address2'=>'max:25',
             'city'=>'required',
             'state'=>'required|alpha|max:2',
