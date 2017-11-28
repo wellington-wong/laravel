@@ -198,6 +198,7 @@ return [
         Laravel\Cashier\CashierServiceProvider::class,
         Cmgmyr\Messenger\MessengerServiceProvider::class,
         Torann\LaravelMetaTags\MetaTagsServiceProvider::class,
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
 
     ],
 
