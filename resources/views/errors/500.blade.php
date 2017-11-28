@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <p class="text-center">The requested URL <em>{{ Request::url() }}</em> was not found on this server.
+                <p class="text-center">An error has occurred, please try again later.
             </div>
         </div>
     </div>
