@@ -76,12 +76,12 @@ Route::post('/referral/delete/{id}', ['uses' => 'ReferralController@delete', 'mi
 Route::post('/referral/transfer/{id}', ['uses' => 'ReferralController@transfer', 'middleware' => ['role:globalAdmin']])->name('referral-transfer');
 
 // Static Page Routes
-Route::get('/how-it-works', 'BasicPageController@howItWorks')->name('how-it-works');
+/*Route::get('/how-it-works', 'BasicPageController@howItWorks')->name('how-it-works');
 Route::get('/features', 'BasicPageController@features')->name('features');
 Route::get('/about-us', 'BasicPageController@aboutUs')->name('about-us');
 Route::get('/pricing', 'BasicPageController@pricing')->name('pricing');
 Route::get('/contact', 'BasicPageController@contact')->name('contact');
-Route::post('/contact', 'BasicPageController@postContact')->name('contact');
+Route::post('/contact', 'BasicPageController@postContact')->name('contact');*/
 Route::get('/how-this-works', ['uses' => 'BasicPageController@howThisWorks', 'middleware' => ['role:member|admin|superAdmin|globalAdmin']])->name('how-this-works');
 Route::get('/how-to-get-more-referrals', ['uses' => 'BasicPageController@howToGetMoreReferrals', 'middleware' => ['role:member|admin|superAdmin|globalAdmin']])->name('how-to-get-more-referrals');
 
