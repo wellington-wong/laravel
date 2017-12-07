@@ -43,7 +43,7 @@
 
                 @include( 'company.partials.info_inner' )
 
-                <a href="{{ route('manage-account') }}" class="btn btn-primary">Account Settings</a>
+                @role(['admin', 'superAdmin', 'globalAdmin'])<a href="{{ route('manage-account') }}" class="btn btn-primary">Account Settings</a>@endrole
             </div>
         </div>
     </div>
