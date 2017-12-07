@@ -13,7 +13,7 @@
             <h5>Include as Recipients:</h5>
             @foreach($members as $member)
                 <label title="{{ $member->name }}">
-                    <input type="checkbox" name="recipients[]" value="{{ $member->id }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}
+                    <input type="checkbox" name="recipients[]" value="{{ $member->id }}">{{ $member->getName() }}
                 </label>
             @endforeach
         </div>
