@@ -79,7 +79,7 @@
                 <div class="row">           
                     <div class="form-group col-md-12">
                         <label>Name</label>
-                        <div class="form-control">{{ $user->name }}</div>
+                        <div class="form-control">{{ $user->getName() }}</div>
                     </div>        
                     <!--<div class="form-group col-md-6">
                         <label>Last Name</label>
