@@ -26,8 +26,8 @@
                         <tr>
                             <td>{{ $notification->created_at->format('m/d/Y') }}</td>
                             <td>{{ $referral->id }}</td>
-                            <td>{{ isset($referral->referrer->name) ? $referral->referrer->name : $referral->referrer->first_name . ' ' . $referral->referrer->last_name }}</td>
-                            <td>{{ isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name }}</td>
+                            <td>{{ $referral->referrer->getName() }}</td>
+                            <td>{{ $referral->referred->getName() }}</td>
                             <td>{{ \App\Referral::$status[$referral->status] }}</td>
                         </tr>
                     </tbody>
