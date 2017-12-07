@@ -77,14 +77,14 @@
             <div class="col-md-12 no-padding-lr">   
 
                 <div class="row">           
-                    <div class="form-group col-md-6">
-                        <label>First Name</label>
-                        <div class="form-control">{{ $user->first_name }}</div>
+                    <div class="form-group col-md-12">
+                        <label>Name</label>
+                        <div class="form-control">{{ $user->name }}</div>
                     </div>        
-                    <div class="form-group col-md-6">
+                    <!--<div class="form-group col-md-6">
                         <label>Last Name</label>
                         <div class="form-control">{{ $user->last_name }}</div>
-                    </div>    
+                    </div>-->
                 </div>    
 
                 <div class="row">           
