@@ -142,8 +142,7 @@ class UserController extends Controller
     public function update ( Request $request, $id ){        
 
         $rules = [
-            'first_name'=>'required',
-            'last_name'=>'required',
+            'name'=>'required',
             'phone'=>'required|phone:US',
             //'profile_blob' => 'required',
         ];

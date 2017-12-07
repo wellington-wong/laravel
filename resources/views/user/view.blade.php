@@ -20,14 +20,14 @@
             <div class="col-md-12 no-padding-lr">   
                 {{ Form::open(['route' => ['update-user', $user->id], 'enctype' => 'multipart/form-data', 'id' => 'update-user-form', 'class' => 'update-form']) }}
                 <div class="row">           
-                    <div class="form-group col-md-6">
-                        <label>First Name</label>
-                        <input class="form-control" name="first_name" value="{{ $user->first_name }}">
+                    <div class="form-group col-md-12">
+                        <label>Name</label>
+                        <input class="form-control" name="name" value="{{ $user->getName() }}">
                     </div>        
-                    <div class="form-group col-md-6">
+                    <!--<div class="form-group col-md-6">
                         <label>Last Name</label>
                         <input class="form-control" name="last_name" value="{{ $user->last_name }}">
-                    </div>    
+                    </div>-->  
                 </div>    
 
                 <div class="row">           
