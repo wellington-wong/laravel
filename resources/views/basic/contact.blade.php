@@ -18,8 +18,7 @@
 								@endif
                             <div class="panel-body">                    
                     			{!!  isset($page->content) ? $page->content : null !!}        	
-                            	{!! Form::open(array('route' => 'contact', 'class' => 'form', 'id' => 'contact-form')) !!}
-								<div class="form-group">
+                            	<div class="form-group">
 								    {!! Form::label('Your Name') !!}
 								    {!! Form::text('name', null, 
 								        array('required', 
@@ -44,8 +43,6 @@
 								</div>
 
 								<div class="form-group">
-								    {!! Form::submit('Contact Us!', 
-								      array('class'=>'btn btn-primary')) !!}
 								</div>
 								{!! Form::close() !!}
 			    			</div>
