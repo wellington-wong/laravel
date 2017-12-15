@@ -236,7 +236,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 rewards-bottom">
-                                                        <span>Want to use a point system? <a href="{{ route('contact') }}">Ask Us About A Custom Option</a></span>
+                                                        <span>Want to use a point system? <a href="https://www.perxi.com/contact/" target="_BLANK">Ask Us About A Custom Option</a></span>
                                                     </div>
                                                 </div>
 
