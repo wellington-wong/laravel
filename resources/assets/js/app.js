@@ -1323,7 +1323,7 @@ $(function (){
 // END SPECTRUM COLOR PICKER
 
 // X-EDITABLE
-	window.onload = function () {alert();
+	window.onload = function () {
 		$('#username').editable({
 		    type: 'text',
 		    url: '/post',    
@@ -1594,7 +1594,7 @@ $(function (){
             self.options = options;
             self.initSlider(options);
             self.checkDisabled();
-            $element = self.$element;
+            var $element = self.$element;
             self.containerClass = options.containerClass;
             self.glyphicon = options.glyphicon;
             var defaultStar = (self.glyphicon) ? '\ue006' : '\u2605';
