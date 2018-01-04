@@ -181,3 +181,6 @@ Route::get('/stripe_pk', function (){
 })->name('stripe_pk');
 Route::get('/stripe-test', 'StripeController@stripeTest')->name('stripe-test');
 Route::post('/stripe-test', 'StripeController@postStripeTest')->name('post-stripe-test');
+
+// Reviews
+Route::get('/reviews', 'ReviewsController@getIndex')->name('reviews');
