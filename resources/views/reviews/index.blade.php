@@ -10,7 +10,7 @@
         </div>
         <div class="clearfix"></div>
         <div class="row">
-            <label>A listing of reviews from our customers.</label>
+            <label>A listing of reviews from satisfied customers.</label>
             <div class="reviews">            
 
                 <div class="container">
