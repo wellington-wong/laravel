@@ -45,6 +45,14 @@
                               </div>
                             </div>
 
+                            <!-- Image Upload -->
+                            <div class="form-group">
+                              <label class="col-md-3 control-label" for="message">Your Image</label>
+                              <div class="col-md-9">                              
+                             {{ Form::file('thefile') }}
+                            </div>
+                            </div>
+
 
                             <!-- Rating -->
                             <div class="form-group">
