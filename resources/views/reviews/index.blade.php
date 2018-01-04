@@ -15,7 +15,7 @@
 
                 <div class="container">
                     <div class="row">
-                    <h2>Feedback</h2>
+                    <h3>Leave a Feedback</h3>
                       <div class="col-md-9 col-md-offset-0">
                         <div class="">
                           <form class="form-horizontal" action="send.php" method="post">
