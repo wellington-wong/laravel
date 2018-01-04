@@ -39,7 +39,7 @@
                     
                             <!-- Message body -->
                             <div class="form-group">
-                              <label class="col-md-3 control-label" for="message">Your message</label>
+                              <label class="col-md-3 control-label" for="message">Your Review</label>
                               <div class="col-md-9">
                                 <textarea class="form-control" id="message" name="message" placeholder="Please enter your feedback here..." rows="5"></textarea>
                               </div>
