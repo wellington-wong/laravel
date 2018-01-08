@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use App\Notifications\MessageReceived;
 use App\Company;
+use Illuminate\Support\Facades\Validator;
 
 class MessagesController extends Controller
 {
@@ -85,6 +86,16 @@ class MessagesController extends Controller
      */
     public function store( Request $request )
     {
+        $rules = [
+            'subject'=>'required',
+        ];
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+        
         $input = Input::all();
         $thread = Thread::create(
             [
