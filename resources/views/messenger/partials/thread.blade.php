@@ -4,3 +4,4 @@
     <td>{{ $thread->participantsString(Auth::id()) }}</td>
     <td><a class="btn btn-primary" href="{{ route('messages.show', ['id' => $thread->id]) }}">view message</a></td>
 </tr>
+<tr class="tr-spacer"><td colspan=5></td></tr>
