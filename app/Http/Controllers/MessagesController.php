@@ -100,7 +100,7 @@ class MessagesController extends Controller
         $input = Input::all();
         $thread = Thread::create(
             [
-                'subject' => $input['subject'],
+                'subject' => $input['subject'] ?: '',
             ]
         );
         $threadByCompany = ThreadByCompany::create(
@@ -115,7 +115,7 @@ class MessagesController extends Controller
             [
                 'thread_id' => $thread->id,
                 'user_id'   => Auth::user()->id,
-                'body'      => $input['message'],
+                'body'      => $input['message'] ?: '',
             ]
         );
         // Sender
