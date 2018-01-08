@@ -88,6 +88,7 @@ class MessagesController extends Controller
     {
         $rules = [
             'subject'=>'required',
+            'message'=>'required',
         ];
         $validator = Validator::make($request->input(), $rules);
 
@@ -95,7 +96,7 @@ class MessagesController extends Controller
             return redirect()->back()->withInput()
                 ->with(['errors'=>$validator->errors()]);
         }
-        
+
         $input = Input::all();
         $thread = Thread::create(
             [
