@@ -151,7 +151,7 @@ class ReferralController extends Controller
 
 
     public function referrals( Request $request ) {
-
+;
         $referrals = new Referral();
 
         // Get constants
@@ -200,6 +200,7 @@ class ReferralController extends Controller
             }
         }
 
+            $this->sendMessage( $request, $request->_company->referrals()->first(), 'No Address' );
         $route = $request->route()->action['as'];
 
         return view('referral.referrals')
@@ -442,13 +443,15 @@ class ReferralController extends Controller
         );
 
         // Message
+        $body = $message;
         $message = Message::create(
             [
                 'thread_id' => $thread->id,
                 'user_id'   => $request->user()->id,
-                'body'      => $message,
+                'body'      => $body ?: '',
             ]
         );
+
         // Sender
         $participant = Participant::create(
             [
