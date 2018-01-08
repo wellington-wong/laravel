@@ -9,8 +9,8 @@
     </div>
 
     @if($members->count() > 0)
+        <label>Include as Recipients:</label>
         <div class="checkbox message-checkbox">
-            <h5>Include as Recipients:</h5>
             @foreach($members as $member)
                 <label title="{{ $member->name }}">
                     <input type="checkbox" name="recipients[]" value="{{ $member->id }}">{{ $member->getName() }}
