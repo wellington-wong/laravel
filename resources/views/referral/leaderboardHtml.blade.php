@@ -1,6 +1,6 @@
 <div class="lb-head">
 	<h2>Leaderboard</h2>
-	<p>(only includes leads submitted since Jan 01, 2017)</p>
+	<p>(only includes leads submitted since Jan 01, {{ date('Y', strtotime('now')) }})</p>
 </div>
 <div class="lb-content">
 	<table style="width: 100%;">
