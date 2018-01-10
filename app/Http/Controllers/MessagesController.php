@@ -100,7 +100,7 @@ class MessagesController extends Controller
         $input = Input::all();
         $thread = Thread::create(
             [
-                'subject' => $input['subject'],
+                'subject' => $input['subject'] ?: '',
             ]
         );
         $threadByCompany = ThreadByCompany::create(
@@ -115,7 +115,7 @@ class MessagesController extends Controller
             [
                 'thread_id' => $thread->id,
                 'user_id'   => Auth::user()->id,
-                'body'      => $input['message'],
+                'body'      => $input['message'] ?: '',
             ]
         );
         // Sender
@@ -145,6 +145,16 @@ class MessagesController extends Controller
      */
     public function update( Request $request, $id )
     {
+        $rules = [
+            'message'=>'required',
+        ];
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+        
         try {
             $thread = Thread::findOrFail($id);
         } catch (ModelNotFoundException $e) {

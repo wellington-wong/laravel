@@ -1805,6 +1805,8 @@ table.table {
 /*** Messages ***/
 .message-checkbox{
 	margin-top: 0;
+	height: 200px;
+	overflow-y: scroll;
 	label {
 		margin: 5px;
 	}

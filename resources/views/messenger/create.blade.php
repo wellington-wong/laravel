@@ -29,7 +29,7 @@
                         </div>
 
                         @if(isset($users) && $users->count() > 0)
-                            <div><label class="control-label">Recipients</label></div>
+                            <div><label class="control-label">Recipients:</label></div>
                             <div class="checkbox message-checkbox">
                                 <!--<select multiple class="form-control">
                                     @foreach($users as $user)

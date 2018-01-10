@@ -39,3 +39,4 @@
                             </td>
                             @endif
                         </tr>
+                        <tr class="tr-spacer"><td colspan=5></td></tr>
