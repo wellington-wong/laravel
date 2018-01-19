@@ -200,7 +200,7 @@ class ReferralController extends Controller
             }
         }
 
-        ($request->_company->referrals()->first() ? $this->sendMessage( $request, $request->_company->referrals()->first(), 'No Address' ) : null);
+        //($request->_company->referrals()->first() ? $this->sendMessage( $request, $request->_company->referrals()->first(), 'No Address' ) : null);
         $route = $request->route()->action['as'];
 
         return view('referral.referrals')
@@ -408,7 +408,7 @@ class ReferralController extends Controller
                 }
             }
         } else {
-            $request->_company->companyOwner->notify(new CompanyNotCurrentNotice($request));
+            $request->_company->companyOwner ? $request->_company->companyOwner->notify(new CompanyNotCurrentNotice($request)) : null;
         }
 
         return redirect(route('referrals'));
