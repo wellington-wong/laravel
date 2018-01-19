@@ -9,8 +9,8 @@
 
         <div class="row">
             <div class="text-right pull-right col-md-6 create-user-link no-padding-lr">
-                <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>
-                <a href="{{ route('export-members') }}"><i class="fa fa-export"></i> Export Users</a>
+                <a href="{{ route('create-user') }}"><i class="fa fa-user-plus"></i> Create New User</a>&nbsp;&nbsp;
+                <a href="{{ route('export-members') }}"><i class="fa fa-users"></i> Export Users</a>
             </div>
         </div>
         <div class="row page-filters">
@@ -135,7 +135,8 @@
                     @if (!count($members))<tr><td colspan="5">No members found.</td></tr>@endif
                 </table>
                 <div class="text-right">
-                    <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>
+                    <a href="{{ route('create-user') }}"><i class="fa fa-user"></i> Create New User</a>&nbsp;&nbsp;
+                    <a href="{{ route('export-members') }}"><i class="fa fa-users"></i> Export Users</a>
                 </div>
                 <div class="col-md-12 pagination-wrapper">{{ count($members) ? $members->links() : '' }}</div>
             </div>
