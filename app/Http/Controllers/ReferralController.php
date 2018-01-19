@@ -200,7 +200,7 @@ class ReferralController extends Controller
             }
         }
 
-            $this->sendMessage( $request, $request->_company->referrals()->first(), 'No Address' );
+        ($request->_company->referrals()->first() ? $this->sendMessage( $request, $request->_company->referrals()->first(), 'No Address' ) : null);
         $route = $request->route()->action['as'];
 
         return view('referral.referrals')
