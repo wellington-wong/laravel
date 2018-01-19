@@ -153,6 +153,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::post('/member/delete/{id}', ['uses' => 'MembersController@delete', 'middleware' => ['role:superAdmin|globalAdmin']])->name('members-delete');
 	Route::post('/member/change-role/{id}', ['uses' => 'MembersController@changeRole', 'middleware' => ['role:superAdmin|globalAdmin']])->name('members-change-role');
 	Route::post('/member/change-password/{id}', ['uses' => 'MembersController@changePassword', 'middleware' => ['role:superAdmin|globalAdmin']])->name('members-change-password');
+	Route::get('/members/export', 'MembersController@exportMembers')->name('export-members');
 
 	// Notification Routes
 	Route::get('/notification/{nid}', 'NotificationsController@getNotification')->name('notification');

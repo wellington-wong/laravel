@@ -116,4 +116,14 @@ class MembersController extends Controller
         $deleteUser->delete();
         return;
     }
+
+    /**
+     * Export members
+     * @param $request
+     * @return
+     */
+    public function exportMembers (Request $request)
+    {
+        return;
+    }
 }
