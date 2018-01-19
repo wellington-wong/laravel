@@ -125,11 +125,11 @@ class MembersController extends Controller
     public function exportMembers (Request $request)
     {
 
-        $referralArray = [];  
+        $membersArray = $request->_company->members()->get()->toArray();
 
-        \Excel::create('Referrals', function($excel) use ($referralArray) {
-            $excel->sheet('Members', function($sheet) use ($referralArray) {
-                $sheet->fromArray($referralArray);
+        \Excel::create('Referrals', function($excel) use ($membersArray) {
+            $excel->sheet('Members', function($sheet) use ($membersArray) {
+                $sheet->fromArray($membersArray);
             });
         })->export('xls');
 
