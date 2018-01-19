@@ -151,7 +151,7 @@ class ReferralController extends Controller
 
 
     public function referrals( Request $request ) {
-;
+        
         $referrals = new Referral();
 
         // Get constants
