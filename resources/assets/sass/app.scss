@@ -2079,7 +2079,23 @@ tr.check td {
 /*** Stripe End ***/
 
 /*** Reviews ***/
-
+.rounded-circle {
+    border-radius: 50%!important;
+    max-width: 170px;
+}
+.reviews .carousel-control {
+	background-image: none;
+	width: 3%;
+}
+.reviews .carousel-indicators {
+	bottom: -40px;
+}
+.reviews .carousel-indicators li {
+	background-color: #ccc;
+}
+.reviews .carousel-inner {
+	text-align: center;
+}
 .rating-loading {
     width: 25px;
     height: 25px;
@@ -2088,6 +2104,14 @@ tr.check td {
     background: transparent url('../img/loader.gif') top left no-repeat;
     border: none;
 }
+.reviews-container {
+	margin-top: 50px;
+}
+.reviews-container .control-label {
+	width: 20%;
+	text-align: left;
+}
+
 /*
  * Stars
  */

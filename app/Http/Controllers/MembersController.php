@@ -93,7 +93,7 @@ class MembersController extends Controller
      */
     public function changePassword(Request $request, $id)
     {
-        // Delete user, user's phone and address
+        // Change user's password
         if ($request->get('user_new_password') != $request->get('user_new_password_confirmation')) { return 'Password Mismatch'; }
         $user = User::find($id);
         $user->password = Hash::make($request->get('user_new_password'));
@@ -114,6 +114,40 @@ class MembersController extends Controller
         $deleteUser->phones()->delete();
         $deleteUser->addresses()->delete();
         $deleteUser->delete();
+        return;
+    }
+
+    /**
+     * Export members
+     * @param $request
+     * @return
+     */
+    public function exportMembers (Request $request)
+    {
+
+        // Get all users
+        $membersArray = $request->_company->members()->with('addresses', 'phones')->get()->toArray();
+
+        // Flatten array
+        foreach ($membersArray as $key => $member) {
+            if (isset($membersArray[$key]['addresses'][0])) {
+                $membersArray[$key] =  array_merge ($membersArray[$key], $membersArray[$key]['addresses'][0]);
+                unset($membersArray[$key]['addresses']);
+            }
+            if (isset($membersArray[$key]['phones'][0])) {
+                $membersArray[$key] =  array_merge ($membersArray[$key], $membersArray[$key]['phones'][0]);
+                unset($membersArray[$key]['phones']);
+            }
+            unset($membersArray[$key]['pivot']);
+        }
+
+        // Load users to csv exporter
+        \Excel::create('Referrals', function($excel) use ($membersArray) {
+            $excel->sheet('Members', function($sheet) use ($membersArray) {
+                $sheet->fromArray($membersArray);
+            });
+        })->export('xls');
+
         return;
     }
 }
