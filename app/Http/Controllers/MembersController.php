@@ -125,8 +125,23 @@ class MembersController extends Controller
     public function exportMembers (Request $request)
     {
 
-        $membersArray = $request->_company->members()->get()->toArray();
+        // Get all users
+        $membersArray = $request->_company->members()->with('addresses', 'phones')->get()->toArray();
 
+        // Flatten array
+        foreach ($membersArray as $key => $member) {
+            if (isset($membersArray[$key]['addresses'][0])) {
+                $membersArray[$key] =  array_merge ($membersArray[$key], $membersArray[$key]['addresses'][0]);
+                unset($membersArray[$key]['addresses']);
+            }
+            if (isset($membersArray[$key]['phones'][0])) {
+                $membersArray[$key] =  array_merge ($membersArray[$key], $membersArray[$key]['phones'][0]);
+                unset($membersArray[$key]['phones']);
+            }
+            unset($membersArray[$key]['pivot']);
+        }
+
+        // Load users to csv exporter
         \Excel::create('Referrals', function($excel) use ($membersArray) {
             $excel->sheet('Members', function($sheet) use ($membersArray) {
                 $sheet->fromArray($membersArray);
