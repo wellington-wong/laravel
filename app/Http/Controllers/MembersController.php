@@ -193,10 +193,10 @@ class MembersController extends Controller
         $addressCols = \Schema::getColumnListing('addresses');
         $phoneCols = \Schema::getColumnListing('phones');
 
-        $columns = array_merge($userCols, $addressCols, $phoneCols);
-
+        $columns = array_unique(array_merge($userCols, $addressCols, $phoneCols));
+        
         $unsetFields = [
-            'id', 'provider', 'provider_id', 'stripe_id', 'card_brand', 
+            'provider', 'provider_id', 'stripe_id', 'card_brand', 
             'card_last_four', 'trial_ends_at', 'deleted_at', 'lob_verified', 
             'lob_response', 'lob_adr_id', 'country', 'country_code', 'type',
             'company_id', 'profile_image', 'created_at', 'updated_at',
