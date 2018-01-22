@@ -197,7 +197,7 @@ class MembersController extends Controller
             }
         }
         
-        return $columns;
+        return response()->json($columns);
 
     }
 

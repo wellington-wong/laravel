@@ -22054,6 +22054,26 @@ $(function () {
 	});
 
 	// END REVIEWS
+
+	// EXPORT USERS
+
+
+	// Check duplicate before submitting form
+	$('.export-members').on('click', function () {
+		ajaxHelper("/members/export/fields", {}, "GET", function (data) {
+			console.log(data);
+		});
+		$('.members-wrapper #incentful-modal').modal('show');
+		return false;
+	});
+	// Prepare modal
+	$('.members-wrapper #incentful-modal .modal-title').html('Export fields');
+	$('.members-wrapper #incentful-modal .a.submit').on('click', function () {});
+	$('.members-wrapper #incentful-modal .btn.cancel').on('click', function () {
+		$('.members-wrapper #incentful-modal').modal('hide');
+	});
+
+	// END EXPORT USERS
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
