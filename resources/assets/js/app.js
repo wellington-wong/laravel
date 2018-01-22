@@ -1890,23 +1890,36 @@ $(function (){
 // END REVIEWS
 
 // EXPORT USERS
-	
+		
+	function addCheckbox(container, name) {
+	   var container = $(container);
+	   var inputs = container.find('input');
+	   var id = inputs.length+1;
+
+	   $('<div />', { class: "form-group", id: "export-field-wrapper-" + id }).appendTo(container);
+	   $('<input />', { type: 'checkbox', id: 'field-checkbox-' + id, value: name, name: 'export_fields[]',class: 'export-fields-checkbox' }).appendTo($("#export-field-wrapper-" + id));
+	   $('<label />', { 'for': 'field-checkbox-' + id, text: name.replace(/_/g, ' '), id: 'field-label-' + id }).css('text-transform', 'capitalize').appendTo($("#export-field-wrapper-" + id));
+	}
 
 	// Check duplicate before submitting form
 	$('.export-members').on('click', function (){
 		ajaxHelper("/members/export/fields", {}, "GET", function (data){
-			console.log(data);
+		$('.members-wrapper #incentful-modal .modal-body').find('.form-group').remove();
+			$.each(data, function (index, val){
+				addCheckbox('.fields-wrapper', val);
+			});
 		});
 		$('.members-wrapper #incentful-modal').modal('show');	
 		return false;
 	});
 	// Prepare modal
 	$('.members-wrapper #incentful-modal .modal-title').html('Export fields');
-	$('.members-wrapper #incentful-modal .a.submit').on('click', function (){
-	});
+	$('.members-wrapper #incentful-modal .modal-body').html('<p>Select the user fields that will be on the exported CSV file:<p><div class="fields-wrapper"></div>');
+	$('.members-wrapper #incentful-modal .btn.submit').on('click', function (){
+	}).text('Export').addClass('btn btn-default');
 	$('.members-wrapper #incentful-modal .btn.cancel').on('click', function (){
 		$('.members-wrapper #incentful-modal').modal('hide');	
-	});
+	}).text('Cancel').addClass('btn btn-danger');
 
 // END EXPORT USERS
 
