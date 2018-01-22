@@ -147,9 +147,12 @@ class MembersController extends Controller
             'lob_response', 'lob_adr_id', 'country', 'country_code', 'type'
         ];
 
-        foreach ($membersArray as $member) {
-            foreach ($member as $key => $filteredMemberFields) {
-            
+        // Unset internal use fields
+        foreach ($membersArray as $keyParent => $member) {
+            foreach ($member as $keyChild => $filteredMemberFields) {
+                if (in_array($keyChild, $unsetFields)) {
+                    unset($membersArray[$keyParent][$keyChild]);
+                }
             }
         }
 
