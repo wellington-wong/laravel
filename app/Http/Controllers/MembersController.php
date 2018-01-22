@@ -126,10 +126,26 @@ class MembersController extends Controller
     {
 
         // Get all users
-        $membersArray = $request->_company->members()->with('addresses', 'phones')->skip(1)->limit(1)->get()->toArray();
+        $membersArray = $request->_company->members()->with('addresses', 'phones')->get()->toArray();
+
+        $userCols = \Schema::getColumnListing('users');
+        $addressCols = \Schema::getColumnListing('addresses');
+        $phoneCols = \Schema::getColumnListing('phones');
+
+        $columns = array_unique(array_merge($userCols, $addressCols, $phoneCols));
 
         // Flatten array
         foreach ($membersArray as $key => $member) {
+
+            // Fill in the empty array fields to align the csv columns
+            foreach ($columns as $column) {
+                foreach ($member as $keyChild => $field){
+                    if (!isset($member[$column])) {
+                        $membersArray[$key][$column] = null;
+                    }
+                }
+            }
+
             if (isset($membersArray[$key]['addresses'][0])) {
                 $membersArray[$key] =  array_merge ($membersArray[$key], $membersArray[$key]['addresses'][0]);
             }
@@ -168,7 +184,6 @@ class MembersController extends Controller
             }
         }
 
-
         $membersArray = isset($membersArray) ? $membersArray : [];
 
         // Load users to csv exporter
@@ -194,7 +209,7 @@ class MembersController extends Controller
         $phoneCols = \Schema::getColumnListing('phones');
 
         $columns = array_unique(array_merge($userCols, $addressCols, $phoneCols));
-        
+
         $unsetFields = [
             'provider', 'provider_id', 'stripe_id', 'card_brand', 
             'card_last_four', 'trial_ends_at', 'deleted_at', 'lob_verified', 
