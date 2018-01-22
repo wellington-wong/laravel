@@ -126,18 +126,18 @@ class MembersController extends Controller
     {
 
         // Get all users
-        $membersArray = $request->_company->members()->with('addresses', 'phones')->get()->toArray();
+        $membersArray = $request->_company->members()->with('addresses', 'phones')->skip(1)->limit(1)->get()->toArray();
 
         // Flatten array
         foreach ($membersArray as $key => $member) {
             if (isset($membersArray[$key]['addresses'][0])) {
                 $membersArray[$key] =  array_merge ($membersArray[$key], $membersArray[$key]['addresses'][0]);
-                unset($membersArray[$key]['addresses']);
             }
+            unset($membersArray[$key]['addresses']);
             if (isset($membersArray[$key]['phones'][0])) {
                 $membersArray[$key] =  array_merge ($membersArray[$key], $membersArray[$key]['phones'][0]);
-                unset($membersArray[$key]['phones']);
             }
+            unset($membersArray[$key]['phones']);
             unset($membersArray[$key]['pivot']);
         }
 
@@ -145,7 +145,7 @@ class MembersController extends Controller
             'provider', 'provider_id', 'stripe_id', 'card_brand', 
             'card_last_four', 'trial_ends_at', 'deleted_at', 'lob_verified', 
             'lob_response', 'lob_adr_id', 'country', 'country_code', 'type',
-            'company_id'
+            'company_id', 'profile_image', 'created_at', 'updated_at'
         ];
 
         // Unset internal use fields
@@ -168,4 +168,36 @@ class MembersController extends Controller
 
         return;
     }
+
+    /**
+     * Export members fields
+     * @param $request
+     * @return
+     */
+    public function exportMembersFields (Request $request)
+    {
+
+        $userCols = \Schema::getColumnListing('users');
+        $addressCols = \Schema::getColumnListing('addresses');
+        $phoneCols = \Schema::getColumnListing('phones');
+
+        $columns = array_merge($userCols, $addressCols, $phoneCols);
+
+        $unsetFields = [
+            'id', 'provider', 'provider_id', 'stripe_id', 'card_brand', 
+            'card_last_four', 'trial_ends_at', 'deleted_at', 'lob_verified', 
+            'lob_response', 'lob_adr_id', 'country', 'country_code', 'type',
+            'company_id', 'profile_image', 'created_at', 'updated_at'
+        ];
+
+        // Unset internal use fields
+        foreach ($columns as $key => $column) {
+            if (in_array($key, $unsetFields)) {
+                unset($columns[$key]);
+            }
+         }
+        dd($columns);
+
+    }
+
 }
