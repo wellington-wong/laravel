@@ -192,11 +192,12 @@ class MembersController extends Controller
 
         // Unset internal use fields
         foreach ($columns as $key => $column) {
-            if (in_array($key, $unsetFields)) {
+            if (in_array($column, $unsetFields)) {
                 unset($columns[$key]);
             }
-         }
-        dd($columns);
+        }
+        
+        return $columns;
 
     }
 
