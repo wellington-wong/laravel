@@ -22079,7 +22079,7 @@ $(function () {
 
 		// Prepare modal
 		$('.members-wrapper #incentful-modal .modal-title').html('Export fields');
-		$('.members-wrapper #incentful-modal .modal-body').html('<p>Select the user fields that will be on the exported CSV file:<p><div class="fields-wrapper"></div>');
+		$('.members-wrapper #incentful-modal .modal-body').html('<p>Select the user fields that will be exported on the CSV file:<p><div class="fields-wrapper"></div>');
 		$('.members-wrapper #incentful-modal .btn.submit').on('click', function () {
 			var exportFields = [];
 			$('input[name="export_fields[]"]:checked').each(function () {
