@@ -145,7 +145,8 @@ class MembersController extends Controller
             'provider', 'provider_id', 'stripe_id', 'card_brand', 
             'card_last_four', 'trial_ends_at', 'deleted_at', 'lob_verified', 
             'lob_response', 'lob_adr_id', 'country', 'country_code', 'type',
-            'company_id', 'profile_image', 'created_at', 'updated_at'
+            'company_id', 'profile_image', 'created_at', 'updated_at',
+            'password', 'remember_token'
         ];
 
         // Unset internal use fields
@@ -154,8 +155,19 @@ class MembersController extends Controller
                 if (in_array($keyChild, $unsetFields)) {
                     unset($membersArray[$keyParent][$keyChild]);
                 }
+                if ($request->has('fields')) {
+                    $fields = explode('|', $request->get('fields'));
+                    foreach ($fields as $field){
+                        if (!in_array($keyChild, $fields)) {
+                            if (isset($membersArray[$keyParent][$keyChild])){
+                                unset($membersArray[$keyParent][$keyChild]);
+                            }
+                        }
+                    }
+                }
             }
         }
+
 
         $membersArray = isset($membersArray) ? $membersArray : [];
 
@@ -187,7 +199,8 @@ class MembersController extends Controller
             'id', 'provider', 'provider_id', 'stripe_id', 'card_brand', 
             'card_last_four', 'trial_ends_at', 'deleted_at', 'lob_verified', 
             'lob_response', 'lob_adr_id', 'country', 'country_code', 'type',
-            'company_id', 'profile_image', 'created_at', 'updated_at'
+            'company_id', 'profile_image', 'created_at', 'updated_at',
+            'password', 'remember_token'
         ];
 
         // Unset internal use fields
@@ -196,7 +209,7 @@ class MembersController extends Controller
                 unset($columns[$key]);
             }
         }
-        
+
         return response()->json($columns);
 
     }

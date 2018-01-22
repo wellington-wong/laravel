@@ -1897,7 +1897,7 @@ $(function (){
 	   var id = inputs.length+1;
 
 	   $('<div />', { class: "form-group", id: "export-field-wrapper-" + id }).appendTo(container);
-	   $('<input />', { type: 'checkbox', id: 'field-checkbox-' + id, value: name, name: 'export_fields[]',class: 'export-fields-checkbox' }).appendTo($("#export-field-wrapper-" + id));
+	   $('<input />', { type: 'checkbox', id: 'field-checkbox-' + id, checked: 'checked',value: name, name: 'export_fields[]',class: 'export-fields-checkbox' }).appendTo($("#export-field-wrapper-" + id));
 	   $('<label />', { 'for': 'field-checkbox-' + id, text: name.replace(/_/g, ' '), id: 'field-label-' + id }).css('text-transform', 'capitalize').appendTo($("#export-field-wrapper-" + id));
 	}
 
@@ -1916,7 +1916,12 @@ $(function (){
 	$('.members-wrapper #incentful-modal .modal-title').html('Export fields');
 	$('.members-wrapper #incentful-modal .modal-body').html('<p>Select the user fields that will be on the exported CSV file:<p><div class="fields-wrapper"></div>');
 	$('.members-wrapper #incentful-modal .btn.submit').on('click', function (){
-	}).text('Export').addClass('btn btn-default');
+		var exportFields = [];
+		$('input[name="export_fields[]"]:checked').each(function (){
+			exportFields.push($(this).val());
+		});		
+		location.href = '/members/export?fields=' + exportFields.join('|');
+	}).text('Export').addClass('btn btn-primary');
 	$('.members-wrapper #incentful-modal .btn.cancel').on('click', function (){
 		$('.members-wrapper #incentful-modal').modal('hide');	
 	}).text('Cancel').addClass('btn btn-danger');
