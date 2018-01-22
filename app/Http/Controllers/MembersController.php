@@ -146,6 +146,7 @@ class MembersController extends Controller
                 }
             }
 
+            // Merge addresses and phones to user array
             if (isset($membersArray[$key]['addresses'][0])) {
                 $membersArray[$key] =  array_merge ($membersArray[$key], $membersArray[$key]['addresses'][0]);
             }
@@ -175,9 +176,7 @@ class MembersController extends Controller
                     $fields = explode('|', $request->get('fields'));
                     foreach ($fields as $field){
                         if (!in_array($keyChild, $fields)) {
-                            if (isset($membersArray[$keyParent][$keyChild])){
-                                unset($membersArray[$keyParent][$keyChild]);
-                            }
+                            unset($membersArray[$keyParent][$keyChild]);
                         }
                     }
                 }
