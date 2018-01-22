@@ -144,7 +144,8 @@ class MembersController extends Controller
         $unsetFields = [
             'provider', 'provider_id', 'stripe_id', 'card_brand', 
             'card_last_four', 'trial_ends_at', 'deleted_at', 'lob_verified', 
-            'lob_response', 'lob_adr_id', 'country', 'country_code', 'type'
+            'lob_response', 'lob_adr_id', 'country', 'country_code', 'type',
+            'company_id'
         ];
 
         // Unset internal use fields
@@ -155,6 +156,8 @@ class MembersController extends Controller
                 }
             }
         }
+
+        $membersArray = isset($membersArray) ? $membersArray : [];
 
         // Load users to csv exporter
         \Excel::create('Referrals', function($excel) use ($membersArray) {
