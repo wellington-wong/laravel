@@ -24,7 +24,6 @@
                 <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Label</th>
                             <th>Value</th>
                         </tr>
@@ -32,7 +31,6 @@
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     @foreach($referralValues as $key => $r)
                         <tr>
-                            <td>{{ $r->id }}</td>
                             <td>{{ ucwords(str_replace('_', ' ', $r->name)) }}</td>
                             <td>@if ($r->name == "state") {{ strtoupper($r->value) }} @else {{ $r->value }} @endif</td>
                         </tr>
