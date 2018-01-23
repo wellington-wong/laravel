@@ -8,6 +8,7 @@
         
         <div class="row">
             @include('layouts.page-header', ['header' => 'Referral History', 'col' => 3])
+            <div class="col-md-9 text-right"><a href="{{ route('referrals') }}"><small><< Back to Referrals</small></a></div>
         </div>
 
         <div class="clearfix"></div>
