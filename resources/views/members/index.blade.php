@@ -32,7 +32,6 @@
                 <table class="table table-members tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -42,7 +41,6 @@
                     <tr class="tr-spacer"><td colspan=5></td></tr>
                     @foreach ($admins as $member)
                         <tr>
-                            <td>{{ $member->id }}</td>
                             <td><a href="{{ route('view-user', $member->id) }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</a></td>
                             <td>{{ $member->email }}</td>
                             <td>{{ implode(', ', $member->roles()->pluck('display_name')->toArray()) }}</td>
@@ -94,7 +92,6 @@
                 <table class="table table-members tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Referrals</th>
@@ -104,7 +101,6 @@
                     <tr class="tr-spacer"><td colspan=5></td></tr>
                     @foreach ($members as $member)
                         <tr>
-                            <td>{{ $member->id }}</td>
                             <td><a href="{{ route('view-user', $member->id) }}">{{ isset($member->name) ? $member->name : $member->first_name . ' ' . $member->last_name }}</a></td>
                             <td>{{ $member->email }}</td>
                             <td>{{ $member->referrals()->where('company_id', $_company->id)->count() }}</td>                                   
