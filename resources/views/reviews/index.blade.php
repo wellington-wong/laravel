@@ -3,25 +3,7 @@
 @section('pageTitle', 'Reviews')
 
 @section('content')
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 
-
-
-<div class="feedback-form" data-bind="visible: showFeedbackForm">
-
-<form data-bind="submit: save" method="post">
-
-
-<input name="name" id="name" value="" placeholder="Name" data-bind="value: reviewer_name" type="text">
-<input name="email" id="email" value="" placeholder="Email" data-bind="value: reviewer_email" type="text">
-<textarea name="message" id="input-message" placeholder="Message" data-bind="value: review_text"></textarea>
-
-
-<input data-bind="click: save" value="Send!" type="submit">
-
-
-</div>
-<div style="display: none;" class="thank-you" data-bind="visible: showThankYouMessage">Thank you for your feedback!</div><!-- Begin ReviewPush Feedback Embed -->
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
