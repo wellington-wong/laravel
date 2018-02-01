@@ -48,19 +48,19 @@
     <a href="#" class="star full" data-bind="click: function(data, event) { setRating(5); }, css: { full: rating() == 5 }"></a>
   </div>
 
-  <div>
+  <div class="form-group">
     <input name="name" id="name" class="form-control" value="" placeholder="Name" data-bind="value: reviewer_name" type="text">
   </div>
 
-  <div>
+  <div class="form-group">
     <input name="email" id="email" class="form-control" value="" placeholder="Email" data-bind="value: reviewer_email" type="text">
   </div>
 
-  <div>
+  <div class="form-group">
     <textarea name="message" class="form-control" id="input-message" placeholder="Message" data-bind="value: review_text"></textarea>
   </div>
 
-  <div>
+  <div class="btn-group">
     <input name="submit" class="btn btn-primary" data-bind="click: save" id="submit_btn" value="Send Message!" type="submit">
   </div>
 
