@@ -60,10 +60,17 @@
     <textarea name="message" class="form-control" id="input-message" placeholder="Message" data-bind="value: review_text"></textarea>
   </div>
 
+  <!-- Rating -->
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="message">Your rating</label>
+    <div class="col-md-9">
+      <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+    </div>
+  </div>
+
   <div class="btn-group">
     <input name="submit" class="btn btn-primary" data-bind="click: save" id="submit_btn" value="Send Message!" type="submit">
   </div>
-
 
 <div class="reviews-container">
     <div class="row">
