@@ -54,6 +54,88 @@
   <div>
     <input name="submit" data-bind="click: save" id="submit_btn" value="Send Message!" type="submit">
   </div>
+
+
+
+
+
+<div class="reviews-container">
+                    <div class="row">
+                      <hr />
+                    </div>
+                    <div class="row">
+                      <div class="col-md-10">
+                        <label>Create a review by filling in the form below</label>
+                      </div>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div class="row">
+                      <div class="col-md-9 col-md-offset-0">
+                        <div class="">
+                          <form class="form-horizontal" action="send.php" method="post">
+                          <fieldset>
+                    
+                            <!-- Name input-->
+                            <div class="form-group">
+                              <label class="col-md-3 control-label" for="name">Full Name</label>
+                              <div class="col-md-9">
+                                <input id="name" name="name" type="text" placeholder="Your name" class="form-control">
+                              </div>
+                            </div>
+                    
+                            <!-- Email input-->
+                            <div class="form-group">
+                              <label class="col-md-3 control-label" for="email">Your E-mail</label>
+                              <div class="col-md-9">
+                                <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
+                              </div>
+                            </div>
+                    
+                            <!-- Message body -->
+                            <div class="form-group">
+                              <label class="col-md-3 control-label" for="message">Your Review</label>
+                              <div class="col-md-9">
+                                <textarea class="form-control" id="message" name="message" placeholder="Please enter your feedback here..." rows="5"></textarea>
+                              </div>
+                            </div>
+
+                            <!-- Image Upload -->
+                            <div class="form-group">
+                              <label class="col-md-3 control-label" for="message">Your Image</label>
+                              <div class="col-md-9">                              
+                             {{ Form::file('thefile') }}
+                            </div>
+                            </div>
+
+
+                            <!-- Rating -->
+                            <div class="form-group">
+                              <label class="col-md-3 control-label" for="message">Your rating</label>
+                              <div class="col-md-9">
+                                <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+                              </div>
+                            </div>
+                            <!-- Form actions -->
+                            <div class="form-group">
+                              <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-md">Submit</button>
+                                <button type="reset" class="btn btn-default btn-md">Clear</button>
+                              </div>
+                            </div>
+                          </fieldset>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+  
 </form>
 
 <div style="display: none;" data-bind="visible: showThankYouMessage">
@@ -365,78 +447,7 @@
                 </a>
               </div>
        
-                <div class="reviews-container">
-                    <div class="row">
-                      <hr />
-                    </div>
-                    <div class="row">
-                      <div class="col-md-10">
-                        <label>Create a review by filling in the form below</label>
-                      </div>
-                    </div>
-                    <div>&nbsp;</div>
-                    <div class="row">
-                      <div class="col-md-9 col-md-offset-0">
-                        <div class="">
-                          <form class="form-horizontal" action="send.php" method="post">
-                          <fieldset>
-                    
-                            <!-- Name input-->
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="name">Full Name</label>
-                              <div class="col-md-9">
-                                <input id="name" name="name" type="text" placeholder="Your name" class="form-control">
-                              </div>
-                            </div>
-                    
-                            <!-- Email input-->
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="email">Your E-mail</label>
-                              <div class="col-md-9">
-                                <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
-                              </div>
-                            </div>
-                    
-                            <!-- Message body -->
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="message">Your Review</label>
-                              <div class="col-md-9">
-                                <textarea class="form-control" id="message" name="message" placeholder="Please enter your feedback here..." rows="5"></textarea>
-                              </div>
-                            </div>
-
-                            <!-- Image Upload -->
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="message">Your Image</label>
-                              <div class="col-md-9">                              
-                             {{ Form::file('thefile') }}
-                            </div>
-                            </div>
-
-
-                            <!-- Rating -->
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="message">Your rating</label>
-                              <div class="col-md-9">
-                                <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
-                              </div>
-                            </div>
-                            <!-- Form actions -->
-                            <div class="form-group">
-                              <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary btn-md">Submit</button>
-                                <button type="reset" class="btn btn-default btn-md">Clear</button>
-                              </div>
-                            </div>
-                          </fieldset>
-                          </form>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
+                
         </div>
     </div>
 
