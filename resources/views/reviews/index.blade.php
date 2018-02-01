@@ -7,7 +7,16 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<h3>Leave Feedback</h3>
+        
+  <div class="row">
+      @include('layouts.page-header', ['header' => 'Reviews', 'col' => 3])
+      <div class="col-md-9 text-right"><a href="{{ route('referrals') }}"><small><< Back to Referrals</small></a></div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <label>Create a review by filling in the form below</label>
+    </div>
+  </div>
 <form method="post" data-bind="visible: showFeedbackForm, submit: save">
   <div style="display: none;" class="location-popup" data-bind="visible: show_location_list">
     <div data-bind="foreach: location_list"></div>
@@ -62,11 +71,6 @@
 <div class="reviews-container">
                     <div class="row">
                       <hr />
-                    </div>
-                    <div class="row">
-                      <div class="col-md-10">
-                        <label>Create a review by filling in the form below</label>
-                      </div>
                     </div>
                     <div>&nbsp;</div>
                     <div class="row">
@@ -135,7 +139,7 @@
 
 
 
-  
+
 </form>
 
 <div style="display: none;" data-bind="visible: showThankYouMessage">
