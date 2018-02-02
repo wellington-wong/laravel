@@ -60,17 +60,17 @@
     <textarea name="message" class="form-control" id="input-message" placeholder="Message" data-bind="value: review_text"></textarea>
   </div>
 
-  <div class="row">
-    <div class="btn-group col-md-4">
-      <input name="submit" class="btn btn-primary" data-bind="click: save" id="submit_btn" value="Send Message!" type="submit">
-    </div>
 
-    <!-- Rating -->
-    <div class="form-group col-md-8 text-right">
-      <label class="col-md-3 control-label" for="message">Rating</label>
-      <div>
-        <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
-      </div>
+  <div>&nbsp;</div>
+  <div class="btn-group col-md-4">
+    <input name="submit" class="btn btn-primary pull-left" data-bind="click: save" id="submit_btn" value="Send Message!" type="submit">
+  </div>
+
+  <!-- Rating -->
+  <div class="form-group col-md-8 text-right">
+    <label for="message" class="pull-right col-md-12">Your Rating</label>
+    <div class="pull-right col-md-12">
+      <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
     </div>
   </div>
 
