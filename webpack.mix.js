@@ -28,3 +28,5 @@ mix.scripts([
 if (mix.config.inProduction) {
     mix.version();
 }
+
+mix.copy('resources/assets/js/pagination.js', 'public/js');
