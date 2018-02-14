@@ -5,7 +5,7 @@
 @section('js')
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
   <script type="text/javascript" src="https://go.reviewpush.com/go/feedback/js/feedback_embed.js"></script>
-  <script type="text/javascript" src="{{ asset('/js/pagination.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/jquery.twbsPagination.min.js') }}"></script>
 
   <script>
     var api_key = '{{ env("REVIEWPUSH_KEY") }}';

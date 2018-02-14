@@ -29,4 +29,4 @@ if (mix.config.inProduction) {
     mix.version();
 }
 
-mix.copy('resources/assets/js/pagination.js', 'public/js');
+mix.copy('resources/assets/js/jquery.twbsPagination.min.js', 'public/js');
