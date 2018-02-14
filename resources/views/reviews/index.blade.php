@@ -13,6 +13,13 @@
     var location_results = 5;
     $(function (){
       $('.review-stars .tooltip').removeClass('tooltip');
+      $('.reviewpush-feed > div').eq(0).twbsPagination({
+          totalPages: 35,
+          visiblePages: 7,
+          onPageClick: function (event, page) {
+              $('#page-content').text('Page ' + page);
+          }
+      });
     });
   </script>
 @stop
