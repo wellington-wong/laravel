@@ -5,10 +5,23 @@
 @section('js')
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
   <script type="text/javascript" src="https://go.reviewpush.com/go/feedback/js/feedback_embed.js"></script>
+
+  <script>
+    var api_key = '{{ env("REVIEWPUSH_KEY") }}';
+    var default_rating = '5';
+    var location_results = 5;
+    $(function (){
+      $('.review-stars .tooltip').removeClass('tooltip');
+    });
+  </script>
 @stop
+
+@section('css')
+  <link rel="stylesheet" type="text/css" href="//go.reviewpush.com/go/css/reviews.css" />
+@stop
+
 @section('content')
 
-    <link rel="stylesheet" type="text/css" href="//go.reviewpush.com/go/css/reviews.css" />
     <?php echo file_get_contents('https://go.reviewpush.com/embedded/feed/show/69dcefc73ba84894894d93b7a47e47f9/405?server=true'); ?>
     <div id='powered-by' style='border-top:1px solid #cccccc; padding:5px 0 15px 0; width:100%;'><div style='float:right;'><span style='font-family:arial; font-size:13px; color:#777777;'>powered by</span><a href='http://www.reviewpush.com' title='ReviewPush Online Review Monitoring' style="float:right;"><img alt='ReviewPush Online Review Monitoring' src='https://s3.amazonaws.com/ReviewPush/Public/Media/poweredby.png' style='border:0; vertical-align:middle;'></a></div></div>
 
@@ -65,12 +78,6 @@
     <div style="display: none;" data-bind="visible: showThankYouMessage">
       Thank you for your feedback! Please be assured that it will be routed to the right person in our organization. We take all feedback very seriously. 
     </div>
-
-    <script>
-      var api_key = '{{ env("REVIEWPUSH_KEY") }}';
-      var default_rating = '5';
-      var location_results = 5;
-    </script>
     <style type="text/css">
       .star {
         background-image:url(http://go.reviewpush.com/img/blue-star-empty.png);

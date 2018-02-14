@@ -21,7 +21,8 @@
     <link href="https://app.{{ env('DOMAIN') }}{{ mix('css/all.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-    <!-- Scripts -->
+    @yield('css')
+
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
