@@ -7,7 +7,10 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-        
+        <link rel="stylesheet" type="text/css" href="//go.reviewpush.com/go/css/reviews.css" />
+<?php echo file_get_contents('https://go.reviewpush.com/embedded/feed/show/69dcefc73ba84894894d93b7a47e47f9/405?server=true'); ?>
+    <div id='powered-by' style='border-top:1px solid #cccccc; padding:5px 0 15px 0; width:100%;'><div style='float:right;'><span style='font-family:arial; font-size:13px; color:#777777;'>powered by</span><a href='http://www.reviewpush.com' title='ReviewPush Online Review Monitoring' style="float:right;"><img alt='ReviewPush Online Review Monitoring' src='https://s3.amazonaws.com/ReviewPush/Public/Media/poweredby.png' style='border:0; vertical-align:middle;'></a></div></div>
+
   <div class="row">
       @include('layouts.page-header', ['header' => 'Reviews', 'col' => 3])
       <div class="col-md-9 text-right"><a href="{{ route('referrals') }}"><small><< Back to Referrals</small></a></div>
@@ -68,8 +71,8 @@
 
   <!-- Rating -->
   <div class="form-group col-md-8 text-right">
-    <label for="message" class="pull-right col-md-12">Your Rating</label>
     <div class="pull-right col-md-12">
+      <label for="message" class="pull-right col-md-12">Your Rating</label>
       <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
     </div>
   </div>
