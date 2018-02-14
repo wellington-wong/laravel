@@ -22,7 +22,6 @@
     "spectrum-colorpicker": "^1.8.0",
     "tablesaw": "^3.0.0",
     "tinymce": "^4.6.1",
-    "twbs-pagination": "^1.4.1",
     "vue": "^2.1.10"
   },
   "dependencies": {
