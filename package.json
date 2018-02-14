@@ -19,7 +19,6 @@
     "jquery-validation": "^1.16.0",
     "laravel-mix": "^0.8.1",
     "lodash": "^4.17.4",
-    "paginationjs": "^2.1.2",
     "spectrum-colorpicker": "^1.8.0",
     "tablesaw": "^3.0.0",
     "tinymce": "^4.6.1",
