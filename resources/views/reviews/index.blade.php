@@ -5,7 +5,7 @@
 @section('js')
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
   <script type="text/javascript" src="https://go.reviewpush.com/go/feedback/js/feedback_embed.js"></script>
-  <script type="text/javascript" src="{{ asset('/js/jquery.twbsPagination.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/paginate.js') }}"></script>
 
   <script>
     var api_key = '{{ env("REVIEWPUSH_KEY") }}';
@@ -13,19 +13,44 @@
     var location_results = 5;
     $(function (){
       $('.review-stars .tooltip').removeClass('tooltip');
-      $('.reviewpush-feed > div').eq(0).twbsPagination({
-          totalPages: 35,
-          visiblePages: 7,
-          onPageClick: function (event, page) {
-              $('#page-content').text('Page ' + page);
-          }
+      $('div.reviews').easyPaginate({
+        paginateElement: '.review',
+        elementsPerPage: 5,
+        effect: 'climb'
       });
     });
   </script>
 @stop
 
 @section('css')
-  <link rel="stylesheet" type="text/css" href="//go.reviewpush.com/go/css/reviews.css" />
+  <link rel="stylesheet" type="text/css" href="//go.reviewpush.com/go/css/reviews.css" />  
+  <style type="text/css">
+    .star {
+      background-image:url(http://go.reviewpush.com/img/blue-star-empty.png);
+      display:inline-block;
+      height:18px;
+      width:18px;
+    }
+    .star.full {
+      background-image:url(http://go.reviewpush.com/img/blue-star-full.png);
+    }
+    .location-popup {
+      position: absolute;
+      z-index: 99999;
+      background-color: white;
+      border: 1px solid #aaa;
+      padding: 20px;
+    }
+    .location-row {
+      border-bottom: 1px solid #aaa;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      cursor: pointer;
+    }
+    div.reviews {
+      padding: 0;
+    }
+  </style>
 @stop
 
 @section('content')
@@ -97,30 +122,6 @@
           </div>
         </div>
       </div>
-        <style type="text/css">
-          .star {
-            background-image:url(http://go.reviewpush.com/img/blue-star-empty.png);
-            display:inline-block;
-            height:18px;
-            width:18px;
-          }
-          .star.full {
-            background-image:url(http://go.reviewpush.com/img/blue-star-full.png);
-          }
-          .location-popup {
-            position: absolute;
-            z-index: 99999;
-            background-color: white;
-            border: 1px solid #aaa;
-            padding: 20px;
-          }
-          .location-row {
-            border-bottom: 1px solid #aaa;
-            padding-top: 6px;
-            padding-bottom: 6px;
-            cursor: pointer;
-          }
-        </style>
 
         <!-- End ReviewPush Feedback Embed --> 
 
