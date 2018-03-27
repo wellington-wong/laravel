@@ -287,7 +287,7 @@
                     <div class="row">
                       <div class="col-md-9 col-md-offset-0">
                           <form class="form-horizontal" action="send.php" method="post">
-                    
+                          {{ Form::open(['url' => route('post-review'), 'class' => 'form']) }}
                             <!-- Name input-->
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-url">URL</label>
@@ -318,7 +318,7 @@
                                 <button type="reset" class="btn btn-default btn-md">Clear</button>
                               </div>
                             </div>
-                          </form>
+                          {{ Form::close() }}
                     </div>
                 </div>
 
