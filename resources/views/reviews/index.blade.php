@@ -291,7 +291,7 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-url">URL</label>
                               <div class="col-md-9">
-                                <input id="review-url" name="review-url" type="text" placeholder="Review URL" class="form-control">
+                                <input id="review-url" name="review_url" type="text" placeholder="Review URL" class="form-control">
                               </div>
                             </div>
 
@@ -299,7 +299,7 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-screenshot">Screenshot of the review</label>
                               <div class="col-md-9">                              
-                               {{ Form::file('review-screenshot', ['class' => 'form']) }}
+                               {{ Form::file('review_screenshot', ['class' => 'form']) }}
                               </div>
                             </div>
 
@@ -307,7 +307,7 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-photo">Your photo (optional)</label>
                               <div class="col-md-9">                              
-                               {{ Form::file('review-photo', ['class' => 'form']) }}
+                               {{ Form::file('review_photo', ['class' => 'form']) }}
                               </div>
                             </div>
 

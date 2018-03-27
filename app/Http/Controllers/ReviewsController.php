@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Reviews;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewsController extends Controller
 {
@@ -27,12 +29,31 @@ class ReviewsController extends Controller
 
     public function postReview (Request $request) {
 
-    	dd($request->all());
-        if ($request->file('review-photo')) {
-    		$request->file('review-photo')->store('reviews-photos');
+
+        $rules = [
+            'review_url'=>'required',
+        ];
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
         }
-        if ($request->file('review-screenshot')) {
-    		$request->file('review-screenshot')->store('reviews-screenshots');
+
+        // CREATE REVIEW
+        $user = Reviews::firstOrCreate([
+            'company_id' => $request->_company->id,
+            'url'=>$request->input('review_url'),
+            'rating'=>$request->input('rating'),
+            'screenshot'=>$request->file('review_screenshot')->store('reviews-screenshots'),
+            //'screenshot'=>$request->has('review-photo') ?: null,
+        ]);
+
+        if ($request->file('review_photo')) {
+    		$request->file('review_photo')->store('reviews-photos');
+        }
+        if ($request->file('review_screenshot')) {
+    		$request->file('review_screenshot')->store('reviews-screenshots');
         }
     	return back();
 
