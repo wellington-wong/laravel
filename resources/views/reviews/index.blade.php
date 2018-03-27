@@ -286,7 +286,6 @@
                     <div>&nbsp;</div>
                     <div class="row">
                       <div class="col-md-12">
-                          <form class="form-horizontal" action="send.php" method="post">
                           {{ Form::open(['url' => route('post-review'), 'class' => 'form']) }}
                             <!-- Name input-->
                             <div class="form-group">
@@ -294,22 +293,29 @@
                               <div class="col-md-9">
                                 <input id="review-url" name="review-url" type="text" placeholder="Review URL" class="form-control">
                               </div>
+                            </div>
 
-                             <!-- Image Upload -->
+                             <!-- Screenshot Upload -->
+                            <div class="form-group">
                               <label class="col-md-3 control-label" for="review-screenshot">Screenshot of review</label>
                               <div class="col-md-9">                              
                                {{ Form::file('review-screenshot', ['class' => 'form']) }}
                               </div>
+                            </div>
 
 
                             <!-- Rating -->
-                              <label class="col-md-3 control-label" for="message">Your rating</label>
-                              <div class="col-md-9">
-                                <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+                              <div class="form-group">
+                                <label class="col-md-3 control-label" for="message">Your rating</label>
+                                <div class="col-md-9">
+                                  <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+                                </div>
                               </div>
-                              <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary btn-md">Submit</button>
-                                <button type="reset" class="btn btn-default btn-md">Clear</button>
+                              <div class="form-group">
+                                <div class="col-md-12 text-right">
+                                  <button type="submit" class="btn btn-primary btn-md">Submit</button>
+                                  <button type="reset" class="btn btn-default btn-md">Clear</button>
+                                </div>
                               </div>
                             </div>
                           {{ Form::close() }}
