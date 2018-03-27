@@ -295,9 +295,17 @@
                               </div>
                             </div>
 
+                             <!-- Your photo -->
+                            <div class="form-group">
+                              <label class="col-md-3 control-label" for="review-photo">Your photo</label>
+                              <div class="col-md-9">                              
+                               {{ Form::file('review-photo', ['class' => 'form']) }}
+                              </div>
+                            </div>
+
                              <!-- Screenshot Upload -->
                             <div class="form-group">
-                              <label class="col-md-3 control-label" for="review-screenshot">Screenshot of review</label>
+                              <label class="col-md-3 control-label" for="review-screenshot">Screenshot of the review</label>
                               <div class="col-md-9">                              
                                {{ Form::file('review-screenshot', ['class' => 'form']) }}
                               </div>
@@ -314,7 +322,6 @@
                               <div class="form-group">
                                 <div class="col-md-12 text-right">
                                   <button type="submit" class="btn btn-primary btn-md">Submit</button>
-                                  <button type="reset" class="btn btn-default btn-md">Clear</button>
                                 </div>
                               </div>
                             </div>

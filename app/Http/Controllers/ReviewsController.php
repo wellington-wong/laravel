@@ -27,6 +27,7 @@ class ReviewsController extends Controller
 
     public function postReview (Request $request) {
 
+    	// dd($request);
     	return back();
 
     }
