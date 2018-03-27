@@ -286,9 +286,7 @@
                     <div>&nbsp;</div>
                     <div class="row">
                       <div class="col-md-9 col-md-offset-0">
-                        <div class="">
                           <form class="form-horizontal" action="send.php" method="post">
-                          <fieldset>
                     
                             <!-- Name input-->
                             <div class="form-group">
@@ -301,8 +299,8 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-screenshot">Screenshot of review</label>
                               <div class="col-md-9">                              
-                             {{ Form::file('review-screenshot') }}
-                            </div>
+                               {{ Form::file('review-screenshot', ['class' => 'form']) }}
+                              </div>
                             </div>
 
 
@@ -320,9 +318,7 @@
                                 <button type="reset" class="btn btn-default btn-md">Clear</button>
                               </div>
                             </div>
-                          </fieldset>
                           </form>
-                        </div>
                     </div>
                 </div>
 
