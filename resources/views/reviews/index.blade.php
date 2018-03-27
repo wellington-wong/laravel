@@ -285,7 +285,7 @@
                     </div>
                     <div>&nbsp;</div>
                     <div class="row">
-                      <div class="col-md-9 col-md-offset-0">
+                      <div class="col-md-12">
                           <form class="form-horizontal" action="send.php" method="post">
                           {{ Form::open(['url' => route('post-review'), 'class' => 'form']) }}
                             <!-- Name input-->
