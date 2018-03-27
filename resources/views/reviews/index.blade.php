@@ -292,33 +292,16 @@
                     
                             <!-- Name input-->
                             <div class="form-group">
-                              <label class="col-md-3 control-label" for="name">Full Name</label>
+                              <label class="col-md-3 control-label" for="review-url">URL</label>
                               <div class="col-md-9">
-                                <input id="name" name="name" type="text" placeholder="Your name" class="form-control">
+                                <input id="review-url" name="review-url" type="text" placeholder="Review URL" class="form-control">
                               </div>
-                            </div>
-                    
-                            <!-- Email input-->
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="email">Your E-mail</label>
-                              <div class="col-md-9">
-                                <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
-                              </div>
-                            </div>
-                    
-                            <!-- Message body -->
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="message">Your Review</label>
-                              <div class="col-md-9">
-                                <textarea class="form-control" id="message" name="message" placeholder="Please enter your feedback here..." rows="5"></textarea>
-                              </div>
-                            </div>
 
                             <!-- Image Upload -->
                             <div class="form-group">
-                              <label class="col-md-3 control-label" for="message">Your Image</label>
+                              <label class="col-md-3 control-label" for="review-screenshot">Screenshot of review</label>
                               <div class="col-md-9">                              
-                             {{ Form::file('thefile') }}
+                             {{ Form::file('review-screenshot') }}
                             </div>
                             </div>
 
