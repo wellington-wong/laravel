@@ -286,7 +286,7 @@
                     <div>&nbsp;</div>
                     <div class="row">
                       <div class="col-md-12">
-                          {{ Form::open(['url' => route('post-review'), 'class' => 'form']) }}
+                          {{ Form::open(['url' => route('post-review'), 'class' => 'form', 'files' => true]) }}
                             <!-- Name input-->
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-url">URL</label>
