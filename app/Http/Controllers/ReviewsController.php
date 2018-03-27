@@ -27,7 +27,13 @@ class ReviewsController extends Controller
 
     public function postReview (Request $request) {
 
-    	// dd($request);
+    	// dd($request->all());
+        if ($request->file('review-photo')) {
+    		$request->file('review-photo')->store('reviews-photos');
+        }
+        if ($request->file('review-screenshot')) {
+    		$request->file('review-screenshot')->store('reviews-screenshots');
+        }
     	return back();
 
     }
