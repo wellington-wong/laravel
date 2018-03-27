@@ -295,24 +295,18 @@
                                 <input id="review-url" name="review-url" type="text" placeholder="Review URL" class="form-control">
                               </div>
 
-                            <!-- Image Upload -->
-                            <div class="form-group">
+                             <!-- Image Upload -->
                               <label class="col-md-3 control-label" for="review-screenshot">Screenshot of review</label>
                               <div class="col-md-9">                              
                                {{ Form::file('review-screenshot', ['class' => 'form']) }}
                               </div>
-                            </div>
 
 
                             <!-- Rating -->
-                            <div class="form-group">
                               <label class="col-md-3 control-label" for="message">Your rating</label>
                               <div class="col-md-9">
                                 <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
                               </div>
-                            </div>
-                            <!-- Form actions -->
-                            <div class="form-group">
                               <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary btn-md">Submit</button>
                                 <button type="reset" class="btn btn-default btn-md">Clear</button>
