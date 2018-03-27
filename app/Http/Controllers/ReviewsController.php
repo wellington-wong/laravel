@@ -25,4 +25,10 @@ class ReviewsController extends Controller
 
     }
 
+    public function postReview (Request $request) {
+
+    	return back();
+
+    }
+
 }
