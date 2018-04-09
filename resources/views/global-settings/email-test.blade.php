@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             {{ Form::open(['method' => 'POST', 'id' => 'email-test-form', 'class' => 'email-test-form']) }}
-                                {{ Form::text('receipient', '' , ['class' => 'form-control', 'placeholder' => 'Email Receipient']) }}            
+                                {{ Form::email('recipient', '' , ['class' => 'form-control', 'placeholder' => 'Email Recipient']) }}            
                                 {{ Form::submit('Send Test Email', ['class' => 'btn btn-primary']) }}
                             {{ Form::close() }}
                         </div>
