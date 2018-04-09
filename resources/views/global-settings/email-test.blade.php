@@ -11,8 +11,12 @@
             @include('layouts.page-header', ['header' => 'Test Email', 'col' => 3])
         </div>
 
-        <div class="clearfix"></div>
-
+        <div class="clearfix"></div>                            
+        <div class="row">
+            <div class="form-group">               
+                <label>Test the Perxi Email System</label>
+            </div>
+        </div>                  
         {{ Form::open(['method' => 'POST', 'id' => 'email-test-form', 'class' => 'email-test-form']) }}                                
             <div class="row">
                 <div class="form-group">                
@@ -23,7 +27,7 @@
             <div class="row">
                 <div class="form-group">
                 {{ Form::label('test_email_body', 'Email Body') }}          
-                {{ Form::textarea('test_email_body', '', ['class' => 'form-control tinymce']) }}
+                {{ Form::textarea('test_email_body', '', ['class' => 'form-control tinymce', 'placeholder' => 'asd']) }}
                 </div>
             </div>               
             <div class="row">
