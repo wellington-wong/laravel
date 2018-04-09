@@ -140,6 +140,7 @@
                                         @if (Session::get('currentUserId')) 
                                             <li class="{{ Request::is('login-as-origin') ? 'active' : '' }}"><a href="{{ route('login-as-origin') }}">Login as original</a></li>      
                                         @endif 
+                                        @can('send-test-emails') <li class="{{ Request::is('global-settings/test-email') ? 'active' : '' }}"><a href="{{ route('get-test-email') }}">Test Email</a></li>@endcan                                       
                                     </ul>
                                 </li>
                             </ul>

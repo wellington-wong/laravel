@@ -103,5 +103,9 @@ class AuthServiceProvider extends ServiceProvider
             return auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']);
         });
 
+        Gate::define('send-test-emails', function () {
+            return auth()->user()->hasRole(['globalAdmin']);
+        });
+
     }
 }

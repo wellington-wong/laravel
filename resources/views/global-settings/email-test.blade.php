@@ -17,13 +17,13 @@
             <div class="row">
                 <div class="form-group">                
                 {{ Form::label('test_recipient', 'Email Recipient') }}            
-                {{ Form::email('test_recipient', 'r@sdf.sdf' , ['class' => 'form-control', 'placeholder' => 'Email Recipient']) }}            
+                {{ Form::email('test_recipient', '' , ['class' => 'form-control', 'placeholder' => 'Email Recipient']) }}            
                 </div>
             </div>                             
             <div class="row">
                 <div class="form-group">
                 {{ Form::label('test_email_body', 'Email Body') }}          
-                {{ Form::textarea('test_email_body', 'cc', ['class' => 'form-control tinymce']) }}
+                {{ Form::textarea('test_email_body', '', ['class' => 'form-control tinymce']) }}
                 </div>
             </div>               
             <div class="row">
