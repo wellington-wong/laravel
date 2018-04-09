@@ -206,8 +206,8 @@ class GlobalSettingsController extends Controller
     {   
 
         $rules = [
-            'title'=>'required',
-            'content'=>'required',
+            'test_recipient'=>'required',
+            'test_email_body'=>'required',
         ];
 
         $validator = Validator::make($request->input(), $rules);
@@ -216,17 +216,8 @@ class GlobalSettingsController extends Controller
             return redirect()->back()->withInput()
                 ->with(['errors'=>$validator->errors()]);
         }
-
-        $request->merge(['company_id' => 0]);
-        $request->merge(['route_name' => $route]);
-
-        if ( $page = BasicPages::fetch($route, 0)->first() ?: null ) {
-            $page->update($request->all());            
-        } else {
-            $page = new BasicPages();
-            $page->create($request->all());      
-        }
         
-        return back()->with('success', ['Page successfully saved']);
+        return back()->with('success', ['Email successfully sent to ' . $request->get('test_recipient')]);
+        
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Email Test')
+@section('pageTitle', 'Test Email')
 
 @section('content')
 
@@ -8,23 +8,25 @@
     <div class="container-fluid members-wrapper">        
 
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Email Test', 'col' => 3])
+            @include('layouts.page-header', ['header' => 'Test Email', 'col' => 3])
         </div>
 
         <div class="clearfix"></div>
 
-
+        {{ Form::open(['method' => 'POST', 'id' => 'email-test-form', 'class' => 'email-test-form']) }}                                
             <div class="row">
-                <div class="col-md-6 no-padding-lr">
-                    <div class="row">
-                        <div class="col-md-8">
-                            {{ Form::open(['method' => 'POST', 'id' => 'email-test-form', 'class' => 'email-test-form']) }}
-                                {{ Form::email('recipient', '' , ['class' => 'form-control', 'placeholder' => 'Email Recipient']) }}            
-                                {{ Form::submit('Send Test Email', ['class' => 'btn btn-primary']) }}
-                            {{ Form::close() }}
-                        </div>
-                    </div>
+                <div class="form-group">                
+                {{ Form::label('test_recipient', 'Email Recipient') }}            
+                {{ Form::email('test_recipient', '' , ['class' => 'form-control', 'placeholder' => 'Email Recipient']) }}            
                 </div>
-            </div>
+            </div>                             
+            <div class="row">
+                <div class="form-group">
+                {{ Form::label('test_email_body', 'Email Body') }}          
+                 {{ Form::textarea('test_email_body', '', ['class' => 'form-control tinymce']) }}
+                </div>
+            </div>                          
+            {{ Form::submit('Send Test Email', ['class' => 'btn btn-primary']) }}
+        {{ Form::close() }}
     </div>
 @endsection
