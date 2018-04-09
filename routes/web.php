@@ -123,7 +123,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::get('/global-settings/edit-basic-page/{id}', ['uses' => 'GlobalSettingsController@editBasicPage', 'middleware' => ['role:globalAdmin']])->name('edit-basic-page');
 	Route::post('/global-settings/edit-basic-page/{id}', ['uses' => 'GlobalSettingsController@postEditBasicPage', 'middleware' => ['role:globalAdmin']])->name('post-edit-basic-page');
 	Route::get('/global-settings/email-test', ['uses' => 'GlobalSettingsController@emailTest', 'middleware' => ['role:globalAdmin']])->name('get-email-test');
-	Route::post('/global-settings/email-test', ['uses' => 'GlobalSettingsController@emailTest', 'middleware' => ['role:globalAdmin']])->name('post-email-test');
+	Route::post('/global-settings/email-test', ['uses' => 'GlobalSettingsController@postEmailTest', 'middleware' => ['role:globalAdmin']])->name('post-email-test');
 	
 	// Export
 	Route::get('/export/{id}', 'ExportController@referral')->name('export');

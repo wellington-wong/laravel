@@ -184,4 +184,49 @@ class GlobalSettingsController extends Controller
         
         return back()->with('success', ['Page successfully saved']);
     }
+
+    /**
+     * Post edit basic pages
+     *
+     * @return view
+     */
+    public function emailTest( Request $request ) 
+    {   
+
+        return view('global-settings.email-test');
+
+    }
+
+    /**
+     * Post edit basic pages
+     *
+     * @return view
+     */
+    public function postEmailTest( Request $request ) 
+    {   
+
+        $rules = [
+            'title'=>'required',
+            'content'=>'required',
+        ];
+
+        $validator = Validator::make($request->input(), $rules);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+        $request->merge(['company_id' => 0]);
+        $request->merge(['route_name' => $route]);
+
+        if ( $page = BasicPages::fetch($route, 0)->first() ?: null ) {
+            $page->update($request->all());            
+        } else {
+            $page = new BasicPages();
+            $page->create($request->all());      
+        }
+        
+        return back()->with('success', ['Page successfully saved']);
+    }
 }
