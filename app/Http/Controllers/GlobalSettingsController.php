@@ -221,7 +221,7 @@ class GlobalSettingsController extends Controller
         $userClone = clone(auth()->user());
         $userClone->email = $request->get('test_recipient');
         if (isset($userClone->email)) {
-            $userClone->notify(new TestEmail( $request, $userClone ));
+            $userClone->notify(new TestEmail( $request ));
         }
 
         return back()->with('success', ['Email successfully sent to ' . $request->get('test_recipient')]);
