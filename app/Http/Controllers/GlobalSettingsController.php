@@ -218,12 +218,10 @@ class GlobalSettingsController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
         
-        $userClone = clone($user);
-        $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
-            ->where('email_template', 6)
-            ->pluck('recipient')->toArray();
+        $userClone = clone(auth()->user());
+        $userClone->email = $request->get('test_recipient');
         if (isset($userClone->email)) {
-            $userClone->notify(new NewMemberAdmin( $request, $user ));
+            $userClone->notify(new TestEmail( $request, $userClone ));
         }
 
         return back()->with('success', ['Email successfully sent to ' . $request->get('test_recipient')]);
