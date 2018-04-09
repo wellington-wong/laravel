@@ -23,10 +23,14 @@
             <div class="row">
                 <div class="form-group">
                 {{ Form::label('test_email_body', 'Email Body') }}          
-                 {{ Form::textarea('test_email_body', '', ['class' => 'form-control tinymce']) }}
+                {{ Form::textarea('test_email_body', '', ['class' => 'form-control tinymce']) }}
                 </div>
-            </div>                          
-            {{ Form::submit('Send Test Email', ['class' => 'btn btn-primary']) }}
+            </div>               
+            <div class="row">
+                <div class="btn-group">           
+                {{ Form::submit('Send Test Email', ['class' => 'btn btn-primary']) }}
+                </div>
+            </div>               
         {{ Form::close() }}
     </div>
 @endsection

@@ -122,8 +122,8 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 	Route::post('/global-settings/edit-member-page/{id}', ['uses' => 'ProgramOptionsController@postEditMemberPage', 'middleware' => ['role:admin|superAdmin|globalAdmin']])->name('post-edit-member-page');
 	Route::get('/global-settings/edit-basic-page/{id}', ['uses' => 'GlobalSettingsController@editBasicPage', 'middleware' => ['role:globalAdmin']])->name('edit-basic-page');
 	Route::post('/global-settings/edit-basic-page/{id}', ['uses' => 'GlobalSettingsController@postEditBasicPage', 'middleware' => ['role:globalAdmin']])->name('post-edit-basic-page');
-	Route::get('/global-settings/email-test', ['uses' => 'GlobalSettingsController@emailTest', 'middleware' => ['role:globalAdmin']])->name('get-email-test');
-	Route::post('/global-settings/email-test', ['uses' => 'GlobalSettingsController@postEmailTest', 'middleware' => ['role:globalAdmin']])->name('post-email-test');
+	Route::get('/global-settings/test-email', ['uses' => 'GlobalSettingsController@testEmail', 'middleware' => ['role:globalAdmin']])->name('get-test-email');
+	Route::post('/global-settings/test-email', ['uses' => 'GlobalSettingsController@postTestEmail', 'middleware' => ['role:globalAdmin']])->name('post-test-email');
 	
 	// Export
 	Route::get('/export/{id}', 'ExportController@referral')->name('export');

@@ -9,6 +9,7 @@ use App\BasicPages;
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\TestEmail;
 
 class GlobalSettingsController extends Controller
 {
@@ -186,11 +187,11 @@ class GlobalSettingsController extends Controller
     }
 
     /**
-     * Post edit basic pages
+     * Test email
      *
      * @return view
      */
-    public function emailTest( Request $request ) 
+    public function testEmail( Request $request ) 
     {   
 
         return view('global-settings.email-test');
@@ -198,11 +199,11 @@ class GlobalSettingsController extends Controller
     }
 
     /**
-     * Post edit basic pages
+     * Post test email
      *
      * @return view
      */
-    public function postEmailTest( Request $request ) 
+    public function postTestEmail( Request $request ) 
     {   
 
         $rules = [
@@ -217,7 +218,15 @@ class GlobalSettingsController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
         
+        $userClone = clone($user);
+        $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+            ->where('email_template', 6)
+            ->pluck('recipient')->toArray();
+        if (isset($userClone->email)) {
+            $userClone->notify(new NewMemberAdmin( $request, $user ));
+        }
+
         return back()->with('success', ['Email successfully sent to ' . $request->get('test_recipient')]);
-        
+
     }
 }
