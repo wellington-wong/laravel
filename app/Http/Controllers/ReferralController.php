@@ -393,7 +393,7 @@ class ReferralController extends Controller
 
         // Notify user that referral has been received
         if ($request->_company->emailTemplateStatus(2)) {
-            $user->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
+            auth()->user()->notify(new ReferralReceived(Referral::find($user->referral_id), $request, $referralValues));
         }
 
         if ( $request->_company->current ) {
