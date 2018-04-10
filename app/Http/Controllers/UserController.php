@@ -57,7 +57,10 @@ class UserController extends Controller
 
         // Get query parameters
         $param = [];
-        if (count($request->all()) > 1) {
+        $requestCustom = $request;
+        // Remove log id from the request
+        unset($requestCustom['__log_id']);
+        if (count($requestCustom->all()) > 1) {
             $param = $referrals->getParams();
             $referrals = $request->user()->filterSortReferralSubmissions(null, $id)->paginate(15);
         } else {
