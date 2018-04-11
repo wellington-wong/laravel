@@ -302,7 +302,8 @@ class ProgramOptionsController extends Controller
         $request->merge(['company_id' => $request->_company->id]);       
         if ($emailTemplate = EmailTemplate::where('company_id', $request->_company->id)->where('type', $request->get('type'))->first()) {
             $emailTemplate->update([
-                'email_html' => $request->input('email_html') ? : ''
+                'email_html' => $request->input('email_html') ? : '',
+                'subject' => $request->input('email_subject') ? : ''
             ]);
             return back()->with('success', ['Email template successfully saved.']);
         } else {

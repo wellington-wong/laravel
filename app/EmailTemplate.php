@@ -29,7 +29,7 @@ class EmailTemplate extends Model
 
     protected $table = 'email_templates';
 
-    protected $fillable = ['user_id', 'company_id', 'email_html', 'status', 'type'];
+    protected $fillable = ['user_id', 'company_id', 'subject', 'email_html', 'status', 'type'];
 
     public function owner() {
     	return $this->hasOne(User::class);
