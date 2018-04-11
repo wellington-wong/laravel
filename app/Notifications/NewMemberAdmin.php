@@ -62,7 +62,7 @@ class NewMemberAdmin extends Notification
         if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 6)->where('email_html', '<>', '')->first()) {
 
             // Prepare custom email
-            $emailSubject = isset($emailHtml->subject) ? $emailHtml->subject : 'Referral Declined';
+            $emailSubject = isset($emailHtml->subject) ? $emailHtml->subject : 'New Member Admin';
             $emailHtml = $emailHtml->email_html;
             $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $emailHtml );
 
