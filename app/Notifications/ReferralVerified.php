@@ -62,6 +62,7 @@ class ReferralVerified extends Notification
         if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 3)->where('email_html', '<>', '')->first()) {
 
             // Prepare custom email
+            $emailSubject = isset($emailHtml->subject) ? $emailHtml->subject : 'Referral Verified';
             $emailHtml = $emailHtml->email_html;
             $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml );
 
@@ -71,6 +72,7 @@ class ReferralVerified extends Notification
 
             return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject($emailSubject)
                 ->markdown('email-templates.referral-verified', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
 
