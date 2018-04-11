@@ -89,6 +89,7 @@ class ReferralSent extends Notification
 
             return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject(isset($emailObj->subject) ? $emailObj->subject : 'Referral Sent')
                 ->markdown('email-templates.referral-sent', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         
         }

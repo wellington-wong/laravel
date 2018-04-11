@@ -89,6 +89,7 @@ class ReferralDeclined extends Notification
 
             return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject(isset($emailObj->subject) ? $emailObj->subject : 'Referral Declined')
                 ->markdown('email-templates.referral-declined', ['referral' => $this->referral, 'email_template' => $emailHtml]);
 
         }

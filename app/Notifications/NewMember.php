@@ -89,7 +89,7 @@ class NewMember extends Notification
 
               return (new MailMessage)
                 ->from($from, $fromName)
-                ->subject($emailObj->subject)
+                ->subject(isset($emailObj->subject) ? $emailObj->subject : 'New Member')
                 ->markdown('email-templates.new-member', ['user' => $this->user, 'email_template' => $emailHtml]);
         
         }

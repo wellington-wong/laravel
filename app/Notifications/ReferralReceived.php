@@ -71,7 +71,7 @@ class ReferralReceived extends Notification
             // Insert email log
             $emailLog['body'] = 'Your referral for ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been received.';
             LogEmail::insert($emailLog);
-            
+
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->subject($emailSubject)
@@ -90,7 +90,7 @@ class ReferralReceived extends Notification
 
             return (new MailMessage)
                 ->from($from, $fromName)
-                ->subject($emailObj->subject)
+                ->subject(isset($emailObj->subject) ? $emailObj->subject : 'Referral Received')
                 ->markdown('email-templates.referral-received', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         
         }

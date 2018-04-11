@@ -90,6 +90,7 @@ class NewReferralAdmin extends Notification
 
             return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject(isset($emailObj->subject) ? $emailObj->subject : 'New Referral Admin')
                 ->markdown('email-templates.new-referral-admin', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         
         }

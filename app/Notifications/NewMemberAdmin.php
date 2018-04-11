@@ -89,6 +89,7 @@ class NewMemberAdmin extends Notification
 
               return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject(isset($emailObj->subject) ? $emailObj->subject : 'New Member Admin')
                 ->markdown('email-templates.new-member-admin', ['user' => $this->user, 'email_template' => $emailHtml]);
         
         }

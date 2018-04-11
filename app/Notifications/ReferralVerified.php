@@ -89,6 +89,7 @@ class ReferralVerified extends Notification
 
             return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject(isset($emailObj->subject) ? $emailObj->subject : 'Referral Verified')
                 ->markdown('email-templates.referral-verified', ['referral' => $this->referral, 'email_template' => $emailHtml]);
 
         }
