@@ -17,7 +17,7 @@
         {{ Form::open() }}
         <div class="form-group">
             {{ Form::label('email_subject', 'Subject') }}
-            {{ Form::text('email_subject', (isset($emailTemplate->subject) ? $emailTemplate->subject : ''), ['class' => 'form-control', 'placeholder' => 'Subject']) }}
+            {{ Form::text('email_subject', \Request::get('subject') ?: (isset($emailTemplate->subject) ? $emailTemplate->subject : ''), ['class' => 'form-control', 'placeholder' => 'Subject']) }}
         </div>
 
         <div class="form-group">
