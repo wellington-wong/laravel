@@ -84,6 +84,9 @@ class NewReferralAdmin extends Notification
             // Insert email log
             $emailLog['body'] = 'A new referral has been submitted by ' . isset($this->referral->referrer->name) ? $this->referral->referrer->name : $this->referral->referrer->email . '.';
             LogEmail::insert($emailLog);
+            
+            //  Get EmailTemplate object
+            $emailObj = $this->request->_company->emailTemplates()->where('status', true)->where('type', 7)->where('email_html', '<>', '')->first();
 
             return (new MailMessage)
                 ->from($from, $fromName)

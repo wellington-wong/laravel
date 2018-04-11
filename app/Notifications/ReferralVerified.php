@@ -84,6 +84,9 @@ class ReferralVerified extends Notification
             $emailLog['body'] = 'Your referral for ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been verified.';
             LogEmail::insert($emailLog);
             
+            //  Get EmailTemplate object
+            $emailObj = $this->request->_company->emailTemplates()->where('status', true)->where('type', 3)->where('email_html', '<>', '')->first();
+
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-verified', ['referral' => $this->referral, 'email_template' => $emailHtml]);

@@ -84,8 +84,9 @@ class NewMember extends Notification
                 $emailLog['body'] = 'You have successfully created an account.';
                 LogEmail::insert($emailLog);
 
-            $emailObj = $this->request->_company->emailTemplates()->where('status', true)->where('type', 2)->where('email_html', '<>', '')->first();
-            
+                //  Get EmailTemplate object
+                $emailObj = $this->request->_company->emailTemplates()->where('status', true)->where('type', 1)->where('email_html', '<>', '')->first();
+
               return (new MailMessage)
                 ->from($from, $fromName)
                 ->subject($emailObj->subject)

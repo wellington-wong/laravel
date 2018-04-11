@@ -83,7 +83,10 @@ class ReferralSent extends Notification
             // Insert email log
             $emailLog['body'] = 'Your reward for referring ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been sent.';
             LogEmail::insert($emailLog);
-            
+
+             //  Get EmailTemplate object
+            $emailObj = $this->request->_company->emailTemplates()->where('status', true)->where('type', 4)->where('email_html', '<>', '')->first();
+
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->markdown('email-templates.referral-sent', ['referral' => $this->referral, 'email_template' => $emailHtml]);

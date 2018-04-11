@@ -83,6 +83,9 @@ class NewMemberAdmin extends Notification
                 // Insert email log
                 $emailLog['body'] = 'A new user has registered.';
                 LogEmail::insert($emailLog);
+            
+            //  Get EmailTemplate object
+            $emailObj = $this->request->_company->emailTemplates()->where('status', true)->where('type', 6)->where('email_html', '<>', '')->first();
 
               return (new MailMessage)
                 ->from($from, $fromName)
