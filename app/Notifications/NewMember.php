@@ -62,6 +62,7 @@ class NewMember extends Notification
         if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 1)->where('email_html', '<>', '')->first()) {
 
             // Prepare custom email
+            $emailSubject = isset($emailHtml->subject) ? $emailHtml->subject : 'New Member';
             $emailHtml = $emailHtml->email_html;
             $emailHtml = EmailTemplate::prepareEmailUser( $this->request, $this->user, $emailHtml );
 
@@ -71,6 +72,7 @@ class NewMember extends Notification
 
             return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject($emailSubject)
                 ->markdown('email-templates.new-member', ['user' => $this->user, 'email_template' => $emailHtml]);
         } else {
 
@@ -82,8 +84,11 @@ class NewMember extends Notification
                 $emailLog['body'] = 'You have successfully created an account.';
                 LogEmail::insert($emailLog);
 
+            $emailObj = $this->request->_company->emailTemplates()->where('status', true)->where('type', 2)->where('email_html', '<>', '')->first();
+            
               return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject($emailObj->subject)
                 ->markdown('email-templates.new-member', ['user' => $this->user, 'email_template' => $emailHtml]);
         
         }
