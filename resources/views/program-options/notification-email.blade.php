@@ -14,7 +14,7 @@
 
     <div class="row">    	
       <div class="col-md-12 notification-email-wrapper">
-
+        {{ Form::open() }}
         <div class="form-group hidden">
             {{ Form::label('email_subject', 'Subject') }}
             {{ Form::text('email_subject', '', ['class' => 'form-control', 'placeholder' => 'Subject']) }}
@@ -28,7 +28,7 @@
         <label>HTML Code</label>
         <span id="renderHtml" class="btn btn-link" >Render HTML</span>
         <span id="defaultHtml" class="btn btn-link" >Change to Example HTML (over-writes but doesn't save current HTML)</span>
-        {{ Form::open() }}
+        
         @if ($emailTemplateType != 1 && $emailTemplateType != 6)
         <div class="referrer-data placeholder-name">
             <label>Available referrer data:</label>
