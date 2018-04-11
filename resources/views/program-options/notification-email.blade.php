@@ -15,7 +15,7 @@
     <div class="row">    	
       <div class="col-md-12 notification-email-wrapper">
         {{ Form::open() }}
-        <div class="form-group hidden">
+        <div class="form-group">
             {{ Form::label('email_subject', 'Subject') }}
             {{ Form::text('email_subject', '', ['class' => 'form-control', 'placeholder' => 'Subject']) }}
         </div>
