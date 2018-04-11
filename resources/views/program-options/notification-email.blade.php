@@ -14,6 +14,12 @@
 
     <div class="row">    	
       <div class="col-md-12 notification-email-wrapper">
+
+        <div class="form-group hidden">
+            {{ Form::label('email_subject', 'Subject') }}
+            {{ Form::text('email_subject', '', ['class' => 'form-control', 'placeholder' => 'Subject']) }}
+        </div>
+
         <div class="form-group">
             <label>Preview</label>
             <iframe id="renderer_iframe" class="form-control"></iframe>
