@@ -62,16 +62,19 @@ class ReferralReceived extends Notification
 
         if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 2)->where('email_html', '<>', '')->first()) {
 
+
             // Prepare custom email
+            $emailSubject = isset($emailHtml->subject) ? $emailHtml->subject : 'Referral Received';
             $emailHtml = $emailHtml->email_html;
             $emailHtml = EmailTemplate::prepareEmail( $this->request, $this->referral, $emailHtml );
 
             // Insert email log
             $emailLog['body'] = 'Your referral for ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been received.';
             LogEmail::insert($emailLog);
-
+            
             return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject($emailSubject)
                 ->markdown('email-templates.referral-received', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         } else {
 
@@ -83,8 +86,11 @@ class ReferralReceived extends Notification
             $emailLog['body'] = 'Your referral for ' . isset($this->referral->referred->name) ? $this->referral->referred->name : $this->referral->referred->email . ' has been received.';
             LogEmail::insert($emailLog);
 
+            $emailObj = $this->request->_company->emailTemplates()->where('status', true)->where('type', 2)->where('email_html', '<>', '')->first();
+
             return (new MailMessage)
                 ->from($from, $fromName)
+                ->subject($emailObj->subject)
                 ->markdown('email-templates.referral-received', ['referral' => $this->referral, 'email_template' => $emailHtml]);
         
         }
