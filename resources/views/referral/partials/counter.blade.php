@@ -9,7 +9,7 @@
                     </div><hr />
                     <div class="rh-desc">
                         <span>Referrals Pending Approval</span>
-                        <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
+                        <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Thanks for your referral! Our team is reviewing your referral's qualifications and you will receive an email confirmation of approval or if it is denied. "></i>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     </div><hr />
                     <div class="rh-desc">
                         <span>Referrals Pending Reward</span>
-                        <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, mea audiam philosophia ne, ex tamquam inimicus eos. Labore contentiones quo ne, quo epicuri voluptua ei"></i>
+                        <i class="fa fa-question-circle-o tooltip-q" aria-hidden="true" data-toggle="tooltip" title="Hurray! Your referral has been approved! Our team will be sending your $100 Visa gift card to the address listed in your account soon."></i>
                     </div>
                 </div>
             </div>
