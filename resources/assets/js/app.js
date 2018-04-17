@@ -247,6 +247,9 @@ $(function (){
 		referrals_modal.find('.btn.cancel').on('click', function (){
 			referrals_modal.modal('hide');
 		});
+
+		// Setup jQuery Chosen on referrals transfer select option
+		$("[name='as_member']").chosen({max_selected_options: 5});
  	});
 // END - REFERRALS
 
