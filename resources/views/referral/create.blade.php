@@ -78,6 +78,8 @@
 
              // Make 2 columns for each row
              $('#fb-render > div').addClass('col-md-6');
+
+             $("#as_member").chosen({max_selected_options: 5});
         });
     </script>
 @endsection
