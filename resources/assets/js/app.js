@@ -13,6 +13,7 @@ import 'formBuilder/dist/form-builder.min.js';
 import 'formBuilder/dist/form-render.min.js';
 import 'jquery-validation/dist/jquery.validate.min.js';
 import 'spectrum-colorpicker/spectrum.js';
+import 'chosen-npm/public/chosen.jquery.js';
 
 // TinyMCE
 import 'tinymce/tinymce.min.js';
@@ -32,7 +33,7 @@ import 'tablesaw/dist/tablesaw-init.js';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+// Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
     el: '#app'
