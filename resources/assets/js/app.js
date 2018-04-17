@@ -245,11 +245,14 @@ $(function (){
  			dynaForm(_this.data('url'), input);
 		});
 		referrals_modal.find('.btn.cancel').on('click', function (){
-			referrals_modal.modal('hide');
+			referrals_modal.modal('hide');	
 		});
 
 		// Setup jQuery Chosen on referrals transfer select option
 		$("[name='as_member']").chosen({max_selected_options: 5});
+		setTimeout(function (){
+			$("#incentful-modal .chosen-container.chosen-container-single").eq(1).remove()
+		}, 100);
  	});
 // END - REFERRALS
 
