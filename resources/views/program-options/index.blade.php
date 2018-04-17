@@ -22,6 +22,7 @@
                   <li><a href="{{ route('program-options-notification-emails') }}">Notifications Emails</a></li>
                  <li><a href="{{ route('program-options-email-logs') }}">Email Logs</a></li>
                   <li><a href="{{ route('program-options-lob') }}">Bank Account</a></li>
+                  <li><a href="{{ route('edit-member-pages') }}">Edit Member Pages</a></li>
             	</ul>
             </div>
         </div>
