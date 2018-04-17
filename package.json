@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "bootstrap-formhelpers": "git+https://github.com/winmarkltd/BootstrapFormHelpers.git",
+    "chosen-npm": "^1.4.2",
     "x-editable": "^1.5.1"
   }
 }
