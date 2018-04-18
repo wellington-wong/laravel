@@ -188,6 +188,7 @@ $(function (){
 			});
 			$('.referrals-wrapper #incentful-modal .btn.cancel').on('click', function (){
 				referrals_modal.modal('hide');
+				_this.closest('.referral-status').find('.fa').removeClass('fa-spinner fa-pulse fa-fw').addClass('fa-angle-down');
 			});
        	} else if (_this.data('status') == 3) {
        		referrals_modal.find('.modal-title').text('Reward Sent Notification');
