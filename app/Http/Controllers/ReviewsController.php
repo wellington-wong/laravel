@@ -29,9 +29,9 @@ class ReviewsController extends Controller
 
     public function postReview (Request $request) {
 
-
         $rules = [
             'review_url'=>'required',
+            'review_screenshot'=>'required',
         ];
         $validator = Validator::make($request->input(), $rules);
 
