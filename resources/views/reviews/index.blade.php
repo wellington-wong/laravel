@@ -289,7 +289,7 @@
                           {{ Form::open(['url' => route('post-review'), 'class' => 'form', 'files' => true]) }}
                             <!-- Name input-->
                             <div class="form-group">
-                              <label class="col-md-3 control-label" for="review-name">Name</label>
+                              <label class="col-md-3 control-label" for="review-name">Review Name</label>
                               <div class="col-md-9">
                                 <input id="review-name" name="review_name" type="text" placeholder="Review Name" class="form-control">
                               </div>
