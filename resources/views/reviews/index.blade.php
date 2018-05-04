@@ -323,7 +323,7 @@
                               <div class="form-group">
                                 <label class="col-md-3 control-label" for="message">Your rating</label>
                                 <div class="col-md-9">
-                                  <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+                                  <input name="rating" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
                                 </div>
                               </div>
                               <div class="form-group">
