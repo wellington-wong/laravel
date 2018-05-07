@@ -29,7 +29,10 @@ class ReviewsController extends Controller
      */
     public function getIndex (Request $request) {
 
-        return view ('reviews.index');
+        $reviews = Reviews::where('company_id', $request->_company->id)->get();
+
+        return view ('reviews.index')
+            ->with('reviews');
 
     }
 
