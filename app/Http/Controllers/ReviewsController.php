@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Reviews;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\NewReviewSubmitted;
 
 class ReviewsController extends Controller
 {
@@ -28,6 +29,7 @@ class ReviewsController extends Controller
     }
 
     public function postReview (Request $request) {
+
 
         $rules = [
             'review_url'=>'required',
