@@ -3,13 +3,10 @@
                 <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                     <thead>
                         <tr>
-                            <th><a href="">Person Referred <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="">Member <i class="fa fa-sort" aria-hidden="true"></i></a></th>@endif
-                            <th><a href="">Date <i class="fa fa-sort" aria-hidden="true"></i></a></th>
-                            @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<th><a href="">Referral ID <i class="fa fa-sort" aria-hidden="true"></i></a></th>@endif                                                                                
-                            @if (auth()->user()->hasRole('member'))<th></th>@endif
-                            @role(['globalAdmin'])<th></th>@endrole
-
+                            <th><a href="">Submitted By <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="">Rating <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="">URL <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            <th><a href="">Screenshot <i class="fa fa-sort" aria-hidden="true"></i></a></th>
                         </tr>
                     </thead> 
                     <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>
