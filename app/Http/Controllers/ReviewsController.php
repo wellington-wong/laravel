@@ -50,7 +50,7 @@ class ReviewsController extends Controller
      * Process review submission
      * @return
      */
-    public function postReview (Request $request) {
+    public function postCreate (Request $request) {
 
 
         $rules = [
