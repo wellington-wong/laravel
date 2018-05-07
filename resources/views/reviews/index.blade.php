@@ -5,6 +5,8 @@
 @section('content')
 
     <div class="container-fluid reviews-wrapper">
+    
+        @include('reviews.partials.reviews-table', [ 'route' => '' ])
 
         @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))
 

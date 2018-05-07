@@ -29,10 +29,10 @@ class ReviewsController extends Controller
      */
     public function getIndex (Request $request) {
 
-        $reviews = Reviews::where('company_id', $request->_company->id)->get();
+        $reviews = Reviews::where('company_id', $request->_company->id)->paginate(15);
 
         return view ('reviews.index')
-            ->with('reviews');
+            ->with(compact('reviews'));
 
     }
 
