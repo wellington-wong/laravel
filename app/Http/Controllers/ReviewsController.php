@@ -22,12 +22,20 @@ class ReviewsController extends Controller
 
 	}
 
+    /**
+     * Get index for reviews
+     * @return
+     */
     public function getIndex (Request $request) {
 
     	return view ('reviews.index');
 
     }
 
+    /**
+     * Process review submission
+     * @return
+     */
     public function postReview (Request $request) {
 
 
@@ -58,6 +66,17 @@ class ReviewsController extends Controller
     		$request->file('review_screenshot')->store('reviews-screenshots');
         }
     	return back();
+
+    }
+
+
+    /**
+     * List all reviews
+     * @return
+     */
+    public function getReviews (Request $request) {
+
+        return;
 
     }
 
