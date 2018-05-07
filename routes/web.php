@@ -189,3 +189,4 @@ Route::post('/stripe-test', 'StripeController@postStripeTest')->name('post-strip
 // Reviews
 Route::get('/reviews', 'ReviewsController@getIndex')->name('reviews');
 Route::post('/reviews', 'ReviewsController@postReview')->name('post-review');
+Route::get('/reviews/manage', 'ReviewsController@getReviews')->name('manage-reviews');
