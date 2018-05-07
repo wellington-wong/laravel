@@ -76,7 +76,7 @@ class ReviewsController extends Controller
      */
     public function getReviews (Request $request) {
 
-        return;
+        return view ('reviews.list');
 
     }
 
