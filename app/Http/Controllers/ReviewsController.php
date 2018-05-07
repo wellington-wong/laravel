@@ -22,11 +22,22 @@ class ReviewsController extends Controller
 
 	}
 
+
+    /**
+     * List all reviews
+     * @return
+     */
+    public function getIndex (Request $request) {
+
+        return view ('reviews.index');
+
+    }
+
     /**
      * Get index for reviews
      * @return
      */
-    public function getIndex (Request $request) {
+    public function create (Request $request) {
 
     	return view ('reviews.create');
 
@@ -66,17 +77,6 @@ class ReviewsController extends Controller
     		$request->file('review_screenshot')->store('reviews-screenshots');
         }
     	return back();
-
-    }
-
-
-    /**
-     * List all reviews
-     * @return
-     */
-    public function getReviews (Request $request) {
-
-        return view ('reviews.list');
 
     }
 
