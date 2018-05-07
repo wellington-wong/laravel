@@ -187,6 +187,6 @@ Route::get('/stripe-test', 'StripeController@stripeTest')->name('stripe-test');
 Route::post('/stripe-test', 'StripeController@postStripeTest')->name('post-stripe-test');
 
 // Reviews
-Route::get('/reviews', 'ReviewsController@getIndex')->name('reviews');
-Route::post('/reviews', 'ReviewsController@postReview')->name('post-review');
-Route::get('/reviews/manage', 'ReviewsController@getReviews')->name('manage-reviews');
+Route::get('/reviews/create', 'ReviewsController@getIndex')->name('create-reviews');
+Route::post('/reviews/create', 'ReviewsController@postReview')->name('post-review');
+Route::get('/reviews', 'ReviewsController@getReviews')->name('reviews');

@@ -28,7 +28,7 @@ class ReviewsController extends Controller
      */
     public function getIndex (Request $request) {
 
-    	return view ('reviews.index');
+    	return view ('reviews.create');
 
     }
 
