@@ -55,10 +55,16 @@ class ReviewsController extends Controller
 
 
         $rules = [
+            'display_name'=>'required',
             'review_url'=>'required|url',
-            'review_screenshot'=>'required',
+            'review_screenshot.*'=>'required',
         ];
-        $validator = Validator::make($request->input(), $rules);
+
+        $messages = [
+            'review_url.url' => 'Please use complete url starting with "http://" or "https://"',
+        ];
+        
+        $validator = Validator::make($request->input(), $rules, $messages);
 
         if ( $validator->fails() ) {
             return redirect()->back()->withInput()
