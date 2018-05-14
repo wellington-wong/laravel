@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Reviews;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\NewReviewSubmitted;
+use App\EmailTemplateRecipients;
 
 class ReviewsController extends Controller
 {
