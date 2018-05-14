@@ -291,7 +291,7 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-name">Display Name</label>
                               <div class="col-md-9">
-                                <input id="display-name" name="display_name" type="text" placeholder="Display Name" class="form-control">
+                                <input id="display-name" name="display_name" type="text" placeholder="Display Name" value="{{ auth()->user()->getDisplayNameAttribute() }}" class="form-control">
                               </div>
                             </div>
 
