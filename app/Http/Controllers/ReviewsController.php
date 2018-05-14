@@ -55,7 +55,7 @@ class ReviewsController extends Controller
 
 
         $rules = [
-            'review_url'=>'required',
+            'review_url'=>'required|url',
             'review_screenshot'=>'required',
         ];
         $validator = Validator::make($request->input(), $rules);
@@ -91,7 +91,7 @@ class ReviewsController extends Controller
         //         $userClone->notify(new NewMemberAdmin( $request, $user ));
         //     }
         // }
-        
+
     	return back();
 
     }
