@@ -57,7 +57,7 @@ class ReviewsController extends Controller
         $rules = [
             'display_name'=>'required',
             'review_url'=>'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            'review_screenshot'=>'required',
+            //'review_screenshot'=>'required',
         ];
 
         $messages = [
