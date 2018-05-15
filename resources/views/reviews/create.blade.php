@@ -13,175 +13,172 @@
             <label>A listing of reviews from our satisfied customers.</label>
             <div>&nbsp;</div>
             <div class="reviews">      
-            <div>&nbsp;</div>
+          <div>&nbsp;</div>
 
               <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                   <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                   <div class="item active">
-                        <div class="carousel-item active">
-                            <!--Grid column-->
-                            <div class="col-md-4">
+                    <div class="carousel-item active">
+                        <!--Grid column-->
+                        <div class="col-md-4">
 
-                                <div class="testimonial">
-                                    <!--Avatar-->
-                                    <div class="avatar">
-                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg" class="rounded-circle img-fluid">
-                                    </div>
-                                    <!--Content-->
-                                    <h4>Anna Deynah</h4>
-                                    <h6 class="blue-text font-bold">Web Designer</h6>
-                                    <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-
-                                    <!--Review-->
-                                    <div class="grey-text">
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star-half-full"> </i>
-                                    </div>
+                            <div class="testimonial">
+                                <!--Avatar-->
+                                <div class="avatar">
+                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg" class="rounded-circle img-fluid">
                                 </div>
+                                <!--Content-->
+                                <h4>Anna Deynah</h4>
+                                <h6 class="blue-text font-bold">Web Designer</h6>
+                                <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
 
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-4 clearfix d-none d-md-block">
-                                <div class="testimonial">
-                                    <!--Avatar-->
-                                    <div class="avatar">
-                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
-                                    </div>
-                                    <!--Content-->
-                                    <h4>John Doe</h4>
-                                    <h6 class="blue-text font-bold">Web Developer</h6>
-                                    <p><i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
-
-                                    <!--Review-->
-                                    <div class="grey-text">
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                    </div>
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-half-full"> </i>
                                 </div>
                             </div>
-                            <!--Grid column-->
-                            
-                            <!--Grid column-->
-                            <div class="col-md-4 clearfix d-none d-md-block">
-                                <div class="testimonial">
-                                    <!--Avatar-->
-                                    <div class="avatar">
-                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" class="rounded-circle img-fluid">
-                                    </div>
-                                    <!--Content-->
-                                    <h4>Abbey Clark</h4>
-                                    <h6 class="blue-text font-bold">Photographer</h6>
-                                    <p><i class="fa fa-quote-left"></i> Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
-                                    
-                                    <!--Review-->
-                                    <div class="grey-text">
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star"> </i>
-                                        <i class="fa fa-star-o"> </i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Grid column-->
 
                         </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+                                <div class="avatar">
+                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                                </div>
+                                <!--Content-->
+                                <h4>John Doe</h4>
+                                <h6 class="blue-text font-bold">Web Developer</h6>
+                                <p><i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                        
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+                                <div class="avatar">
+                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" class="rounded-circle img-fluid">
+                                </div>
+                                <!--Content-->
+                                <h4>Abbey Clark</h4>
+                                <h6 class="blue-text font-bold">Photographer</h6>
+                                <p><i class="fa fa-quote-left"></i> Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+                                
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-o"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                    </div>
                   </div>
 
                   <div class="item">
-                  <div class="carousel-item">
-                                  <!--Grid column-->
-                                  <div class="col-md-4">
+                    <div class="carousel-item">
+                        <!--Grid column-->
+                        <div class="col-md-4">
 
-                                      <div class="testimonial">
-                                          <!--Avatar-->
-                                          <div class="avatar">
-                                              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(4).jpg" class="rounded-circle img-fluid">
-                                          </div>
-                                          <!--Content-->
-                                          <h4>Blake Dabney</h4>
-                                          <h6 class="blue-text font-bold">Web Designer</h6>
-                                          <p><i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis laboriosam.</p>
+                            <div class="testimonial">
+                                <!--Avatar-->
+                                <div class="avatar">
+                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(4).jpg" class="rounded-circle img-fluid">
+                                </div>
+                                <!--Content-->
+                                <h4>Blake Dabney</h4>
+                                <h6 class="blue-text font-bold">Web Designer</h6>
+                                <p><i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis laboriosam.</p>
 
-                                          <!--Review-->
-                                          <div class="grey-text">
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star-half-full"> </i>
-                                          </div>
-                                      </div>
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-half-full"> </i>
+                                </div>
+                            </div>
 
-                                  </div>
-                                  <!--Grid column-->
+                        </div>
+                        <!--Grid column-->
 
-                                  <!--Grid column-->
-                                  <div class="col-md-4 clearfix d-none d-md-block">
-                                      <div class="testimonial">
-                                          <!--Avatar-->
-                                          <div class="avatar">
-                                              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(6).jpg" class="rounded-circle img-fluid">
-                                          </div>
-                                          <!--Content-->
-                                          <h4>Andrea Clay</h4>
-                                          <h6 class="blue-text font-bold">Front-end developer</h6>
-                                          <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae.</p>
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+                                <div class="avatar">
+                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(6).jpg" class="rounded-circle img-fluid">
+                                </div>
+                                <!--Content-->
+                                <h4>Andrea Clay</h4>
+                                <h6 class="blue-text font-bold">Front-end developer</h6>
+                                <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae.</p>
 
-                                          <!--Review-->
-                                          <div class="grey-text">
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <!--Grid column-->
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
 
-                                  <!--Grid column-->
-                                  <div class="col-md-4 clearfix d-none d-md-block">
-                                      <div class="testimonial">
-                                          <!--Avatar-->
-                                          <div class="avatar">
-                                              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(7).jpg" class="rounded-circle img-fluid">
-                                          </div>
-                                          <!--Content-->
-                                          <h4>Cami Gosse</h4>
-                                          <h6 class="blue-text font-bold">Phtographer</h6>
-                                          <p><i class="fa fa-quote-left"></i> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+                                <div class="avatar">
+                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(7).jpg" class="rounded-circle img-fluid">
+                                </div>
+                                <!--Content-->
+                                <h4>Cami Gosse</h4>
+                                <h6 class="blue-text font-bold">Phtographer</h6>
+                                <p><i class="fa fa-quote-left"></i> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
 
-                                          <!--Review-->
-                                          <div class="grey-text">
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star"> </i>
-                                              <i class="fa fa-star-o"> </i>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <!--Grid column-->
-
-                              </div>
-                  </div>
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-o"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                  </div>          
                 </div>
 
                 <!-- Left and right controls -->
