@@ -1938,4 +1938,29 @@ $(function (){
 	});
 // END EXPORT USERS
 
+// CREATE REVIEW
+	function processScreenshotImage (input, data, error){
+		if (error) { 
+	        alert('Please upload a valid screenshot image.');
+			$('.submit-company').removeClass('disabled').removeAttr('disabled');
+	    	//$('.upload-label').text('Upload Company Logo');
+	    	$('.logo-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');	    	
+		    $('.logo-blob').val('');
+		    $('.logo-blob-name').val('');
+	    	return false;
+		}console.log(data);
+		var filename = input.files[0].name;
+	    $('.upload-label').text('Filename: ' + filename);
+	    $('.logo-preview img').prop('src', data).parent().removeClass('hidden');
+	    $('.logo-blob').val(data);
+	    $('.logo-blob-name').val(filename);
+		$('.submit-company').removeClass('disabled').removeAttr('disabled');
+	}
+	$(".review-screenshot").change(function(){
+		$('.btn-submit-review').addClass('disabled').prop('disabled', 'disabled');
+	    //$('.upload-label').text('Processing...');
+		readImage(this, processScreenshotImage);
+	});	
+// END CREATE REVIEW
+
 });

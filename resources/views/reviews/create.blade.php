@@ -225,7 +225,7 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-screenshot">Screenshot of the review</label>
                               <div class="col-md-9">                              
-                                {{ Form::file('review_screenshot', ['class' => 'form']) }}
+                                {{ Form::file('review_screenshot', ['class' => 'form review-screenshot']) }}
                                 {{ Form::hidden('review_screenshot_blob', null, ['class' => 'profile-blob']) }}
                               </div>
                             </div>
@@ -247,7 +247,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="col-md-12 text-right">
-                                  <button type="submit" class="btn btn-primary btn-md">Submit</button>
+                                  <button type="submit" class="btn btn-primary btn-submit-review">Submit</button>
                                 </div>
                               </div>
                             </div>
