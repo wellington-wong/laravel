@@ -307,7 +307,7 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-screenshot">Screenshot of the review</label>
                               <div class="col-md-9">                              
-                                {{ Form::file('review_screenshot[]', ['class' => 'form']) }}
+                                {{ Form::file('review_screenshot', ['class' => 'form']) }}
                                 {{ Form::hidden('review_screenshot_blob', null, ['class' => 'profile-blob']) }}
                               </div>
                             </div>
