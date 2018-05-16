@@ -22112,16 +22112,16 @@ $(function () {
 			$('.submit-company').removeClass('disabled').removeAttr('disabled');
 			//$('.upload-label').text('Upload Company Logo');
 			$('.logo-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');
-			$('.logo-blob').val('');
-			$('.logo-blob-name').val('');
+			$('.review-screenshot-blob').val('');
+			$('.review-screenshot-blob-name').val('');
 			return false;
-		}console.log(data);
+		}
 		var filename = input.files[0].name;
 		$('.upload-label').text('Filename: ' + filename);
-		$('.logo-preview img').prop('src', data).parent().removeClass('hidden');
-		$('.logo-blob').val(data);
-		$('.logo-blob-name').val(filename);
-		$('.submit-company').removeClass('disabled').removeAttr('disabled');
+		//$('.logo-preview img').prop('src', data).parent().removeClass('hidden');
+		$('.review-screenshot-blob').val(data);
+		$('.review-screenshot-blob-name').val(filename);
+		$('.btn-submit-review').removeClass('disabled').removeAttr('disabled');
 	}
 	$(".review-screenshot").change(function () {
 		$('.btn-submit-review').addClass('disabled').prop('disabled', 'disabled');
