@@ -12,6 +12,10 @@
                     <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>
                     @foreach($reviews as $r)
                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{{ $r->url }}</td>
+                        <td></td>
                     </tr>
                     <tr class="tr-spacer"><td colspan=5></td></tr>
                     @endforeach
