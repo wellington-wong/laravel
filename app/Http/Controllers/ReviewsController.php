@@ -57,11 +57,12 @@ class ReviewsController extends Controller
         $rules = [
             'display_name'=>'required',
             'review_url'=>'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            //'review_screenshot'=>'required',
+            'review_screenshot_blob'=>'required',
         ];
 
         $messages = [
             'review_url.url' => 'Please use complete url starting with "http://" or "https://"',
+            'review_screenshot_blob.required' => 'The review screenshot is required.',
         ];
 
         $validator = Validator::make($request->input(), $rules, $messages);
