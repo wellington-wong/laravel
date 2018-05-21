@@ -43,7 +43,9 @@ class ReviewsController extends Controller
      */
     public function create (Request $request) {
 
-    	return view ('reviews.create');
+        $reviews = Reviews::where('company_id', $request->_company->id)->get();
+    	return view ('reviews.create')
+        ->with(compact('reviews'));
 
     }
 
@@ -58,11 +60,13 @@ class ReviewsController extends Controller
             'display_name'=>'required',
             'review_url'=>'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
             'review_screenshot_blob'=>'required',
+            'rating'=>'required|min:1|numeric',
         ];
 
         $messages = [
             'review_url.url' => 'Please use complete url starting with "http://" or "https://"',
             'review_screenshot_blob.required' => 'The review screenshot is required.',
+            'rating.min' => 'The rating must be at least 1 star.',
         ];
 
         $validator = Validator::make($request->input(), $rules, $messages);
@@ -75,9 +79,13 @@ class ReviewsController extends Controller
         // CREATE REVIEW
         $user = Reviews::firstOrCreate([
             'company_id' => $request->_company->id,
+            'display_name' => $request->input('display_name') ?: auth()->usuer()->getDisplayNameAttribute(),
             'url'=>$request->input('review_url'),
+            'snippet'=>$request->input('review_snippet'),
             'rating'=>$request->input('rating'),
             'screenshot'=>$request->file('review_screenshot')->store('reviews-screenshots'),
+            'photo'=>$request->has('review_photo_blob') ? $request->file('review_photo')->store('reviews-photos') : null,
+            'user_id'=>auth()->user()->id,
             //'screenshot'=>$request->has('review-photo') ?: null,
         ]);
 
