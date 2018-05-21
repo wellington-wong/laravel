@@ -41,8 +41,8 @@ class NewReviewSubmitted extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('A new review has been submitted.')
+                    ->action('View Customer Reviews', url('/reviews'))
                     ->line('Thank you for using our application!');
     }
 

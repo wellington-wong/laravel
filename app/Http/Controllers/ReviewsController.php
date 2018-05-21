@@ -77,7 +77,7 @@ class ReviewsController extends Controller
         }
 
         // CREATE REVIEW
-        $user = Reviews::firstOrCreate([
+        $review = Reviews::firstOrCreate([
             'company_id' => $request->_company->id,
             'display_name' => $request->input('display_name') ?: auth()->usuer()->getDisplayNameAttribute(),
             'url'=>$request->input('review_url'),
@@ -97,15 +97,15 @@ class ReviewsController extends Controller
         }
 
         // Notify new admin
-        // if ($request->_company->emailTemplateStatus(6)) {
-        //     $userClone = clone($user);
-        //     $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
-        //         ->where('email_template', 6)
-        //         ->pluck('recipient')->toArray();
-        //     if (isset($userClone->email)) {
-        //         $userClone->notify(new NewMemberAdmin( $request, $user ));
-        //     }
-        // }
+        if ($request->_company->emailTemplateStatus(6)) {
+            $userClone = clone(auth()->user());
+            $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+                ->where('email_template', 6)
+                ->pluck('recipient')->toArray();
+            if (isset($userClone->email)) {
+                $userClone->notify(new NewReviewSubmitted( $request, $review ));
+            }
+        }
 
     	return back();
 
