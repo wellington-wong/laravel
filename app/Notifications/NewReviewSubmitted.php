@@ -40,7 +40,12 @@ class NewReviewSubmitted extends Notification
      */
     public function toMail($notifiable)
     {
+        // Custom 'from' email
+        $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
+        $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
+
         return (new MailMessage)
+                    ->from($from, $fromName)
                     ->line('A new review has been submitted.')
                     ->action('View Customer Reviews', url('/reviews'))
                     ->line('Thank you for using our application!');

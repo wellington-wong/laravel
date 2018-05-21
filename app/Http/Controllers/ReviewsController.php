@@ -30,7 +30,7 @@ class ReviewsController extends Controller
      */
     public function getIndex (Request $request) {
 
-        $reviews = Reviews::where('company_id', $request->_company->id)->paginate(15);
+        $reviews = Reviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
 
         return view ('reviews.index')
             ->with(compact('reviews'));
@@ -54,7 +54,6 @@ class ReviewsController extends Controller
      * @return
      */
     public function postCreate (Request $request) {
-
 
         $rules = [
             'display_name'=>'required',
@@ -88,13 +87,6 @@ class ReviewsController extends Controller
             'user_id'=>auth()->user()->id,
             //'screenshot'=>$request->has('review-photo') ?: null,
         ]);
-
-        if ($request->file('review_photo')) {
-    		$request->file('review_photo')->store('reviews-photos');
-        }
-        if ($request->file('review_screenshot')) {
-    		$request->file('review_screenshot')->store('reviews-screenshots');
-        }
 
         // Notify new admin
         if ($request->_company->emailTemplateStatus(6)) {

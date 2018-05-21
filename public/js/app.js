@@ -22126,6 +22126,8 @@ $(function () {
 		$('.btn-submit-review').addClass('disabled').prop('disabled', 'disabled');
 		readImage(this, processScreenshotImage);
 	});
+	$('.review-screenshot-blob').val('');
+	$('.review-screenshot-blob-name').val('');
 
 	// Review photo
 	function processPhotoImage(input, data, error) {
@@ -22147,6 +22149,8 @@ $(function () {
 		$('.btn-submit-review').addClass('disabled').prop('disabled', 'disabled');
 		readImage(this, processPhotoImage);
 	});
+	$('.review-photo-blob').val('');
+	$('.review-photo-blob-name').val('');
 
 	$('.review-screenshot-thumb').click(function () {
 		$('.reviews-table-container #incentful-modal .modal-body').html('');
