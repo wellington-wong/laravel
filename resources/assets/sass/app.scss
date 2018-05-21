@@ -2271,6 +2271,12 @@ tr.check td {
 .star-rating-rtl .caption {
     padding-right: 5px;
 }
+.table-reviews-wrapper .star-rating .clear-rating,
+.table-reviews-wrapper .star-rating .caption,
+.reviews-carousel .star-rating .caption,
+.reviews-carousel .star-rating .clear-rating {
+	display: none;
+}
 
 /*** Reviews End ***/
 

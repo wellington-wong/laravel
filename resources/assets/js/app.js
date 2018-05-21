@@ -1939,28 +1939,62 @@ $(function (){
 // END EXPORT USERS
 
 // CREATE REVIEW
+	// Review screenshot
 	function processScreenshotImage (input, data, error){
 		if (error) { 
 	        alert('Please upload a valid screenshot image.');
-			$('.submit-company').removeClass('disabled').removeAttr('disabled');
-	    	//$('.upload-label').text('Upload Company Logo');
-	    	$('.logo-preview img').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');	    	
+			$('.btn-submit-review').removeClass('disabled').removeAttr('disabled');
+	    	$('.review-screenshot-preview').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');	    	
 		    $('.review-screenshot-blob').val('');
 		    $('.review-screenshot-blob-name').val('');
 	    	return false;
 		}
 		var filename = input.files[0].name;
-	    $('.upload-label').text('Filename: ' + filename);
-	    //$('.logo-preview img').prop('src', data).parent().removeClass('hidden');
+	    $('.review-screenshot-preview').prop('src', data).removeClass('hidden');
 	    $('.review-screenshot-blob').val(data);
 	    $('.review-screenshot-blob-name').val(filename);
 		$('.btn-submit-review').removeClass('disabled').removeAttr('disabled');
 	}
 	$(".review-screenshot").change(function(){
 		$('.btn-submit-review').addClass('disabled').prop('disabled', 'disabled');
-	    //$('.upload-label').text('Processing...');
 		readImage(this, processScreenshotImage);
 	});	
+
+	// Review photo
+	function processPhotoImage (input, data, error){
+		if (error) { 
+	        alert('Please upload a valid screenshot image.');
+			$('.btn-submit-review').removeClass('disabled').removeAttr('disabled');
+	    	$('.review-photo-preview').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');	    	
+		    $('.review-photo-blob').val('');
+		    $('.review-photo-blob-name').val('');
+	    	return false;
+		}
+		var filename = input.files[0].name;
+	    $('.review-photo-preview').prop('src', data).removeClass('hidden');
+	    $('.review-photo-blob').val(data);
+	    $('.review-photo-blob-name').val(filename);
+		$('.btn-submit-review').removeClass('disabled').removeAttr('disabled');
+	}
+	$(".review-photo").change(function(){
+		$('.btn-submit-review').addClass('disabled').prop('disabled', 'disabled');
+		readImage(this, processPhotoImage);
+	});	
+
+	$('.review-screenshot-thumb').click(function (){
+		$('.reviews-table-container #incentful-modal .modal-body').html('');
+		var img = $('<img class="img-responsive">'); //Equivalent: $(document.createElement('img'))
+		img.attr('src', $(this).data('screenshoturl'));
+		img.appendTo('.reviews-table-container #incentful-modal .modal-body');
+       	$('.reviews-table-container #incentful-modal').find('.modal-title').text('Review Screenshot');
+		$('.reviews-table-container #incentful-modal').modal('show');
+		$('.reviews-table-container  #incentful-modal .btn.submit').click(function (){
+			$('.reviews-table-container #incentful-modal').modal('hide');
+		}).text('Close');
+		$('.reviews-table-container  #incentful-modal .btn.cancel').remove();
+		return false;
+	});
+
 // END CREATE REVIEW
 
 });
