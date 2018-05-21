@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Reviews')
+@section('pageTitle', 'Create a Review')
 
 @section('content')
 
     <div class="container-fluid">
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Reviews', 'col' => 12])
+        @include('layouts.page-header', ['header' => 'Create a Review', 'col' => 12])
         </div>
         <div class="clearfix"></div>
         <div class="row">
@@ -14,171 +14,42 @@
             <div>&nbsp;</div>
             <div class="reviews">      
           <div>&nbsp;</div>
-
-              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+ 
+            @if (count($reviews))            
+              <div id="myCarousel" class="carousel slide reviews-carousel" data-ride="carousel">
                 <!-- Indicators -->
-                <ol class="carousel-indicators">
-                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                <ol class="carousel-indicators">                   
+                    @foreach($reviews->chunk(3) as $chunk)
+                        <li data-target="#myCarousel" data-slide-to="{{ ($loop->iteration)-1 }}" @if($loop->iteration == 1)class="active"@endif></li>                     
+                    @endforeach
                 </ol>
 
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                  <div class="item active">
-                    <div class="carousel-item active">
-                        <!--Grid column-->
-                        <div class="col-md-4">
+                <div class="carousel-inner">       
+                    @foreach($reviews->chunk(3) as $chunk)
+                    <div class="item @if($loop->iteration == 1) active @endif">
+                        <div class="carousel-item @if($loop->iteration == 1) active @endif">
+                            @foreach($chunk as $review)
+                            <!--Grid column-->
+                            <div class="col-md-4">
+                                <div class="testimonial">
+                                    <!--Avatar-->
+                                    <div class="avatar">
+                                        <img src="{{ isset($review->photo) ? url($review->photo) : '/images/avatar-placeholder.png' }}" class="rounded-circle img-fluid">
+                                    </div>
+                                    <!--Content-->
+                                    <h4>{{ $review->display_name }}</h4>
+                                    @if (isset($review->snippet))<p><i class="fa fa-quote-left"></i> {{ $review->snippet }}</p>@endif
 
-                            <div class="testimonial">
-                                <!--Avatar-->
-                                <div class="avatar">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg" class="rounded-circle img-fluid">
-                                </div>
-                                <!--Content-->
-                                <h4>Anna Deynah</h4>
-                                <h6 class="blue-text font-bold">Web Designer</h6>
-                                <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-
-                                <!--Review-->
-                                <div class="grey-text">
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star-half-full"> </i>
+                                    <!--Review-->
+                                    <input disabled name="rating" value="{{ $review->rating }}" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
                                 </div>
                             </div>
-
+                            @endforeach 
                         </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-md-4 clearfix d-none d-md-block">
-                            <div class="testimonial">
-                                <!--Avatar-->
-                                <div class="avatar">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
-                                </div>
-                                <!--Content-->
-                                <h4>John Doe</h4>
-                                <h6 class="blue-text font-bold">Web Developer</h6>
-                                <p><i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
-
-                                <!--Review-->
-                                <div class="grey-text">
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Grid column-->
-                        
-                        <!--Grid column-->
-                        <div class="col-md-4 clearfix d-none d-md-block">
-                            <div class="testimonial">
-                                <!--Avatar-->
-                                <div class="avatar">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" class="rounded-circle img-fluid">
-                                </div>
-                                <!--Content-->
-                                <h4>Abbey Clark</h4>
-                                <h6 class="blue-text font-bold">Photographer</h6>
-                                <p><i class="fa fa-quote-left"></i> Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
-                                
-                                <!--Review-->
-                                <div class="grey-text">
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star-o"> </i>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Grid column-->
                     </div>
-                  </div>
-
-                  <div class="item">
-                    <div class="carousel-item">
-                        <!--Grid column-->
-                        <div class="col-md-4">
-
-                            <div class="testimonial">
-                                <!--Avatar-->
-                                <div class="avatar">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(4).jpg" class="rounded-circle img-fluid">
-                                </div>
-                                <!--Content-->
-                                <h4>Blake Dabney</h4>
-                                <h6 class="blue-text font-bold">Web Designer</h6>
-                                <p><i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis laboriosam.</p>
-
-                                <!--Review-->
-                                <div class="grey-text">
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star-half-full"> </i>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-md-4 clearfix d-none d-md-block">
-                            <div class="testimonial">
-                                <!--Avatar-->
-                                <div class="avatar">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(6).jpg" class="rounded-circle img-fluid">
-                                </div>
-                                <!--Content-->
-                                <h4>Andrea Clay</h4>
-                                <h6 class="blue-text font-bold">Front-end developer</h6>
-                                <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae.</p>
-
-                                <!--Review-->
-                                <div class="grey-text">
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-md-4 clearfix d-none d-md-block">
-                            <div class="testimonial">
-                                <!--Avatar-->
-                                <div class="avatar">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(7).jpg" class="rounded-circle img-fluid">
-                                </div>
-                                <!--Content-->
-                                <h4>Cami Gosse</h4>
-                                <h6 class="blue-text font-bold">Phtographer</h6>
-                                <p><i class="fa fa-quote-left"></i> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
-
-                                <!--Review-->
-                                <div class="grey-text">
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star"> </i>
-                                    <i class="fa fa-star-o"> </i>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Grid column-->
-                    </div>
-                  </div>          
+                    @endforeach
+                           
                 </div>
 
                 <!-- Left and right controls -->
@@ -191,6 +62,9 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
+              @else
+                <div>No reviews found.</div>
+                @endif
        
                 <div class="reviews-container">
                     <div class="row">
@@ -198,7 +72,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-10">
-                        <label>Create a review by filling in the form below</label>
+                        <label>Create a review by filling out the form below</label>
                       </div>
                     </div>
                     <div>&nbsp;</div>
@@ -209,7 +83,7 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="display-name">Display Name</label>
                               <div class="col-md-9">
-                                <input id="display-name" name="display_name" type="text" placeholder="Display Name" value="{{ auth()->user()->getDisplayNameAttribute() }}" class="form-control">
+                                <input id="display-name" name="display_name" type="text" placeholder="Display Name" value="{{ old('display_name') ?: auth()->user()->getDisplayNameAttribute() }}" class="form-control">
                               </div>
                             </div>
 
@@ -217,14 +91,23 @@
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-url">URL</label>
                               <div class="col-md-9">
-                                <input id="review-url" name="review_url" type="text" placeholder="Review URL" class="form-control">
+                                <input id="review-url" name="review_url" type="text" placeholder="URL" value="{{ old('review_url') ?: '' }}"  class="form-control">
+                              </div>
+                            </div>
+
+                             <!-- Snippet input-->
+                            <div class="form-group">
+                              <label class="col-md-3 control-label" for="review-snippet">Snippet (optional)</label>
+                              <div class="col-md-9">
+                                <input id="review-snippet" name="review_snippet" type="text" placeholder="Snippet" value="{{ old('review_snippet') ?: '' }}"  class="form-control">
                               </div>
                             </div>
 
                              <!-- Screenshot Upload -->
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-screenshot">Screenshot of the review</label>
-                              <div class="col-md-9">                              
+                              <div class="col-md-9">           
+                                <img class="img-responsive pull-left hidden padding-right review-screenshot-preview" width="30" src="{{ old('review_screenshot_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">
                                 {{ Form::file('review_screenshot', ['class' => 'form review-screenshot']) }}
                                 {{ Form::hidden('review_screenshot_blob', null, ['class' => 'review-screenshot-blob']) }}
                                 {{ Form::hidden('review_screenshot_blob_name', null, ['class' => 'review-screenshot-blob-name']) }}
@@ -234,8 +117,11 @@
                              <!-- Your photo -->
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="review-photo">Your photo (optional)</label>
-                              <div class="col-md-9">                              
-                               {{ Form::file('review_photo', ['class' => 'form']) }}
+                              <div class="col-md-9">         
+                              <img class="img-responsive pull-left hidden padding-right review-photo-preview" width="30" src="{{ old('review_photo_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">                     
+                                {{ Form::file('review_photo', ['class' => 'form review-photo']) }}
+                                {{ Form::hidden('review_photo_blob', null, ['class' => 'review-photo-blob']) }}
+                                {{ Form::hidden('review_photo_blob_name', null, ['class' => 'review-photo-blob-name']) }}
                               </div>
                             </div>
 
@@ -243,7 +129,7 @@
                               <div class="form-group">
                                 <label class="col-md-3 control-label" for="message">Your rating</label>
                                 <div class="col-md-9">
-                                  <input name="rating" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+                                  <input name="rating" value="{{ old('rating') ?: 0 }}" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
                                 </div>
                               </div>
                               <div class="form-group">

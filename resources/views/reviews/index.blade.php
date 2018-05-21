@@ -10,11 +10,12 @@
         @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))
 
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Reviews', 'col' => 3])
+            @include('layouts.page-header', ['header' => 'Reviews', 'col' => 6])
+            <div class="col-md-6 text-right"><a href="{{ route('create-reviews') }}">Create a Review</a></div>
         </div>
         @else
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Your Submitted Referrals', 'col' => 12, 'class' => 'customer-referrals'])
+        @include('layouts.page-header', ['header' => 'Submitted Reviews', 'col' => 12, 'class' => 'customer-reviews'])
         </div>
         @endif
 

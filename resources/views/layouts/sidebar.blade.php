@@ -98,6 +98,11 @@
                                             <a href="{{ route('how-to-get-more-referrals') }}">How to Get More Referrals</a>
                                         </div>
                                     </li>
+                                    <li class="{{ Request::path() == 'reviews/create' ? 'active' : '' }}">
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="{{ route('create-reviews') }}">Reviews</a>
+                                        </div>
+                                    </li>
                                     @endrole
                                     @role(['admin', 'superAdmin', 'globalAdmin'])
                                     <li>
@@ -142,6 +147,9 @@
                                         @endif 
                                         @can('send-test-emails') <li class="{{ Request::is('global-settings/test-email') ? 'active' : '' }}"><a href="{{ route('get-test-email') }}">Test Email</a></li>@endcan                                       
                                     </ul>
+                                    <div class="main-menu-item-wrapper">
+                                        <a href="{{ route('reviews') }}" class="menu-marker">Reviews</a>
+                                    </div>
                                 </li>
                             </ul>
                             @endif
