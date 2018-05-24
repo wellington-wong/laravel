@@ -145,11 +145,15 @@
                                         @if (Session::get('currentUserId')) 
                                             <li class="{{ Request::is('login-as-origin') ? 'active' : '' }}"><a href="{{ route('login-as-origin') }}">Login as original</a></li>      
                                         @endif 
+                                        @if (0 != config('company_id'))
                                         @can('send-test-emails') <li class="{{ Request::is('global-settings/test-email') ? 'active' : '' }}"><a href="{{ route('get-test-email') }}">Test Email</a></li>@endcan                                       
+                                        @endif
                                     </ul>
+                                    @if (0 != config('company_id'))
                                     <div class="main-menu-item-wrapper">
                                         <a href="{{ route('reviews') }}" class="menu-marker">Reviews</a>
                                     </div>
+                                    @endif
                                 </li>
                             </ul>
                             @endif
