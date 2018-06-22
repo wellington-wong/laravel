@@ -13,7 +13,7 @@ class UserAddress extends Model
      * @return
      */
     public function address(){
-    	return $this->hasOne(Address::class, 'id', 'user_id');
+    	return $this->hasOne(Address::class, 'id', 'address_id');
     }
 
 }
