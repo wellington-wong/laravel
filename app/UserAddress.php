@@ -8,4 +8,12 @@ class UserAddress extends Model
 {
     protected $table = 'user_address';
 
+    /**
+     * Get user address
+     * @return
+     */
+    public function address(){
+    	return $this->hasOne(Address::class, 'id', 'user_id');
+    }
+
 }
