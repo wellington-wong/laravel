@@ -168,5 +168,8 @@ class Referral extends Model
         return $parameter;
     }
 
+    public function address() {
+        return $this->hasOne(Address::class, 'id', 'user_id');
+    }
 
 }
