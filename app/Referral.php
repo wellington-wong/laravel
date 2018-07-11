@@ -51,7 +51,7 @@ class Referral extends Model
         $referral = $this->find($request->get('id'));
 
         // Disable updating of referral after reward is sent.
-        if ($referral->status == 3) {
+        if (isset($referral->status) && $referral->status == 3) {
             return;
         }
         
