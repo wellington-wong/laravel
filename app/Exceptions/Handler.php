@@ -55,7 +55,7 @@ class Handler extends ExceptionHandler
 
             $handler = new SymfonyExceptionHandler();
 
-            $html = $handler->getHtml($e);
+            $html = $handler->getHtml($e) . '<div class="container"><table><tbody><tr><td>Log ID = ' . request()->__log_id . '</td></tr></tbody></table></div>';
 
             $emails = ['daniel.ahern@exults.com', 'wellington.wong@gmail.com'];
 
