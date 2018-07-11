@@ -16,7 +16,7 @@
                         @foreach ($referral->revisionHistory as $history)
                         <tr>
                             <td>{{ $history->created_at->format('m/d/y') }}</td>
-                            <td>{{ $history->revisionable_id }}</td>
+                            <!--<td>{{ $history->revisionable_id }}</td>-->
                             <td>The referral status for <em>"{{ $referral->referred->display_name }}"</em> was changed to {{ \App\Referral::$status[$referral->status] }}</td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
