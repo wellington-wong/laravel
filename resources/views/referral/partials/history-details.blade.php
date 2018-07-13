@@ -16,10 +16,10 @@
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         @foreach ($referral->revisionHistory as $history)
-                        @if (is_numeric($history->new_value))
+                        @if (is_numeric($history->new_value) && $history->new_value < 5)
                         <tr>
                             <td>{{ $history->created_at->format('m/d/y') }}</td>
-                            <td>@if ($history->new_value == 4) {{ $referral->note }} @endif </td>
+                            <td>@if ($history->new_value == 4) {!! $referral->note !!} @endif </td>
                             <td>The referral status for <em>"{{ $referral->referred->display_name }}"</em> was changed to {{ \App\Referral::$status[$history->new_value] }}</td>                            
                         </tr>
                         @endif 

@@ -56,7 +56,7 @@ class Referral extends Model
         }
         
         $referral->status = $request->get('status');
-        $referral->note = $request->get('note');
+        $referral->note = $request->has('note') ? $request->get('note') : $referral->note;
         $referral->save();
 
         $referral_message = '';
