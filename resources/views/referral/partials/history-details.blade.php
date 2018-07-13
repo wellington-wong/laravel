@@ -4,28 +4,23 @@
                     <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Note</th>
                             <th>Details</th>
                         </tr>
                     </thead> 
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         <tr>
                             <td>{{ isset($referral->created_at) ? $referral->created_at->format('m/d/y') : '' }}</td>
-                            <td class="referral-note"></td>
+                            <td></td>
                             <td>{{ isset($referral->referrer) ? $referral->referrer->display_name : null }} referred <em>"{{ isset($referral->referred) ? $referral->referred->display_name : null }}"</em></td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         @foreach ($referral->revisionHistory as $history)
-                        @if ($history->new_value)
+                        @if (is_numeric($history->new_value))
                         <tr>
                             <td>{{ $history->created_at->format('m/d/y') }}</td>
-                            <td>{{ $history->revisionable_id }}</td>
-                            <td>
-                                @if (is_numeric($history->new_value))
-                                The referral status for <em>"{{ $referral->referred->display_name }}"</em> was changed to {{ \App\Referral::$status[$history->new_value] }}
-                                @else
-                                {!! $history->new_value !!}
-                                @endif 
-                            </td>
+                            <td>@if ($history->new_value == 4) {{ $referral->note }} @endif </td>
+                            <td>The referral status for <em>"{{ $referral->referred->display_name }}"</em> was changed to {{ \App\Referral::$status[$history->new_value] }}</td>                            
                         </tr>
                         @endif 
                         <tr class="tr-spacer"><td colspan=5></td></tr>
