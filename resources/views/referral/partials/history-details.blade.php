@@ -10,14 +10,19 @@
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         <tr>
                             <td>{{ isset($referral->created_at) ? $referral->created_at->format('m/d/y') : '' }}</td>
+                            <td class="referral-note"></td>
                             <td>{{ isset($referral->referrer) ? $referral->referrer->display_name : null }} referred <em>"{{ isset($referral->referred) ? $referral->referred->display_name : null }}"</em></td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         @foreach ($referral->revisionHistory as $history)
                         <tr>
                             <td>{{ $history->created_at->format('m/d/y') }}</td>
-                            <!--<td>{{ $history->revisionable_id }}</td>-->
-                            <td>The referral status for <em>"{{ $referral->referred->display_name }}"</em> was changed to {{ \App\Referral::$status[$referral->status] }}</td>
+                            <td>{{ $history->revisionable_id }}</td>
+                            <td>
+                                @if (is_numeric($history->new_value))
+                                The referral status for <em>"{{ $referral->referred->display_name }}"</em> was changed to {{ \App\Referral::$status[$history->new_value] }}
+                                @endif
+                            </td>
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         @endforeach
