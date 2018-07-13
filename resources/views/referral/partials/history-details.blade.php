@@ -15,15 +15,19 @@
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         @foreach ($referral->revisionHistory as $history)
+                        @if ($history->new_value)
                         <tr>
                             <td>{{ $history->created_at->format('m/d/y') }}</td>
                             <td>{{ $history->revisionable_id }}</td>
                             <td>
                                 @if (is_numeric($history->new_value))
                                 The referral status for <em>"{{ $referral->referred->display_name }}"</em> was changed to {{ \App\Referral::$status[$history->new_value] }}
-                                @endif
+                                @else
+                                {!! $history->new_value !!}
+                                @endif 
                             </td>
                         </tr>
+                        @endif 
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                         @endforeach
                 </table>
