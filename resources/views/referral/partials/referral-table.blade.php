@@ -51,8 +51,8 @@
                             @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))<td><a href="{{ route('referral-view', $r->id) }}">History</a></td>@endif
                             @if (auth()->user()->hasRole('member'))<td class="view-details"><a href="{{ route('referral-view', $r->id) }}" class="btn btn-primary">History</a></td>@endif
                             @role(['globalAdmin'])<td class="referral-actions">
-                                <a href="javascript:void(0)" class="transfer" title="Delete" data-url="{{ route('referral-transfer', $r->id) }}" data-rname="{{ isset($r->referred) ? $r->referred->getName() : null }}"><i class="fa fa-exchange fa-1x" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                <a href="javascript:void(0)" class="delete" title="Transfer Referral" data-url="{{ route('referral-delete', $r->id) }}" data-rname="{{ isset($r->referred) ? $r->referred->getName() : null }}"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></a>
+                                <a href="javascript:void(0)" class="transfer" title="Transfer Referral" data-url="{{ route('referral-transfer', $r->id) }}" data-rname="{{ isset($r->referred) ? $r->referred->getName() : null }}"><i class="fa fa-exchange fa-1x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a href="javascript:void(0)" class="delete" title="Delete" data-url="{{ route('referral-delete', $r->id) }}" data-rname="{{ isset($r->referred) ? $r->referred->getName() : null }}"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></a>
                             </td>@endrole
                         </tr>
 
