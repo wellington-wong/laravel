@@ -80,6 +80,11 @@
              $('#fb-render > div').addClass('col-md-6');
 
              $("#as_member").chosen({max_selected_options: 5});
+
+             // Remove <br /> on genarated fields
+             $('.fb-text-label').text(function (){
+                return $(this).text();
+             });
         });
     </script>
 @endsection
