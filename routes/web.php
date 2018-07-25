@@ -146,6 +146,8 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 
 	Route::get('/program-options/lob', 'ProgramOptionsController@getLobConfig')->name('program-options-lob');
 	Route::post('/program-options/lob', 'ProgramOptionsController@postLobConfig')->name('post-program-options-lob');
+	
+	Route::get('/program-options/analytics', 'ProgramOptionsController@getAnalytics')->name('get-program-options-analytics');
 
 
 	// Member Routes
