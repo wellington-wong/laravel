@@ -425,5 +425,14 @@ class ProgramOptionsController extends Controller
         return back()->with('success', ['Page successfully saved']);
     }
 
+    /**
+     * @return
+     */
+    public function getAnalytics (Request $request) {
+
+        return 'Analytics';
+
+    }
+
 
 }
