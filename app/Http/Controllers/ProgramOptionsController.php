@@ -432,7 +432,7 @@ class ProgramOptionsController extends Controller
 
         $referrals = $request->_company->referrals;
 
-        return 'Analytics';
+        return view('program-options.analytics');
 
     }
 

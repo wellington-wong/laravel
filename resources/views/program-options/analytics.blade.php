@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Users')
+@section('pageTitle', 'Analytics')
 
 @section('content')
     <div class="container-fluid analytics-wrapper">
