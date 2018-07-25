@@ -430,6 +430,8 @@ class ProgramOptionsController extends Controller
      */
     public function getAnalytics (Request $request) {
 
+        $referrals = $request->_company->referrals;
+
         return 'Analytics';
 
     }
