@@ -430,9 +430,12 @@ class ProgramOptionsController extends Controller
      */
     public function getAnalytics (Request $request) {
 
-        $referrals = $request->_company->referrals;
+        $currentMonth = date('m');
+        $referrals = $request->_company->referrals()
+            ->whereRaw('MONTH(created_at) = ?', [$currentMonth]);
 
-        return view('program-options.analytics');
+        return view('program-options.analytics')
+            ->with($referrals);
 
     }
 
