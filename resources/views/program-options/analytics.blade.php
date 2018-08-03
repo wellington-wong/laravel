@@ -24,7 +24,7 @@
                         <tr>
                            <td></td>                          
                            <td></td>                          
-                           <td>{{ count($referrals->where('status', 3)) }}</td>                          
+                           <td>{{ $referrals->where('status', 3)->count() }}</td>                          
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                 </table>
