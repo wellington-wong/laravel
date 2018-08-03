@@ -435,7 +435,7 @@ class ProgramOptionsController extends Controller
             ->whereRaw('MONTH(created_at) = ?', [$currentMonth]);
 
         return view('program-options.analytics')
-            ->with($referrals);
+            ->with(compact('referrals'));
 
     }
 
