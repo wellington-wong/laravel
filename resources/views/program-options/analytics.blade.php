@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid referrals-analytics">
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Analytics', 'col' => 12])
+            @include('layouts.page-header', ['header' => 'Analytics for ' . $_company->company_name, 'col' => 12])
             </div>
 
             <div class="row">
