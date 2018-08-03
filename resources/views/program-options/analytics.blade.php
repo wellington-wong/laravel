@@ -20,9 +20,9 @@
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
                         <tr>
-                           <td>{{ $referrals->where('status', 1)->count() }}</td>                          
-                           <td>{{ $referrals->where('status', 1)->count() }}</td>                          
-                           <td>{{ $referrals->where('status', 3)->count() }}</td>                          
+                           <td><a href="">{{ $referrals->where('status', 1)->count() }}</a></td>                          
+                           <td><a href="">{{ $referrals->where('status', 1)->count() }}</a></td>                          
+                           <td><a href="">{{ $referrals->where('status', 3)->count() }}</a></td>                          
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     </table>
