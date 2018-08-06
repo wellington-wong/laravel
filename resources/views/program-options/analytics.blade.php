@@ -31,7 +31,7 @@
             </div>
             <div class="row" id="referral-source">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
-                    <label>New referral source accounts</label>
+                    <label>New Referral Source Accounts</label>
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
                             <tr>
@@ -58,7 +58,7 @@
               </div>
             <div class="row" id="referral-referred">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
-                    <label>Referred by referral sources</label>
+                    <label>Referred By Referral Sources</label>
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
                             <tr>
