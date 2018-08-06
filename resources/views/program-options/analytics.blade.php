@@ -43,7 +43,7 @@
                            <td><a href="{{ route('view-user', $referralSource->referrer->id) }}">{{ $referralSource->referrer->name }}</a></td>          
                            <td>
                             @foreach ($referrals->where('referrer_id', $referralSource->referrer->id) as $key => $referral) 
-                                <a href="{{ route('view-user', $referrals[$key]->referred->id) }}">{{ $referrals[$key]->referred->name }}</a>  {{ $loop->last ?: ','}}
+                                <a href="{{ route('view-user', $referrals[$key]->referred->id) }}">{{ $referrals[$key]->referred->name }}</a>  {{ $loop->last ? '' : ','}}
                             @endforeach
                            </td>
                          </tr>        
