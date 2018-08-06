@@ -34,16 +34,21 @@
                         <thead>
                             <tr>
                                 <th>New referral source accounts</th>
+                                <th>Referrals</th>
                             </tr>
                         </thead>
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>            
                         @foreach ($referralsSource as $referralSource)
                         <tr>
                            <td>{{ $referralSource->referrer->name }}</td>          
-                        </tr>        
+                           <td>
+                            @foreach ($referrals->where('referrer_id', $referralSource->referrer->id) as $key => $referral) 
+                                {{ $referralSource->referrer->name }}  {{ $loop->last ?: ','}}
+                            @endforeach
+                           </td>
+                         </tr>        
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
-                        <tr class="tr-spacer"><td colspan=5></td></tr>
                     </table>  
                     <div class="col-md-12 pagination-wrapper">{{ $referralsSource->appends(app('request')->query())->links() }}</div>
                     @if (count($referralsSource))<div class="small text-center">Showing {{ $referralsSource->firstItem() }} - {{ $referralsSource->lastItem() }} of <strong>{{ $referralsSource->total() }}</strong></div>@endif
@@ -73,11 +78,13 @@
                                 <th><a href="">Converted referrals</th>
                             </tr>
                         </thead> 
-                        <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
+                        <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>          
+                        @foreach ($referrals as $referral)
                         <tr>
-                           <td></td>                            
-                        </tr>
-                        <tr class="tr-spacer"><td colspan=5></td></tr>
+                           <td>{{ $referral->referrer->name }}</td>          
+                        </tr>        
+                        <tr class="tr-spacer"><td colspan=5></td></tr>          
+                        @endforeach
                     </table>
                  </div>
             </div>
