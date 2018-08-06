@@ -37,9 +37,12 @@
                             </tr>
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
+                        @foreach ($referralsCopy->distinct()->get() as $referralCopy)
                         <tr>
-                           <td></td>                            
-                        </tr>
+                           <td>{{ $referralCopy->referrer->name }}</td>          
+                        </tr>        
+                        <tr class="tr-spacer"><td colspan=5></td></tr>          
+                        @endforeach
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     </table>
                  </div>
