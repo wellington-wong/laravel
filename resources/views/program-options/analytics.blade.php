@@ -21,7 +21,7 @@
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
                         <tr>
-                           <td><a href="#referral-source">{{ $referralsSource->count() }}</a></td>                          
+                           <td><a href="#referral-source">{{ $referralsSource->total() }}</a></td>                          
                            <td><a href="#referral-referred">{{ $referrals->where('status', 1)->count() }}</a></td>                          
                            <td><a href="#referral-converted">{{ $referrals->where('status', 3)->count() }}</a></td>                          
                         </tr>
@@ -52,7 +52,7 @@
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
                     </table>  
-                    <div class="col-md-12 pagination-wrapper">{{ $referralsSource->appends(app('request')->query())->links() }}</div>
+                    <div class="col-md-12 pagination-wrapper">{{ $referralsSource->appends(app('request')->query(), 'referralsSource')->links() }}</div>
                     @if (count($referralsSource))<div class="small text-center">Showing {{ $referralsSource->firstItem() }} - {{ $referralsSource->lastItem() }} of <strong>{{ $referralsSource->total() }}</strong></div>@endif
                  </div>
               </div>
@@ -92,6 +92,8 @@
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
                     </table>
+                    <div class="col-md-12 pagination-wrapper">{{ $referrals->appends(app('request')->query(), 'referrals')->links() }}</div>
+                    @if (count($referrals))<div class="small text-center">Showing {{ $referrals->firstItem() }} - {{ $referrals->lastItem() }} of <strong>{{ $referrals->total() }}</strong></div>@endif
                  </div>
             </div>
             @include('layouts.modal')

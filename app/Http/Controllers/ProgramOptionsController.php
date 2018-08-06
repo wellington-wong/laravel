@@ -435,10 +435,10 @@ class ProgramOptionsController extends Controller
         $referrals = $request->_company->referrals()
             ->whereRaw('MONTH(created_at) = ?', [$currentMonth]);
         $referralsSource = clone $referrals;            
-        $referrals = $referrals->get();
+        $referrals = $referrals->paginate(15, ['*'], 'referrals');
 
         // Get referral source accounts
-        $referralsSource = $referralsSource->distinct()->select('referrer_id')->paginate(15);
+        $referralsSource = $referralsSource->distinct()->select('referrer_id')->paginate(15, ['*'], 'referralsSource');
 
         return view('program-options.analytics')
             ->with(compact('referrals', 'referralsSource'));
