@@ -430,14 +430,18 @@ class ProgramOptionsController extends Controller
      */
     public function getAnalytics (Request $request) {
 
+        // Get referrals by month
         $currentMonth = date('m');
         $referrals = $request->_company->referrals()
             ->whereRaw('MONTH(created_at) = ?', [$currentMonth]);
-        $referralsCopy = clone $referrals;            
+        $referralsSource = clone $referrals;            
         $referrals = $referrals->get();
 
+        // Get referral source accounts
+        $referralsSource = $referralsSource->distinct()->select('referrer_id')->paginate(15);
+
         return view('program-options.analytics')
-            ->with(compact('referrals', 'referralsCopy'));
+            ->with(compact('referrals', 'referralsSource'));
 
     }
 
