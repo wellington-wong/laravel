@@ -40,10 +40,10 @@
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>            
                         @foreach ($referralsSource as $referralSource)
                         <tr>
-                           <td>{{ $referralSource->referrer->name }}</td>          
+                           <td><a href="{{ route('view-user', $referralSource->referrer->id) }}">{{ $referralSource->referrer->name }}</a></td>          
                            <td>
                             @foreach ($referrals->where('referrer_id', $referralSource->referrer->id) as $key => $referral) 
-                                {{ $referralSource->referrer->name }}  {{ $loop->last ?: ','}}
+                                <a href="{{ route('view-user', $referrals[$key]->referred->id) }}">{{ $referrals[$key]->referred->name }}</a>  {{ $loop->last ?: ','}}
                             @endforeach
                            </td>
                          </tr>        
