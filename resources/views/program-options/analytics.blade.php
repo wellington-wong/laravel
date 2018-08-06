@@ -75,13 +75,15 @@
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
                             <tr>
-                                <th><a href="">Converted referrals this month</th>
+                                <th><a href="">Converted Referrals This Month</th>
+                                <th><a href="">Referral Date</th>
                             </tr>
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>          
                         @foreach ($referrals as $referral)
                         <tr>
                            <td><a href="{{ route('view-user', $referral->referred->id) }}">{{ $referral->referred->name }}</a></td>          
+                           <td>{{ $referral->referred->created_at->format('m/d/y') }}</td>          
                         </tr>        
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
