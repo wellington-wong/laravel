@@ -20,7 +20,7 @@
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
                         <tr>
-                           <td><a href="">{{ $referrals->where('status', 1)->count() }}</a></td>                          
+                           <td><a href="">{{ $referralsCopy->distinct()->count('referrer_id') }}</a></td>                          
                            <td><a href="">{{ $referrals->where('status', 1)->count() }}</a></td>                          
                            <td><a href="">{{ $referrals->where('status', 3)->count() }}</a></td>                          
                         </tr>
