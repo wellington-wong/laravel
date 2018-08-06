@@ -22,8 +22,8 @@
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
                         <tr>
                            <td><a href="#referral-source">{{ $referralsSource->total() }}</a></td>                          
-                           <td><a href="#referral-referred">{{ $referrals->where('status', 1)->count() }}</a></td>                          
-                           <td><a href="#referral-converted">{{ $referrals->where('status', 3)->count() }}</a></td>                          
+                           <td><a href="#referral-referred"></a></td>                          
+                           <td><a href="#referral-converted">{{ count($referrals) }}</a></td>                          
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     </table>
@@ -44,8 +44,8 @@
                         <tr>
                            <td><a href="{{ route('view-user', $referralSource->referrer->id) }}">{{ $referralSource->referrer->name }}</a></td>          
                            <td>
-                            @foreach ($referrals->where('referrer_id', $referralSource->referrer->id) as $key => $referral) 
-                                <a href="{{ route('view-user', $referrals[$key]->referred->id) }}">{{ $referrals[$key]->referred->name }}</a>  {{ $loop->last ? '' : ','}}
+                            @foreach ($referralSource->referrer->referrals as $key => $referral) 
+                                <a href="{{ route('view-user', $referral->referred->id) }}">{{ $referral->referred->name }}</a>  {{ $loop->last ? '' : ','}}
                             @endforeach
                            </td>
                          </tr>        
