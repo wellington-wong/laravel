@@ -39,7 +39,7 @@
                                 <th>Referred</th>
                             </tr>
                         </thead>
-                        <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>            
+                        <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>
                         @foreach ($referralsSource as $referralSource)
                         <tr>
                            <td><a href="{{ route('view-user', $referralSource->referrer->id) }}">{{ $referralSource->referrer->name }}</a></td>          
