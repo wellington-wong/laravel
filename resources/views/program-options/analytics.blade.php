@@ -10,6 +10,7 @@
 
             <div class="row">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
+                    <label>Summary</label>
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
                             <tr>
@@ -30,11 +31,12 @@
             </div>
             <div class="row" id="referral-source">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
+                    <label>New referral source accounts</label>
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
                             <tr>
-                                <th>New referral source accounts</th>
-                                <th>Referrals</th>
+                                <th>Name</th>
+                                <th>Referred</th>
                             </tr>
                         </thead>
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>            
@@ -56,10 +58,11 @@
               </div>
             <div class="row" id="referral-referred">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
+                    <label>Referred by referral sources</label>
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
                             <tr>
-                                <th><a href="">Referred by referral sources</th>
+                                <th>Name</th>
                             </tr>
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
@@ -72,11 +75,12 @@
             </div>
             <div class="row" id="referral-converted">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
+                    <label>Converted Referrals This Month</label>
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
                             <tr>
-                                <th><a href="">Converted Referrals This Month</th>
-                                <th><a href="">Referral Date</th>
+                                <th>Name</th>
+                                <th>Referral Date</th>
                             </tr>
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>          
