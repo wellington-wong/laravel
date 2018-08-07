@@ -443,7 +443,7 @@ class ProgramOptionsController extends Controller
         $referralsSource = $referralsSource->groupBy('referrer_id')->paginate(15, ['*'], 'referralsSource');
 
         return view('program-options.analytics')
-            ->with(compact('referrals', 'referralsSource'));
+            ->with(compact('referrals', 'referralsSource', 'selectionMonth', 'selectionYear'));
 
     }
 
