@@ -53,9 +53,9 @@ class Handler extends ExceptionHandler
     {
 
         // Setup a new SmtpTransport for exceptions
-        $transport = SmtpTransport::newInstance(env('MAIL2_HOST'), env('MAIL2_PORT'));
-        $transport->setUsername(env('MAIL2_USERNAME'));
-        $transport->setPassword(env('MAIL2_PASSWORD'));
+        $transport = SmtpTransport::newInstance(env('MAIL_HOST2'), env('MAIL_PORT2'));
+        $transport->setUsername(env('MAIL_USERNAME2'));
+        $transport->setPassword(env('MAIL_PASSWORD2'));
         $newMailer = new Swift_Mailer($transport);
         \Mail::setSwiftMailer($newMailer);
 
