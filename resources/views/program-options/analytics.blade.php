@@ -22,7 +22,7 @@
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
                         <tr>
                            <td><a href="#referral-source">{{ $referralsSource->total() }}</a></td>                          
-                           <td><a href="#referral-referred"></a></td>                          
+                           <td><a href="#referral-referred">{{ $referred->total() }}</a></td>                          
                            <td><a href="#referral-converted">{{ $referrals->total() }}</a></td>                          
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
