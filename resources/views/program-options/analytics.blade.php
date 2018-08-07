@@ -42,7 +42,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Referred</th>
-                                <th>Date Referred</th>
+                                <th>Referral date</th>
                             </tr>
                         </thead>
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>
@@ -54,7 +54,12 @@
                                 <a href="{{ route('view-user', $referral->referred->id) }}">{{ $referral->referred->name }}</a>  {{ $loop->last ? '' : ','}}
                             @endforeach
                            </td>
-                           <td>{{ $referral->created_at->format('m/d/y') }}</td>
+                           <td>
+
+                            @foreach ($referralSource->referrer->referrals()->whereMonth('created_at', $selectionMonth)->whereYear('created_at', $selectionYear)->get() as $key => $referral) 
+                                {{ $referral->created_at->format('m/d/y') }} {{ $loop->last ? '' : ','}}
+                            @endforeach                           
+                           </td>
                          </tr>        
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
@@ -71,7 +76,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Referred by</th>
-                                <th>Date referred</th>
+                                <th>Referral date</th>
                             </tr>
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>       
