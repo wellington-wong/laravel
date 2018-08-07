@@ -437,7 +437,7 @@ class ProgramOptionsController extends Controller
             ->whereMonth('created_at', $selectionMonth)
             ->whereYear('created_at', $selectionYear);
         $referralsSource = clone $referrals;            
-        $referrals = $referrals->where('status', 3)->paginate(15, ['*'], 'referrals');;
+        $referrals = $referrals->where('status', 3)->paginate(5, ['*'], 'referrals');
 
         // Get referral source accounts
         //$referralsSource = $referralsSource->distinct()->select('referrer_id')->paginate(15, ['*'], 'referralsSource');

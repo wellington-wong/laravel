@@ -23,7 +23,7 @@
                         <tr>
                            <td><a href="#referral-source">{{ $referralsSource->total() }}</a></td>                          
                            <td><a href="#referral-referred"></a></td>                          
-                           <td><a href="#referral-converted">{{ count($referrals) }}</a></td>                          
+                           <td><a href="#referral-converted">{{ $referrals->total() }}</a></td>                          
                         </tr>
                         <tr class="tr-spacer"><td colspan=5></td></tr>
                     </table>
@@ -87,7 +87,7 @@
                         @foreach ($referrals as $referral)
                         <tr>
                            <td><a href="{{ route('view-user', $referral->referred->id) }}">{{ $referral->referred->name }}</a></td>          
-                           <td>{{ $referral->referred->created_at->format('m/d/y') }}</td>          
+                           <td>{{ $referral->created_at->format('m/d/y') }}</td>          
                         </tr>        
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
