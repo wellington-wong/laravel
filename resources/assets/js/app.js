@@ -1060,6 +1060,16 @@ $(function (){
 	if (!dateSet) {
 		$('input[name="daterange"]').val('All time')
 	}
+	$('input[name="daterange_analytics"]').daterangepicker({
+		drops: 'down',
+	    startDate: dateRange[0],
+	    endDate: dateRange[1],
+	}).on('apply.daterangepicker', function(ev, picker) {
+      window.location.href = "/referrals?daterange=" + picker.startDate.format('MM/DD/YYYY') + "|" + picker.endDate.format('MM/DD/YYYY') + $(this).data('query');
+  	});
+	if (!dateSet) {
+		$('input[name="daterange_analytics"]').val('Date Filter')
+	}
 
 // END JQUERY DATERANGEPICKER
 
