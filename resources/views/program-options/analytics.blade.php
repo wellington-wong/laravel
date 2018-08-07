@@ -88,8 +88,8 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Referred By</th>
-                                <th>Referral Date</th>
+                                <th>Referred by</th>
+                                <th>Referral date</th>
                             </tr>
                         </thead> 
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>          
