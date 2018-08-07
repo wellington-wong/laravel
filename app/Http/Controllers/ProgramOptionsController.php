@@ -436,14 +436,17 @@ class ProgramOptionsController extends Controller
         $referrals = $request->_company->referrals()
             ->whereMonth('created_at', $selectionMonth)
             ->whereYear('created_at', $selectionYear);
-        $referralsSource = clone $referrals;            
-        $referrals = $referrals->where('status', 3)->paginate(5, ['*'], 'referrals');
+        $referralsSource = $referred = clone $referrals;       
+        $referrals = $referrals->where('status', 3)->paginate(15, ['*'], 'referrals');
 
         // Get referral source accounts
         $referralsSource = $referralsSource->groupBy('referrer_id')->paginate(15, ['*'], 'referralsSource');
 
+        // Get referred accounts
+        $referred = $referred->groupBy('user_id')->paginate(15, ['*'], 'referred');
+
         return view('program-options.analytics')
-            ->with(compact('referrals', 'referralsSource', 'selectionMonth', 'selectionYear'));
+            ->with(compact('referrals', 'referralsSource', 'referred', 'selectionMonth', 'selectionYear'));
 
     }
 

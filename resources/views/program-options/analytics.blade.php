@@ -37,6 +37,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Referred</th>
+                                <th>Date Referred</th>
                             </tr>
                         </thead>
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>
@@ -48,6 +49,7 @@
                                 <a href="{{ route('view-user', $referral->referred->id) }}">{{ $referral->referred->name }}</a>  {{ $loop->last ? '' : ','}}
                             @endforeach
                            </td>
+                           <td>{{ $referral->created_at->format('m/d/y') }}</td>
                          </tr>        
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
@@ -63,13 +65,19 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Referred by</th>
+                                <th>Date referred</th>
                             </tr>
                         </thead> 
-                        <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>                    
+                        <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>       
+                        @foreach ($referred as $referredAccount)
                         <tr>
-                           <td></td>                            
-                        </tr>
-                        <tr class="tr-spacer"><td colspan=5></td></tr>
+                           <td><a href="{{ route('view-user', $referredAccount->referrer->id) }}">{{ $referredAccount->referred->name }}</a></td>          
+                           <td><a href="{{ route('view-user', $referredAccount->referrer->id) }}">{{ $referredAccount->referrer->name }}</a></td>
+                           <td>{{ $referredAccount->created_at->format('m/d/y') }}</td>
+                         </tr>        
+                        <tr class="tr-spacer"><td colspan=5></td></tr>          
+                        @endforeach
                     </table>
                  </div>
             </div>
@@ -80,6 +88,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Referred By</th>
                                 <th>Referral Date</th>
                             </tr>
                         </thead> 
@@ -87,6 +96,7 @@
                         @foreach ($referrals as $referral)
                         <tr>
                            <td><a href="{{ route('view-user', $referral->referred->id) }}">{{ $referral->referred->name }}</a></td>          
+                           <td><a href="{{ route('view-user', $referral->referrer->id) }}">{{ $referral->referrer->name }}</a></td>         
                            <td>{{ $referral->created_at->format('m/d/y') }}</td>          
                         </tr>        
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
