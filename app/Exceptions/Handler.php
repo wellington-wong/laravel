@@ -11,6 +11,10 @@ use Mail;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 
+// Create new mailer for exceptions
+use \Swift_Mailer;
+use \Swift_SmtpTransport as SmtpTransport;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -47,6 +51,14 @@ class Handler extends ExceptionHandler
 
     public function sendEmail(Exception $exception)
     {
+
+        // Setup a new SmtpTransport for exceptions
+        $transport = SmtpTransport::newInstance(env('MAIL2_HOST'), env('MAIL2_PORT'));
+        $transport->setUsername(env('MAIL2_USERNAME'));
+        $transport->setPassword(env('MAIL2_PASSWORD'));
+        $newMailer = new Swift_Mailer($transport);
+        \Mail::setSwiftMailer($newMailer);
+
         try {
             if ( $this->shouldntReport($exception) ) {
                 return;
