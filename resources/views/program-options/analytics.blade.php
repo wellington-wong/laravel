@@ -44,7 +44,7 @@
                         <tr>
                            <td><a href="{{ route('view-user', $referralSource->referrer->id) }}">{{ $referralSource->referrer->name }}</a></td>          
                            <td>
-                            @foreach ($referralSource->referrer->referrals as $key => $referral) 
+                            @foreach ($referralSource->referrer->referrals()->whereMonth('created_at', date('m')) as $key => $referral) 
                                 <a href="{{ route('view-user', $referral->referred->id) }}">{{ $referral->referred->name }}</a>  {{ $loop->last ? '' : ','}}
                             @endforeach
                            </td>

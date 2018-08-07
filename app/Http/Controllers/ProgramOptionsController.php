@@ -431,11 +431,13 @@ class ProgramOptionsController extends Controller
     public function getAnalytics (Request $request) {
 
         // Get referrals by month
-        $currentMonth = date('m');
+        $selectionMonth = date('m') - 1;
+        $selectionYear = date('Y');
         $referrals = $request->_company->referrals()
-            ->whereRaw('MONTH(created_at) = ?', [$currentMonth]);
+            ->whereMonth('created_at', $selectionMonth)
+            ->whereYear('created_at', $selectionYear);
         $referralsSource = clone $referrals;            
-        $referrals = $referrals->where('status', 3)->paginate(15, ['*'], 'referrals');
+        $referrals = $referrals->where('status', 3)->paginate(15, ['*'], 'referrals');;
 
         // Get referral source accounts
         //$referralsSource = $referralsSource->distinct()->select('referrer_id')->paginate(15, ['*'], 'referralsSource');
