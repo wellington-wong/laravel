@@ -8,6 +8,11 @@
             @include('layouts.page-header', ['header' => 'Analytics for ' . $_company->company_name, 'col' => 12])
             </div>
 
+            <!--<div class="col-md-4 filter-item date-range">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                {{ Form::text('daterange', old('daterange'), ['class' => 'form-control text', 'data-query' => (isset($param->daterange) ? $param->daterange : '')] ) }}            
+                <i class="fa fa-angle-down" aria-hidden="true"></i>          
+            </div>-->
             <div class="row">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
                     <label>Summary</label>
@@ -79,6 +84,8 @@
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
                     </table>
+                   <div class="col-md-12 pagination-wrapper">{{ $referred->appends(app('request')->query(), 'referred')->links() }}</div>
+                    @if (count($referred))<div class="small text-center">Showing {{ $referred->firstItem() }} - {{ $referred->lastItem() }} of <strong>{{ $referred->total() }}</strong></div>@endif
                  </div>
             </div>
             <div class="row" id="referral-converted">
