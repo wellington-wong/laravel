@@ -1061,7 +1061,7 @@ $(function (){
 		$('input[name="daterange"]').val('All time')
 	}
 
-    $('#datepicker').datepicker({
+    $('input[name="daterange_analytics"]').datepicker({
 	    format: "mm/yyyy",
 	    startView: "year", 
 	    minViewMode: "months"
