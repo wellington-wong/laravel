@@ -65,8 +65,12 @@
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
                     </table>  
+                    @if (count($referralsSource))
                     <div class="col-md-12 pagination-wrapper">{{ $referralsSource->appends(app('request')->query(), 'referralsSource')->links() }}</div>
-                    @if (count($referralsSource))<div class="small text-center">Showing {{ $referralsSource->firstItem() }} - {{ $referralsSource->lastItem() }} of <strong>{{ $referralsSource->total() }}</strong></div>@endif
+                    <div class="small text-center">Showing {{ $referralsSource->firstItem() }} - {{ $referralsSource->lastItem() }} of <strong>{{ $referralsSource->total() }}</strong></div>
+                    @else
+                    <div class="col-md-12 pagination-wrapper">No results found.</div>
+                    @endif
                  </div>
               </div>
             <div class="row" id="referral-referred">
@@ -90,8 +94,12 @@
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
                     </table>
-                   <div class="col-md-12 pagination-wrapper">{{ $referred->appends(app('request')->query(), 'referred')->links() }}</div>
-                    @if (count($referred))<div class="small text-center">Showing {{ $referred->firstItem() }} - {{ $referred->lastItem() }} of <strong>{{ $referred->total() }}</strong></div>@endif
+                    @if (count($referred))
+                    <div class="col-md-12 pagination-wrapper">{{ $referred->appends(app('request')->query(), 'referred')->links() }}</div>
+                    <div class="small text-center">Showing {{ $referred->firstItem() }} - {{ $referred->lastItem() }} of <strong>{{ $referred->total() }}</strong></div>
+                    @else
+                    <div class="col-md-12 pagination-wrapper">No results found.</div>
+                    @endif
                  </div>
             </div>
             <div class="row" id="referral-converted">
@@ -115,8 +123,12 @@
                         <tr class="tr-spacer"><td colspan=5></td></tr>          
                         @endforeach
                     </table>
+                    @if (count($referrals))
                     <div class="col-md-12 pagination-wrapper">{{ $referrals->appends(app('request')->query(), 'referrals')->links() }}</div>
-                    @if (count($referrals))<div class="small text-center">Showing {{ $referrals->firstItem() }} - {{ $referrals->lastItem() }} of <strong>{{ $referrals->total() }}</strong></div>@endif
+                    <div class="small text-center">Showing {{ $referrals->firstItem() }} - {{ $referrals->lastItem() }} of <strong>{{ $referrals->total() }}</strong></div>
+                    @else
+                    <div class="col-md-12 pagination-wrapper">No results found.</div>
+                    @endif
                  </div>
             </div>
             @include('layouts.modal')
