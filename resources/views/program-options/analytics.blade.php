@@ -16,7 +16,9 @@
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         {{ Form::text('daterange_analytics', old('daterange'), ['class' => 'form-control text', 'data-query' => (isset($param->daterange) ? $param->daterange : '')] ) }}            
                         <i class="fa fa-angle-down" aria-hidden="true"></i>          
-                    </div>      
+                    </div> 
+                    <!--<label for="startDate">Date :</label>
+                    <input name="startDate" id="datepicker" class="date-picker" />-->
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
                             <tr>
@@ -134,5 +136,4 @@
             @include('layouts.modal')
         </div>
     </div>
-
 @endsection
