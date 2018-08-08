@@ -43,7 +43,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <small>If you do not know your referral's email address please enter firstname.lastname@unim.com to create a unique email.</small>
+                <small>If you do not know your referral's email address, please enter firstname.lastname@unim.com to create a unique email.</small>
             </div>
         </div>
         <div class="old-input hidden">            
