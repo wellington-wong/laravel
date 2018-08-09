@@ -474,8 +474,14 @@ class ProgramOptionsController extends Controller
             ->whereMonth('created_at', $selectionMonth)
             ->whereYear('created_at', $selectionYear);
         $referralsSource = $referred = clone $referrals;       
-        $referrals = $referrals->where('status', 3)->get()->toArray();
+        $referrals = $referrals->where('status', 3)->get();
 
+        // Get referral source accounts
+        $referralsSource = $referralsSource->groupBy('referrer_id')->paginate(15, ['*'], 'referralsSource');
+
+        // Get referred accounts
+        $referred = $referred->groupBy('user_id')->paginate(15, ['*'], 'referred');
+        
         $referralArray = [];  
         foreach ($referrals as $referral) {
             $referral = [

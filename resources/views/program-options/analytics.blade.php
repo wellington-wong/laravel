@@ -18,7 +18,7 @@
                         <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     </div> 
                     <div class="col-md-1 analytics-export no-padding-lr text-center">
-                        <a href="{{ route('export-program-options-analytics') }}">Export</a>
+                        <a href="{{ route('export-program-options-analytics', ['date' => date("F Y",  mktime(0, 0, 0, $selectionMonth + 1, 0, $selectionYear))]) }}">Export</a>
                     </div>
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
                         <thead>
