@@ -477,32 +477,48 @@ class ProgramOptionsController extends Controller
         $referrals = $referrals->where('status', 3)->get();
 
         // Get referral source accounts
-        $referralsSource = $referralsSource->groupBy('referrer_id')->paginate(15, ['*'], 'referralsSource');
+        $referralsSource = $referralsSource->groupBy('referrer_id')->get();
 
         // Get referred accounts
-        $referred = $referred->groupBy('user_id')->paginate(15, ['*'], 'referred');
+        $referred = $referred->groupBy('user_id')->get();
 
-        $referralSource = [
-            'NEW REFERRAL SOURCE ACCOUNTS (' . $referralsSource->total() . ')',
-            'REFERRED BY REFERRAL SOURCES(' . $referred->total() . ')',
-            'CONVERTED REFERRALS(' . $referrals->count() . ')',
-        ];
+        $newReferralSource = [];
+        $referredByReferral = [];
+        $referralsConverted = [];
+        foreach ($referralsSource as $referral) {
+             $referralDate = [
+                'NAME' => $referral->referrer->name,
+                'REFERRED' => $referral->referred->name,
+                'REFFERAL DATE' => $referral->created_at->format('F d, Y'),
+            ];
+            $newReferralSource[] = $referralDate;
+        }
+        foreach ($referred as $referral) {
+             $referralDate = [
+                'NAME' => $referral->referrer->name,
+                'REFERRED BY' => $referral->referred->name,
+                'REFFERAL DATE' => $referral->created_at->format('F d, Y'),
+            ];
+            $referredByReferral[] = $referralDate;
+        }
         foreach ($referrals as $referral) {
+             $referralDate = [
+                'NAME' => $referral->referrer->name,
+                'REFERRED BY' => $referral->referred->name,
+                'REFFERAL DATE' => $referral->created_at->format('F d, Y'),
+            ];
+            $referralsConverted[] = $referralDate;
         }
 
-        $referralArray[] = $referralSource;
-        $referralArray[] = [];
-        $referralArray[] = $referralSource;
-
-        \Excel::create('Referrals', function($excel) use ($referralArray, $referralsSource) {
-            $excel->sheet('New Referral Source Accounts', function($sheet) use ( $referralArray) {
-                $sheet->fromArray($referralArray);
+        \Excel::create('Referrals', function($excel) use ($newReferralSource, $referredByReferral, $referralsConverted) {
+            $excel->sheet('New Referral Source Accounts', function($sheet) use ($newReferralSource) {
+                $sheet->fromArray($newReferralSource);
             });
-            $excel->sheet('Referred By Referral Sources', function($sheet) use ( $referralArray) {
-                $sheet->fromArray($referralArray);
+            $excel->sheet('Referred By Referral Sources', function($sheet) use ($referredByReferral) {
+                $sheet->fromArray($referredByReferral);
             });
-            $excel->sheet('Converted Referrals', function($sheet) use ( $referralArray) {
-                $sheet->fromArray($referralArray);
+            $excel->sheet('Converted Referrals', function($sheet) use ($referralsConverted) {
+                $sheet->fromArray($referralsConverted);
             });
         })->export('xls');
 
