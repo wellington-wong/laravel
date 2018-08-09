@@ -461,6 +461,27 @@ class ProgramOptionsController extends Controller
      */
     public function exportAnalytics (Request $request) {
 
+        // Get referrals by month
+        $selectionMonth = date('m');
+        $selectionYear = date('Y'); 
+        try {
+            $date = \Carbon\Carbon::createFromFormat('d M Y', '01 ' . $request->get('date'));
+            $selectionMonth = $date->format('m');
+            $selectionYear = $date->format('Y'); 
+        } catch (\Exception $error) {}
+
+        $referrals = $request->_company->referrals()
+            ->whereMonth('created_at', $selectionMonth)
+            ->whereYear('created_at', $selectionYear);
+        $referralsSource = $referred = clone $referrals;       
+        $referrals = $referrals->where('status', 3)->get()->toArray();
+
+        \Excel::create('Referrals', function($excel) use ($referrals) {
+            $excel->sheet('Members', function($sheet) use ( $referrals) {
+                $sheet->fromArray($referrals);
+            });
+        })->export('xls');
+
         return;
 
     }
