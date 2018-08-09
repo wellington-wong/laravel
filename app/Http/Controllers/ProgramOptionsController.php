@@ -510,9 +510,9 @@ class ProgramOptionsController extends Controller
             $referralsConverted[] = $referralDate;
         }
         $newReferralSource[] = $referredByReferral[] = $referralsConverted[] = [];
-        $newReferralSource[] = $referralsSource->count() ? ['', 'TOTAL', $referralsSource->count()] : ['No results found.'];
-        $referredByReferral[] = $referred->count() ? ['', 'TOTAL', $referred->count()] : ['No results found.'];
-        $referralsConverted[] = $referrals->count() ? ['', 'TOTAL', $referrals->count()] : ['No results found.'];
+        $newReferralSource[] = $referralsSource->count() ? ['', 'TOTAL', $referralsSource->count()] : ['No new referral source.'];
+        $referredByReferral[] = $referred->count() ? ['', 'TOTAL', $referred->count()] : ['No referred by referral found.'];
+        $referralsConverted[] = $referrals->count() ? ['', 'TOTAL', $referrals->count()] : ['No referrals converted.'];
 
         \Excel::create('Referrals', function($excel) use ($newReferralSource, $referredByReferral, $referralsConverted) {
             $excel->sheet('New Referral Source Accounts', function($sheet) use ($newReferralSource) {
