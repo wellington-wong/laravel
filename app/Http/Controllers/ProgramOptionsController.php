@@ -509,6 +509,10 @@ class ProgramOptionsController extends Controller
             ];
             $referralsConverted[] = $referralDate;
         }
+        $newReferralSource[] = $referredByReferral[] = $referralsConverted[] = [];
+        $newReferralSource[] = ['', 'TOTAL', $referralsSource->count()];
+        $referredByReferral[] = ['', 'TOTAL', $referred->count()];
+        $referralsConverted[] = ['', 'TOTAL', $referrals->count()];
 
         \Excel::create('Referrals', function($excel) use ($newReferralSource, $referredByReferral, $referralsConverted) {
             $excel->sheet('New Referral Source Accounts', function($sheet) use ($newReferralSource) {
