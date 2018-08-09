@@ -482,14 +482,17 @@ class ProgramOptionsController extends Controller
         // Get referred accounts
         $referred = $referred->groupBy('user_id')->paginate(15, ['*'], 'referred');
 
-        $referralSummary = [
+        $referralSource = [
             'NEW REFERRAL SOURCE ACCOUNTS (' . $referralsSource->total() . ')',
             'REFERRED BY REFERRAL SOURCES(' . $referred->total() . ')',
             'CONVERTED REFERRALS(' . $referrals->count() . ')',
         ];
-        $referralArray[] = $referralSummary;
         foreach ($referrals as $referral) {
         }
+
+        $referralArray[] = $referralSource;
+        $referralArray[] = [];
+        $referralArray[] = $referralSource;
 
         \Excel::create('Referrals', function($excel) use ($referralArray, $referralsSource) {
             $excel->sheet('New Referral Source Accounts', function($sheet) use ( $referralArray) {
