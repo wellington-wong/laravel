@@ -431,14 +431,14 @@ class ProgramOptionsController extends Controller
     public function getAnalytics (Request $request) {
 
         // Get referrals by month
-        if($request->has('date')) {
+        $selectionMonth = date('m');
+        $selectionYear = date('Y'); 
+        try {
             $date = \Carbon\Carbon::createFromFormat('d M Y', '01 ' . $request->get('date'));
             $selectionMonth = $date->format('m');
             $selectionYear = $date->format('Y'); 
-        } else {
-            $selectionMonth = date('m') - 1;
-            $selectionYear = date('Y'); 
-        }
+        } catch (\Exception $error) {}
+
         $referrals = $request->_company->referrals()
             ->whereMonth('created_at', $selectionMonth)
             ->whereYear('created_at', $selectionYear);
