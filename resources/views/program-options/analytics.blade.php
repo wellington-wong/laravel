@@ -58,7 +58,6 @@
                             @endforeach
                            </td>
                            <td>
-
                             @foreach ($referralSource->referrer->referrals()->whereMonth('created_at', $selectionMonth)->whereYear('created_at', $selectionYear)->get() as $key => $referral) 
                                 {{ $referral->created_at->format('m/d/y') }} {{ $loop->last ? '' : ','}}
                             @endforeach                           
@@ -89,7 +88,7 @@
                         <tr class="tr-spacer"><td colspan=5 style="border: 0; height:10px;"></td></tr>       
                         @foreach ($referred as $referredAccount)
                         <tr>
-                           <td><a href="{{ route('view-user', $referredAccount->referrer->id) }}">{{ $referredAccount->referred->name }}</a></td>          
+                           <td><a href="{{ route('view-user', $referredAccount->referred->id) }}">{{ $referredAccount->referred->name }}</a></td>          
                            <td><a href="{{ route('view-user', $referredAccount->referrer->id) }}">{{ $referredAccount->referrer->name }}</a></td>
                            <td>{{ $referredAccount->created_at->format('m/d/y') }}</td>
                          </tr>        
