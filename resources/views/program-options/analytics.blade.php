@@ -9,7 +9,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
-                    <div class="col-md-6 no-padding-lr">
+                    <div class="col-md-7 no-padding-lr">
                         <label>Summary</label>
                     </div>
                     <div class="col-md-4 filter-item date-range analytics-calendar no-padding-lr">
@@ -17,7 +17,7 @@
                         {{ Form::text('daterange_analytics', date("F Y", mktime(0, 0, 0, $selectionMonth + 1, 0, $selectionYear)), ['class' => 'form-control text', 'data-query' => (isset($param->daterange) ? $param->daterange : ''), 'data-url' => route('get-program-options-analytics')] ) }}            
                         <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     </div> 
-                    <div class="col-md-2 analytics-export no-padding-lr text-center">
+                    <div class="col-md-1 analytics-export no-padding-lr text-center">
                         <a href="">Export</a>
                     </div>
                     <table class="table table-referral tablesaw tablesaw-stack table-custom" data-tablesaw-mode="stack">
