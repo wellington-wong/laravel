@@ -456,5 +456,14 @@ class ProgramOptionsController extends Controller
 
     }
 
+    /**
+     * @return
+     */
+    public function exportAnalytics (Request $request) {
+
+        return;
+
+    }
+
 
 }
