@@ -432,7 +432,7 @@ class ProgramOptionsController extends Controller
 
         // Get referrals by month
         if($request->has('date')) {
-            $date = \Carbon\Carbon::createFromFormat('d/m/Y', '01/' . $request->get('date'));
+            $date = \Carbon\Carbon::createFromFormat('d M Y', '01 ' . $request->get('date'));
             $selectionMonth = $date->format('m');
             $selectionYear = $date->format('Y'); 
         } else {

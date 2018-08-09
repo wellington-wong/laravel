@@ -1062,7 +1062,7 @@ $(function (){
 	}
 
     $('input[name="daterange_analytics"]').datepicker({
-	    format: "mm/yyyy",
+	    format: "MM yyyy",
 	    startView: "year", 
         showButtonPanel: true,
                 closeBtn: true,// close button visible
