@@ -476,9 +476,19 @@ class ProgramOptionsController extends Controller
         $referralsSource = $referred = clone $referrals;       
         $referrals = $referrals->where('status', 3)->get()->toArray();
 
-        \Excel::create('Referrals', function($excel) use ($referrals) {
-            $excel->sheet('Members', function($sheet) use ( $referrals) {
-                $sheet->fromArray($referrals);
+        $referralArray = [];  
+        foreach ($referrals as $referral) {
+            $referral = [
+                'NEW REFERRAL SOURCE ACCOUNTS' => $referralsSource->total(),
+                'REFERRED BY REFERRAL SOURCES' => $referred->total(),
+                'CONVERTED REFERRALS' => $referrals->total(),
+            ];
+            $referralArray[] = $referral;
+        }
+
+        \Excel::create('Referrals', function($excel) use ($referralArray) {
+            $excel->sheet('Members', function($sheet) use ( $referralArray) {
+                $sheet->fromArray($referralArray);
             });
         })->export('xls');
 
