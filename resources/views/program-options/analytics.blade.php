@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-md-4 filter-item date-range analytics-calendar no-padding-lr">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                        {{ Form::text('daterange_analytics', app('request')->get('date') ?: date('F') . ' ' . date('Y'), ['class' => 'form-control text', 'data-query' => (isset($param->daterange) ? $param->daterange : ''), 'data-url' => route('get-program-options-analytics')] ) }}            
+                        {{ Form::text('daterange_analytics', date("F Y", mktime(0, 0, 0, $selectionMonth + 1, 0, $selectionYear)), ['class' => 'form-control text', 'data-query' => (isset($param->daterange) ? $param->daterange : ''), 'data-url' => route('get-program-options-analytics')] ) }}            
                         <i class="fa fa-angle-down" aria-hidden="true"></i>          
                     </div> 
                     <!--<label for="startDate">Date :</label>
