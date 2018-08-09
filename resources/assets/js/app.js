@@ -1064,7 +1064,10 @@ $(function (){
     $('input[name="daterange_analytics"]').datepicker({
 	    format: "mm/yyyy",
 	    startView: "year", 
-	    minViewMode: "months"
+        showButtonPanel: true,
+                closeBtn: true,// close button visible
+	    minViewMode: "months",
+    	autoclose: true,
 	});
 
 // END JQUERY DATERANGEPICKER
