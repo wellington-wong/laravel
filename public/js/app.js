@@ -21300,6 +21300,8 @@ $(function () {
 		closeBtn: true, // close button visible
 		minViewMode: "months",
 		autoclose: true
+	}).on('change', function () {
+		location.href = $(this).data('url') + '?date=' + $(this).val();
 	});
 
 	// END JQUERY DATERANGEPICKER
