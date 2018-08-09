@@ -475,25 +475,30 @@ class ProgramOptionsController extends Controller
             ->whereYear('created_at', $selectionYear);
         $referralsSource = $referred = clone $referrals;       
         $referrals = $referrals->where('status', 3)->get();
-        
+
         // Get referral source accounts
         $referralsSource = $referralsSource->groupBy('referrer_id')->paginate(15, ['*'], 'referralsSource');
 
         // Get referred accounts
         $referred = $referred->groupBy('user_id')->paginate(15, ['*'], 'referred');
 
-        $referralArray = [];  
+        $referralSummary = [
+            'NEW REFERRAL SOURCE ACCOUNTS (' . $referralsSource->total() . ')',
+            'REFERRED BY REFERRAL SOURCES(' . $referred->total() . ')',
+            'CONVERTED REFERRALS(' . $referrals->count() . ')',
+        ];
+        $referralArray[] = $referralSummary;
         foreach ($referrals as $referral) {
-            $referral = [
-                'NEW REFERRAL SOURCE ACCOUNTS' => $referralsSource->total(),
-                'REFERRED BY REFERRAL SOURCES' => $referred->total(),
-                'CONVERTED REFERRALS' => $referrals->count(),
-            ];
-            $referralArray[] = $referral;
         }
 
-        \Excel::create('Referrals', function($excel) use ($referralArray) {
-            $excel->sheet('Members', function($sheet) use ( $referralArray) {
+        \Excel::create('Referrals', function($excel) use ($referralArray, $referralsSource) {
+            $excel->sheet('New Referral Source Accounts', function($sheet) use ( $referralArray) {
+                $sheet->fromArray($referralArray);
+            });
+            $excel->sheet('Referred By Referral Sources', function($sheet) use ( $referralArray) {
+                $sheet->fromArray($referralArray);
+            });
+            $excel->sheet('Converted Referrals', function($sheet) use ( $referralArray) {
                 $sheet->fromArray($referralArray);
             });
         })->export('xls');
