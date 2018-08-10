@@ -71,7 +71,7 @@
                     <div class="col-md-12 pagination-wrapper">{{ $referralsSource->appends(app('request')->query(), 'referralsSource')->links() }}</div>
                     <div class="small text-center">Showing {{ $referralsSource->firstItem() }} - {{ $referralsSource->lastItem() }} of <strong>{{ $referralsSource->total() }}</strong></div>
                     @else
-                    <div class="col-md-12 pagination-wrapper">No results found.</div>
+                    <div class="col-md-12 pagination-wrapper">No new referral source found.</div>
                     @endif
                  </div>
               </div>
@@ -100,7 +100,7 @@
                     <div class="col-md-12 pagination-wrapper">{{ $referred->appends(app('request')->query(), 'referred')->links() }}</div>
                     <div class="small text-center">Showing {{ $referred->firstItem() }} - {{ $referred->lastItem() }} of <strong>{{ $referred->total() }}</strong></div>
                     @else
-                    <div class="col-md-12 pagination-wrapper">No results found.</div>
+                    <div class="col-md-12 pagination-wrapper">No referred by referral source found.</div>
                     @endif
                  </div>
             </div>
@@ -129,7 +129,7 @@
                     <div class="col-md-12 pagination-wrapper">{{ $referrals->appends(app('request')->query(), 'referrals')->links() }}</div>
                     <div class="small text-center">Showing {{ $referrals->firstItem() }} - {{ $referrals->lastItem() }} of <strong>{{ $referrals->total() }}</strong></div>
                     @else
-                    <div class="col-md-12 pagination-wrapper">No results found.</div>
+                    <div class="col-md-12 pagination-wrapper">No referrals converted.</div>
                     @endif
                  </div>
             </div>

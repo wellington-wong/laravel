@@ -510,8 +510,8 @@ class ProgramOptionsController extends Controller
             $referralsConverted[] = $referralDate;
         }
         $newReferralSource[] = $referredByReferral[] = $referralsConverted[] = [];
-        $newReferralSource[] = $referralsSource->count() ? ['', 'TOTAL', $referralsSource->count()] : ['No new referral source.'];
-        $referredByReferral[] = $referred->count() ? ['', 'TOTAL', $referred->count()] : ['No referred by referral found.'];
+        $newReferralSource[] = $referralsSource->count() ? ['', 'TOTAL', $referralsSource->count()] : ['No new referral source found.'];
+        $referredByReferral[] = $referred->count() ? ['', 'TOTAL', $referred->count()] : ['No referred by referral source found.'];
         $referralsConverted[] = $referrals->count() ? ['', 'TOTAL', $referrals->count()] : ['No referrals converted.'];
 
         \Excel::create('Referrals', function($excel) use ($newReferralSource, $referredByReferral, $referralsConverted) {
@@ -524,7 +524,7 @@ class ProgramOptionsController extends Controller
             $excel->sheet('Converted Referrals', function($sheet) use ($referralsConverted) {
                 $sheet->fromArray($referralsConverted);
             });
-        })->export('xls');
+        }) ->setFilename('Perxi Analytics for ' .  $request->_company->company_name . ' - ' . date("F Y", mktime(0, 0, 0, $selectionMonth + 1, 0, $selectionYear)))->export('xls');
 
         return;
 
