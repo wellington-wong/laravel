@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid referrals-analytics">
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Analytics for ' . $_company->company_name, 'col' => 12])
+            @include('layouts.page-header', ['header' => 'Analytics for ' . $_company->company_name . ' - ' . date("F Y", mktime(0, 0, 0, $selectionMonth + 1, 0, $selectionYear)), 'col' => 12])
             </div>
             <div class="row">
                 <div class="col-md-12 table-referral-wrapper table-wrapper {{ auth()->user()->hasRole('member') ? 'member-referrals' : '' }}">
