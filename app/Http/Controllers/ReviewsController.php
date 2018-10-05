@@ -23,7 +23,6 @@ class ReviewsController extends Controller
 
 	}
 
-
     /**
      * List all reviews
      * @return
@@ -38,7 +37,7 @@ class ReviewsController extends Controller
     }
 
     /**
-     * Get index for reviews
+     * Get create review form
      * @return
      */
     public function create (Request $request) {
@@ -100,6 +99,31 @@ class ReviewsController extends Controller
         }
 
     	return back();
+
+    }
+
+    /**
+     * List all reviews
+     * @return
+     */
+    public function myReviews (Request $request) {
+
+        $reviews = Reviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
+
+        return view ('reviews.index2')
+            ->with(compact('reviews'));
+
+    }
+
+    /**
+     * Get create review form
+     * @return
+     */
+    public function submit (Request $request) {
+
+        $reviews = Reviews::where('company_id', $request->_company->id)->get();
+        return view ('reviews.create2')
+        ->with(compact('reviews'));
 
     }
 
