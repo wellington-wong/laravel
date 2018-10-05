@@ -6,7 +6,8 @@
     @include('email-templates.referral-received', ['email_template' => ''])
     <div class="container-fluid notification-wrapper">    
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Notification Emails', 'col' => 12])
+        @include('layouts.page-header', ['header' => 'Notification Email', 'col' => 8])
+        <div class="col-md-4 text-right"><a href="{{ route('program-options-notification-emails') }}"><small><< Back to Notification Emails</small></a></div>
         </div>
     </div>
 
