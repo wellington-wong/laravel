@@ -90,8 +90,8 @@ Route::get('/manage-account', 'ManageAccountController@getIndex')->name('manage-
 Route::post('/manage-account', 'ManageAccountController@postUpdate')->name('post-account-update');
 Route::get('/help', 'ManageAccountController@help')->name('help');
 
-Route::get('/testlob', 'TestController@testlob');
-Route::get('/testsavecheck', 'TestController@testSaveCheck');
+// Route::get('/testlob', 'TestController@testlob');
+// Route::get('/testsavecheck', 'TestController@testSaveCheck');
 
 
 // User
@@ -167,10 +167,10 @@ Route::group(['prefix' => '/', 'middleware' => ['role:admin|superAdmin|globalAdm
 });
 
 // Laravel scout with algolia driver
-Route::get('/api/search', [
-	'as' => 'api/search',
-	'uses' => 'Api\SearchController@search'
-]);
+// Route::get('/api/search', [
+// 	'as' => 'api/search',
+// 	'uses' => 'Api\SearchController@search'
+// ]);
 
 // Laravel messenger
 // https://github.com/cmgmyr/laravel-messenger
@@ -193,3 +193,4 @@ Route::post('/stripe-test', 'StripeController@postStripeTest')->name('post-strip
 Route::get('/reviews', 'ReviewsController@getIndex')->name('reviews');
 Route::get('/reviews/create', 'ReviewsController@create')->name('create-reviews');
 Route::post('/reviews/create', 'ReviewsController@postCreate')->name('post-review');
+Route::post('/reviews/create', 'ReviewsController@postCreate')->name('review-create');
