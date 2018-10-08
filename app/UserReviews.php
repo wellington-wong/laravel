@@ -11,4 +11,8 @@ class UserReviews extends Model
 
 	protected $fillable = ['user_id', 'company_id', 'url', 'screenshot'];
 
+	public function user() {
+		return $this->hasOne(User::class, 'id', 'user_id');
+	}
+
 }

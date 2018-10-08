@@ -13,7 +13,7 @@
                     @foreach($reviews as $r)
                     <tr>
                         <td>{{ date('F d, Y', strtotime($r->created_at)) }}</td>
-                        <td><a href="{{ route('view-user', auth()->user()->id) }}" target="_blank">{{ auth()->user()->getDisplayNameAttribute() }}</a></td>
+                        <td><a href="{{ route('view-user', $r->user->id) }}" target="_blank">{{ $r->user->getDisplayNameAttribute() }}</a></td>
                         <td><a href="{{ preg_replace('/^(?!https?:\/\/)/', 'http://', $r->url) }}" target="_blank">{{ $r->url }}</a></td>
                         <td>                            
                             @if (isset($r->screenshot))

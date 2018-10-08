@@ -152,12 +152,13 @@ class ReviewsController extends Controller
                 ->with(['errors'=>$validator->errors()]);
         }
 
-        // CREATE REVIEW
+        // CREATE REVIEW        
+        $user_id = $request->get('as_member') ?: auth()->user()->id;
         $review = UserReviews::firstOrCreate([
             'company_id' => $request->_company->id,
             'url'=> $request-> input('review_url'),
             'screenshot'=> $request->file('review_screenshot') ? $request->file('review_screenshot')->store('reviews-screenshots') : null,
-            'user_id' => auth()->user()->id,
+            'user_id' => $user_id,
         ]);
 
 
@@ -171,8 +172,6 @@ class ReviewsController extends Controller
                 $userClone->notify(new NewReviewSubmitted( $request, $review ));
             }
         }
-
-        $reviews = UserReviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
 
         return redirect(route('user-reviews'));
 
