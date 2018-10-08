@@ -109,7 +109,7 @@ class ReviewsController extends Controller
      */
     public function myReviews (Request $request) {
 
-        $reviews = Reviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
+        $reviews = UserReviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
 
         return view ('reviews.index2')
             ->with(compact('reviews'));
@@ -140,7 +140,6 @@ class ReviewsController extends Controller
         ];
 
         $messages = [
-            'review_url.url' => 'Please use complete url starting with "http://" or "https://"',
             'review_url.required_without_all' => 'Please enter a url of the review or',
             'review_screenshot_blob.required_without_all' => 'Please upload a screenshot.',
             'review_screenshot_blob.required' => 'The review screenshot is required.',
@@ -173,9 +172,9 @@ class ReviewsController extends Controller
             }
         }
 
-        $reviews = Reviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
+        $reviews = UserReviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
 
-        return redirect(route('my-reviews'));
+        return redirect(route('user-reviews'));
 
     }
 

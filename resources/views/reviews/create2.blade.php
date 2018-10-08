@@ -15,7 +15,7 @@
 
         <div class="create-referral-wrapper">
 
-              {{ Form::open(['url' => route('my-review-submit'), 'class' => 'form', 'files' => true]) }}
+              {{ Form::open(['url' => route('user-review-submit'), 'class' => 'form', 'files' => true]) }}
                 @role(['admin', 'superAdmin', 'globalAdmin'])
                 <div class="form-group col-md-12">
                     {{ Form::label('as_member', 'Submit as a member') }}                    
@@ -41,7 +41,7 @@
                           {{ Form::file('review_screenshot', ['class' => 'form review-screenshot']) }}
                           {{ Form::hidden('review_screenshot_blob', null, ['class' => 'review-screenshot-blob']) }}
                           {{ Form::hidden('review_screenshot_blob_name', null, ['class' => 'review-screenshot-blob-name']) }}    
-                          <a href="javascript:void(0);" class="clearfix review-remove-screenshot">Remove Image</a>                   
+                          <a href="javascript:void(0);" class="clearfix review-remove-screenshot small hidden">Remove Image</a>                   
                         </div>
                       </div>
 

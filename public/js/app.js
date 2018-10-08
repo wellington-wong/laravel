@@ -22132,6 +22132,7 @@ $(function () {
 		$('.review-screenshot-blob').val(data);
 		$('.review-screenshot-blob-name').val(filename);
 		$('.btn-submit-review').removeClass('disabled').removeAttr('disabled');
+		$('.review-remove-screenshot').removeClass('hidden');
 	}
 	$(".review-screenshot").change(function () {
 		$('.btn-submit-review').addClass('disabled').prop('disabled', 'disabled');
