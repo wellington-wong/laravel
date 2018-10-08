@@ -77,7 +77,7 @@ class ReviewsController extends Controller
         // CREATE REVIEW
         $review = Reviews::firstOrCreate([
             'company_id' => $request->_company->id,
-            'display_name' => $request->input('display_name') ?: auth()->usuer()->getDisplayNameAttribute(),
+            'display_name' => $request->input('display_name') ?: auth()->user()->getDisplayNameAttribute(),
             'url'=>$request->input('review_url'),
             'snippet'=>$request->input('review_snippet'),
             'rating'=>$request->input('rating'),
@@ -153,7 +153,7 @@ class ReviewsController extends Controller
         // CREATE REVIEW
         $review = Reviews::firstOrCreate([
             'company_id' => $request->_company->id,
-            'display_name' => $request->input('display_name') ?: auth()->usuer()->getDisplayNameAttribute(),
+            'display_name' => $request->input('display_name') ?: auth()->user()->getDisplayNameAttribute(),
             'url'=>$request->input('review_url'),
             'snippet'=>$request->input('review_snippet'),
             'rating'=>$request->input('rating'),
