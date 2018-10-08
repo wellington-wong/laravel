@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reviews;
+use App\UserReviews;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\NewReviewSubmitted;
 use App\EmailTemplateRecipients;
@@ -151,17 +152,13 @@ class ReviewsController extends Controller
         }
 
         // CREATE REVIEW
-        $review = Reviews::firstOrCreate([
+        $review = UserReviews::firstOrCreate([
             'company_id' => $request->_company->id,
-            'display_name' => $request->input('display_name') ?: auth()->user()->getDisplayNameAttribute(),
-            'url'=>$request->input('review_url'),
-            'snippet'=>$request->input('review_snippet'),
-            'rating'=>$request->input('rating'),
-            'screenshot'=>$request->file('review_screenshot')->store('reviews-screenshots'),
-            'photo'=>$request->has('review_photo_blob') ? $request->file('review_photo')->store('reviews-photos') : null,
-            'user_id'=>auth()->user()->id,
-            //'screenshot'=>$request->has('review-photo') ?: null,
+            'url'=> $request-> input('review_url'),
+            'screenshot'=> $request->file('review_screenshot')->store('reviews-screenshots'),
+            'user_id' => auth()->user()->id,
         ]);
+        
 
         // Notify new admin
         if ($request->_company->emailTemplateStatus(6)) {
