@@ -193,6 +193,7 @@ Route::post('/stripe-test', 'StripeController@postStripeTest')->name('post-strip
 Route::get('/reviews', 'ReviewsController@getIndex')->name('reviews');
 Route::get('/reviews/create', 'ReviewsController@create')->name('create-reviews');
 Route::post('/reviews/create', 'ReviewsController@postCreate')->name('post-review');
-Route::get('/user-reviews', 'ReviewsController@myReviews')->name('user-reviews');
-Route::get('/user-review/create', 'ReviewsController@submit')->name('user-review-create');
-Route::post('/user-review/create', 'ReviewsController@postSubmit')->name('user-review-submit');
+// Reviews Version 2
+Route::get('/user-reviews', 'ReviewsController@userReviews')->name('user-reviews');
+Route::get('/user-review/create', 'ReviewsController@submit')->name('user-create-review');
+Route::post('/user-review/create', 'ReviewsController@postSubmit')->name('user-submit-review');

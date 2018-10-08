@@ -15,7 +15,7 @@
 
         <div class="create-referral-wrapper">
 
-              {{ Form::open(['url' => route('user-review-submit'), 'class' => 'form', 'files' => true]) }}
+              {{ Form::open(['url' => route('user-submit-review'), 'class' => 'form', 'files' => true]) }}
                 @role(['admin', 'superAdmin', 'globalAdmin'])
                 <div class="form-group col-md-12">
                     {{ Form::label('as_member', 'Submit as a member') }}                    

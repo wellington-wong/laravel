@@ -11,17 +11,17 @@
 
         <div class="row">
             @include('layouts.page-header', ['header' => 'Reviews', 'col' => 6])
-            <div class="col-md-6 text-right"><a href="{{ route('create-reviews') }}">Create a Review</a></div>
+            <div class="col-md-6 text-right"><a href="{{ route('user-create-review') }}">Create a Review</a></div>
         </div>
         @else
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Submitted Reviews', 'col' => 12, 'class' => 'customer-reviews'])
-        </div>
+            @include('layouts.page-header', ['header' => 'Submitted Reviews', 'col' => 12, 'class' => 'customer-reviews'])
+            <div class="col-md-6 text-right"><a href="{{ route('user-create-review') }}">Create a Review</a></div></div>
         @endif
 
         <div class="row">
             <div class="col-md-12">
-                @include('reviews.partials.reviews-table', [ 'route' => '' ])
+                @include('reviews.partials.reviews-table2', [ 'route' => '' ])
             </div>
         </div>
         <div class="clearfix"></div>

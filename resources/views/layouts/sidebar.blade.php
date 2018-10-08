@@ -88,7 +88,7 @@
                                             <a href="#submenu-reviews" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         </div>
                                         <ul id="submenu-reviews" class="collapse in">
-                                            <li class="{{ Request::path() == 'user-review-create' ? 'active' : '' }}"><a href="{{ route('user-review-create') }}">Submit a Review</a></li>
+                                            <li class="{{ Request::path() == 'user-create-review' ? 'active' : '' }}"><a href="{{ route('user-create-review') }}">Submit a Review</a></li>
                                          </ul>
                                     </li>
                                     @role(['member'])
