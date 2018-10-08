@@ -41,7 +41,7 @@
                           {{ Form::file('review_screenshot', ['class' => 'form review-screenshot']) }}
                           {{ Form::hidden('review_screenshot_blob', null, ['class' => 'review-screenshot-blob']) }}
                           {{ Form::hidden('review_screenshot_blob_name', null, ['class' => 'review-screenshot-blob-name']) }}    
-                          <a href="javascript:void(0);" class="clearfix review-remove-screenshot small hidden">Remove Image</a>                   
+                          <a href="javascript:void(0);" class="clearfix review-remove-screenshot small hidden">Remove Screenshot</a>                   
                         </div>
                       </div>
 
