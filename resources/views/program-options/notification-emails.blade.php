@@ -117,4 +117,27 @@
         </table>
     </div>
 
+    <div class="row">        
+        <div class="col-md-12">        
+            <label>Review Emails</label>
+        </div>
+    </div>
+    <div class="col-md-12 table-wrapper">        
+        <table class="table table-custom table-notification-emails">
+            <tbody>
+                <tr>
+                    <td>
+                        <label class="switch">
+                          <input name="type" data-value="8" type="checkbox" {{ isset($emailTemplate[8]['status']) ? ($emailTemplate[8]['status'] ? '' : 'checked') : 'checked' }}>
+                          <span class="slider round"></span>
+                        </label>
+                        <span class="status">{{ isset($emailTemplate[8]['status']) ? ($emailTemplate[8]['status'] ? 'Active' : 'Inactive') : 'Inactive' }}</span>
+                    </td>
+                    <td>{{ \App\EmailTemplate::$labels[8] }}</td>
+                    <td><a href="{{ route('program-options-notification-email', 8) }}" class="btn btn-primary">view/edit</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 @endsection
