@@ -135,8 +135,8 @@ class ReviewsController extends Controller
     public function postSubmit (Request $request) {
 
         $rules = [
-            'review_url'=>'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            'review_screenshot_blob'=>'required',
+            'review_url'=>'required_without_all:review_screenshot_blob|nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'review_screenshot_blob'=>'required_without_all:review_url',
         ];
 
         $messages = [
@@ -155,10 +155,10 @@ class ReviewsController extends Controller
         $review = UserReviews::firstOrCreate([
             'company_id' => $request->_company->id,
             'url'=> $request-> input('review_url'),
-            'screenshot'=> $request->file('review_screenshot')->store('reviews-screenshots'),
+            'screenshot'=> $request->file('review_screenshot') ? $request->file('review_screenshot')->store('reviews-screenshots') : null,
             'user_id' => auth()->user()->id,
         ]);
-        
+
 
         // Notify new admin
         if ($request->_company->emailTemplateStatus(6)) {
