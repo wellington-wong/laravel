@@ -141,6 +141,8 @@ class ReviewsController extends Controller
 
         $messages = [
             'review_url.url' => 'Please use complete url starting with "http://" or "https://"',
+            'review_url.required_without_all' => 'Please enter a url of the review or',
+            'review_screenshot_blob.required_without_all' => 'Please upload a screenshot.',
             'review_screenshot_blob.required' => 'The review screenshot is required.',
         ];
 
@@ -171,7 +173,9 @@ class ReviewsController extends Controller
             }
         }
 
-        return back();
+        $reviews = Reviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
+
+        return redirect(route('my-reviews'));
 
     }
 

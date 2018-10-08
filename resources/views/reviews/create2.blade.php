@@ -37,10 +37,11 @@
                       <div class="form-group">
                         <label class="col-md-3 control-label" for="review-screenshot">Screenshot of the review</label>
                         <div class="col-md-9">           
-                          <img class="img-responsive pull-left hidden padding-right review-screenshot-preview" width="30" src="{{ old('review_screenshot_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">
+                          <img class="img-responsive pull-left hidden padding-right review-screenshot-preview" width="40" src="{{ old('review_screenshot_blob') ? : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' }}">
                           {{ Form::file('review_screenshot', ['class' => 'form review-screenshot']) }}
                           {{ Form::hidden('review_screenshot_blob', null, ['class' => 'review-screenshot-blob']) }}
-                          {{ Form::hidden('review_screenshot_blob_name', null, ['class' => 'review-screenshot-blob-name']) }}
+                          {{ Form::hidden('review_screenshot_blob_name', null, ['class' => 'review-screenshot-blob-name']) }}    
+                          <a href="javascript:void(0);" class="clearfix review-remove-screenshot">Remove Image</a>                   
                         </div>
                       </div>
 
@@ -62,6 +63,11 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready( function() {
+            $('.review-screenshot-preview').css('margin-right', '10px');
+            $('.review-remove-screenshot').click(function (){
+              $('.review-screenshot').val(null);
+              $('.review-screenshot-preview').hide().prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent();       
+            });
         });
     </script>
 @endsection
