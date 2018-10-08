@@ -194,4 +194,5 @@ Route::get('/reviews', 'ReviewsController@getIndex')->name('reviews');
 Route::get('/reviews/create', 'ReviewsController@create')->name('create-reviews');
 Route::post('/reviews/create', 'ReviewsController@postCreate')->name('post-review');
 Route::post('/my-reviews', 'ReviewsController@myReviews')->name('my-reviews');
-Route::post('/my-reviews/create', 'ReviewsController@submit')->name('my-review-create');
+Route::get('/my-review/create', 'ReviewsController@submit')->name('my-review-create');
+Route::post('/my-review/create', 'ReviewsController@postSubmit')->name('my-review-submit');

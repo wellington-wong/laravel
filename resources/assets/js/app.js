@@ -1955,7 +1955,7 @@ $(function (){
 		if (error) { 
 	        alert('Please upload a valid screenshot image.');
 			$('.btn-submit-review').removeClass('disabled').removeAttr('disabled');
-	    	$('.review-screenshot-preview').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent().addClass('hidden');	    	
+	    	$('.review-screenshot-preview').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent();	    	
 		    $('.review-screenshot-blob').val('');
 		    $('.review-screenshot-blob-name').val('');
 	    	return false;

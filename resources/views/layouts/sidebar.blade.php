@@ -82,7 +82,7 @@
                                             <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Submit a Referral</a></li>
                                          </ul>
                                     </li>
-                                    <li class="{{ Request::path() == 'my-reviews' ? 'active' : '' }}">
+                                    <li class="{{ Request::path() == 'my-review' ? 'active' : '' }}">
                                         <div class="main-menu-item-wrapper">
                                             <a href="{{ route('my-reviews') }}">My Reviews</a>
                                             <a href="#submenu-reviews" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>

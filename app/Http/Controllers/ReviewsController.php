@@ -127,4 +127,55 @@ class ReviewsController extends Controller
 
     }
 
+    /**
+     * Process review submission
+     * @return
+     */
+    public function postSubmit (Request $request) {
+
+        $rules = [
+            'review_url'=>'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'review_screenshot_blob'=>'required',
+        ];
+
+        $messages = [
+            'review_url.url' => 'Please use complete url starting with "http://" or "https://"',
+            'review_screenshot_blob.required' => 'The review screenshot is required.',
+        ];
+
+        $validator = Validator::make($request->input(), $rules, $messages);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+        // CREATE REVIEW
+        $review = Reviews::firstOrCreate([
+            'company_id' => $request->_company->id,
+            'display_name' => $request->input('display_name') ?: auth()->usuer()->getDisplayNameAttribute(),
+            'url'=>$request->input('review_url'),
+            'snippet'=>$request->input('review_snippet'),
+            'rating'=>$request->input('rating'),
+            'screenshot'=>$request->file('review_screenshot')->store('reviews-screenshots'),
+            'photo'=>$request->has('review_photo_blob') ? $request->file('review_photo')->store('reviews-photos') : null,
+            'user_id'=>auth()->user()->id,
+            //'screenshot'=>$request->has('review-photo') ?: null,
+        ]);
+
+        // Notify new admin
+        if ($request->_company->emailTemplateStatus(6)) {
+            $userClone = clone(auth()->user());
+            $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+                ->where('email_template', 6)
+                ->pluck('recipient')->toArray();
+            if (isset($userClone->email)) {
+                $userClone->notify(new NewReviewSubmitted( $request, $review ));
+            }
+        }
+
+        return back();
+
+    }
+
 }
