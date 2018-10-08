@@ -66,7 +66,7 @@
             $('.review-screenshot-preview').css('margin-right', '10px');
             $('.review-remove-screenshot').click(function (){
               $('.review-screenshot').val(null);
-              $('.review-screenshot-preview').hide().prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent();       
+              $('.review-screenshot-preview').addClass('hidden').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent();       
             });
         });
     </script>

@@ -18,12 +18,12 @@
                         <td>
                             @if (isset($r->url))
                             <a href="{{ preg_replace('/^(?!https?:\/\/)/', 'http://', $r->url) }}" target="_blank">Link <i aria-hidden="true" class="fa fa-external-link"></i></a>
-                            @endif
+                            @else - @endif
                         </td>
                         <td>                            
                             @if (isset($r->screenshot))
                             <a href="#" class="review-screenshot-thumb" data-screenshoturl="{{ url($r->screenshot) }}"><img width="40" src="{{ url($r->screenshot) }}" /></a>
-                            @endif
+                            @else - @endif
                         </td>
                         <!--<td data-id="2162" class="referral-status"><div data-toggle="dropdown" data-status="1" class="form-control current-referral-status" aria-expanded="false">Submitted</div> <ul class="dropdown-menu"><li><a href="javascript:void(0)" data-status="1">Submitted</a></li> <li><a href="javascript:void(0)" data-status="2">Approved</a></li> <li><a href="javascript:void(0)" data-status="3">Reward Sent</a></li> <li><a href="javascript:void(0)" data-status="4">Denied</a></li></ul> <i aria-hidden="true" class="fa fa-angle-down"></i></td>-->
                     </tr>

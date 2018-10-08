@@ -17,7 +17,7 @@ class CreateUserReviewsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('company_id');
-            $table->string('url')->nullable();
+            $table->longText('url')->nullable();
             $table->string('screenshot')->nullable();
             $table->timestamps();
         });
