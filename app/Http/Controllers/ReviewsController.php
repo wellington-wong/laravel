@@ -137,7 +137,7 @@ class ReviewsController extends Controller
     public function postSubmit (Request $request) {
 
         $rules = [
-            'review_url'=>'required_without_all:review_screenshot_blob|nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'review_url'=>'required_without_all:review_screenshot_blob|nullable|url',
             'review_screenshot_blob'=>'required_without_all:review_url',
         ];
 

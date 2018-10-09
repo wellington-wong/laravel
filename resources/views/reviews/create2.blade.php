@@ -68,6 +68,14 @@
               $('.review-screenshot').val(null);
               $('.review-screenshot-preview').addClass('hidden').prop('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7').parent();       
             });
+            $('.btn-submit-review').closest('form').submit(function (){              
+              var prefix = 'http://';
+              var s = $('#review-url').val();
+              if (s.substr(0, prefix.length) !== prefix) {
+                  s = prefix + s;
+                  $('#review-url').val(s);
+              }
+            });
         });
     </script>
 @endsection
