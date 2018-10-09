@@ -70,10 +70,12 @@
             });
             $('.btn-submit-review').closest('form').submit(function (){              
               var prefix = 'http://';
-              var s = $('#review-url').val();
-              if (s.substr(0, prefix.length) !== prefix) {
-                  s = prefix + s;
-                  $('#review-url').val(s);
+              var s = $('#review-url').val()
+              if (s.length){
+                if (s.substr(0, prefix.length) !== prefix) {
+                    s = prefix + s;
+                    $('#review-url').val(s);
+                }
               }
             });
         });
