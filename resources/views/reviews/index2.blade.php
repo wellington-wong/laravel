@@ -7,7 +7,7 @@
     <div class="container-fluid reviews-wrapper">
 
         @if (app('request')->get('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success row">
               Your review was successfully created.
             </div>
         @endif
