@@ -6,6 +6,11 @@
 
     <div class="container-fluid reviews-wrapper">
 
+        @if (app('request')->get('success'))
+            <div class="alert alert-success">
+              Your review was successfully created.
+            </div>
+        @endif
 
         @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))
 

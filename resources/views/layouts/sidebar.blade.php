@@ -107,11 +107,11 @@
                                             <a href="{{ route('how-to-get-more-referrals') }}">How to Get More Referrals</a>
                                         </div>
                                     </li>
-                                    <li class="{{ Request::path() == 'reviews/create' ? 'active' : '' }}">
+                                    <!--<li class="{{ Request::path() == 'reviews/create' ? 'active' : '' }}">
                                         <div class="main-menu-item-wrapper">
                                             <a href="{{ route('create-reviews') }}">Reviews</a>
                                         </div>
-                                    </li>
+                                    </li>-->
                                     @endrole
                                     @role(['admin', 'superAdmin', 'globalAdmin'])
                                     <li>
@@ -160,9 +160,9 @@
                                         @endif
                                     </ul>
                                     @if (0 != config('company_id'))
-                                    <div class="main-menu-item-wrapper">
+                                    <!--<div class="main-menu-item-wrapper">
                                         <a href="{{ route('reviews') }}" class="menu-marker">Reviews</a>
-                                    </div>
+                                    </div>-->
                                     @endif
                                 </li>
                             </ul>

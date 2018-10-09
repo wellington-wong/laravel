@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Notifications\NewReviewAdmin;
 use App\Notifications\NewReviewSubmitted;
 use App\EmailTemplateRecipients;
+use Illuminate\Support\Facades\Redirect;
 
 class ReviewsController extends Controller
 {
@@ -179,7 +180,7 @@ class ReviewsController extends Controller
             auth()->user()->notify(new NewReviewSubmitted( $request, $review ));
         }
 
-        return redirect(route('user-reviews'));
+        return Redirect::route('user-reviews', ['success' => true]);
 
     }
 
