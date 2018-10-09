@@ -68,7 +68,7 @@ class NewReviewAdmin extends Notification
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->line('A new review has been submitted.')
-                ->action('View Customer Reviews', url('/reviews'))
+                ->action('View Customer Reviews', url('/user-reviews'))
                 ->line('Thank you for using our application!');
 
         }

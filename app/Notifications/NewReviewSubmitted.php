@@ -67,7 +67,7 @@ class NewReviewSubmitted extends Notification
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->line('You have successfully created a review. We will be contacting you soon.')
-                ->action('View Your Reviews', url('/reviews'))
+                ->action('View Your Reviews', url('/user-reviews'))
                 ->line('Thank you for using our application!');
         
         }
