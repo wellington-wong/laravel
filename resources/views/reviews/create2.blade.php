@@ -70,9 +70,10 @@
             });
             $('.btn-submit-review').closest('form').submit(function (){              
               var prefix = 'http://';
+              var prefix2 = 'https://';
               var s = $('#review-url').val()
               if (s.length){
-                if (s.substr(0, prefix.length) !== prefix) {
+                if (s.substr(0, prefix.length) !== prefix && s.substr(0, prefix2.length) !== prefix2) {
                     s = prefix + s;
                     $('#review-url').val(s);
                 }
