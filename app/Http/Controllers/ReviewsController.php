@@ -10,6 +10,7 @@ use App\Notifications\NewReviewAdmin;
 use App\Notifications\NewReviewSubmitted;
 use App\EmailTemplateRecipients;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Gate;
 
 class ReviewsController extends Controller
 {
@@ -109,9 +110,13 @@ class ReviewsController extends Controller
      * List all reviews
      * @return
      */
-    public function userReviews (Request $request) {
+    public function userReviews (Request $request) {        
 
-        $reviews = UserReviews::where('company_id', $request->_company->id)->orderBy('created_at', 'DESC')->paginate(15);
+        if (Gate::allows('see-company-reviews')) {
+            $reviews = $request->_company->reviews()->orderBy('created_at', 'desc')->paginate(15);
+        } else {
+            $reviews = $request->user()->reviews()->orderBy('created_at', 'desc')->paginate(15);
+        }
 
         return view ('reviews.index2')
             ->with(compact('reviews'));

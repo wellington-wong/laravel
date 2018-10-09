@@ -252,4 +252,10 @@ class User extends Authenticatable
         $this->notify(new CreatedUser($token));
     }
 
+    public function reviews() {
+        $request = request();
+        return $this->hasMany( UserReviews::class, 'user_id', 'id' )
+            ->where('company_id', $request->_company->id);
+    }
+
 }

@@ -107,5 +107,9 @@ class AuthServiceProvider extends ServiceProvider
             return auth()->user()->hasRole(['globalAdmin']);
         });
 
+        Gate::define('see-company-reviews', function () {
+            return auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']);
+        });
+
     }
 }
