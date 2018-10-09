@@ -30,7 +30,7 @@
         <span id="renderHtml" class="btn btn-link" >Render HTML</span>
         <span id="defaultHtml" class="btn btn-link" >Change to Example HTML (over-writes but doesn't save current HTML)</span>
         
-        @if ($emailTemplateType != 1 && $emailTemplateType != 6 && $emailTemplateType != 8)
+        @if (!in_array($emailTemplate->type, [1, 6, 8, 9]))
         <div class="referrer-data placeholder-name">
             <label>Available referrer data:</label>
             <ul class="list-inline">
@@ -50,7 +50,7 @@
             </ul>
         </div>
         @else            
-            @if ($emailTemplateType != 8)
+            @if (!in_array($emailTemplate->type, [8, 9]))
             <div class="referred-data placeholder-name">
                 <label>Available user data:</label>
                 <ul class="list-inline">
@@ -73,7 +73,7 @@
             </textarea>            
         </div>
 
-        @if (isset($emailTemplate->type) && ($emailTemplate->type == 6 || $emailTemplate->type == 7))
+        @if (isset($emailTemplate->type) && in_array($emailTemplate->type, [6, 7, 9]))
         <div class="form-group email-recipient-wrapper">
             <div class="recipients-label">{{ Form::label('recipients', 'Recipients') }}</div>
             @foreach ($_company->superadmins()->get() as $admin) 

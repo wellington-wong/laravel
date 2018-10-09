@@ -17,6 +17,7 @@ class EmailTemplate extends Model
     const ADMIN_NEW_REFERRAL	= 7;
 
     const NEW_REVIEW    = 8;
+    const ADMIN_NEW_REVIEW    = 9;
 
     static $labels = [
         self::NEW_MEMBER => 'New Member Welcome Email',
@@ -24,11 +25,12 @@ class EmailTemplate extends Model
         self::REFERRAL_VERIFIED => 'Referral Verified Notification Email',
         self::REFERRAL_SENT => 'Referral Has Been Sent Email',
         self::REFERRAL_DECLINED => 'Referral Has Been Declined Email',
+        self::NEW_REVIEW => 'New Review Received',
 
         self::ADMIN_NEW_MEMBER => 'New Member Signup',
         self::ADMIN_NEW_REFERRAL => 'New Referral',
+        self::ADMIN_NEW_REVIEW => 'New Review',
 
-        self::NEW_REVIEW => 'New Review'
     ];
 
     protected $table = 'email_templates';

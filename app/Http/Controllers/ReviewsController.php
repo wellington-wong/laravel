@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Reviews;
 use App\UserReviews;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\NewReviewAdmin;
 use App\Notifications\NewReviewSubmitted;
 use App\EmailTemplateRecipients;
 
@@ -163,14 +164,19 @@ class ReviewsController extends Controller
 
 
         // Notify new admin
-        if ($request->_company->emailTemplateStatus(6)) {
+        if ($request->_company->emailTemplateStatus(8)) {
             $userClone = clone(auth()->user());
             $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
-                ->where('email_template', 6)
+                ->where('email_template', 8)
                 ->pluck('recipient')->toArray();
             if (isset($userClone->email)) {
-                $userClone->notify(new NewReviewSubmitted( $request, $review ));
+                $userClone->notify(new NewReviewAdmin( $request, $review ));
             }
+        }
+
+        // Notify user that a review has been received
+        if ($request->_company->emailTemplateStatus(8)) {
+            auth()->user()->notify(new NewReviewSubmitted( $request, $review ));
         }
 
         return redirect(route('user-reviews'));
