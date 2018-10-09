@@ -170,10 +170,10 @@ class ReviewsController extends Controller
 
 
         // Notify new admin
-        if ($request->_company->emailTemplateStatus(8)) {
+        if ($request->_company->emailTemplateStatus(9)) {
             $userClone = clone(auth()->user());
             $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
-                ->where('email_template', 8)
+                ->where('email_template', 9)
                 ->pluck('recipient')->toArray();
             if (isset($userClone->email)) {
                 $userClone->notify(new NewReviewAdmin( $request, $review ));
