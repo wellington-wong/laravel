@@ -20,7 +20,7 @@
         </div>
         @else
         <div class="row">
-            @include('layouts.page-header', ['header' => 'Submitted Reviews', 'col' => 12, 'class' => 'customer-reviews'])
+            @include('layouts.page-header', ['header' => 'Submitted Reviews', 'col' => 6, 'class' => 'customer-reviews'])
             <div class="col-md-6 text-right"><a href="{{ route('user-create-review') }}">Create a Review</a></div></div>
         @endif
 
