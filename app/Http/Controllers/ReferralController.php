@@ -233,7 +233,7 @@ class ReferralController extends Controller
         foreach ($referrals as $referral) {
             $referrer_address = isset($referral->referrer) ? $referral->referrer->address()->first() ?: null : null;
             $currentReferral = [
-                'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
+                'SUBMITTED' => isset($referral->referred) ? $referral->referred->created_at->format('m/d/y') : null,
                 'REFERRAL ID' => $referral->id,
                 'SUBMITTED BY' => isset($referral->referrer) ? $referral->referrer->getName() : null,
                 'REFERRER STREET' => $referrer_address ? $referrer_address->address : null,
@@ -241,8 +241,8 @@ class ReferralController extends Controller
                 'REFERRER CITY' => $referrer_address ? $referrer_address->city : null,
                 'REFERRER STATE' => $referrer_address ? $referrer_address->state : null,
                 'REFERRER ZIP' => $referrer_address ? $referrer_address->zip : null,
-                'REFERRED NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
-                'REFERRED EMAIL' => $referral->referred->email,          
+                'REFERRED NAME' => isset($referral->referred) ? (isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name) : null,
+                'REFERRED EMAIL' => isset($referral->referred) ? $referral->referred->email : null,
                 'STATUS' => \App\Referral::$status[$referral->status]
             ];
             $referralArray[] = $currentReferral;
@@ -279,11 +279,11 @@ class ReferralController extends Controller
         $referralArray = [];
         foreach ($referrals as $referral) {
             $currentReferral = [
-                'SUBMITTED' => $referral->referred->created_at->format('m/d/y'),
+                'SUBMITTED' => isset($referral->referred) ? $referral->referred->created_at->format('m/d/y') : null,
                 'REFERRAL ID' => $referral->id,
-                'SUBMITTED BY' => isset($referral->referrer->name) ? $referral->referrer->name : $referral->referrer->first_name . ' ' . $referral->referrer->last_name,
-                'NAME' => isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name,
-                'EMAIL' => $referral->referred->email,
+                'SUBMITTED BY' => isset($referrer->referred) ? (isset($referral->referrer->name) ? $referral->referrer->name : $referral->referrer->first_name . ' ' . $referral->referrer->last_name) : null,
+                'NAME' => isset($referral->referred) ? (isset($referral->referred->name) ? $referral->referred->name : $referral->referred->first_name . ' ' . $referral->referred->last_name) : null,
+                'EMAIL' => isset($referral->referred) ? $referral->referred->email : null,
                 'STATUS' => \App\Referral::$status[$referral->status] ,
 
             ];
