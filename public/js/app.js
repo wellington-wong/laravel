@@ -20511,12 +20511,24 @@ $(function () {
 	// END - NOTIFICATIONS
 
 	// NOTIFICATION EMAILS
+	function toggleNotificationEmails(toggle) {
+		toggle.each(function (checkBox) {
+			var checkBox = $(this).find('input');
+			if (checkBox.is(':checked')) {
+				checkBox.closest('tr').find('.btn-primary').show();
+			} else {
+				checkBox.closest('tr').find('.btn-primary').hide();
+			}
+		});
+	}
+	toggleNotificationEmails($('.table-notification-emails .switch'));
 	$('.table-notification-emails input[type="checkbox"]').change(function () {
 		if ($(this).is(':checked')) {
 			$(this).closest('td').find('.status').text('Inactive');
 		} else {
 			$(this).closest('td').find('.status').text('Active');
 		}
+		toggleNotificationEmails($('.table-notification-emails .switch'));
 	});
 	// END - NOTIFICATIONS EMAILS
 
