@@ -20515,9 +20515,9 @@ $(function () {
 		toggle.each(function (checkBox) {
 			var checkBox = $(this).find('input');
 			if (checkBox.is(':checked')) {
-				checkBox.closest('tr').find('.btn-primary').show();
-			} else {
 				checkBox.closest('tr').find('.btn-primary').hide();
+			} else {
+				checkBox.closest('tr').find('.btn-primary').show();
 			}
 		});
 	}
