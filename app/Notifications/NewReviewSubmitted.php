@@ -52,7 +52,7 @@ class NewReviewSubmitted extends Notification
             // Prepare custom email
             $emailSubject = isset($emailHtml->subject) ? $emailHtml->subject : 'New Review Submitted';
             $emailHtml = $emailHtml->email_html;
-            $emailHtml = $emailHtml;
+            $emailHtml = EmailTemplate::prepareEmailReviews( $this->request, $emailHtml );
 
             // Insert email log
             $emailLog['body'] = 'A new review has been submitted by ' . auth()->user()->getDisplayNameAttribute();

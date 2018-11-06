@@ -145,6 +145,17 @@ class EmailTemplate extends Model
 
     }
 
+    public static function prepareEmailReviews( $request, $emailHtml ) {
+
+        $regex = '#{{(.*?)}}#';
+        $code = preg_match_all($regex, $emailHtml, $matches);
+
+        $emailHtml = str_replace('{{ perxi_home }}', 'https://' . $request->_company->subdomain . '.' . env('DOMAIN'), $emailHtml);
+       
+        return $emailHtml;
+
+    }
+
     public function recipients (){
         return $this->hasMany( EmailTemplateRecipients::class, 'email_template' );
     }
