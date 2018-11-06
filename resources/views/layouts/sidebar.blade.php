@@ -82,6 +82,15 @@
                                             <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}"><a href="{{ route('referral-create') }}">Submit a Referral</a></li>
                                          </ul>
                                     </li>
+                                    <li class="{{ Request::path() == 'user-reviews' ? 'active' : '' }}">
+                                        <div class="main-menu-item-wrapper">
+                                            <a href="{{ route('user-reviews') }}">My Reviews</a>
+                                            <a href="#submenu-reviews" data-toggle="collapse" class="pull-right menu-marker"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        </div>
+                                        <ul id="submenu-reviews" class="collapse in">
+                                            <li class="{{ Request::path() == 'user-create-review' ? 'active' : '' }}"><a href="{{ route('user-create-review') }}">Submit a Review</a></li>
+                                         </ul>
+                                    </li>
                                     @role(['member'])
                                     <li class="{{ Request::path() == 'referral-create' ? 'active' : '' }}">
                                         <div class="main-menu-item-wrapper">
@@ -98,11 +107,11 @@
                                             <a href="{{ route('how-to-get-more-referrals') }}">How to Get More Referrals</a>
                                         </div>
                                     </li>
-                                    <li class="{{ Request::path() == 'reviews/create' ? 'active' : '' }}">
+                                    <!--<li class="{{ Request::path() == 'reviews/create' ? 'active' : '' }}">
                                         <div class="main-menu-item-wrapper">
                                             <a href="{{ route('create-reviews') }}">Reviews</a>
                                         </div>
-                                    </li>
+                                    </li>-->
                                     @endrole
                                     @role(['admin', 'superAdmin', 'globalAdmin'])
                                     <li>
@@ -151,9 +160,9 @@
                                         @endif
                                     </ul>
                                     @if (0 != config('company_id'))
-                                    <div class="main-menu-item-wrapper">
+                                    <!--<div class="main-menu-item-wrapper">
                                         <a href="{{ route('reviews') }}" class="menu-marker">Reviews</a>
-                                    </div>
+                                    </div>-->
                                     @endif
                                 </li>
                             </ul>

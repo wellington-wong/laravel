@@ -1,0 +1,34 @@
+@extends('layouts.app')
+
+@section('pageTitle', 'Reviews')
+
+@section('content')
+
+    <div class="container-fluid reviews-wrapper">
+
+        @if (app('request')->get('success'))
+            <div class="alert alert-success row">
+              Your review was successfully created.
+            </div>
+        @endif
+
+        @if (auth()->user()->hasRole(['admin', 'superAdmin', 'globalAdmin']))
+
+        <div class="row">
+            @include('layouts.page-header', ['header' => 'Reviews', 'col' => 6])
+            <div class="col-md-6 text-right"><a href="{{ route('user-create-review') }}">Create a Review</a></div>
+        </div>
+        @else
+        <div class="row">
+            @include('layouts.page-header', ['header' => 'Submitted Reviews', 'col' => 6, 'class' => 'customer-reviews'])
+            <div class="col-md-6 text-right"><a href="{{ route('user-create-review') }}">Create a Review</a></div></div>
+        @endif
+
+        <div class="row">
+            <div class="col-md-12">
+                @include('reviews.partials.reviews-table2', [ 'route' => '' ])
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+@endsection

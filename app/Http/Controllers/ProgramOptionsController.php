@@ -220,6 +220,12 @@ class ProgramOptionsController extends Controller
             case (7):
                 $emailBlade[$id] = 'new-referral-admin';
                 break;
+            case (8):
+                $emailBlade[$id] = 'new-review';
+                break;
+            case (9):
+                $emailBlade[$id] = 'new-review-admin';
+                break;
         }
 
         return view('program-options.notification-email')

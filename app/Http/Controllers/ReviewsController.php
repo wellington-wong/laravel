@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reviews;
+use App\UserReviews;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\NewReviewAdmin;
 use App\Notifications\NewReviewSubmitted;
 use App\EmailTemplateRecipients;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Gate;
 
 class ReviewsController extends Controller
 {
@@ -23,7 +27,6 @@ class ReviewsController extends Controller
 
 	}
 
-
     /**
      * List all reviews
      * @return
@@ -38,7 +41,7 @@ class ReviewsController extends Controller
     }
 
     /**
-     * Get index for reviews
+     * Get create review form
      * @return
      */
     public function create (Request $request) {
@@ -78,7 +81,7 @@ class ReviewsController extends Controller
         // CREATE REVIEW
         $review = Reviews::firstOrCreate([
             'company_id' => $request->_company->id,
-            'display_name' => $request->input('display_name') ?: auth()->usuer()->getDisplayNameAttribute(),
+            'display_name' => $request->input('display_name') ?: auth()->user()->getDisplayNameAttribute(),
             'url'=>$request->input('review_url'),
             'snippet'=>$request->input('review_snippet'),
             'rating'=>$request->input('rating'),
@@ -100,6 +103,89 @@ class ReviewsController extends Controller
         }
 
     	return back();
+
+    }
+
+    /**
+     * List all reviews
+     * @return
+     */
+    public function userReviews (Request $request) {        
+
+        if (Gate::allows('see-company-reviews')) {
+            $reviews = $request->_company->reviews()->orderBy('created_at', 'desc')->paginate(15);
+        } else {
+            $reviews = $request->user()->reviews()->orderBy('created_at', 'desc')->paginate(15);
+        }
+
+        return view ('reviews.index2')
+            ->with(compact('reviews'));
+
+    }
+
+    /**
+     * Get create review form
+     * @return
+     */
+    public function submit (Request $request) {
+
+        $reviews = Reviews::where('company_id', $request->_company->id)->get();
+        return view ('reviews.create2')
+        ->with(compact('reviews'));
+
+    }
+
+    /**
+     * Process review submission
+     * @return
+     */
+    public function postSubmit (Request $request) {
+
+        $rules = [
+            'review_url'=>'required_without_all:review_screenshot_blob|nullable|url',
+            'review_screenshot_blob'=>'required_without_all:review_url',
+        ];
+
+        $messages = [
+            'review_url.required_without_all' => 'Please enter the review url',
+            'review_screenshot_blob.required_without_all' => 'Please upload a screenshot.',
+            'review_screenshot_blob.required' => 'The review screenshot is required.',
+        ];
+
+        $validator = Validator::make($request->input(), $rules, $messages);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()
+                ->with(['errors'=>$validator->errors()]);
+        }
+
+        // CREATE REVIEW        
+        $user_id = $request->get('as_member') ?: auth()->user()->id;
+        $review = UserReviews::firstOrCreate([
+            'company_id' => $request->_company->id,
+            'url'=> $request-> input('review_url'),
+            'screenshot'=> $request->file('review_screenshot') ? $request->file('review_screenshot')->store('reviews-screenshots') : null,
+            'user_id' => $user_id,
+        ]);
+
+
+        // Notify new admin
+        if ($request->_company->emailTemplateStatus(9)) {
+            $userClone = clone(auth()->user());
+            $userClone->email = EmailTemplateRecipients::where('company_id', $request->_company->id)
+                ->where('email_template', 9)
+                ->pluck('recipient')->toArray();
+            if (isset($userClone->email)) {
+                $userClone->notify(new NewReviewAdmin( $request, $review ));
+            }
+        }
+
+        // Notify user that a review has been received
+        if ($request->_company->emailTemplateStatus(8)) {
+            auth()->user()->notify(new NewReviewSubmitted( $request, $review ));
+        }
+
+        return Redirect::route('user-reviews', ['success' => true]);
 
     }
 

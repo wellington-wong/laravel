@@ -6,7 +6,8 @@
     @include('email-templates.referral-received', ['email_template' => ''])
     <div class="container-fluid notification-wrapper">    
         <div class="row">
-        @include('layouts.page-header', ['header' => 'Notification Emails', 'col' => 12])
+        @include('layouts.page-header', ['header' => 'Notification Email', 'col' => 8])
+        <div class="col-md-4 text-right"><a href="{{ route('program-options-notification-emails') }}"><small><< Back to Notification Emails</small></a></div>
         </div>
     </div>
 
@@ -29,7 +30,7 @@
         <span id="renderHtml" class="btn btn-link" >Render HTML</span>
         <span id="defaultHtml" class="btn btn-link" >Change to Example HTML (over-writes but doesn't save current HTML)</span>
         
-        @if ($emailTemplateType != 1 && $emailTemplateType != 6)
+        @if (!in_array($emailTemplate->type, [1, 6, 8, 9]))
         <div class="referrer-data placeholder-name">
             <label>Available referrer data:</label>
             <ul class="list-inline">
@@ -48,17 +49,19 @@
                 <li><a href="javascript:void(0);" data-var="referred_address">&#123; &#123; referred_address }}</a></li>
             </ul>
         </div>
-        @else
-        <div class="referred-data placeholder-name">
-            <label>Available user data:</label>
-            <ul class="list-inline">
-                <li><a href="javascript:void(0);" data-var="referred_name">&#123; &#123; name }}</a></li>
-                <li><a href="javascript:void(0);" data-var="referred_email">&#123; &#123; email }}</a></li>
-                <li><a href="javascript:void(0);" data-var="referred_phone">&#123; &#123; phone }}</a></li>
-                <li><a href="javascript:void(0);" data-var="referred_address">&#123; &#123; address }}</a></li>
-                <li><a href="javascript:void(0);" data-var="referred_address">&#123; &#123; password }}</a></li>
-            </ul>
-        </div>
+        @else            
+            @if (!in_array($emailTemplate->type, [8, 9]))
+            <div class="referred-data placeholder-name">
+                <label>Available user data:</label>
+                <ul class="list-inline">
+                    <li><a href="javascript:void(0);" data-var="referred_name">&#123; &#123; name }}</a></li>
+                    <li><a href="javascript:void(0);" data-var="referred_email">&#123; &#123; email }}</a></li>
+                    <li><a href="javascript:void(0);" data-var="referred_phone">&#123; &#123; phone }}</a></li>
+                    <li><a href="javascript:void(0);" data-var="referred_address">&#123; &#123; address }}</a></li>
+                    <li><a href="javascript:void(0);" data-var="referred_address">&#123; &#123; password }}</a></li>
+                </ul>
+            </div>
+            @endif
         @endif
         <div class="form-group">
             <textarea class="form-control" name="email_html" id="email_html">
@@ -70,7 +73,7 @@
             </textarea>            
         </div>
 
-        @if (isset($emailTemplate->type) && ($emailTemplate->type == 6 || $emailTemplate->type == 7))
+        @if (isset($emailTemplate->type) && in_array($emailTemplate->type, [6, 7, 9]))
         <div class="form-group email-recipient-wrapper">
             <div class="recipients-label">{{ Form::label('recipients', 'Recipients') }}</div>
             @foreach ($_company->superadmins()->get() as $admin) 

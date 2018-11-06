@@ -123,6 +123,10 @@ class Company extends Model
     public function companyOwner() {
         return $this->hasOne(User::class, 'id');
     }
+
+    public function reviews() {
+        return $this->hasMany(UserReviews::class);
+    }
     
 
 }

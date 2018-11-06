@@ -10,7 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use App\EmailTemplate;
 use App\LogEmail;
 
-class NewReviewSubmitted extends Notification
+class NewReviewAdmin extends Notification
 {
     use Queueable;
 
@@ -43,11 +43,12 @@ class NewReviewSubmitted extends Notification
      */
     public function toMail($notifiable)
     {
+        
         // Custom 'from' email
         $from = isset($this->request->_company->email) ? $this->request->_company->email : 'admin@' . env('DOMAIN');
         $fromName = isset($this->request->_company->company_name) ? $this->request->_company->company_name : '';
         
-        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 8)->where('email_html', '<>', '')->first()) {
+        if ($emailHtml = $this->request->_company->emailTemplates()->where('status', true)->where('type', 9)->where('email_html', '<>', '')->first()) {
 
             // Prepare custom email
             $emailSubject = isset($emailHtml->subject) ? $emailHtml->subject : 'New Review Submitted';
@@ -61,15 +62,15 @@ class NewReviewSubmitted extends Notification
             return (new MailMessage)
                 ->from($from, $fromName)
                 ->subject($emailSubject)
-                ->markdown('email-templates.new-review-admin', ['email_template' => $emailHtml]);
+                ->markdown('email-templates.new-review', ['email_template' => $emailHtml]);
         } else {
             
             return (new MailMessage)
                 ->from($from, $fromName)
-                ->line('You have successfully created a review. We will be contacting you soon.')
-                ->action('View Your Reviews', url('/user-reviews'))
+                ->line('A new review has been submitted.')
+                ->action('View Customer Reviews', url('/user-reviews'))
                 ->line('Thank you for using our application!');
-        
+
         }
 
     }
