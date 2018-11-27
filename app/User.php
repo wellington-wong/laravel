@@ -258,4 +258,22 @@ class User extends Authenticatable
             ->where('company_id', $request->_company->id);
     }
 
+    public function createReferral() {        
+
+        $request = app('request');
+        $user = app('request')->user();
+        
+        $user->referral_id = $request->user()->referrals()->insertGetId([
+            'referrer_id'   => $request->get('as_member') ?: $request->user()->id,
+            'company_id'    => $request->get('subdomain_id'),
+            'user_id'       => $user->id,
+            //'as_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,            
+            //'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,  
+            //'installation_complete' => $request->has('install_complete') ? $request->get('install_complete') : 0,
+            'created_at' =>  \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),            
+            'as_admin_id'=> $request->get('as_member') ? $request->user()->id : 0
+        ]);
+    }
+
 }
