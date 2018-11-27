@@ -263,9 +263,9 @@ class User extends Authenticatable
         $request = app('request');
         $user = app('request')->user();
         
-        $user->referral_id = $request->user()->referrals()->insertGetId([
+        return $user->referral_id = $request->user()->referrals()->insertGetId([
             'referrer_id'   => $request->get('as_member') ?: $request->user()->id,
-            'company_id'    => $request->get('subdomain_id'),
+            'company_id'    => $request->_company->id,
             'user_id'       => $user->id,
             //'as_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,            
             //'referrer_admin_id' => $request->has('member_id') ? $request->get('member_id') : 0,  
