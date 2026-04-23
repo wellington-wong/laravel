@@ -1,40 +1,135 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# 🚀 Laravel Projects Collection
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+A collection of web applications built using Laravel, showcasing
+different real-world systems such as business management and e-commerce
+solutions.
 
-## About Laravel
+------------------------------------------------------------------------
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## 📌 Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This repository contains multiple projects developed with Laravel, a PHP
+framework known for its elegant syntax and powerful tools for building
+modern web applications.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+Each project demonstrates practical use cases, including business
+websites and inventory systems.
 
-## Learning Laravel
+------------------------------------------------------------------------
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+## 📌 Project Description
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+A modern web application designed to help businesses manage customer referral programs efficiently. It provides an all-in-one platform to track referrals, reward customers, and turn word-of-mouth into measurable revenue.
 
-## Contributing
+The platform focuses on simplicity and usability, allowing businesses to easily create, manage, and optimize referral campaigns without relying on manual processes like forms or spreadsheets.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+With a clean, responsive interface and clear user flows, it enables companies to streamline their referral systems while improving customer engagement and retention.
 
-## Security Vulnerabilities
+### 💡 Key Highlights
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+- Centralized referral management system  
+- Easy tracking of customer referrals and rewards  
+- User-friendly interface for both businesses and customers  
+- Customizable referral workflows  
+- Designed for multiple industries (e.g., medical, automotive, marketing)  
+- Optimized for performance and responsiveness  
+- Built to convert referrals into real business growth  
 
-## License
+### 🎯 Goal
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+The goal of this project is to simplify referral marketing by providing a scalable, easy-to-use solution that helps businesses grow through trusted customer recommendations.
+
+------------------------------------------------------------------------
+
+## 🛠️ Tech Stack
+
+-   Framework: Laravel\
+-   Language: PHP\
+-   Database: MySQL (or compatible)\
+-   Tools: Composer, Artisan CLI
+-	Git & GitHub (Version Control)  
+
+------------------------------------------------------------------------
+
+## ⚙️ Installation & Setup
+
+### Requirements
+
+-   PHP installed\
+-   Composer installed\
+-   A local server (XAMPP, Laragon, etc.)\
+-   A database ready
+-	Code editor (VS Code, PHPStorm, etc.) 
+
+### Steps
+
+``` bash
+git clone https://github.com/wellington-wong/laravel.git
+cd laravel
+```
+
+Install dependencies:
+
+``` bash
+composer install
+```
+
+Set up environment:
+
+``` bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Run database migrations:
+
+``` bash
+php artisan migrate
+```
+
+Start the development server:
+
+``` bash
+php artisan serve
+```
+
+------------------------------------------------------------------------
+
+## ▶️ Usage
+
+-   Access the app via `http://127.0.0.1:8000`\
+-   Navigate through each project/module\
+-   Configure `.env` for database and environment settings
+
+------------------------------------------------------------------------
+
+## 🎯 Purpose
+
+This project is intended to:
+
+-   Showcase Laravel-based web applications\
+-   Demonstrate real-world business system development\
+-   Practice backend architecture and database design\
+-   Explore CRUD operations and system workflows\
+-   Build scalable and maintainable web applications\
+-   Strengthen full-stack development skills\
+-   Serve as a portfolio of Laravel projects
+
+------------------------------------------------------------------------
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+------------------------------------------------------------------------
+
+## 👤 Author
+
+Wellington Wong\
+https://github.com/wellington-wong
+
+------------------------------------------------------------------------
+
+## ⭐ Support
+
+If you find this project useful, give it a star on GitHub!
