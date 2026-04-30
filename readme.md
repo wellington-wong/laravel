@@ -51,6 +51,12 @@ The goal of this project is to simplify referral marketing by providing a scalab
 
 ------------------------------------------------------------------------
 
+## 📸 Preview
+
+![Homepage and Dashboard](public/images/screenshots/laravel.jpg)
+
+---
+
 ## ⚙️ Installation & Setup
 
 ### Requirements
