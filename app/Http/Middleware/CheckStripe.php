@@ -23,13 +23,6 @@ class CheckStripe
         $routeUrls = [ 'logout', 'stripe_pk', 'company-update-card' ];
         
         // Redirect super admin to update credit card view if none is attached to the company
-        if ( !auth()->guest() && $subdomain != 'app' && auth()->user()->hasRole('superAdmin') && !in_array( $request->route()->getName(), $routeUrls )) {
-            $company = Company::where('subdomain', $subdomain)->first();
-
-            if (!strlen($company->stripe_id) || !strlen($company->card_brand) || !strlen($company->card_last_four) || !$company->current) {
-               return redirect(route('company-update-card'))->withErrors(['error' => ['Please update your credit card information to continue using Perxi.']]);
-            } 
-        } 
 
         return $next($request);
     }

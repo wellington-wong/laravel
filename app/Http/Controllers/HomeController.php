@@ -22,6 +22,7 @@ class HomeController extends Controller
 
     public function home(Request $request)
     {
+
         if ( !is_null($request->subdomain_id) ) {
             return redirect()->route('referral-create');
         } else {
@@ -36,6 +37,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        dd($request->user()->createReferral());
         
         // Optimize variables
         $user = auth()->user();

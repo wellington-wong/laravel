@@ -1,0 +1,10 @@
+services:
+  app:
+    image: ghcr.io/<owner>/referrals:latest
+
+    ports:
+      - "8081:80"
+    env_file:
+
+      - .env
+    restart: unless-stopped

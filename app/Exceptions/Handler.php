@@ -42,6 +42,7 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
 
+            $this->sendEmail($exception); // sends an email
         if ( ! in_array( config('app.env'), ['local', 'staging'] ) ) {
             $this->sendEmail($exception); // sends an email
         }

@@ -17,7 +17,7 @@
                 <div class="pending-reward">
                     <div class="rh-count">
                         <span><a href="{{ route('referrals', ['status' => 2]) }}" >
-                            {{ isset($pendingReferrals['reward']) ? count($pendingReferrals['reward']) : 0 }}
+                            {{ 5 }}
                         </a></span>
                     </div><hr />
                     <div class="rh-desc">
