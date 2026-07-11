@@ -60,8 +60,11 @@ WORKDIR /var/www/html
 # Copy composer files first for better Docker layer caching
 COPY composer.json composer.lock* ./
 
-RUN composer install \
 
+	
+RUN composer config -g github-protocols https
+
+RUN composer install \
 	--no-dev \
 	--prefer-dist \
 	--no-interaction \
