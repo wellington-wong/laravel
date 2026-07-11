@@ -6,7 +6,7 @@ on:
   push:
     branches:
 
-      - main
+      - wellington
 
 concurrency:
   group: referrals-production
