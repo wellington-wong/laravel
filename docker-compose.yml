@@ -1,10 +1,22 @@
 services:
   app:
-    image: ghcr.io/<owner>/referrals:latest
+    build:
+
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: referrals-app
+
+    restart: unless-stopped
 
     ports:
       - "8081:80"
-    env_file:
 
+    env_file:
       - .env
-    restart: unless-stopped
+
+    volumes:
+      - storage:/var/www/html/storage
+
+volumes:
+  storage:

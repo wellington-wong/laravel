@@ -56,24 +56,7 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-
-# Copy composer files first for better Docker layer caching
-COPY composer.json composer.lock* ./
-
-
-	
-RUN composer config -g github-protocols https
-
-RUN composer install \
-	--no-dev \
-	--prefer-dist \
-	--no-interaction \
-
-	--optimize-autoloader
-
-# Copy application
 COPY . .
-
 
 # Permissions
 RUN mkdir -p storage bootstrap/cache && \
