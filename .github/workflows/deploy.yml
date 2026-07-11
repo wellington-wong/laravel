@@ -12,128 +12,128 @@ concurrency:
   group: referrals-production
   cancel-in-progress: true
 
-  permissions:
-    contents: read
-    packages: write
+permissions:
+  contents: read
+  packages: write
 
-  env:
-    REGISTRY: ghcr.io
-    IMAGE_NAME: ${{ github.repository_owner }}/referrals
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/referrals
 
-  jobs:
+jobs:
 
-    deploy:
-      runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-        - name: Login to GHCR
-          uses: docker/login-action@v3
-          with:
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
 
-            registry: ghcr.io
-            username: ${{ github.actor }}
-            password: ${{ github.token }}
-
-
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
 
 
-        - name: Build and Push Image
-          uses: docker/build-push-action@v6
-          with:
-
-            context: .
-            file: ./Dockerfile
-            push: true
 
 
-            tags: |
-              ghcr.io/${{ env.IMAGE_NAME }}:latest
-              ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+      - name: Build and Push Image
+        uses: docker/build-push-action@v6
+        with:
 
-            cache-from: type=gha
-            cache-to: type=gha,mode=max
-
-        - name: Configure SSH
-          run: |
-
-            mkdir -p ~/.ssh
-
-            echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
-            chmod 600 ~/.ssh/id_ed25519
-
-            ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
-
-        - name: Deploy
-          run: |
-
-            ssh -i ~/.ssh/id_ed25519 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'bash -se' <<EOF
-
-            set -euxo pipefail
-
-            cd ~/apps/referrals
-
-            cat > .env <<EOT
-            APP_NAME=Referrals
-            APP_ENV=production
-
-            APP_KEY=${{ secrets.APP_KEY }}
-            APP_DEBUG=false
-            APP_URL=${{ secrets.APP_URL }}
-
-            DB_CONNECTION=mysql
-            DB_HOST=${{ secrets.DB_HOST }}
-            DB_PORT=3306
-
-            DB_DATABASE=${{ secrets.DB_DATABASE }}
-
-            DB_USERNAME=${{ secrets.DB_USERNAME }}
-            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-
-            MAIL_MAILER=smtp
-            MAIL_HOST=${{ secrets.MAIL_HOST }}
-            MAIL_PORT=${{ secrets.MAIL_PORT }}
-
-            MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}
-            MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}
-
-            MAIL_ENCRYPTION=tls
-            MAIL_FROM_ADDRESS=${{ secrets.MAIL_FROM_ADDRESS }}
-            MAIL_FROM_NAME=Referrals
-
-            EOT
-
-            docker compose -f docker-compose.prod.yml pull app
-
-            docker compose -f docker-compose.prod.yml up -d --no-deps app
-
-            docker compose -f docker-compose.prod.yml exec -T app php artisan migrate --force
-
-            echo "Waiting for application..."
-
-            for i in {1..30}; do
-
-              if curl -fs http://localhost:8081/health > /dev/null; then
-                echo "Application is healthy"
-                docker image prune -f
-
-                exit 0
-              fi
-
-              sleep 2
-            done
-
-            echo "Health check failed"
-
-            docker compose -f docker-compose.prod.yml logs app
+          context: .
+          file: ./Dockerfile
+          push: true
 
 
-            exit 1
+          tags: |
+            ghcr.io/${{ env.IMAGE_NAME }}:latest
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-            EOF
-            echo "ssh exit code: $?"
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Configure SSH
+        run: |
+
+          mkdir -p ~/.ssh
+
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy
+        run: |
+
+          ssh -i ~/.ssh/id_ed25519 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'bash -se' <<EOF
+
+          set -euxo pipefail
+
+          cd ~/apps/referrals
+
+          cat > .env <<EOT
+          APP_NAME=Referrals
+          APP_ENV=production
+
+          APP_KEY=${{ secrets.APP_KEY }}
+          APP_DEBUG=false
+          APP_URL=${{ secrets.APP_URL }}
+
+          DB_CONNECTION=mysql
+          DB_HOST=${{ secrets.DB_HOST }}
+          DB_PORT=3306
+
+          DB_DATABASE=${{ secrets.DB_DATABASE }}
+
+          DB_USERNAME=${{ secrets.DB_USERNAME }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+
+          MAIL_MAILER=smtp
+          MAIL_HOST=${{ secrets.MAIL_HOST }}
+          MAIL_PORT=${{ secrets.MAIL_PORT }}
+
+          MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}
+
+          MAIL_ENCRYPTION=tls
+          MAIL_FROM_ADDRESS=${{ secrets.MAIL_FROM_ADDRESS }}
+          MAIL_FROM_NAME=Referrals
+
+          EOT
+
+          docker compose -f docker-compose.prod.yml pull app
+
+          docker compose -f docker-compose.prod.yml up -d --no-deps app
+
+          docker compose -f docker-compose.prod.yml exec -T app php artisan migrate --force
+
+          echo "Waiting for application..."
+
+          for i in {1..30}; do
+
+            if curl -fs http://localhost:8081/health > /dev/null; then
+              echo "Application is healthy"
+              docker image prune -f
+
+              exit 0
+            fi
+
+            sleep 2
+          done
+
+          echo "Health check failed"
+
+          docker compose -f docker-compose.prod.yml logs app
+
+
+          exit 1
+
+          EOF
+          echo "ssh exit code: $?"
