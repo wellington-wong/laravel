@@ -15,14 +15,22 @@ services:
     env_file:
       - .env
 
+  db:
+    image: mariadb:10.6
+
+    restart: unless-stopped
+
+    environment:
+
+      MYSQL_DATABASE: referrals
+      MYSQL_USER: referrals
+      MYSQL_PASSWORD: referrals
+
+      MYSQL_ROOT_PASSWORD: ${ MYSQL_ROOT_PASSWORD }
+
     volumes:
-      - storage:/var/www/html/storage
-
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-
-
+      - mariadb_data:/var/lib/mysql
 
 
 volumes:
-  storage:
+  mariadb_data:
