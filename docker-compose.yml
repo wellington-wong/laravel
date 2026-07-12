@@ -18,5 +18,11 @@ services:
     volumes:
       - storage:/var/www/html/storage
 
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+
+
+
 volumes:
   storage:
