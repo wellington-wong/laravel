@@ -11,3 +11,5 @@ Homestead.yaml
 public/robots.txt
 
 local-staging.sh
+
+*.sql
