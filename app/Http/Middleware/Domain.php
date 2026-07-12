@@ -41,9 +41,9 @@ class Domain
         $company = Company::where('subdomain', $subdomain)->first();
 
         //IF THE SUBDOMAIN IS NOT VALID
-        if ( 'referrals' != $subdomain ) {
+        if ( env('ROOT_SUBDOMAIN', '') != $subdomain ) {
             if ( is_null($company) ) {
-                return redirect('https://referrals.' . config('app.domain') );
+                return redirect('https://' . env('ROOT_SUBDOMAIN', '') . '.' . config('app.domain') );
             }
         } else {
             //CHECKS IF ANY OF THESE STRINGS ARE IN THE URL

@@ -37,7 +37,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        dd($request->user()->createReferral());
+        //dd($request->user()->createReferral());
         
         // Optimize variables
         $user = auth()->user();
