@@ -22,14 +22,15 @@ services:
 
     environment:
 
-      MYSQL_DATABASE: referrals
-      MYSQL_USER: referrals
-      MYSQL_PASSWORD: referrals
+      MARIADB_DATABASE: referrals
+      MARIADB_USER: referrals
+      MARIADB_PASSWORD: referrals
 
-      MYSQL_ROOT_PASSWORD: ${ MYSQL_ROOT_PASSWORD }
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
 
     volumes:
       - mariadb_data:/var/lib/mysql
+
 
 
 volumes:
