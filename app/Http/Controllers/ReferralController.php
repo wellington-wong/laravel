@@ -329,6 +329,7 @@ class ReferralController extends Controller
         $request->merge(['subdomain_id' => $request->_company->id]);
         $request->merge(['address2' => ($request->input('address2') ?: '')]);
         $request->merge(['email' => $email]);
+
         $request->merge(['password' => str_random(8)]);
 
         $rules = [
@@ -584,7 +585,7 @@ class ReferralController extends Controller
      **/
     public function rewards( Request $request ) {
 
-        $page = BasicPages::fetch('referral-rewards', $request->_company->id)->first();
+        $page = BasicPages::fetch('referral-rewards', 1)->first();
 
         return view('referral.rewards')
             ->with(compact('page'));

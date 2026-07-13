@@ -81,7 +81,7 @@ class BasicPageController extends Controller
      */
     public function howThisWorks(Request $request)
     {
-        $page = BasicPages::where('route_name', 'how-this-works')->where('company_id', $request->_company->id)->first();
+        $page = BasicPages::where('route_name', 'how-this-works')->where('company_id', 1)->first();
         return View('basic.how-this-works')
             ->with(compact('page'));
     }
@@ -91,7 +91,7 @@ class BasicPageController extends Controller
      */
     public function howToGetMoreReferrals(Request $request)
     {
-        $page = BasicPages::where('route_name', 'how-to-get-more-referrals')->where('company_id', $request->_company->id)->first();
+        $page = BasicPages::where('route_name', 'how-to-get-more-referrals')->where('company_id', 1)->first();
 
         return View('basic.how-to-get-more-referrals')
             ->with(compact('page'));

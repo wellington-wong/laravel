@@ -95,7 +95,7 @@ class ManageAccountController extends Controller
      */
     public function help( Request $request )
     {
-        $page = BasicPages::where('route_name', 'help')->where('company_id', $request->_company->id)->first();
+        $page = BasicPages::where('route_name', 'help')->where('company_id', 1)->first();
 
         return view('manage-account.help')
             ->with(compact('page'));
