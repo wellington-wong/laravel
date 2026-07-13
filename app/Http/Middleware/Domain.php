@@ -51,6 +51,7 @@ class Domain
                 'global-settings/login-as-user', 'password/reset', 'password/email', 'auth/facebook',
                 'auth/google', 'how-it-works', 'features', 'about-us', 'pricing', 'contact', 'ajax-validate', 'stripe_pk', 'company/delete'];
             if ( stripos_array( trim($request->getRequestUri(), '/') , $ok_routes ) === false ) {
+                return redirect('https://demo.' . config('app.domain') );
                 return redirect()->route('all-companies');
             }
             $company = new \stdClass();
