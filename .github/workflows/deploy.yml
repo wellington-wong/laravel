@@ -46,6 +46,6 @@ jobs:
 
           docker compose up -d --build app
 
-          docker image prune -f && docker builder prune -af
+          docker image prune -f
 
           EOF
