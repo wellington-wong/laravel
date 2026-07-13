@@ -44,9 +44,7 @@ jobs:
 
           git reset --hard origin/wellington
 
-          docker compose down
-
-          docker compose up -d --build
+          docker compose up -d --build app
 
           docker image prune -f && docker builder prune -af
 
