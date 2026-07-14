@@ -43,7 +43,7 @@ class Domain
         //IF THE SUBDOMAIN IS NOT VALID
         if ( env('ROOT_SUBDOMAIN', '') != $subdomain ) {
             if ( is_null($company) ) {
-                return redirect('https://' . env('ROOT_SUBDOMAIN', '') . '.' . config('app.domain') );
+                return redirect('https://demo.' . config('app.domain') );
             }
         } else {
             //CHECKS IF ANY OF THESE STRINGS ARE IN THE URL

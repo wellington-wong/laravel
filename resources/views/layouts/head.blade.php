@@ -17,8 +17,8 @@
     <title>@yield('pageTitle', '') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="https://{{ env('ROOT_SUBDOMAIN') }}.{{ env('DOMAIN') }}{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="https://{{ env('ROOT_SUBDOMAIN') }}.{{ env('DOMAIN') }}{{ mix('css/all.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
     @yield('css')
