@@ -24,7 +24,11 @@ class NotificationsController extends Controller
         $data = json_decode($notification->data);
         $referral = isset($data->id) ? Referral::where('id', $data->id)->first() : 0;
         
-        return view('notifications.view')->with(compact('notification', 'referral'));
+        if ($referral) {
+            return view('notifications.view')->with(compact('notification', 'referral'));
+        } else {
+            return redirect('https://demo.' . config('app.domain') );
+        }
 
     }
 

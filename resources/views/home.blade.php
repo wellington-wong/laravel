@@ -23,7 +23,7 @@
                 @include('layouts.page-header', ['header' => 'Notifications', 'col' => 12])
                 <table class="table">
                     <tbody>
-                        @foreach ( $user->unreadNotifications()->paginate(4) as $notification)
+                        @foreach ( $user->unreadNotifications()->paginate(5) as $notification)
                         <tr>
                             <td>{{ $notification->created_at->format('m/d/y') }}</td>
                             <td>Referral Submitted for Approval</td> 
@@ -34,7 +34,7 @@
                     </tbody>
                 </table>
                 <div class="col-md-12 pagination-wrapper">
-                    {{ $user->unreadNotifications()->paginate(4)->links() }}
+                    {{ $user->unreadNotifications()->paginate(5)->links() }}
                 </div>
             </div>
         </div>
